@@ -92,8 +92,7 @@ export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
   }
 
   function drawGlobe(edgesDrawn, nodesDrawn, progress, rotation) {
-    ctx.fillStyle = "rgba(20, 38, 74, 0.15)";
-    ctx.fillRect(0, 0, w, h);
+    ctx.clearRect(0, 0, w, h);
 
     // Draw edges (connections between nodes)
     const edgesToDraw = Math.floor(edgesDrawn * edges.length);
@@ -106,7 +105,8 @@ export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
       const [x1, y1] = project([from.lat, from.lon], rotation);
       const [x2, y2] = project([to.lat, to.lon], rotation);
 
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = 1.2;
+      ctx.lineCap = "round";
       ctx.strokeStyle = isBadEdge
         ? `rgba(${WARN},${0.3 * progress})`
         : `rgba(${INK},${0.2 * progress})`;
@@ -123,30 +123,24 @@ export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
       const node = nodes[i];
       const [px, py] = project([node.lat, node.lon], rotation);
 
-      // Only draw if on visible hemisphere (rough check)
-      if (px < -50 || px > w + 50) continue;
+      // Only draw if on visible hemisphere
+      if (px < -20 || px > w + 20) continue;
 
-      const size = node.isBad ? 5 : 3.5;
+      const size = node.isBad ? 4.5 : 3;
+      const opacity = node.isBad ? (0.6 + progress * 0.4) : (0.5 + progress * 0.3);
 
       if (node.isBad) {
-        // Bad actor nodes: red with glow
-        ctx.fillStyle = `rgba(${WARN},${0.7 + progress * 0.3})`;
-        ctx.shadowColor = `rgba(${WARN},0.6)`;
-        ctx.shadowBlur = 8;
+        // Bad actor nodes: red
+        ctx.fillStyle = `rgba(${WARN},${opacity})`;
       } else {
         // Normal nodes: blue with glow
-        ctx.fillStyle = `rgba(${GLOW},${0.5 + progress * 0.4})`;
-        ctx.shadowColor = `rgba(${GLOW},0.5)`;
-        ctx.shadowBlur = 6;
+        ctx.fillStyle = `rgba(${GLOW},${opacity})`;
       }
 
       ctx.beginPath();
       ctx.arc(px, py, size, 0, Math.PI * 2);
       ctx.fill();
     }
-
-    ctx.shadowColor = "transparent";
-    ctx.shadowBlur = 0;
   }
 
   function frame(now) {
