@@ -1,0 +1,179 @@
+{
+  "id": "mattox-hudson-work-from-home-booklet-scheme",
+  "title": "Mattox and Hudson work-from-home booklet assembly scheme",
+  "typology": "job-scam",
+  "period": "to 2012",
+  "summary": "A federal grand jury in the Northern District of Georgia indicted Detrick Mattox and Jasmine Hudson of Ellenwood, Georgia, for a work-from-home scheme run under at least 14 business names. Internet ads promised earnings of up to $5,000 a week assembling booklets; more than 200 people paid initiation fees of $50 to $500, most received no materials, and those who did the work were never paid. The August 2012 announcement reports charges only; indictments are allegations, and no outcome was verified.",
+  "status": "enforcement_action",
+  "entities": [
+    {
+      "name": "Detrick Mattox",
+      "kind": "person",
+      "jurisdiction": "US",
+      "names": [
+        {
+          "name": "Atlanta's Mailing Company",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Atlantis Mailing Company",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Brown Staffing Services",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Central Mailing Company",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Detrick Mattox Enterprises",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Georgia Assembly Company",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Global Assembly Company",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Global Mailing Enterprises",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Jobs R US",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "National Assembly Company",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Nationwide Express Mailing",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Pacific Mailing Company",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Premiere Mailing Company",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        },
+        {
+          "name": "Regional Assembly Company",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        }
+      ],
+      "actions": [
+        {
+          "body": "US Attorney, N.D. Georgia",
+          "action": "indictment (one conspiracy count, 12 mail fraud counts)",
+          "date": "2012-08-21",
+          "url": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        }
+      ]
+    },
+    {
+      "name": "Jasmine Hudson",
+      "kind": "person",
+      "jurisdiction": "US",
+      "names": [],
+      "actions": [
+        {
+          "body": "US Attorney, N.D. Georgia",
+          "action": "indictment (one conspiracy count, 12 mail fraud counts)",
+          "date": "2012-08-21",
+          "url": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "Ellenwood, Georgia (internet ads)",
+      "country": "US",
+      "lat": 33.63,
+      "lon": -84.26,
+      "note": "Internet ads offered work-from-home booklet assembly under a rotating set of business names.",
+      "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Atlanta, Georgia",
+      "country": "US",
+      "lat": 33.75,
+      "lon": -84.39,
+      "note": "Both defendants were indicted on conspiracy and mail fraud charges.",
+      "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+    }
+  ],
+  "victim_origins": [],
+  "lures": [
+    {
+      "signal": "upfront_fee",
+      "quote_or_description": "Members paid initiation fees of $50 to $500, typically by money order.",
+      "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+    },
+    {
+      "signal": "pay_too_high",
+      "quote_or_description": "Members were told they could earn up to $5,000 a week, or $20 per booklet assembled.",
+      "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Work-from-home scam indictment (Mattox and Hudson)",
+      "publisher": "U.S. Attorney's Office, Northern District of Georgia",
+      "date": "2012-08-21",
+      "url": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html",
+      "tier": "official"
+    }
+  ]
+}

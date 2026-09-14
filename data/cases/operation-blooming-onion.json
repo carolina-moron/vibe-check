@@ -1,0 +1,30 @@
+{
+  "id": "operation-blooming-onion",
+  "title": "Operation Blooming Onion (USA v. Patricio et al.)",
+  "typology": "labor-trafficking",
+  "period": "2015–2021",
+  "summary": "In November 2021 federal prosecutors in the Southern District of Georgia unsealed a 54-count indictment against 24 defendants, alleging a conspiracy that fraudulently used the H-2A visa program to bring workers from Mexico, Guatemala and Honduras to South Georgia farms. The indictment alleges workers were charged unlawful fees for transportation, food and housing, had travel and identity documents withheld, and were threatened with deportation and violence; at least two workers died. Prosecutors allege the conspirators made more than $200 million and laundered it through property, vehicles, businesses and a casino. These are allegations in an indictment; this record does not report individual case outcomes.",
+  "status": "enforcement_action",
+  "entities": [
+    { "name": "Patricio transnational criminal organization", "kind": "company", "jurisdiction": "US", "names": [],
+      "actions": [ { "body": "US DOJ, USAO Southern District of Georgia", "action": "54-count indictment unsealed (USA v. Patricio et al.)", "date": "2021-11-22", "url": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf" } ] },
+    { "name": "Maria Leticia Patricio", "kind": "person", "jurisdiction": "US", "names": [],
+      "actions": [ { "body": "US DOJ, USAO Southern District of Georgia", "action": "indicted: conspiracy to commit mail fraud, mail fraud, conspiracy to engage in forced labor, conspiracy to commit money laundering", "date": "2021-11-22", "url": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf" } ] }
+  ],
+  "journey": [
+    { "stage": "recruited", "place": "Mexico, Guatemala, Honduras", "country": "MX", "lat": 19.43, "lon": -99.13, "note": "Workers were brought from Mexico, Guatemala and Honduras under the pretext of H-2A agricultural work.", "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf" },
+    { "stage": "exploited", "place": "Coffee, Atkinson, Bacon, Tattnall, Toombs and Ware counties, Georgia", "country": "US", "lat": 31.51, "lon": -82.85, "note": "Workers allegedly dug onions by hand for 20 cents a bucket in fenced camps under threat of guns and violence.", "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf" },
+    { "stage": "laundered", "place": "South Georgia", "country": "US", "lat": 31.21, "lon": -82.35, "note": "Proceeds of more than $200 million were allegedly laundered through cash purchases and a casino.", "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf" },
+    { "stage": "prosecuted", "place": "Waycross, Georgia", "country": "US", "lat": 31.21, "lon": -82.35, "note": "The indictment was announced in Waycross on 22 November 2021.", "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf" }
+  ],
+  "victim_origins": ["MX", "GT", "HN"],
+  "lures": [
+    { "signal": "visa_fraud", "quote_or_description": "Conspirators allegedly fraudulently used the H-2A work visa program to smuggle foreign nationals into the US.", "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf" },
+    { "signal": "debt_bondage", "quote_or_description": "Workers were required to pay unlawful fees for transportation, food and housing.", "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf" },
+    { "signal": "document_retention", "quote_or_description": "Conspirators illegally withheld workers' travel and identification documents.", "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf" },
+    { "signal": "employer_housing_travel", "quote_or_description": "Workers were held in cramped, unsanitary fenced work camps with little food and no safe water.", "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf" }
+  ],
+  "sources": [
+    { "title": "Human smuggling, forced labor among allegations in south Georgia federal indictment", "publisher": "US Attorney's Office, Southern District of Georgia (via DOL OIG)", "date": "2021-11-22", "url": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf", "tier": "official" }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "id": "worldwide-executive-job-search-solutions",
+  "title": "Worldwide Executive Job Search Solutions / PrivateEquityHeadhunters.com",
+  "typology": "job-scam",
+  "period": "2019",
+  "summary": "The FTC alleged that Worldwide Executive Job Search Solutions, PrivateEquityHeadhunters.com and owner Craig Chrest messaged job seekers on LinkedIn and other networking sites, claiming access to unadvertised executive jobs at private equity and venture capital firms. Consumers paid upfront fees of $1,200 to $2,500, but the interviews and jobs were fictitious. A federal court in the Southern District of Texas froze assets in February 2019, and an October 2019 settlement permanently banned the defendants from offering employment services, with a $1,744,422 judgment of which all but $18,000 was suspended.",
+  "status": "settled",
+  "entities": [
+    {
+      "name": "Worldwide Executive Job Search Solutions, LLC",
+      "kind": "company",
+      "jurisdiction": "US",
+      "names": [
+        {
+          "name": "WWEJSS",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+        },
+        {
+          "name": "Seven Figure Careers",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+        },
+        {
+          "name": "7FigRecruiters",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+        },
+        {
+          "name": "7FC",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+        },
+        {
+          "name": "Finnburg Switzer",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+        },
+        {
+          "name": "ResumeterPro",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+        },
+        {
+          "name": "Creating Job Opportunity",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+        },
+        {
+          "name": "Confidential Jobs Only",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+        },
+        {
+          "name": "CJOnly",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+        },
+        {
+          "name": "CJO Private Equity",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+        }
+      ],
+      "actions": [
+        {
+          "body": "FTC",
+          "action": "complaint and asset freeze (temporary restraining order)",
+          "date": "2019-02-25",
+          "url": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+        },
+        {
+          "body": "FTC",
+          "action": "stipulated order: permanent ban on employment services; $1,744,422 judgment, largely suspended",
+          "date": "2019-10-08",
+          "url": "https://www.ftc.gov/news-events/news/press-releases/2019/10/ftc-puts-end-bogus-job-placement-resume-repair-scheme"
+        }
+      ]
+    },
+    {
+      "name": "PrivateEquityHeadhunters.com, LLC",
+      "kind": "company",
+      "jurisdiction": "US",
+      "names": [
+        {
+          "name": "PE Headhunters",
+          "type": "dba",
+          "from": null,
+          "to": null,
+          "source": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+        }
+      ],
+      "actions": [
+        {
+          "body": "FTC",
+          "action": "complaint and asset freeze (temporary restraining order)",
+          "date": "2019-02-25",
+          "url": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+        },
+        {
+          "body": "FTC",
+          "action": "stipulated order: permanent ban on employment services; $1,744,422 judgment, largely suspended",
+          "date": "2019-10-08",
+          "url": "https://www.ftc.gov/news-events/news/press-releases/2019/10/ftc-puts-end-bogus-job-placement-resume-repair-scheme"
+        }
+      ]
+    },
+    {
+      "name": "Craig N. Chrest",
+      "kind": "person",
+      "jurisdiction": "US",
+      "names": [],
+      "actions": [
+        {
+          "body": "FTC",
+          "action": "complaint and asset freeze (temporary restraining order)",
+          "date": "2019-02-25",
+          "url": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+        },
+        {
+          "body": "FTC",
+          "action": "stipulated order: permanent ban on employment services; $1,744,422 judgment, largely suspended",
+          "date": "2019-10-08",
+          "url": "https://www.ftc.gov/news-events/news/press-releases/2019/10/ftc-puts-end-bogus-job-placement-resume-repair-scheme"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "LinkedIn and other online networking sites (US)",
+      "country": "US",
+      "lat": 39.8,
+      "lon": -98.6,
+      "note": "Job seekers with business experience were sent unsolicited messages saying they qualified for unadvertised executive positions.",
+      "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Houston, Texas (S.D. Tex.)",
+      "country": "US",
+      "lat": 29.76,
+      "lon": -95.37,
+      "note": "The FTC obtained an asset freeze and later a settlement banning the defendants from employment services.",
+      "source": "https://www.ftc.gov/news-events/news/press-releases/2019/10/ftc-puts-end-bogus-job-placement-resume-repair-scheme"
+    }
+  ],
+  "victim_origins": [],
+  "lures": [
+    {
+      "signal": "upfront_fee",
+      "quote_or_description": "Job seekers had to pay upfront fees of $1,200 to $2,500 to get an interview, plus fees for resume repair.",
+      "source": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+    },
+    {
+      "signal": "chat_only_contact",
+      "quote_or_description": "Unsolicited messages via LinkedIn and other networking sites claimed exclusive relationships with hundreds of PE and VC firms.",
+      "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+    },
+    {
+      "signal": "pay_too_high",
+      "quote_or_description": "Promised unadvertised, highly paid executive jobs and claimed a \"100 percent interview rate\".",
+      "source": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+    }
+  ],
+  "sources": [
+    {
+      "title": "FTC Halts Fake Job Opportunity and Resume Repair Operation",
+      "publisher": "Federal Trade Commission",
+      "date": "2019-02-25",
+      "url": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation",
+      "tier": "official"
+    },
+    {
+      "title": "FTC Puts an End to Bogus Job Placement and Resume Repair Scheme",
+      "publisher": "Federal Trade Commission",
+      "date": "2019-10-08",
+      "url": "https://www.ftc.gov/news-events/news/press-releases/2019/10/ftc-puts-end-bogus-job-placement-resume-repair-scheme",
+      "tier": "official"
+    },
+    {
+      "title": "Worldwide Executive Job Search Solutions, LLC (case page)",
+      "publisher": "Federal Trade Commission",
+      "date": "2019-10-08",
+      "url": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc",
+      "tier": "official"
+    }
+  ]
+}

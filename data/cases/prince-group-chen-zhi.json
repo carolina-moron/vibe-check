@@ -1,0 +1,52 @@
+{
+  "id": "prince-group-chen-zhi",
+  "title": "Prince Group and Chen Zhi",
+  "typology": "scam-compound",
+  "period": "2022–2026",
+  "summary": "Prince Holding Group, a Cambodia-based conglomerate chaired by Chen Zhi, is accused by US prosecutors of running forced-labor scam compounds across Cambodia where trafficked workers ran cryptocurrency investment ('pig butchering') frauds. On 14 October 2025 the US unsealed an indictment in Brooklyn charging Chen Zhi with wire fraud conspiracy and money laundering conspiracy, filed a civil forfeiture complaint against about 127,271 bitcoin, and OFAC designated 146 targets as the Prince Group TCO in a joint action with the UK. Treasury said workers were lured by promises of well-paid customer service and tech support jobs. Chen Zhi remained at large at the time of the announcement.",
+  "status": "enforcement_action",
+  "entities": [
+    { "name": "Chen Zhi", "kind": "person", "jurisdiction": "KH",
+      "names": [ { "name": "Vincent", "type": "alias", "from": null, "to": null, "source": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged" } ],
+      "actions": [
+        { "body": "US DOJ (EDNY)", "action": "Indictment unsealed: wire fraud conspiracy and money laundering conspiracy", "date": "2025-10-14", "url": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged" },
+        { "body": "US DOJ (EDNY)", "action": "Civil forfeiture complaint against approx. 127,271 bitcoin", "date": "2025-10-14", "url": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged" },
+        { "body": "US Treasury OFAC", "action": "SDN designation (Prince Group TCO leader)", "date": "2025-10-14", "url": "https://home.treasury.gov/news/press-releases/sb0278" }
+      ] },
+    { "name": "Prince Holding Group", "kind": "company", "jurisdiction": "KH",
+      "names": [ { "name": "Prince Group", "type": "dba", "from": null, "to": null, "source": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged" } ],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (Prince Group TCO)", "date": "2025-10-14", "url": "https://home.treasury.gov/news/press-releases/sb0278" } ] },
+    { "name": "Prince Bank Plc.", "kind": "company", "jurisdiction": "KH", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (Prince Group TCO)", "date": "2025-10-14", "url": "https://home.treasury.gov/news/press-releases/sb0278" } ] },
+    { "name": "Jin Bei Group Co. Ltd.", "kind": "company", "jurisdiction": "KH", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (Prince Group TCO)", "date": "2025-10-14", "url": "https://home.treasury.gov/news/press-releases/sb0278" } ] },
+    { "name": "Golden Fortune Resorts World Co. Ltd.", "kind": "company", "jurisdiction": "KH", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (Prince Group TCO)", "date": "2025-10-14", "url": "https://home.treasury.gov/news/press-releases/sb0278" } ] },
+    { "name": "Grand Legend International Asset Management Co., Ltd", "kind": "company", "jurisdiction": "KH", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (Prince Group TCO)", "date": "2025-10-14", "url": "https://home.treasury.gov/news/press-releases/sb0278" } ] },
+    { "name": "Legend Innovation Co.", "kind": "company", "jurisdiction": "KH", "names": [],
+      "actions": [ { "body": "UK FCDO / Home Office", "action": "Sanctions designation (operator of #8 Park)", "date": "2026-03-26", "url": "https://www.gov.uk/government/news/uk-crackdown-on-vile-scam-centres-steps-up-with-sanctions-on-illicit-crypto-network" } ] },
+    { "name": "#8 Park", "kind": "zone", "jurisdiction": "KH", "names": [], "actions": [] }
+  ],
+  "journey": [
+    { "stage": "advertised", "place": "Online job offers", "country": "KH", "lat": 11.56, "lon": 104.92,
+      "note": "Workers were lured by promises of well-paid customer service and tech support jobs.", "source": "https://home.treasury.gov/news/press-releases/sb0278" },
+    { "stage": "exploited", "place": "Scam compounds across Cambodia (Prince Group HQ Phnom Penh)", "country": "KH", "lat": 11.56, "lon": 104.92,
+      "note": "Trafficked workers were held in walled, barbed-wire compounds and forced under threat of violence to run crypto investment scams.", "source": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged" },
+    { "stage": "laundered", "place": "Cryptocurrency wallets", "country": "KH", "lat": 11.56, "lon": 104.92,
+      "note": "US prosecutors sought forfeiture of about 127,271 bitcoin described as proceeds and instrumentalities of the schemes.", "source": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged" },
+    { "stage": "prosecuted", "place": "Brooklyn, New York", "country": "US", "lat": 40.69, "lon": -73.99,
+      "note": "An indictment against Chen Zhi was unsealed in federal court in Brooklyn on 14 October 2025.", "source": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged" }
+  ],
+  "victim_origins": [],
+  "lures": [
+    { "signal": "lure_role", "quote_or_description": "Workers were 'lured by the promise of well-paid jobs in customer service, tech support'.", "source": "https://home.treasury.gov/news/press-releases/sb0278" },
+    { "signal": "pay_too_high", "quote_or_description": "The offers promised well-paid jobs.", "source": "https://home.treasury.gov/news/press-releases/sb0278" },
+    { "signal": "document_retention", "quote_or_description": "Treasury reported confiscation of workers' documents along with fines, isolation and movement restrictions.", "source": "https://home.treasury.gov/news/press-releases/sb0278" }
+  ],
+  "sources": [
+    { "title": "Chairman of Prince Group Indicted for Operating Cambodian Forced-Labor Scam Compounds Engaged in Cryptocurrency Fraud Schemes", "publisher": "US Department of Justice", "date": "2025-10-14", "url": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged", "tier": "official" },
+    { "title": "U.S. and U.K. Take Largest Action Ever Targeting Cybercriminal Networks in Southeast Asia", "publisher": "US Department of the Treasury", "date": "2025-10-14", "url": "https://home.treasury.gov/news/press-releases/sb0278", "tier": "official" },
+    { "title": "UK crackdown on vile scam centres steps up with sanctions on illicit crypto network", "publisher": "GOV.UK (FCDO)", "date": "2026-03-26", "url": "https://www.gov.uk/government/news/uk-crackdown-on-vile-scam-centres-steps-up-with-sanctions-on-illicit-crypto-network", "tier": "official" }
+  ]
+}

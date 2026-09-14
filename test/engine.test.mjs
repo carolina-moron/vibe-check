@@ -1,17 +1,39 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { normalizeDomain, detectContent, checkEmail, domainAgeSignals, matchReports, assess, assessPerson } from "../src/engine.js";
+import {
+  normalizeDomain, detectContent, checkEmail, checkRdap, checkGleif, checkCatalog, matchCatalog,
+  coverage, assess, caseEvidence, redact, buildReport, dHash, hammingHex,
+} from "../src/engine.js";
 
-const signals = JSON.parse(readFileSync(new URL("../data/signals.json", import.meta.url)));
-const reports = JSON.parse(readFileSync(new URL("../data/reports.json", import.meta.url)));
+const load = (p) => JSON.parse(readFileSync(new URL(p, import.meta.url)));
+const signals = load("../data/signals.json");
+const registers = load("../data/registers.json");
 const now = new Date("2026-09-14T00:00:00Z");
 const ids = (hits) => hits.map((h) => h.id).sort();
 
-test("every detectable id exists in signals.json", () => {
+const CASES = [{
+  id: "t", title: "Test case", entities: [
+    { name: "Brightpath Global Staffing LLC", jurisdiction: "US", names: [{ name: "Northstar Overseas Recruitment", type: "former" }], actions: [{ url: "https://x" }] },
+  ], lures: [{ signal: "upfront_fee" }, { signal: "document_retention" }],
+}];
+
+// A fetch stub routed by URL substring.
+const stub = (routes) => async (url) => {
+  const key = Object.keys(routes).find((k) => url.includes(k));
+  if (!key) return { ok: false, status: 404, json: async () => ({}) };
+  const v = routes[key];
+  return v instanceof Error ? Promise.reject(v) : { ok: true, status: 200, json: async () => v };
+};
+
+test("every registered signal id used by rules or cases exists", () => {
   const known = new Set(signals.signals.map((s) => s.id));
-  const text = "Pay the visa fee. Send your passport. Telegram only. Within 24 hours. Free flight and accommodation provided. Location will be disclosed on arrival. Cambodia. Hostess. Forward payments. No experience needed, $600 per day.";
-  for (const h of detectContent(text)) assert.ok(known.has(h.id), h.id);
+  const text = "Pay the visa fee. Send your passport. We keep your passport. Deducted from your wages. Tourist visa for work. Telegram only. Within 24 hours. Free flight provided. Location will be disclosed on arrival. Cambodia. Hostess. Forward payments. No experience needed, $600 per day.";
+  const found = detectContent(text);
+  assert.ok(found.length >= 12);
+  for (const h of found) assert.ok(known.has(h.id), h.id);
+  const cases = load("../data/cases/index.json").cases;
+  for (const c of cases) for (const l of c.lures || []) assert.ok(known.has(l.signal), `${c.id}: ${l.signal}`);
 });
 
 test("normalizeDomain", () => {
@@ -20,14 +42,9 @@ test("normalizeDomain", () => {
   assert.equal(normalizeDomain("not a domain"), "");
 });
 
-test("trafficking-style overseas offer", () => {
-  const text = "URGENT hiring customer service in Sihanoukville. Free flight and accommodation provided. No experience needed, $3000 per week. Contact us on Telegram. Pay the visa processing fee within 48 hours.";
+test("scam-compound style offer", () => {
+  const text = "URGENT hiring customer service in Sihanoukville. Free flight and accommodation provided. No experience needed, $3,000 per week. Contact us on Telegram. Pay the visa processing fee within 48 hours.";
   assert.deepEqual(ids(detectContent(text)), ["chat_only_contact", "employer_housing_travel", "high_risk_region", "no_experience_high_pay", "pay_too_high", "upfront_fee", "urgency"]);
-});
-
-test("pay with thousands separators", () => {
-  assert.deepEqual(ids(detectContent("Earn $3,000 per week")), ["pay_too_high"]);
-  assert.deepEqual(detectContent("Earn $1,200 per week"), []);
 });
 
 test("ordinary posting has no content flags", () => {
@@ -41,38 +58,88 @@ test("email checks", () => {
   assert.deepEqual(checkEmail("hr@jobs.acme.com", "acme.com"), []);
 });
 
-test("domain age tiers", () => {
-  assert.deepEqual(ids(domainAgeSignals({ created: "2026-07-01T00:00:00Z" }, now)), ["domain_new"]);
-  assert.deepEqual(ids(domainAgeSignals({ created: "2025-06-01T00:00:00Z" }, now)), ["domain_young"]);
-  assert.deepEqual(domainAgeSignals({ created: "2010-01-01T00:00:00Z" }, now), []);
-  assert.deepEqual(ids(domainAgeSignals({ error: "x" }, now)), ["domain_unresolved"]);
+test("no check ever returns 'clear'; silence adds nothing", async () => {
+  const fetchFn = stub({ "rdap.org": { events: [{ eventAction: "registration", eventDate: "2001-01-01T00:00:00Z" }] }, "api.gleif.org": { data: [] } });
+  const r1 = await checkRdap("old.com", { fetchFn, now });
+  const r2 = await checkGleif("Nobody Ltd", { fetchFn, now });
+  for (const r of [r1, r2]) {
+    assert.equal(r.verdict, "no-evidence-found");
+    assert.deepEqual(r.hits, []);
+  }
 });
 
-test("report matching via old name and domain", () => {
-  assert.equal(matchReports({ name: "Northstar Overseas Recruitment" }, reports)[0].entity.id, "demo-001");
-  assert.equal(matchReports({ name: "", domains: ["jobs.meridian-assist.example"] }, reports)[0].entity.id, "demo-002");
-  assert.equal(matchReports({ name: "Acme" }, reports).length, 0);
+test("RDAP: new domain is a hit, missing domain is an error not a clearance", async () => {
+  const hit = await checkRdap("new.com", { fetchFn: stub({ "rdap.org": { events: [{ eventAction: "registration", eventDate: "2026-08-01T00:00:00Z" }] } }), now });
+  assert.deepEqual(ids(hit.hits), ["domain_new"]);
+  const missing = await checkRdap("nope.example", { fetchFn: stub({}), now });
+  assert.equal(missing.verdict, "error");
 });
 
-test("person lookup is never scored and needs a full name", async () => {
-  const fetchFn = async (url) => ({ ok: true, json: async () => (url.includes("fbi.gov")
-    ? { total: 1, items: [{ title: "JANE DOE", url: "https://www.fbi.gov/x", images: [{ thumb: "t" }] }] }
-    : { count: 0, results: [] }) });
-  const p = await assessPerson("Jane Doe", fetchFn);
-  assert.equal(p.fbi.items[0].title, "JANE DOE");
-  assert.equal(p.courts.total, 0);
-  assert.equal("points" in p, false);
-  assert.ok((await assessPerson("Jane", fetchFn)).error);
+test("GLEIF surfaces previous legal names", async () => {
+  const fetchFn = stub({ "api.gleif.org": { data: [{ id: "LEI1", attributes: { entity: {
+    legalName: { name: "New Name Holdings Ltd" }, status: "ACTIVE", jurisdiction: "GB", creationDate: "2020-01-01",
+    otherNames: [{ name: "Old Name Ltd", type: "PREVIOUS_LEGAL_NAME" }] } } }] } });
+  const r = await checkGleif("Old Name Ltd", { fetchFn, now });
+  assert.equal(r.verdict, "hit");
+  assert.deepEqual(ids(r.hits), ["gleif_name_history"]);
 });
 
-test("assess end to end with mocked RDAP", async () => {
-  const fetchFn = async (url) => ({ ok: true, json: async () => (url.includes("rdap")
-    ? { events: [{ eventAction: "registration", eventDate: "2026-08-01T00:00:00Z" }] }
-    : { count: 0, results: [] }) });
+test("catalog matches through a former name", () => {
+  const r = checkCatalog("Northstar Overseas Recruitment", CASES);
+  assert.deepEqual(ids(r.hits), ["name_change_lineage", "reported_local"]);
+  assert.equal(matchCatalog({ name: "Acme" }, CASES).length, 0);
+});
+
+test("coverage is separate from score", () => {
+  assert.equal(coverage(["GB", "US"], registers).class, "well");
+  assert.equal(coverage(["MM"], registers).class, "uncovered");
+  assert.equal(coverage(["BR"], registers).class, "partial");
+});
+
+test("case evidence is scored from lures and actions", () => {
+  const s = caseEvidence(CASES[0], signals);
+  assert.deepEqual(s.flags.map((f) => f.id).sort(), ["document_retention", "name_change_lineage", "reported_local", "upfront_fee"]);
+});
+
+test("assess end to end with every network call stubbed", async () => {
+  const fetchFn = stub({
+    "rdap.org": { events: [{ eventAction: "registration", eventDate: "2026-08-01T00:00:00Z" }] },
+    "crt.sh": [{ not_before: "2026-08-02T00:00:00" }],
+    "archive.org": { archived_snapshots: {} },
+    "tranco-list.eu": { ranks: [] },
+    "api.gleif.org": { data: [] },
+    "data.ny.gov": [], "data.colorado.gov": [],
+    "courtlistener.com": { count: 0, results: [] },
+  });
   const r = await assess(
-    { company: "BrightPath Talent", website: "brightpath-talent.example", email: "hiring@gmail.com", posting: "Send your passport before the interview." },
-    { signals, reports, fetchFn, now },
+    { company: "Northstar Overseas Recruitment", website: "northstar-jobs.example", email: "hr@gmail.com", posting: "Send your passport scan before the interview.", jurisdiction: "US" },
+    { signals, registers, cases: CASES, fetchFn, now },
   );
   assert.equal(r.tier.id, "high");
-  assert.deepEqual(r.flags.map((f) => f.id).sort(), ["domain_new", "free_email", "id_before_interview", "name_change_lineage", "reported_local"]);
+  assert.deepEqual(r.flags.map((f) => f.id).sort(), ["cert_new", "domain_new", "free_email", "id_before_interview", "name_change_lineage", "no_archive", "reported_local"]);
+  assert.ok(r.checks.every((c) => ["hit", "no-evidence-found", "not-searched", "error"].includes(c.verdict)));
+  assert.ok(!r.checks.some((c) => c.register === "fbi-wanted"), "no person checks");
+});
+
+test("redaction strips reporter identifiers", () => {
+  const { text, counts } = redact("My name is Ana Souza, email ana.s@example.com, phone +1 (212) 555-0199, passport AB1234567, @ana_insta. They paid $300.");
+  assert.ok(!/Ana|ana\.s@|555-0199|AB1234567|@ana_insta/.test(text), text);
+  assert.ok(text.includes("$300"));
+  assert.deepEqual(Object.keys(counts).sort(), ["email", "handle", "name", "passport-or-id-number", "phone"]);
+});
+
+test("report contains no reporter identity fields", () => {
+  const r = buildReport({ company: "X Ltd", recruiterEmail: "boss@x-jobs.example", narrative: "call me at 212 555 0199", consent: "on", signals: ["upfront_fee"] }, now);
+  assert.equal(r.recruiter_email_domain, "x-jobs.example");
+  assert.equal(r.submitted_month, "2026-09");
+  assert.ok(!JSON.stringify(r).includes("555"));
+  for (const k of ["name", "email", "phone", "ip"]) assert.equal(k in r, false);
+});
+
+test("dHash matches near-identical images and separates different ones", () => {
+  const a = Array.from({ length: 72 }, (_, i) => (i * 37) % 256);
+  const b = a.map((v) => Math.min(255, v + 2));
+  const c = Array.from({ length: 72 }, (_, i) => (i * 91 + 13) % 256);
+  assert.ok(hammingHex(dHash(a), dHash(b)) <= 4);
+  assert.ok(hammingHex(dHash(a), dHash(c)) > 10);
 });

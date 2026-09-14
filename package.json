@@ -1,10 +1,12 @@
 {
-  "name": "job-risk-search",
-  "version": "0.1.0",
+  "name": "job-risk-tracer",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
     "test": "node --test test/*.test.mjs",
+    "build:cases": "node scripts/build-cases.mjs",
+    "check": "npm run build:cases && npm test",
     "serve": "npx --yes serve ."
   }
 }

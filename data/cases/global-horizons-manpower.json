@@ -1,0 +1,34 @@
+{
+  "id": "global-horizons-manpower",
+  "title": "Global Horizons Manpower (Thai farmworkers)",
+  "typology": "labor-trafficking",
+  "period": "2003–2007",
+  "summary": "The EEOC alleged that between 2003 and 2007 Beverly Hills-based labor contractor Global Horizons brought Thai men to farms in Hawaii and Washington, charged them high recruitment fees that created insurmountable debt, confiscated passports, and housed them in dilapidated, crowded housing. In 2016 a federal judge in Washington awarded $7,658,500 against Global Horizons, and a companion Hawaii case produced a $12.3 million default judgment. A separate federal criminal case, United States v. Orian, was dismissed in July 2012 after the Justice Department said it could not prove the charged offenses beyond a reasonable doubt.",
+  "status": "civil_judgment",
+  "entities": [
+    { "name": "Global Horizons, Inc.", "kind": "company", "jurisdiction": "US", "names": [],
+      "actions": [
+        { "body": "US EEOC", "action": "Title VII pattern-or-practice lawsuit filed (Hawaii and Washington)", "date": "2011-04-20", "url": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms" },
+        { "body": "US District Court, E.D. Washington", "action": "judgment of $7,658,500 in EEOC case", "date": "2016-05-02", "url": "https://www.eeoc.gov/newsroom/federal-judge-awards-eeoc-7658500-case-against-farm-labor-contractor-global-horizons" },
+        { "body": "US DOJ", "action": "criminal case United States v. Orian dismissed", "date": "2012-07-20", "url": "https://www.civilbeat.org/2012/07/feds-drop-all-charges-in-global-horizons-human/" }
+      ] }
+  ],
+  "journey": [
+    { "stage": "recruited", "place": "Thailand", "country": "TH", "lat": 13.75, "lon": 100.5, "note": "Thai men were recruited and charged high recruitment fees that created insurmountable debt.", "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms" },
+    { "stage": "exploited", "place": "Maui, Hawaii", "country": "US", "lat": 20.8, "lon": -156.33, "note": "Workers were placed on Hawaii farms including pineapple and coffee operations, where the EEOC alleged passport confiscation and abusive housing.", "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms" },
+    { "stage": "exploited", "place": "Eastern Washington", "country": "US", "lat": 46.6, "lon": -120.5, "note": "Workers were placed on Washington orchards (Green Acre Farms, Valley Fruit Orchards).", "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms" },
+    { "stage": "prosecuted", "place": "Spokane/Richland, Washington", "country": "US", "lat": 46.28, "lon": -119.28, "note": "A federal judge in the Eastern District of Washington awarded $7,658,500 to the EEOC for 67 workers.", "source": "https://www.eeoc.gov/newsroom/federal-judge-awards-eeoc-7658500-case-against-farm-labor-contractor-global-horizons" }
+  ],
+  "victim_origins": ["TH"],
+  "lures": [
+    { "signal": "upfront_fee", "quote_or_description": "Workers were charged high recruitment fees.", "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms" },
+    { "signal": "debt_bondage", "quote_or_description": "The fees created \"insurmountable debt\".", "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms" },
+    { "signal": "document_retention", "quote_or_description": "Global Horizons confiscated workers' passports and threatened deportation if they complained; the court gave an enhanced award per worker whose passport was confiscated.", "source": "https://www.eeoc.gov/newsroom/federal-judge-awards-eeoc-7658500-case-against-farm-labor-contractor-global-horizons" },
+    { "signal": "employer_housing_travel", "quote_or_description": "Workers lived in employer-arranged housing infested with rats and insects, dozens to a room, many without beds.", "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms" }
+  ],
+  "sources": [
+    { "title": "EEOC Files Its Largest Farm Worker Human Trafficking Suit Against Global Horizons, Farms", "publisher": "US EEOC", "date": "2011-04-20", "url": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms", "tier": "official" },
+    { "title": "Federal Judge Awards EEOC $7,658,500 in Case Against Farm Labor Contractor Global Horizons", "publisher": "US EEOC", "date": "2016-05-02", "url": "https://www.eeoc.gov/newsroom/federal-judge-awards-eeoc-7658500-case-against-farm-labor-contractor-global-horizons", "tier": "official" },
+    { "title": "Feds Drop All Charges in Global Horizons Human Trafficking Case", "publisher": "Honolulu Civil Beat", "date": "2012-07-20", "url": "https://www.civilbeat.org/2012/07/feds-drop-all-charges-in-global-horizons-human/", "tier": "press" }
+  ]
+}

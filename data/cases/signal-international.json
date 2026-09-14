@@ -1,0 +1,37 @@
+{
+  "id": "signal-international",
+  "title": "Signal International (Indian H-2B workers)",
+  "typology": "labor-trafficking",
+  "period": "2006–2015",
+  "summary": "After Hurricane Katrina, Signal International used the H-2B program to bring nearly 500 men from India to work as welders and pipefitters in Mississippi and Texas; recruiters promised green cards and permanent residency, and workers paid $10,000–$20,000 or more in fees. Workers were charged $1,050 a month to live in overcrowded, guarded company camps. In February 2015 a New Orleans federal jury awarded $14 million to five workers, finding Signal and businesses of lawyer Malvern C. Burnett and recruiter Sachin Dewan liable for labor trafficking, fraud, racketeering and discrimination. In 2015 Signal agreed to a $20 million settlement resolving the SPLC-coordinated suits, including a $5 million EEOC settlement.",
+  "status": "settled",
+  "entities": [
+    { "name": "Signal International, LLC", "kind": "company", "jurisdiction": "US", "names": [],
+      "actions": [
+        { "body": "US District Court, E.D. Louisiana (jury)", "action": "$14 million verdict for five workers (SPLC case)", "date": "2015-02-18", "url": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/" },
+        { "body": "US EEOC", "action": "$5 million settlement of Title VII lawsuit", "date": "2015-12-18", "url": "https://www.eeoc.gov//eeoc/newsroom/release/12-18-15.cfm?renderforprint=1" }
+      ] },
+    { "name": "Malvern C. Burnett", "kind": "person", "jurisdiction": "US", "names": [],
+      "actions": [ { "body": "US District Court, E.D. Louisiana (jury)", "action": "businesses owned by Burnett found liable in civil verdict", "date": "2015-02-18", "url": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/" } ] },
+    { "name": "Sachin Dewan", "kind": "person", "jurisdiction": "IN", "names": [],
+      "actions": [ { "body": "US District Court, E.D. Louisiana (jury)", "action": "businesses owned by Dewan found liable in civil verdict", "date": "2015-02-18", "url": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/" } ] }
+  ],
+  "journey": [
+    { "stage": "recruited", "place": "India", "country": "IN", "lat": 19.08, "lon": 72.88, "note": "Recruiters promised good jobs, green cards and permanent residency in exchange for large fees.", "source": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/" },
+    { "stage": "exploited", "place": "Pascagoula, Mississippi", "country": "US", "lat": 30.37, "lon": -88.56, "note": "Workers were housed in overcrowded company camps at $1,050 a month and paid below-market wages.", "source": "https://www.splcenter.org/resources/stories/20-million-settlement-agreement-reached-labor-trafficking-cases-coordinated-splc-behalf/" },
+    { "stage": "exploited", "place": "Orange, Texas", "country": "US", "lat": 30.09, "lon": -93.74, "note": "Signal also employed the workers at its Orange, Texas facility.", "source": "https://www.splcenter.org/resources/stories/20-million-settlement-agreement-reached-labor-trafficking-cases-coordinated-splc-behalf/" },
+    { "stage": "prosecuted", "place": "New Orleans, Louisiana", "country": "US", "lat": 29.95, "lon": -90.07, "note": "A federal jury awarded $14 million to five workers after a four-week trial.", "source": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/" }
+  ],
+  "victim_origins": ["IN"],
+  "lures": [
+    { "signal": "upfront_fee", "quote_or_description": "Workers paid \"$10,000 and $20,000 or more in recruitment fees and other costs\".", "source": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/" },
+    { "signal": "visa_fraud", "quote_or_description": "Recruiters promised green cards and permanent US residency, but workers came on temporary H-2B visas.", "source": "https://www.splcenter.org/resources/stories/20-million-settlement-agreement-reached-labor-trafficking-cases-coordinated-splc-behalf/" },
+    { "signal": "debt_bondage", "quote_or_description": "Many sold property or took on family debt to pay fees and could not change jobs without losing their investment.", "source": "https://www.splcenter.org/resources/stories/20-million-settlement-agreement-reached-labor-trafficking-cases-coordinated-splc-behalf/" },
+    { "signal": "employer_housing_travel", "quote_or_description": "Workers were forced to pay $1,050 a month to live in overcrowded, unsanitary, guarded camps, up to 24 men per unit.", "source": "https://www.eeoc.gov//eeoc/newsroom/release/12-18-15.cfm?renderforprint=1" }
+  ],
+  "sources": [
+    { "title": "Federal jury in SPLC case awards $14 million to Indian guest workers", "publisher": "Southern Poverty Law Center", "date": "2015-02-18", "url": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/", "tier": "ngo" },
+    { "title": "$20 million settlement agreement reached in labor trafficking cases coordinated by SPLC", "publisher": "Southern Poverty Law Center", "date": "2015-07", "url": "https://www.splcenter.org/resources/stories/20-million-settlement-agreement-reached-labor-trafficking-cases-coordinated-splc-behalf/", "tier": "ngo" },
+    { "title": "Signal International, LLC to Pay $5 Million to Settle EEOC Race, National Origin Lawsuit", "publisher": "US EEOC", "date": "2015-12-18", "url": "https://www.eeoc.gov//eeoc/newsroom/release/12-18-15.cfm?renderforprint=1", "tier": "official" }
+  ]
+}

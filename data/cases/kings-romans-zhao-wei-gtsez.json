@@ -1,0 +1,46 @@
+{
+  "id": "kings-romans-zhao-wei-gtsez",
+  "title": "Kings Romans / Zhao Wei, Golden Triangle SEZ",
+  "typology": "scam-compound",
+  "period": "2018–2024",
+  "summary": "In January 2018 OFAC designated the Zhao Wei Transnational Criminal Organization, based in the Golden Triangle Special Economic Zone in Bokeo, Laos, citing drug trafficking, human trafficking, money laundering, bribery and wildlife trafficking facilitated through the Kings Romans Casino. Later reporting described call-centre scam operations in the zone, including 11 Indian nationals rescued in 2022 after being promised IT jobs abroad. In August 2024 Lao authorities ordered illegal call centres to leave the zone after raids that led to 1,389 arrests and deportations.",
+  "status": "sanctioned",
+  "entities": [
+    { "name": "Zhao Wei", "kind": "person", "jurisdiction": "LA", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (TCO, E.O. 13581)", "date": "2018-01-30", "url": "https://home.treasury.gov/news/press-releases/sm0272" } ] },
+    { "name": "Guiqin Su", "kind": "person", "jurisdiction": "LA", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (Zhao Wei TCO)", "date": "2018-01-30", "url": "https://home.treasury.gov/news/press-releases/sm0272" } ] },
+    { "name": "Abbas Eberahim", "kind": "person", "jurisdiction": "LA", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (Zhao Wei TCO)", "date": "2018-01-30", "url": "https://home.treasury.gov/news/press-releases/sm0272" } ] },
+    { "name": "Nat Rungtawankhiri", "kind": "person", "jurisdiction": "TH", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (Zhao Wei TCO)", "date": "2018-01-30", "url": "https://home.treasury.gov/news/press-releases/sm0272" } ] },
+    { "name": "Kings Romans International (HK) Co., Limited", "kind": "company", "jurisdiction": "HK", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (Zhao Wei TCO)", "date": "2018-01-30", "url": "https://home.treasury.gov/news/press-releases/sm0272" } ] },
+    { "name": "Kings Romans International Investment Co. Limited", "kind": "company", "jurisdiction": "HK", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (Zhao Wei TCO)", "date": "2018-01-30", "url": "https://home.treasury.gov/news/press-releases/sm0272" } ] },
+    { "name": "King Romans Company Limited", "kind": "company", "jurisdiction": "TH", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (Zhao Wei TCO)", "date": "2018-01-30", "url": "https://home.treasury.gov/news/press-releases/sm0272" } ] },
+    { "name": "Golden Triangle Special Economic Zone", "kind": "zone", "jurisdiction": "LA", "names": [], "actions": [] }
+  ],
+  "journey": [
+    { "stage": "recruited", "place": "India", "country": "IN", "lat": 20.59, "lon": 78.96,
+      "note": "Middlemen promised 11 Indians IT specialist jobs in Dubai, Singapore and Thailand with pre-arranged flights and visas.", "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html" },
+    { "stage": "exploited", "place": "Golden Triangle SEZ, Bokeo", "country": "LA", "lat": 20.36, "lon": 100.09,
+      "note": "Instead they were made to work in call centres running investment and crypto phone scams.", "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html" },
+    { "stage": "escaped", "place": "Lao-Thai border, handed to Indian Consulate Chiang Mai", "country": "TH", "lat": 18.79, "lon": 98.98,
+      "note": "After rescue they were handed to the Indian Consulate in Chiang Mai and repatriated via Bangkok.", "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html" },
+    { "stage": "prosecuted", "place": "Golden Triangle SEZ, Bokeo", "country": "LA", "lat": 20.36, "lon": 100.09,
+      "note": "Raids by mid-August 2024 led to 1,389 arrests and deportations, and call centres were ordered out by 25 August 2024.", "source": "https://www.rfa.org/english/news/laos/golden-triangle-sez-scammers-08122024171757.html" }
+  ],
+  "victim_origins": ["IN"],
+  "lures": [
+    { "signal": "lure_role", "quote_or_description": "Recruits were promised IT specialist positions.", "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html" },
+    { "signal": "vague_location", "quote_or_description": "Jobs were advertised in Dubai, Singapore or Thailand, but recruits were taken to northern Laos.", "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html" },
+    { "signal": "employer_housing_travel", "quote_or_description": "Offers came with 'pre-arranged flights, visas and passports'.", "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html" }
+  ],
+  "sources": [
+    { "title": "Treasury Sanctions the Zhao Wei Transnational Criminal Organization", "publisher": "US Department of the Treasury", "date": "2018-01-30", "url": "https://home.treasury.gov/news/press-releases/sm0272", "tier": "official" },
+    { "title": "Laos rescues 11 Indian nationals trafficked to work as phone scammers", "publisher": "Radio Free Asia", "date": "2022-11-03", "url": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html", "tier": "press" },
+    { "title": "Laos orders Golden Triangle scammers out of zone by end of month", "publisher": "Radio Free Asia", "date": "2024-08-12", "url": "https://www.rfa.org/english/news/laos/golden-triangle-sez-scammers-08122024171757.html", "tier": "press" }
+  ]
+}

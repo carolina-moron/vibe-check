@@ -1,0 +1,34 @@
+{
+  "id": "huione-group",
+  "title": "Huione Group laundering network",
+  "typology": "laundering",
+  "period": "2021–2026",
+  "summary": "Huione Group is a Phnom Penh-based financial conglomerate that FinCEN called a critical node for laundering proceeds of North Korean cyber heists and Southeast Asian pig-butchering scams. FinCEN issued a section 311 final rule on 14 October 2025 cutting it off from the US financial system. Its Telegram marketplace Huione Guarantee rebranded as Haowang Guarantee in October 2024. In June 2026 the US DOJ seized a cloud account used to run the marketplace, which it said hosted channels including procurement of individuals for human trafficking schemes and laundering of scam proceeds.",
+  "status": "enforcement_action",
+  "entities": [
+    { "name": "Huione Group", "kind": "company", "jurisdiction": "KH", "names": [],
+      "actions": [
+        { "body": "US Treasury FinCEN", "action": "Section 311 final rule (primary money laundering concern)", "date": "2025-10-14", "url": "https://www.fincen.gov/news/news-releases/fincen-issues-final-rule-severing-huione-group-us-financial-system" },
+        { "body": "US Treasury FinCEN", "action": "NPRM to amend the rule's definition of Huione Group to include H-Pay Service PLC", "date": "2026-06-23", "url": "https://www.justice.gov/opa/pr/justice-department-seizes-backend-infrastructure-used-huione-group-money-laundering-services" }
+      ] },
+    { "name": "Haowang Guarantee", "kind": "company", "jurisdiction": "KH",
+      "names": [ { "name": "Huione Guarantee", "type": "former", "from": null, "to": "2024-10", "source": "https://www.elliptic.co/blog/huione-largest-ever-illicit-online-marketplace-stablecoin" } ],
+      "actions": [ { "body": "US DOJ", "action": "Seizure of cloud computing account hosting backend infrastructure", "date": "2026-06-23", "url": "https://www.justice.gov/opa/pr/justice-department-seizes-backend-infrastructure-used-huione-group-money-laundering-services" } ] },
+    { "name": "H-Pay Service PLC", "kind": "company", "jurisdiction": "KH", "names": [], "actions": [] }
+  ],
+  "journey": [
+    { "stage": "laundered", "place": "Phnom Penh", "country": "KH", "lat": 11.56, "lon": 104.92,
+      "note": "FinCEN said Huione Group laundered proceeds for Southeast Asian criminal organizations running pig-butchering scams.", "source": "https://www.fincen.gov/news/news-releases/fincen-issues-final-rule-severing-huione-group-us-financial-system" },
+    { "stage": "prosecuted", "place": "Washington, DC", "country": "US", "lat": 38.90, "lon": -77.04,
+      "note": "The DOJ seized backend infrastructure used to operate Huione Guarantee, also known as Haowang Guarantee.", "source": "https://www.justice.gov/opa/pr/justice-department-seizes-backend-infrastructure-used-huione-group-money-laundering-services" }
+  ],
+  "victim_origins": [],
+  "lures": [
+    { "signal": "payment_handling", "quote_or_description": "Huione Guarantee Telegram channels allegedly offered 'the procurement of individuals for human trafficking schemes, as well as assistance with laundering the proceeds of romance and investment scams'.", "source": "https://www.justice.gov/opa/pr/justice-department-seizes-backend-infrastructure-used-huione-group-money-laundering-services" }
+  ],
+  "sources": [
+    { "title": "FinCEN Issues Final Rule Severing Huione Group from U.S. Financial System", "publisher": "FinCEN", "date": "2025-10-14", "url": "https://www.fincen.gov/news/news-releases/fincen-issues-final-rule-severing-huione-group-us-financial-system", "tier": "official" },
+    { "title": "Justice Department Seizes Backend Infrastructure Used by the Huione Group for Money Laundering Services", "publisher": "US Department of Justice", "date": "2026-06-23", "url": "https://www.justice.gov/opa/pr/justice-department-seizes-backend-infrastructure-used-huione-group-money-laundering-services", "tier": "official" },
+    { "title": "Huione: the company behind the largest ever illicit online marketplace has launched a stablecoin", "publisher": "Elliptic", "date": "2025-01-13", "url": "https://www.elliptic.co/blog/huione-largest-ever-illicit-online-marketplace-stablecoin", "tier": "ngo" }
+  ]
+}

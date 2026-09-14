@@ -1,0 +1,41 @@
+{
+  "id": "alabuga-start",
+  "title": "Alabuga Start (Tatarstan drone factory recruitment)",
+  "typology": "forced-labor-industrial",
+  "period": "2023–2026",
+  "summary": "Alabuga Start is a recruitment program promoted on social media that offers young foreign women, mostly aged 18–22 from countries including Uganda, Rwanda, Kenya, South Sudan, Sierra Leone and Nigeria, plane tickets, money and work-study roles such as hospitality and catering. According to an AP investigation, many learned only after arriving at the Alabuga Special Economic Zone in Tatarstan that they would assemble Iranian-designed attack drones, and described long surveilled shifts, broken wage promises, and chemical exposure. The US Treasury sanctioned SEZ Alabuga in February 2024, the EU requires EU operators to withdraw from the zone, and in May 2026 the UK designated people and entities involved in recruitment for Alabuga Start.",
+  "status": "sanctioned",
+  "entities": [
+    { "name": "Special Economic Zone Alabuga (SEZ Alabuga)", "kind": "zone", "jurisdiction": "RU", "names": [],
+      "actions": [
+        { "body": "US Treasury OFAC", "action": "SDN designation", "date": "2024-02-23", "url": "https://home.treasury.gov/news/press-releases/jy2117" },
+        { "body": "EU Council", "action": "listed in Part A of Annex LII, Article 5ah of Regulation 833/2014 (EU operators must withdraw)", "date": "2025-12-19", "url": "https://finance.ec.europa.eu/document/download/9c098952-e4e6-4685-98d7-6e84b0cca54a_en?filename=faqs-sanctions-russia-special-economic-zones_en.pdf" }
+      ] },
+    { "name": "Timur Nailevich Shagivaleev", "kind": "person", "jurisdiction": "RU", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "SDN designation (General Director, SEZ Alabuga)", "date": "2024-02-23", "url": "https://home.treasury.gov/news/press-releases/jy2117" } ] },
+    { "name": "Alabuga Start", "kind": "program", "jurisdiction": "RU", "names": [],
+      "actions": [
+        { "body": "UK FCDO", "action": "Russia regime designations of Anastasia Barysheva, Konstantin Trifonov, Chulpan Islamova, Savsan Ashuraliyevna Yusupova, Elmir Saifullin, Michel Guy France Awana Ateba and Enangue Holding for recruitment on behalf of Alabuga Start", "date": "2026-05-05", "url": "https://www.gov.uk/government/publications/list-of-russia-and-irregular-migration-sanctions-designations-5-may-2026" }
+      ] }
+  ],
+  "journey": [
+    { "stage": "advertised", "place": "Social media (TikTok, Facebook, Telegram)", "country": "UG", "lat": 0.35, "lon": 32.58, "note": "Alabuga Start advertised via social media videos promising plane tickets, money and a European adventure.", "source": "https://www.business-humanrights.org/en/latest-news/africans-recruited-to-work-in-russia-say-they-were-duped-into-building-drones-for-use-in-ukraine/" },
+    { "stage": "recruited", "place": "East and Central Africa", "country": "KE", "lat": -1.29, "lon": 36.82, "note": "Women aged 18–22 were recruited into work-study roles in hospitality and catering.", "source": "https://www.business-humanrights.org/en/latest-news/africans-recruited-to-work-in-russia-say-they-were-duped-into-building-drones-for-use-in-ukraine/" },
+    { "stage": "exploited", "place": "Alabuga SEZ, Tatarstan", "country": "RU", "lat": 55.8, "lon": 52.2, "note": "Recruits assembled drones under surveillance, alongside students, with deductions for housing and airfare.", "source": "https://www.themoscowtimes.com/2024/10/10/ap-investigates-russias-recruitment-of-african-women-to-make-drones-what-we-learned-a86642" }
+  ],
+  "victim_origins": ["UG", "RW", "KE", "SS", "SL", "NG", "LK"],
+  "lures": [
+    { "signal": "lure_role", "quote_or_description": "Advertised work-study roles in hospitality and catering; recruits learned on arrival they would assemble attack drones.", "source": "https://www.business-humanrights.org/en/latest-news/africans-recruited-to-work-in-russia-say-they-were-duped-into-building-drones-for-use-in-ukraine/" },
+    { "signal": "employer_housing_travel", "quote_or_description": "Promised \"free plane ticket\"; airfare and housing were later deducted from wages.", "source": "https://www.themoscowtimes.com/2024/10/10/ap-investigates-russias-recruitment-of-african-women-to-make-drones-what-we-learned-a86642" },
+    { "signal": "pay_too_high", "quote_or_description": "Promises of higher salaries; recruits reported broken wage promises.", "source": "https://www.business-humanrights.org/en/latest-news/africans-recruited-to-work-in-russia-say-they-were-duped-into-building-drones-for-use-in-ukraine/" },
+    { "signal": "high_risk_region", "quote_or_description": "Work site is a sanctioned military drone production zone in Tatarstan, Russia.", "source": "https://home.treasury.gov/news/press-releases/jy2117" }
+  ],
+  "sources": [
+    { "title": "On Second Anniversary of Russia's Further Invasion of Ukraine... Treasury Sanctions Hundreds of Targets", "publisher": "US Department of the Treasury", "date": "2024-02-23", "url": "https://home.treasury.gov/news/press-releases/jy2117", "tier": "official" },
+    { "title": "Special economic zones FAQ (Article 5ah, Regulation 833/2014)", "publisher": "European Commission", "date": "2025-12-19", "url": "https://finance.ec.europa.eu/document/download/9c098952-e4e6-4685-98d7-6e84b0cca54a_en?filename=faqs-sanctions-russia-special-economic-zones_en.pdf", "tier": "official" },
+    { "title": "List of Russia and irregular migration sanctions designations, 5 May 2026", "publisher": "GOV.UK", "date": "2026-05-05", "url": "https://www.gov.uk/government/publications/list-of-russia-and-irregular-migration-sanctions-designations-5-may-2026", "tier": "official" },
+    { "title": "UK cracks down on Russia's exploitation of vulnerable migrants and deadly drone capability", "publisher": "GOV.UK", "date": "2026-05-05", "url": "https://www.gov.uk/government/news/uk-cracks-down-on-russias-exploitation-of-vulnerable-migrants-and-deadly-drone-capability", "tier": "official" },
+    { "title": "Africans recruited to work in Russia say they were duped into building drones (AP, republished)", "publisher": "Business & Human Rights Resource Centre", "date": "2024-11-10", "url": "https://www.business-humanrights.org/en/latest-news/africans-recruited-to-work-in-russia-say-they-were-duped-into-building-drones-for-use-in-ukraine/", "tier": "ngo" },
+    { "title": "AP Investigates Russia's Recruitment of African Women to Make Drones: What We Learned", "publisher": "The Moscow Times", "date": "2024-10-10", "url": "https://www.themoscowtimes.com/2024/10/10/ap-investigates-russias-recruitment-of-african-women-to-make-drones-what-we-learned-a86642", "tier": "press" }
+  ]
+}

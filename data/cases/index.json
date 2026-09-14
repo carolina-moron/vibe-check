@@ -1,0 +1,1843 @@
+{
+ "generated": "by scripts/build-cases.mjs; do not edit",
+ "cases": [
+  {
+   "id": "alabuga-start",
+   "title": "Alabuga Start (Tatarstan drone factory recruitment)",
+   "typology": "forced-labor-industrial",
+   "period": "2023–2026",
+   "summary": "Alabuga Start is a recruitment program promoted on social media that offers young foreign women, mostly aged 18–22 from countries including Uganda, Rwanda, Kenya, South Sudan, Sierra Leone and Nigeria, plane tickets, money and work-study roles such as hospitality and catering. According to an AP investigation, many learned only after arriving at the Alabuga Special Economic Zone in Tatarstan that they would assemble Iranian-designed attack drones, and described long surveilled shifts, broken wage promises, and chemical exposure. The US Treasury sanctioned SEZ Alabuga in February 2024, the EU requires EU operators to withdraw from the zone, and in May 2026 the UK designated people and entities involved in recruitment for Alabuga Start.",
+   "status": "sanctioned",
+   "entities": [
+    {
+     "name": "Special Economic Zone Alabuga (SEZ Alabuga)",
+     "kind": "zone",
+     "jurisdiction": "RU",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation",
+       "date": "2024-02-23",
+       "url": "https://home.treasury.gov/news/press-releases/jy2117"
+      },
+      {
+       "body": "EU Council",
+       "action": "listed in Part A of Annex LII, Article 5ah of Regulation 833/2014 (EU operators must withdraw)",
+       "date": "2025-12-19",
+       "url": "https://finance.ec.europa.eu/document/download/9c098952-e4e6-4685-98d7-6e84b0cca54a_en?filename=faqs-sanctions-russia-special-economic-zones_en.pdf"
+      }
+     ]
+    },
+    {
+     "name": "Timur Nailevich Shagivaleev",
+     "kind": "person",
+     "jurisdiction": "RU",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (General Director, SEZ Alabuga)",
+       "date": "2024-02-23",
+       "url": "https://home.treasury.gov/news/press-releases/jy2117"
+      }
+     ]
+    },
+    {
+     "name": "Alabuga Start",
+     "kind": "program",
+     "jurisdiction": "RU",
+     "names": [],
+     "actions": [
+      {
+       "body": "UK FCDO",
+       "action": "Russia regime designations of Anastasia Barysheva, Konstantin Trifonov, Chulpan Islamova, Savsan Ashuraliyevna Yusupova, Elmir Saifullin, Michel Guy France Awana Ateba and Enangue Holding for recruitment on behalf of Alabuga Start",
+       "date": "2026-05-05",
+       "url": "https://www.gov.uk/government/publications/list-of-russia-and-irregular-migration-sanctions-designations-5-may-2026"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Social media (TikTok, Facebook, Telegram)",
+     "country": "UG",
+     "lat": 0.35,
+     "lon": 32.58,
+     "note": "Alabuga Start advertised via social media videos promising plane tickets, money and a European adventure.",
+     "source": "https://www.business-humanrights.org/en/latest-news/africans-recruited-to-work-in-russia-say-they-were-duped-into-building-drones-for-use-in-ukraine/"
+    },
+    {
+     "stage": "recruited",
+     "place": "East and Central Africa",
+     "country": "KE",
+     "lat": -1.29,
+     "lon": 36.82,
+     "note": "Women aged 18–22 were recruited into work-study roles in hospitality and catering.",
+     "source": "https://www.business-humanrights.org/en/latest-news/africans-recruited-to-work-in-russia-say-they-were-duped-into-building-drones-for-use-in-ukraine/"
+    },
+    {
+     "stage": "exploited",
+     "place": "Alabuga SEZ, Tatarstan",
+     "country": "RU",
+     "lat": 55.8,
+     "lon": 52.2,
+     "note": "Recruits assembled drones under surveillance, alongside students, with deductions for housing and airfare.",
+     "source": "https://www.themoscowtimes.com/2024/10/10/ap-investigates-russias-recruitment-of-african-women-to-make-drones-what-we-learned-a86642"
+    }
+   ],
+   "victim_origins": [
+    "UG",
+    "RW",
+    "KE",
+    "SS",
+    "SL",
+    "NG",
+    "LK"
+   ],
+   "lures": [
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Advertised work-study roles in hospitality and catering; recruits learned on arrival they would assemble attack drones.",
+     "source": "https://www.business-humanrights.org/en/latest-news/africans-recruited-to-work-in-russia-say-they-were-duped-into-building-drones-for-use-in-ukraine/"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "Promised \"free plane ticket\"; airfare and housing were later deducted from wages.",
+     "source": "https://www.themoscowtimes.com/2024/10/10/ap-investigates-russias-recruitment-of-african-women-to-make-drones-what-we-learned-a86642"
+    },
+    {
+     "signal": "pay_too_high",
+     "quote_or_description": "Promises of higher salaries; recruits reported broken wage promises.",
+     "source": "https://www.business-humanrights.org/en/latest-news/africans-recruited-to-work-in-russia-say-they-were-duped-into-building-drones-for-use-in-ukraine/"
+    },
+    {
+     "signal": "high_risk_region",
+     "quote_or_description": "Work site is a sanctioned military drone production zone in Tatarstan, Russia.",
+     "source": "https://home.treasury.gov/news/press-releases/jy2117"
+    }
+   ],
+   "sources": [
+    {
+     "title": "On Second Anniversary of Russia's Further Invasion of Ukraine... Treasury Sanctions Hundreds of Targets",
+     "publisher": "US Department of the Treasury",
+     "date": "2024-02-23",
+     "url": "https://home.treasury.gov/news/press-releases/jy2117",
+     "tier": "official"
+    },
+    {
+     "title": "Special economic zones FAQ (Article 5ah, Regulation 833/2014)",
+     "publisher": "European Commission",
+     "date": "2025-12-19",
+     "url": "https://finance.ec.europa.eu/document/download/9c098952-e4e6-4685-98d7-6e84b0cca54a_en?filename=faqs-sanctions-russia-special-economic-zones_en.pdf",
+     "tier": "official"
+    },
+    {
+     "title": "List of Russia and irregular migration sanctions designations, 5 May 2026",
+     "publisher": "GOV.UK",
+     "date": "2026-05-05",
+     "url": "https://www.gov.uk/government/publications/list-of-russia-and-irregular-migration-sanctions-designations-5-may-2026",
+     "tier": "official"
+    },
+    {
+     "title": "UK cracks down on Russia's exploitation of vulnerable migrants and deadly drone capability",
+     "publisher": "GOV.UK",
+     "date": "2026-05-05",
+     "url": "https://www.gov.uk/government/news/uk-cracks-down-on-russias-exploitation-of-vulnerable-migrants-and-deadly-drone-capability",
+     "tier": "official"
+    },
+    {
+     "title": "Africans recruited to work in Russia say they were duped into building drones (AP, republished)",
+     "publisher": "Business & Human Rights Resource Centre",
+     "date": "2024-11-10",
+     "url": "https://www.business-humanrights.org/en/latest-news/africans-recruited-to-work-in-russia-say-they-were-duped-into-building-drones-for-use-in-ukraine/",
+     "tier": "ngo"
+    },
+    {
+     "title": "AP Investigates Russia's Recruitment of African Women to Make Drones: What We Learned",
+     "publisher": "The Moscow Times",
+     "date": "2024-10-10",
+     "url": "https://www.themoscowtimes.com/2024/10/10/ap-investigates-russias-recruitment-of-african-women-to-make-drones-what-we-learned-a86642",
+     "tier": "press"
+    }
+   ]
+  },
+  {
+   "id": "global-horizons-manpower",
+   "title": "Global Horizons Manpower (Thai farmworkers)",
+   "typology": "labor-trafficking",
+   "period": "2003–2007",
+   "summary": "The EEOC alleged that between 2003 and 2007 Beverly Hills-based labor contractor Global Horizons brought Thai men to farms in Hawaii and Washington, charged them high recruitment fees that created insurmountable debt, confiscated passports, and housed them in dilapidated, crowded housing. In 2016 a federal judge in Washington awarded $7,658,500 against Global Horizons, and a companion Hawaii case produced a $12.3 million default judgment. A separate federal criminal case, United States v. Orian, was dismissed in July 2012 after the Justice Department said it could not prove the charged offenses beyond a reasonable doubt.",
+   "status": "civil_judgment",
+   "entities": [
+    {
+     "name": "Global Horizons, Inc.",
+     "kind": "company",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US EEOC",
+       "action": "Title VII pattern-or-practice lawsuit filed (Hawaii and Washington)",
+       "date": "2011-04-20",
+       "url": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms"
+      },
+      {
+       "body": "US District Court, E.D. Washington",
+       "action": "judgment of $7,658,500 in EEOC case",
+       "date": "2016-05-02",
+       "url": "https://www.eeoc.gov/newsroom/federal-judge-awards-eeoc-7658500-case-against-farm-labor-contractor-global-horizons"
+      },
+      {
+       "body": "US DOJ",
+       "action": "criminal case United States v. Orian dismissed",
+       "date": "2012-07-20",
+       "url": "https://www.civilbeat.org/2012/07/feds-drop-all-charges-in-global-horizons-human/"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Thailand",
+     "country": "TH",
+     "lat": 13.75,
+     "lon": 100.5,
+     "note": "Thai men were recruited and charged high recruitment fees that created insurmountable debt.",
+     "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms"
+    },
+    {
+     "stage": "exploited",
+     "place": "Maui, Hawaii",
+     "country": "US",
+     "lat": 20.8,
+     "lon": -156.33,
+     "note": "Workers were placed on Hawaii farms including pineapple and coffee operations, where the EEOC alleged passport confiscation and abusive housing.",
+     "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms"
+    },
+    {
+     "stage": "exploited",
+     "place": "Eastern Washington",
+     "country": "US",
+     "lat": 46.6,
+     "lon": -120.5,
+     "note": "Workers were placed on Washington orchards (Green Acre Farms, Valley Fruit Orchards).",
+     "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Spokane/Richland, Washington",
+     "country": "US",
+     "lat": 46.28,
+     "lon": -119.28,
+     "note": "A federal judge in the Eastern District of Washington awarded $7,658,500 to the EEOC for 67 workers.",
+     "source": "https://www.eeoc.gov/newsroom/federal-judge-awards-eeoc-7658500-case-against-farm-labor-contractor-global-horizons"
+    }
+   ],
+   "victim_origins": [
+    "TH"
+   ],
+   "lures": [
+    {
+     "signal": "upfront_fee",
+     "quote_or_description": "Workers were charged high recruitment fees.",
+     "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms"
+    },
+    {
+     "signal": "debt_bondage",
+     "quote_or_description": "The fees created \"insurmountable debt\".",
+     "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms"
+    },
+    {
+     "signal": "document_retention",
+     "quote_or_description": "Global Horizons confiscated workers' passports and threatened deportation if they complained; the court gave an enhanced award per worker whose passport was confiscated.",
+     "source": "https://www.eeoc.gov/newsroom/federal-judge-awards-eeoc-7658500-case-against-farm-labor-contractor-global-horizons"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "Workers lived in employer-arranged housing infested with rats and insects, dozens to a room, many without beds.",
+     "source": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms"
+    }
+   ],
+   "sources": [
+    {
+     "title": "EEOC Files Its Largest Farm Worker Human Trafficking Suit Against Global Horizons, Farms",
+     "publisher": "US EEOC",
+     "date": "2011-04-20",
+     "url": "https://www.eeoc.gov/newsroom/eeoc-files-its-largest-farm-worker-human-trafficking-suit-against-global-horizons-farms",
+     "tier": "official"
+    },
+    {
+     "title": "Federal Judge Awards EEOC $7,658,500 in Case Against Farm Labor Contractor Global Horizons",
+     "publisher": "US EEOC",
+     "date": "2016-05-02",
+     "url": "https://www.eeoc.gov/newsroom/federal-judge-awards-eeoc-7658500-case-against-farm-labor-contractor-global-horizons",
+     "tier": "official"
+    },
+    {
+     "title": "Feds Drop All Charges in Global Horizons Human Trafficking Case",
+     "publisher": "Honolulu Civil Beat",
+     "date": "2012-07-20",
+     "url": "https://www.civilbeat.org/2012/07/feds-drop-all-charges-in-global-horizons-human/",
+     "tier": "press"
+    }
+   ]
+  },
+  {
+   "id": "huione-group",
+   "title": "Huione Group laundering network",
+   "typology": "laundering",
+   "period": "2021–2026",
+   "summary": "Huione Group is a Phnom Penh-based financial conglomerate that FinCEN called a critical node for laundering proceeds of North Korean cyber heists and Southeast Asian pig-butchering scams. FinCEN issued a section 311 final rule on 14 October 2025 cutting it off from the US financial system. Its Telegram marketplace Huione Guarantee rebranded as Haowang Guarantee in October 2024. In June 2026 the US DOJ seized a cloud account used to run the marketplace, which it said hosted channels including procurement of individuals for human trafficking schemes and laundering of scam proceeds.",
+   "status": "enforcement_action",
+   "entities": [
+    {
+     "name": "Huione Group",
+     "kind": "company",
+     "jurisdiction": "KH",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury FinCEN",
+       "action": "Section 311 final rule (primary money laundering concern)",
+       "date": "2025-10-14",
+       "url": "https://www.fincen.gov/news/news-releases/fincen-issues-final-rule-severing-huione-group-us-financial-system"
+      },
+      {
+       "body": "US Treasury FinCEN",
+       "action": "NPRM to amend the rule's definition of Huione Group to include H-Pay Service PLC",
+       "date": "2026-06-23",
+       "url": "https://www.justice.gov/opa/pr/justice-department-seizes-backend-infrastructure-used-huione-group-money-laundering-services"
+      }
+     ]
+    },
+    {
+     "name": "Haowang Guarantee",
+     "kind": "company",
+     "jurisdiction": "KH",
+     "names": [
+      {
+       "name": "Huione Guarantee",
+       "type": "former",
+       "from": null,
+       "to": "2024-10",
+       "source": "https://www.elliptic.co/blog/huione-largest-ever-illicit-online-marketplace-stablecoin"
+      }
+     ],
+     "actions": [
+      {
+       "body": "US DOJ",
+       "action": "Seizure of cloud computing account hosting backend infrastructure",
+       "date": "2026-06-23",
+       "url": "https://www.justice.gov/opa/pr/justice-department-seizes-backend-infrastructure-used-huione-group-money-laundering-services"
+      }
+     ]
+    },
+    {
+     "name": "H-Pay Service PLC",
+     "kind": "company",
+     "jurisdiction": "KH",
+     "names": [],
+     "actions": []
+    }
+   ],
+   "journey": [
+    {
+     "stage": "laundered",
+     "place": "Phnom Penh",
+     "country": "KH",
+     "lat": 11.56,
+     "lon": 104.92,
+     "note": "FinCEN said Huione Group laundered proceeds for Southeast Asian criminal organizations running pig-butchering scams.",
+     "source": "https://www.fincen.gov/news/news-releases/fincen-issues-final-rule-severing-huione-group-us-financial-system"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Washington, DC",
+     "country": "US",
+     "lat": 38.9,
+     "lon": -77.04,
+     "note": "The DOJ seized backend infrastructure used to operate Huione Guarantee, also known as Haowang Guarantee.",
+     "source": "https://www.justice.gov/opa/pr/justice-department-seizes-backend-infrastructure-used-huione-group-money-laundering-services"
+    }
+   ],
+   "victim_origins": [],
+   "lures": [
+    {
+     "signal": "payment_handling",
+     "quote_or_description": "Huione Guarantee Telegram channels allegedly offered 'the procurement of individuals for human trafficking schemes, as well as assistance with laundering the proceeds of romance and investment scams'.",
+     "source": "https://www.justice.gov/opa/pr/justice-department-seizes-backend-infrastructure-used-huione-group-money-laundering-services"
+    }
+   ],
+   "sources": [
+    {
+     "title": "FinCEN Issues Final Rule Severing Huione Group from U.S. Financial System",
+     "publisher": "FinCEN",
+     "date": "2025-10-14",
+     "url": "https://www.fincen.gov/news/news-releases/fincen-issues-final-rule-severing-huione-group-us-financial-system",
+     "tier": "official"
+    },
+    {
+     "title": "Justice Department Seizes Backend Infrastructure Used by the Huione Group for Money Laundering Services",
+     "publisher": "US Department of Justice",
+     "date": "2026-06-23",
+     "url": "https://www.justice.gov/opa/pr/justice-department-seizes-backend-infrastructure-used-huione-group-money-laundering-services",
+     "tier": "official"
+    },
+    {
+     "title": "Huione: the company behind the largest ever illicit online marketplace has launched a stablecoin",
+     "publisher": "Elliptic",
+     "date": "2025-01-13",
+     "url": "https://www.elliptic.co/blog/huione-largest-ever-illicit-online-marketplace-stablecoin",
+     "tier": "ngo"
+    }
+   ]
+  },
+  {
+   "id": "kings-romans-zhao-wei-gtsez",
+   "title": "Kings Romans / Zhao Wei, Golden Triangle SEZ",
+   "typology": "scam-compound",
+   "period": "2018–2024",
+   "summary": "In January 2018 OFAC designated the Zhao Wei Transnational Criminal Organization, based in the Golden Triangle Special Economic Zone in Bokeo, Laos, citing drug trafficking, human trafficking, money laundering, bribery and wildlife trafficking facilitated through the Kings Romans Casino. Later reporting described call-centre scam operations in the zone, including 11 Indian nationals rescued in 2022 after being promised IT jobs abroad. In August 2024 Lao authorities ordered illegal call centres to leave the zone after raids that led to 1,389 arrests and deportations.",
+   "status": "sanctioned",
+   "entities": [
+    {
+     "name": "Zhao Wei",
+     "kind": "person",
+     "jurisdiction": "LA",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (TCO, E.O. 13581)",
+       "date": "2018-01-30",
+       "url": "https://home.treasury.gov/news/press-releases/sm0272"
+      }
+     ]
+    },
+    {
+     "name": "Guiqin Su",
+     "kind": "person",
+     "jurisdiction": "LA",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Zhao Wei TCO)",
+       "date": "2018-01-30",
+       "url": "https://home.treasury.gov/news/press-releases/sm0272"
+      }
+     ]
+    },
+    {
+     "name": "Abbas Eberahim",
+     "kind": "person",
+     "jurisdiction": "LA",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Zhao Wei TCO)",
+       "date": "2018-01-30",
+       "url": "https://home.treasury.gov/news/press-releases/sm0272"
+      }
+     ]
+    },
+    {
+     "name": "Nat Rungtawankhiri",
+     "kind": "person",
+     "jurisdiction": "TH",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Zhao Wei TCO)",
+       "date": "2018-01-30",
+       "url": "https://home.treasury.gov/news/press-releases/sm0272"
+      }
+     ]
+    },
+    {
+     "name": "Kings Romans International (HK) Co., Limited",
+     "kind": "company",
+     "jurisdiction": "HK",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Zhao Wei TCO)",
+       "date": "2018-01-30",
+       "url": "https://home.treasury.gov/news/press-releases/sm0272"
+      }
+     ]
+    },
+    {
+     "name": "Kings Romans International Investment Co. Limited",
+     "kind": "company",
+     "jurisdiction": "HK",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Zhao Wei TCO)",
+       "date": "2018-01-30",
+       "url": "https://home.treasury.gov/news/press-releases/sm0272"
+      }
+     ]
+    },
+    {
+     "name": "King Romans Company Limited",
+     "kind": "company",
+     "jurisdiction": "TH",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Zhao Wei TCO)",
+       "date": "2018-01-30",
+       "url": "https://home.treasury.gov/news/press-releases/sm0272"
+      }
+     ]
+    },
+    {
+     "name": "Golden Triangle Special Economic Zone",
+     "kind": "zone",
+     "jurisdiction": "LA",
+     "names": [],
+     "actions": []
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "India",
+     "country": "IN",
+     "lat": 20.59,
+     "lon": 78.96,
+     "note": "Middlemen promised 11 Indians IT specialist jobs in Dubai, Singapore and Thailand with pre-arranged flights and visas.",
+     "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html"
+    },
+    {
+     "stage": "exploited",
+     "place": "Golden Triangle SEZ, Bokeo",
+     "country": "LA",
+     "lat": 20.36,
+     "lon": 100.09,
+     "note": "Instead they were made to work in call centres running investment and crypto phone scams.",
+     "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html"
+    },
+    {
+     "stage": "escaped",
+     "place": "Lao-Thai border, handed to Indian Consulate Chiang Mai",
+     "country": "TH",
+     "lat": 18.79,
+     "lon": 98.98,
+     "note": "After rescue they were handed to the Indian Consulate in Chiang Mai and repatriated via Bangkok.",
+     "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Golden Triangle SEZ, Bokeo",
+     "country": "LA",
+     "lat": 20.36,
+     "lon": 100.09,
+     "note": "Raids by mid-August 2024 led to 1,389 arrests and deportations, and call centres were ordered out by 25 August 2024.",
+     "source": "https://www.rfa.org/english/news/laos/golden-triangle-sez-scammers-08122024171757.html"
+    }
+   ],
+   "victim_origins": [
+    "IN"
+   ],
+   "lures": [
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Recruits were promised IT specialist positions.",
+     "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html"
+    },
+    {
+     "signal": "vague_location",
+     "quote_or_description": "Jobs were advertised in Dubai, Singapore or Thailand, but recruits were taken to northern Laos.",
+     "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "Offers came with 'pre-arranged flights, visas and passports'.",
+     "source": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Treasury Sanctions the Zhao Wei Transnational Criminal Organization",
+     "publisher": "US Department of the Treasury",
+     "date": "2018-01-30",
+     "url": "https://home.treasury.gov/news/press-releases/sm0272",
+     "tier": "official"
+    },
+    {
+     "title": "Laos rescues 11 Indian nationals trafficked to work as phone scammers",
+     "publisher": "Radio Free Asia",
+     "date": "2022-11-03",
+     "url": "https://www.rfa.org/english/news/laos/trafficked-11032022222930.html",
+     "tier": "press"
+    },
+    {
+     "title": "Laos orders Golden Triangle scammers out of zone by end of month",
+     "publisher": "Radio Free Asia",
+     "date": "2024-08-12",
+     "url": "https://www.rfa.org/english/news/laos/golden-triangle-sez-scammers-08122024171757.html",
+     "tier": "press"
+    }
+   ]
+  },
+  {
+   "id": "kk-park-shwe-kokko-myawaddy",
+   "title": "KK Park, Shwe Kokko and the Myawaddy scam compounds",
+   "typology": "scam-compound",
+   "period": "2022–2025",
+   "summary": "Scam compounds in Myawaddy Township, Karen State, Myanmar, on the border opposite Mae Sot, Thailand, hold workers forced under threat of violence to run cyber scams. The US Treasury sanctioned the Karen National Army (KNA) and its leader Saw Chit Thu in May 2025, saying survivors of KK Park reported guards wearing KNA insignia, and in September 2025 sanctioned She Zhijiang and Yatai companies behind Yatai New City in Shwe Kokko. In October 2025 Myanmar's military raided KK Park and arrested 2,198 people, and more than 1,500 people from 28 countries fled into Mae Sot.",
+   "status": "sanctioned",
+   "entities": [
+    {
+     "name": "Karen National Army",
+     "kind": "armed-group",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation",
+       "date": "2025-05-05",
+       "url": "https://home.treasury.gov/news/press-releases/sb0129"
+      },
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (Shwe Kokko network, incl. KNA)",
+       "date": "2025-09-08",
+       "url": "https://home.treasury.gov/news/press-releases/sb0237"
+      }
+     ]
+    },
+    {
+     "name": "Saw Chit Thu",
+     "kind": "person",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (KNA leader)",
+       "date": "2025-05-05",
+       "url": "https://home.treasury.gov/news/press-releases/sb0129"
+      },
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (Shwe Kokko network)",
+       "date": "2025-09-08",
+       "url": "https://home.treasury.gov/news/press-releases/sb0237"
+      }
+     ]
+    },
+    {
+     "name": "Saw Htoo Eh Moo",
+     "kind": "person",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (son of Saw Chit Thu)",
+       "date": "2025-05-05",
+       "url": "https://home.treasury.gov/news/press-releases/sb0129"
+      }
+     ]
+    },
+    {
+     "name": "Saw Chit Chit",
+     "kind": "person",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (son of Saw Chit Thu)",
+       "date": "2025-05-05",
+       "url": "https://home.treasury.gov/news/press-releases/sb0129"
+      }
+     ]
+    },
+    {
+     "name": "She Zhijiang",
+     "kind": "person",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (Shwe Kokko network)",
+       "date": "2025-09-08",
+       "url": "https://home.treasury.gov/news/press-releases/sb0237"
+      }
+     ]
+    },
+    {
+     "name": "Yatai International Holdings Group Limited",
+     "kind": "company",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (Shwe Kokko network)",
+       "date": "2025-09-08",
+       "url": "https://home.treasury.gov/news/press-releases/sb0237"
+      }
+     ]
+    },
+    {
+     "name": "Myanmar Yatai International Holding Group Co., Ltd",
+     "kind": "company",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (Shwe Kokko network)",
+       "date": "2025-09-08",
+       "url": "https://home.treasury.gov/news/press-releases/sb0237"
+      }
+     ]
+    },
+    {
+     "name": "Tin Win",
+     "kind": "person",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (KNA)",
+       "date": "2025-09-08",
+       "url": "https://home.treasury.gov/news/press-releases/sb0237"
+      }
+     ]
+    },
+    {
+     "name": "Saw Min Min Oo",
+     "kind": "person",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (KNA)",
+       "date": "2025-09-08",
+       "url": "https://home.treasury.gov/news/press-releases/sb0237"
+      }
+     ]
+    },
+    {
+     "name": "Chit Linn Mying Co., Ltd",
+     "kind": "company",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (Shwe Kokko network)",
+       "date": "2025-09-08",
+       "url": "https://home.treasury.gov/news/press-releases/sb0237"
+      }
+     ]
+    },
+    {
+     "name": "Shwe Myint Thaung Yinn Industry & Manufacturing Company Limited",
+     "kind": "company",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "Sanctions designation (Shwe Kokko network)",
+       "date": "2025-09-08",
+       "url": "https://home.treasury.gov/news/press-releases/sb0237"
+      }
+     ]
+    },
+    {
+     "name": "KK Park",
+     "kind": "zone",
+     "jurisdiction": "MM",
+     "names": [],
+     "actions": []
+    }
+   ],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Online recruitment forums",
+     "country": "TH",
+     "lat": 13.75,
+     "lon": 100.5,
+     "note": "Recruiters used internet forums and intermediaries to offer fraudulent jobs across Southeast Asia.",
+     "source": "https://news.un.org/en/story/2023/08/1140187"
+    },
+    {
+     "stage": "recruited",
+     "place": "Bangkok",
+     "country": "TH",
+     "lat": 13.75,
+     "lon": 100.5,
+     "note": "Chinese actor Wang Xing was lured to Thailand by a fake online job offer before being taken to KK Park.",
+     "source": "https://www.rfa.org/english/china/2025/01/10/china-myanmar-thailand-kk-park-actor/"
+    },
+    {
+     "stage": "transit",
+     "place": "Thai-Myanmar border (Moei river)",
+     "country": "TH",
+     "lat": 16.71,
+     "lon": 98.57,
+     "note": "He was taken across the river from Thailand into Myawaddy.",
+     "source": "https://www.rfa.org/english/china/2025/01/10/china-myanmar-thailand-kk-park-actor/"
+    },
+    {
+     "stage": "exploited",
+     "place": "KK Park and Shwe Kokko, Myawaddy Township",
+     "country": "MM",
+     "lat": 16.69,
+     "lon": 98.51,
+     "note": "Workers in KNA-guarded compounds are forced with threats of violence to run cyber scams.",
+     "source": "https://home.treasury.gov/news/press-releases/sb0129"
+    },
+    {
+     "stage": "escaped",
+     "place": "Mae Sot, Tak",
+     "country": "TH",
+     "lat": 16.71,
+     "lon": 98.57,
+     "note": "After the October 2025 raid on KK Park, more than 1,500 people from 28 countries fled into Mae Sot.",
+     "source": "https://malaymail.com/news/world/2025/10/29/india-to-repatriate-500-nationals-fleeing-myanmars-cyber-scam-hub-says-thai-pm/196399"
+    }
+   ],
+   "victim_origins": [
+    "CN",
+    "IN"
+   ],
+   "lures": [
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Wang Xing, a TV actor, was lured to Thailand by a fake job offer made online.",
+     "source": "https://www.rfa.org/english/china/2025/01/10/china-myanmar-thailand-kk-park-actor/"
+    },
+    {
+     "signal": "chat_only_contact",
+     "quote_or_description": "The job offer came through an online message rather than a verifiable employer.",
+     "source": "https://www.rfa.org/english/china/2025/01/10/china-myanmar-thailand-kk-park-actor/"
+    },
+    {
+     "signal": "high_risk_region",
+     "quote_or_description": "Scam centre workers are 'lured by the promise of employment but then forced to carry out online scams in slave-like conditions' on the Thai-Myanmar border.",
+     "source": "https://www.aljazeera.com/amp/news/2025/10/21/myanmar-military-arrests-more-than-2000-people-at-infamous-scam-centre"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Treasury Sanctions Burma Warlord and Militia Tied to Cyber Scam Operations",
+     "publisher": "US Department of the Treasury",
+     "date": "2025-05-05",
+     "url": "https://home.treasury.gov/news/press-releases/sb0129",
+     "tier": "official"
+    },
+    {
+     "title": "Treasury Sanctions Southeast Asian Cyber Scam Networks",
+     "publisher": "US Department of the Treasury",
+     "date": "2025-09-08",
+     "url": "https://home.treasury.gov/news/press-releases/sb0237",
+     "tier": "official"
+    },
+    {
+     "title": "Hundreds of thousands trafficked into online criminality across SE Asia",
+     "publisher": "UN News",
+     "date": "2023-08-29",
+     "url": "https://news.un.org/en/story/2023/08/1140187",
+     "tier": "multilateral"
+    },
+    {
+     "title": "Chinese actor rescued from Myanmar's scam park",
+     "publisher": "Radio Free Asia",
+     "date": "2025-01-10",
+     "url": "https://www.rfa.org/english/china/2025/01/10/china-myanmar-thailand-kk-park-actor/",
+     "tier": "press"
+    },
+    {
+     "title": "Myanmar military arrests more than 2,000 people at infamous scam centre",
+     "publisher": "Al Jazeera",
+     "date": "2025-10-21",
+     "url": "https://www.aljazeera.com/amp/news/2025/10/21/myanmar-military-arrests-more-than-2000-people-at-infamous-scam-centre",
+     "tier": "press"
+    },
+    {
+     "title": "India to repatriate 500 nationals fleeing Myanmar's cyber scam hub, says Thai PM",
+     "publisher": "Malay Mail",
+     "date": "2025-10-29",
+     "url": "https://malaymail.com/news/world/2025/10/29/india-to-repatriate-500-nationals-fleeing-myanmars-cyber-scam-hub-says-thai-pm/196399",
+     "tier": "press"
+    }
+   ]
+  },
+  {
+   "id": "mattox-hudson-work-from-home-booklet-scheme",
+   "title": "Mattox and Hudson work-from-home booklet assembly scheme",
+   "typology": "job-scam",
+   "period": "to 2012",
+   "summary": "A federal grand jury in the Northern District of Georgia indicted Detrick Mattox and Jasmine Hudson of Ellenwood, Georgia, for a work-from-home scheme run under at least 14 business names. Internet ads promised earnings of up to $5,000 a week assembling booklets; more than 200 people paid initiation fees of $50 to $500, most received no materials, and those who did the work were never paid. The August 2012 announcement reports charges only; indictments are allegations, and no outcome was verified.",
+   "status": "enforcement_action",
+   "entities": [
+    {
+     "name": "Detrick Mattox",
+     "kind": "person",
+     "jurisdiction": "US",
+     "names": [
+      {
+       "name": "Atlanta's Mailing Company",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Atlantis Mailing Company",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Brown Staffing Services",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Central Mailing Company",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Detrick Mattox Enterprises",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Georgia Assembly Company",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Global Assembly Company",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Global Mailing Enterprises",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Jobs R US",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "National Assembly Company",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Nationwide Express Mailing",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Pacific Mailing Company",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Premiere Mailing Company",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      },
+      {
+       "name": "Regional Assembly Company",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      }
+     ],
+     "actions": [
+      {
+       "body": "US Attorney, N.D. Georgia",
+       "action": "indictment (one conspiracy count, 12 mail fraud counts)",
+       "date": "2012-08-21",
+       "url": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      }
+     ]
+    },
+    {
+     "name": "Jasmine Hudson",
+     "kind": "person",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Attorney, N.D. Georgia",
+       "action": "indictment (one conspiracy count, 12 mail fraud counts)",
+       "date": "2012-08-21",
+       "url": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Ellenwood, Georgia (internet ads)",
+     "country": "US",
+     "lat": 33.63,
+     "lon": -84.26,
+     "note": "Internet ads offered work-from-home booklet assembly under a rotating set of business names.",
+     "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Atlanta, Georgia",
+     "country": "US",
+     "lat": 33.75,
+     "lon": -84.39,
+     "note": "Both defendants were indicted on conspiracy and mail fraud charges.",
+     "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+    }
+   ],
+   "victim_origins": [],
+   "lures": [
+    {
+     "signal": "upfront_fee",
+     "quote_or_description": "Members paid initiation fees of $50 to $500, typically by money order.",
+     "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+    },
+    {
+     "signal": "pay_too_high",
+     "quote_or_description": "Members were told they could earn up to $5,000 a week, or $20 per booklet assembled.",
+     "source": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Work-from-home scam indictment (Mattox and Hudson)",
+     "publisher": "U.S. Attorney's Office, Northern District of Georgia",
+     "date": "2012-08-21",
+     "url": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html",
+     "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "operation-blooming-onion",
+   "title": "Operation Blooming Onion (USA v. Patricio et al.)",
+   "typology": "labor-trafficking",
+   "period": "2015–2021",
+   "summary": "In November 2021 federal prosecutors in the Southern District of Georgia unsealed a 54-count indictment against 24 defendants, alleging a conspiracy that fraudulently used the H-2A visa program to bring workers from Mexico, Guatemala and Honduras to South Georgia farms. The indictment alleges workers were charged unlawful fees for transportation, food and housing, had travel and identity documents withheld, and were threatened with deportation and violence; at least two workers died. Prosecutors allege the conspirators made more than $200 million and laundered it through property, vehicles, businesses and a casino. These are allegations in an indictment; this record does not report individual case outcomes.",
+   "status": "enforcement_action",
+   "entities": [
+    {
+     "name": "Patricio transnational criminal organization",
+     "kind": "company",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US DOJ, USAO Southern District of Georgia",
+       "action": "54-count indictment unsealed (USA v. Patricio et al.)",
+       "date": "2021-11-22",
+       "url": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf"
+      }
+     ]
+    },
+    {
+     "name": "Maria Leticia Patricio",
+     "kind": "person",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US DOJ, USAO Southern District of Georgia",
+       "action": "indicted: conspiracy to commit mail fraud, mail fraud, conspiracy to engage in forced labor, conspiracy to commit money laundering",
+       "date": "2021-11-22",
+       "url": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Mexico, Guatemala, Honduras",
+     "country": "MX",
+     "lat": 19.43,
+     "lon": -99.13,
+     "note": "Workers were brought from Mexico, Guatemala and Honduras under the pretext of H-2A agricultural work.",
+     "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf"
+    },
+    {
+     "stage": "exploited",
+     "place": "Coffee, Atkinson, Bacon, Tattnall, Toombs and Ware counties, Georgia",
+     "country": "US",
+     "lat": 31.51,
+     "lon": -82.85,
+     "note": "Workers allegedly dug onions by hand for 20 cents a bucket in fenced camps under threat of guns and violence.",
+     "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf"
+    },
+    {
+     "stage": "laundered",
+     "place": "South Georgia",
+     "country": "US",
+     "lat": 31.21,
+     "lon": -82.35,
+     "note": "Proceeds of more than $200 million were allegedly laundered through cash purchases and a casino.",
+     "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Waycross, Georgia",
+     "country": "US",
+     "lat": 31.21,
+     "lon": -82.35,
+     "note": "The indictment was announced in Waycross on 22 November 2021.",
+     "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf"
+    }
+   ],
+   "victim_origins": [
+    "MX",
+    "GT",
+    "HN"
+   ],
+   "lures": [
+    {
+     "signal": "visa_fraud",
+     "quote_or_description": "Conspirators allegedly fraudulently used the H-2A work visa program to smuggle foreign nationals into the US.",
+     "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf"
+    },
+    {
+     "signal": "debt_bondage",
+     "quote_or_description": "Workers were required to pay unlawful fees for transportation, food and housing.",
+     "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf"
+    },
+    {
+     "signal": "document_retention",
+     "quote_or_description": "Conspirators illegally withheld workers' travel and identification documents.",
+     "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "Workers were held in cramped, unsanitary fenced work camps with little food and no safe water.",
+     "source": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Human smuggling, forced labor among allegations in south Georgia federal indictment",
+     "publisher": "US Attorney's Office, Southern District of Georgia (via DOL OIG)",
+     "date": "2021-11-22",
+     "url": "https://www.oig.dol.gov/public/Press%20Releases/Human_Smuggling_forced_labor_allegations_Fed_Indictment_USAO%20SD-GA_11222021.pdf",
+     "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "prince-group-chen-zhi",
+   "title": "Prince Group and Chen Zhi",
+   "typology": "scam-compound",
+   "period": "2022–2026",
+   "summary": "Prince Holding Group, a Cambodia-based conglomerate chaired by Chen Zhi, is accused by US prosecutors of running forced-labor scam compounds across Cambodia where trafficked workers ran cryptocurrency investment ('pig butchering') frauds. On 14 October 2025 the US unsealed an indictment in Brooklyn charging Chen Zhi with wire fraud conspiracy and money laundering conspiracy, filed a civil forfeiture complaint against about 127,271 bitcoin, and OFAC designated 146 targets as the Prince Group TCO in a joint action with the UK. Treasury said workers were lured by promises of well-paid customer service and tech support jobs. Chen Zhi remained at large at the time of the announcement.",
+   "status": "enforcement_action",
+   "entities": [
+    {
+     "name": "Chen Zhi",
+     "kind": "person",
+     "jurisdiction": "KH",
+     "names": [
+      {
+       "name": "Vincent",
+       "type": "alias",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged"
+      }
+     ],
+     "actions": [
+      {
+       "body": "US DOJ (EDNY)",
+       "action": "Indictment unsealed: wire fraud conspiracy and money laundering conspiracy",
+       "date": "2025-10-14",
+       "url": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged"
+      },
+      {
+       "body": "US DOJ (EDNY)",
+       "action": "Civil forfeiture complaint against approx. 127,271 bitcoin",
+       "date": "2025-10-14",
+       "url": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged"
+      },
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Prince Group TCO leader)",
+       "date": "2025-10-14",
+       "url": "https://home.treasury.gov/news/press-releases/sb0278"
+      }
+     ]
+    },
+    {
+     "name": "Prince Holding Group",
+     "kind": "company",
+     "jurisdiction": "KH",
+     "names": [
+      {
+       "name": "Prince Group",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged"
+      }
+     ],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Prince Group TCO)",
+       "date": "2025-10-14",
+       "url": "https://home.treasury.gov/news/press-releases/sb0278"
+      }
+     ]
+    },
+    {
+     "name": "Prince Bank Plc.",
+     "kind": "company",
+     "jurisdiction": "KH",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Prince Group TCO)",
+       "date": "2025-10-14",
+       "url": "https://home.treasury.gov/news/press-releases/sb0278"
+      }
+     ]
+    },
+    {
+     "name": "Jin Bei Group Co. Ltd.",
+     "kind": "company",
+     "jurisdiction": "KH",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Prince Group TCO)",
+       "date": "2025-10-14",
+       "url": "https://home.treasury.gov/news/press-releases/sb0278"
+      }
+     ]
+    },
+    {
+     "name": "Golden Fortune Resorts World Co. Ltd.",
+     "kind": "company",
+     "jurisdiction": "KH",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Prince Group TCO)",
+       "date": "2025-10-14",
+       "url": "https://home.treasury.gov/news/press-releases/sb0278"
+      }
+     ]
+    },
+    {
+     "name": "Grand Legend International Asset Management Co., Ltd",
+     "kind": "company",
+     "jurisdiction": "KH",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Treasury OFAC",
+       "action": "SDN designation (Prince Group TCO)",
+       "date": "2025-10-14",
+       "url": "https://home.treasury.gov/news/press-releases/sb0278"
+      }
+     ]
+    },
+    {
+     "name": "Legend Innovation Co.",
+     "kind": "company",
+     "jurisdiction": "KH",
+     "names": [],
+     "actions": [
+      {
+       "body": "UK FCDO / Home Office",
+       "action": "Sanctions designation (operator of #8 Park)",
+       "date": "2026-03-26",
+       "url": "https://www.gov.uk/government/news/uk-crackdown-on-vile-scam-centres-steps-up-with-sanctions-on-illicit-crypto-network"
+      }
+     ]
+    },
+    {
+     "name": "#8 Park",
+     "kind": "zone",
+     "jurisdiction": "KH",
+     "names": [],
+     "actions": []
+    }
+   ],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Online job offers",
+     "country": "KH",
+     "lat": 11.56,
+     "lon": 104.92,
+     "note": "Workers were lured by promises of well-paid customer service and tech support jobs.",
+     "source": "https://home.treasury.gov/news/press-releases/sb0278"
+    },
+    {
+     "stage": "exploited",
+     "place": "Scam compounds across Cambodia (Prince Group HQ Phnom Penh)",
+     "country": "KH",
+     "lat": 11.56,
+     "lon": 104.92,
+     "note": "Trafficked workers were held in walled, barbed-wire compounds and forced under threat of violence to run crypto investment scams.",
+     "source": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged"
+    },
+    {
+     "stage": "laundered",
+     "place": "Cryptocurrency wallets",
+     "country": "KH",
+     "lat": 11.56,
+     "lon": 104.92,
+     "note": "US prosecutors sought forfeiture of about 127,271 bitcoin described as proceeds and instrumentalities of the schemes.",
+     "source": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Brooklyn, New York",
+     "country": "US",
+     "lat": 40.69,
+     "lon": -73.99,
+     "note": "An indictment against Chen Zhi was unsealed in federal court in Brooklyn on 14 October 2025.",
+     "source": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged"
+    }
+   ],
+   "victim_origins": [],
+   "lures": [
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Workers were 'lured by the promise of well-paid jobs in customer service, tech support'.",
+     "source": "https://home.treasury.gov/news/press-releases/sb0278"
+    },
+    {
+     "signal": "pay_too_high",
+     "quote_or_description": "The offers promised well-paid jobs.",
+     "source": "https://home.treasury.gov/news/press-releases/sb0278"
+    },
+    {
+     "signal": "document_retention",
+     "quote_or_description": "Treasury reported confiscation of workers' documents along with fines, isolation and movement restrictions.",
+     "source": "https://home.treasury.gov/news/press-releases/sb0278"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Chairman of Prince Group Indicted for Operating Cambodian Forced-Labor Scam Compounds Engaged in Cryptocurrency Fraud Schemes",
+     "publisher": "US Department of Justice",
+     "date": "2025-10-14",
+     "url": "https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged",
+     "tier": "official"
+    },
+    {
+     "title": "U.S. and U.K. Take Largest Action Ever Targeting Cybercriminal Networks in Southeast Asia",
+     "publisher": "US Department of the Treasury",
+     "date": "2025-10-14",
+     "url": "https://home.treasury.gov/news/press-releases/sb0278",
+     "tier": "official"
+    },
+    {
+     "title": "UK crackdown on vile scam centres steps up with sanctions on illicit crypto network",
+     "publisher": "GOV.UK (FCDO)",
+     "date": "2026-03-26",
+     "url": "https://www.gov.uk/government/news/uk-crackdown-on-vile-scam-centres-steps-up-with-sanctions-on-illicit-crypto-network",
+     "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "signal-international",
+   "title": "Signal International (Indian H-2B workers)",
+   "typology": "labor-trafficking",
+   "period": "2006–2015",
+   "summary": "After Hurricane Katrina, Signal International used the H-2B program to bring nearly 500 men from India to work as welders and pipefitters in Mississippi and Texas; recruiters promised green cards and permanent residency, and workers paid $10,000–$20,000 or more in fees. Workers were charged $1,050 a month to live in overcrowded, guarded company camps. In February 2015 a New Orleans federal jury awarded $14 million to five workers, finding Signal and businesses of lawyer Malvern C. Burnett and recruiter Sachin Dewan liable for labor trafficking, fraud, racketeering and discrimination. In 2015 Signal agreed to a $20 million settlement resolving the SPLC-coordinated suits, including a $5 million EEOC settlement.",
+   "status": "settled",
+   "entities": [
+    {
+     "name": "Signal International, LLC",
+     "kind": "company",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, E.D. Louisiana (jury)",
+       "action": "$14 million verdict for five workers (SPLC case)",
+       "date": "2015-02-18",
+       "url": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/"
+      },
+      {
+       "body": "US EEOC",
+       "action": "$5 million settlement of Title VII lawsuit",
+       "date": "2015-12-18",
+       "url": "https://www.eeoc.gov//eeoc/newsroom/release/12-18-15.cfm?renderforprint=1"
+      }
+     ]
+    },
+    {
+     "name": "Malvern C. Burnett",
+     "kind": "person",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, E.D. Louisiana (jury)",
+       "action": "businesses owned by Burnett found liable in civil verdict",
+       "date": "2015-02-18",
+       "url": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/"
+      }
+     ]
+    },
+    {
+     "name": "Sachin Dewan",
+     "kind": "person",
+     "jurisdiction": "IN",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, E.D. Louisiana (jury)",
+       "action": "businesses owned by Dewan found liable in civil verdict",
+       "date": "2015-02-18",
+       "url": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "India",
+     "country": "IN",
+     "lat": 19.08,
+     "lon": 72.88,
+     "note": "Recruiters promised good jobs, green cards and permanent residency in exchange for large fees.",
+     "source": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/"
+    },
+    {
+     "stage": "exploited",
+     "place": "Pascagoula, Mississippi",
+     "country": "US",
+     "lat": 30.37,
+     "lon": -88.56,
+     "note": "Workers were housed in overcrowded company camps at $1,050 a month and paid below-market wages.",
+     "source": "https://www.splcenter.org/resources/stories/20-million-settlement-agreement-reached-labor-trafficking-cases-coordinated-splc-behalf/"
+    },
+    {
+     "stage": "exploited",
+     "place": "Orange, Texas",
+     "country": "US",
+     "lat": 30.09,
+     "lon": -93.74,
+     "note": "Signal also employed the workers at its Orange, Texas facility.",
+     "source": "https://www.splcenter.org/resources/stories/20-million-settlement-agreement-reached-labor-trafficking-cases-coordinated-splc-behalf/"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "New Orleans, Louisiana",
+     "country": "US",
+     "lat": 29.95,
+     "lon": -90.07,
+     "note": "A federal jury awarded $14 million to five workers after a four-week trial.",
+     "source": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/"
+    }
+   ],
+   "victim_origins": [
+    "IN"
+   ],
+   "lures": [
+    {
+     "signal": "upfront_fee",
+     "quote_or_description": "Workers paid \"$10,000 and $20,000 or more in recruitment fees and other costs\".",
+     "source": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/"
+    },
+    {
+     "signal": "visa_fraud",
+     "quote_or_description": "Recruiters promised green cards and permanent US residency, but workers came on temporary H-2B visas.",
+     "source": "https://www.splcenter.org/resources/stories/20-million-settlement-agreement-reached-labor-trafficking-cases-coordinated-splc-behalf/"
+    },
+    {
+     "signal": "debt_bondage",
+     "quote_or_description": "Many sold property or took on family debt to pay fees and could not change jobs without losing their investment.",
+     "source": "https://www.splcenter.org/resources/stories/20-million-settlement-agreement-reached-labor-trafficking-cases-coordinated-splc-behalf/"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "Workers were forced to pay $1,050 a month to live in overcrowded, unsanitary, guarded camps, up to 24 men per unit.",
+     "source": "https://www.eeoc.gov//eeoc/newsroom/release/12-18-15.cfm?renderforprint=1"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Federal jury in SPLC case awards $14 million to Indian guest workers",
+     "publisher": "Southern Poverty Law Center",
+     "date": "2015-02-18",
+     "url": "https://www.splcenter.org/resources/stories/federal-jury-splc-case-awards-14-million-indian-guest-workers-victimized-labor-trafficking/",
+     "tier": "ngo"
+    },
+    {
+     "title": "$20 million settlement agreement reached in labor trafficking cases coordinated by SPLC",
+     "publisher": "Southern Poverty Law Center",
+     "date": "2015-07",
+     "url": "https://www.splcenter.org/resources/stories/20-million-settlement-agreement-reached-labor-trafficking-cases-coordinated-splc-behalf/",
+     "tier": "ngo"
+    },
+    {
+     "title": "Signal International, LLC to Pay $5 Million to Settle EEOC Race, National Origin Lawsuit",
+     "publisher": "US EEOC",
+     "date": "2015-12-18",
+     "url": "https://www.eeoc.gov//eeoc/newsroom/release/12-18-15.cfm?renderforprint=1",
+     "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "slovak-ocg-uk-modern-slavery",
+   "title": "Slovak crime group modern slavery case (UK)",
+   "typology": "labor-trafficking",
+   "period": "2008–2017",
+   "summary": "A Slovak organised crime group recruited more than 60 Slovak nationals from the Košice and Prešov regions with promises of weekly salaries above EUR 400. In the UK, victims worked 14 hours a day, six days a week in restaurant kitchens and car washes for about EUR 25 a week and lived in poor conditions. After a UK–Slovak joint investigation team supported by Eurojust, five members were sentenced at Birmingham Crown Court to up to eight years for conspiracy to arrange human trafficking and compulsory labour.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Slovak organised crime group (unnamed)",
+     "kind": "network",
+     "jurisdiction": "SK",
+     "names": [],
+     "actions": [
+      {
+       "body": "Birmingham Crown Court (CPS / West Midlands Police)",
+       "action": "conviction and sentences of five members",
+       "date": "2021-05-10",
+       "url": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Košice and Prešov regions",
+     "country": "SK",
+     "lat": 48.72,
+     "lon": 21.26,
+     "note": "Underprivileged Slovak nationals were recruited with promises of well-paid work in the UK.",
+     "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    },
+    {
+     "stage": "exploited",
+     "place": "Restaurant kitchens and car washes across the UK",
+     "country": "GB",
+     "lat": 52.49,
+     "lon": -1.89,
+     "note": "Victims worked 14-hour days, six days a week, for about EUR 25 a week.",
+     "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    },
+    {
+     "stage": "laundered",
+     "place": "Košice and Prešov regions",
+     "country": "SK",
+     "lat": 49,
+     "lon": 21.24,
+     "note": "Eurojust links the Slovak regions to the group's money laundering.",
+     "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Birmingham",
+     "country": "GB",
+     "lat": 52.49,
+     "lon": -1.89,
+     "note": "Five members were sentenced to up to eight years at Birmingham Crown Court.",
+     "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    }
+   ],
+   "victim_origins": [
+    "SK"
+   ],
+   "lures": [
+    {
+     "signal": "pay_too_high",
+     "quote_or_description": "Recruits were promised weekly salaries of over EUR 400 but received about EUR 25.",
+     "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "The group moved recruits to the UK for work, where they lived in poor conditions.",
+     "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Convictions in UK for Slovak gang behind modern slavery case",
+     "publisher": "Eurojust",
+     "date": "2021-05-10",
+     "url": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case",
+     "tier": "multilateral"
+    }
+   ]
+  },
+  {
+   "id": "worldwide-executive-job-search-solutions",
+   "title": "Worldwide Executive Job Search Solutions / PrivateEquityHeadhunters.com",
+   "typology": "job-scam",
+   "period": "2019",
+   "summary": "The FTC alleged that Worldwide Executive Job Search Solutions, PrivateEquityHeadhunters.com and owner Craig Chrest messaged job seekers on LinkedIn and other networking sites, claiming access to unadvertised executive jobs at private equity and venture capital firms. Consumers paid upfront fees of $1,200 to $2,500, but the interviews and jobs were fictitious. A federal court in the Southern District of Texas froze assets in February 2019, and an October 2019 settlement permanently banned the defendants from offering employment services, with a $1,744,422 judgment of which all but $18,000 was suspended.",
+   "status": "settled",
+   "entities": [
+    {
+     "name": "Worldwide Executive Job Search Solutions, LLC",
+     "kind": "company",
+     "jurisdiction": "US",
+     "names": [
+      {
+       "name": "WWEJSS",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+      },
+      {
+       "name": "Seven Figure Careers",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+      },
+      {
+       "name": "7FigRecruiters",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+      },
+      {
+       "name": "7FC",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+      },
+      {
+       "name": "Finnburg Switzer",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+      },
+      {
+       "name": "ResumeterPro",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+      },
+      {
+       "name": "Creating Job Opportunity",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+      },
+      {
+       "name": "Confidential Jobs Only",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+      },
+      {
+       "name": "CJOnly",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+      },
+      {
+       "name": "CJO Private Equity",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+      }
+     ],
+     "actions": [
+      {
+       "body": "FTC",
+       "action": "complaint and asset freeze (temporary restraining order)",
+       "date": "2019-02-25",
+       "url": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+      },
+      {
+       "body": "FTC",
+       "action": "stipulated order: permanent ban on employment services; $1,744,422 judgment, largely suspended",
+       "date": "2019-10-08",
+       "url": "https://www.ftc.gov/news-events/news/press-releases/2019/10/ftc-puts-end-bogus-job-placement-resume-repair-scheme"
+      }
+     ]
+    },
+    {
+     "name": "PrivateEquityHeadhunters.com, LLC",
+     "kind": "company",
+     "jurisdiction": "US",
+     "names": [
+      {
+       "name": "PE Headhunters",
+       "type": "dba",
+       "from": null,
+       "to": null,
+       "source": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+      }
+     ],
+     "actions": [
+      {
+       "body": "FTC",
+       "action": "complaint and asset freeze (temporary restraining order)",
+       "date": "2019-02-25",
+       "url": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+      },
+      {
+       "body": "FTC",
+       "action": "stipulated order: permanent ban on employment services; $1,744,422 judgment, largely suspended",
+       "date": "2019-10-08",
+       "url": "https://www.ftc.gov/news-events/news/press-releases/2019/10/ftc-puts-end-bogus-job-placement-resume-repair-scheme"
+      }
+     ]
+    },
+    {
+     "name": "Craig N. Chrest",
+     "kind": "person",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "FTC",
+       "action": "complaint and asset freeze (temporary restraining order)",
+       "date": "2019-02-25",
+       "url": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+      },
+      {
+       "body": "FTC",
+       "action": "stipulated order: permanent ban on employment services; $1,744,422 judgment, largely suspended",
+       "date": "2019-10-08",
+       "url": "https://www.ftc.gov/news-events/news/press-releases/2019/10/ftc-puts-end-bogus-job-placement-resume-repair-scheme"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "LinkedIn and other online networking sites (US)",
+     "country": "US",
+     "lat": 39.8,
+     "lon": -98.6,
+     "note": "Job seekers with business experience were sent unsolicited messages saying they qualified for unadvertised executive positions.",
+     "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Houston, Texas (S.D. Tex.)",
+     "country": "US",
+     "lat": 29.76,
+     "lon": -95.37,
+     "note": "The FTC obtained an asset freeze and later a settlement banning the defendants from employment services.",
+     "source": "https://www.ftc.gov/news-events/news/press-releases/2019/10/ftc-puts-end-bogus-job-placement-resume-repair-scheme"
+    }
+   ],
+   "victim_origins": [],
+   "lures": [
+    {
+     "signal": "upfront_fee",
+     "quote_or_description": "Job seekers had to pay upfront fees of $1,200 to $2,500 to get an interview, plus fees for resume repair.",
+     "source": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+    },
+    {
+     "signal": "chat_only_contact",
+     "quote_or_description": "Unsolicited messages via LinkedIn and other networking sites claimed exclusive relationships with hundreds of PE and VC firms.",
+     "source": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc"
+    },
+    {
+     "signal": "pay_too_high",
+     "quote_or_description": "Promised unadvertised, highly paid executive jobs and claimed a \"100 percent interview rate\".",
+     "source": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation"
+    }
+   ],
+   "sources": [
+    {
+     "title": "FTC Halts Fake Job Opportunity and Resume Repair Operation",
+     "publisher": "Federal Trade Commission",
+     "date": "2019-02-25",
+     "url": "https://www.ftc.gov/news-events/news/press-releases/2019/02/ftc-halts-fake-job-opportunity-resume-repair-operation",
+     "tier": "official"
+    },
+    {
+     "title": "FTC Puts an End to Bogus Job Placement and Resume Repair Scheme",
+     "publisher": "Federal Trade Commission",
+     "date": "2019-10-08",
+     "url": "https://www.ftc.gov/news-events/news/press-releases/2019/10/ftc-puts-end-bogus-job-placement-resume-repair-scheme",
+     "tier": "official"
+    },
+    {
+     "title": "Worldwide Executive Job Search Solutions, LLC (case page)",
+     "publisher": "Federal Trade Commission",
+     "date": "2019-10-08",
+     "url": "https://www.ftc.gov/legal-library/browse/cases-proceedings/172-3088-worldwide-executive-job-search-solutions-llc",
+     "tier": "official"
+    }
+   ]
+  }
+ ]
+}

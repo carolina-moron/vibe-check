@@ -1,0 +1,86 @@
+{
+  "id": "slovak-ocg-uk-modern-slavery",
+  "title": "Slovak crime group modern slavery case (UK)",
+  "typology": "labor-trafficking",
+  "period": "2008–2017",
+  "summary": "A Slovak organised crime group recruited more than 60 Slovak nationals from the Košice and Prešov regions with promises of weekly salaries above EUR 400. In the UK, victims worked 14 hours a day, six days a week in restaurant kitchens and car washes for about EUR 25 a week and lived in poor conditions. After a UK–Slovak joint investigation team supported by Eurojust, five members were sentenced at Birmingham Crown Court to up to eight years for conspiracy to arrange human trafficking and compulsory labour.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Slovak organised crime group (unnamed)",
+      "kind": "network",
+      "jurisdiction": "SK",
+      "names": [],
+      "actions": [
+        {
+          "body": "Birmingham Crown Court (CPS / West Midlands Police)",
+          "action": "conviction and sentences of five members",
+          "date": "2021-05-10",
+          "url": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Košice and Prešov regions",
+      "country": "SK",
+      "lat": 48.72,
+      "lon": 21.26,
+      "note": "Underprivileged Slovak nationals were recruited with promises of well-paid work in the UK.",
+      "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    },
+    {
+      "stage": "exploited",
+      "place": "Restaurant kitchens and car washes across the UK",
+      "country": "GB",
+      "lat": 52.49,
+      "lon": -1.89,
+      "note": "Victims worked 14-hour days, six days a week, for about EUR 25 a week.",
+      "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    },
+    {
+      "stage": "laundered",
+      "place": "Košice and Prešov regions",
+      "country": "SK",
+      "lat": 49.0,
+      "lon": 21.24,
+      "note": "Eurojust links the Slovak regions to the group's money laundering.",
+      "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Birmingham",
+      "country": "GB",
+      "lat": 52.49,
+      "lon": -1.89,
+      "note": "Five members were sentenced to up to eight years at Birmingham Crown Court.",
+      "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    }
+  ],
+  "victim_origins": [
+    "SK"
+  ],
+  "lures": [
+    {
+      "signal": "pay_too_high",
+      "quote_or_description": "Recruits were promised weekly salaries of over EUR 400 but received about EUR 25.",
+      "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    },
+    {
+      "signal": "employer_housing_travel",
+      "quote_or_description": "The group moved recruits to the UK for work, where they lived in poor conditions.",
+      "source": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Convictions in UK for Slovak gang behind modern slavery case",
+      "publisher": "Eurojust",
+      "date": "2021-05-10",
+      "url": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case",
+      "tier": "multilateral"
+    }
+  ]
+}

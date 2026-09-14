@@ -1,0 +1,65 @@
+{
+  "id": "kk-park-shwe-kokko-myawaddy",
+  "title": "KK Park, Shwe Kokko and the Myawaddy scam compounds",
+  "typology": "scam-compound",
+  "period": "2022–2025",
+  "summary": "Scam compounds in Myawaddy Township, Karen State, Myanmar, on the border opposite Mae Sot, Thailand, hold workers forced under threat of violence to run cyber scams. The US Treasury sanctioned the Karen National Army (KNA) and its leader Saw Chit Thu in May 2025, saying survivors of KK Park reported guards wearing KNA insignia, and in September 2025 sanctioned She Zhijiang and Yatai companies behind Yatai New City in Shwe Kokko. In October 2025 Myanmar's military raided KK Park and arrested 2,198 people, and more than 1,500 people from 28 countries fled into Mae Sot.",
+  "status": "sanctioned",
+  "entities": [
+    { "name": "Karen National Army", "kind": "armed-group", "jurisdiction": "MM", "names": [],
+      "actions": [
+        { "body": "US Treasury OFAC", "action": "Sanctions designation", "date": "2025-05-05", "url": "https://home.treasury.gov/news/press-releases/sb0129" },
+        { "body": "US Treasury OFAC", "action": "Sanctions designation (Shwe Kokko network, incl. KNA)", "date": "2025-09-08", "url": "https://home.treasury.gov/news/press-releases/sb0237" }
+      ] },
+    { "name": "Saw Chit Thu", "kind": "person", "jurisdiction": "MM", "names": [],
+      "actions": [
+        { "body": "US Treasury OFAC", "action": "Sanctions designation (KNA leader)", "date": "2025-05-05", "url": "https://home.treasury.gov/news/press-releases/sb0129" },
+        { "body": "US Treasury OFAC", "action": "Sanctions designation (Shwe Kokko network)", "date": "2025-09-08", "url": "https://home.treasury.gov/news/press-releases/sb0237" }
+      ] },
+    { "name": "Saw Htoo Eh Moo", "kind": "person", "jurisdiction": "MM", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "Sanctions designation (son of Saw Chit Thu)", "date": "2025-05-05", "url": "https://home.treasury.gov/news/press-releases/sb0129" } ] },
+    { "name": "Saw Chit Chit", "kind": "person", "jurisdiction": "MM", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "Sanctions designation (son of Saw Chit Thu)", "date": "2025-05-05", "url": "https://home.treasury.gov/news/press-releases/sb0129" } ] },
+    { "name": "She Zhijiang", "kind": "person", "jurisdiction": "MM", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "Sanctions designation (Shwe Kokko network)", "date": "2025-09-08", "url": "https://home.treasury.gov/news/press-releases/sb0237" } ] },
+    { "name": "Yatai International Holdings Group Limited", "kind": "company", "jurisdiction": "MM", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "Sanctions designation (Shwe Kokko network)", "date": "2025-09-08", "url": "https://home.treasury.gov/news/press-releases/sb0237" } ] },
+    { "name": "Myanmar Yatai International Holding Group Co., Ltd", "kind": "company", "jurisdiction": "MM", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "Sanctions designation (Shwe Kokko network)", "date": "2025-09-08", "url": "https://home.treasury.gov/news/press-releases/sb0237" } ] },
+    { "name": "Tin Win", "kind": "person", "jurisdiction": "MM", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "Sanctions designation (KNA)", "date": "2025-09-08", "url": "https://home.treasury.gov/news/press-releases/sb0237" } ] },
+    { "name": "Saw Min Min Oo", "kind": "person", "jurisdiction": "MM", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "Sanctions designation (KNA)", "date": "2025-09-08", "url": "https://home.treasury.gov/news/press-releases/sb0237" } ] },
+    { "name": "Chit Linn Mying Co., Ltd", "kind": "company", "jurisdiction": "MM", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "Sanctions designation (Shwe Kokko network)", "date": "2025-09-08", "url": "https://home.treasury.gov/news/press-releases/sb0237" } ] },
+    { "name": "Shwe Myint Thaung Yinn Industry & Manufacturing Company Limited", "kind": "company", "jurisdiction": "MM", "names": [],
+      "actions": [ { "body": "US Treasury OFAC", "action": "Sanctions designation (Shwe Kokko network)", "date": "2025-09-08", "url": "https://home.treasury.gov/news/press-releases/sb0237" } ] },
+    { "name": "KK Park", "kind": "zone", "jurisdiction": "MM", "names": [], "actions": [] }
+  ],
+  "journey": [
+    { "stage": "advertised", "place": "Online recruitment forums", "country": "TH", "lat": 13.75, "lon": 100.50,
+      "note": "Recruiters used internet forums and intermediaries to offer fraudulent jobs across Southeast Asia.", "source": "https://news.un.org/en/story/2023/08/1140187" },
+    { "stage": "recruited", "place": "Bangkok", "country": "TH", "lat": 13.75, "lon": 100.50,
+      "note": "Chinese actor Wang Xing was lured to Thailand by a fake online job offer before being taken to KK Park.", "source": "https://www.rfa.org/english/china/2025/01/10/china-myanmar-thailand-kk-park-actor/" },
+    { "stage": "transit", "place": "Thai-Myanmar border (Moei river)", "country": "TH", "lat": 16.71, "lon": 98.57,
+      "note": "He was taken across the river from Thailand into Myawaddy.", "source": "https://www.rfa.org/english/china/2025/01/10/china-myanmar-thailand-kk-park-actor/" },
+    { "stage": "exploited", "place": "KK Park and Shwe Kokko, Myawaddy Township", "country": "MM", "lat": 16.69, "lon": 98.51,
+      "note": "Workers in KNA-guarded compounds are forced with threats of violence to run cyber scams.", "source": "https://home.treasury.gov/news/press-releases/sb0129" },
+    { "stage": "escaped", "place": "Mae Sot, Tak", "country": "TH", "lat": 16.71, "lon": 98.57,
+      "note": "After the October 2025 raid on KK Park, more than 1,500 people from 28 countries fled into Mae Sot.", "source": "https://malaymail.com/news/world/2025/10/29/india-to-repatriate-500-nationals-fleeing-myanmars-cyber-scam-hub-says-thai-pm/196399" }
+  ],
+  "victim_origins": ["CN", "IN"],
+  "lures": [
+    { "signal": "lure_role", "quote_or_description": "Wang Xing, a TV actor, was lured to Thailand by a fake job offer made online.", "source": "https://www.rfa.org/english/china/2025/01/10/china-myanmar-thailand-kk-park-actor/" },
+    { "signal": "chat_only_contact", "quote_or_description": "The job offer came through an online message rather than a verifiable employer.", "source": "https://www.rfa.org/english/china/2025/01/10/china-myanmar-thailand-kk-park-actor/" },
+    { "signal": "high_risk_region", "quote_or_description": "Scam centre workers are 'lured by the promise of employment but then forced to carry out online scams in slave-like conditions' on the Thai-Myanmar border.", "source": "https://www.aljazeera.com/amp/news/2025/10/21/myanmar-military-arrests-more-than-2000-people-at-infamous-scam-centre" }
+  ],
+  "sources": [
+    { "title": "Treasury Sanctions Burma Warlord and Militia Tied to Cyber Scam Operations", "publisher": "US Department of the Treasury", "date": "2025-05-05", "url": "https://home.treasury.gov/news/press-releases/sb0129", "tier": "official" },
+    { "title": "Treasury Sanctions Southeast Asian Cyber Scam Networks", "publisher": "US Department of the Treasury", "date": "2025-09-08", "url": "https://home.treasury.gov/news/press-releases/sb0237", "tier": "official" },
+    { "title": "Hundreds of thousands trafficked into online criminality across SE Asia", "publisher": "UN News", "date": "2023-08-29", "url": "https://news.un.org/en/story/2023/08/1140187", "tier": "multilateral" },
+    { "title": "Chinese actor rescued from Myanmar's scam park", "publisher": "Radio Free Asia", "date": "2025-01-10", "url": "https://www.rfa.org/english/china/2025/01/10/china-myanmar-thailand-kk-park-actor/", "tier": "press" },
+    { "title": "Myanmar military arrests more than 2,000 people at infamous scam centre", "publisher": "Al Jazeera", "date": "2025-10-21", "url": "https://www.aljazeera.com/amp/news/2025/10/21/myanmar-military-arrests-more-than-2000-people-at-infamous-scam-centre", "tier": "press" },
+    { "title": "India to repatriate 500 nationals fleeing Myanmar's cyber scam hub, says Thai PM", "publisher": "Malay Mail", "date": "2025-10-29", "url": "https://malaymail.com/news/world/2025/10/29/india-to-repatriate-500-nationals-fleeing-myanmars-cyber-scam-hub-says-thai-pm/196399", "tier": "press" }
+  ]
+}

@@ -1,28 +1,43 @@
 // Risk engine: pure functions shared by the browser app and (later) the agentic skill.
 // No DOM access. Network access only through an injected fetch.
+//
+// Three rules carried over from the Digital Provenance Passport:
+//  1. No check returns "clear". The strongest negative is "no-evidence-found".
+//  2. Silence earns nothing. Empty results add no points and subtract none.
+//  3. The score never travels alone. Coverage (which registers could have seen this
+//     entity at all) is computed separately and always shown next to the score.
+//
+// People are out of scope. Checks run on entities; individuals appear only as principals
+// already named in an official enforcement or sanctions record in the case catalog.
 
 const FREE_MAIL = new Set([
   "gmail.com", "googlemail.com", "outlook.com", "hotmail.com", "live.com", "yahoo.com",
   "icloud.com", "me.com", "aol.com", "proton.me", "protonmail.com", "gmx.com", "mail.com",
-  "yandex.com", "zoho.com", "qq.com", "163.com",
+  "yandex.com", "yandex.ru", "zoho.com", "qq.com", "163.com", "126.com", "mail.ru",
+  "tutanota.com", "mailinator.com", "guerrillamail.com", "10minutemail.com", "temp-mail.org",
 ]);
 
-const COMPANY_SUFFIX = /\b(llc|l\.l\.c|inc|incorporated|corp|corporation|co|company|ltd|limited|gmbh|sa|s\.a|plc|group|global|international|intl)\b\.?/g;
+const COMPANY_SUFFIX = /\b(llc|l\.l\.c|inc|incorporated|corp|corporation|co|company|ltd|limited|gmbh|sa|s\.a|plc|group|holdings?|global|international|intl)\b\.?/g;
 
 // Each rule: signal id, regexes, optional requirement that another pattern also match.
 const CONTENT_RULES = [
-  { id: "upfront_fee", any: [/\b(pay|send|transfer|deposit)\b[^.]{0,40}\b(fee|deposit|training|equipment|visa|placement|registration|processing)\b/i, /\b(training|visa|placement|registration|processing|onboarding|equipment)\s+(fee|cost|charge|deposit)\b/i, /\brefundable deposit\b/i] },
-  { id: "id_before_interview", any: [/\b(send|provide|upload|share)\b[^.]{0,40}\b(passport|id card|driver'?s licen[cs]e|ssn|social security|bank (account|details)|national id)\b/i, /\b(passport|ssn|social security number)\b[^.]{0,30}\b(before|prior to)\b[^.]{0,20}\binterview\b/i] },
+  { id: "upfront_fee", any: [/\b(pay|send|transfer|deposit)\b[^.]{0,40}\b(fee|deposit|training|equipment|visa|placement|registration|processing)\b/i, /\b(training|visa|placement|registration|processing|onboarding|equipment|recruitment)\s+(fee|cost|charge|deposit)s?\b/i, /\brefundable deposit\b/i] },
+  { id: "id_before_interview", any: [/\b(send|provide|upload|share)\b[^.]{0,40}\b(passport|id card|driver'?s licen[cs]e|ssn|social security|bank (account|details)|national id|id\.me)\b/i, /\b(passport|ssn|social security number)\b[^.]{0,30}\b(before|prior to)\b[^.]{0,20}\binterview\b/i] },
+  { id: "document_retention", any: [/\b(keep|hold|retain|collect|safekeep)\w*\b[^.]{0,30}\b(your )?(passports?|id documents?|identity documents?)\b/i, /\bpassports?\b[^.]{0,30}\b(kept|held|retained) by\b/i] },
+  { id: "debt_bondage", any: [/\b(deducted|repaid|paid back|recovered)\b[^.]{0,30}\b(from|out of)\b[^.]{0,15}\b(wages|salary|pay|earnings)\b/i, /\b(advance|loan)\b[^.]{0,30}\b(flight|ticket|visa|recruitment)\b/i] },
+  { id: "visa_fraud", any: [/\b(tourist|visit|visitor|student)\s+visa\b[^.]{0,40}\b(work|job|employment)\b/i, /\b(work|job)\b[^.]{0,40}\b(tourist|visit|visitor)\s+visa\b/i] },
   { id: "chat_only_contact", any: [/\b(telegram|whatsapp|signal app|wechat|line app|kakao)\b/i] },
   { id: "urgency", any: [/\b(within|in)\s+(24|48|72)\s*(h|hrs|hours)\b/i, /\b(urgent(ly)?|immediate start|start tomorrow|limited (slots|positions)|act now|today only)\b/i] },
   { id: "employer_housing_travel", any: [/\b(free|provided|company|employer)[^.]{0,20}\b(flight|ticket|accommodation|housing|dormitory|visa)\b/i, /\b(flight|accommodation|housing|visa)s?\b[^.]{0,20}\b(provided|arranged|covered|paid by)\b/i] },
   { id: "vague_location", any: [/\blocation (will be )?(disclosed|shared|provided|confirmed) (later|on arrival|after)\b/i, /\b(on arrival|upon arrival)\b[^.]{0,30}\b(location|address|workplace)\b/i] },
-  { id: "high_risk_region", any: [/\b(myanmar|burma|cambodia|sihanoukville|phnom penh|laos|golden triangle|myawaddy|shwe kokko|bokeo)\b/i] },
-  { id: "lure_role", any: [/\b(modeling|model agency|hostess|companion|chat operator|crypto (trader|operator)|data entry|customer service representative abroad|typing job)\b/i] },
-  { id: "payment_handling", any: [/\b(receive|process|forward|transfer)\b[^.]{0,30}\b(payments?|funds|money|gift cards?|bitcoin|crypto|checks?|cheques?)\b/i, /\b(money|payment) (transfer|processing) (agent|assistant)\b/i] },
+  { id: "high_risk_region", any: [/\b(myanmar|burma|cambodia|sihanoukville|phnom penh|laos|golden triangle|myawaddy|shwe kokko|bokeo|mae sot)\b/i] },
+  { id: "lure_role", any: [/\b(modeling|model agency|hostess|companion|chat operator|crypto (trader|operator)|data entry|typing job|game tester|online sales agent)\b/i] },
+  { id: "payment_handling", any: [/\b(receive|process|forward|transfer)\b[^.]{0,30}\b(payments?|funds|money|gift cards?|bitcoin|crypto|checks?|cheques?|parcels|packages)\b/i, /\b(money|payment) (transfer|processing) (agent|assistant)\b/i, /\breshipping\b/i] },
   { id: "no_experience_high_pay", any: [/\bno experience (needed|required|necessary)\b/i], also: [/\$\s?\d[\d,]{2,}\s*(\/|per)\s*(day|week)\b/i, /\burgent|high (pay|salary|income)\b/i] },
   { id: "pay_too_high", any: [/\$\s?([5-9]\d{2}|\d{1,3},?\d{3,})\s*(\/|per|a)\s*day\b/i, /\$\s?([3-9],?\d{3}|\d{2,},?\d{3})\s*(\/|per|a)\s*week\b/i, /\$\s?(1[5-9]\d|[2-9]\d{2})\s*(\/|per|an?)\s*(hr|hour)\b/i] },
 ];
+
+// ---- Normalisation ---------------------------------------------------------------------
 
 export function normalizeDomain(input) {
   if (!input) return "";
@@ -34,7 +49,8 @@ export function normalizeDomain(input) {
 }
 
 export function normalizeName(name) {
-  return String(name || "").toLowerCase().replace(/&/g, " and ").replace(COMPANY_SUFFIX, " ").replace(/[^a-z0-9]+/g, " ").trim();
+  return String(name || "").toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "")
+    .replace(/&/g, " and ").replace(COMPANY_SUFFIX, " ").replace(/[^a-z0-9]+/g, " ").trim();
 }
 
 // Registrable domain approximation: last two labels, or three for common 2-level ccTLD suffixes.
@@ -45,11 +61,15 @@ export function baseDomain(domain) {
   return parts.slice(-n).join(".");
 }
 
+const daysSince = (iso, now) => Math.floor((now - new Date(iso)) / 86400000);
+
 function snippet(text, index, length) {
   const start = Math.max(0, index - 30);
   const end = Math.min(text.length, index + length + 30);
   return (start > 0 ? "…" : "") + text.slice(start, end).replace(/\s+/g, " ").trim() + (end < text.length ? "…" : "");
 }
+
+// ---- Offer text ------------------------------------------------------------------------
 
 export function detectContent(text) {
   const hits = [];
@@ -69,180 +89,349 @@ export function checkEmail(email, siteDomain) {
   const emailDomain = email && email.includes("@") ? normalizeDomain(email) : "";
   if (!emailDomain) return hits;
   if (FREE_MAIL.has(emailDomain)) {
-    hits.push({ id: "free_email", evidence: email });
+    hits.push({ id: "free_email", evidence: emailDomain });
   } else if (siteDomain && baseDomain(emailDomain) !== baseDomain(siteDomain)) {
     hits.push({ id: "email_domain_mismatch", evidence: `${emailDomain} vs ${siteDomain}` });
   }
   return hits;
 }
 
-export function domainAgeSignals(rdap, now = new Date()) {
-  if (!rdap || rdap.error) return [{ id: "domain_unresolved", evidence: rdap?.error || "no data" }];
-  if (!rdap.created) return [{ id: "domain_unresolved", evidence: "no registration date published" }];
-  const days = Math.floor((now - new Date(rdap.created)) / 86400000);
-  const evidence = `registered ${rdap.created.slice(0, 10)} (${days} days ago)`;
-  if (days < 183) return [{ id: "domain_new", evidence }];
-  if (days < 730) return [{ id: "domain_young", evidence }];
-  return [];
+// ---- Check results ---------------------------------------------------------------------
+// Every register check returns { register, verdict, detail, hits, records }.
+// verdict: "hit" | "no-evidence-found" | "not-searched" | "error". There is no "clear".
+
+const result = (register, verdict, detail, hits = [], records = []) => ({ register, verdict, detail, hits, records });
+
+async function getJson(fetchFn, url) {
+  const res = await fetchFn(url);
+  if (!res.ok) { const e = new Error(`HTTP ${res.status}`); e.status = res.status; throw e; }
+  return res.json();
 }
 
-// RDAP via rdap.org, which redirects to the authoritative registry and serves CORS headers.
-export async function fetchRdap(domain, fetchFn = fetch) {
+export async function checkRdap(domain, { fetchFn = fetch, now = new Date() } = {}) {
   try {
-    const res = await fetchFn(`https://rdap.org/domain/${encodeURIComponent(domain)}`);
-    if (!res.ok) return { error: res.status === 404 ? "domain not found in RDAP" : `RDAP HTTP ${res.status}` };
-    const json = await res.json();
-    const ev = (action) => (json.events || []).find((e) => e.eventAction === action)?.eventDate;
-    const registrar = (json.entities || []).find((e) => (e.roles || []).includes("registrar"));
-    const registrarName = registrar?.vcardArray?.[1]?.find((f) => f[0] === "fn")?.[3];
-    return { created: ev("registration") || null, updated: ev("last changed") || null, expires: ev("expiration") || null, registrar: registrarName || null };
-  } catch (err) {
-    return { error: "RDAP lookup failed (network or registry unavailable)" };
+    const json = await getJson(fetchFn, `https://rdap.org/domain/${encodeURIComponent(domain)}`);
+    const created = (json.events || []).find((e) => e.eventAction === "registration")?.eventDate;
+    if (!created) return result("rdap", "no-evidence-found", "Registry publishes no registration date.");
+    const days = daysSince(created, now);
+    const detail = `${domain} registered ${created.slice(0, 10)} (${days} days ago).`;
+    if (days < 183) return result("rdap", "hit", detail, [{ id: "domain_new", evidence: detail }]);
+    if (days < 730) return result("rdap", "hit", detail, [{ id: "domain_young", evidence: detail }]);
+    return result("rdap", "no-evidence-found", detail);
+  } catch (e) {
+    return result("rdap", "error", e.status === 404 ? `${domain} is not in RDAP (unregistered, or a registry without RDAP).` : "RDAP lookup failed.");
   }
 }
 
-export function matchReports({ name, domains = [] }, reports) {
+export async function checkCrtsh(domain, { fetchFn = fetch, now = new Date() } = {}) {
+  try {
+    const rows = await getJson(fetchFn, `https://crt.sh/?q=${encodeURIComponent(domain)}&output=json`);
+    if (!rows.length) return result("crtsh", "no-evidence-found", "No certificates logged for this domain.");
+    const first = rows.map((r) => r.not_before).sort()[0];
+    const days = daysSince(first, now);
+    const detail = `First certificate ${first.slice(0, 10)} (${days} days ago), ${rows.length} logged.`;
+    return days < 183 ? result("crtsh", "hit", detail, [{ id: "cert_new", evidence: detail }]) : result("crtsh", "no-evidence-found", detail);
+  } catch {
+    return result("crtsh", "error", "crt.sh did not respond (it often times out).");
+  }
+}
+
+export async function checkWayback(domain, { fetchFn = fetch } = {}) {
+  try {
+    const json = await getJson(fetchFn, `https://archive.org/wayback/available?url=${encodeURIComponent(domain)}&timestamp=19960101`);
+    const snap = json.archived_snapshots?.closest;
+    if (!snap) return result("wayback", "hit", "No archived captures of this website.", [{ id: "no_archive", evidence: domain }]);
+    const ts = snap.timestamp;
+    return result("wayback", "no-evidence-found", `Earliest capture found: ${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}.`);
+  } catch {
+    return result("wayback", "error", "Wayback Machine did not respond.");
+  }
+}
+
+export async function checkTranco(domain, { fetchFn = fetch } = {}) {
+  try {
+    const json = await getJson(fetchFn, `https://tranco-list.eu/api/ranks/domain/${encodeURIComponent(baseDomain(domain))}`);
+    const rank = json.ranks?.[0]?.rank;
+    return result("tranco", "no-evidence-found", rank ? `Ranked #${rank.toLocaleString("en-US")} in the Tranco top million.` : "Not in the Tranco top million (normal for small employers).");
+  } catch {
+    return result("tranco", "error", "Tranco did not respond.");
+  }
+}
+
+export async function checkMailDns(emailDomain, { fetchFn = fetch } = {}) {
+  if (FREE_MAIL.has(emailDomain)) return result("dns", "not-searched", "Free-mail provider; DNS says nothing about the recruiter.");
+  try {
+    const q = (name, type) => getJson(fetchFn, `https://dns.google/resolve?name=${encodeURIComponent(name)}&type=${type}`);
+    const [mx, dmarc] = await Promise.all([q(emailDomain, "MX"), q(`_dmarc.${emailDomain}`, "TXT")]);
+    const hasMx = (mx.Answer || []).some((a) => a.type === 15);
+    const hasDmarc = (dmarc.Answer || []).some((a) => /v=DMARC1/i.test(a.data));
+    const detail = `${emailDomain}: ${hasMx ? "has" : "no"} MX record, ${hasDmarc ? "publishes" : "no"} DMARC policy.`;
+    return hasMx ? result("dns", "no-evidence-found", detail) : result("dns", "hit", detail, [{ id: "no_mx", evidence: detail }]);
+  } catch {
+    return result("dns", "error", "DNS lookup failed.");
+  }
+}
+
+export async function checkGleif(name, { fetchFn = fetch } = {}) {
+  try {
+    const json = await getJson(fetchFn, `https://api.gleif.org/api/v1/lei-records?filter[fulltext]=${encodeURIComponent(name)}&page[size]=5`);
+    const q = normalizeName(name);
+    const records = (json.data || []).map((r) => {
+      const e = r.attributes.entity;
+      return {
+        lei: r.id, name: e.legalName.name, status: e.status, jurisdiction: e.jurisdiction, created: e.creationDate,
+        otherNames: (e.otherNames || []).map((o) => ({ name: o.name, type: o.type })),
+        url: `https://search.gleif.org/#/record/${r.id}`,
+      };
+    }).filter((r) => normalizeName(r.name) === q || r.otherNames.some((o) => normalizeName(o.name) === q));
+    if (!records.length) return result("gleif", "no-evidence-found", "No LEI record with this exact name (most small employers have none).");
+    const hits = [];
+    const previous = records.flatMap((r) => r.otherNames.filter((o) => /PREVIOUS/.test(o.type)).map((o) => `${o.name} → ${r.name}`));
+    if (previous.length) hits.push({ id: "gleif_name_history", evidence: previous.join("; ") });
+    if (records.some((r) => r.status !== "ACTIVE")) hits.push({ id: "entity_bad_status", evidence: records.filter((r) => r.status !== "ACTIVE").map((r) => `${r.name}: ${r.status}`).join("; ") });
+    return result("gleif", hits.length ? "hit" : "no-evidence-found", `${records.length} LEI record(s) found.`, hits, records);
+  } catch {
+    return result("gleif", "error", "GLEIF did not respond.");
+  }
+}
+
+const socrataLike = (field, name) => `upper(${field}) like '%25${encodeURIComponent(name.toUpperCase().replace(/'/g, "''"))}%25'`;
+
+export async function checkNewYork(name, { fetchFn = fetch, now = new Date() } = {}) {
+  try {
+    const rows = await getJson(fetchFn, `https://data.ny.gov/resource/n9v6-gdp6.json?$where=${socrataLike("current_entity_name", name)}&$limit=5`);
+    if (!rows.length) return result("ny-dos", "no-evidence-found", "No active New York entity with this name.");
+    const records = rows.map((r) => ({ name: r.current_entity_name, id: r.dos_id, type: r.entity_type, created: r.initial_dos_filing_date }));
+    const hits = records.filter((r) => r.created && daysSince(r.created, now) < 365).map((r) => ({ id: "entity_new", evidence: `${r.name} filed ${r.created.slice(0, 10)} (NY)` }));
+    return result("ny-dos", hits.length ? "hit" : "no-evidence-found", `${rows.length} active NY entit${rows.length === 1 ? "y" : "ies"} matched.`, hits.slice(0, 1), records);
+  } catch {
+    return result("ny-dos", "error", "New York open data did not respond.");
+  }
+}
+
+export async function checkColorado(name, { fetchFn = fetch, now = new Date() } = {}) {
+  try {
+    const [entities, trade] = await Promise.all([
+      getJson(fetchFn, `https://data.colorado.gov/resource/4ykn-tg5h.json?$where=${socrataLike("entityname", name)}&$limit=5`),
+      getJson(fetchFn, `https://data.colorado.gov/resource/u7sb-g482.json?$where=${socrataLike("tradenamedescription", name)}&$limit=5`),
+    ]);
+    const records = [
+      ...entities.map((r) => ({ name: r.entityname, status: r.entitystatus, created: r.entityformdate, id: r.entityid, kind: "entity" })),
+      ...trade.map((r) => ({ name: r.tradenamedescription, registrant: r.registrantorganization, status: r.entitystatus, created: r.entityformdate, id: r.entityid, kind: "trade name" })),
+    ];
+    if (!records.length) return result("co-sos", "no-evidence-found", "No Colorado entity or trade name with this name.");
+    const hits = [];
+    const bad = records.filter((r) => r.status && !/^(good|exists)/i.test(r.status));
+    if (bad.length) hits.push({ id: "entity_bad_status", evidence: bad.map((r) => `${r.name}: ${r.status} (CO)`).join("; ") });
+    const fresh = records.filter((r) => r.created && daysSince(r.created, now) < 365);
+    if (fresh.length) hits.push({ id: "entity_new", evidence: `${fresh[0].name} formed ${fresh[0].created.slice(0, 10)} (CO)` });
+    const dba = records.filter((r) => r.kind === "trade name" && r.registrant && normalizeName(r.registrant) !== normalizeName(r.name));
+    const detail = `${entities.length} entit${entities.length === 1 ? "y" : "ies"}, ${trade.length} trade name(s).${dba.length ? ` Trade name registered to: ${dba.map((r) => r.registrant).join(", ")}.` : ""}`;
+    return result("co-sos", hits.length ? "hit" : "no-evidence-found", detail, hits, records);
+  } catch {
+    return result("co-sos", "error", "Colorado open data did not respond.");
+  }
+}
+
+export async function checkCourtListener(name, { fetchFn = fetch } = {}) {
+  try {
+    const json = await getJson(fetchFn, `https://www.courtlistener.com/api/rest/v4/search/?type=r&q=${encodeURIComponent(`"${name}"`)}`);
+    const records = (json.results || []).slice(0, 8).map((r) => ({
+      name: r.caseName, court: r.court, date: r.dateFiled, docket: r.docketNumber,
+      url: r.docket_absolute_url ? `https://www.courtlistener.com${r.docket_absolute_url}` : null,
+    }));
+    // Dockets are shown, never scored: being named in a case is not a finding.
+    return result("courtlistener", "no-evidence-found", records.length ? `${json.count} federal docket(s) mention this exact name. Shown for review; not scored.` : "No federal dockets mention this exact name.", [], records);
+  } catch {
+    return result("courtlistener", "error", "CourtListener did not respond.");
+  }
+}
+
+// ---- Case catalog ----------------------------------------------------------------------
+
+export function allNames(entity) {
+  return [{ name: entity.name, type: "current" }, ...(entity.names || [])];
+}
+
+export function matchCatalog({ name, domains = [] }, cases) {
   const q = normalizeName(name);
-  const doms = new Set(domains.filter(Boolean).map(baseDomain));
   const matches = [];
-  for (const entity of reports.entities) {
-    const names = [entity.name, ...(entity.aliases || [])];
-    const nameHit = q.length >= 3 && names.find((n) => {
-      const nn = normalizeName(n);
-      return nn === q || (q.length >= 5 && (nn.includes(q) || q.includes(nn)));
-    });
-    const domainHit = entity.domains.find((d) => doms.has(baseDomain(d)));
-    if (nameHit || domainHit) {
-      matches.push({ entity, via: domainHit ? `domain ${domainHit}` : `name "${nameHit}"`, matchedAlias: nameHit && nameHit !== entity.name });
+  if (q.length < 4) return matches;
+  for (const c of cases) {
+    for (const entity of c.entities || []) {
+      const hit = allNames(entity).find((n) => {
+        const nn = normalizeName(n.name);
+        return nn && (nn === q || (q.length >= 6 && nn.length >= 6 && (nn.includes(q) || q.includes(nn))));
+      });
+      if (hit) matches.push({ caseId: c.id, caseTitle: c.title, entity: entity.name, via: hit });
     }
   }
   return matches;
 }
 
+export function checkCatalog(name, cases) {
+  const matches = matchCatalog({ name }, cases);
+  if (!matches.length) return result("catalog", "no-evidence-found", "No documented case lists this name, a former name or an alias.");
+  const hits = [{ id: "reported_local", evidence: matches.map((m) => `${m.entity} (${m.caseTitle})`).join("; ") }];
+  const viaOther = matches.filter((m) => m.via.type !== "current");
+  if (viaOther.length) hits.push({ id: "name_change_lineage", evidence: viaOther.map((m) => `${m.via.name} (${m.via.type}) → ${m.entity}`).join("; ") });
+  return result("catalog", "hit", `${matches.length} match(es) in documented cases.`, hits, matches);
+}
+
+// ---- Scoring and coverage --------------------------------------------------------------
+
 export function score(hits, signalsDoc) {
   const byId = Object.fromEntries(signalsDoc.signals.map((s) => [s.id, s]));
-  const seen = new Set();
-  const flags = [];
-  for (const hit of hits) {
-    const def = byId[hit.id];
-    if (!def || seen.has(hit.id)) continue;
-    seen.add(hit.id);
-    flags.push({ ...def, evidence: hit.evidence });
-  }
-  // A young domain is subsumed by a new one.
-  const final = seen.has("domain_new") ? flags.filter((f) => f.id !== "domain_young") : flags;
-  const points = final.reduce((sum, f) => sum + f.weight, 0);
+  const seen = new Map();
+  for (const hit of hits) if (byId[hit.id] && !seen.has(hit.id)) seen.set(hit.id, { ...byId[hit.id], evidence: hit.evidence });
+  if (seen.has("domain_new")) seen.delete("domain_young");
+  const flags = [...seen.values()].sort((a, b) => b.weight - a.weight);
+  const points = Math.min(100, flags.reduce((sum, f) => sum + f.weight, 0));
   const tier = [...signalsDoc.tiers].sort((a, b) => b.min - a.min).find((t) => points >= t.min);
-  final.sort((a, b) => b.weight - a.weight);
-  return { points, tier, flags: final };
+  return { points, tier, flags };
 }
 
-export function lookupLinks({ name, domain }) {
-  const q = encodeURIComponent(name || domain || "");
-  const links = [];
-  if (name) {
-    links.push(
-      { group: "Registries", label: "OpenCorporates (company registry search)", url: `https://opencorporates.com/companies?q=${q}` },
-      { group: "Registries", label: "SEC EDGAR company search", url: `https://www.sec.gov/cgi-bin/browse-edgar?company=${q}&type=&dateb=&owner=include&count=40` },
-      { group: "Registries", label: "GLEIF legal entity (LEI) search", url: `https://search.gleif.org/#/search/simpleSearch=${q}` },
-      { group: "Sanctions & enforcement", label: "OFAC sanctions list search", url: "https://sanctionssearch.ofac.treas.gov/" },
-      { group: "Sanctions & enforcement", label: "DOL Wage & Hour enforcement data", url: "https://enforcedata.dol.gov/views/data_summary.php" },
-      { group: "Sanctions & enforcement", label: "FTC cases and proceedings", url: `https://www.ftc.gov/legal-library/browse/cases-proceedings?search_api_fulltext=${q}` },
-      { group: "Reputation", label: "BBB Scam Tracker", url: `https://www.bbb.org/scamtracker/lookupscam?Keywords=${q}` },
-      { group: "Reputation", label: "Web search: name + scam", url: `https://duckduckgo.com/?q=${encodeURIComponent(`"${name}" scam OR fraud OR complaint`)}` },
-    );
-  }
-  if (domain) {
-    const d = encodeURIComponent(domain);
-    links.push(
-      { group: "Digital footprint", label: "Wayback Machine history", url: `https://web.archive.org/web/*/${d}` },
-      { group: "Digital footprint", label: "urlscan.io", url: `https://urlscan.io/search/#${d}` },
-      { group: "Digital footprint", label: "Google Safe Browsing status", url: `https://transparencyreport.google.com/safe-browsing/search?url=${d}` },
-    );
-  }
-  return links;
+// Which registers could have seen an entity at all, given the jurisdictions involved.
+// Kept separate from the score on purpose: folding it in would make one number mean two things.
+export function coverage(jurisdictions, registersDoc, layers = ["identity", "enforcement"]) {
+  const js = new Set(jurisdictions.filter(Boolean));
+  const applicable = registersDoc.registers.filter((r) => layers.includes(r.layer) && r.id !== "catalog" && r.id !== "wikidata" && r.id !== "opencorporates"
+    && !r.covers.includes("*") && r.covers.some((c) => js.has(c)));
+  const reachable = applicable.filter((r) => r.access !== "planned");
+  const cls = reachable.length >= 3 ? "well" : reachable.length >= 1 ? "partial" : "uncovered";
+  const labels = { well: "Well covered", partial: "Partly covered", uncovered: "Structurally uncovered" };
+  const explain = {
+    well: "National registers in these jurisdictions could have recorded this entity's identity and enforcement history.",
+    partial: "Only one or two jurisdiction-specific registers apply; a low score here is weak evidence.",
+    uncovered: "No open national register covers these jurisdictions. Only global watchlists apply, so absence of evidence says almost nothing.",
+  };
+  return { class: cls, label: labels[cls], explain: explain[cls], applicable, reachable };
 }
 
-// ---- Public offender and court records -------------------------------------------------
-// Results are shown as possible name matches for the user to verify. They are never scored:
-// a shared name is not an identity match, and scoring individuals on it invites FCRA and
-// defamation problems.
-
-export async function fetchFbiWanted(name, fetchFn = fetch) {
-  try {
-    const res = await fetchFn(`https://api.fbi.gov/wanted/v1/list?title=${encodeURIComponent(name)}&pageSize=10`);
-    if (!res.ok) return { error: `FBI API HTTP ${res.status}`, items: [] };
-    const json = await res.json();
-    return {
-      total: json.total || 0,
-      items: (json.items || []).map((i) => ({
-        title: i.title, url: i.url, description: i.description || "", subjects: i.subjects || [],
-        aliases: i.aliases || [], thumb: i.images?.[0]?.thumb || null,
-      })),
-    };
-  } catch {
-    return { error: "FBI Wanted lookup failed", items: [] };
-  }
+export function linkFor(register, { name = "", domain = "" }) {
+  return register.url.replace("{q}", encodeURIComponent(name)).replace("{d}", encodeURIComponent(domain));
 }
 
-export async function fetchCourtCases(name, fetchFn = fetch) {
-  try {
-    const res = await fetchFn(`https://www.courtlistener.com/api/rest/v4/search/?type=r&q=${encodeURIComponent(`"${name}"`)}`);
-    if (!res.ok) return { error: `CourtListener HTTP ${res.status}`, items: [] };
-    const json = await res.json();
-    return {
-      total: json.count || 0,
-      items: (json.results || []).slice(0, 10).map((r) => ({
-        title: r.caseName, court: r.court, date: r.dateFiled, docket: r.docketNumber,
-        url: r.docket_absolute_url ? `https://www.courtlistener.com${r.docket_absolute_url}` : null,
-      })),
-    };
-  } catch {
-    return { error: "CourtListener lookup failed", items: [] };
-  }
-}
+// ---- Live check ------------------------------------------------------------------------
 
-export function offenderLinks(name) {
-  const q = encodeURIComponent(name || "");
-  return [
-    { group: "Offender registries & maps", label: "NSOPW: National Sex Offender Public Website (all US states, map search)", url: "https://www.nsopw.gov/search-public-sex-offender-registries" },
-    { group: "Offender registries & maps", label: "NSOPW: list of state registry sites (most have map views)", url: "https://www.nsopw.gov/registry-sites" },
-    { group: "Offender registries & maps", label: "Federal Bureau of Prisons inmate locator", url: "https://www.bop.gov/inmateloc/" },
-    { group: "Offender registries & maps", label: "VINELink: state and county custody status", url: "https://vinelink.vineapps.com/search/persons" },
-    { group: "Wanted & notices", label: "FBI Most Wanted", url: `https://www.fbi.gov/wanted` },
-    { group: "Wanted & notices", label: "INTERPOL Red Notices (public)", url: "https://www.interpol.int/How-we-work/Notices/Red-Notices/View-Red-Notices" },
-    { group: "Wanted & notices", label: "Europol EU Most Wanted", url: "https://eumostwanted.eu/" },
-    { group: "Courts & sanctions", label: "CourtListener federal dockets", url: `https://www.courtlistener.com/?type=r&q=${encodeURIComponent(`"${name || ""}"`)}` },
-    { group: "Courts & sanctions", label: "DOJ press releases (human trafficking, fraud)", url: `https://www.justice.gov/news?search_api_fulltext=${q}` },
-    { group: "Courts & sanctions", label: "OFAC sanctions list (individuals)", url: "https://sanctionssearch.ofac.treas.gov/" },
-  ];
-}
-
-export async function assessPerson(name, fetchFn = fetch) {
-  const clean = String(name || "").trim();
-  if (clean.split(/\s+/).length < 2) return { error: "Enter a first and last name.", fbi: null, courts: null, links: offenderLinks(clean) };
-  const [fbi, courts] = await Promise.all([fetchFbiWanted(clean, fetchFn), fetchCourtCases(clean, fetchFn)]);
-  return { name: clean, fbi, courts, links: offenderLinks(clean) };
-}
-
-export async function assess(input, { signals, reports, fetchFn = fetch, now = new Date() }) {
+export async function assess(input, { signals, registers, cases, fetchFn = fetch, now = new Date() }) {
+  const name = String(input.company || "").trim();
   const domain = normalizeDomain(input.website);
-  const hits = [];
-  let rdap = null;
-  if (domain) {
-    rdap = await fetchRdap(domain, fetchFn);
-    hits.push(...domainAgeSignals(rdap, now));
+  const emailDomain = input.email && input.email.includes("@") ? normalizeDomain(input.email) : "";
+  const jurisdiction = input.jurisdiction || "";
+  const opts = { fetchFn, now };
+  const skip = (id, why) => Promise.resolve(result(id, "not-searched", why));
+  const usState = jurisdiction === "US";
+
+  const checks = await Promise.all([
+    name ? Promise.resolve(checkCatalog(name, cases)) : skip("catalog", "No company name given."),
+    name.length >= 3 ? checkGleif(name, opts) : skip("gleif", "No company name given."),
+    name.length >= 3 && (usState || !jurisdiction) ? checkNewYork(name, opts) : skip("ny-dos", "Not a US employer."),
+    name.length >= 3 && (usState || !jurisdiction) ? checkColorado(name, opts) : skip("co-sos", "Not a US employer."),
+    name.length >= 4 ? checkCourtListener(name, opts) : skip("courtlistener", "No company name given."),
+    domain ? checkRdap(domain, opts) : skip("rdap", "No website given."),
+    domain ? checkCrtsh(domain, opts) : skip("crtsh", "No website given."),
+    domain ? checkWayback(domain, opts) : skip("wayback", "No website given."),
+    domain ? checkTranco(domain, opts) : skip("tranco", "No website given."),
+    emailDomain ? checkMailDns(emailDomain, opts) : skip("dns", "No recruiter email given."),
+  ]);
+
+  const emailHits = checkEmail(input.email, domain);
+  checks.push(result("freemail", emailDomain ? (emailHits.length ? "hit" : "no-evidence-found") : "not-searched",
+    emailDomain ? (emailHits.length ? emailHits[0].evidence : `${emailDomain} is not a known free-mail domain.`) : "No recruiter email given.", emailHits));
+
+  const textHits = detectContent(input.posting);
+  checks.push(result("ilo", input.posting?.trim() ? (textHits.length ? "hit" : "no-evidence-found") : "not-searched",
+    input.posting?.trim() ? `${textHits.length} offer-text indicator(s).` : "No posting text given.", textHits));
+
+  const hits = checks.flatMap((c) => c.hits);
+  const byRegister = Object.fromEntries(registers.registers.map((r) => [r.id, r]));
+  const referrals = registers.registers.filter((r) => r.access !== "queried" && r.layer !== "priors"
+    && (r.covers.includes("*") || !jurisdiction || r.covers.includes(jurisdiction)));
+
+  return {
+    input: { name, domain, emailDomain, jurisdiction },
+    checks: checks.map((c) => ({ ...c, meta: byRegister[c.register] })),
+    referrals,
+    coverage: coverage(jurisdiction ? [jurisdiction] : [], registers),
+    catalogMatches: checks[0].records,
+    ...score(hits, signals),
+  };
+}
+
+// ---- Case scoring ----------------------------------------------------------------------
+
+export function caseEvidence(c, signalsDoc) {
+  const hits = (c.lures || []).map((l) => ({ id: l.signal, evidence: l.quote_or_description }));
+  const actions = (c.entities || []).flatMap((e) => e.actions || []);
+  if (actions.length) hits.push({ id: "reported_local", evidence: `${actions.length} official action(s)` });
+  if ((c.entities || []).some((e) => (e.names || []).length)) hits.push({ id: "name_change_lineage", evidence: "former names or aliases on record" });
+  return score(hits, signalsDoc);
+}
+
+export function caseJurisdictions(c) {
+  return [...new Set([...(c.entities || []).map((e) => e.jurisdiction), ...(c.journey || []).filter((j) => j.stage === "exploited" || j.stage === "laundered").map((j) => j.country)])];
+}
+
+// ---- Complaint anonymisation -----------------------------------------------------------
+// Runs in the browser before anything leaves the device. Redacts the reporter's own
+// identifiers from free text; recruiter contact details go in their own fields on purpose.
+
+const REDACTIONS = [
+  { label: "email", re: /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi },
+  { label: "url", re: /\bhttps?:\/\/\S+/gi },
+  { label: "passport-or-id-number", re: /\b(?=[A-Z0-9]*\d)[A-Z]{1,2}\d{6,9}\b/g },
+  { label: "card-or-account-number", re: /\b(?:\d[ -]?){12,19}\b/g },
+  { label: "phone", re: /(?:\+?\d{1,3}[\s.-]?)?(?:\(?\d{2,4}\)?[\s.-]?){2,4}\d{2,4}\b/g },
+  { label: "handle", re: /(?<![\w.])@[A-Za-z0-9_]{3,}/g },
+  { label: "date-of-birth", re: /\b(born|dob|date of birth)\b[^.,;\n]{0,20}\d{1,4}[\/.-]\d{1,2}[\/.-]\d{1,4}/gi },
+  { label: "name", re: /\b(my name is|i am called|i'm called|call me)\s+[A-Z][\p{L}'-]+(\s+[A-Z][\p{L}'-]+)?/giu },
+];
+
+export function redact(text) {
+  let out = String(text || "");
+  const counts = {};
+  for (const { label, re } of REDACTIONS) {
+    out = out.replace(re, (m) => {
+      if (label === "phone" && m.replace(/\D/g, "").length < 7) return m;
+      counts[label] = (counts[label] || 0) + 1;
+      return `[${label} removed]`;
+    });
   }
-  hits.push(...checkEmail(input.email, domain));
-  hits.push(...detectContent(input.posting));
-  const emailDomain = input.email ? normalizeDomain(input.email) : "";
-  const matches = matchReports({ name: input.company, domains: [domain, emailDomain] }, reports);
-  if (matches.length) {
-    hits.push({ id: "reported_local", evidence: matches.map((m) => `${m.entity.name} (via ${m.via})`).join("; ") });
-    if (matches.some((m) => m.matchedAlias || (m.entity.lineage || []).length > 1)) {
-      hits.push({ id: "name_change_lineage", evidence: matches.map((m) => [m.entity.name, ...(m.entity.aliases || [])].join(" → ")).join("; ") });
-    }
-  }
-  const courts = input.company && input.company.trim().length >= 4 ? await fetchCourtCases(input.company.trim(), fetchFn) : null;
-  return { domain, rdap, matches, courts, links: lookupLinks({ name: input.company, domain }), ...score(hits, signals) };
+  return { text: out, counts };
+}
+
+// 64-bit difference hash of a 9x8 greyscale grid (row-major, values 0–255).
+// Lets reports match a reused recruiter headshot without the image ever being uploaded.
+export function dHash(grey9x8) {
+  let bits = "";
+  for (let y = 0; y < 8; y++) for (let x = 0; x < 8; x++) bits += grey9x8[y * 9 + x] < grey9x8[y * 9 + x + 1] ? "1" : "0";
+  return BigInt("0b" + bits).toString(16).padStart(16, "0");
+}
+
+export function hammingHex(a, b) {
+  let x = BigInt("0x" + a) ^ BigInt("0x" + b), n = 0;
+  while (x) { n += Number(x & 1n); x >>= 1n; }
+  return n;
+}
+
+export function buildReport(form, now = new Date()) {
+  const narrative = redact(form.narrative);
+  return {
+    schema: "job-risk-tracer/report@1",
+    submitted_month: now.toISOString().slice(0, 7),
+    company_as_presented: String(form.company || "").trim() || null,
+    website: normalizeDomain(form.website) || null,
+    recruiter_email_domain: form.recruiterEmail && form.recruiterEmail.includes("@") ? normalizeDomain(form.recruiterEmail) : null,
+    platform: form.platform || null,
+    recruited_country: form.recruitedCountry || null,
+    destination_country: form.destinationCountry || null,
+    incident_month: form.incidentMonth || null,
+    what_happened: [].concat(form.signals || []),
+    outcome: form.outcome || null,
+    narrative_redacted: narrative.text || null,
+    redactions: narrative.counts,
+    recruiter_photo_dhash: form.photoHash || null,
+    consent_research_use: form.consent === true || form.consent === "on",
+  };
 }

@@ -1,36 +1,221 @@
 {
   "version": 1,
-  "note": "Single source of truth for risk signals. Used by the search app now and by the agentic job-cleaner skill later. Weights are additive points; tiers are computed in src/engine.js.",
+  "note": "Single source of truth for risk signals, shared by the tracer's live check, the case catalog's lure tags, and (later) the agentic job-cleaner skill. Weights are additive evidence points; silence adds nothing.",
   "categories": {
-    "entity": "Entity identity",
-    "digital": "Digital footprint",
+    "entity": "Identity and name history",
+    "digital": "Domain and email",
     "offer": "Offer content",
-    "reputation": "Reputation & enforcement"
+    "reputation": "Watchlists and enforcement"
   },
   "signals": [
-    { "id": "domain_new", "category": "digital", "weight": 20, "label": "Website domain registered less than 6 months ago", "why": "Scam operations spin up fresh domains and abandon them once reported." },
-    { "id": "domain_young", "category": "digital", "weight": 8, "label": "Website domain registered less than 2 years ago", "why": "Young domain; weak signal on its own, stronger when the company claims a long history." },
-    { "id": "domain_unresolved", "category": "digital", "weight": 6, "label": "Domain registration data could not be found", "why": "Domain may not exist, may be mistyped, or uses a registry without public RDAP." },
-    { "id": "free_email", "category": "digital", "weight": 15, "label": "Recruiter uses a free email provider", "why": "Legitimate employers almost always recruit from a company domain." },
-    { "id": "email_domain_mismatch", "category": "digital", "weight": 15, "label": "Recruiter email domain differs from the company website", "why": "Common impersonation pattern: a real company's name with a look-alike or unrelated email domain." },
-    { "id": "chat_only_contact", "category": "offer", "weight": 15, "label": "Interview or contact only via Telegram, WhatsApp, Signal or similar", "why": "Moves the conversation off platforms that keep records or moderate." },
-    { "id": "upfront_fee", "category": "offer", "weight": 30, "label": "Asks the candidate to pay (training, equipment, visa, placement, deposit)", "why": "Legitimate employers do not charge applicants. Recruitment fees are a core forced-labour indicator (ILO)." },
-    { "id": "id_before_interview", "category": "offer", "weight": 20, "label": "Requests passport, ID, SSN or bank details before an interview", "why": "Identity theft risk; document retention is a trafficking control tactic." },
-    { "id": "pay_too_high", "category": "offer", "weight": 12, "label": "Pay far above market for little experience", "why": "Bait pay is the most common lure in both scam and trafficking recruitment." },
-    { "id": "no_experience_high_pay", "category": "offer", "weight": 8, "label": "\"No experience needed\" combined with urgency or high pay", "why": "Broad-funnel lure." },
-    { "id": "urgency", "category": "offer", "weight": 8, "label": "Pressure to accept or travel within hours or days", "why": "Urgency prevents the candidate from checking the offer." },
-    { "id": "employer_housing_travel", "category": "offer", "weight": 12, "label": "Employer arranges and controls travel and housing", "why": "Control of movement and lodging is a trafficking indicator (Polaris, UNODC), especially abroad." },
-    { "id": "vague_location", "category": "offer", "weight": 10, "label": "Work location is vague or disclosed only on arrival", "why": "Prevents the candidate or family from knowing where they will be." },
-    { "id": "high_risk_region", "category": "offer", "weight": 15, "label": "Overseas role in a region with documented scam-compound recruitment", "why": "UNODC and OHCHR document forced scam work in parts of Myanmar, Cambodia and Laos, often recruited via Thailand, Malaysia or Dubai." },
-    { "id": "lure_role", "category": "offer", "weight": 6, "label": "Role type frequently used as a lure (modeling, hostess, \"customer service\" abroad, crypto/data entry)", "why": "Low-verification roles are easy to fabricate." },
-    { "id": "payment_handling", "category": "offer", "weight": 20, "label": "Job involves receiving or forwarding money, gift cards or crypto", "why": "Money-mule and check-cashing scams." },
-    { "id": "odd_hours", "category": "offer", "weight": 5, "label": "Interview scheduled at an unusual hour for the stated location", "why": "Suggests the recruiter operates from a different country than claimed." },
-    { "id": "reported_local", "category": "reputation", "weight": 35, "label": "Matches an entity in the reports dataset", "why": "Community or enforcement report exists. See the record for status and source." },
-    { "id": "name_change_lineage", "category": "entity", "weight": 15, "label": "Entity has prior names or DBAs linked to reports", "why": "Re-registering under a new name is a common way to shed complaints." }
+    {
+      "id": "domain_new",
+      "category": "digital",
+      "weight": 20,
+      "label": "Website domain registered less than 6 months ago",
+      "why": "Scam operations spin up fresh domains and abandon them once reported."
+    },
+    {
+      "id": "domain_young",
+      "category": "digital",
+      "weight": 8,
+      "label": "Website domain registered less than 2 years ago",
+      "why": "Young domain; weak signal on its own, stronger when the company claims a long history."
+    },
+    {
+      "id": "free_email",
+      "category": "digital",
+      "weight": 15,
+      "label": "Recruiter uses a free email provider",
+      "why": "Legitimate employers almost always recruit from a company domain."
+    },
+    {
+      "id": "email_domain_mismatch",
+      "category": "digital",
+      "weight": 15,
+      "label": "Recruiter email domain differs from the company website",
+      "why": "Common impersonation pattern: a real company's name with a look-alike or unrelated email domain."
+    },
+    {
+      "id": "chat_only_contact",
+      "category": "offer",
+      "weight": 15,
+      "label": "Interview or contact only via Telegram, WhatsApp, Signal or similar",
+      "why": "Moves the conversation off platforms that keep records or moderate."
+    },
+    {
+      "id": "upfront_fee",
+      "category": "offer",
+      "weight": 30,
+      "label": "Asks the candidate to pay (training, equipment, visa, placement, deposit)",
+      "why": "Legitimate employers do not charge applicants. Recruitment fees are a core forced-labour indicator (ILO)."
+    },
+    {
+      "id": "id_before_interview",
+      "category": "offer",
+      "weight": 20,
+      "label": "Requests passport, ID, SSN or bank details before an interview",
+      "why": "Identity theft risk; document retention is a trafficking control tactic."
+    },
+    {
+      "id": "pay_too_high",
+      "category": "offer",
+      "weight": 12,
+      "label": "Pay far above market for little experience",
+      "why": "Bait pay is the most common lure in both scam and trafficking recruitment."
+    },
+    {
+      "id": "no_experience_high_pay",
+      "category": "offer",
+      "weight": 8,
+      "label": "\"No experience needed\" combined with urgency or high pay",
+      "why": "Broad-funnel lure."
+    },
+    {
+      "id": "urgency",
+      "category": "offer",
+      "weight": 8,
+      "label": "Pressure to accept or travel within hours or days",
+      "why": "Urgency prevents the candidate from checking the offer."
+    },
+    {
+      "id": "employer_housing_travel",
+      "category": "offer",
+      "weight": 12,
+      "label": "Employer arranges and controls travel and housing",
+      "why": "Control of movement and lodging is a trafficking indicator (Polaris, UNODC), especially abroad."
+    },
+    {
+      "id": "vague_location",
+      "category": "offer",
+      "weight": 10,
+      "label": "Work location is vague or disclosed only on arrival",
+      "why": "Prevents the candidate or family from knowing where they will be."
+    },
+    {
+      "id": "high_risk_region",
+      "category": "offer",
+      "weight": 15,
+      "label": "Overseas role in a region with documented scam-compound recruitment",
+      "why": "UNODC and OHCHR document forced scam work in parts of Myanmar, Cambodia and Laos, often recruited via Thailand, Malaysia or Dubai."
+    },
+    {
+      "id": "lure_role",
+      "category": "offer",
+      "weight": 6,
+      "label": "Role type frequently used as a lure (modeling, hostess, \"customer service\" abroad, crypto/data entry)",
+      "why": "Low-verification roles are easy to fabricate."
+    },
+    {
+      "id": "payment_handling",
+      "category": "offer",
+      "weight": 20,
+      "label": "Job involves receiving or forwarding money, gift cards or crypto",
+      "why": "Money-mule and check-cashing scams."
+    },
+    {
+      "id": "odd_hours",
+      "category": "offer",
+      "weight": 5,
+      "label": "Interview scheduled at an unusual hour for the stated location",
+      "why": "Suggests the recruiter operates from a different country than claimed."
+    },
+    {
+      "id": "reported_local",
+      "category": "reputation",
+      "weight": 35,
+      "label": "Matches an entity, former name or alias in the documented case catalog",
+      "why": "The case record lists the enforcement action or report and its sources."
+    },
+    {
+      "id": "name_change_lineage",
+      "category": "entity",
+      "weight": 15,
+      "label": "Matched through a former name, DBA or alias",
+      "why": "Re-registering under a new name is a common way to shed complaints and enforcement history."
+    },
+    {
+      "id": "document_retention",
+      "category": "offer",
+      "weight": 25,
+      "label": "Employer keeps or will hold passports or ID documents",
+      "why": "Retention of identity documents is one of the ILO forced-labour indicators."
+    },
+    {
+      "id": "debt_bondage",
+      "category": "offer",
+      "weight": 25,
+      "label": "Recruitment costs become a debt repaid from wages",
+      "why": "Debt bondage is one of the ILO forced-labour indicators."
+    },
+    {
+      "id": "visa_fraud",
+      "category": "offer",
+      "weight": 15,
+      "label": "Visa type does not match the work, or sponsorship is promised without a certified employer",
+      "why": "Tourist or student visas for work make the worker deportable and dependent."
+    },
+    {
+      "id": "no_mx",
+      "category": "digital",
+      "weight": 12,
+      "label": "Recruiter's email domain has no mail server (MX) record",
+      "why": "The domain cannot receive email normally, a sign of a throwaway or spoofed address."
+    },
+    {
+      "id": "cert_new",
+      "category": "digital",
+      "weight": 10,
+      "label": "First TLS certificate for the domain issued less than 6 months ago",
+      "why": "Confirms a recently stood-up website even where registration dates are hidden."
+    },
+    {
+      "id": "no_archive",
+      "category": "digital",
+      "weight": 4,
+      "label": "No Wayback Machine history for the website",
+      "why": "Weak on its own; strong when the company claims years of operation."
+    },
+    {
+      "id": "entity_bad_status",
+      "category": "entity",
+      "weight": 20,
+      "label": "Registry lists the entity as delinquent, dissolved or inactive",
+      "why": "An entity not in good standing should not be hiring."
+    },
+    {
+      "id": "entity_new",
+      "category": "entity",
+      "weight": 10,
+      "label": "Registered entity formed less than 12 months ago",
+      "why": "New entities are common in re-registration after complaints."
+    },
+    {
+      "id": "gleif_name_history",
+      "category": "entity",
+      "weight": 5,
+      "label": "Entity has previous legal names on record",
+      "why": "Name changes are usually benign; they matter when an earlier name is linked to reports or enforcement."
+    }
   ],
   "tiers": [
-    { "id": "low", "min": 0, "label": "No major flags found", "advice": "No automated red flags. Still verify the recruiter through the company's official website or phone line." },
-    { "id": "caution", "min": 20, "label": "Caution", "advice": "Several weak signals. Verify independently before sharing documents or accepting travel." },
-    { "id": "high", "min": 45, "label": "High risk", "advice": "Strong scam or exploitation indicators. Do not pay, send ID, or travel. Consider reporting." }
+    {
+      "id": "low",
+      "min": 0,
+      "label": "Little evidence found",
+      "advice": "The checks that ran found little. That is not a clearance: see coverage, and verify the recruiter through the company's official website or phone line before sharing documents or travelling."
+    },
+    {
+      "id": "caution",
+      "min": 20,
+      "label": "Caution",
+      "advice": "Several weak signals. Verify independently before sharing documents or accepting travel."
+    },
+    {
+      "id": "high",
+      "min": 45,
+      "label": "High risk",
+      "advice": "Strong scam or exploitation indicators. Do not pay, send ID, or travel. Consider reporting."
+    }
   ]
 }
