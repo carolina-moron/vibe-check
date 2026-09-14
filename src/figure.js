@@ -1,11 +1,10 @@
-// The home figure: a visual representation of checking vibes and detecting warning signs.
-// A radar pulse expands outward. Warning symbols appear as the pulse passes.
-// Information nodes are detected and connect together, showing verification.
-// Red = alerts/warnings detected. Blue = verified/safe information.
+// The home figure: a single blue pencil line drawn across the sheet. It starts as a loose, easy
+// thread (an offer), then loops back on itself and tightens into a knot (the trap), and the
+// line continues on, taut. Drawn on a 2D canvas with a pencil brush: many faint, jittered
+// passes rather than one clean stroke. Original to Vibe Check.
+// Holds as a finished drawing under prefers-reduced-motion.
 
 const INK = [42, 102, 184]; // logo blue
-const WARN = [179, 38, 30]; // warning red
-const GLOW = [66, 180, 255]; // bright blue glow
 
 function rng(seed) {
   return () => {
@@ -16,216 +15,109 @@ function rng(seed) {
   };
 }
 
-// Information nodes to check: mix of warnings and verified data
-function buildNodes() {
-  const R = rng(42);
-  const nodes = [];
-
-  // Central scanner point
-  nodes.push({
-    x: 0.5,
-    y: 0.5,
-    type: "scanner",
-    isWarning: false,
-  });
-
-  // Scattered data points: some warnings (red), some verified (blue)
-  for (let i = 0; i < 12; i++) {
-    const angle = (i / 12) * Math.PI * 2 + (R() - 0.5) * 0.3;
-    const dist = 0.2 + R() * 0.25;
-    nodes.push({
-      x: 0.5 + Math.cos(angle) * dist,
-      y: 0.5 + Math.sin(angle) * dist,
-      type: "data",
-      isWarning: R() < 0.4, // 40% warnings, 60% verified
-      angle,
-      dist,
-    });
-  }
-
-  return nodes;
-}
-
-// Edges: connect nearby verified nodes, warnings connect to center
-function buildEdges(nodes) {
-  const edges = [];
-
-  // Warnings connect to scanner (center)
-  for (let i = 1; i < nodes.length; i++) {
-    const node = nodes[i];
-    if (node.isWarning) {
-      edges.push({
-        from: 0,
-        to: i,
-        isWarning: true,
-      });
+// Path in unit space (x 0..1, y around 0): drift, easy wave, a widening loop, three tightening
+// coils, then a straight taut line to the edge.
+function pathPoints(n = 1400) {
+  const pts = [];
+  for (let i = 0; i <= n; i++) {
+    const t = i / n;
+    let x, y;
+    if (t < 0.38) {
+      const u = t / 0.38;
+      x = 0.04 + u * 0.4;
+      y = Math.sin(u * Math.PI * 2) * 0.07 * (1 - u * 0.4) + Math.sin(u * Math.PI * 4) * 0.006;
+    } else if (t < 0.78) {
+      const u = (t - 0.38) / 0.4;
+      const turns = 3.2 * Math.PI * 2;
+      const r = 0.11 * Math.pow(1 - u, 1.6) + 0.012;
+      const a = u * turns - Math.PI / 2;
+      // starts at the bottom of its first turn, exactly where the wave left off (y = 0)
+      x = 0.44 + u * 0.12 + Math.cos(a) * r * 0.85;
+      y = (Math.sin(a) + 1) * r - 0.024 * u;
+    } else {
+      // taut line, leaving from exactly where the last coil ends
+      const u = (t - 0.78) / 0.22;
+      const aEnd = 3.2 * Math.PI * 2 - Math.PI / 2;
+      const xEnd = 0.56 + Math.cos(aEnd) * 0.012 * 0.85, yEnd = (Math.sin(aEnd) + 1) * 0.012 - 0.024;
+      x = xEnd + u * (0.96 - xEnd);
+      y = yEnd * (1 - Math.min(1, u * 6));
     }
+    pts.push([x, y]);
   }
-
-  // Verified nodes connect to each other nearby
-  const verified = nodes.filter((n) => !n.isWarning && n.type === "data");
-  for (let i = 0; i < verified.length; i++) {
-    for (let j = i + 1; j < verified.length; j++) {
-      const dx = verified[i].x - verified[j].x;
-      const dy = verified[i].y - verified[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 0.25) {
-        edges.push({
-          from: nodes.indexOf(verified[i]),
-          to: nodes.indexOf(verified[j]),
-          isWarning: false,
-        });
-      }
-    }
-  }
-
-  return edges;
+  return pts;
 }
 
 export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
   if (!canvas || !canvas.getContext) return () => {};
   const ctx = canvas.getContext("2d");
-  const nodes = buildNodes();
-  const edges = buildEdges(nodes);
+  const pts = pathPoints();
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let w = 0, h = 0, dpr = 1, start = 0, drawn = 0, raf = 0;
 
-  let w = 0, h = 0, dpr = 1, start = 0, raf = 0;
+  const toPx = ([x, y]) => [x * w, h * 0.52 + y * Math.min(w, h * 2.2)];
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     const r = canvas.getBoundingClientRect();
-    w = r.width;
-    h = r.height;
-    canvas.width = Math.round(w * dpr);
-    canvas.height = Math.round(h * dpr);
+    w = r.width; h = r.height;
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (reduce) drawScene(1);
+    ctx.clearRect(0, 0, w, h);
+    drawn = 0;
+    construction();
+    if (reduce) pencil(0, pts.length - 1);
   }
 
-  function drawScene(t) {
-    ctx.clearRect(0, 0, w, h);
-
-    // Radar pulse: expanding circle with fading opacity
-    const pulseRadius = 0.35 * t;
-    const pulseOpacity = Math.max(0, 1 - t);
-
-    ctx.strokeStyle = `rgba(${GLOW},${pulseOpacity * 0.6})`;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(0.5 * w, 0.5 * h, pulseRadius * Math.min(w, h), 0, Math.PI * 2);
-    ctx.stroke();
-
-    // Inner radar rings
-    ctx.strokeStyle = `rgba(${INK},${pulseOpacity * 0.2})`;
-    ctx.lineWidth = 1;
-    for (let r = 0.1; r < pulseRadius; r += 0.1) {
+  // Faint construction marks: the axis the thread travels along, and a guide circle at the knot.
+  function construction() {
+    const R = rng(seed + 99);
+    ctx.lineWidth = 0.6;
+    ctx.strokeStyle = `rgba(${INK},0.18)`;
+    const y = h * 0.52;
+    for (let p = 0; p < 2; p++) {
       ctx.beginPath();
-      ctx.arc(0.5 * w, 0.5 * h, r * Math.min(w, h), 0, Math.PI * 2);
+      ctx.moveTo(w * 0.03, y + (R() - 0.5));
+      ctx.lineTo(w * 0.97, y + (R() - 0.5));
+      ctx.setLineDash([22, 5, 3, 5]);
       ctx.stroke();
     }
-
-    // Draw edges (verified connections and warning links)
-    const edgePhase = Math.max(0, Math.min(1, t * 1.5 - 0.2));
-    const edgesDrawn = Math.floor(edgePhase * edges.length);
-
-    for (let i = 0; i < edgesDrawn; i++) {
-      const edge = edges[i];
-      const fromNode = nodes[edge.from];
-      const toNode = nodes[edge.to];
-
-      const x1 = fromNode.x * w;
-      const y1 = fromNode.y * h;
-      const x2 = toNode.x * w;
-      const y2 = toNode.y * h;
-
-      ctx.lineWidth = edge.isWarning ? 2 : 1;
-      ctx.lineCap = "round";
-      ctx.strokeStyle = edge.isWarning
-        ? `rgba(${WARN},${0.5 * edgePhase})`
-        : `rgba(${GLOW},${0.3 * edgePhase})`;
-
+    ctx.setLineDash([]);
+    const [cx, cy] = toPx([0.5, 0.03]);
+    const rad = 0.13 * Math.min(w, h * 2.2);
+    for (let p = 0; p < 3; p++) {
       ctx.beginPath();
-      ctx.moveTo(x1, y1);
-      ctx.lineTo(x2, y2);
+      ctx.ellipse(cx + (R() - 0.5) * 3, cy + (R() - 0.5) * 3, rad * (0.97 + R() * 0.06), rad * (0.9 + R() * 0.06), R() * 0.2, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${INK},${0.06 + R() * 0.05})`;
       ctx.stroke();
     }
+  }
 
-    // Draw nodes (data points)
-    const nodePhase = Math.max(0, Math.min(1, t * 1.3 - 0.1));
-    const nodesDrawn = Math.floor(nodePhase * (nodes.length - 1)) + 1; // +1 for scanner
-
-    for (let i = 0; i < nodesDrawn; i++) {
-      const node = nodes[i];
-      const px = node.x * w;
-      const py = node.y * h;
-
-      if (node.type === "scanner") {
-        // Center scanner: blue pulsing circle
-        const scannerSize = 4 + Math.sin(t * Math.PI * 4) * 2;
-        ctx.fillStyle = `rgba(${GLOW},0.8)`;
-        ctx.beginPath();
-        ctx.arc(px, py, scannerSize, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.strokeStyle = `rgba(${GLOW},0.5)`;
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.arc(px, py, scannerSize + 3, 0, Math.PI * 2);
-        ctx.stroke();
-      } else {
-        // Data points
-        const size = node.isWarning ? 4 : 3;
-        const opacity = (i / (nodes.length - 1)) * nodePhase;
-
-        if (node.isWarning) {
-          // Warning: red alert symbol
-          ctx.fillStyle = `rgba(${WARN},${0.7 + opacity * 0.3})`;
-          ctx.beginPath();
-          ctx.arc(px, py, size, 0, Math.PI * 2);
-          ctx.fill();
-
-          // Triangle inside for warning symbol effect
-          ctx.fillStyle = `rgba(255,255,255,0.6)`;
-          ctx.font = "bold 8px sans-serif";
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-          ctx.fillText("!", px, py);
-        } else {
-          // Verified: blue checkmark style
-          ctx.fillStyle = `rgba(${GLOW},${0.6 + opacity * 0.3})`;
-          ctx.beginPath();
-          ctx.arc(px, py, size, 0, Math.PI * 2);
-          ctx.fill();
-
-          ctx.strokeStyle = `rgba(${GLOW},${0.4 + opacity * 0.2})`;
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.arc(px, py, size + 1.5, 0, Math.PI * 2);
-          ctx.stroke();
-        }
+  // A pencil pass between two point indices: several jittered, translucent strokes.
+  function pencil(from, to) {
+    const R = rng(seed + from);
+    for (let pass = 0; pass < 4; pass++) {
+      ctx.beginPath();
+      const j = pass === 0 ? 0.25 : 0.9;
+      for (let i = from; i <= to; i++) {
+        const [x, y] = toPx(pts[i]);
+        const px = x + (R() - 0.5) * j, py = y + (R() - 0.5) * j;
+        i === from ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
       }
+      ctx.lineWidth = pass === 0 ? 1.5 : 0.7;
+      ctx.lineCap = "round"; ctx.lineJoin = "round";
+      ctx.strokeStyle = `rgba(${INK},${pass === 0 ? 0.78 : 0.16 + R() * 0.12})`;
+      ctx.stroke();
     }
   }
 
   function frame(now) {
     if (!start) start = now;
-    const elapsed = now - start;
-    const t = Math.min(1, elapsed / duration);
-
-    drawScene(t);
-
-    if (t < 1) raf = requestAnimationFrame(frame);
+    const target = Math.min(pts.length - 1, Math.floor(((now - start) / duration) * (pts.length - 1)));
+    if (target > drawn) { pencil(Math.max(0, drawn - 1), target); drawn = target; }
+    if (drawn < pts.length - 1) raf = requestAnimationFrame(frame);
   }
 
-  const ro = new ResizeObserver(() => {
-    cancelAnimationFrame(raf);
-    start = 0;
-    resize();
-    if (!reduce) raf = requestAnimationFrame(frame);
-  });
+  const ro = new ResizeObserver(() => { cancelAnimationFrame(raf); start = 0; resize(); if (!reduce) raf = requestAnimationFrame(frame); });
   ro.observe(canvas);
-  return () => {
-    cancelAnimationFrame(raf);
-    ro.disconnect();
-  };
+  return () => { cancelAnimationFrame(raf); ro.disconnect(); };
 }
