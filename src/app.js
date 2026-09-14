@@ -1,8 +1,8 @@
 import {
   assess, considerations, parsePostingUrl, fetchPosting, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js?v=202609141445";
-import { mountFigure } from "./figure.js?v=202609141445";
-import { REPORT_ENDPOINT } from "./config.js?v=202609141445";
+} from "./engine.js?v=";
+import { mountFigure } from "./figure.js?v=";
+import { REPORT_ENDPOINT } from "./config.js?v=";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
@@ -61,12 +61,14 @@ const scoreBadge = (s, cov) => `
     <div><div class="tierlabel">${esc(s.tier.label)}</div><div class="cov c-${esc(cov.class)}" title="${esc(cov.explain)}">${esc(cov.label)}</div></div>
   </div>`;
 
-const flagList = (flags) => flags.length ? `<ul class="flags">${flags.map((f) => `
-  <li class="${f.weight >= 20 ? "w-hi" : f.weight >= 10 ? "w-md" : "w-lo"}">
-    <div class="row"><strong>${esc(f.label)}</strong><span class="pts mono">+${f.weight}</span></div>
+const CONCERN = (w) => w >= 20 ? { cls: "c-high", label: "High concern" } : w >= 10 ? { cls: "c-med", label: "Medium concern" } : { cls: "c-low", label: "Low concern" };
+const concernLegend = `<p class="concern-legend"><span class="clevel c-high">High concern</span><span class="clevel c-med">Medium concern</span><span class="clevel c-low">Low concern</span></p>`;
+const flagList = (flags) => flags.length ? `${concernLegend}<ul class="flags">${flags.map((f) => { const c = CONCERN(f.weight); return `
+  <li class="${f.weight >= 20 ? "w-hi" : f.weight >= 10 ? "w-md" : "w-lo"} ${c.cls}">
+    <div class="row"><strong>${esc(f.label)}</strong><span class="clevel ${c.cls}">${c.label}</span></div>
     <div class="meta">${esc(signals.categories[f.category])}${f.evidence ? ` · <q>${esc(f.evidence)}</q>` : ""}</div>
     <div class="why">${esc(f.why)}</div>
-  </li>`).join("")}</ul>` : `<p class="muted">No indicators recorded.</p>`;
+  </li>`; }).join("")}</ul>` : `<p class="muted">No indicators recorded.</p>`;
 
 // ---- FLSRI structural risk -------------------------------------------------------------
 
@@ -679,6 +681,69 @@ const hbars = (obj, labels, max = null) => {
   return rows.length ? `<ul class="hbars">${rows.map(([k, n]) => `<li><span>${esc(labels[k] || k)}</span><span class="hb"><i style="width:${Math.round((n / top) * 100)}%"></i></span><span class="mono">${n}</span></li>`).join("")}</ul>` : `<p class="muted">None detected.</p>`;
 };
 
+const SCAM_TYPES = [
+  { name: "Fake jobs abroad that end in scam compounds", typ: "scam-compound",
+    how: "Online ads offer customer-service, typing or IT jobs abroad with flights and housing paid. People are taken to compounds and forced to run online scams.",
+    tells: ["high pay for easy work abroad", "flights and housing arranged by the employer", "workplace address only on arrival", "passport requested early"],
+    signals: ["employer_housing_travel", "vague_location", "high_risk_region"], source: ["UNODC, Trapped in scam crime", "https://www.unodc.org/roseap/en/TrappedInScamCrime/index.html"] },
+  { name: "Work-from-home and pay-to-work jobs", typ: null,
+    how: "Promises of a lot of money for little time or effort, then fees for starter kits, training or certifications.",
+    tells: ["you pay before you earn", "“thousands a month” with little work", "placement firms charging up front"],
+    signals: ["upfront_fee", "pay_too_high"], source: ["FTC, Job scams", "https://consumer.ftc.gov/articles/job-scams"] },
+  { name: "Reshipping jobs", typ: "money-mule",
+    how: "You receive packages at home, remove the original packaging and receipts, and reship them. The promised pay never arrives and the company disappears.",
+    tells: ["repackaging goods for strangers", "“quality control” or “logistics” job from home", "no contract, no address"],
+    signals: ["payment_handling"], source: ["FTC, Job scams", "https://consumer.ftc.gov/articles/job-scams"] },
+  { name: "Fake check and overpayment", typ: null,
+    how: "An “employer” sends a check and asks you to send part of it back or on to someone else. The check bounces and you owe the full amount.",
+    tells: ["check arrives before any work", "asked to send money back or buy equipment from “their vendor”"],
+    signals: ["payment_handling", "gift_card_crypto"], source: ["FTC, Job scams", "https://consumer.ftc.gov/articles/job-scams"] },
+  { name: "Romance and investment scams", typ: null,
+    how: "Someone you've met online builds a relationship, avoids meeting, then needs money for medical bills, a ticket, a visa or fees, or offers to get you started in crypto investing.",
+    tells: ["always abroad, on a rig, in the military", "gift cards, wire transfers or crypto", "an investment platform with guaranteed profits"],
+    signals: ["romance_money", "investment_pitch", "refuses_video", "gift_card_crypto"], source: ["FTC, What to know about romance scams", "https://consumer.ftc.gov/articles/what-know-about-romance-scams"] },
+  { name: "Rental listing scams", typ: null,
+    how: "A listing well below local rents, an owner who is out of the country and can't show the place, and pressure to pay quickly.",
+    tells: ["payment only by wire, gift cards or crypto", "same address listed by a different owner", "home actually listed for sale"],
+    signals: ["housing_unseen_deposit", "owner_unavailable", "urgency"], source: ["FTC, Rental listing scams", "https://consumer.ftc.gov/articles/rental-listing-scams"] },
+];
+const LAUNDERING_TELLS = {
+  intro: "Money mules move money for criminals, often without realising it at first. People are recruited through employment scams promising easy money, romance and confidence scams, lottery scams, and unsolicited requests to open a bank account, crypto wallet or business in their name.",
+  tells: [
+    "A job, partner or stranger asks you to receive money and send it on",
+    "You're asked to open accounts, crypto wallets or a company in your name",
+    "Funds move through crypto, cash, wires, money-transfer services or prepaid cards",
+    "Your bank warns you about activity, and you're told to ignore it",
+    "“Payment processing agent”, “financial assistant” or “transaction manager” roles",
+  ],
+  source: ["FBI IC3, Money mules public service announcement", "https://www.ic3.gov/PSA/2021/PSA211203"],
+};
+
+function scamTypesSection(a) {
+  return `<section class="scamtypes">
+    <div class="scamtypes-head"><h2>Common types of scams</h2><p class="fine">How they work and the tells to look for, from consumer-protection and law-enforcement guidance. Where the news in this window covers a type, you can jump to those articles.</p></div>
+    <div class="scamgrid">${SCAM_TYPES.map((t) => `
+      <article class="scamcard">
+        <h3>${esc(t.name)}</h3>
+        <p>${esc(t.how)}</p>
+        <ul class="tells">${t.tells.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+        <div class="scamfoot">
+          ${t.typ && a.typologies[t.typ] ? `<a href="#/news/typ/${esc(t.typ)}">${a.typologies[t.typ]} news report${a.typologies[t.typ] > 1 ? "s" : ""} →</a>` : ""}
+          ${t.signals.map((sid) => `<a class="acc" href="#/concern/${esc(sid)}">${esc(signalById[sid]?.label.split(" (")[0] || sid)}</a>`).join("")}
+        </div>
+        <p class="fine">Source: ${ext(t.source[1], t.source[0])}</p>
+      </article>`).join("")}
+    </div>
+    <article class="laundering">
+      <h3>Money laundering and money-mule tells</h3>
+      <p>${esc(LAUNDERING_TELLS.intro)}</p>
+      <ul class="tells">${LAUNDERING_TELLS.tells.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      <div class="scamfoot">${a.typologies["money-mule"] ? `<a href="#/news/typ/money-mule">${a.typologies["money-mule"]} news reports on money mules →</a>` : ""}<a class="acc" href="#/concern/payment_handling">Receiving or forwarding money</a></div>
+      <p class="fine">Source: ${ext(LAUNDERING_TELLS.source[1], LAUNDERING_TELLS.source[0])}. If you've already moved money for someone, stop, keep records, and contact your bank.</p>
+    </article>
+  </section>`;
+}
+
 async function viewNews(arg = "") {
   main.innerHTML = `<section class="hero small"><div class="eyebrow mono">News patterns</div><h1>What the news is reporting</h1><p class="muted">Loading…</p></section>`;
   const n = await loadNews();
@@ -694,6 +759,8 @@ async function viewNews(arg = "") {
       <p class="lede">${n.n_articles} recent news reports on trafficking, forced labour and fake-job recruitment, gathered with ${esc(n.provider)} and read by rules for countries, direction of movement, typology and lure indicators. The map shows where reporting points, not where most cases are.</p>
     </section>
     <div class="callout">This is <strong>media attention, not case counts</strong>. Coverage follows English-language outlets, government press releases and whatever is in the news cycle. Country roles and corridors are extracted automatically from headlines and snippets and can be wrong; each corridor lists the words it came from. Nothing here feeds a score.</div>
+
+    ${scamTypesSection(a)}
 
     <section class="mapcard">
       <div class="maphead">
@@ -823,7 +890,7 @@ const KINDS = {
   travel: { label: "Invitation to travel or meet", hint: "Someone offering to bring you somewhere, or to meet in person", fields: ["destination", "profileUrl"], text: "The invitation or messages about the trip or meeting", questions: ["sponsor_travel_stranger", "meet_private", "carry_package", "vague_location", "document_retention", "secrecy", "visa_fraud"] },
   job: { label: "Job opportunity", hint: "A job ad, offer, or a recruiter who reached out", fields: ["postingUrl", "company", "website", "email", "jurisdiction", "workCountry"], text: "The job ad, offer or recruiter's message", questions: ["upfront_fee", "id_before_interview", "chat_only_contact", "employer_housing_travel", "vague_location", "document_retention", "debt_bondage", "payment_handling", "fast_promotion", "images_ai", "followers_fake", "website_mismatch", "public_complaints"] },
   housing: { label: "Housing offer", hint: "A room, flat or accommodation offered to you", fields: ["website", "email", "destination"], text: "The listing or messages from the landlord or host", questions: ["housing_unseen_deposit", "owner_unavailable", "housing_tied_to_job", "gift_card_crypto", "urgency", "images_ai", "public_complaints"] },
-  money: { label: "Request for money", hint: "Someone asking you to pay, lend, invest or send codes", fields: ["profileUrl", "website"], text: "What they asked for and why", questions: ["romance_money", "investment_pitch", "gift_card_crypto", "verification_code", "urgency", "threats_coercion", "secrecy", "public_complaints"] },
+  money: { label: "Request for money", hint: "Someone asking you to pay, lend, invest or send codes", fields: ["profileUrl", "website"], text: "What they asked for and why", questions: ["romance_money", "new_number_impersonation", "investment_pitch", "gift_card_crypto", "verification_code", "urgency", "threats_coercion", "secrecy", "public_complaints"] },
   link: { label: "Link", hint: "A website or link someone sent you", fields: ["website", "email"], text: "The message the link came with", questions: ["link_shortener", "urgency", "verification_code", "upfront_fee", "website_mismatch", "images_ai", "public_complaints"] },
   other: { label: "Describe what's happening", hint: "Anything else that doesn't feel right", fields: ["profileUrl", "website", "email"], text: "Tell us what's happening, in your own words", questions: ["secrecy", "isolation", "threats_coercion", "meet_private", "gift_card_crypto", "urgency", "public_complaints"] },
 };
@@ -865,7 +932,7 @@ function viewCheck(kind = "") {
     <section class="hero small check-hero">
       <div class="eyebrow mono">Vibe Check</div>
       <h1>Something feels off? Check the vibe.</h1>
-      <p class="lede">We look for the warning signs seen in real scam and trafficking cases, and tell you whether it's a lower concern, a reason for caution, or a serious warning sign. Nothing you enter is stored unless you choose to submit it.</p>
+      <p class="lede">We look for the warning signs seen in real scam and trafficking cases, and tell you whether it's unverified, a reason for caution, or a serious warning sign. <strong>Nothing you enter is stored unless you choose to submit it, and if you do, it will be anonymous.</strong></p>
     </section>
     ${kindsNav}` : `
     <div class="home">
@@ -876,9 +943,13 @@ function viewCheck(kind = "") {
       <section class="story">
         <div>
           <h1>Something feels off? Check the vibe.</h1>
-          <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. Nothing you enter is stored unless you choose to submit it.</p>
+          <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. <strong>Nothing you enter is stored unless you choose to submit it, and if you do, it will be anonymous.</strong></p>
         </div>
       </section>
+      <div class="kinds-head">
+        <h2>Vibe Checker</h2>
+        <a class="ghostlink" href="#/report">Report wrong vibes</a>
+      </div>
       ${kindsNav}
       <section class="seeing" id="seeing" aria-live="polite"></section>
     </div>`) + `
@@ -898,6 +969,7 @@ function viewCheck(kind = "") {
         ${k.questions.map((id) => `<label class="check"><input type="checkbox" name="answers" value="${id}"> ${esc(signalById[id].label)}</label>`).join("")}
       </fieldset>
       <div class="btns"><button class="primary" type="submit">Check it</button><button class="ghost" type="button" id="example">Show an example</button></div>
+      <p class="fine" id="example-title" aria-live="polite"></p>
       <p class="fine">We check organisations, websites and email domains, never a private person's criminal record (see <a href="#/methodology">Methodology</a>). If you feel unsafe, <a href="#/help">get help now</a>.</p>
     </form>
     <div id="out" aria-live="polite"></div>` : ""}`;
@@ -940,22 +1012,66 @@ function viewCheck(kind = "") {
     }
   });
 
+  // Several examples per type, cycling on each click. They are invented for illustration and use
+  // reserved .example domains; mixes of obvious, subtle and unverifiable situations.
   const EXAMPLES = {
-    profile: { posting: "Hi dear, I saw your profile and felt a connection. I'm an engineer working offshore so my camera is broken for video calls. My uncle taught me a crypto trading platform with daily profits, I can show you. Let's continue on Telegram.", answers: ["profile_new", "profile_photos_too_polished"] },
-    conversation: { posting: "I feel like only I really understand you. Your family won't understand us, so don't tell your parents yet. If you don't send the money I'll share your photos. Send the verification code you just got." },
-    money: { posting: "My love, I need help paying the customs fee for my package, just $900 in Steam gift cards. Keep it between us. Also my uncle has a crypto trading platform with daily profits if you want to invest." },
-    link: { website: "secure-bank-verify.example", posting: "Your account is locked. Verify within 24 hours: bit.ly/3kQx9z and share the one-time password." },
-    screenshot: { posting: "You've been selected! Just send the 6-digit verification code we texted you so we can confirm your account. Don't tell anyone, this offer is only for today. Payment by Steam gift cards is fine." },
-    travel: { posting: "I'll pay for your flight to Bangkok, the ticket is already booked. My driver will pick you up at the airport. Could you bring a small package for my friend? Keep it between us for now, the workplace location will be shared on arrival." },
-    housing: { posting: "The flat is available now. I'm currently abroad so I can't show it, but the keys will be sent to you by courier. Please pay the first month and deposit before viewing to reserve it. Western Union preferred." },
-    job: { company: "Huione Guarantee", email: "hr.bangkokjobs@gmail.com", posting: "URGENT: customer service representatives for an online company. No experience needed, earn $3,000 per week! Free flight and accommodation provided. Exact workplace location will be disclosed on arrival. Send your passport scan and pay the visa processing fee within 48 hours.", workCountry: "KH" },
-    recruiter: { company: "Global Talent Link", email: "talentlink.hiring@outlook.com", posting: "Hello! We found your CV. Remote data entry, $200 per hour, start tomorrow. Interview on WhatsApp only. You will receive payments and forward them to our clients. A small training fee is required.", workCountry: "" },
-    other: { posting: "We met online last month. He says his family won't approve so I shouldn't tell mine. He wants me to come alone to his city, and his friend will pick me up. This is your bank's security team. Share the one-time password you just received so we can stop the fraud on your account. Do not tell anyone at the branch." },
+    conversation: [
+      { title: "Grooming and blackmail", posting: "I feel like only I really understand you. Your family won't understand us, so don't tell your parents yet. If you don't send the money I'll share your photos. Send the verification code you just got." },
+      { title: "Slow trust, then a move off-platform", posting: "It's been so nice talking every day. My camera is broken so no video for now. Let's move to Telegram, it's more private. I'm travelling for work but I'd love to meet you soon." },
+      { title: "Looks friendly, nothing verifiable", posting: "Hey! We met at the conference last week, I'm the one from the design booth. Want to grab coffee next Tuesday near the office?" },
+    ],
+    profile: [
+      { title: "Romance and crypto", posting: "Hi dear, I saw your profile and felt a connection. I'm an engineer working offshore so my camera is broken for video calls. My uncle taught me a crypto trading platform with daily profits, I can show you. Let's continue on Telegram.", answers: ["profile_new", "images_ai"] },
+      { title: "Model scout with bought followers", profileUrl: "instagram.com/elitefaces.scouting.example", posting: "We scout new faces for international campaigns. Paid trips to Dubai. DM us your photos and passport details to be considered.", answers: ["followers_fake", "images_ai"] },
+      { title: "Ordinary-looking account", profileUrl: "instagram.com/maria.bakes", posting: "Home baker in Lisbon, sharing recipes and weekend market stalls." },
+    ],
+    travel: [
+      { title: "Paid ticket, package, secrecy", posting: "I'll pay for your flight to Bangkok, the ticket is already booked. My driver will pick you up at the airport. Could you bring a small package for my friend? Keep it between us for now, the workplace location will be shared on arrival." },
+      { title: "Study-abroad offer", posting: "Our partner college in Kazan offers a free work-and-study programme. We cover flights and housing; you'll work in hospitality while studying. Send your passport copy to reserve a place. Tourist visa is fine to start.", workCountry: "RU" },
+      { title: "Meeting someone from an app", posting: "Can't wait to finally meet! Come alone to my place on Saturday, I'll send an Uber to pick you up." },
+    ],
+    job: [
+      { title: "Overseas customer-service job", company: "Huione Guarantee", email: "hr.bangkokjobs@gmail.com", posting: "URGENT: customer service representatives for an online company. No experience needed, earn $3,000 per week! Free flight and accommodation provided. Exact workplace location will be disclosed on arrival. Send your passport scan and pay the visa processing fee within 48 hours.", workCountry: "KH" },
+      { title: "Marketing firm with fast promotion", company: "Brightvane Promotions", website: "brightvane-promotions.example", email: "careers@brightvane-promotions.example", posting: "Entry-level marketing representative, no experience needed, weekly pay and fast promotion to management within 6 months. Commission-only while training.", answers: ["website_mismatch", "images_ai"] },
+      { title: "Remote job with payment handling", company: "Talentlinq Remote Staffing", email: "talentlinq.hiring@outlook.com", posting: "Hello! We found your CV. Remote data entry, $200 per hour, start tomorrow. Interview on WhatsApp only. You will receive payments and forward them to our clients. A small training fee is required." },
+      { title: "Plausible office job, unverified", company: "Quillmere Freight", website: "quillmere-freight.example", email: "jobs@quillmere-freight.example", posting: "Operations coordinator, full time, hybrid. Salary $58,000–$64,000. Two interview rounds with the team." },
+    ],
+    housing: [
+      { title: "Landlord abroad, deposit first", posting: "The flat is available now. I'm currently abroad so I can't show it, but the keys will be sent to you by courier. Please pay the first month and deposit before viewing to reserve it. Western Union preferred." },
+      { title: "Room that comes with a job", posting: "Free room in a shared house for workers. Accommodation provided by the employer, rent deducted from wages. You must live on site. Start this week." },
+      { title: "Normal-looking listing", website: "cityrentals.example", posting: "Two-bedroom apartment, viewings Saturday 10–12. Lease signed at our office before any deposit." },
+    ],
+    money: [
+      { title: "Customs fee in gift cards", posting: "My love, I need help paying the customs fee for my package, just $900 in Steam gift cards. Keep it between us. Also my uncle has a crypto trading platform with daily profits if you want to invest." },
+      { title: "Investment with guaranteed profits", posting: "Join our USDT liquidity mining pool. Guaranteed returns of 3% daily. Deposit today, limited slots, withdraw anytime." },
+      { title: "A friend asks for a loan", posting: "Hey it's Sam, new number. Could you lend me $300 until Friday? I'll explain later, bit of an emergency." },
+    ],
+    link: [
+      { title: "Account-locked phishing", website: "secure-bank-verify.example", posting: "Your account is locked. Verify within 24 hours: bit.ly/3kQx9z and share the one-time password." },
+      { title: "Job application form on a free site", website: "hiring-now.wixsite.com", posting: "Apply here for the warehouse role, fill in your ID number and bank details to get paid faster.", answers: ["website_mismatch"] },
+      { title: "Delivery notice", website: "parcel-redelivery.example", posting: "We missed you. Reschedule delivery now: tinyurl.com/redeliv-2291" },
+    ],
+    other: [
+      { title: "Online relationship and a trip", posting: "We met online last month. He says his family won't approve so I shouldn't tell mine. He wants me to come alone to his city, and his friend will pick me up." },
+      { title: "Bank security call", posting: "Someone from my bank's security team called. They asked me to share the one-time password I just received so they could stop fraud on my account, and not to tell anyone at the branch." },
+      { title: "Something just feels off", posting: "A recruiter keeps messaging me at 2am, won't say the company name, and says I owe them for 'processing' if I stop replying." },
+    ],
   };
-  $("#example").addEventListener("click", () => {
-    const ex = EXAMPLES[kind] || EXAMPLES[Object.keys(KINDS).find((k) => KINDS[k] === KINDS[kind] && EXAMPLES[k])];
-    for (const [f, v] of Object.entries(ex)) if (f !== "answers" && form[f]) form[f].value = v;
+  const exampleSet = EXAMPLES[kind] || EXAMPLES[Object.keys(KINDS).find((k) => KINDS[k] === KINDS[kind] && EXAMPLES[k])] || [];
+  let exampleIndex = -1;
+  const exBtn = $("#example");
+  exBtn.textContent = `Show an example (${exampleSet.length})`;
+  exBtn.addEventListener("click", () => {
+    if (!exampleSet.length) return;
+    exampleIndex = (exampleIndex + 1) % exampleSet.length;
+    const ex = exampleSet[exampleIndex];
+    form.querySelectorAll("input:not([type=checkbox]):not([type=hidden]):not([type=file]), textarea").forEach((el) => { el.value = ""; });
+    form.querySelectorAll("select").forEach((el) => { el.selectedIndex = 0; });
+    for (const [f, v] of Object.entries(ex)) if (!["answers", "title"].includes(f) && form[f]) form[f].value = v;
     form.querySelectorAll("[name=answers]").forEach((c) => { c.checked = (ex.answers || []).includes(c.value); });
+    exBtn.textContent = `Next example (${exampleIndex + 1} of ${exampleSet.length})`;
+    $("#example-title").textContent = `Example ${exampleIndex + 1}: ${ex.title}. Invented for illustration.`;
+    $("#out").innerHTML = "";
   });
 
   form.addEventListener("submit", async (ev) => {
@@ -989,11 +1105,21 @@ function contextPanel(input) {
         <div class="fine">${r.phase === "R" ? "Recruitment" : "Exploitation"} phase ${bar(r.phase === "R" ? r.R : r.E)}${r.lowConfidence ? " · lower confidence" : ""}${r.phase === "E" && r.tier !== "higher" ? " · FLSRI under-reads destination and sponsorship systems, so a lower score here is not reassurance." : ""}</div>` : `<div class="fine">${esc(r.reason)}</div>`}</li>`).join("")}</ul></section>`;
 }
 
-const HEADLINE = { high: "This situation has concerning signals", caution: "This situation has some concerning signals", low: "We found few concerning signals" };
+const HEADLINE = { high: "This situation has concerning signals", caution: "This situation has some concerning signals", unverified: "Unverified: we couldn't confirm this is safe", low: "This organisation checks out on what we can verify" };
+
+function verificationList(r) {
+  if (!r.verification) return "";
+  return `<div class="verify"><h3>What we could verify</h3><ul>${r.verification.items.map((i) => `<li class="${i.passed ? "ok" : "no"}"><span class="mark" aria-hidden="true">${i.passed ? "✓" : "?"}</span><span><strong>${esc(i.label)}</strong>${i.passed ? "" : " <span class=\"state\">not confirmed</span>"}<br><span class="fine">${esc(i.detail)}</span></span></li>`).join("")}</ul>
+    <p class="fine">We treat everything as unverified unless all of these are confirmed. Finding no warning signs is not the same as being safe.</p></div>`;
+}
 
 function considerPanel(r) {
   const groups = considerations(r.flags, signals);
-  if (!groups.length) return `<section class="consider"><h2>${HEADLINE.low}</h2><p>That doesn't prove it's safe. Before you share documents, send money or travel, verify the person or organisation through a channel you find yourself. If you feel unsafe, <a href="#/help">here's where you can get confidential help</a>.</p></section>`;
+  if (!groups.length) return `<section class="consider t-${esc(r.tier.id)}"><h2>${esc(HEADLINE[r.tier.id] || HEADLINE.unverified)}</h2>
+    <p>${esc(r.tier.advice)}</p>
+    ${verificationList(r)}
+    <p class="nextstep"><strong>Recommended next step:</strong> ${esc(signals.dimensions.identity.step)} Don't share documents, send money or travel until you have.</p>
+    <p class="helpline">If you feel unsafe or pressured, <a href="#/help">here's where you can get confidential help</a>.</p></section>`;
   const top = groups[0];
   return `<section class="consider t-${esc(r.tier.id)}">
     <h2>${esc(HEADLINE[r.tier.id])}</h2>
@@ -1003,6 +1129,7 @@ function considerPanel(r) {
     </ol>
     <p class="nextstep"><strong>Recommended next step:</strong> ${esc(top.step)}${groups.some((g) => g.id !== top.id && g.id === "money") ? ` ${esc(signals.dimensions.money.step)}` : ""}</p>
     <p class="helpline">If you feel unsafe or pressured, <a href="#/help">here's where you can get confidential help</a>.</p>
+    ${verificationList(r)}
     <p class="fine">These are warning signs, not a judgement about a person. No check here can say someone is a trafficker or a scammer.</p>
   </section>`;
 }
@@ -1010,7 +1137,7 @@ function considerPanel(r) {
 function verdictBox(r, orgChecked) {
   return `<div class="scorebox t-${esc(r.tier.id)}">
     <div class="num">${r.points}<small>/100</small></div>
-    <div><div class="tierlabel">${esc(r.tier.label)}</div>${orgChecked && r.input.jurisdiction ? `<div class="cov c-${esc(r.coverage.class)}" title="${esc(r.coverage.explain)}">${esc(r.coverage.label)}</div>` : `<div class="fine">${r.flags.length} warning sign${r.flags.length === 1 ? "" : "s"}</div>`}</div>
+    <div><div class="tierlabel">${esc(r.tier.label)}</div>${orgChecked && r.input.jurisdiction ? `<div class="cov c-${esc(r.coverage.class)}" title="${esc(r.coverage.explain)}">${esc(r.coverage.label)}</div>` : `<div class="fine">${r.tier.id === "unverified" ? "Not confirmed safe" : `${r.flags.length} warning sign${r.flags.length === 1 ? "" : "s"}`}</div>`}</div>
   </div>`;
 }
 
@@ -1103,8 +1230,8 @@ function viewReport() {
   main.innerHTML = `
     <section class="hero small">
       <div class="eyebrow mono">Anonymous report</div>
-      <h1>Report a job offer or abuse</h1>
-      <p class="lede">Tell us about a recruiter, agency or employer. Reports are anonymous: we never ask who you are, your details are removed from your story in this browser before anything is sent, and you see exactly what will be sent first.</p>
+      <h1>Report wrong vibes</h1>
+      <p class="lede">Something felt off? Tell us about a person, account, recruiter, agency, landlord or offer. Reports are anonymous: we never ask who you are, your details are removed from your story in this browser before anything is sent, and you see exactly what will be sent first.</p>
     </section>
     <div class="callout red"><strong>If you are in danger or can't leave, call for help first.</strong> <a href="#/help">Find the hotline for your country</a>, or call local emergency services. Use a device and connection you feel safe on. The <em>Quick exit</em> button at the top leaves this site immediately.</div>
     <form id="report" class="panel">
@@ -1223,6 +1350,14 @@ function viewMethodology() {
         <li><strong>No check returns “clear”.</strong> The strongest negative is <em>no evidence found</em>. Most small employers are in no register a browser can reach, and most scam compounds operate where no open register exists at all.</li>
         <li><strong>Silence earns nothing.</strong> A register that returns nothing adds no points and removes none. Registers that couldn't be searched are listed, so a thin check can't pass for a thorough one.</li>
         <li><strong>The score never travels alone.</strong> Coverage is computed separately and always displayed beside it.</li>
+        <li><strong>Unverified by default.</strong> Nothing is called low-risk just because no warning signs were found. A result is <em>Lower concern (verified)</em> only when all four checks pass:
+          <ol>
+            <li>the organisation is found, active and under its exact name, in an official register;</li>
+            <li>its website has existed for more than two years;</li>
+            <li>the contact (email or job posting) traces back to that organisation;</li>
+            <li>there are no significant warning signs.</li>
+          </ol>
+          Everything else is <em>Unverified</em>, including every conversation, profile, money or link check, where no organisation can be confirmed. Searches that return no match are never read as safe.</li>
         <li><strong>A second opinion, not a detector.</strong> The check never declares that someone is a trafficker or a scammer. It reports warning signs and groups them into things to consider (identity, money, pressure, isolation and control, travel and meeting, public record), with a next step and where to get confidential help. Moving from detection to prevention and intervention is the point.</li>
         <li><strong>Categories need expert validation.</strong> The warning signs draw on ILO forced-labour indicators, FTC and FinCEN scam typologies and anti-trafficking guidance on grooming and online recruitment. They are a starting point to be reviewed with anti-trafficking and online-safety practitioners, not a validated instrument.</li>
         <li><strong>Every fact carries its source.</strong> Case records cite official, court, multilateral, press or NGO sources, labelled by tier.</li>

@@ -167,7 +167,7 @@ test("social, travel and housing warning signs", () => {
   assert.ok(t("Pay the deposit before viewing to reserve it. I'm currently abroad.").includes("housing_unseen_deposit"));
   assert.deepEqual(t("We invest in our employees' training and growth."), []);
   const labels = signals.tiers.map((x) => x.label);
-  assert.deepEqual(labels, ["Lower concern", "Caution", "Serious warning signs"]);
+  assert.deepEqual(labels, ["Lower concern (verified)", "Unverified", "Caution", "Serious warning signs"]);
 });
 
 test("situation-level signals and considerations", async () => {
@@ -217,4 +217,42 @@ test("registry flags only count for exact name matches; similar names never scor
   const exact = await checkColorado("NM Group", { fetchFn: stub({ "data.colorado.gov/resource/4ykn": [{ entityname: "NM Group LLC, Delinquent May 1, 2016", entitystatus: "Delinquent" }], "data.colorado.gov/resource/u7sb": [] }), now });
   assert.deepEqual(exact.hits.map((h) => h.id), ["entity_bad_status"]);
   assert.deepEqual(detectContent("Entry-level marketing representative, no experience needed, fast promotion to management.").map((h) => h.id).filter((i) => i === "fast_promotion"), ["fast_promotion"]);
+});
+
+test("pessimistic default: no warning signs but no verification is Unverified, never lower concern", async () => {
+  const quiet = stub({
+    "rdap.org": { events: [{ eventAction: "registration", eventDate: "2010-01-01T00:00:00Z" }] },
+    "crt.sh": [{ not_before: "2011-01-01T00:00:00" }], "archive.org": { archived_snapshots: { closest: { timestamp: "20110101" } } },
+    "tranco-list.eu": { ranks: [] }, "api.gleif.org": { data: [] }, "data.ny.gov": [], "data.colorado.gov": [],
+    "courtlistener.com": { count: 0, results: [] }, "api.pullpush.io": { data: [] }, "dns.google": { Answer: [{ type: 15 }] },
+  });
+  const r = await assess({ company: "Quiet Co", website: "quiet.example", email: "hr@quiet.example", posting: "Office job." }, { signals, registers, cases: [], fetchFn: quiet, now });
+  assert.equal(r.points, 0);
+  assert.equal(r.tier.id, "unverified");
+  assert.equal(r.verification.verified, false);
+  assert.equal(r.verification.items.find((i) => i.id === "organisation").passed, false);
+
+  const known = stub({
+    "rdap.org": { events: [{ eventAction: "registration", eventDate: "2010-01-01T00:00:00Z" }] },
+    "crt.sh": [{ not_before: "2011-01-01T00:00:00" }], "archive.org": { archived_snapshots: { closest: { timestamp: "20110101" } } },
+    "tranco-list.eu": { ranks: [{ rank: 5000 }] }, "data.ny.gov": [], "data.colorado.gov": [],
+    "api.gleif.org": { data: [{ id: "L", attributes: { entity: { legalName: { name: "Quiet Co" }, status: "ACTIVE", jurisdiction: "US", otherNames: [] } } }] },
+    "courtlistener.com": { count: 0, results: [] }, "api.pullpush.io": { data: [] }, "dns.google": { Answer: [{ type: 15 }] },
+  });
+  const v = await assess({ company: "Quiet Co", website: "quiet.example", email: "hr@quiet.example", posting: "Office job." }, { signals, registers, cases: [], fetchFn: known, now });
+  assert.equal(v.verification.verified, true);
+  assert.equal(v.tier.id, "low");
+
+  const free = await assess({ company: "Quiet Co", website: "quiet.example", email: "quietco.hr@gmail.com", posting: "Office job." }, { signals, registers, cases: [], fetchFn: known, now });
+  assert.notEqual(free.tier.id, "low", "a free-mail recruiter can't be tied to a verified organisation");
+});
+
+test("wider phrasings for secrecy, meetings, debts, forms and new-number impersonation", () => {
+  const t = (x) => detectContent(x).map((h) => h.id);
+  assert.ok(t("Hey it's Sam, new number. Could you lend me $300 until Friday?").includes("new_number_impersonation"));
+  assert.ok(t("His family won't approve so I shouldn't tell mine.").includes("secrecy"));
+  assert.ok(t("His friend will pick me up at the station.").includes("meet_private"));
+  assert.ok(t("I'll send an Uber to get you.").includes("meet_private"));
+  assert.ok(t("He says I owe them for processing.").includes("threats_coercion"));
+  assert.ok(t("Fill in your ID number and bank details to get paid.").includes("id_before_interview"));
 });

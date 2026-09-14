@@ -356,7 +356,7 @@
     {
       "id": "meet_private",
       "category": "offer",
-      "weight": 18,
+      "weight": 20,
       "label": "Wants to meet alone somewhere private, or to pick you up",
       "why": "Controlling the first meeting place and transport removes your ability to leave.",
       "dimension": "travel"
@@ -373,7 +373,7 @@
       "id": "posting_free_host",
       "category": "digital",
       "weight": 14,
-      "label": "Job posting is hosted on a free site builder or form tool, not the employer's own site or a job board",
+      "label": "Job posting or website is hosted on a free site builder or form tool, not the organisation's own site or a job board",
       "why": "Real employers post on their careers page, a job board or an applicant tracking system. Free pages and forms are quick to create and abandon.",
       "dimension": "identity"
     },
@@ -416,14 +416,28 @@
       "dimension": "money",
       "label": "Entry-level “marketing” or sales job promising fast promotion to management or commission-only pay",
       "why": "A common pattern in commission-only door-to-door and event sales schemes that advertise as marketing firms: vague role, quick “management” track, pay tied to what you sell."
+    },
+    {
+      "id": "new_number_impersonation",
+      "category": "social",
+      "weight": 22,
+      "dimension": "identity",
+      "label": "Someone says they're a friend or relative on a new number and asks for money",
+      "why": "A common impersonation scam: the message uses a familiar name and an urgent reason, and the number is new so you can't check it."
     }
   ],
   "tiers": [
     {
       "id": "low",
       "min": 0,
-      "label": "Lower concern",
-      "advice": "The checks found few warning signs. That doesn't prove it's safe: verify the person or company through an official channel before you pay, share documents or travel."
+      "label": "Lower concern (verified)",
+      "advice": "The organisation checks out on every point we can verify, and we found few warning signs. Stay alert: verification covers the organisation, not every person who uses its name."
+    },
+    {
+      "id": "unverified",
+      "min": null,
+      "label": "Unverified",
+      "advice": "We couldn't confirm this is safe. Finding no warning signs isn't the same as being legitimate. Treat it as unverified until you can confirm who you're dealing with through an official channel."
     },
     {
       "id": "caution",

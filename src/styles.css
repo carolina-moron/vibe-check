@@ -447,3 +447,52 @@ input[type=checkbox] { accent-color: var(--accent); }
 @media (max-width: 480px) { .brand .wm { font-size: 1rem; } .brand img { width: 30px; height: 30px; } }
 .ghostlink { display: inline-block; font: 500 var(--fs-1)/1 var(--font); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 12px 16px; border: 1px solid var(--accent); color: var(--accent); }
 .ghostlink:hover { background: var(--accent); color: var(--on-ink); }
+
+/* Unverified and verification checklist */
+.scorebox.t-unverified { border: 1px dashed var(--ink); background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(20,38,74,0.06) 6px 7px), var(--paper); }
+.scorebox.t-unverified .num::after { content: " ?"; color: var(--accent); }
+.consider.t-unverified { border-style: dashed; }
+.verify { border-top: var(--rule); margin-top: 14px; padding-top: 12px; }
+.verify h3 { margin: 0 0 8px; }
+.verify ul { list-style: none; margin: 0 0 8px; padding: 0; }
+.verify li { display: grid; grid-template-columns: 26px 1fr; gap: 8px; padding: 6px 0; border-top: var(--rule); }
+.verify li:first-child { border-top: 0; }
+.verify .mark { width: 22px; height: 22px; display: grid; place-items: center; border: 1px solid var(--ink); font-size: 13px; }
+.verify li.ok .mark { background: var(--accent); border-color: var(--accent); color: var(--on-ink); }
+.verify li.no .mark { border-style: dashed; }
+.verify .state { font-size: var(--fs-0); letter-spacing: 0.1em; text-transform: uppercase; border: 1px dashed var(--ink); padding: 0 5px; margin-left: 4px; }
+.kinds-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; flex-wrap: wrap; margin: 28px 0 -8px; }
+.kinds-head h2 { margin: 0; }
+
+/* Concern levels: red, yellow, green, always with a text label */
+:root { --c-high: #B3261E; --c-high-bg: #F6D9D5; --c-med: #7A5A00; --c-med-bg: #F7E3A1; --c-med-bar: #E0A800; --c-low: #2E6B30; --c-low-bg: #D6EAD2; }
+.concern-legend { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 8px; }
+.clevel { font-size: var(--fs-0); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; white-space: nowrap; border: 1px solid; }
+.clevel.c-high { color: var(--c-high); background: var(--c-high-bg); border-color: var(--c-high); }
+.clevel.c-med { color: var(--c-med); background: var(--c-med-bg); border-color: var(--c-med-bar); }
+.clevel.c-low { color: var(--c-low); background: var(--c-low-bg); border-color: var(--c-low); }
+.flags li.c-high::before { background: var(--c-high) !important; border-color: var(--c-high) !important; }
+.flags li.c-med::before { background: var(--c-med-bar) !important; border-color: var(--c-med-bar) !important; }
+.flags li.c-low::before { background: var(--c-low) !important; border-color: var(--c-low) !important; }
+.flags li { padding-left: 22px; }
+.flags li::before { width: 10px !important; height: 10px !important; border-radius: 50%; }
+.flags li.c-high { box-shadow: inset 3px 0 0 var(--c-high); }
+.flags li.c-med { box-shadow: inset 3px 0 0 var(--c-med-bar); }
+.flags li.c-low { box-shadow: inset 3px 0 0 var(--c-low); }
+.flags .row .clevel { margin-left: 12px; }
+
+/* Scam types */
+.scamtypes { margin: 24px 0 32px; }
+.scamtypes-head { display: grid; grid-template-columns: var(--label-w) minmax(0, 1fr); align-items: end; margin-bottom: 14px; }
+.scamtypes-head h2 { margin: 0; }
+.scamtypes-head .fine { margin: 0; }
+.scamgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: var(--rule); border-left: var(--rule); }
+.scamcard, .laundering { border-right: var(--rule); border-bottom: var(--rule); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+.scamcard h3, .laundering h3 { margin: 0; font-size: var(--fs-2); letter-spacing: 0.01em; text-transform: none; }
+.scamcard p, .laundering p { margin: 0; font-size: var(--fs-1); }
+.tells { margin: 4px 0; padding-left: 1.1em; font-size: var(--fs-1); }
+.tells li { margin-bottom: 2px; }
+.scamfoot { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: auto; padding-top: 6px; font-size: var(--fs-1); }
+.laundering { border-left: var(--rule); border-left-width: 6px; margin-top: 14px; }
+@media (max-width: 1000px) { .scamgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 860px) { .scamgrid { grid-template-columns: minmax(0, 1fr); } .scamtypes-head { grid-template-columns: minmax(0, 1fr); gap: 6px; } }

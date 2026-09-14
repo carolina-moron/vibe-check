@@ -22,7 +22,7 @@ const COMPANY_SUFFIX = /\b(llc|l\.l\.c|inc|incorporated|corp|corporation|co|comp
 // Each rule: signal id, regexes, optional requirement that another pattern also match.
 const CONTENT_RULES = [
   { id: "upfront_fee", any: [/\b(pay|send|transfer|deposit)\b[^.]{0,40}\b(fee|deposit|training|equipment|visa|placement|registration|processing)\b/i, /\b(training|visa|placement|registration|processing|onboarding|equipment|recruitment)\s+(fee|cost|charge|deposit)s?\b/i, /\brefundable deposit\b/i] },
-  { id: "id_before_interview", any: [/\b(send|provide|upload|share)\b[^.]{0,40}\b(passport|id card|driver'?s licen[cs]e|ssn|social security|bank (account|details)|national id|id\.me)\b/i, /\b(passport|ssn|social security number)\b[^.]{0,30}\b(before|prior to)\b[^.]{0,20}\binterview\b/i] },
+  { id: "id_before_interview", any: [/\b(send|provide|upload|share|fill in|enter|submit)\b[^.]{0,40}\b(passport|id card|driver'?s licen[cs]e|ssn|social security|bank (account|details)|national id|id\.me)\b/i, /\b(passport|ssn|social security number)\b[^.]{0,30}\b(before|prior to)\b[^.]{0,20}\binterview\b/i] },
   { id: "document_retention", any: [/\b(keep|hold|retain|collect|safekeep)\w*\b[^.]{0,30}\b(your )?(passports?|id documents?|identity documents?)\b/i, /\bpassports?\b[^.]{0,30}\b(kept|held|retained) by\b/i] },
   { id: "debt_bondage", any: [/\b(deducted|repaid|paid back|recovered)\b[^.]{0,30}\b(from|out of)\b[^.]{0,15}\b(wages|salary|pay|earnings)\b/i, /\b(advance|loan)\b[^.]{0,30}\b(flight|ticket|visa|recruitment)\b/i] },
   { id: "visa_fraud", any: [/\b(tourist|visit|visitor|student)\s+visa\b[^.]{0,40}\b(work|job|employment)\b/i, /\b(work|job)\b[^.]{0,40}\b(tourist|visit|visitor)\s+visa\b/i] },
@@ -36,7 +36,7 @@ const CONTENT_RULES = [
   { id: "no_experience_high_pay", any: [/\bno experience (needed|required|necessary)\b/i], also: [/\$\s?\d[\d,]{2,}\s*(\/|per)\s*(day|week)\b/i, /\burgent|high (pay|salary|income)\b/i] },
   { id: "investment_pitch", any: [/\b(trading (platform|app|account)|crypto(currency)? (trading|platform|investment|exchange)|investment (platform|app|opportunity|plan)|forex (trading|signals)|usdt|mining pool|liquidity mining|guaranteed (returns?|profits?)|daily (returns?|profits?))\b/i] },
   { id: "romance_money", any: [/\b(send|lend|transfer|need)\b[^.]{0,40}\b(money|cash|funds)\b[^.]{0,40}\b(for|to pay|hospital|ticket|customs|fee|emergency|visa)\b/i, /\b(my love|dear|sweetheart|honey|babe)\b[^.]{0,80}\b(send|transfer|pay)\b/i] },
-  { id: "secrecy", any: [/\b(don'?t|do not|never)\s+(tell|share with|mention (it|this) to)\b[^.]{0,30}\b(anyone|family|friends|parents|police)\b/i, /\bkeep (this|it) (a )?secret\b/i, /\bbetween (you and me|us)\b/i] },
+  { id: "secrecy", any: [/\b(don'?t|do not|never|shouldn'?t|should not|mustn'?t)\s+(tell|share with|mention (it|this) to)\b[^.]{0,30}\b(anyone|family|friends|parents|police|mine|yours)\b/i, /\bkeep (this|it) (a )?secret\b/i, /\bbetween (you and me|us)\b/i] },
   { id: "gift_card_crypto", any: [/\b(gift ?cards?|itunes cards?|steam cards?|google play cards?|bitcoin|usdt|tether|crypto wallet|western union|moneygram)\b/i] },
   { id: "carry_package", any: [/\b(carry|bring|take|deliver)\b[^.]{0,30}\b(a |the |this |some )?(package|parcel|suitcase|luggage|bag|envelope|documents) (for|to)\b/i] },
   { id: "sponsor_travel_stranger", any: [/\b(i('| wi)ll|we('| wi)ll|let me)\s+(pay|buy|book|send you)\b[^.]{0,30}\b(ticket|flight|bus|travel|trip|visa)\b/i, /\b(ticket|flight)\b[^.]{0,20}\b(is |are )?(on me|paid for|already booked)\b/i] },
@@ -46,10 +46,11 @@ const CONTENT_RULES = [
   { id: "refuses_video", any: [/\b(camera|webcam)\b[^.]{0,20}\b(broken|not working|doesn'?t work)\b/i, /\b(can'?t|cannot|won'?t|not allowed to)\s+(do )?(a )?video( call)?\b/i] },
   { id: "verification_code", any: [/\b(send|share|give|tell)\b[^.]{0,30}\b(the |your |a )?(verification|security|6-digit|one-time|otp|login|whatsapp) (code|pin|password)\b/i, /\b(otp|one-time password)\b/i] },
   { id: "isolation", any: [/\b(don'?t|do not|no need to)\s+(need|tell|trust|listen to|talk to)\b[^.]{0,20}\b(your )?(family|friends|parents|mother|father|anyone else)\b/i, /\b(they|your (family|friends|parents))\b[^.]{0,30}\b(won'?t understand|don'?t understand|are jealous|don'?t care about you)\b/i, /\b(leave|give me|hand over)\b[^.]{0,15}\b(your )?(phone|sim)\b/i, /\bonly (i|we) (understand|care about) you\b/i] },
-  { id: "threats_coercion", any: [/\b(or (else|i'?ll|we'?ll)|if you don'?t)\b[^.]{0,60}\b(share|post|send|leak|tell|report|hurt|police|immigration|deport|family)\b/i, /\byou owe (me|us)\b/i, /\b(i'?ll|we'?ll|going to)\s+(share|post|leak|send)\b[^.]{0,30}\b(photos?|pictures?|videos?|images?)\b/i] },
-  { id: "meet_private", any: [/\b(meet|come)\b[^.]{0,25}\b(alone|by yourself|at my (place|house|flat|apartment|hotel)|in private|somewhere private)\b/i, /\b(i'?ll|we'?ll|someone will|my (friend|driver|cousin) will)\s+(pick you up|collect you|meet you at the (airport|station|border))\b/i] },
+  { id: "threats_coercion", any: [/\b(or (else|i'?ll|we'?ll)|if you don'?t)\b[^.]{0,60}\b(share|post|send|leak|tell|report|hurt|police|immigration|deport|family)\b/i, /\b(you|i|we) owe (me|us|them|him|her)\b/i, /\b(i'?ll|we'?ll|going to)\s+(share|post|leak|send)\b[^.]{0,30}\b(photos?|pictures?|videos?|images?)\b/i] },
+  { id: "meet_private", any: [/\b(meet|come)\b[^.]{0,25}\b(alone|by yourself|at my (place|house|flat|apartment|hotel)|in private|somewhere private)\b/i, /\b(i'?ll|we'?ll|someone will|my (friend|driver|cousin) will)\s+(pick you up|collect you|meet you at the (airport|station|border))\b/i, /\b(i'?ll|we'?ll|let me)\s+send\s+(an? |my )?(uber|lyft|car|taxi|cab|driver|ride)\b/i, /\b(his|her|their|my) (friend|driver|cousin|brother|uncle)\b[^.]{0,15}\bwill (pick (me|you|us) up|collect (me|you))\b/i] },
   { id: "link_shortener", any: [/\b(bit\.ly|tinyurl\.com|t\.co|goo\.gl|is\.gd|cutt\.ly|rb\.gy|shorturl\.at|ow\.ly|t\.ly|rebrand\.ly)\/\S+/i] },
   { id: "fast_promotion", any: [/\b(fast|rapid|quick)\s+(promotion|advancement|growth into management)\b/i, /\bmanagement (training )?(program|position)s?\b[^.]{0,40}\b(in|within)\s+\d+\s*(weeks|months)\b/i, /\b(commission[- ]only|100% commission|uncapped commission)\b/i, /\bentry[- ]level\b[^.]{0,30}\b(marketing|sales|brand ambassador|promotions?)\b[^.]{0,60}\b(no experience|management|promotion)\b/i] },
+  { id: "new_number_impersonation", any: [/\b(new (number|phone)|lost my phone|changed my number|this is my new)\b[^]{0,120}\b(lend|send|borrow|transfer|pay|money|\$\s?\d)/i, /\b(lend|send|borrow)\b[^]{0,80}\b(new (number|phone)|lost my phone)\b/i] },
   { id: "pay_too_high", any: [/\$\s?([5-9]\d{2}|\d{1,3},?\d{3,})\s*(\/|per|a)\s*day\b/i, /\$\s?([3-9],?\d{3}|\d{2,},?\d{3})\s*(\/|per|a)\s*week\b/i, /\$\s?(1[5-9]\d|[2-9]\d{2})\s*(\/|per|an?)\s*(hr|hour)\b/i] },
 ];
 
@@ -175,8 +176,13 @@ export function checkPostingHost(parsed) {
 
 const result = (register, verdict, detail, hits = [], records = []) => ({ register, verdict, detail, hits, records });
 
-async function getJson(fetchFn, url) {
-  const res = await fetchFn(url);
+async function getJson(fetchFn, url, timeoutMs = 12000) {
+  // A register that doesn't answer must not hold up the result: it becomes "could not search".
+  const ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+  const timer = ctrl ? setTimeout(() => ctrl.abort(), timeoutMs) : null;
+  let res;
+  try { res = await fetchFn(url, ctrl ? { signal: ctrl.signal } : undefined); }
+  finally { if (timer) clearTimeout(timer); }
   if (!res.ok) { const e = new Error(`HTTP ${res.status}`); e.status = res.status; throw e; }
   return res.json();
 }
@@ -188,9 +194,10 @@ export async function checkRdap(domain, { fetchFn = fetch, now = new Date() } = 
     if (!created) return result("rdap", "no-evidence-found", "Registry publishes no registration date.");
     const days = daysSince(created, now);
     const detail = `${domain} registered ${created.slice(0, 10)} (${days} days ago).`;
-    if (days < 183) return result("rdap", "hit", detail, [{ id: "domain_new", evidence: detail }]);
-    if (days < 730) return result("rdap", "hit", detail, [{ id: "domain_young", evidence: detail }]);
-    return result("rdap", "no-evidence-found", detail);
+    const rec = [{ created, days }];
+    if (days < 183) return result("rdap", "hit", detail, [{ id: "domain_new", evidence: detail }], rec);
+    if (days < 730) return result("rdap", "hit", detail, [{ id: "domain_young", evidence: detail }], rec);
+    return result("rdap", "no-evidence-found", detail, [], rec);
   } catch (e) {
     return result("rdap", "error", e.status === 404 ? `${domain} is not in RDAP (unregistered, or a registry without RDAP).` : "RDAP lookup failed.");
   }
@@ -393,7 +400,7 @@ export function score(hits, signalsDoc) {
   if (seen.has("domain_new")) seen.delete("domain_young");
   const flags = [...seen.values()].sort((a, b) => b.weight - a.weight);
   const points = Math.min(100, flags.reduce((sum, f) => sum + f.weight, 0));
-  const tier = [...signalsDoc.tiers].sort((a, b) => b.min - a.min).find((t) => points >= t.min);
+  const tier = [...signalsDoc.tiers].filter((t) => t.min != null).sort((a, b) => b.min - a.min).find((t) => points >= t.min);
   return { points, tier, flags };
 }
 
@@ -416,6 +423,37 @@ export function coverage(jurisdictions, registersDoc, layers = ["identity", "enf
 
 export function linkFor(register, { name = "", domain = "" }) {
   return register.url.replace("{q}", encodeURIComponent(name)).replace("{d}", encodeURIComponent(domain));
+}
+
+// ---- Verification (positive evidence) --------------------------------------------------
+// Pessimistic by design: nothing is treated as safe because no warning signs were found.
+// "Verified" needs every one of these to pass; otherwise the result is Unverified.
+
+export function verification(input, checks, flags, posting = null) {
+  const by = Object.fromEntries(checks.map((c) => [c.register, c]));
+  const activeGleif = (by.gleif?.records || []).find((r) => r.status === "ACTIVE");
+  const goodCo = (by["co-sos"]?.records || []).find((r) => r.exact && /^(good|exists)/i.test(r.status || ""));
+  const activeNy = (by["ny-dos"]?.records || []).find((r) => r.exact);
+  const org = activeGleif || goodCo || activeNy;
+  const rdapDays = by.rdap?.records?.[0]?.days;
+  const siteBase = input.domain ? baseDomain(input.domain) : "";
+  const emailBase = input.emailDomain ? baseDomain(input.emailDomain) : "";
+  const linked = (emailBase && siteBase && emailBase === siteBase && !FREE_MAIL.has(input.emailDomain))
+    || (posting?.ats && input.name && exactName(posting.board) === exactName(input.name));
+  const serious = flags.filter((f) => f.weight >= 10);
+
+  const items = [
+    { id: "organisation", label: "Organisation found in an official register", passed: !!org,
+      detail: org ? `${org.name} (${activeGleif ? "GLEIF, active" : goodCo ? "Colorado, good standing" : "New York, active"})`
+        : input.name ? "No exact, active registration found in the registers we can reach." : "No organisation to look up." },
+    { id: "website", label: "Website established for more than 2 years", passed: rdapDays >= 730,
+      detail: rdapDays != null ? `Registered ${Math.floor(rdapDays / 365)} year(s) ago.` : input.domain ? "Registration date unavailable." : "No website given." },
+    { id: "contact", label: "The way they contacted you traces back to that organisation", passed: !!linked,
+      detail: linked ? "Their email or job posting is on the organisation's own domain or hiring system." : input.emailDomain && FREE_MAIL.has(input.emailDomain) ? "They use a free email address, which could be anyone." : "We couldn't connect the contact to the organisation." },
+    { id: "signs", label: "No significant warning signs", passed: serious.length === 0,
+      detail: serious.length ? `${serious.length} significant warning sign(s).` : "None found in what was checked." },
+  ];
+  return { verified: items.every((i) => i.passed), items };
 }
 
 // ---- Live check ------------------------------------------------------------------------
@@ -449,7 +487,8 @@ export async function assess(input, { signals, registers, cases, fetchFn = fetch
     emailDomain ? (emailHits.length ? emailHits[0].evidence : `${emailDomain} is not a known free-mail domain.`) : "No recruiter email given.", emailHits));
 
   const answerHits = [].concat(input.answers || []).filter(Boolean).map((id) => ({ id, evidence: "from your answers" }));
-  const textHits = [...detectContent(input.posting), ...answerHits, ...checkPostingHost(posting)];
+  const siteHost = !posting && input.website ? parsePostingUrl(input.website) : null;
+  const textHits = [...detectContent(input.posting), ...answerHits, ...checkPostingHost(posting), ...checkPostingHost(siteHost)];
   checks.push(result("ilo", input.posting?.trim() || answerHits.length ? (textHits.length ? "hit" : "no-evidence-found") : "not-searched",
     input.posting?.trim() || answerHits.length ? `${textHits.length} warning sign(s) in the text and your answers.` : "No text given.", textHits));
 
@@ -458,13 +497,18 @@ export async function assess(input, { signals, registers, cases, fetchFn = fetch
   const referrals = registers.registers.filter((r) => r.access !== "queried" && r.layer !== "priors"
     && (r.covers.includes("*") || !jurisdiction || r.covers.includes(jurisdiction)));
 
+  const scored = score(hits, signals);
+  const ver = verification({ name, domain, emailDomain }, checks, scored.flags, posting);
+  // Unverified is the default resting state: a low score alone is never "lower concern".
+  if (scored.tier.id === "low" && !ver.verified) scored.tier = signals.tiers.find((t) => t.id === "unverified");
   return {
+    verification: ver,
     input: { name, domain, emailDomain, jurisdiction, kind: input.kind || null },
     checks: checks.map((c) => ({ ...c, meta: byRegister[c.register] })),
     referrals,
     coverage: coverage(jurisdiction ? [jurisdiction] : [], registers),
     catalogMatches: checks[0].records,
-    ...score(hits, signals),
+    ...scored,
   };
 }
 
