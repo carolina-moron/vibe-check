@@ -2,7 +2,7 @@
 
 *Something feels off? Check the vibe.*
 
-**Live site:** https://carolina-moron.github.io/job-risk-search/
+**Live site:** https://carolina-moron.github.io/vibe-check/
 
 Traces fake-job recruitment into scams, forced labour and human trafficking. The design rules come from the Digital Provenance Passport: every claim is sourced, no check can return "clear", and the score is always shown next to its coverage.
 
