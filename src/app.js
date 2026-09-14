@@ -1,8 +1,8 @@
 import {
   assess, considerations, parsePostingUrl, fetchPosting, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js?v=202609141438";
-import { mountFigure } from "./figure.js?v=202609141438";
-import { REPORT_ENDPOINT } from "./config.js?v=202609141438";
+} from "./engine.js?v=202609141445";
+import { mountFigure } from "./figure.js?v=202609141445";
+import { REPORT_ENDPOINT } from "./config.js?v=202609141445";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
@@ -819,13 +819,13 @@ async function viewNews(arg = "") {
 
 const KINDS = {
   conversation: { label: "Conversation or DM", hint: "A chat, DM, text or email thread", fields: ["profileUrl"], text: "The messages", screenshotFirst: true, questions: ["secrecy", "isolation", "urgency", "threats_coercion", "chat_only_contact", "refuses_video", "romance_money", "verification_code"] },
-  profile: { label: "Social profile", hint: "An account that contacted you or that you met on an app", fields: ["profileUrl", "photo"], text: "Bio, posts or messages from this account", questions: ["profile_new", "profile_photos_too_polished", "profile_mismatch", "refuses_video", "chat_only_contact", "romance_money", "investment_pitch"] },
+  profile: { label: "Social profile", hint: "An account that contacted you or that you met on an app", fields: ["profileUrl", "photo"], text: "Bio, posts or messages from this account", questions: ["profile_new", "images_ai", "followers_fake", "profile_mismatch", "refuses_video", "chat_only_contact", "romance_money", "investment_pitch", "public_complaints"] },
   travel: { label: "Invitation to travel or meet", hint: "Someone offering to bring you somewhere, or to meet in person", fields: ["destination", "profileUrl"], text: "The invitation or messages about the trip or meeting", questions: ["sponsor_travel_stranger", "meet_private", "carry_package", "vague_location", "document_retention", "secrecy", "visa_fraud"] },
-  job: { label: "Job opportunity", hint: "A job ad, offer, or a recruiter who reached out", fields: ["postingUrl", "company", "website", "email", "jurisdiction", "workCountry"], text: "The job ad, offer or recruiter's message", questions: ["upfront_fee", "id_before_interview", "chat_only_contact", "employer_housing_travel", "vague_location", "document_retention", "debt_bondage", "payment_handling"] },
-  housing: { label: "Housing offer", hint: "A room, flat or accommodation offered to you", fields: ["website", "email", "destination"], text: "The listing or messages from the landlord or host", questions: ["housing_unseen_deposit", "owner_unavailable", "housing_tied_to_job", "gift_card_crypto", "urgency"] },
-  money: { label: "Request for money", hint: "Someone asking you to pay, lend, invest or send codes", fields: ["profileUrl", "website"], text: "What they asked for and why", questions: ["romance_money", "investment_pitch", "gift_card_crypto", "verification_code", "urgency", "threats_coercion", "secrecy"] },
-  link: { label: "Link", hint: "A website or link someone sent you", fields: ["website", "email"], text: "The message the link came with", questions: ["link_shortener", "urgency", "verification_code", "upfront_fee"] },
-  other: { label: "Describe what's happening", hint: "Anything else that doesn't feel right", fields: ["profileUrl", "website", "email"], text: "Tell us what's happening, in your own words", questions: ["secrecy", "isolation", "threats_coercion", "meet_private", "gift_card_crypto", "urgency"] },
+  job: { label: "Job opportunity", hint: "A job ad, offer, or a recruiter who reached out", fields: ["postingUrl", "company", "website", "email", "jurisdiction", "workCountry"], text: "The job ad, offer or recruiter's message", questions: ["upfront_fee", "id_before_interview", "chat_only_contact", "employer_housing_travel", "vague_location", "document_retention", "debt_bondage", "payment_handling", "fast_promotion", "images_ai", "followers_fake", "website_mismatch", "public_complaints"] },
+  housing: { label: "Housing offer", hint: "A room, flat or accommodation offered to you", fields: ["website", "email", "destination"], text: "The listing or messages from the landlord or host", questions: ["housing_unseen_deposit", "owner_unavailable", "housing_tied_to_job", "gift_card_crypto", "urgency", "images_ai", "public_complaints"] },
+  money: { label: "Request for money", hint: "Someone asking you to pay, lend, invest or send codes", fields: ["profileUrl", "website"], text: "What they asked for and why", questions: ["romance_money", "investment_pitch", "gift_card_crypto", "verification_code", "urgency", "threats_coercion", "secrecy", "public_complaints"] },
+  link: { label: "Link", hint: "A website or link someone sent you", fields: ["website", "email"], text: "The message the link came with", questions: ["link_shortener", "urgency", "verification_code", "upfront_fee", "website_mismatch", "images_ai", "public_complaints"] },
+  other: { label: "Describe what's happening", hint: "Anything else that doesn't feel right", fields: ["profileUrl", "website", "email"], text: "Tell us what's happening, in your own words", questions: ["secrecy", "isolation", "threats_coercion", "meet_private", "gift_card_crypto", "urgency", "public_complaints"] },
 };
 // Old links keep working.
 KINDS.screenshot = KINDS.conversation; KINDS.recruiter = KINDS.job;
@@ -1014,6 +1014,17 @@ function verdictBox(r, orgChecked) {
   </div>`;
 }
 
+function complaintSearches(r) {
+  const q = r.input.name || r.input.domain;
+  const ids = ["reddit", "bbb", "glassdoor", "websearch"];
+  const regs = registers.registers.filter((x) => ids.includes(x.id));
+  return `<section class="panel span2 complaints">
+    <h2>Look for complaints</h2>
+    <p class="fine">Other people's experiences are often the fastest warning. Search for “${esc(q)}” with the word scam, then read what you find: make sure it's the same company, not a similar name. If you find complaints, tick “You found complaints calling them a scam” above and check again.</p>
+    <div class="btns">${regs.map((x) => `<a class="ghostlink" href="${esc(linkFor(x, { name: q, domain: r.input.domain }))}" target="_blank" rel="noopener">${esc(x.name.replace(/:.*/, ""))} ↗</a>`).join("")}</div>
+  </section>`;
+}
+
 function nextSteps(r, input) {
   const serious = r.tier.id === "high";
   return `<section class="panel span2 next">
@@ -1069,11 +1080,13 @@ function renderCheck(r, input = {}) {
           <li><div class="row"><span>${esc(c.meta?.name || c.register)} <span class="acc ${ACCESS[c.meta?.access]?.cls || ""}">${esc(ACCESS[c.meta?.access]?.label || "")}</span></span><span class="verdict ${VERDICT[c.verdict].cls}">${VERDICT[c.verdict].label}</span></div>
             <div class="meta">${esc(c.detail)}</div>
             ${c.register === "courtlistener" && c.records.length ? `<ul class="records">${c.records.map((d) => `<li>${d.url ? ext(d.url, d.name) : esc(d.name)} <span class="muted">${esc(d.court)} · ${esc(d.date)}</span></li>`).join("")}</ul>` : ""}
+            ${c.register === "pullpush" && c.records.length ? `<ul class="records">${c.records.map((d) => `<li>${d.url ? ext(d.url, d.name) : esc(d.name)} <span class="muted">r/${esc(d.subreddit)} · ${esc(d.date)}</span></li>`).join("")}</ul>` : ""}
             ${c.register === "gleif" && c.records.length ? `<ul class="records">${c.records.map((d) => `<li>${ext(d.url, d.name)} <span class="muted">${esc(d.status)} · ${esc(d.jurisdiction)}${d.otherNames.length ? ` · also: ${esc(d.otherNames.map((o) => o.name).join(", "))}` : ""}</span></li>`).join("")}</ul>` : ""}
             <div class="fine">${esc(c.meta?.caveat || "")}</div></li>`).join("")}</ul>`).join("")}
       </section>` : ""}
       ${contextPanel(input)}
       ${nextSteps(r, input)}
+      ${orgChecked ? complaintSearches(r) : ""}
       ${orgChecked ? `<section class="panel span2"><h2>Search these by hand</h2>
         <p class="fine">These registers are public but can't be queried from a browser (they need a key, a declared client, or have no API). ${esc(r.coverage.explain)}</p>
         <ul class="reglist cols">${r.referrals.map((reg) => `<li><span class="acc ${ACCESS[reg.access].cls}">${ACCESS[reg.access].label}</span> ${ext(linkFor(reg, { name: r.input.name, domain: r.input.domain }), reg.name)}<div class="fine">${esc(reg.holds)}</div></li>`).join("")}</ul>
@@ -1224,6 +1237,15 @@ function viewMethodology() {
         <li><em>Serious warning signs</em>: the pattern matches real scam and trafficking cases.</li>
       </ul>
       <p>A lower-concern result is never a clearance.</p>
+      <p><strong>What a person can see better than a machine.</strong> Some warning signs can't be detected reliably from a browser, so the check asks about them directly:</p>
+      <ul>
+        <li>photos that look AI-generated, stock or copied;</li>
+        <li>followers or engagement that look bought;</li>
+        <li>a website that doesn't match the business it claims;</li>
+        <li>complaints found on Reddit, BBB, Glassdoor or forums.</li>
+      </ul>
+      <p>Instagram and similar platforms offer no data access for this, and AI-image detectors are wrong often enough to mislead. Every company check links to complaint searches. A Reddit archive (PullPush) is searched for the exact website address and shown for review. Company names aren't searched automatically, because common names return unrelated posts.</p>
+      <p><strong>Exact names only.</strong> A registry result counts against a company only when the registered name matches exactly, ignoring legal suffixes like LLC or Inc. Companies with similar names are listed as other companies and never scored.</p>
       <p><strong>Job posting links.</strong> Postings on Greenhouse, Lever and Ashby are read through those systems' public job APIs, directly from your browser. A posting there is a good sign but not proof, since anyone can open an account. Other links are checked by domain (registration age, certificates, archive history), and postings on free site builders or form tools are flagged.</p>
       <p><strong>Screenshots</strong> are read on your own device with open-source text recognition (Tesseract). The image is never uploaded, and you can correct the text before checking.</p>
       <p><strong>Profile photos</strong> become a 64-bit fingerprint on your device, so the same face can be matched across reports without storing the image.</p>

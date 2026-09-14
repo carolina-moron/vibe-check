@@ -1,0 +1,183 @@
+{
+  "id": "los-villatoros-harvesting-h2a-forced-labor",
+  "title": "Los Villatoros Harvesting (Mexican H-2A farmworkers)",
+  "typology": "labor-trafficking",
+  "period": "2015–2017",
+  "summary": "Los Villatoros Harvesting (LVH), a farm labor contracting company, operated as a criminal enterprise between about 2015 and 2017. It fraudulently recruited Mexican nationals on short-term H-2A agricultural visas, charged exorbitant recruitment fees and lied about pay, hours, working conditions and expense reimbursement. In the US, workers were compelled to do long hours of farm labour six to seven days a week in Florida, Kentucky, Indiana, Georgia and North Carolina, for far less than they were owed. Coercion included imposed debts, confiscated passports, crowded and unsanitary housing, isolation, verbal abuse and threats of arrest, deportation and harm to family in Mexico. In June 2026 Alexander Villatoro Moreno was sentenced to 70 months in prison after pleading guilty to RICO conspiracy; company owner Bladimir Moreno had been sentenced to 118 months in 2022, and co-defendants received 41 months, 37 months and 8 months' home detention.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Los Villatoros Harvesting (LVH)",
+      "kind": "company",
+      "jurisdiction": "US",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, M.D. Florida",
+          "action": "operated as a criminal enterprise in RICO forced-labor conspiracy (per DOJ)",
+          "date": "2026-06-09",
+          "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+        }
+      ]
+    },
+    {
+      "name": "Alexander Villatoro Moreno",
+      "kind": "person",
+      "jurisdiction": "MX",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, M.D. Florida",
+          "action": "pleaded guilty to RICO conspiracy; sentenced to 70 months in prison and three years of supervised release",
+          "date": "2026-06-09",
+          "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+        }
+      ]
+    },
+    {
+      "name": "Bladimir Moreno",
+      "kind": "person",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, M.D. Florida",
+          "action": "company owner; previously sentenced to 118 months in prison (2022) and ordered to pay over $175,000 restitution",
+          "date": "2022",
+          "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+        }
+      ]
+    },
+    {
+      "name": "Efrain Cabrera Rodas",
+      "kind": "person",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, M.D. Florida",
+          "action": "previously sentenced to 41 months in prison",
+          "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+        }
+      ]
+    },
+    {
+      "name": "Christina Gamez",
+      "kind": "person",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, M.D. Florida",
+          "action": "previously sentenced to 37 months in prison",
+          "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+        }
+      ]
+    },
+    {
+      "name": "Guadalupe Mendes Mendoza",
+      "kind": "person",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, M.D. Florida",
+          "action": "previously sentenced to 8 months of home detention",
+          "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Mexico",
+      "country": "MX",
+      "lat": 19.43,
+      "lon": -99.13,
+      "note": "Workers were fraudulently recruited in Mexico for H-2A visas and charged exorbitant recruitment fees (country-level point).",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+      "stage": "exploited",
+      "place": "Florida",
+      "country": "US",
+      "lat": 27.95,
+      "lon": -82.46,
+      "note": "Compelled to do farm work; LVH also moved workers to Kentucky, Indiana, Georgia and North Carolina (state-level point).",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+      "stage": "exploited",
+      "place": "Kentucky",
+      "country": "US",
+      "lat": 38.2,
+      "lon": -84.87,
+      "note": "One of five states where workers were compelled to labour (state-level point).",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+      "stage": "exploited",
+      "place": "North Carolina",
+      "country": "US",
+      "lat": 35.78,
+      "lon": -78.64,
+      "note": "One of five states where workers were compelled to labour (state-level point).",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Middle District of Florida",
+      "country": "US",
+      "lat": 27.95,
+      "lon": -82.46,
+      "note": "Prosecuted by the US Attorney's Office for the Middle District of Florida; 70-month sentence announced June 2026 (court city not stated; approximate point).",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    }
+  ],
+  "victim_origins": [
+    "MX"
+  ],
+  "lures": [
+    {
+      "signal": "visa_fraud",
+      "quote_or_description": "Defendants \"fraudulently recruited Mexican nationals to come into the United States on short-term, H-2A agricultural visas\" and lied about pay, hours and conditions.",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+      "signal": "upfront_fee",
+      "quote_or_description": "Workers were charged exorbitant recruitment fees.",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+      "signal": "debt_bondage",
+      "quote_or_description": "Defendants imposed debts on the workers.",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+      "signal": "document_retention",
+      "quote_or_description": "Workers' passports were confiscated.",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+      "signal": "employer_housing_travel",
+      "quote_or_description": "Workers were kept in \"crowded, unsanitary and degrading living conditions\".",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "Threats of arrest, jail, deportation and harm to family members in Mexico.",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+      "signal": "isolation",
+      "quote_or_description": "Workers were isolated from contact with people outside LVH.",
+      "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Illegal Alien Sentenced in Multi-State Racketeering Conspiracy Involving the Forced Labor of Mexican Workers",
+      "publisher": "US Department of Justice, Office of Public Affairs",
+      "date": "2026-06-09",
+      "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican",
+      "tier": "official"
+    }
+  ]
+}

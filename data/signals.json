@@ -376,6 +376,46 @@
       "label": "Job posting is hosted on a free site builder or form tool, not the employer's own site or a job board",
       "why": "Real employers post on their careers page, a job board or an applicant tracking system. Free pages and forms are quick to create and abandon.",
       "dimension": "identity"
+    },
+    {
+      "id": "images_ai",
+      "category": "social",
+      "weight": 12,
+      "dimension": "identity",
+      "label": "Photos on their website or social media look AI-generated, stock, or copied from elsewhere",
+      "why": "Invented businesses and people fill pages with generated or borrowed images. AI-image detectors are unreliable, so a person's own judgement plus a reverse image search is the better check."
+    },
+    {
+      "id": "followers_fake",
+      "category": "social",
+      "weight": 12,
+      "dimension": "identity",
+      "label": "Followers or engagement look fake (bots, generic comments, sudden spikes, no real interaction)",
+      "why": "Bought followers make a new or fake account look established."
+    },
+    {
+      "id": "website_mismatch",
+      "category": "digital",
+      "weight": 8,
+      "dimension": "identity",
+      "label": "Website looks rushed or doesn't match the business it claims (template, odd colours, broken pages, no real team or address)",
+      "why": "A marketing or recruitment firm with a careless site, no named people and no verifiable address is not what it claims to be. Weak alone; stronger with other signs."
+    },
+    {
+      "id": "public_complaints",
+      "category": "reputation",
+      "weight": 25,
+      "dimension": "record",
+      "label": "You found complaints calling them a scam (Reddit, BBB, Glassdoor, forums)",
+      "why": "Several independent people describing the same pattern is strong evidence. Check that the complaints are about the same company, not a similar name."
+    },
+    {
+      "id": "fast_promotion",
+      "category": "offer",
+      "weight": 12,
+      "dimension": "money",
+      "label": "Entry-level “marketing” or sales job promising fast promotion to management or commission-only pay",
+      "why": "A common pattern in commission-only door-to-door and event sales schemes that advertise as marketing firms: vague role, quick “management” track, pay tied to what you sell."
     }
   ],
   "tiers": [

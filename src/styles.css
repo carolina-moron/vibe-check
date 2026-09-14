@@ -445,3 +445,5 @@ input[type=checkbox] { accent-color: var(--accent); }
 .seeing-list a, .corrlist a, .articles h3 a, .card { color: var(--ink); }
 .seeing-list a:hover .what { color: var(--accent); }
 @media (max-width: 480px) { .brand .wm { font-size: 1rem; } .brand img { width: 30px; height: 30px; } }
+.ghostlink { display: inline-block; font: 500 var(--fs-1)/1 var(--font); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding: 12px 16px; border: 1px solid var(--accent); color: var(--accent); }
+.ghostlink:hover { background: var(--accent); color: var(--on-ink); }

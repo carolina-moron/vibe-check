@@ -202,3 +202,19 @@ test("unnamed placeholder entities never match a name search", () => {
   assert.equal(matchCatalog({ name: "Malawi-based network" }, cs).length, 0);
   assert.equal(matchCatalog({ name: "recruitment agent" }, cs).length, 0);
 });
+
+test("registry flags only count for exact name matches; similar names never score", async () => {
+  const { checkColorado, checkNewYork } = await import("../src/engine.js");
+  const fetchFn = stub({
+    "data.colorado.gov/resource/4ykn": [{ entityname: "NM GROUP HOLDINGS LLC, Delinquent May 1, 2016", entitystatus: "Delinquent", entityformdate: "2015-01-01T00:00:00.000" }],
+    "data.colorado.gov/resource/u7sb": [],
+    "data.ny.gov": [{ current_entity_name: "NM GROUPWARE INC.", initial_dos_filing_date: "2026-08-01T00:00:00.000" }],
+  });
+  const co = await checkColorado("NM Group", { fetchFn, now });
+  assert.deepEqual(co.hits, [], "a different company with a similar name must not be flagged");
+  const ny = await checkNewYork("NM Group", { fetchFn, now });
+  assert.deepEqual(ny.hits, []);
+  const exact = await checkColorado("NM Group", { fetchFn: stub({ "data.colorado.gov/resource/4ykn": [{ entityname: "NM Group LLC, Delinquent May 1, 2016", entitystatus: "Delinquent" }], "data.colorado.gov/resource/u7sb": [] }), now });
+  assert.deepEqual(exact.hits.map((h) => h.id), ["entity_bad_status"]);
+  assert.deepEqual(detectContent("Entry-level marketing representative, no experience needed, fast promotion to management.").map((h) => h.id).filter((i) => i === "fast_promotion"), ["fast_promotion"]);
+});

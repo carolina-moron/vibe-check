@@ -1,0 +1,79 @@
+{
+  "id": "brandon-sartor-multistate-sex-trafficking",
+  "title": "Brandon Sartor (multi-state sex trafficking)",
+  "typology": "sex-trafficking",
+  "period": "2024–2025",
+  "summary": "Brandon Sartor of Prince George's County, Maryland initially recruited each victim by falsely promising to help them make money. From December 2024 to April 2025 he then compelled them to have sex with as many as 10 men a day across Delaware, Florida, Georgia, Maryland, Pennsylvania and South Carolina, seizing the money. DOJ says he used punching and hitting, threats to harm or kill victims or their families, and opioids that he gave and withheld so victims feared withdrawal. In August 2026 Sartor pleaded guilty in the Southern District of Florida to two counts of sex trafficking by force, fraud or coercion; sentencing was set for November 17, 2026, with a 15-year mandatory minimum.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Brandon Sartor",
+      "kind": "person",
+      "jurisdiction": "US",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, S.D. Florida",
+          "action": "pleaded guilty to two counts of sex trafficking by force, fraud or coercion; sentencing scheduled for 2026-11-17",
+          "date": "2026-08-27",
+          "url": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "exploited",
+      "place": "Maryland",
+      "country": "US",
+      "lat": 38.98,
+      "lon": -76.49,
+      "note": "One of six states where victims were compelled into commercial sex (state-level point).",
+      "source": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+    },
+    {
+      "stage": "exploited",
+      "place": "Georgia",
+      "country": "US",
+      "lat": 33.75,
+      "lon": -84.39,
+      "note": "One of six states where victims were compelled into commercial sex (state-level point).",
+      "source": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+    },
+    {
+      "stage": "exploited",
+      "place": "Florida",
+      "country": "US",
+      "lat": 25.76,
+      "lon": -80.19,
+      "note": "One of six states where victims were compelled into commercial sex (state-level point).",
+      "source": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Southern District of Florida",
+      "country": "US",
+      "lat": 25.76,
+      "lon": -80.19,
+      "note": "Pleaded guilty in August 2026; sentencing set for November 2026 (court city not stated; approximate point).",
+      "source": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+    }
+  ],
+  "victim_origins": [],
+  "lures": [
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "Punching and hitting, threats to harm or kill victims or their families, and giving and withholding opioids so victims feared withdrawal.",
+      "source": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Maryland Man Pleads Guilty to Sex Trafficking Offenses",
+      "publisher": "US Department of Justice, Office of Public Affairs",
+      "date": "2026-08-27",
+      "url": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses",
+      "tier": "official"
+    }
+  ]
+}

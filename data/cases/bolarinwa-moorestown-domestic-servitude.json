@@ -1,0 +1,76 @@
+{
+  "id": "bolarinwa-moorestown-domestic-servitude",
+  "title": "Bolaji Bolarinwa (domestic servitude, New Jersey)",
+  "typology": "labor-trafficking",
+  "period": "2015–2016",
+  "summary": "Bolaji Bolarinwa of Moorestown, New Jersey recruited two women to come to the United States, one of them on a student visa, and then forced them to do household work and childcare in her home. According to DOJ, she lured them with false promises, confiscated their passports and used threats of physical harm (including to one victim's daughter), verbal and physical abuse, isolation and constant surveillance to make them work around the clock with minimal pay, from about December 2015 to October 2016. After a two-week trial she was found guilty of two counts of forced labor, one count of alien harboring for financial gain and two counts of document servitude. In May 2025 she was sentenced to 45 months in prison, three years of supervised release, a $35,000 fine and $87,518.72 in restitution.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Bolaji Bolarinwa",
+      "kind": "person",
+      "jurisdiction": "US",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, D. New Jersey (jury)",
+          "action": "found guilty of two counts of forced labor, alien harboring for financial gain and two counts of document servitude",
+          "url": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+        },
+        {
+          "body": "US District Court, D. New Jersey",
+          "action": "sentenced to 45 months in prison, $35,000 fine and $87,518.72 restitution",
+          "date": "2025-05-07",
+          "url": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "exploited",
+      "place": "Moorestown, New Jersey",
+      "country": "US",
+      "lat": 39.97,
+      "lon": -74.95,
+      "note": "Forced to do round-the-clock household work and childcare in the defendant's home, with passports confiscated.",
+      "source": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Camden, New Jersey",
+      "country": "US",
+      "lat": 39.93,
+      "lon": -75.12,
+      "note": "Convicted after a two-week trial; sentenced to 45 months in May 2025.",
+      "source": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+    }
+  ],
+  "victim_origins": [],
+  "lures": [
+    {
+      "signal": "document_retention",
+      "quote_or_description": "The defendant confiscated both victims' passports.",
+      "source": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+    },
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "Threats of physical harm to a victim and her daughter, verbal abuse and physical abuse.",
+      "source": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+    },
+    {
+      "signal": "isolation",
+      "quote_or_description": "Victims were kept under isolation and constant surveillance.",
+      "source": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+    }
+  ],
+  "sources": [
+    {
+      "title": "New Jersey Woman Sentenced to Prison for Forced Labor and Other Federal Crimes",
+      "publisher": "US Department of Justice, Office of Public Affairs",
+      "date": "2025-05-09",
+      "url": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes",
+      "tier": "official"
+    }
+  ]
+}

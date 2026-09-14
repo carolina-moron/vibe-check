@@ -49,6 +49,7 @@ const CONTENT_RULES = [
   { id: "threats_coercion", any: [/\b(or (else|i'?ll|we'?ll)|if you don'?t)\b[^.]{0,60}\b(share|post|send|leak|tell|report|hurt|police|immigration|deport|family)\b/i, /\byou owe (me|us)\b/i, /\b(i'?ll|we'?ll|going to)\s+(share|post|leak|send)\b[^.]{0,30}\b(photos?|pictures?|videos?|images?)\b/i] },
   { id: "meet_private", any: [/\b(meet|come)\b[^.]{0,25}\b(alone|by yourself|at my (place|house|flat|apartment|hotel)|in private|somewhere private)\b/i, /\b(i'?ll|we'?ll|someone will|my (friend|driver|cousin) will)\s+(pick you up|collect you|meet you at the (airport|station|border))\b/i] },
   { id: "link_shortener", any: [/\b(bit\.ly|tinyurl\.com|t\.co|goo\.gl|is\.gd|cutt\.ly|rb\.gy|shorturl\.at|ow\.ly|t\.ly|rebrand\.ly)\/\S+/i] },
+  { id: "fast_promotion", any: [/\b(fast|rapid|quick)\s+(promotion|advancement|growth into management)\b/i, /\bmanagement (training )?(program|position)s?\b[^.]{0,40}\b(in|within)\s+\d+\s*(weeks|months)\b/i, /\b(commission[- ]only|100% commission|uncapped commission)\b/i, /\bentry[- ]level\b[^.]{0,30}\b(marketing|sales|brand ambassador|promotions?)\b[^.]{0,60}\b(no experience|management|promotion)\b/i] },
   { id: "pay_too_high", any: [/\$\s?([5-9]\d{2}|\d{1,3},?\d{3,})\s*(\/|per|a)\s*day\b/i, /\$\s?([3-9],?\d{3}|\d{2,},?\d{3})\s*(\/|per|a)\s*week\b/i, /\$\s?(1[5-9]\d|[2-9]\d{2})\s*(\/|per|an?)\s*(hr|hour)\b/i] },
 ];
 
@@ -61,6 +62,15 @@ export function normalizeDomain(input) {
   if (at !== -1 && !s.includes("/")) s = s.slice(at + 1);
   s = s.replace(/^[a-z]+:\/\//, "").split(/[/?#]/)[0].replace(/:\d+$/, "").replace(/^www\./, "");
   return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(s) ? s : "";
+}
+
+// Stricter form for deciding that two registry names are the same company: strips only legal
+// suffixes, keeping words like "group" or "global" that distinguish one company from another.
+export function exactName(name) {
+  return String(name || "").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/,\s*(delinquent|dissolved|withdrawn|expired|noncompliant|inactive)\b.*$/i, "")
+    .replace(/&/g, " and ").replace(/\b(llc|l\.l\.c|inc|incorporated|corp|corporation|co|ltd|limited|plc|pllc|lp|llp)\b\.?/g, " ")
+    .replace(/[^a-z0-9]+/g, " ").trim();
 }
 
 export function normalizeName(name) {
@@ -238,7 +248,7 @@ export async function checkMailDns(emailDomain, { fetchFn = fetch } = {}) {
 export async function checkGleif(name, { fetchFn = fetch } = {}) {
   try {
     const json = await getJson(fetchFn, `https://api.gleif.org/api/v1/lei-records?filter[fulltext]=${encodeURIComponent(name)}&page[size]=5`);
-    const q = normalizeName(name);
+    const q = exactName(name);
     const records = (json.data || []).map((r) => {
       const e = r.attributes.entity;
       return {
@@ -246,7 +256,7 @@ export async function checkGleif(name, { fetchFn = fetch } = {}) {
         otherNames: (e.otherNames || []).map((o) => ({ name: o.name, type: o.type })),
         url: `https://search.gleif.org/#/record/${r.id}`,
       };
-    }).filter((r) => normalizeName(r.name) === q || r.otherNames.some((o) => normalizeName(o.name) === q));
+    }).filter((r) => exactName(r.name) === q || r.otherNames.some((o) => exactName(o.name) === q));
     if (!records.length) return result("gleif", "no-evidence-found", "No LEI record with this exact name (most small employers have none).");
     const hits = [];
     const previous = records.flatMap((r) => r.otherNames.filter((o) => /PREVIOUS/.test(o.type)).map((o) => `${o.name} → ${r.name}`));
@@ -264,9 +274,12 @@ export async function checkNewYork(name, { fetchFn = fetch, now = new Date() } =
   try {
     const rows = await getJson(fetchFn, `https://data.ny.gov/resource/n9v6-gdp6.json?$where=${socrataLike("current_entity_name", name)}&$limit=5`);
     if (!rows.length) return result("ny-dos", "no-evidence-found", "No active New York entity with this name.");
-    const records = rows.map((r) => ({ name: r.current_entity_name, id: r.dos_id, type: r.entity_type, created: r.initial_dos_filing_date }));
-    const hits = records.filter((r) => r.created && daysSince(r.created, now) < 365).map((r) => ({ id: "entity_new", evidence: `${r.name} filed ${r.created.slice(0, 10)} (NY)` }));
-    return result("ny-dos", hits.length ? "hit" : "no-evidence-found", `${rows.length} active NY entit${rows.length === 1 ? "y" : "ies"} matched.`, hits.slice(0, 1), records);
+    const q = exactName(name);
+    const records = rows.map((r) => ({ name: r.current_entity_name, id: r.dos_id, type: r.entity_type, created: r.initial_dos_filing_date, exact: exactName(r.current_entity_name) === q }));
+    // Only an exact name match can count against someone; similar names are listed, never scored.
+    const hits = records.filter((r) => r.exact && r.created && daysSince(r.created, now) < 365).map((r) => ({ id: "entity_new", evidence: `${r.name} filed ${r.created.slice(0, 10)} (NY)` }));
+    const exact = records.filter((r) => r.exact).length;
+    return result("ny-dos", hits.length ? "hit" : "no-evidence-found", `${exact} exact and ${records.length - exact} similar active NY name(s). Similar names are other companies and are not scored.`, hits.slice(0, 1), records);
   } catch {
     return result("ny-dos", "error", "New York open data did not respond.");
   }
@@ -278,18 +291,22 @@ export async function checkColorado(name, { fetchFn = fetch, now = new Date() } 
       getJson(fetchFn, `https://data.colorado.gov/resource/4ykn-tg5h.json?$where=${socrataLike("entityname", name)}&$limit=5`),
       getJson(fetchFn, `https://data.colorado.gov/resource/u7sb-g482.json?$where=${socrataLike("tradenamedescription", name)}&$limit=5`),
     ]);
+    const q = exactName(name);
+    const clean = exactName;
     const records = [
-      ...entities.map((r) => ({ name: r.entityname, status: r.entitystatus, created: r.entityformdate, id: r.entityid, kind: "entity" })),
-      ...trade.map((r) => ({ name: r.tradenamedescription, registrant: r.registrantorganization, status: r.entitystatus, created: r.entityformdate, id: r.entityid, kind: "trade name" })),
+      ...entities.map((r) => ({ name: r.entityname, status: r.entitystatus, created: r.entityformdate, id: r.entityid, kind: "entity", exact: clean(r.entityname) === q })),
+      ...trade.map((r) => ({ name: r.tradenamedescription, registrant: r.registrantorganization, status: r.entitystatus, created: r.entityformdate, id: r.entityid, kind: "trade name", exact: clean(r.tradenamedescription) === q })),
     ];
     if (!records.length) return result("co-sos", "no-evidence-found", "No Colorado entity or trade name with this name.");
     const hits = [];
-    const bad = records.filter((r) => r.status && !/^(good|exists)/i.test(r.status));
+    // Only exact name matches can count; similar names are other companies.
+    const bad = records.filter((r) => r.exact && r.status && !/^(good|exists)/i.test(r.status));
     if (bad.length) hits.push({ id: "entity_bad_status", evidence: bad.map((r) => `${r.name}: ${r.status} (CO)`).join("; ") });
-    const fresh = records.filter((r) => r.created && daysSince(r.created, now) < 365);
+    const fresh = records.filter((r) => r.exact && r.created && daysSince(r.created, now) < 365);
     if (fresh.length) hits.push({ id: "entity_new", evidence: `${fresh[0].name} formed ${fresh[0].created.slice(0, 10)} (CO)` });
-    const dba = records.filter((r) => r.kind === "trade name" && r.registrant && normalizeName(r.registrant) !== normalizeName(r.name));
-    const detail = `${entities.length} entit${entities.length === 1 ? "y" : "ies"}, ${trade.length} trade name(s).${dba.length ? ` Trade name registered to: ${dba.map((r) => r.registrant).join(", ")}.` : ""}`;
+    const dba = records.filter((r) => r.exact && r.kind === "trade name" && r.registrant && normalizeName(r.registrant) !== normalizeName(r.name));
+    const nExact = records.filter((r) => r.exact).length;
+    const detail = `${nExact} exact and ${records.length - nExact} similar Colorado name(s); similar names are other companies and are not scored.${dba.length ? ` Trade name registered to: ${dba.map((r) => r.registrant).join(", ")}.` : ""}`;
     return result("co-sos", hits.length ? "hit" : "no-evidence-found", detail, hits, records);
   } catch {
     return result("co-sos", "error", "Colorado open data did not respond.");
@@ -307,6 +324,20 @@ export async function checkCourtListener(name, { fetchFn = fetch } = {}) {
     return result("courtlistener", "no-evidence-found", records.length ? `${json.count} federal docket(s) mention this exact name. Shown for review; not scored.` : "No federal dockets mention this exact name.", [], records);
   } catch {
     return result("courtlistener", "error", "CourtListener did not respond.");
+  }
+}
+
+export async function checkRedditDomain(domain, { fetchFn = fetch } = {}) {
+  try {
+    const json = await getJson(fetchFn, `https://api.pullpush.io/reddit/search/submission/?q=${encodeURIComponent(`"${domain}"`)}&size=10`);
+    const needle = domain.toLowerCase();
+    const records = (json.data || [])
+      .filter((x) => `${x.title} ${x.selftext || ""} ${x.url || ""}`.toLowerCase().includes(needle))
+      .map((x) => ({ name: x.title, subreddit: x.subreddit, date: new Date(x.created_utc * 1000).toISOString().slice(0, 10), url: x.permalink ? `https://www.reddit.com${x.permalink}` : null }));
+    // Shown for a person to read, never scored: coverage is partial and posts are unverified.
+    return result("pullpush", "no-evidence-found", records.length ? `${records.length} archived Reddit post(s) mention ${domain}. Read them before drawing conclusions; not scored.` : `No archived Reddit posts mention ${domain} (the archive is incomplete).`, [], records);
+  } catch {
+    return result("pullpush", "error", "Reddit archive did not respond.");
   }
 }
 
@@ -409,6 +440,7 @@ export async function assess(input, { signals, registers, cases, fetchFn = fetch
     domain ? checkCrtsh(domain, opts) : skip("crtsh", "No website given."),
     domain ? checkWayback(domain, opts) : skip("wayback", "No website given."),
     domain ? checkTranco(domain, opts) : skip("tranco", "No website given."),
+    domain ? checkRedditDomain(domain, opts) : skip("pullpush", "No website given."),
     emailDomain ? checkMailDns(emailDomain, opts) : skip("dns", "No recruiter email given."),
   ]);
 

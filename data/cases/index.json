@@ -164,6 +164,161 @@
    ]
   },
   {
+   "id": "bolarinwa-moorestown-domestic-servitude",
+   "title": "Bolaji Bolarinwa (domestic servitude, New Jersey)",
+   "typology": "labor-trafficking",
+   "period": "2015–2016",
+   "summary": "Bolaji Bolarinwa of Moorestown, New Jersey recruited two women to come to the United States, one of them on a student visa, and then forced them to do household work and childcare in her home. According to DOJ, she lured them with false promises, confiscated their passports and used threats of physical harm (including to one victim's daughter), verbal and physical abuse, isolation and constant surveillance to make them work around the clock with minimal pay, from about December 2015 to October 2016. After a two-week trial she was found guilty of two counts of forced labor, one count of alien harboring for financial gain and two counts of document servitude. In May 2025 she was sentenced to 45 months in prison, three years of supervised release, a $35,000 fine and $87,518.72 in restitution.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Bolaji Bolarinwa",
+     "kind": "person",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, D. New Jersey (jury)",
+       "action": "found guilty of two counts of forced labor, alien harboring for financial gain and two counts of document servitude",
+       "url": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+      },
+      {
+       "body": "US District Court, D. New Jersey",
+       "action": "sentenced to 45 months in prison, $35,000 fine and $87,518.72 restitution",
+       "date": "2025-05-07",
+       "url": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "exploited",
+     "place": "Moorestown, New Jersey",
+     "country": "US",
+     "lat": 39.97,
+     "lon": -74.95,
+     "note": "Forced to do round-the-clock household work and childcare in the defendant's home, with passports confiscated.",
+     "source": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Camden, New Jersey",
+     "country": "US",
+     "lat": 39.93,
+     "lon": -75.12,
+     "note": "Convicted after a two-week trial; sentenced to 45 months in May 2025.",
+     "source": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+    }
+   ],
+   "victim_origins": [],
+   "lures": [
+    {
+     "signal": "document_retention",
+     "quote_or_description": "The defendant confiscated both victims' passports.",
+     "source": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "Threats of physical harm to a victim and her daughter, verbal abuse and physical abuse.",
+     "source": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+    },
+    {
+     "signal": "isolation",
+     "quote_or_description": "Victims were kept under isolation and constant surveillance.",
+     "source": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes"
+    }
+   ],
+   "sources": [
+    {
+     "title": "New Jersey Woman Sentenced to Prison for Forced Labor and Other Federal Crimes",
+     "publisher": "US Department of Justice, Office of Public Affairs",
+     "date": "2025-05-09",
+     "url": "https://www.justice.gov/opa/pr/new-jersey-woman-sentenced-prison-forced-labor-and-other-federal-crimes",
+     "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "brandon-sartor-multistate-sex-trafficking",
+   "title": "Brandon Sartor (multi-state sex trafficking)",
+   "typology": "sex-trafficking",
+   "period": "2024–2025",
+   "summary": "Brandon Sartor of Prince George's County, Maryland initially recruited each victim by falsely promising to help them make money. From December 2024 to April 2025 he then compelled them to have sex with as many as 10 men a day across Delaware, Florida, Georgia, Maryland, Pennsylvania and South Carolina, seizing the money. DOJ says he used punching and hitting, threats to harm or kill victims or their families, and opioids that he gave and withheld so victims feared withdrawal. In August 2026 Sartor pleaded guilty in the Southern District of Florida to two counts of sex trafficking by force, fraud or coercion; sentencing was set for November 17, 2026, with a 15-year mandatory minimum.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Brandon Sartor",
+     "kind": "person",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, S.D. Florida",
+       "action": "pleaded guilty to two counts of sex trafficking by force, fraud or coercion; sentencing scheduled for 2026-11-17",
+       "date": "2026-08-27",
+       "url": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "exploited",
+     "place": "Maryland",
+     "country": "US",
+     "lat": 38.98,
+     "lon": -76.49,
+     "note": "One of six states where victims were compelled into commercial sex (state-level point).",
+     "source": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+    },
+    {
+     "stage": "exploited",
+     "place": "Georgia",
+     "country": "US",
+     "lat": 33.75,
+     "lon": -84.39,
+     "note": "One of six states where victims were compelled into commercial sex (state-level point).",
+     "source": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+    },
+    {
+     "stage": "exploited",
+     "place": "Florida",
+     "country": "US",
+     "lat": 25.76,
+     "lon": -80.19,
+     "note": "One of six states where victims were compelled into commercial sex (state-level point).",
+     "source": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Southern District of Florida",
+     "country": "US",
+     "lat": 25.76,
+     "lon": -80.19,
+     "note": "Pleaded guilty in August 2026; sentencing set for November 2026 (court city not stated; approximate point).",
+     "source": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+    }
+   ],
+   "victim_origins": [],
+   "lures": [
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "Punching and hitting, threats to harm or kill victims or their families, and giving and withholding opioids so victims feared withdrawal.",
+     "source": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Maryland Man Pleads Guilty to Sex Trafficking Offenses",
+     "publisher": "US Department of Justice, Office of Public Affairs",
+     "date": "2026-08-27",
+     "url": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses",
+     "tier": "official"
+    }
+   ]
+  },
+  {
    "id": "colombia-vaupes-domestic-servitude",
    "title": "Colombia's first domestic-servitude trafficking conviction (Vaupés to Bogotá)",
    "typology": "labor-trafficking",
@@ -247,6 +402,84 @@
      "date": "2019-01-09",
      "url": "https://www.unodc.org/unodc/en/frontpage/2019/January/first-conviction-in-colombia-for-trafficking-in-persons-for-domestic-servitude.html",
      "tier": "multilateral"
+    }
+   ]
+  },
+  {
+   "id": "delon-smith-daytona-sex-trafficking",
+   "title": "Delon Richard Smith (sex trafficking, Daytona Beach)",
+   "typology": "sex-trafficking",
+   "period": "2021–2022",
+   "summary": "Delon Richard Smith of Daytona, Florida recruited two women separately in 2021 and 2022 by offering them narcotics and an opportunity to make money. He then used threats and severe physical violence, including punching, choking and assaults with a firearm, while referring to his membership in the Bloods gang, to compel them to engage in commercial sex in the Daytona Beach area. He posted online commercial sex advertisements featuring one victim's photograph and kept all the money. Smith pleaded guilty in October 2025 to two counts of sex trafficking by force, fraud or coercion and one conspiracy count, and in February 2026 was sentenced to 327 months in prison and ordered to pay $4,800 in restitution.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Delon Richard Smith",
+     "kind": "person",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, M.D. Florida",
+       "action": "pleaded guilty to two counts of sex trafficking by force, fraud or coercion and one count of conspiracy",
+       "date": "2025-10",
+       "url": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+      },
+      {
+       "body": "US District Court, M.D. Florida",
+       "action": "sentenced to 327 months in prison and $4,800 restitution",
+       "date": "2026-01-29",
+       "url": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Florida",
+     "country": "US",
+     "lat": 29.21,
+     "lon": -81.02,
+     "note": "Two victims were recruited separately in 2021 and 2022 with offers of narcotics and a chance to make money (recruitment place not stated; approximate point).",
+     "source": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+    },
+    {
+     "stage": "exploited",
+     "place": "Daytona Beach, Florida",
+     "country": "US",
+     "lat": 29.21,
+     "lon": -81.02,
+     "note": "Compelled into commercial sex through violence and threats; advertised online.",
+     "source": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Middle District of Florida",
+     "country": "US",
+     "lat": 28.54,
+     "lon": -81.38,
+     "note": "Sentenced to 327 months in February 2026 (court city not stated; approximate point).",
+     "source": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+    }
+   ],
+   "victim_origins": [
+    "US"
+   ],
+   "lures": [
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "He punched and choked the victims and talked about his gang membership to threaten and coerce them.",
+     "source": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Florida Man Sentenced to 327 Months in Prison for Sex Trafficking Two Women",
+     "publisher": "US Department of Justice, Office of Public Affairs",
+     "date": "2026-02-02",
+     "url": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women",
+     "tier": "official"
     }
    ]
   },
@@ -1068,6 +1301,189 @@
      "date": "2025-10-29",
      "url": "https://malaymail.com/news/world/2025/10/29/india-to-repatriate-500-nationals-fleeing-myanmars-cyber-scam-hub-says-thai-pm/196399",
      "tier": "press"
+    }
+   ]
+  },
+  {
+   "id": "los-villatoros-harvesting-h2a-forced-labor",
+   "title": "Los Villatoros Harvesting (Mexican H-2A farmworkers)",
+   "typology": "labor-trafficking",
+   "period": "2015–2017",
+   "summary": "Los Villatoros Harvesting (LVH), a farm labor contracting company, operated as a criminal enterprise between about 2015 and 2017. It fraudulently recruited Mexican nationals on short-term H-2A agricultural visas, charged exorbitant recruitment fees and lied about pay, hours, working conditions and expense reimbursement. In the US, workers were compelled to do long hours of farm labour six to seven days a week in Florida, Kentucky, Indiana, Georgia and North Carolina, for far less than they were owed. Coercion included imposed debts, confiscated passports, crowded and unsanitary housing, isolation, verbal abuse and threats of arrest, deportation and harm to family in Mexico. In June 2026 Alexander Villatoro Moreno was sentenced to 70 months in prison after pleading guilty to RICO conspiracy; company owner Bladimir Moreno had been sentenced to 118 months in 2022, and co-defendants received 41 months, 37 months and 8 months' home detention.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Los Villatoros Harvesting (LVH)",
+     "kind": "company",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, M.D. Florida",
+       "action": "operated as a criminal enterprise in RICO forced-labor conspiracy (per DOJ)",
+       "date": "2026-06-09",
+       "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+      }
+     ]
+    },
+    {
+     "name": "Alexander Villatoro Moreno",
+     "kind": "person",
+     "jurisdiction": "MX",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, M.D. Florida",
+       "action": "pleaded guilty to RICO conspiracy; sentenced to 70 months in prison and three years of supervised release",
+       "date": "2026-06-09",
+       "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+      }
+     ]
+    },
+    {
+     "name": "Bladimir Moreno",
+     "kind": "person",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, M.D. Florida",
+       "action": "company owner; previously sentenced to 118 months in prison (2022) and ordered to pay over $175,000 restitution",
+       "date": "2022",
+       "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+      }
+     ]
+    },
+    {
+     "name": "Efrain Cabrera Rodas",
+     "kind": "person",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, M.D. Florida",
+       "action": "previously sentenced to 41 months in prison",
+       "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+      }
+     ]
+    },
+    {
+     "name": "Christina Gamez",
+     "kind": "person",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, M.D. Florida",
+       "action": "previously sentenced to 37 months in prison",
+       "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+      }
+     ]
+    },
+    {
+     "name": "Guadalupe Mendes Mendoza",
+     "kind": "person",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, M.D. Florida",
+       "action": "previously sentenced to 8 months of home detention",
+       "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Mexico",
+     "country": "MX",
+     "lat": 19.43,
+     "lon": -99.13,
+     "note": "Workers were fraudulently recruited in Mexico for H-2A visas and charged exorbitant recruitment fees (country-level point).",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+     "stage": "exploited",
+     "place": "Florida",
+     "country": "US",
+     "lat": 27.95,
+     "lon": -82.46,
+     "note": "Compelled to do farm work; LVH also moved workers to Kentucky, Indiana, Georgia and North Carolina (state-level point).",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+     "stage": "exploited",
+     "place": "Kentucky",
+     "country": "US",
+     "lat": 38.2,
+     "lon": -84.87,
+     "note": "One of five states where workers were compelled to labour (state-level point).",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+     "stage": "exploited",
+     "place": "North Carolina",
+     "country": "US",
+     "lat": 35.78,
+     "lon": -78.64,
+     "note": "One of five states where workers were compelled to labour (state-level point).",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Middle District of Florida",
+     "country": "US",
+     "lat": 27.95,
+     "lon": -82.46,
+     "note": "Prosecuted by the US Attorney's Office for the Middle District of Florida; 70-month sentence announced June 2026 (court city not stated; approximate point).",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    }
+   ],
+   "victim_origins": [
+    "MX"
+   ],
+   "lures": [
+    {
+     "signal": "visa_fraud",
+     "quote_or_description": "Defendants \"fraudulently recruited Mexican nationals to come into the United States on short-term, H-2A agricultural visas\" and lied about pay, hours and conditions.",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+     "signal": "upfront_fee",
+     "quote_or_description": "Workers were charged exorbitant recruitment fees.",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+     "signal": "debt_bondage",
+     "quote_or_description": "Defendants imposed debts on the workers.",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+     "signal": "document_retention",
+     "quote_or_description": "Workers' passports were confiscated.",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "Workers were kept in \"crowded, unsanitary and degrading living conditions\".",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "Threats of arrest, jail, deportation and harm to family members in Mexico.",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    },
+    {
+     "signal": "isolation",
+     "quote_or_description": "Workers were isolated from contact with people outside LVH.",
+     "source": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Illegal Alien Sentenced in Multi-State Racketeering Conspiracy Involving the Forced Labor of Mexican Workers",
+     "publisher": "US Department of Justice, Office of Public Affairs",
+     "date": "2026-06-09",
+     "url": "https://www.justice.gov/opa/pr/illegal-alien-sentenced-multi-state-racketeering-conspiracy-involving-forced-labor-mexican",
+     "tier": "official"
     }
    ]
   },

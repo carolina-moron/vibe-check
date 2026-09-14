@@ -1,0 +1,78 @@
+{
+  "id": "delon-smith-daytona-sex-trafficking",
+  "title": "Delon Richard Smith (sex trafficking, Daytona Beach)",
+  "typology": "sex-trafficking",
+  "period": "2021–2022",
+  "summary": "Delon Richard Smith of Daytona, Florida recruited two women separately in 2021 and 2022 by offering them narcotics and an opportunity to make money. He then used threats and severe physical violence, including punching, choking and assaults with a firearm, while referring to his membership in the Bloods gang, to compel them to engage in commercial sex in the Daytona Beach area. He posted online commercial sex advertisements featuring one victim's photograph and kept all the money. Smith pleaded guilty in October 2025 to two counts of sex trafficking by force, fraud or coercion and one conspiracy count, and in February 2026 was sentenced to 327 months in prison and ordered to pay $4,800 in restitution.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Delon Richard Smith",
+      "kind": "person",
+      "jurisdiction": "US",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, M.D. Florida",
+          "action": "pleaded guilty to two counts of sex trafficking by force, fraud or coercion and one count of conspiracy",
+          "date": "2025-10",
+          "url": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+        },
+        {
+          "body": "US District Court, M.D. Florida",
+          "action": "sentenced to 327 months in prison and $4,800 restitution",
+          "date": "2026-01-29",
+          "url": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Florida",
+      "country": "US",
+      "lat": 29.21,
+      "lon": -81.02,
+      "note": "Two victims were recruited separately in 2021 and 2022 with offers of narcotics and a chance to make money (recruitment place not stated; approximate point).",
+      "source": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+    },
+    {
+      "stage": "exploited",
+      "place": "Daytona Beach, Florida",
+      "country": "US",
+      "lat": 29.21,
+      "lon": -81.02,
+      "note": "Compelled into commercial sex through violence and threats; advertised online.",
+      "source": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Middle District of Florida",
+      "country": "US",
+      "lat": 28.54,
+      "lon": -81.38,
+      "note": "Sentenced to 327 months in February 2026 (court city not stated; approximate point).",
+      "source": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+    }
+  ],
+  "victim_origins": [
+    "US"
+  ],
+  "lures": [
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "He punched and choked the victims and talked about his gang membership to threaten and coerce them.",
+      "source": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Florida Man Sentenced to 327 Months in Prison for Sex Trafficking Two Women",
+      "publisher": "US Department of Justice, Office of Public Affairs",
+      "date": "2026-02-02",
+      "url": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women",
+      "tier": "official"
+    }
+  ]
+}
