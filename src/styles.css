@@ -384,6 +384,9 @@ footer.site p { max-width: 90ch; }
 .story { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end; padding: 28px 0 8px; }
 .story h1 { max-width: 16ch; margin: 0; }
 .story .sub { margin-top: 12px; max-width: 46ch; }
+.story.hero-full { grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: center; padding: 60px 0; min-height: 60vh; }
+.story.hero-full h1.hero-text { max-width: none; font-size: clamp(2.4rem, 2rem + 4vw, 4.2rem); line-height: 1.1; letter-spacing: -0.02em; }
+.check-blue { color: var(--accent); }
 .home .kinds { margin-top: 20px; }
 .home .kind { min-height: 138px; }
 @media (max-width: 860px) {

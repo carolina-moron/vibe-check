@@ -936,10 +936,10 @@ function viewCheck(kind = "") {
     </section>
     ${kindsNav}` : `
     <div class="home">
-      <section class="story">
+      <section class="story hero-full">
         <div>
           <div class="eyebrow mono">Vibe Check</div>
-          <h1>Something feels off? Check the vibe.</h1>
+          <h1 class="hero-text">Something feels off? <span class="check-blue">Check</span> the vibe.</h1>
           <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. <strong>Nothing you enter is stored unless you choose to submit it, and if you do, it will be anonymous.</strong></p>
         </div>
       </section>
