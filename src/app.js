@@ -936,16 +936,17 @@ function viewCheck(kind = "") {
     </section>
     ${kindsNav}` : `
     <div class="home">
-      <figure class="figure-band" aria-label="Drawing: a loose thread that loops back and tightens into a knot">
-        <canvas id="figure" aria-hidden="true"></canvas>
-        <figcaption class="figure-caption">Fig. 1 — an offer, a loop, a knot</figcaption>
-      </figure>
       <section class="story">
         <div>
+          <div class="eyebrow mono">Vibe Check</div>
           <h1>Something feels off? Check the vibe.</h1>
           <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. <strong>Nothing you enter is stored unless you choose to submit it, and if you do, it will be anonymous.</strong></p>
         </div>
       </section>
+      <figure class="figure-band" aria-label="Drawing: a loose thread that loops back and tightens into a knot">
+        <canvas id="figure" aria-hidden="true"></canvas>
+        <figcaption class="figure-caption">Fig. 1 — an offer, a loop, a knot</figcaption>
+      </figure>
       <div class="kinds-head">
         <h2>Vibe Checker</h2>
         <a class="ghostlink" href="#/report">Report wrong vibes</a>
@@ -1231,21 +1232,21 @@ function viewReport() {
     <section class="hero small">
       <div class="eyebrow mono">Anonymous report</div>
       <h1>Report wrong vibes</h1>
-      <p class="lede">Something felt off? Tell us about a person, account, recruiter, agency, landlord or offer. Reports are anonymous: we never ask who you are, your details are removed from your story in this browser before anything is sent, and you see exactly what will be sent first.</p>
+      <p class="lede">Something felt off? Tell us about anything suspicious — a person, account, message, company, job offer, investment, romance, housing or scam. Reports are anonymous: we never ask who you are, your details are removed in this browser before anything is sent, and you see exactly what will be sent first.</p>
     </section>
     <div class="callout red"><strong>If you are in danger or can't leave, call for help first.</strong> <a href="#/help">Find the hotline for your country</a>, or call local emergency services. Use a device and connection you feel safe on. The <em>Quick exit</em> button at the top leaves this site immediately.</div>
     <form id="report" class="panel">
-      <h2>About the offer</h2>
+      <h2>What type of wrong vibe?</h2>
       <div class="grid3">
-        <label>Company or agency name, as they presented it <input name="company" autocomplete="off"></label>
-        <label>Their website <input name="website" autocomplete="off"></label>
-        <label>Their email address <input name="recruiterEmail" autocomplete="off"><span class="fine">Only the domain is kept (e.g. gmail.com).</span></label>
+        <label>Type of report <select name="type" required><option value="">Choose…</option><option value="job">Job or work opportunity</option><option value="romance">Online relationship or dating</option><option value="investment">Investment or money scheme</option><option value="housing">Housing or rental</option><option value="scam">Scam or fraud</option><option value="grooming">Online grooming</option><option value="company">Suspicious company</option><option value="other">Something else</option></select></label>
+        <label>Person's name or company name <input name="company" autocomplete="off"></label>
+        <label>Their website or profile <input name="website" autocomplete="off"></label>
       </div>
       <div class="grid3">
-        <label>Where you saw it
-          <select name="platform"><option value="">Choose…</option>${["Facebook", "Instagram", "TikTok", "Telegram", "WhatsApp", "LinkedIn", "Handshake", "Indeed", "Job board (other)", "Recruitment agency", "Friend or relative", "Other"].map((p) => `<option>${p}</option>`).join("")}</select></label>
-        <label>Country you were recruited in <input name="recruitedCountry" list="countries" autocomplete="off"></label>
-        <label>Country you were sent to or offered work in <input name="destinationCountry" list="countries" autocomplete="off"></label>
+        <label>Where did you meet them or find it
+          <select name="platform"><option value="">Choose…</option>${["Facebook", "Instagram", "TikTok", "Telegram", "WhatsApp", "Discord", "LinkedIn", "Dating app", "Handshake", "Indeed", "Job board (other)", "Website", "Phone call", "SMS", "Email", "Friend", "Other"].map((p) => `<option>${p}</option>`).join("")}</select></label>
+        <label>Their country or location <input name="recruiterCountry" list="countries" autocomplete="off"></label>
+        <label>Location they mentioned <input name="destinationCountry" list="countries" autocomplete="off"></label>
       </div>
       <datalist id="countries">${["US", "GB", "TH", "KH", "MM", "LA", "MY", "PH", "AE", "SA", "QA", "RU", "IN", "NG", "KE", "UG", "ET", "GH", "MX", "GT", "HN", "BR", "PL", "SK", "RO", "VN", "CN", "ID", "LK", "NP", "PK", "BD"].map((c) => `<option value="${esc(country(c))}">`).join("")}</datalist>
       <label class="short">Month it happened <input name="incidentMonth" type="month"></label>
@@ -1264,7 +1265,7 @@ function viewReport() {
       <label class="short"><input type="file" name="photo" accept="image/*"></label>
       <p id="hash" class="mono fine"></p>
 
-      <label class="check consent"><input type="checkbox" name="consent" required> I agree that this anonymous report can be stored and used, in aggregate, to warn job seekers and for research. It won't be published word for word.</label>
+      <label class="check consent"><input type="checkbox" name="consent" required> I agree that this anonymous report can be stored and used, in aggregate, to warn others and for research. It won't be published word for word.</label>
       <div class="btns"><button class="primary" type="submit">Preview what will be sent</button></div>
     </form>
     <div id="preview" aria-live="polite"></div>`;
