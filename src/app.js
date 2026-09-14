@@ -946,9 +946,9 @@ function viewCheck(kind = "") {
           <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. <strong>Nothing you enter is stored unless you choose to submit it, and if you do, it will be anonymous.</strong></p>
         </div>
       </section>
-      <figure class="figure-band" aria-label="Animation: a rotating globe showing trafficking corridors as dots and connections">
+      <figure class="figure-band" aria-label="Animation: an expanding cyber network showing threat actor connections to compromised hosts">
         <canvas id="figure" aria-hidden="true"></canvas>
-        <figcaption class="figure-caption">Fig. 1 — trafficking corridors, global network</figcaption>
+        <figcaption class="figure-caption">Fig. 1 — threat propagation, network expansion</figcaption>
       </figure>
       <div class="kinds-head">
         <h2>Vibe Checker</h2>
