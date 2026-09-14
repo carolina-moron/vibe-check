@@ -1,10 +1,10 @@
-// The home figure: a single blue pencil line drawn across the sheet. It starts as a loose, easy
-// thread (an offer), then loops back on itself and tightens into a knot (the trap), and the
-// line continues on, taut. Drawn on a 2D canvas with a pencil brush: many faint, jittered
-// passes rather than one clean stroke. Original to Vibe Check.
-// Holds as a finished drawing under prefers-reduced-motion.
+// The home figure: a network expanding from a central point, showing connections
+// and growth patterns. Nodes branch out, connect, and spread. Some are highlighted
+// to show bad actors in a network. Drawn on a 2D canvas with soft lines and fading.
+// Original to Vibe Check — replaces the pencil knot.
 
 const INK = [42, 102, 184]; // logo blue
+const WARN = [179, 38, 30]; // warning red
 
 function rng(seed) {
   return () => {
@@ -15,46 +15,57 @@ function rng(seed) {
   };
 }
 
-// Path in unit space (x 0..1, y around 0): drift, easy wave, a widening loop, three tightening
-// coils, then a straight taut line to the edge.
-function pathPoints(n = 1400) {
-  const pts = [];
-  for (let i = 0; i <= n; i++) {
-    const t = i / n;
-    let x, y;
-    if (t < 0.38) {
-      const u = t / 0.38;
-      x = 0.04 + u * 0.4;
-      y = Math.sin(u * Math.PI * 2) * 0.07 * (1 - u * 0.4) + Math.sin(u * Math.PI * 4) * 0.006;
-    } else if (t < 0.78) {
-      const u = (t - 0.38) / 0.4;
-      const turns = 3.2 * Math.PI * 2;
-      const r = 0.11 * Math.pow(1 - u, 1.6) + 0.012;
-      const a = u * turns - Math.PI / 2;
-      // starts at the bottom of its first turn, exactly where the wave left off (y = 0)
-      x = 0.44 + u * 0.12 + Math.cos(a) * r * 0.85;
-      y = (Math.sin(a) + 1) * r - 0.024 * u;
-    } else {
-      // taut line, leaving from exactly where the last coil ends
-      const u = (t - 0.78) / 0.22;
-      const aEnd = 3.2 * Math.PI * 2 - Math.PI / 2;
-      const xEnd = 0.56 + Math.cos(aEnd) * 0.012 * 0.85, yEnd = (Math.sin(aEnd) + 1) * 0.012 - 0.024;
-      x = xEnd + u * (0.96 - xEnd);
-      y = yEnd * (1 - Math.min(1, u * 6));
+// Generate network nodes and connections
+function buildNetwork(nodeCount = 12) {
+  const nodes = [];
+  const R = rng(42);
+
+  // Central node at origin
+  nodes.push({ id: 0, x: 0.5, y: 0.5, depth: 0, isBad: true });
+
+  // Spread nodes outward in waves
+  let nodeId = 1;
+  for (let depth = 1; depth <= 3; depth++) {
+    const nodesAtDepth = Math.floor(depth * 3);
+    for (let i = 0; i < nodesAtDepth && nodeId < nodeCount; i++) {
+      const angle = (i / nodesAtDepth) * Math.PI * 2 + (R() - 0.5) * 0.3;
+      const dist = 0.15 + depth * 0.15 + (R() - 0.5) * 0.08;
+      const isBad = R() < 0.2; // 20% of nodes are "bad actors"
+      nodes.push({
+        id: nodeId,
+        x: 0.5 + Math.cos(angle) * dist,
+        y: 0.5 + Math.sin(angle) * dist,
+        depth,
+        isBad,
+      });
+      nodeId++;
     }
-    pts.push([x, y]);
   }
-  return pts;
+
+  // Create edges: each node connects to 1-2 closer nodes (outward) or random
+  const edges = [];
+  for (let i = 1; i < nodes.length; i++) {
+    const n = nodes[i];
+    // Connect to parent (closer node at lower depth)
+    const closer = nodes.filter((m) => m.depth < n.depth);
+    if (closer.length) {
+      const parent = closer[Math.floor(R() * closer.length)];
+      edges.push([n.id, parent.id]);
+    }
+  }
+
+  return { nodes, edges };
 }
 
 export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
   if (!canvas || !canvas.getContext) return () => {};
   const ctx = canvas.getContext("2d");
-  const pts = pathPoints();
+  const { nodes, edges } = buildNetwork(12);
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   let w = 0, h = 0, dpr = 1, start = 0, drawn = 0, raf = 0;
 
-  const toPx = ([x, y]) => [x * w, h * 0.52 + y * Math.min(w, h * 2.2)];
+  const toPx = ([x, y]) => [x * w, y * h];
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -64,60 +75,124 @@ export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, w, h);
     drawn = 0;
-    construction();
-    if (reduce) pencil(0, pts.length - 1);
+    if (reduce) drawNetwork(0, nodes.length, 1);
   }
 
-  // Faint construction marks: the axis the thread travels along, and a guide circle at the knot.
-  function construction() {
-    const R = rng(seed + 99);
-    ctx.lineWidth = 0.6;
-    ctx.strokeStyle = `rgba(${INK},0.18)`;
-    const y = h * 0.52;
-    for (let p = 0; p < 2; p++) {
+  // Draw edges up to a certain depth
+  function drawEdges(maxDepth, progress) {
+    ctx.lineWidth = 1.2;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    for (const [fromId, toId] of edges) {
+      const from = nodes[fromId];
+      const to = nodes[toId];
+
+      // Only draw if both nodes are within depth
+      if (Math.max(from.depth, to.depth) > maxDepth) continue;
+
+      const [x1, y1] = toPx([from.x, from.y]);
+      const [x2, y2] = toPx([to.x, to.y]);
+
+      const isBadEdge = from.isBad || to.isBad;
+      ctx.strokeStyle = isBadEdge
+        ? `rgba(${WARN},0.4)`
+        : `rgba(${INK},0.25)`;
+
       ctx.beginPath();
-      ctx.moveTo(w * 0.03, y + (R() - 0.5));
-      ctx.lineTo(w * 0.97, y + (R() - 0.5));
-      ctx.setLineDash([22, 5, 3, 5]);
-      ctx.stroke();
-    }
-    ctx.setLineDash([]);
-    const [cx, cy] = toPx([0.5, 0.03]);
-    const rad = 0.13 * Math.min(w, h * 2.2);
-    for (let p = 0; p < 3; p++) {
-      ctx.beginPath();
-      ctx.ellipse(cx + (R() - 0.5) * 3, cy + (R() - 0.5) * 3, rad * (0.97 + R() * 0.06), rad * (0.9 + R() * 0.06), R() * 0.2, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(${INK},${0.06 + R() * 0.05})`;
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
       ctx.stroke();
     }
   }
 
-  // A pencil pass between two point indices: several jittered, translucent strokes.
-  function pencil(from, to) {
-    const R = rng(seed + from);
-    for (let pass = 0; pass < 4; pass++) {
-      ctx.beginPath();
-      const j = pass === 0 ? 0.25 : 0.9;
-      for (let i = from; i <= to; i++) {
-        const [x, y] = toPx(pts[i]);
-        const px = x + (R() - 0.5) * j, py = y + (R() - 0.5) * j;
-        i === from ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+  // Draw nodes
+  function drawNodes(maxDepth, progress) {
+    for (const node of nodes) {
+      if (node.depth > maxDepth) continue;
+
+      const [px, py] = toPx([node.x, node.y]);
+
+      // Size grows slightly with progress
+      const baseSize = node.depth === 0 ? 8 : 5;
+      const size = baseSize * (0.6 + progress * 0.4);
+
+      // Center node is always emphasized
+      if (node.id === 0) {
+        ctx.fillStyle = `rgba(${WARN},0.9)`;
+        ctx.beginPath();
+        ctx.arc(px, py, size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Pulsing ring around center
+        ctx.strokeStyle = `rgba(${WARN},${0.3 * progress})`;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(px, py, size + 6 * progress, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (node.isBad) {
+        // Bad actor nodes in warning color
+        ctx.fillStyle = `rgba(${WARN},${0.6 + progress * 0.3})`;
+        ctx.beginPath();
+        ctx.arc(px, py, size, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        // Normal nodes in blue
+        ctx.fillStyle = `rgba(${INK},${0.5 + progress * 0.3})`;
+        ctx.beginPath();
+        ctx.arc(px, py, size, 0, Math.PI * 2);
+        ctx.fill();
       }
-      ctx.lineWidth = pass === 0 ? 1.5 : 0.7;
-      ctx.lineCap = "round"; ctx.lineJoin = "round";
-      ctx.strokeStyle = `rgba(${INK},${pass === 0 ? 0.78 : 0.16 + R() * 0.12})`;
+    }
+  }
+
+  function drawNetwork(nodeProgress, edgeProgress, opacity) {
+    ctx.clearRect(0, 0, w, h);
+
+    // Draw background guides (subtle)
+    ctx.strokeStyle = `rgba(${INK},0.05)`;
+    ctx.lineWidth = 0.5;
+    for (let i = 0; i < 4; i++) {
+      const y = (h / 3) * (i + 1);
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(w, y);
       ctx.stroke();
     }
+
+    ctx.globalAlpha = opacity;
+
+    // Reveal edges first, then nodes
+    const maxDepth = Math.floor(nodeProgress * 4);
+    drawEdges(maxDepth, edgeProgress);
+    drawNodes(maxDepth, edgeProgress);
+
+    ctx.globalAlpha = 1;
   }
 
   function frame(now) {
     if (!start) start = now;
-    const target = Math.min(pts.length - 1, Math.floor(((now - start) / duration) * (pts.length - 1)));
-    if (target > drawn) { pencil(Math.max(0, drawn - 1), target); drawn = target; }
-    if (drawn < pts.length - 1) raf = requestAnimationFrame(frame);
+    const elapsed = now - start;
+    const t = Math.min(1, elapsed / duration);
+
+    // Stagger: edges appear first, then nodes fill in
+    const nodeProgress = Math.min(1, t * 1.2);
+    const fadeIn = Math.max(0, Math.min(1, (t - 0.1) * 2)); // delay start
+
+    drawNetwork(nodeProgress, fadeIn, 1);
+
+    if (t < 1) raf = requestAnimationFrame(frame);
   }
 
-  const ro = new ResizeObserver(() => { cancelAnimationFrame(raf); start = 0; resize(); if (!reduce) raf = requestAnimationFrame(frame); });
+  const ro = new ResizeObserver(() => {
+    cancelAnimationFrame(raf);
+    start = 0;
+    resize();
+    if (!reduce) raf = requestAnimationFrame(frame);
+  });
   ro.observe(canvas);
-  return () => { cancelAnimationFrame(raf); ro.disconnect(); };
+  return () => {
+    cancelAnimationFrame(raf);
+    ro.disconnect();
+  };
 }
