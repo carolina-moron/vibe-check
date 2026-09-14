@@ -385,3 +385,25 @@ footer.site p { max-width: 90ch; }
   .figure-band { margin-inline: -16px; min-height: 0; aspect-ratio: 16 / 10; flex: none; }
   .story { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 }
+
+/* What we're seeing */
+.seeing { margin: 40px 0 16px; border-top: var(--rule); padding-top: 28px; }
+.seeing-head { display: grid; grid-template-columns: var(--label-w) minmax(0, 1fr); align-items: end; gap: 0; margin-bottom: 20px; }
+.seeing-head h2 { margin: 0; }
+.seeing-head .sub { margin: 0; max-width: 64ch; }
+.seeing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: var(--rule); border-left: var(--rule); margin-bottom: 12px; }
+.seeing-col { border-right: var(--rule); border-bottom: var(--rule); padding: 16px 18px; }
+.seeing-col h3 { margin: 0 0 10px; }
+.seeing-list { list-style: none; margin: 0; padding: 0; }
+.seeing-list li { border-top: var(--rule); }
+.seeing-list li:first-child { border-top: 0; }
+.seeing-list a { display: grid; grid-template-columns: 30px minmax(0, 1fr); column-gap: 8px; padding: 10px 0; text-decoration: none; }
+.seeing-list .rank { grid-row: 1 / span 2; font-size: var(--fs-1); font-variant-numeric: tabular-nums; padding-top: 2px; }
+.seeing-list .what { font-size: var(--fs-2); line-height: 1.3; }
+.seeing-list .fine { grid-column: 2; }
+.seeing-list a:hover .what { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.18em; }
+.kinds.compact .kind { min-height: 96px; }
+@media (max-width: 860px) {
+  .seeing-head { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .seeing-grid { grid-template-columns: minmax(0, 1fr); }
+}

@@ -1,8 +1,8 @@
 import {
   assess, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js?v=202609141404";
-import { mountFigure } from "./figure.js?v=202609141404";
-import { REPORT_ENDPOINT } from "./config.js?v=202609141404";
+} from "./engine.js?v=202609141410";
+import { mountFigure } from "./figure.js?v=202609141410";
+import { REPORT_ENDPOINT } from "./config.js?v=202609141410";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
@@ -436,6 +436,87 @@ function flsriPanel(c) {
     </section>`;
 }
 
+// ---- top concerns (home) and concern pages ---------------------------------------------
+
+async function concernData() {
+  const news = await loadNews();
+  const signalsSeen = {};
+  const bump = (id, key, n = 1) => { (signalsSeen[id] ||= { cases: 0, news: 0 })[key] += n; };
+  for (const c of cases) for (const id of new Set((c.lures || []).map((l) => l.signal))) bump(id, "cases");
+  for (const [id, n] of Object.entries(news.aggregates.signals)) bump(id, "news", n);
+  const topSignals = Object.entries(signalsSeen)
+    .map(([id, v]) => ({ id, ...v, score: v.cases * 3 + v.news }))
+    .sort((a, b) => b.score - a.score).slice(0, 6);
+  const topTyp = Object.entries(news.aggregates.typologies).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  const topRoutes = news.aggregates.corridors.slice(0, 5);
+  return { news, topSignals, topTyp, topRoutes };
+}
+
+async function renderSeeing() {
+  const el = $("#seeing"); if (!el) return;
+  let d;
+  try { d = await concernData(); } catch { el.hidden = true; return; }
+  const updated = new Date(d.news.generated).toISOString().slice(0, 10);
+  el.innerHTML = `
+    <div class="seeing-head">
+      <h2>What we're seeing</h2>
+      <p class="sub">Among other things, these are the top concerns and warning signs in the data we've collected: ${cases.length} documented cases and ${d.news.n_articles} recent news reports (updated ${esc(updated)}). Click through to see where each one comes from.</p>
+    </div>
+    <div class="seeing-grid">
+      <div class="seeing-col">
+        <h3>Top warning signs</h3>
+        <ol class="seeing-list">${d.topSignals.map((x, i) => `
+          <li><a href="#/concern/${esc(x.id)}"><span class="rank">${String(i + 1).padStart(2, "0")}</span><span class="what">${esc(signalById[x.id]?.label || x.id)}</span><span class="fine">${x.cases ? `${x.cases} case${x.cases > 1 ? "s" : ""}` : ""}${x.cases && x.news ? " · " : ""}${x.news ? `${x.news} news report${x.news > 1 ? "s" : ""}` : ""}</span></a></li>`).join("")}
+        </ol>
+      </div>
+      <div class="seeing-col">
+        <h3>Top threats in the news</h3>
+        <ol class="seeing-list">${d.topTyp.map(([t, n], i) => `
+          <li><a href="#/news/typ/${esc(t)}"><span class="rank">${String(i + 1).padStart(2, "0")}</span><span class="what">${esc(NEWS_TYP[t] || t)}</span><span class="fine">${n} report${n > 1 ? "s" : ""}</span></a></li>`).join("")}
+        </ol>
+      </div>
+      <div class="seeing-col">
+        <h3>Routes in the news</h3>
+        <ol class="seeing-list">${d.topRoutes.map((c, i) => `
+          <li><a href="#/news/country/${esc(c.from)}"><span class="rank">${String(i + 1).padStart(2, "0")}</span><span class="what">${esc(country(c.from))} → ${esc(country(c.to))}</span><span class="fine">${c.count} report${c.count > 1 ? "s" : ""}</span></a></li>`).join("")}
+        </ol>
+      </div>
+    </div>
+    <p class="fine">Cases are researched from official and press sources; news patterns are read automatically from headlines and can be wrong. Anonymous reports submitted here will be added once collection is switched on. <a href="#/methodology">How this is built</a>.</p>`;
+}
+
+async function viewConcern(id) {
+  const sig = signalById[id];
+  if (!sig) { main.innerHTML = `<section class="hero small"><div class="eyebrow">Concern</div><h1>Not found</h1><p class="lede"><a href="#/">Back to the check</a></p></section>`; return; }
+  const news = await loadNews();
+  const caseHits = cases.flatMap((c) => (c.lures || []).filter((l) => l.signal === id).map((l) => ({ c, l })));
+  const newsHits = news.articles.filter((a) => a.signals.includes(id));
+  const kinds = Object.entries(KINDS).filter(([, k]) => k.questions.includes(id));
+  main.innerHTML = `
+    <p class="crumb"><a href="#/">← What we're seeing</a></p>
+    <section class="hero small">
+      <div class="eyebrow">Warning sign · ${esc(signals.categories[sig.category])}</div>
+      <h1>${esc(sig.label)}</h1>
+      <p class="lede">${esc(sig.why)}</p>
+    </section>
+    <div class="dash">
+      <section class="panel">
+        <h2>In documented cases</h2>
+        ${caseHits.length ? `<ul class="lures">${caseHits.map(({ c, l }) => `<li><a href="#/case/${esc(c.id)}"><strong>${esc(c.title)}</strong></a><p>${esc(l.quote_or_description)}</p>${l.source ? `<span class="fine">${ext(l.source, "source")}</span>` : ""}</li>`).join("")}</ul>` : `<p class="fine">Not recorded in the documented cases.</p>`}
+      </section>
+      <section class="panel">
+        <h2>In recent news</h2>
+        ${newsHits.length ? `<ul class="articles">${newsHits.slice(0, 12).map((a) => `<li><span class="mono fine">${esc(a.date || "")} · ${esc(a.source)}</span><h3>${ext(a.url, a.title)}</h3></li>`).join("")}</ul>${newsHits.length > 12 ? `<p class="fine">${newsHits.length - 12} more on <a href="#/news">News patterns</a>.</p>` : ""}` : `<p class="fine">Not found in the last ${news.window_days} days of coverage. Short news snippets undercount warning signs.</p>`}
+      </section>
+      <section class="panel span2">
+        <h2>Check your own situation</h2>
+        <p class="fine">These checks look for this warning sign:</p>
+        <nav class="kinds compact" aria-label="Checks that look for this">${(kinds.length ? kinds : Object.entries(KINDS)).map(([k, x]) => `<a class="kind" href="#/check/${k}"><span class="ki" aria-hidden="true">${KIND_ICON[k]}</span><strong>${esc(x.label)}</strong></a>`).join("")}</nav>
+        <p class="fine">If this is happening to you now, <a href="#/help">get help</a>.</p>
+      </section>
+    </div>`;
+}
+
 // ---- views: help -----------------------------------------------------------------------
 
 const telHref = (v) => `tel:${String(v).replace(/[^\d+]/g, "")}`;
@@ -598,11 +679,12 @@ const hbars = (obj, labels, max = null) => {
   return rows.length ? `<ul class="hbars">${rows.map(([k, n]) => `<li><span>${esc(labels[k] || k)}</span><span class="hb"><i style="width:${Math.round((n / top) * 100)}%"></i></span><span class="mono">${n}</span></li>`).join("")}</ul>` : `<p class="muted">None detected.</p>`;
 };
 
-async function viewNews() {
+async function viewNews(arg = "") {
   main.innerHTML = `<section class="hero small"><div class="eyebrow mono">News patterns</div><h1>What the news is reporting</h1><p class="muted">Loading…</p></section>`;
   const n = await loadNews();
   const a = n.aggregates;
-  const state = { country: null, typology: null, limit: 20 };
+  const [fk, fv] = String(arg).split("/");
+  const state = { country: fk === "country" ? fv : null, typology: fk === "typ" ? fv : null, limit: 20 };
   const gen = new Date(n.generated);
 
   main.innerHTML = `
@@ -725,10 +807,12 @@ async function viewNews() {
     }).join("") || `<li class="muted">No articles match.</li>`;
   };
   $("#more").addEventListener("click", () => { state.limit += 20; renderArticles(); });
+  if (state.typology) $("#nf-typ").value = state.typology;
   const setCountry = (k) => { state.country = k; state.limit = 20; renderArticles(); if (k) $("#articles").scrollIntoView({ behavior: "smooth", block: "start" }); };
   $("#nf-typ").addEventListener("change", (e) => { state.typology = e.target.value || null; state.limit = 20; renderArticles(); });
   main.querySelectorAll("[data-country]").forEach((b) => b.addEventListener("click", () => setCountry(b.dataset.country)));
   renderArticles();
+  if (state.country || state.typology) $("#articles").closest("section").scrollIntoView();
 }
 
 // ---- views: live check -----------------------------------------------------------------
@@ -789,6 +873,7 @@ function viewCheck(kind = "") {
         </div>
       </section>
       ${kindsNav}
+      <section class="seeing" id="seeing" aria-live="polite"></section>
     </div>`) + `
     ${k ? `
     <form id="check" class="panel">
@@ -809,7 +894,7 @@ function viewCheck(kind = "") {
       <p class="fine">We check organisations, websites and email domains, never a private person's criminal record (see <a href="#/methodology">Methodology</a>). If you feel unsafe, <a href="#/help">get help now</a>.</p>
     </form>
     <div id="out" aria-live="polite"></div>` : ""}`;
-  if (!k) { figureCleanup = mountFigure($("#figure")); return; }
+  if (!k) { figureCleanup = mountFigure($("#figure")); renderSeeing(); return; }
 
   const form = $("#check");
   let photoHash = null;
@@ -1217,12 +1302,13 @@ function route() {
   resetMaps();
   figureCleanup(); figureCleanup = () => {};
   const [, view = "", arg] = (location.hash.match(/^#\/([^/]*)\/?(.*)$/) || []);
-  document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" ? "cases" : view === "" ? "check" : view)));
+  document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" ? "cases" : view === "" || view === "concern" ? "check" : view)));
   $("#helpstrip").hidden = view === "help";
   if (view === "case") viewCase(decodeURIComponent(arg));
   else if (view === "check" || view === "") viewCheck(decodeURIComponent(arg || ""));
   else if (view === "cases") viewCases();
-  else if (view === "news") viewNews();
+  else if (view === "news") viewNews(decodeURIComponent(arg || ""));
+  else if (view === "concern") viewConcern(decodeURIComponent(arg || ""));
   else if (view === "help") viewHelp();
   else if (view === "report") viewReport();
   else if (view === "methodology") viewMethodology();
