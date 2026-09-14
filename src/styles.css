@@ -1,11 +1,11 @@
-/* Digital Safety Check — navy and logo blue on light paper.
+/* Digital Safety Check — navy and logo blue on beige paper.
    Visual direction from kateebonner/personal-site (katebonner.ai): one ink, 1px rules, square corners,
    uppercase tracked lettering, a label column divided from the body, no shadows or tints.
    Fills are 45° ink hatching; the only solid fill is an ink inversion. */
 
 :root {
-  --paper: #EEF1F5;
-  --paper-2: #E4E9F0;
+  --paper: #F2ECE1;
+  --paper-2: #EAE2D4;
   --on-ink: #FFFFFF;          /* lettering on an ink fill */
   --ink: #14264A;             /* logo navy: text, rules, fills (13:1 on paper) */
   --ink-soft: #33445F;
@@ -33,8 +33,8 @@ body::before {
   content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
   background:
     radial-gradient(120% 90% at 20% 30%, rgba(255,255,248,0.10), transparent 60%),
-    radial-gradient(90% 80% at 85% 75%, rgba(40,70,120,0.05), transparent 65%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.6  0 0 0 0 0.68  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    radial-gradient(90% 80% at 85% 75%, rgba(120,95,60,0.05), transparent 65%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.6  0 0 0 0 0.55  0 0 0 0 0.45  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900'><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='4' seed='3'/><feColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.9  0 0 0 0 0.86  0 0 0 0.16 0'/></filter><rect width='100%' height='100%' filter='url(%23m)'/></svg>");
   mix-blend-mode: multiply;
 }
@@ -127,7 +127,7 @@ header.site { border-bottom: var(--rule); }
 .leaflet-bar a { background: var(--paper) !important; color: var(--ink) !important; }
 .leaflet-popup-content-wrapper, .leaflet-tooltip { background: var(--paper); color: var(--ink); border: var(--rule); }
 .leaflet-popup-tip { background: var(--paper); }
-.leaflet-control-attribution { background: #EEF1F5D9 !important; color: var(--ink); }
+.leaflet-control-attribution { background: #F2ECE1D9 !important; color: var(--ink); }
 .leaflet-control-attribution a { color: var(--ink); }
 .pin span { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: var(--c); color: var(--on-ink); font: 500 11px var(--font); border: 1.5px solid var(--paper); }
 .arrow span { display: block; color: var(--ink); font-size: 13px; line-height: 14px; text-align: center; }

@@ -1,8 +1,8 @@
 import {
   assess, considerations, parsePostingUrl, fetchPosting, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js?v=202609141429";
-import { mountFigure } from "./figure.js?v=202609141429";
-import { REPORT_ENDPOINT } from "./config.js?v=202609141429";
+} from "./engine.js?v=202609141431";
+import { mountFigure } from "./figure.js?v=202609141431";
+import { REPORT_ENDPOINT } from "./config.js?v=202609141431";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
