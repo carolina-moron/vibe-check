@@ -1,7 +1,7 @@
 import {
   assess, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js";
-import { REPORT_ENDPOINT } from "./config.js";
+} from "./engine.js?v=202609141351";
+import { REPORT_ENDPOINT } from "./config.js?v=202609141351";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
