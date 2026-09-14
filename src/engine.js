@@ -373,6 +373,43 @@ export function caseJurisdictions(c) {
   return [...new Set([...(c.entities || []).map((e) => e.jurisdiction), ...(c.journey || []).filter((j) => j.stage === "exploited" || j.stage === "laundered").map((j) => j.country)])];
 }
 
+// ---- Structural priors (ETC Forced Labor Structural Risk Index) -------------------------
+// Country-level conditions, never evidence about an entity: shown beside a case or check,
+// never added to the score. Origin-side stages read the Recruitment phase (R), destination
+// stages the Exploitation phase (E), matching FLSRI's own phase structure.
+
+const ORIGIN_STAGES = new Set(["advertised", "recruited", "transit"]);
+const DEST_STAGES = new Set(["exploited", "laundered"]);
+
+export function flsriCountry(iso2, flsri) {
+  const c = flsri?.countries?.[iso2];
+  if (!c) return { iso2, available: false, reason: "Not in the FLSRI country universe." };
+  if (!c.scored) return { iso2, available: false, name: c.name, reason: "Not scored: FLSRI leaves countries unscored when data are too thin, rather than guessing." };
+  return { iso2, available: true, ...c };
+}
+
+export function flsriRoute(c, flsri) {
+  const byCountry = new Map();
+  for (const j of c.journey || []) {
+    const role = ORIGIN_STAGES.has(j.stage) ? "origin" : DEST_STAGES.has(j.stage) ? "destination" : null;
+    if (!role) continue;
+    const row = byCountry.get(j.country) || { ...flsriCountry(j.country, flsri), roles: new Set(), stages: [] };
+    row.roles.add(role);
+    row.stages.push(j.stage);
+    byCountry.set(j.country, row);
+  }
+  for (const o of c.victim_origins || []) {
+    if (byCountry.has(o)) continue;
+    byCountry.set(o, { ...flsriCountry(o, flsri), roles: new Set(["victim origin"]), stages: [] });
+  }
+  const rows = [...byCountry.values()].map((r) => ({ ...r, roles: [...r.roles] }));
+  const origins = rows.filter((r) => r.available && r.roles.some((x) => x !== "destination"));
+  const dests = rows.filter((r) => r.available && r.roles.includes("destination"));
+  // FLSRI documents that it under-reads destination and sponsorship systems.
+  const destinationUnderRead = dests.some((d) => d.tier === "lower" || origins.some((o) => o.composite > d.composite));
+  return { rows, destinationUnderRead };
+}
+
 // ---- Complaint anonymisation -----------------------------------------------------------
 // Runs in the browser before anything leaves the device. Redacts the reporter's own
 // identifiers from free text; recruiter contact details go in their own fields on purpose.

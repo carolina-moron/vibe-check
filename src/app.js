@@ -1,10 +1,10 @@
 import {
-  assess, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash,
+  assess, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
 } from "./engine.js";
 import { REPORT_ENDPOINT } from "./config.js";
 
-const [signals, registers, { cases }] = await Promise.all(
-  ["data/signals.json", "data/registers.json", "data/cases/index.json"].map((p) => fetch(p).then((r) => r.json())),
+const [signals, registers, { cases }, flsri] = await Promise.all(
+  ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
 );
 
 // ---- helpers ---------------------------------------------------------------------------
@@ -59,6 +59,55 @@ const flagList = (flags) => flags.length ? `<ul class="flags">${flags.map((f) =>
     <div class="meta">${esc(signals.categories[f.category])}${f.evidence ? ` · <q>${esc(f.evidence)}</q>` : ""}</div>
     <div class="why">${esc(f.why)}</div>
   </li>`).join("")}</ul>` : `<p class="muted">No indicators recorded.</p>`;
+
+// ---- FLSRI structural risk -------------------------------------------------------------
+
+const FL_TIER = {
+  higher: { label: "Higher", color: "#A8472A" },
+  middle: { label: "Middle", color: "#D99A6C" },
+  lower: { label: "Lower", color: "#F0DCC8" },
+};
+const flSrc = flsri.source;
+const flLink = (label = "FLSRI") => ext(flSrc.site, label);
+const bar = (v, color = "var(--risk)") => v == null ? `<span class="muted">—</span>` : `<span class="meter"><i style="width:${Math.round(v * 100)}%;background:${color}"></i></span><span class="mono">${v.toFixed(2)}</span>`;
+const tierChip = (t) => `<span class="fltier" style="--c:${FL_TIER[t].color}">${FL_TIER[t].label}</span>`;
+
+let worldGeo = null;
+async function loadWorld() {
+  if (worldGeo) return worldGeo;
+  if (!window.topojson) throw new Error("topojson-client not loaded");
+  const topo = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then((r) => r.json());
+  const geo = topojson.feature(topo, topo.objects.countries);
+  // Rings that cross the antimeridian (Russia, Fiji) would streak across the map:
+  // shift their western longitudes east so each ring stays contiguous.
+  const fixRing = (ring) => {
+    const xs = ring.map((p) => p[0]);
+    return Math.max(...xs) - Math.min(...xs) > 180 ? ring.map(([x, y]) => [x < 0 ? x + 360 : x, y]) : ring;
+  };
+  for (const f of geo.features) {
+    const g = f.geometry; if (!g) continue;
+    if (g.type === "Polygon") g.coordinates = g.coordinates.map(fixRing);
+    if (g.type === "MultiPolygon") g.coordinates = g.coordinates.map((poly) => poly.map(fixRing));
+  }
+  worldGeo = geo;
+  return geo;
+}
+
+function flsriLayer(geo) {
+  return L.geoJSON(geo, {
+    style: (f) => {
+      const c = flsri.countries[flsri.numericToIso2[f.id]];
+      return { stroke: true, weight: 0.5, color: "#fff", fillOpacity: c?.scored ? 0.75 : 0.25, fillColor: c?.scored ? FL_TIER[c.tier].color : "#bbb" };
+    },
+    onEachFeature: (f, layer) => {
+      const iso2 = flsri.numericToIso2[f.id];
+      const c = flsriCountry(iso2, flsri);
+      layer.bindTooltip(c.available
+        ? `<strong>${esc(c.name)}</strong><br>FLSRI ${c.composite.toFixed(2)} · ${FL_TIER[c.tier].label} tier<br>Rank ${c.rank} (90% band ${c.band[0]}–${c.band[1]})${c.lowConfidence ? "<br><em>Lower confidence</em>" : ""}`
+        : `<strong>${esc(f.properties.name)}</strong><br>${esc(c.reason)}`, { sticky: true });
+    },
+  });
+}
 
 let maps = [];
 function resetMaps() { maps.forEach((m) => m.remove()); maps = []; }
@@ -125,12 +174,17 @@ function viewCases() {
     </section>
     <section class="mapcard">
       <div class="maphead">
-        <h2>Global map of recruitment journeys</h2>
+        <div><h2>Global map of recruitment journeys</h2>
+          <label class="check toggle"><input type="checkbox" id="fl-toggle"> Shade countries by structural forced-labour risk (${flLink()})</label></div>
         <div class="legend" id="legend">${Object.entries(counts).map(([t, n]) => `
           <button type="button" class="lg on" data-typ="${esc(t)}" aria-pressed="true"><i style="background:${TYPOLOGY[t].color}"></i>${esc(TYPOLOGY[t].label)} <span class="mono">${n}</span></button>`).join("")}
         </div>
       </div>
       <div id="worldmap" class="map world" role="img" aria-label="World map of case journeys"></div>
+      <div id="fl-legend" class="fllegend pad" hidden>
+        <span class="fine">FLSRI tier:</span>${Object.values(FL_TIER).map((t) => `<span><i style="background:${t.color}"></i>${t.label}</span>`).join("")}<span><i style="background:#bbb;opacity:.5"></i>Not scored</span>
+        <span class="fine">Structural conditions, not prevalence. Build ${esc(flSrc.build_date)}. Under-reads destination and sponsorship systems such as the Gulf.</span>
+      </div>
       <p class="fine pad">Pins are approximate, city or country level. Lines join the stages of each journey in order; dashed segments lead to where the case was prosecuted or sanctioned. Click a pin for the stage, or a card below for the full case.</p>
     </section>
     <section>
@@ -146,6 +200,18 @@ function viewCases() {
       (groups[c.typology] ||= []).push(g);
     });
   }
+  let flLayer = null;
+  $("#fl-toggle").addEventListener("change", async (e) => {
+    if (!map) return;
+    $("#fl-legend").hidden = !e.target.checked;
+    if (!e.target.checked) { flLayer?.remove(); return; }
+    try {
+      flLayer ||= flsriLayer(await loadWorld());
+      flLayer.addTo(map).bringToBack();
+    } catch {
+      $("#fl-legend").innerHTML = `<span class="fine">Country shapes could not be loaded.</span>`;
+    }
+  });
   $("#legend").addEventListener("click", (e) => {
     const b = e.target.closest("[data-typ]"); if (!b || !map) return;
     const on = b.getAttribute("aria-pressed") !== "true";
@@ -229,6 +295,8 @@ function viewCase(id) {
         ${cov.applicable.length ? `<ul class="reglist">${cov.applicable.map((r) => `<li><span class="acc ${ACCESS[r.access].cls}">${ACCESS[r.access].label}</span> ${ext(linkFor(r, { name: c.entities[0]?.name }), r.name)}</li>`).join("")}</ul>` : `<p class="callout">No open national register covers these jurisdictions. Only global watchlists (sanctions, Interpol) could name these entities, which is why so many compound operators surface only once sanctioned.</p>`}
       </section>
 
+      ${flsriPanel(c)}
+
       <section class="panel span2">
         <h2>Sources</h2>
         <ul class="sources">${c.sources.map((src) => `<li><span class="acc">${esc(src.tier)}</span> ${ext(src.url, src.title)} <span class="muted">· ${esc(src.publisher)}${src.date ? `, ${esc(src.date)}` : ""}</span></li>`).join("")}</ul>
@@ -240,6 +308,34 @@ function viewCase(id) {
     const g = drawJourney(map, c);
     map.fitBounds(g.getBounds().pad(0.25), { maxZoom: 6 });
   }
+}
+
+function flsriPanel(c) {
+  const { rows, destinationUnderRead } = flsriRoute(c, flsri);
+  if (!rows.length) return "";
+  const phaseFor = (r) => r.roles.includes("destination") && !r.roles.includes("origin") ? "E" : r.roles.includes("destination") ? "RE" : "R";
+  return `
+    <section class="panel span2">
+      <h2>Structural conditions along the route</h2>
+      <p class="fine">From the ETC ${flLink("Forced Labor Structural Risk Index")}. For countries where people were recruited, the Recruitment phase is the one to read; where they were exploited, the Exploitation phase. These are country conditions that make forced labour more likely. They are not evidence about anyone in this case and are not part of its score.</p>
+      <div class="tblwrap"><table class="fltable">
+        <thead><tr><th>Country</th><th>Role on route</th><th>Recruitment phase</th><th>Exploitation phase</th><th>Composite</th><th>Rank (90% band)</th></tr></thead>
+        <tbody>${rows.map((r) => r.available ? `
+          <tr><td><strong>${esc(country(r.iso2))}</strong>${r.lowConfidence ? ` <span class="acc a-plan" title="Score rests on a reduced evidence base">lower confidence</span>` : ""}</td>
+            <td>${esc(r.roles.join(", "))}</td>
+            <td class="${phaseFor(r).includes("R") ? "focus" : ""}">${bar(r.R)}</td>
+            <td class="${phaseFor(r).includes("E") ? "focus" : ""}">${bar(r.E)}</td>
+            <td>${tierChip(r.tier)} <span class="mono">${r.composite.toFixed(2)}</span></td>
+            <td class="mono">${r.rank} <span class="muted">(${r.band[0]}–${r.band[1]})</span> <span class="muted">of ${flSrc.n_scored}</span></td></tr>`
+          : `<tr><td><strong>${esc(country(r.iso2))}</strong></td><td>${esc(r.roles.join(", "))}</td><td colspan="4" class="muted">${esc(r.reason)}</td></tr>`).join("")}
+        </tbody></table></div>
+      ${destinationUnderRead ? `<p class="callout">Where people were recruited from scores higher than, or as high as, where they were exploited. That is expected: FLSRI measures origin-side conditions well and <strong>under-reads destination and sponsorship systems</strong> (tied visas, recruitment debt, brokerage, and closed zones such as compounds). A lower score for a destination is not a clean bill of health.</p>` : ""}
+      ${rows.filter((r) => r.available && r.corridors?.length && r.roles.some((x) => x !== "destination")).map((r) => `
+        <h3>Highest-risk sub-national corridors in ${esc(country(r.iso2))}</h3>
+        <p class="fine">Admin-1 regions from FLSRI's census-based sub-national layer (weights illustrative, not locked).</p>
+        <ul class="corridors">${r.corridors.slice(0, 6).map((k) => `<li><span>${esc(k.region)}</span><span>${bar(k.risk)}</span></li>`).join("")}</ul>`).join("")}
+      <p class="fine">FLSRI build ${esc(flSrc.build_date)}, imported ${esc(flSrc.imported)}. ${esc(flSrc.rank_band)}. ${esc(flSrc.citation)}</p>
+    </section>`;
 }
 
 // ---- views: live check -----------------------------------------------------------------
@@ -260,6 +356,9 @@ function viewCheck() {
       <label>Where the employer says it is based
         <select name="jurisdiction"><option value="">Not stated</option>${["US", "GB", "BR", "CA", "AE", "TH", "KH", "MM", "LA", "MY", "PH", "RU", "IN", "NG", "KE"].map((c) => `<option value="${c}">${esc(country(c))}</option>`).join("")}</select>
       </label>
+      <label>Country where the job is <span class="muted">(optional)</span>
+        <select name="workCountry"><option value="">Not stated</option>${Object.entries(flsri.countries).filter(([, c]) => c.scored).sort((a, b) => a[1].name.localeCompare(b[1].name)).map(([k]) => `<option value="${k}">${esc(country(k))}</option>`).join("")}</select>
+      </label>
       <label>Offer text <textarea name="posting" rows="6" placeholder="Paste the job ad, email or chat messages"></textarea></label>
       <div class="btns"><button class="primary" type="submit">Run checks</button><button class="ghost" type="button" id="example">Load an example</button></div>
       <p class="fine">Only organisations are checked. This tool does not search criminal records or registries about individuals (see <a href="#/methodology">Methodology</a>).</p>
@@ -272,6 +371,7 @@ function viewCheck() {
     f.website.value = "";
     f.email.value = "hr.bangkokjobs@gmail.com";
     f.jurisdiction.value = "TH";
+    f.workCountry.value = "KH";
     f.posting.value = "URGENT: customer service representatives for an online company in Thailand. No experience needed, earn $3,000 per week! Free flight and accommodation provided. Exact workplace location will be disclosed on arrival. Interviews on Telegram only. Send your passport scan and pay the visa processing fee within 48 hours.";
   });
 
@@ -282,12 +382,25 @@ function viewCheck() {
     const btn = ev.target.querySelector("[type=submit]");
     btn.disabled = true; btn.textContent = "Checking registers…";
     $("#out").innerHTML = `<p class="muted pad">Querying registers…</p>`;
-    try { renderCheck(await assess(input, { signals, registers, cases })); }
+    try { renderCheck(await assess(input, { signals, registers, cases }), input); }
     finally { btn.disabled = false; btn.textContent = "Run checks"; }
   });
 }
 
-function renderCheck(r) {
+function contextPanel(input) {
+  const rows = [
+    input.jurisdiction && { iso2: input.jurisdiction, role: "Employer says it is based in", phase: "R" },
+    input.workCountry && { iso2: input.workCountry, role: "Job is in", phase: "E" },
+  ].filter(Boolean).map((x) => ({ ...x, ...flsriCountry(x.iso2, flsri) }));
+  if (!rows.length) return "";
+  return `<section class="panel span2"><h2>Country context</h2>
+    <p class="fine">Structural forced-labour conditions from the ETC ${flLink("Forced Labor Structural Risk Index")}. This is context for weighing the indicators above. It says nothing about this employer and does not change the score.</p>
+    <ul class="context">${rows.map((r) => `<li><span class="muted">${esc(r.role)}</span> <strong>${esc(country(r.iso2))}</strong>
+      ${r.available ? `${tierChip(r.tier)} <span class="mono">composite ${r.composite.toFixed(2)}, rank ${r.rank} (${r.band[0]}–${r.band[1]})</span>
+        <div class="fine">${r.phase === "R" ? "Recruitment" : "Exploitation"} phase ${bar(r.phase === "R" ? r.R : r.E)}${r.lowConfidence ? " · lower confidence" : ""}${r.phase === "E" && r.tier !== "higher" ? " · FLSRI under-reads destination and sponsorship systems, so a lower score here is not reassurance." : ""}</div>` : `<div class="fine">${esc(r.reason)}</div>`}</li>`).join("")}</ul></section>`;
+}
+
+function renderCheck(r, input = {}) {
   const layers = ["identity", "enforcement", "domain", "priors"];
   const grouped = Object.fromEntries(layers.map((l) => [l, r.checks.filter((c) => c.meta?.layer === l)]));
   const counts = { searched: r.checks.filter((c) => c.verdict === "hit" || c.verdict === "no-evidence-found").length, failed: r.checks.filter((c) => c.verdict === "error").length };
@@ -309,6 +422,7 @@ function renderCheck(r) {
             ${c.register === "gleif" && c.records.length ? `<ul class="records">${c.records.map((d) => `<li>${ext(d.url, d.name)} <span class="muted">${esc(d.status)} · ${esc(d.jurisdiction)}${d.otherNames.length ? ` · also: ${esc(d.otherNames.map((o) => o.name).join(", "))}` : ""}</span></li>`).join("")}</ul>` : ""}
             <div class="fine">${esc(c.meta?.caveat || "")}</div></li>`).join("")}</ul>`).join("")}
       </section>
+      ${contextPanel(input)}
       <section class="panel span2"><h2>Search these by hand</h2>
         <p class="fine">These registers are public but can't be queried from a browser (they need a key, a declared client, or have no API). ${esc(r.coverage.explain)}</p>
         <ul class="reglist cols">${r.referrals.map((reg) => `<li><span class="acc ${ACCESS[reg.access].cls}">${ACCESS[reg.access].label}</span> ${ext(linkFor(reg, { name: r.input.name, domain: r.input.domain }), reg.name)}<div class="fine">${esc(reg.holds)}</div></li>`).join("")}</ul>
@@ -433,7 +547,7 @@ function viewMethodology() {
       <nav class="toc" aria-label="On this page">
         <a href="#m-principles">Principles</a><a href="#m-people">People are out of scope</a><a href="#m-score">Score and coverage</a>
         <a href="#m-signals">Risk signals</a><a href="#m-registers">Registers</a><a href="#m-cases">Case catalog</a>
-        <a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-limits">Limits</a>
+        <a href="#m-flsri">Structural risk index</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-limits">Limits</a>
       </nav>
 
       <h2 id="m-principles">Principles</h2>
@@ -479,6 +593,19 @@ function viewMethodology() {
       <p><strong>Watchlists and enforcement.</strong> The main source is OpenSanctions bulk data: free for non-commercial use, covering OFAC, UN, EU, UK, World Bank, SAM exclusions, Interpol, FBI, SEC and CFTC, with self-hosted yente for unlimited matching. After that come DOL's OFLC recruiter list and debarments, WHD wage-theft data, the DOJ press-release API and CourtListener (no approval needed since May 2026). Court dockets are shown for review but never scored, because being named in a case is not a finding.</p>
       <p><strong>Domain and email.</strong> RDAP registration age, crt.sh, Wayback CDX, Tranco, Cloudflare Radar, Spamhaus DQS, free-mail and disposable-domain lists, and MX/DMARC checks. This layer gives the most signal per dollar and catches most impersonation cases.</p>
       <p><strong>Trafficking priors.</strong> The CTDC synthetic dataset (206,000 cases, redistributable), National Human Trafficking Hotline venue tables, the ILO's 11 indicators (2025 edition) and TIP Report tiers. Priors weight a signal's significance; they are never evidence about a particular company.</p>
+
+      <h2 id="m-flsri">Structural risk: the ETC Forced Labor Structural Risk Index</h2>
+      <p>Country context comes from the Ethical Tech CoLab's ${flLink("Forced Labor Structural Risk Index")} (FLSRI), imported unchanged from its published build (${esc(flSrc.build_date)}, ${flSrc.n_scored} of ${flSrc.n_universe} countries scored).</p>
+      <p><strong>What FLSRI scores.</strong> Each country gets a 0–1 score for the structural conditions under which forced labour becomes more likely. It is organised as phase, then domain, then indicator: Recruitment (${Object.values(flsri.domains).filter((d) => d.phase === "Recruitment").map((d) => esc(d.label)).join(", ")}) and Exploitation (${Object.values(flsri.domains).filter((d) => d.phase === "Exploitation").map((d) => esc(d.label)).join(", ")}). The composite is the geometric mean of the two phases.</p>
+      <p><strong>How it's read.</strong> Scores are read in tiers, with cut points at ${flSrc.tier_cuts.join(" and ")}, each with a ${esc(flSrc.rank_band)}. Countries with too little data are left unscored, not guessed.</p>
+      <p>How the tracer uses it:</p>
+      <ul>
+        <li><strong>On case pages</strong>, recruitment and transit countries are read on the Recruitment phase and exploitation countries on the Exploitation phase. Rank bands, lower-confidence flags and the highest-risk sub-national corridors are shown.</li>
+        <li><strong>On the world map</strong>, countries can be shaded by FLSRI tier beneath the case journeys.</li>
+        <li><strong>In a live check</strong>, the country the employer claims and the country where the job is are shown as context.</li>
+        <li><strong>Never in a score.</strong> FLSRI measures conditions, not prevalence, and says nothing about any company. Adding it to the evidence score would treat where someone was recruited as evidence against an employer.</li>
+      </ul>
+      <p class="callout"><strong>Read destination scores with care.</strong> FLSRI reads origin-side structural risk well and under-reads destination and sponsorship systems: kafala-style tied status, recruitment debt and brokerage aren't yet sourced at country scale. Several wealthy migrant-destination states, including in the Gulf, score low despite well-documented risk. Almost every case here runs from a higher-scoring origin to a lower-scoring destination, which is exactly that gap. A low destination score means the index doesn't capture that pathway yet, not that the destination is safe.</p>
 
       <h2 id="m-cases">Case catalog</h2>
       <p>Cases are researched by hand from sources opened at the time of writing. Each file in <code>data/cases/</code> is validated before publishing: known typologies and statuses, ISO country codes, coordinates, https sources, and lure tags that exist in the signal taxonomy.</p>

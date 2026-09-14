@@ -143,3 +143,17 @@ test("dHash matches near-identical images and separates different ones", () => {
   assert.ok(hammingHex(dHash(a), dHash(b)) <= 4);
   assert.ok(hammingHex(dHash(a), dHash(c)) > 10);
 });
+
+test("FLSRI priors: origin and destination roles, never scored", async () => {
+  const { flsriRoute, flsriCountry } = await import("../src/engine.js");
+  const flsri = load("../data/flsri.json");
+  const c = { journey: [
+    { stage: "recruited", country: "UG" }, { stage: "exploited", country: "RU" }, { stage: "prosecuted", country: "US" },
+  ], victim_origins: ["KE"] };
+  const r = flsriRoute(c, flsri);
+  assert.deepEqual(r.rows.map((x) => [x.iso2, x.roles.join()]), [["UG", "origin"], ["RU", "destination"], ["KE", "victim origin"]]);
+  assert.equal(r.destinationUnderRead, true, "higher-risk origin feeding a lower-scored destination is flagged");
+  assert.equal(flsriCountry("ZZ", flsri).available, false);
+  assert.equal(caseEvidence({ lures: [], entities: [], journey: c.journey }, signals).points, 0);
+  for (const x of Object.values(flsri.countries)) if (x.scored) assert.ok(x.composite >= 0 && x.composite <= 1 && ["lower", "middle", "higher"].includes(x.tier));
+});
