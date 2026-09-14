@@ -386,6 +386,9 @@ footer.site p { max-width: 90ch; }
 .story .sub { margin-top: 12px; max-width: 46ch; }
 .story.hero-full { grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: center; justify-items: center; padding: 60px 24px; min-height: 60vh; text-align: center; }
 .story.hero-full > div { display: flex; flex-direction: column; gap: 20px; align-items: center; max-width: 90ch; }
+.hero-logo { display: flex; align-items: center; gap: 12px; justify-content: center; }
+.hero-logo img { width: 48px; height: 48px; }
+.hero-logo .eyebrow { margin: 0; }
 .story.hero-full h1.hero-text { max-width: none; font-size: clamp(2.4rem, 2rem + 4vw, 4.2rem); line-height: 1.1; letter-spacing: -0.02em; }
 .story.hero-full .sub { max-width: 70ch; margin-top: 0; }
 .check-blue { color: var(--accent); }

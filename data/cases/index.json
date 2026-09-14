@@ -1763,6 +1763,239 @@
    ]
   },
   {
+   "id": "nxivm-raniere-sex-trafficking",
+   "title": "NXIVM (Keith Raniere) — sex trafficking and organized crime",
+   "typology": "sex-trafficking",
+   "period": "2004–2019",
+   "summary": "NXIVM Corporation, founded by Keith Raniere, operated under the cover of a self-help and professional-development company. Federal investigations revealed an elaborate structure of coercive control, exploitation of female members, enforced debt bondage, and organized crime. Raniere and key associates were convicted in 2019–2021 on charges including racketeering, sex trafficking, forced labor, and financial crimes. The organization operated in the United States (NY, CA) and internationally (Mexico, Canada). Sayari and legal records show risk concentrated on individual leaders rather than the corporate shell, illustrating how small-business screening must traverse to beneficial owners.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "NXIVM Corporation",
+     "kind": "company",
+     "jurisdiction": "US",
+     "state": "NY",
+     "founded": "2004-02-13",
+     "names": [
+      {
+       "name": "Executive Success Programs (ESP)",
+       "type": "brand",
+       "source": "https://www.justice.gov/opa/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+      },
+      {
+       "name": "Jness",
+       "type": "brand",
+       "source": "https://www.justice.gov/opa/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+      },
+      {
+       "name": "DOS",
+       "type": "brand",
+       "source": "https://www.justice.gov/opa/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+      }
+     ],
+     "actions": [
+      {
+       "body": "US DOJ (Eastern District of New York)",
+       "action": "Charges: racketeering conspiracy, identity theft, money laundering, sex trafficking",
+       "date": "2018-03-26",
+       "url": "https://www.justice.gov/usao-edny/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+      },
+      {
+       "body": "US DOJ (Eastern District of New York)",
+       "action": "Corporate dissolution / criminal forfeiture",
+       "date": "2020-05-27",
+       "url": "https://www.justice.gov/opa/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+      }
+     ]
+    },
+    {
+     "name": "Keith Raniere",
+     "kind": "person",
+     "title": "Founder, Chief Executive",
+     "actions": [
+      {
+       "body": "US DOJ (EDNY)",
+       "action": "Convicted: racketeering, sex trafficking, forced labor, money laundering, identity theft, wire fraud",
+       "date": "2019-06-19",
+       "url": "https://www.justice.gov/opa/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+      },
+      {
+       "body": "US District Court (EDNY)",
+       "action": "Sentenced to 120 years",
+       "date": "2020-10-27",
+       "url": "https://www.justice.gov/usao-edny/pr/nxivm-founder-keith-raniere-sentenced-120-years"
+      }
+     ]
+    },
+    {
+     "name": "Clare Bronfman",
+     "kind": "person",
+     "title": "Executive Board, Primary Funder",
+     "notes": "Family connection: Bronfman wealth (liquor, real estate). Sayari flags include pep_adjacent via family ties to Edgar Miles Bronfman (former Seagram CEO).",
+     "actions": [
+      {
+       "body": "US DOJ (EDNY)",
+       "action": "Convicted: racketeering, money laundering, identity theft, wire fraud",
+       "date": "2019-06-19",
+       "url": "https://www.justice.gov/opa/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+      },
+      {
+       "body": "US District Court (EDNY)",
+       "action": "Sentenced to 81 months",
+       "date": "2020-11-04",
+       "url": "https://www.justice.gov/usao-edny/pr/nxivm-executive-clare-bronfman-sentenced-81-months-prison"
+      }
+     ]
+    },
+    {
+     "name": "Nancy Salzman",
+     "kind": "person",
+     "title": "Co-Founder, Chief Operating Officer",
+     "actions": [
+      {
+       "body": "US DOJ (EDNY)",
+       "action": "Pleaded guilty: racketeering conspiracy",
+       "date": "2019-03-13",
+       "url": "https://www.justice.gov/usao-edny/pr/nxivm-co-founder-nancy-salzman-pleads-guilty-racketeering-conspiracy"
+      },
+      {
+       "body": "US District Court (EDNY)",
+       "action": "Sentenced to 42 months",
+       "date": "2020-09-14",
+       "url": "https://www.justice.gov/usao-edny/pr/nancy-salzman-sentenced-3-5-years-prison-guilty-plea-racketeering-conspiracy"
+      }
+     ]
+    },
+    {
+     "name": "Allison Mack",
+     "kind": "person",
+     "title": "Executive Board, Recruiter",
+     "actions": [
+      {
+       "body": "US DOJ (EDNY)",
+       "action": "Pleaded guilty: racketeering conspiracy, wire fraud, forced labor",
+       "date": "2019-04-08",
+       "url": "https://www.justice.gov/usao-edny/pr/nxivm-executive-board-member-allison-mack-pleads-guilty"
+      },
+      {
+       "body": "US District Court (EDNY)",
+       "action": "Sentenced to 36 months",
+       "date": "2021-06-30",
+       "url": "https://www.justice.gov/usao-edny/pr/former-actress-allison-mack-sentenced-36-months-prison-racketeering-conspiracy-and"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Albany, NY",
+     "country": "US",
+     "lat": 42.66,
+     "lon": -73.78,
+     "note": "NXIVM headquarters. Marketed as self-help and professional development courses to attract members.",
+     "source": "https://www.justice.gov/opa/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+    },
+    {
+     "stage": "recruited",
+     "place": "United States (NY, CA) and Mexico",
+     "country": "US",
+     "lat": 37.27,
+     "lon": -119.27,
+     "note": "Inner circle (DOS — 'Dominus Obsequious Sororium') recruited women into coercive system with collateral, debt, and isolation.",
+     "source": "https://www.justice.gov/usao-edny/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+    },
+    {
+     "stage": "exploited",
+     "place": "Clifton Park, NY",
+     "country": "US",
+     "lat": 42.87,
+     "lon": -73.79,
+     "note": "Women confined to compounds, subjected to psychological manipulation, coerced into commercial sex acts, branded with Raniere's initials, held by manipulated 'collateral' (secrets, recordings, photos).",
+     "source": "https://www.justice.gov/usao-edny/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Brooklyn, NY",
+     "country": "US",
+     "lat": 40.66,
+     "lon": -73.98,
+     "note": "US District Court, Eastern District of New York. Raniere convicted June 19, 2019; sentenced to 120 years October 27, 2020. Multiple co-conspirators convicted or pleaded guilty 2019–2021.",
+     "source": "https://www.justice.gov/usao-edny/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+    }
+   ],
+   "victim_origins": [
+    "US",
+    "MX"
+   ],
+   "lures": [
+    {
+     "signal": "isolation",
+     "quote_or_description": "Women in DOS (inner circle) were isolated from family and friends, forbidden to associate outside the group, and monitored constantly. Raniere dictated who could speak to whom.",
+     "source": "https://www.justice.gov/usao-edny/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+    },
+    {
+     "signal": "debt_bondage",
+     "quote_or_description": "Members were coerced into creating 'collateral' — secrets, recordings, naked photos — that was used as leverage to keep them in the organization and compliant with orders, including labor and sex acts.",
+     "source": "https://www.justice.gov/usao-edny/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+    },
+    {
+     "signal": "payment_handling",
+     "quote_or_description": "Women paid thousands of dollars in course fees and 'coaching' payments to Raniere and his inner circle. Payments were extracted under psychological coercion.",
+     "source": "https://www.justice.gov/usao-edny/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "Victims were threatened with exposure of collateral (naked photos, personal secrets) if they tried to leave or disclosed the organization's activities.",
+     "source": "https://www.justice.gov/usao-edny/pr/nxivm-founder-keith-raniere-convicted-all-counts"
+    }
+   ],
+   "sources": [
+    {
+     "title": "NXIVM Founder Keith Raniere Convicted on All Counts",
+     "publisher": "US Department of Justice, Office of Public Affairs",
+     "date": "2019-06-19",
+     "url": "https://www.justice.gov/opa/pr/nxivm-founder-keith-raniere-convicted-all-counts",
+     "tier": "official"
+    },
+    {
+     "title": "NXIVM Founder Keith Raniere Sentenced to 120 Years in Prison",
+     "publisher": "US Department of Justice, USAO EDNY",
+     "date": "2020-10-27",
+     "url": "https://www.justice.gov/usao-edny/pr/nxivm-founder-keith-raniere-sentenced-120-years",
+     "tier": "official"
+    },
+    {
+     "title": "NXIVM Executive Clare Bronfman Sentenced to 81 Months in Prison",
+     "publisher": "US Department of Justice, USAO EDNY",
+     "date": "2020-11-04",
+     "url": "https://www.justice.gov/usao-edny/pr/nxivm-executive-clare-bronfman-sentenced-81-months-prison",
+     "tier": "official"
+    },
+    {
+     "title": "Nancy Salzman Sentenced to 3.5 Years in Prison on Guilty Plea to Racketeering Conspiracy",
+     "publisher": "US Department of Justice, USAO EDNY",
+     "date": "2020-09-14",
+     "url": "https://www.justice.gov/usao-edny/pr/nancy-salzman-sentenced-3-5-years-prison-guilty-plea-racketeering-conspiracy",
+     "tier": "official"
+    },
+    {
+     "title": "Former Actress Allison Mack Sentenced to 36 Months in Prison",
+     "publisher": "US Department of Justice, USAO EDNY",
+     "date": "2021-06-30",
+     "url": "https://www.justice.gov/usao-edny/pr/former-actress-allison-mack-sentenced-36-months-prison-racketeering-conspiracy-and",
+     "tier": "official"
+    },
+    {
+     "title": "Sayari Investigation Handoff — NXIVM Entity Search",
+     "publisher": "Ethical Tech Collaborative",
+     "date": "2026-09-14",
+     "url": "https://graph.sayari.com/resource/entity/yv2878K11H0IVHLZM-SMBg",
+     "tier": "ngo"
+    }
+   ]
+  },
+  {
    "id": "operation-blooming-onion",
    "title": "Operation Blooming Onion (USA v. Patricio et al.)",
    "typology": "labor-trafficking",

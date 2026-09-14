@@ -938,7 +938,10 @@ function viewCheck(kind = "") {
     <div class="home">
       <section class="story hero-full">
         <div>
-          <div class="eyebrow mono">Vibe Check</div>
+          <div class="hero-logo">
+            <img src="assets/logo-mark.svg" alt="Vibe Check" width="48" height="48">
+            <div class="eyebrow mono">Vibe Check</div>
+          </div>
           <h1 class="hero-text">Something feels off? <span class="check-blue">Check</span> the vibe.</h1>
           <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. <strong>Nothing you enter is stored unless you choose to submit it, and if you do, it will be anonymous.</strong></p>
         </div>
@@ -1583,6 +1586,11 @@ function viewTeam() {
     <article class="panel">
       <h2>Get involved</h2>
       <p>Found a scam or trafficking case? <a href="#/report">Report wrong vibes</a>. Want to help improve Vibe Check? Contribute on <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">GitHub</a>.</p>
+    </article>
+
+    <article class="panel">
+      <h2><a href="#/partnerships">Partnerships & Integration</a></h2>
+      <p>Platforms, institutions, and services can integrate Vibe Check to alert users to exploitation risks. Learn about integration opportunities, resource links, and what exploitation phases mean in our <a href="#/partnerships">partnerships section</a>.</p>
     </article>`;
 }
 
