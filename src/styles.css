@@ -485,14 +485,15 @@ input[type=checkbox] { accent-color: var(--accent); }
 .scamtypes { margin: 24px 0 32px; }
 .scamtypes-head { display: grid; grid-template-columns: var(--label-w) minmax(0, 1fr); align-items: end; margin-bottom: 14px; }
 .scamtypes-head h2 { margin: 0; }
-.scamtypes-head .fine { margin: 0; }
+.scamtypes-head .fine { margin: 0; font-size: var(--fs-1); line-height: 1.4; }
 .scamgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: var(--rule); border-left: var(--rule); }
-.scamcard, .laundering { border-right: var(--rule); border-bottom: var(--rule); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
-.scamcard h3, .laundering h3 { margin: 0; font-size: var(--fs-2); letter-spacing: 0.01em; text-transform: none; }
-.scamcard p, .laundering p { margin: 0; font-size: var(--fs-1); }
-.tells { margin: 4px 0; padding-left: 1.1em; font-size: var(--fs-1); }
-.tells li { margin-bottom: 2px; }
-.scamfoot { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: auto; padding-top: 6px; font-size: var(--fs-1); }
+.scamcard, .laundering { border-right: var(--rule); border-bottom: var(--rule); padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; overflow-wrap: break-word; word-break: break-word; }
+.scamcard h3, .laundering h3 { margin: 0; font-size: var(--fs-2); letter-spacing: 0; text-transform: none; line-height: 1.2; }
+.scamcard p, .laundering p { margin: 0; font-size: var(--fs-1); line-height: 1.4; }
+.tells { margin: 2px 0; padding-left: 1.1em; font-size: var(--fs-0); line-height: 1.3; }
+.tells li { margin-bottom: 3px; }
+.scamfoot { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; margin-top: auto; padding-top: 8px; font-size: var(--fs-0); line-height: 1.3; }
+.acc { white-space: nowrap; }
 .laundering { border-left: var(--rule); border-left-width: 6px; margin-top: 14px; }
 @media (max-width: 1000px) { .scamgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 860px) { .scamgrid { grid-template-columns: minmax(0, 1fr); } .scamtypes-head { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
