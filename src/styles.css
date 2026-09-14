@@ -350,3 +350,12 @@ footer.site p { max-width: 90ch; }
   .bar nav a { white-space: nowrap; }
   .dial.big { font-size: 38px; }
 }
+
+/* CTDC corridors */
+.ctdc-grid { display: grid; grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr); gap: 24px; margin: 12px 0; }
+.ctdc-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.ctdc-corridor h3 { margin: 0; font-size: var(--fs-2); letter-spacing: 0.01em; text-transform: none; }
+.ctdc-corridor h4 { margin: 14px 0 6px; }
+.ctdc-corridor h4 .fine { text-transform: none; letter-spacing: 0; }
+.credit { margin-top: 12px; font-style: italic; }
+@media (max-width: 860px) { .ctdc-grid { grid-template-columns: minmax(0, 1fr); } }

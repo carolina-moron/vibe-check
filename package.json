@@ -9,7 +9,8 @@
     "check": "npm run build:cases && npm test",
     "serve": "npx --yes serve .",
     "import:flsri": "node scripts/import-flsri.mjs",
-    "news": "node scripts/fetch-news.mjs"
+    "news": "node scripts/fetch-news.mjs",
+    "import:ctdc": "node scripts/import-ctdc.mjs"
   },
   "devDependencies": {
     "i18n-iso-countries": "^7.14.0",

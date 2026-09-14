@@ -1,12 +1,14 @@
 import {
   assess, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js?v=202609141351";
-import { REPORT_ENDPOINT } from "./config.js?v=202609141351";
+} from "./engine.js?v=202609141356";
+import { REPORT_ENDPOINT } from "./config.js?v=202609141356";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
 );
 let newsData = null;
+let ctdcData;
+const loadCtdc = async () => (ctdcData !== undefined ? ctdcData : (ctdcData = await fetch("data/ctdc.json").then((r) => (r.ok ? r.json() : null)).catch(() => null)));
 let helpData = null;
 const loadPartners = async () => fetch("data/partners.json").then((r) => (r.ok ? r.json() : null)).catch(() => null);
 const loadHelp = async () => (helpData ||= await fetch("data/help.json").then((r) => (r.ok ? r.json() : null)).catch(() => null));
@@ -98,6 +100,27 @@ async function loadWorld() {
   return geo;
 }
 
+let ctdcPts = null;
+async function ctdcPoints() {
+  if (ctdcPts) return ctdcPts;
+  const geo = await loadWorld();
+  ctdcPts = {};
+  for (const f of geo.features) {
+    const iso2 = flsri.numericToIso2[f.id];
+    if (!iso2 || !f.geometry) continue;
+    const polys = f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates;
+    let best = null;
+    for (const poly of polys) {
+      const ring = poly[0]; let a = 0, cx = 0, cy = 0;
+      for (let i = 0; i < ring.length - 1; i++) { const [x0, y0] = ring[i], [x1, y1] = ring[i + 1]; const k = x0 * y1 - x1 * y0; a += k; cx += (x0 + x1) * k; cy += (y0 + y1) * k; }
+      if (a && (!best || Math.abs(a) > best.a)) best = { a: Math.abs(a), lat: cy / (3 * a), lon: cx / (3 * a) };
+    }
+    if (best) ctdcPts[iso2] = [best.lat, best.lon];
+  }
+  Object.assign(ctdcPts, { US: [39.8, -98.6], RU: [61.5, 96], CA: [56, -106] });
+  return ctdcPts;
+}
+
 function flsriLayer(geo) {
   return L.geoJSON(geo, {
     style: (f) => {
@@ -156,6 +179,24 @@ function drawJourney(map, c, { numbered = true, weight = 3, link = false } = {})
   return group;
 }
 
+// ---- CTDC corridor summaries -----------------------------------------------------------
+
+const ctdcShares = (obj) => obj ? Object.entries(obj.pct).map(([k, v]) => `<li><span>${esc(k)}</span><span class="hb"><i style="width:${v}%"></i></span><span class="mono">${v}%</span></li>`).join("") : "";
+function ctdcCorridorHtml(c, src) {
+  const title = c.domestic ? `Within ${esc(country(c.from))}` : `${esc(country(c.from))} → ${esc(country(c.to))}`;
+  const block = (label, g) => g ? `<h4>${label} <span class="fine">(of ${g.answered.toLocaleString("en-US")} records with this information)</span></h4><ul class="hbars">${ctdcShares(g)}</ul>` : "";
+  return `<div class="ctdc-corridor">
+    <div class="row"><h3>${title}</h3><span class="mono">${c.n.toLocaleString("en-US")} records${c.years ? ` · ${c.years[0]}–${c.years[1]}` : ""}</span></div>
+    <p class="fine">${c.gender ? Object.entries(c.gender).map(([k, v]) => `${esc(k)} ${v}%`).join(" · ") : ""}${c.minors_pct != null ? ` · Under 18: ${c.minors_pct}%` : ""}</p>
+    ${block("Type of exploitation", c.exploitation)}
+    ${block("Means of control", c.control)}
+    ${block("Type of labour", c.labour)}
+    ${block("Recruiter was a…", c.recruiter)}
+    <p class="fine credit">${esc(src.credit)}</p>
+  </div>`;
+}
+const ctdcCredit = (src) => `<p class="fine credit">${esc(src.credit)} Derived summaries; corridors with fewer than ${src.min_count} records are withheld. ${ext(src.terms, "CTDC terms of use")}.</p>`;
+
 // ---- views: catalog + world map --------------------------------------------------------
 
 function viewCases() {
@@ -180,7 +221,8 @@ function viewCases() {
     <section class="mapcard">
       <div class="maphead">
         <div><h2>Global map of recruitment journeys</h2>
-          <label class="check toggle"><input type="checkbox" id="fl-toggle"> Shade countries by structural forced-labour risk (${flLink()})</label></div>
+          <label class="check toggle"><input type="checkbox" id="fl-toggle"> Shade countries by structural forced-labour risk (${flLink()})</label>
+          <label class="check toggle"><input type="checkbox" id="ctdc-toggle"> Show victim corridors from the Counter-Trafficking Data Collaborative (CTDC)</label></div>
         <div class="legend" id="legend">${Object.entries(counts).map(([t, n]) => `
           <button type="button" class="lg on" data-typ="${esc(t)}" aria-pressed="true"><i style="background:${TYPOLOGY[t].color}"></i>${esc(TYPOLOGY[t].label)} <span class="mono">${n}</span></button>`).join("")}
         </div>
@@ -192,6 +234,10 @@ function viewCases() {
       </div>
       <p class="fine pad">For victim-level trafficking patterns between countries, see the <a href="https://www.ctdatacollaborative.org/map" target="_blank" rel="noopener">Counter-Trafficking Data Collaborative (CTDC) map</a>, run by IOM. Source: Counter-Trafficking Data Collaborative (CTDC), September 2026.</p>
       <p class="fine pad">Pins are approximate, city or country level. Lines join the stages of each journey in order; dashed segments lead to where the case was prosecuted or sanctioned. Click a pin for the stage, or a card below for the full case.</p>
+    </section>
+    <section class="panel ctdc-panel" id="ctdc-panel" hidden>
+      <h2>Victim corridors (CTDC)</h2>
+      <div id="ctdc-body"></div>
     </section>
     <section>
       <div class="gridhead"><h2>Cases</h2><input id="filter" type="search" placeholder="Filter by name, alias, country…" aria-label="Filter cases"></div>
@@ -206,6 +252,36 @@ function viewCases() {
       (groups[c.typology] ||= []).push(g);
     });
   }
+  let ctdcLayer = null;
+  $("#ctdc-toggle").addEventListener("change", async (e) => {
+    const panel = $("#ctdc-panel");
+    panel.hidden = !e.target.checked;
+    if (!e.target.checked) { ctdcLayer?.remove(); return; }
+    const d = await loadCtdc();
+    if (!d) {
+      $("#ctdc-body").innerHTML = `<p class="callout">CTDC corridor summaries haven't been imported yet. CTDC's terms don't allow automated downloads, so the dataset is added by hand from ${ext("https://www.ctdatacollaborative.org/page/global-synthetic-dataset", "the CTDC Global Synthetic Dataset page")}. Meanwhile, see ${ext("https://www.ctdatacollaborative.org/map", "the CTDC map")}.</p>`;
+      return;
+    }
+    const top = d.corridors.filter((c) => !c.domestic).slice(0, 60);
+    const max = top[0]?.n || 1;
+    if (map && !ctdcLayer) {
+      const pts = await ctdcPoints();
+      ctdcLayer = L.layerGroup(top.filter((c) => pts[c.from] && pts[c.to]).map((c) =>
+        L.polyline(arc(pts[c.from], pts[c.to]), { color: "#7A1E2C", weight: 1 + 7 * Math.sqrt(c.n / max), opacity: 0.55 })
+          .bindTooltip(`${esc(country(c.from))} → ${esc(country(c.to))}: ${c.n.toLocaleString("en-US")} records`, { sticky: true })
+          .on("click", () => showCorridor(c))));
+    }
+    ctdcLayer?.addTo(map);
+    const showCorridor = (c) => { $("#ctdc-detail").innerHTML = ctdcCorridorHtml(c, d.source); $("#ctdc-detail").scrollIntoView({ behavior: "smooth", block: "nearest" }); };
+    $("#ctdc-body").innerHTML = `
+      <p class="fine">${esc(d.source.note)} Line width shows the number of records. Click a line or a row for its summary.</p>
+      <div class="ctdc-grid">
+        <ol class="corrlist" id="ctdc-list">${top.slice(0, 20).map((c, i) => `<li><button type="button" class="linklike" data-i="${i}">${esc(country(c.from))} → ${esc(country(c.to))}</button> <span class="mono">${c.n.toLocaleString("en-US")}</span></li>`).join("")}</ol>
+        <div id="ctdc-detail">${top[0] ? ctdcCorridorHtml(top[0], d.source) : ""}</div>
+      </div>
+      ${ctdcCredit(d.source)}`;
+    $("#ctdc-list").addEventListener("click", (ev) => { const b = ev.target.closest("[data-i]"); if (b) showCorridor(top[Number(b.dataset.i)]); });
+  });
   let flLayer = null;
   $("#fl-toggle").addEventListener("change", async (e) => {
     if (!map) return;
@@ -302,12 +378,26 @@ function viewCase(id) {
       </section>
 
       ${flsriPanel(c)}
+      <section class="panel span2" id="case-ctdc" hidden></section>
 
       <section class="panel span2">
         <h2>Sources</h2>
         <ul class="sources">${c.sources.map((src) => `<li><span class="acc">${esc(src.tier)}</span> ${ext(src.url, src.title)} <span class="muted">· ${esc(src.publisher)}${src.date ? `, ${esc(src.date)}` : ""}</span></li>`).join("")}</ul>
       </section>
     </div>`;
+
+  loadCtdc().then((d) => {
+    if (!d || !$("#case-ctdc")) return;
+    const origins = [...new Set([...c.journey.filter((j) => ["advertised", "recruited", "transit"].includes(j.stage)).map((j) => j.country), ...(c.victim_origins || [])])];
+    const dests = [...new Set(c.journey.filter((j) => ["exploited"].includes(j.stage)).map((j) => j.country))];
+    const hits = d.corridors.filter((k) => origins.includes(k.from) && dests.includes(k.to) && k.from !== k.to);
+    const el = $("#case-ctdc");
+    el.hidden = false;
+    el.innerHTML = `<h2>What wider data shows on these routes</h2>
+      <p class="fine">Summaries of identified victims from the Counter-Trafficking Data Collaborative for the origin and destination countries in this case. They describe the corridor as a whole, not this case.</p>
+      ${hits.length ? `<div class="ctdc-cols">${hits.slice(0, 4).map((k) => ctdcCorridorHtml(k, d.source)).join("")}</div>` : `<p class="fine">CTDC publishes no corridor with ${d.source.min_count} or more records for these countries (${origins.map(country).map(esc).join(", ") || "—"} → ${dests.map(country).map(esc).join(", ") || "—"}). Absence here reflects where contributing organisations identify victims, not an absence of trafficking.</p>`}
+      ${ctdcCredit(d.source)}`;
+  });
 
   const map = baseMap($("#casemap"));
   if (map) {
@@ -1052,6 +1142,13 @@ function viewMethodology() {
 
       <h2 id="m-partners">Help contacts, partners and CTDC</h2>
       <p><strong>Hotlines and organisations.</strong> The hotlines and organisations on Get help were each checked on an official or the organisation's own website, and each links to its source. Numbers that could only be found in news or secondary sources were left out. An organisation's listing is not an endorsement, and none is affiliated with this tool. Organisations are marked as taking requests for help only where their own site says so.</p>
+      <p><strong>CTDC corridor summaries.</strong> The victim corridors on the Cases map and case pages are summaries of the CTDC Global Synthetic Dataset, a differentially private synthetic version of case records from IOM, Polaris and other contributors covering over 206,000 identified victims.</p>
+      <ul>
+        <li><strong>Import.</strong> The dataset is downloaded by hand and summarised by <code>npm run import:ctdc</code>; the raw file is never committed or published.</li>
+        <li><strong>Corridors.</strong> A corridor is citizenship → country of exploitation. Corridors with fewer than 10 records are withheld.</li>
+        <li><strong>Percentages.</strong> They follow the CTDC codebook: each is a share of the records that gave any information for that group, so a group can add up to more than 100%.</li>
+        <li><strong>What the counts mean.</strong> They reflect where contributing organisations identify and assist victims. They are not prevalence estimates, and a missing corridor is not evidence of no trafficking.</li>
+      </ul>
       <p><strong>CTDC.</strong> The Counter-Trafficking Data Collaborative (CTDC), run by IOM, publishes victim-level trafficking data and a country map. Its terms allow non-commercial use and derived material with credit, but prohibit automated access and re-hosting its raw datasets without IOM's written consent. So this site links to the CTDC map rather than embedding or copying it. Source: Counter-Trafficking Data Collaborative (CTDC), September 2026.</p>
 
       <h2 id="m-cases">Case catalog</h2>
