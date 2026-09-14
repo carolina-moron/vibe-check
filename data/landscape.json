@@ -1,0 +1,82 @@
+{
+  "verified": "2026-09-14",
+  "tools": [
+    {
+      "name": "Scam Guard",
+      "maker": "Malwarebytes",
+      "type": "scam-checker",
+      "inputs": ["text", "screenshot", "image", "url", "phone number"],
+      "what": "Checks submitted texts, links, numbers or images for signs of scams such as phishing, fake shipping alerts, dating and job scams, and recommends actions.",
+      "focus": "scams/fraud",
+      "gap": null,
+      "url": "https://www.malwarebytes.com/scam-guard",
+      "source": "https://www.malwarebytes.com/scam-guard"
+    },
+    {
+      "name": "StopScam",
+      "maker": "StopScam LLC",
+      "type": "scam-checker",
+      "inputs": ["text", "url", "screenshot", "photo", "pdf", "email"],
+      "what": "Gives a plain-language read of a suspicious text, link, screenshot or file, with warning signs and a practical next step.",
+      "focus": "scams/fraud",
+      "gap": null,
+      "url": "https://stopscam.ai",
+      "source": "https://stopscam.ai"
+    },
+    {
+      "name": "AI Scam Checker",
+      "maker": "AI Security Systems s.r.o.",
+      "type": "scam-checker",
+      "inputs": ["text", "chat message", "screenshot", "url", "qr code", "call description"],
+      "what": "Rates a pasted message, screenshot, link, QR code or described call as safe, suspicious or dangerous, with an explanation and what to do next.",
+      "focus": "scams/fraud/phishing",
+      "gap": null,
+      "url": "https://apps.apple.com/us/app/ai-scam-checker/id6670762828",
+      "source": "https://apps.apple.com/us/app/ai-scam-checker/id6670762828"
+    },
+    {
+      "name": "Scam Mirror",
+      "maker": "Scam Mirror",
+      "type": "identity-check",
+      "inputs": ["photo", "conversation", "email", "document", "screenshot"],
+      "what": "Reviews up to five related items from one suspicious case and combines visible evidence, known scam patterns and public-source signals into a probabilistic risk assessment.",
+      "focus": "scams/fraud | identity",
+      "gap": "Its own site states the result is not identity verification, legal advice, financial advice or proof of criminal intent.",
+      "url": "https://www.scammirror.com/",
+      "source": "https://www.scammirror.com/"
+    },
+    {
+      "name": "Safe House Project education",
+      "maker": "Safe House Project",
+      "type": "education",
+      "inputs": [],
+      "what": "Publishes articles and trainings on how traffickers use social media and gaming platforms to groom and recruit children, including fake identities and isolation.",
+      "focus": "trafficking education",
+      "gap": "Offers education, training and a reporting tool (Simply Report) rather than a personalised check of an individual situation.",
+      "url": "https://www.safehouseproject.org/",
+      "source": "https://www.safehouseproject.org/blog/groomed-in-the-dms-how-traffickers-use-social-media-to-lure-kids/"
+    },
+    {
+      "name": "Not For Sale glossary and articles",
+      "maker": "Not For Sale",
+      "type": "education",
+      "inputs": [],
+      "what": "Publishes a glossary and articles explaining trafficking terms including coercion, isolation, online recruitment and digital grooming.",
+      "focus": "trafficking education",
+      "gap": "Provides reference education rather than a personalised check of an individual situation.",
+      "url": "https://wearenotforsale.org/",
+      "source": "https://wearenotforsale.org/human-trafficking/human-trafficking-terms-definitions/"
+    },
+    {
+      "name": "Bridging Freedom Get the Facts",
+      "maker": "Bridging Freedom",
+      "type": "education",
+      "inputs": [],
+      "what": "Publishes resource pages and downloadable guides on child sex trafficking, online safety for children and recognising the signs.",
+      "focus": "trafficking education (minors)",
+      "gap": "Provides downloadable guides for parents and children rather than a personalised check of an individual situation.",
+      "url": "https://www.bridgingfreedom.org/",
+      "source": "https://www.bridgingfreedom.org/get-the-facts/tips-for-keeping-kids-safe-from-predators/"
+    }
+  ]
+}

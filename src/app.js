@@ -1,8 +1,8 @@
 import {
   assess, considerations, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js?v=202609141414";
-import { mountFigure } from "./figure.js?v=202609141414";
-import { REPORT_ENDPOINT } from "./config.js?v=202609141414";
+} from "./engine.js?v=202609141416";
+import { mountFigure } from "./figure.js?v=202609141416";
+import { REPORT_ENDPOINT } from "./config.js?v=202609141416";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
@@ -1169,6 +1169,9 @@ async function hashImage(file) {
 
 // ---- views: methodology ----------------------------------------------------------------
 
+let landscapeData;
+const loadLandscape = async () => (landscapeData !== undefined ? landscapeData : (landscapeData = await fetch("data/landscape.json").then((r) => (r.ok ? r.json() : null)).catch(() => null)));
+
 function viewMethodology() {
   const byLayer = (l) => registers.registers.filter((r) => r.layer === l && r.id !== "catalog");
   const cats = Object.entries(signals.categories);
@@ -1181,7 +1184,7 @@ function viewMethodology() {
       <nav class="toc" aria-label="On this page">
         <a href="#m-principles">Principles</a><a href="#m-check">What you can check</a><a href="#m-people">People are out of scope</a><a href="#m-score">Score and coverage</a>
         <a href="#m-signals">Risk signals</a><a href="#m-registers">Registers</a><a href="#m-cases">Case catalog</a>
-        <a href="#m-flsri">Structural risk index</a><a href="#m-news">News patterns</a><a href="#m-partners">Help contacts and CTDC</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-limits">Limits</a>
+        <a href="#m-flsri">Structural risk index</a><a href="#m-news">News patterns</a><a href="#m-partners">Help contacts and CTDC</a><a href="#m-landscape">Related tools</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-limits">Limits</a>
       </nav>
 
       <h2 id="m-principles">Principles</h2>
@@ -1280,6 +1283,10 @@ function viewMethodology() {
       </ul>
       <p><strong>CTDC.</strong> The Counter-Trafficking Data Collaborative (CTDC), run by IOM, publishes victim-level trafficking data and a country map. Its terms allow non-commercial use and derived material with credit, but prohibit automated access and re-hosting its raw datasets without IOM's written consent. So this site links to the CTDC map rather than embedding or copying it. Source: Counter-Trafficking Data Collaborative (CTDC), September 2026.</p>
 
+      <h2 id="m-landscape">Related tools</h2>
+      <p>Consumer tools already let people submit a message, link or screenshot and ask whether it's a scam, and anti-trafficking organisations publish education on grooming and online recruitment. We didn't find a consumer tool that checks a whole situation (identity, pressure, isolation, money and travel together) for exploitation risk. Digital Safety Check aims to answer "is this situation safe?" rather than only "is this a scam?", and to lead to prevention and confidential help.</p>
+      <div id="landscape"><p class="fine">Loading…</p></div>
+
       <h2 id="m-cases">Case catalog</h2>
       <p>Cases are researched by hand from sources opened at the time of writing. Each file in <code>data/cases/</code> is validated before publishing: known typologies and statuses, ISO country codes, coordinates, https sources, and lure tags that exist in the signal taxonomy.</p>
       <p>Facts that could only be seen in search snippets were left out. Journey pins are approximate, and an “advertised” pin for an online ad marks where the ads targeted, not a physical place. Case outcomes are reported as the sources give them, including dismissed charges.</p>
@@ -1317,6 +1324,12 @@ function viewMethodology() {
         <li>Handshake's employer vetting is internal, and its EDU API is issued to institutions (for example NYU career services). Glassdoor and Indeed have no review API and prohibit scraping, so they are link-outs at most.</li>
       </ul>
     </article>`;
+  loadLandscape().then((d) => {
+    const el = $("#landscape"); if (!el) return;
+    if (!d) { el.innerHTML = ""; return; }
+    el.innerHTML = `<div class="tblwrap"><table><thead><tr><th>Tool</th><th>What it does</th><th>Focus</th><th>Not covered, per its own materials</th></tr></thead><tbody>${d.tools.map((t) => `<tr><td>${ext(t.url, t.name)}<div class="fine">${esc(t.maker || "")}</div></td><td>${esc(t.what)}</td><td>${esc(t.focus)}</td><td>${esc(t.gap || "—")}</td></tr>`).join("")}</tbody></table></div>
+      <p class="fine">Descriptions use each tool's own website or app-store listing, checked ${esc(d.verified)}. Listed for context, not as endorsement or criticism. Tools change; check their sites for current features.</p>`;
+  });
   // In-page links would otherwise change the hash and re-route.
   main.querySelectorAll(".toc a").forEach((a) => a.addEventListener("click", (e) => {
     e.preventDefault();
