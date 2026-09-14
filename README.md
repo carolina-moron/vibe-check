@@ -44,4 +44,4 @@ npm run serve     # local preview
 
 ## Design
 
-Visual direction (burgundy ink on tan paper, 1px rules, square corners, tracked uppercase lettering, label column) adapted from [kateebonner/personal-site](https://github.com/kateebonner/personal-site). The stylesheet here is written for this project; no code or assets were copied. Type is Be Vietnam Pro (SIL Open Font License) via Google Fonts.
+Visual direction from [kateebonner/personal-site](https://github.com/kateebonner/personal-site) (katebonner.ai): burgundy ink on grey-green paper, hairline rules, tracked uppercase lettering, a near-empty home sheet with one pencil-drawn figure. That repo has no licence, so nothing was copied: the paper grain is generated with SVG noise, the home drawing (`src/figure.js`, a thread that loops and tightens into a knot) is original, and the stylesheet is written for this project. The ink is deepened from #7A1E2C to #561320 to reach 5:1 contrast on the paper. Type is Be Vietnam Pro (SIL Open Font License) via Google Fonts.

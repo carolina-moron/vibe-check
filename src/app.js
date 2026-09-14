@@ -1,7 +1,8 @@
 import {
   assess, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js?v=202609141356";
-import { REPORT_ENDPOINT } from "./config.js?v=202609141356";
+} from "./engine.js?v=202609141404";
+import { mountFigure } from "./figure.js?v=202609141404";
+import { REPORT_ENDPOINT } from "./config.js?v=202609141404";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
@@ -137,6 +138,7 @@ function flsriLayer(geo) {
   });
 }
 
+let figureCleanup = () => {};
 let maps = [];
 function resetMaps() { maps.forEach((m) => m.remove()); maps = []; }
 
@@ -765,15 +767,29 @@ async function readScreenshot(file, onProgress) {
 
 function viewCheck(kind = "") {
   const k = KINDS[kind];
-  main.innerHTML = `
+  const kindsNav = `<nav class="kinds" aria-label="What do you want to check?">${Object.entries(KINDS).map(([id, x]) => `
+      <a class="kind${id === kind ? " on" : ""}" href="#/check/${id}"${id === kind ? ' aria-current="true"' : ""}><span class="ki" aria-hidden="true">${KIND_ICON[id]}</span><strong>${esc(x.label)}</strong><span class="fine">${esc(x.hint)}</span></a>`).join("")}
+    </nav>`;
+  main.innerHTML = (k ? `
     <section class="hero small check-hero">
       <div class="eyebrow mono">Digital Safety Check</div>
       <h1>Before you trust someone online, check the situation.</h1>
-      <p class="lede">Choose what you want to check. We look for the warning signs seen in real scam and trafficking cases, and tell you whether it's a lower concern, a reason for caution, or a serious warning sign. Nothing you enter is stored unless you choose to submit it.</p>
+      <p class="lede">We look for the warning signs seen in real scam and trafficking cases, and tell you whether it's a lower concern, a reason for caution, or a serious warning sign. Nothing you enter is stored unless you choose to submit it.</p>
     </section>
-    <nav class="kinds" aria-label="What do you want to check?">${Object.entries(KINDS).map(([id, x]) => `
-      <a class="kind${id === kind ? " on" : ""}" href="#/check/${id}"${id === kind ? ' aria-current="true"' : ""}><span class="ki" aria-hidden="true">${KIND_ICON[id]}</span><strong>${esc(x.label)}</strong><span class="fine">${esc(x.hint)}</span></a>`).join("")}
-    </nav>
+    ${kindsNav}` : `
+    <div class="home">
+      <figure class="figure-band" aria-label="Drawing: a loose thread that loops back and tightens into a knot">
+        <canvas id="figure" aria-hidden="true"></canvas>
+        <figcaption class="figure-caption">Fig. 1 — an offer, a loop, a knot</figcaption>
+      </figure>
+      <section class="story">
+        <div>
+          <h1>Before you trust someone online, check the situation.</h1>
+          <p class="sub">Choose what you want to check. We look for the warning signs seen in real scam and trafficking cases. Nothing you enter is stored unless you choose to submit it.</p>
+        </div>
+      </section>
+      ${kindsNav}
+    </div>`) + `
     ${k ? `
     <form id="check" class="panel">
       <h2>${esc(k.label)}</h2>
@@ -792,8 +808,8 @@ function viewCheck(kind = "") {
       <div class="btns"><button class="primary" type="submit">Check it</button><button class="ghost" type="button" id="example">Show an example</button></div>
       <p class="fine">We check organisations, websites and email domains, never a private person's criminal record (see <a href="#/methodology">Methodology</a>). If you feel unsafe, <a href="#/help">get help now</a>.</p>
     </form>
-    <div id="out" aria-live="polite"></div>` : `<p class="muted pad">Choose one of the options above to start.</p>`}`;
-  if (!k) return;
+    <div id="out" aria-live="polite"></div>` : ""}`;
+  if (!k) { figureCleanup = mountFigure($("#figure")); return; }
 
   const form = $("#check");
   let photoHash = null;
@@ -1199,6 +1215,7 @@ function viewMethodology() {
 
 function route() {
   resetMaps();
+  figureCleanup(); figureCleanup = () => {};
   const [, view = "", arg] = (location.hash.match(/^#\/([^/]*)\/?(.*)$/) || []);
   document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" ? "cases" : view === "" ? "check" : view)));
   $("#helpstrip").hidden = view === "help";
