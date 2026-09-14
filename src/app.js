@@ -1,8 +1,8 @@
 import {
-  assess, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js?v=202609141410";
-import { mountFigure } from "./figure.js?v=202609141410";
-import { REPORT_ENDPOINT } from "./config.js?v=202609141410";
+  assess, considerations, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
+} from "./engine.js?v=202609141414";
+import { mountFigure } from "./figure.js?v=202609141414";
+import { REPORT_ENDPOINT } from "./config.js?v=202609141414";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
@@ -491,7 +491,7 @@ async function viewConcern(id) {
   const news = await loadNews();
   const caseHits = cases.flatMap((c) => (c.lures || []).filter((l) => l.signal === id).map((l) => ({ c, l })));
   const newsHits = news.articles.filter((a) => a.signals.includes(id));
-  const kinds = Object.entries(KINDS).filter(([, k]) => k.questions.includes(id));
+  const kinds = KIND_ORDER.map((k) => [k, KINDS[k]]).filter(([, k]) => k.questions.includes(id));
   main.innerHTML = `
     <p class="crumb"><a href="#/">← What we're seeing</a></p>
     <section class="hero small">
@@ -511,7 +511,7 @@ async function viewConcern(id) {
       <section class="panel span2">
         <h2>Check your own situation</h2>
         <p class="fine">These checks look for this warning sign:</p>
-        <nav class="kinds compact" aria-label="Checks that look for this">${(kinds.length ? kinds : Object.entries(KINDS)).map(([k, x]) => `<a class="kind" href="#/check/${k}"><span class="ki" aria-hidden="true">${KIND_ICON[k]}</span><strong>${esc(x.label)}</strong></a>`).join("")}</nav>
+        <nav class="kinds compact" aria-label="Checks that look for this">${(kinds.length ? kinds : KIND_ORDER.map((k) => [k, KINDS[k]])).map(([k, x]) => `<a class="kind" href="#/check/${k}"><span class="ki" aria-hidden="true">${KIND_ICON[k]}</span><strong>${esc(x.label)}</strong></a>`).join("")}</nav>
         <p class="fine">If this is happening to you now, <a href="#/help">get help</a>.</p>
       </section>
     </div>`;
@@ -818,14 +818,17 @@ async function viewNews(arg = "") {
 // ---- views: live check -----------------------------------------------------------------
 
 const KINDS = {
-  profile: { label: "Social media profile", hint: "An account that contacted you, or that you met on an app", fields: ["profileUrl", "photo"], text: "Bio, posts or messages from this account", questions: ["profile_new", "profile_photos_too_polished", "profile_mismatch", "refuses_video", "chat_only_contact", "romance_money", "investment_pitch"] },
-  screenshot: { label: "Screenshot of messages", hint: "A chat, DM, text or email you received", fields: ["profileUrl"], text: "Text from the messages", screenshotFirst: true, questions: ["secrecy", "urgency", "refuses_video", "verification_code", "gift_card_crypto", "romance_money"] },
-  travel: { label: "Travel invitation", hint: "Someone offering to bring you somewhere to meet, study or work", fields: ["destination", "profileUrl"], text: "The invitation or messages about the trip", questions: ["sponsor_travel_stranger", "carry_package", "vague_location", "document_retention", "secrecy", "visa_fraud"] },
+  conversation: { label: "Conversation or DM", hint: "A chat, DM, text or email thread", fields: ["profileUrl"], text: "The messages", screenshotFirst: true, questions: ["secrecy", "isolation", "urgency", "threats_coercion", "chat_only_contact", "refuses_video", "romance_money", "verification_code"] },
+  profile: { label: "Social profile", hint: "An account that contacted you or that you met on an app", fields: ["profileUrl", "photo"], text: "Bio, posts or messages from this account", questions: ["profile_new", "profile_photos_too_polished", "profile_mismatch", "refuses_video", "chat_only_contact", "romance_money", "investment_pitch"] },
+  travel: { label: "Invitation to travel or meet", hint: "Someone offering to bring you somewhere, or to meet in person", fields: ["destination", "profileUrl"], text: "The invitation or messages about the trip or meeting", questions: ["sponsor_travel_stranger", "meet_private", "carry_package", "vague_location", "document_retention", "secrecy", "visa_fraud"] },
+  job: { label: "Job opportunity", hint: "A job ad, offer, or a recruiter who reached out", fields: ["company", "website", "email", "jurisdiction", "workCountry"], text: "The job ad, offer or recruiter's message", questions: ["upfront_fee", "id_before_interview", "chat_only_contact", "employer_housing_travel", "vague_location", "document_retention", "debt_bondage", "payment_handling"] },
   housing: { label: "Housing offer", hint: "A room, flat or accommodation offered to you", fields: ["website", "email", "destination"], text: "The listing or messages from the landlord or host", questions: ["housing_unseen_deposit", "owner_unavailable", "housing_tied_to_job", "gift_card_crypto", "urgency"] },
-  job: { label: "Job offer", hint: "A job ad, offer letter or contract", fields: ["company", "website", "email", "jurisdiction", "workCountry"], text: "The job ad or offer", questions: ["upfront_fee", "id_before_interview", "chat_only_contact", "employer_housing_travel", "vague_location", "document_retention", "debt_bondage"] },
-  recruiter: { label: "Recruiter message", hint: "A recruiter or agent who reached out to you", fields: ["company", "email", "profileUrl", "workCountry"], text: "What the recruiter wrote", questions: ["chat_only_contact", "upfront_fee", "id_before_interview", "urgency", "pay_too_high", "payment_handling"] },
-  other: { label: "Other suspicious interaction", hint: "Anything else that doesn't feel right", fields: ["profileUrl", "website", "email"], text: "What happened, or what they said", questions: ["secrecy", "verification_code", "gift_card_crypto", "urgency", "investment_pitch", "carry_package"] },
+  money: { label: "Request for money", hint: "Someone asking you to pay, lend, invest or send codes", fields: ["profileUrl", "website"], text: "What they asked for and why", questions: ["romance_money", "investment_pitch", "gift_card_crypto", "verification_code", "urgency", "threats_coercion", "secrecy"] },
+  link: { label: "Link", hint: "A website or link someone sent you", fields: ["website", "email"], text: "The message the link came with", questions: ["link_shortener", "urgency", "verification_code", "upfront_fee"] },
+  other: { label: "Describe what's happening", hint: "Anything else that doesn't feel right", fields: ["profileUrl", "website", "email"], text: "Tell us what's happening, in your own words", questions: ["secrecy", "isolation", "threats_coercion", "meet_private", "gift_card_crypto", "urgency"] },
 };
+// Old links keep working.
+KINDS.screenshot = KINDS.conversation; KINDS.recruiter = KINDS.job;
 const FIELD = {
   company: () => `<label>Company or agency name <input name="company" autocomplete="off" placeholder="As they wrote it"></label>`,
   website: () => `<label>Website <input name="website" autocomplete="off" placeholder="example.com"></label>`,
@@ -837,7 +840,8 @@ const FIELD = {
   photo: () => `<label>Their profile photo <span class="muted">(optional)</span><input type="file" name="photo" accept="image/*"><span class="fine">Turned into a fingerprint on your device so the same face can be spotted under other names. Never uploaded.</span></label><p class="mono fine" id="photo-hash"></p>`,
 };
 const flCountryOptions = () => Object.entries(flsri.countries).filter(([, c]) => c.scored).sort((a, b) => a[1].name.localeCompare(b[1].name)).map(([k]) => `<option value="${k}">${esc(country(k))}</option>`).join("");
-const KIND_ICON = { profile: "◉", screenshot: "▣", travel: "✈", housing: "⌂", job: "▤", recruiter: "✉", other: "?" };
+const KIND_ICON = { conversation: "❝", screenshot: "❝", profile: "◉", travel: "✈", job: "▤", recruiter: "▤", housing: "⌂", money: "¤", link: "↗", other: "✎" };
+const KIND_ORDER = ["conversation", "profile", "travel", "job", "housing", "money", "link", "other"];
 
 let ocrLib = null;
 async function readScreenshot(file, onProgress) {
@@ -851,8 +855,8 @@ async function readScreenshot(file, onProgress) {
 
 function viewCheck(kind = "") {
   const k = KINDS[kind];
-  const kindsNav = `<nav class="kinds" aria-label="What do you want to check?">${Object.entries(KINDS).map(([id, x]) => `
-      <a class="kind${id === kind ? " on" : ""}" href="#/check/${id}"${id === kind ? ' aria-current="true"' : ""}><span class="ki" aria-hidden="true">${KIND_ICON[id]}</span><strong>${esc(x.label)}</strong><span class="fine">${esc(x.hint)}</span></a>`).join("")}
+  const kindsNav = `<nav class="kinds" aria-label="What do you want to check?">${KIND_ORDER.map((id) => [id, KINDS[id]]).map(([id, x]) => `
+      <a class="kind${id === kind || KINDS[kind] === x ? " on" : ""}" href="#/check/${id}"${id === kind ? ' aria-current="true"' : ""}><span class="ki" aria-hidden="true">${KIND_ICON[id]}</span><strong>${esc(x.label)}</strong><span class="fine">${esc(x.hint)}</span></a>`).join("")}
     </nav>`;
   main.innerHTML = (k ? `
     <section class="hero small check-hero">
@@ -869,7 +873,7 @@ function viewCheck(kind = "") {
       <section class="story">
         <div>
           <h1>Before you trust someone online, check the situation.</h1>
-          <p class="sub">Choose what you want to check. We look for the warning signs seen in real scam and trafficking cases. Nothing you enter is stored unless you choose to submit it.</p>
+          <p class="sub"><strong>Something doesn't feel right? Check it before you act.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. Nothing you enter is stored unless you choose to submit it.</p>
         </div>
       </section>
       ${kindsNav}
@@ -920,15 +924,18 @@ function viewCheck(kind = "") {
 
   const EXAMPLES = {
     profile: { posting: "Hi dear, I saw your profile and felt a connection. I'm an engineer working offshore so my camera is broken for video calls. My uncle taught me a crypto trading platform with daily profits, I can show you. Let's continue on Telegram.", answers: ["profile_new", "profile_photos_too_polished"] },
+    conversation: { posting: "I feel like only I really understand you. Your family won't understand us, so don't tell your parents yet. If you don't send the money I'll share your photos. Send the verification code you just got." },
+    money: { posting: "My love, I need help paying the customs fee for my package, just $900 in Steam gift cards. Keep it between us. Also my uncle has a crypto trading platform with daily profits if you want to invest." },
+    link: { website: "secure-bank-verify.example", posting: "Your account is locked. Verify within 24 hours: bit.ly/3kQx9z and share the one-time password." },
     screenshot: { posting: "You've been selected! Just send the 6-digit verification code we texted you so we can confirm your account. Don't tell anyone, this offer is only for today. Payment by Steam gift cards is fine." },
-    travel: { posting: "I'll pay for your flight to Bangkok, the ticket is already booked. My friend there has a job for you. Could you bring a small package for him? Keep it between us for now, the workplace location will be shared on arrival." },
+    travel: { posting: "I'll pay for your flight to Bangkok, the ticket is already booked. My driver will pick you up at the airport. Could you bring a small package for my friend? Keep it between us for now, the workplace location will be shared on arrival." },
     housing: { posting: "The flat is available now. I'm currently abroad so I can't show it, but the keys will be sent to you by courier. Please pay the first month and deposit before viewing to reserve it. Western Union preferred." },
     job: { company: "Huione Guarantee", email: "hr.bangkokjobs@gmail.com", posting: "URGENT: customer service representatives for an online company. No experience needed, earn $3,000 per week! Free flight and accommodation provided. Exact workplace location will be disclosed on arrival. Send your passport scan and pay the visa processing fee within 48 hours.", workCountry: "KH" },
     recruiter: { company: "Global Talent Link", email: "talentlink.hiring@outlook.com", posting: "Hello! We found your CV. Remote data entry, $200 per hour, start tomorrow. Interview on WhatsApp only. You will receive payments and forward them to our clients. A small training fee is required.", workCountry: "" },
-    other: { posting: "This is your bank's security team. Share the one-time password you just received so we can stop the fraud on your account. Do not tell anyone at the branch." },
+    other: { posting: "We met online last month. He says his family won't approve so I shouldn't tell mine. He wants me to come alone to his city, and his friend will pick me up. This is your bank's security team. Share the one-time password you just received so we can stop the fraud on your account. Do not tell anyone at the branch." },
   };
   $("#example").addEventListener("click", () => {
-    const ex = EXAMPLES[kind];
+    const ex = EXAMPLES[kind] || EXAMPLES[Object.keys(KINDS).find((k) => KINDS[k] === KINDS[kind] && EXAMPLES[k])];
     for (const [f, v] of Object.entries(ex)) if (f !== "answers" && form[f]) form[f].value = v;
     form.querySelectorAll("[name=answers]").forEach((c) => { c.checked = (ex.answers || []).includes(c.value); });
   });
@@ -962,6 +969,24 @@ function contextPanel(input) {
     <ul class="context">${rows.map((r) => `<li><span class="muted">${esc(r.role)}</span> <strong>${esc(country(r.iso2))}</strong>
       ${r.available ? `${tierChip(r.tier)} <span class="mono">composite ${r.composite.toFixed(2)}, rank ${r.rank} (${r.band[0]}–${r.band[1]})</span>
         <div class="fine">${r.phase === "R" ? "Recruitment" : "Exploitation"} phase ${bar(r.phase === "R" ? r.R : r.E)}${r.lowConfidence ? " · lower confidence" : ""}${r.phase === "E" && r.tier !== "higher" ? " · FLSRI under-reads destination and sponsorship systems, so a lower score here is not reassurance." : ""}</div>` : `<div class="fine">${esc(r.reason)}</div>`}</li>`).join("")}</ul></section>`;
+}
+
+const HEADLINE = { high: "This situation has concerning signals", caution: "This situation has some concerning signals", low: "We found few concerning signals" };
+
+function considerPanel(r) {
+  const groups = considerations(r.flags, signals);
+  if (!groups.length) return `<section class="consider"><h2>${HEADLINE.low}</h2><p>That doesn't prove it's safe. Before you share documents, send money or travel, verify the person or organisation through a channel you find yourself. If you feel unsafe, <a href="#/help">here's where you can get confidential help</a>.</p></section>`;
+  const top = groups[0];
+  return `<section class="consider t-${esc(r.tier.id)}">
+    <h2>${esc(HEADLINE[r.tier.id])}</h2>
+    <p class="count">${groups.length} thing${groups.length > 1 ? "s" : ""} to consider before proceeding</p>
+    <ol class="considerations">${groups.map((g) => `
+      <li><strong>${esc(g.label)}:</strong> ${esc(g.consider)} <span class="fine">(${g.flags.map((f) => esc(f.label.toLowerCase())).slice(0, 3).join("; ")}${g.flags.length > 3 ? "; …" : ""})</span></li>`).join("")}
+    </ol>
+    <p class="nextstep"><strong>Recommended next step:</strong> ${esc(top.step)}${groups.some((g) => g.id !== top.id && g.id === "money") ? ` ${esc(signals.dimensions.money.step)}` : ""}</p>
+    <p class="helpline">If you feel unsafe or pressured, <a href="#/help">here's where you can get confidential help</a>.</p>
+    <p class="fine">These are warning signs, not a judgement about a person. No check here can say someone is a trafficker or a scammer.</p>
+  </section>`;
 }
 
 function verdictBox(r, orgChecked) {
@@ -1017,9 +1042,10 @@ function renderCheck(r, input = {}) {
         <p class="fine">${orgChecked ? `${counts.searched} register(s) searched, ${counts.failed} unreachable. ` : ""}${esc(r.tier.advice)}</p></div>
       ${verdictBox(r, orgChecked)}
     </section>
+    ${considerPanel(r)}
     ${r.catalogMatches.length ? `<div class="callout red">Matches a documented case: ${r.catalogMatches.map((m) => `<a href="#/case/${esc(m.caseId)}">${esc(m.entity)}</a> via ${esc(m.via.type)} name “${esc(m.via.name)}”`).join("; ")}</div>` : ""}
     <div class="dash">
-      <section class="panel${orgChecked ? "" : " span2"}"><h2>Warning signs found</h2>${flagList(r.flags)}</section>
+      <section class="panel${orgChecked ? "" : " span2"}"><h2>All warning signs found</h2>${flagList(r.flags)}</section>
       ${orgChecked ? `<section class="panel"><h2>What each register returned</h2>
         ${layers.filter((l) => grouped[l].length).map((l) => `<h3>${esc(registers.layers[l])}</h3><ul class="checks">${grouped[l].map((c) => `
           <li><div class="row"><span>${esc(c.meta?.name || c.register)} <span class="acc ${ACCESS[c.meta?.access]?.cls || ""}">${esc(ACCESS[c.meta?.access]?.label || "")}</span></span><span class="verdict ${VERDICT[c.verdict].cls}">${VERDICT[c.verdict].label}</span></div>
@@ -1163,11 +1189,13 @@ function viewMethodology() {
         <li><strong>No check returns “clear”.</strong> The strongest negative is <em>no evidence found</em>. Most small employers are in no register a browser can reach, and most scam compounds operate where no open register exists at all.</li>
         <li><strong>Silence earns nothing.</strong> A register that returns nothing adds no points and removes none. Registers that couldn't be searched are listed, so a thin check can't pass for a thorough one.</li>
         <li><strong>The score never travels alone.</strong> Coverage is computed separately and always displayed beside it.</li>
+        <li><strong>A second opinion, not a detector.</strong> The check never declares that someone is a trafficker or a scammer. It reports warning signs and groups them into things to consider (identity, money, pressure, isolation and control, travel and meeting, public record), with a next step and where to get confidential help. Moving from detection to prevention and intervention is the point.</li>
+        <li><strong>Categories need expert validation.</strong> The warning signs draw on ILO forced-labour indicators, FTC and FinCEN scam typologies and anti-trafficking guidance on grooming and online recruitment. They are a starting point to be reviewed with anti-trafficking and online-safety practitioners, not a validated instrument.</li>
         <li><strong>Every fact carries its source.</strong> Case records cite official, court, multilateral, press or NGO sources, labelled by tier.</li>
       </ol>
 
       <h2 id="m-check">What you can check</h2>
-      <p>Seven kinds of situation: a social media profile, a screenshot of messages, a travel invitation, a housing offer, a job offer, a recruiter message, or another suspicious interaction. Each asks for the details that matter for that situation and a few yes/no questions about what happened. The text is read with the same warning-sign rules for every kind, so a job offer that also pushes a crypto platform is caught.</p>
+      <p>Eight kinds of situation: a conversation or DM, a social profile, an invitation to travel or meet, a job opportunity, a housing offer, a request for money, a link, or a description of what's happening. Each asks for the details that matter for that situation and a few yes/no questions about what happened. The text is read with the same warning-sign rules for every kind, so a job offer that also pushes a crypto platform is caught.</p>
       <p><strong>Results</strong> come in three levels:</p>
       <ul>
         <li><em>Lower concern</em>: few warning signs.</li>

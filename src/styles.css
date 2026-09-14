@@ -407,3 +407,16 @@ footer.site p { max-width: 90ch; }
   .seeing-head { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .seeing-grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Things to consider */
+.consider { border: var(--rule); padding: 22px 24px; margin: 20px 0; }
+.consider.t-high { border-width: 1px; outline: 1px solid var(--line); outline-offset: 4px; margin: 24px 5px; }
+.consider h2 { margin: 0 0 4px; }
+.consider .count { margin: 0 0 12px; font-size: var(--fs-1); letter-spacing: 0.12em; text-transform: uppercase; }
+.considerations { margin: 0 0 16px; padding-left: 1.4em; }
+.considerations li { margin-bottom: 10px; max-width: 80ch; }
+.considerations strong { font-weight: 600; }
+.nextstep { border-top: var(--rule); padding-top: 12px; margin: 0 0 8px; }
+.helpline { margin: 0 0 10px; }
+.kinds { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1000px) { .kinds { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

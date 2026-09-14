@@ -169,3 +169,17 @@ test("social, travel and housing warning signs", () => {
   const labels = signals.tiers.map((x) => x.label);
   assert.deepEqual(labels, ["Lower concern", "Caution", "Serious warning signs"]);
 });
+
+test("situation-level signals and considerations", async () => {
+  const { considerations, score } = await import("../src/engine.js");
+  const t = (text) => detectContent(text).map((h) => h.id);
+  assert.ok(t("Your family won't understand us. Don't tell your parents.").includes("isolation"));
+  assert.ok(t("If you don't pay I'll share your photos with your family.").includes("threats_coercion"));
+  assert.ok(t("Come alone, my driver will pick you up at the airport.").includes("meet_private"));
+  assert.ok(t("Click bit.ly/3xYz to claim").includes("link_shortener"));
+  for (const s of signals.signals) assert.ok(signals.dimensions[s.dimension], `${s.id} has a known dimension`);
+  const flags = score([{ id: "secrecy" }, { id: "sponsor_travel_stranger" }, { id: "profile_mismatch" }], signals).flags;
+  const c = considerations(flags, signals);
+  assert.deepEqual(c.map((x) => x.id).sort(), ["identity", "isolation", "travel"]);
+  assert.ok(c.every((x) => x.consider && x.step));
+});

@@ -14,287 +14,360 @@
       "category": "digital",
       "weight": 20,
       "label": "Website domain registered less than 6 months ago",
-      "why": "Scam operations spin up fresh domains and abandon them once reported."
+      "why": "Scam operations spin up fresh domains and abandon them once reported.",
+      "dimension": "identity"
     },
     {
       "id": "domain_young",
       "category": "digital",
       "weight": 8,
       "label": "Website domain registered less than 2 years ago",
-      "why": "Young domain; weak signal on its own, stronger when the company claims a long history."
+      "why": "Young domain; weak signal on its own, stronger when the company claims a long history.",
+      "dimension": "identity"
     },
     {
       "id": "free_email",
       "category": "digital",
       "weight": 15,
       "label": "Uses a free email address instead of an organisation's",
-      "why": "Legitimate employers almost always recruit from a company domain."
+      "why": "Legitimate employers almost always recruit from a company domain.",
+      "dimension": "identity"
     },
     {
       "id": "email_domain_mismatch",
       "category": "digital",
       "weight": 15,
       "label": "Email address doesn't match the organisation's website",
-      "why": "Common impersonation pattern: a real company's name with a look-alike or unrelated email domain."
+      "why": "Common impersonation pattern: a real company's name with a look-alike or unrelated email domain.",
+      "dimension": "identity"
     },
     {
       "id": "chat_only_contact",
       "category": "offer",
       "weight": 15,
       "label": "Moves you to Telegram, WhatsApp, Signal or another private app",
-      "why": "Moves the conversation off platforms that keep records or moderate."
+      "why": "Moves the conversation off platforms that keep records or moderate.",
+      "dimension": "isolation"
     },
     {
       "id": "upfront_fee",
       "category": "offer",
       "weight": 30,
       "label": "Asks you to pay a fee or deposit up front (training, visa, placement, equipment)",
-      "why": "Real employers, schools and landlords don't charge before you've seen or signed anything. Recruitment fees are a core ILO forced-labour indicator."
+      "why": "Real employers, schools and landlords don't charge before you've seen or signed anything. Recruitment fees are a core ILO forced-labour indicator.",
+      "dimension": "money"
     },
     {
       "id": "id_before_interview",
       "category": "offer",
       "weight": 20,
       "label": "Asks for your passport, ID, SSN or bank details early on",
-      "why": "Identity theft risk, and taking people's documents is a common way to control them."
+      "why": "Identity theft risk, and taking people's documents is a common way to control them.",
+      "dimension": "isolation"
     },
     {
       "id": "pay_too_high",
       "category": "offer",
       "weight": 12,
       "label": "Pay far above normal for little experience",
-      "why": "Bait pay is the most common lure in both scam and trafficking recruitment."
+      "why": "Bait pay is the most common lure in both scam and trafficking recruitment.",
+      "dimension": "money"
     },
     {
       "id": "no_experience_high_pay",
       "category": "offer",
       "weight": 8,
       "label": "\"No experience needed\" combined with urgency or high pay",
-      "why": "Broad-funnel lure."
+      "why": "Broad-funnel lure.",
+      "dimension": "money"
     },
     {
       "id": "urgency",
       "category": "offer",
       "weight": 8,
       "label": "Pressures you to decide, pay or travel within hours or days",
-      "why": "Urgency prevents the candidate from checking the offer."
+      "why": "Urgency prevents the candidate from checking the offer.",
+      "dimension": "pressure"
     },
     {
       "id": "employer_housing_travel",
       "category": "offer",
       "weight": 12,
       "label": "They arrange and control your travel and housing",
-      "why": "Control of movement and lodging is a trafficking indicator (Polaris, UNODC), especially abroad."
+      "why": "Control of movement and lodging is a trafficking indicator (Polaris, UNODC), especially abroad.",
+      "dimension": "travel"
     },
     {
       "id": "vague_location",
       "category": "offer",
       "weight": 10,
       "label": "Won't say exactly where you'll work or stay until you arrive",
-      "why": "Prevents the candidate or family from knowing where they will be."
+      "why": "Prevents the candidate or family from knowing where they will be.",
+      "dimension": "travel"
     },
     {
       "id": "high_risk_region",
       "category": "offer",
       "weight": 15,
       "label": "Overseas role in a region with documented scam-compound recruitment",
-      "why": "UNODC and OHCHR document forced scam work in parts of Myanmar, Cambodia and Laos, often recruited via Thailand, Malaysia or Dubai."
+      "why": "UNODC and OHCHR document forced scam work in parts of Myanmar, Cambodia and Laos, often recruited via Thailand, Malaysia or Dubai.",
+      "dimension": "travel"
     },
     {
       "id": "lure_role",
       "category": "offer",
       "weight": 6,
       "label": "Role type frequently used as a lure (modeling, hostess, \"customer service\" abroad, crypto/data entry)",
-      "why": "Low-verification roles are easy to fabricate."
+      "why": "Low-verification roles are easy to fabricate.",
+      "dimension": "money"
     },
     {
       "id": "payment_handling",
       "category": "offer",
       "weight": 20,
       "label": "Involves receiving or forwarding money, parcels or crypto",
-      "why": "Money-mule and check-cashing scams."
+      "why": "Money-mule and check-cashing scams.",
+      "dimension": "money"
     },
     {
       "id": "odd_hours",
       "category": "offer",
       "weight": 5,
       "label": "Interview scheduled at an unusual hour for the stated location",
-      "why": "Suggests the recruiter operates from a different country than claimed."
+      "why": "Suggests the recruiter operates from a different country than claimed.",
+      "dimension": "pressure"
     },
     {
       "id": "reported_local",
       "category": "reputation",
       "weight": 35,
       "label": "Matches an entity, former name or alias in the documented case catalog",
-      "why": "The case record lists the enforcement action or report and its sources."
+      "why": "The case record lists the enforcement action or report and its sources.",
+      "dimension": "record"
     },
     {
       "id": "name_change_lineage",
       "category": "entity",
       "weight": 15,
       "label": "Matched through a former name, DBA or alias",
-      "why": "Re-registering under a new name is a common way to shed complaints and enforcement history."
+      "why": "Re-registering under a new name is a common way to shed complaints and enforcement history.",
+      "dimension": "record"
     },
     {
       "id": "document_retention",
       "category": "offer",
       "weight": 25,
       "label": "Employer keeps or will hold passports or ID documents",
-      "why": "Retention of identity documents is one of the ILO forced-labour indicators."
+      "why": "Retention of identity documents is one of the ILO forced-labour indicators.",
+      "dimension": "isolation"
     },
     {
       "id": "debt_bondage",
       "category": "offer",
       "weight": 25,
       "label": "Recruitment costs become a debt repaid from wages",
-      "why": "Debt bondage is one of the ILO forced-labour indicators."
+      "why": "Debt bondage is one of the ILO forced-labour indicators.",
+      "dimension": "money"
     },
     {
       "id": "visa_fraud",
       "category": "offer",
       "weight": 15,
       "label": "Visa type does not match the work, or sponsorship is promised without a certified employer",
-      "why": "Tourist or student visas for work make the worker deportable and dependent."
+      "why": "Tourist or student visas for work make the worker deportable and dependent.",
+      "dimension": "travel"
     },
     {
       "id": "no_mx",
       "category": "digital",
       "weight": 12,
       "label": "Recruiter's email domain has no mail server (MX) record",
-      "why": "The domain cannot receive email normally, a sign of a throwaway or spoofed address."
+      "why": "The domain cannot receive email normally, a sign of a throwaway or spoofed address.",
+      "dimension": "identity"
     },
     {
       "id": "cert_new",
       "category": "digital",
       "weight": 10,
       "label": "First TLS certificate for the domain issued less than 6 months ago",
-      "why": "Confirms a recently stood-up website even where registration dates are hidden."
+      "why": "Confirms a recently stood-up website even where registration dates are hidden.",
+      "dimension": "identity"
     },
     {
       "id": "no_archive",
       "category": "digital",
       "weight": 4,
       "label": "No Wayback Machine history for the website",
-      "why": "Weak on its own; strong when the company claims years of operation."
+      "why": "Weak on its own; strong when the company claims years of operation.",
+      "dimension": "identity"
     },
     {
       "id": "entity_bad_status",
       "category": "entity",
       "weight": 20,
       "label": "Registry lists the entity as delinquent, dissolved or inactive",
-      "why": "An entity not in good standing should not be hiring."
+      "why": "An entity not in good standing should not be hiring.",
+      "dimension": "identity"
     },
     {
       "id": "entity_new",
       "category": "entity",
       "weight": 10,
       "label": "Registered entity formed less than 12 months ago",
-      "why": "New entities are common in re-registration after complaints."
+      "why": "New entities are common in re-registration after complaints.",
+      "dimension": "identity"
     },
     {
       "id": "gleif_name_history",
       "category": "entity",
       "weight": 5,
       "label": "Entity has previous legal names on record",
-      "why": "Name changes are usually benign; they matter when an earlier name is linked to reports or enforcement."
+      "why": "Name changes are usually benign; they matter when an earlier name is linked to reports or enforcement.",
+      "dimension": "identity"
     },
     {
       "id": "investment_pitch",
       "category": "social",
       "weight": 25,
       "label": "Pushes an investment, trading platform or crypto opportunity",
-      "why": "The core of \"pig-butchering\" scams run from scam compounds: trust first, then a fake trading app."
+      "why": "The core of \"pig-butchering\" scams run from scam compounds: trust first, then a fake trading app.",
+      "dimension": "money"
     },
     {
       "id": "romance_money",
       "category": "social",
       "weight": 25,
       "label": "Someone you've only met online asks for money, gifts or help paying a fee",
-      "why": "Romance and friendship scams build affection, then invent an emergency, fee or travel cost."
+      "why": "Romance and friendship scams build affection, then invent an emergency, fee or travel cost.",
+      "dimension": "money"
     },
     {
       "id": "secrecy",
       "category": "social",
       "weight": 12,
       "label": "Asks you to keep it secret or not to tell family or friends",
-      "why": "Isolation stops anyone from warning you. It's an ILO forced-labour indicator."
+      "why": "Isolation stops anyone from warning you. It's an ILO forced-labour indicator.",
+      "dimension": "isolation"
     },
     {
       "id": "gift_card_crypto",
       "category": "social",
       "weight": 20,
       "label": "Wants payment in gift cards, crypto or a money transfer app",
-      "why": "These payments are hard to trace or reverse, so scammers prefer them."
+      "why": "These payments are hard to trace or reverse, so scammers prefer them.",
+      "dimension": "money"
     },
     {
       "id": "carry_package",
       "category": "offer",
       "weight": 25,
       "label": "Asks you to carry a package, luggage or documents for someone",
-      "why": "Couriers are used to move drugs or cash and can be arrested in their place."
+      "why": "Couriers are used to move drugs or cash and can be arrested in their place.",
+      "dimension": "travel"
     },
     {
       "id": "sponsor_travel_stranger",
       "category": "offer",
       "weight": 18,
       "label": "Someone met online offers to pay for your travel to meet or work",
-      "why": "A paid ticket creates a debt and gets you to a place where you depend on them."
+      "why": "A paid ticket creates a debt and gets you to a place where you depend on them.",
+      "dimension": "travel"
     },
     {
       "id": "housing_unseen_deposit",
       "category": "offer",
       "weight": 22,
       "label": "Deposit or rent demanded before you can see the place or sign anything",
-      "why": "Rental scams take deposits for homes the \"landlord\" doesn't own or that don't exist."
+      "why": "Rental scams take deposits for homes the \"landlord\" doesn't own or that don't exist.",
+      "dimension": "money"
     },
     {
       "id": "owner_unavailable",
       "category": "offer",
       "weight": 10,
       "label": "Landlord or host is abroad or can't meet in person",
-      "why": "A common excuse in rental scams for never showing the property."
+      "why": "A common excuse in rental scams for never showing the property.",
+      "dimension": "travel"
     },
     {
       "id": "housing_tied_to_job",
       "category": "offer",
       "weight": 12,
       "label": "Housing comes only with a job, or the employer controls where you live",
-      "why": "Employer-controlled housing can be used to confine workers and deduct wages."
+      "why": "Employer-controlled housing can be used to confine workers and deduct wages.",
+      "dimension": "travel"
     },
     {
       "id": "profile_new",
       "category": "social",
       "weight": 10,
       "label": "Profile was created recently or has very little history",
-      "why": "Fake accounts are created in batches and abandoned when reported."
+      "why": "Fake accounts are created in batches and abandoned when reported.",
+      "dimension": "identity"
     },
     {
       "id": "profile_photos_too_polished",
       "category": "social",
       "weight": 6,
       "label": "Photos look like a model, stock images or AI, and none are casual",
-      "why": "Weak alone. Stolen or generated photos are common; the same face under different names is the stronger sign."
+      "why": "Weak alone. Stolen or generated photos are common; the same face under different names is the stronger sign.",
+      "dimension": "identity"
     },
     {
       "id": "profile_mismatch",
       "category": "social",
       "weight": 10,
       "label": "Name, location, job or story doesn't match across profile and messages",
-      "why": "Scripts run by teams often contradict themselves."
+      "why": "Scripts run by teams often contradict themselves.",
+      "dimension": "identity"
     },
     {
       "id": "refuses_video",
       "category": "social",
       "weight": 15,
       "label": "Won't do a live video call, or the camera is always \"broken\"",
-      "why": "The person may not be who the photos show."
+      "why": "The person may not be who the photos show.",
+      "dimension": "identity"
     },
     {
       "id": "verification_code",
       "category": "social",
       "weight": 25,
       "label": "Asks you to share a verification code, password or log-in",
-      "why": "Used to take over your accounts, bank or identity."
+      "why": "Used to take over your accounts, bank or identity.",
+      "dimension": "money"
+    },
+    {
+      "id": "isolation",
+      "category": "social",
+      "weight": 20,
+      "label": "Encourages you to cut off or hide things from family, friends or support",
+      "why": "Isolating someone removes the people who might warn or help them. It's a core grooming and trafficking tactic.",
+      "dimension": "isolation"
+    },
+    {
+      "id": "threats_coercion",
+      "category": "social",
+      "weight": 30,
+      "label": "Threatens, blackmails or guilt-trips you, or says you owe them",
+      "why": "Coercion replaces choice. Threats to share images, report you to police or harm family are forms of control.",
+      "dimension": "pressure"
+    },
+    {
+      "id": "meet_private",
+      "category": "offer",
+      "weight": 18,
+      "label": "Wants to meet alone somewhere private, or to pick you up",
+      "why": "Controlling the first meeting place and transport removes your ability to leave.",
+      "dimension": "travel"
+    },
+    {
+      "id": "link_shortener",
+      "category": "digital",
+      "weight": 8,
+      "label": "Link is shortened or hides where it really goes",
+      "why": "Shortened and redirecting links hide the real destination, a common phishing tactic.",
+      "dimension": "identity"
     }
   ],
   "tiers": [
@@ -316,5 +389,37 @@
       "label": "Serious warning signs",
       "advice": "This matches patterns seen in scams and trafficking. Don't pay, send ID or travel. Talk to someone you trust, and see Get help if you feel pressured or unsafe."
     }
-  ]
+  ],
+  "dimensions": {
+    "identity": {
+      "label": "Identity",
+      "consider": "We couldn't independently establish who this person or organisation says they are.",
+      "step": "Verify them through an official channel you find yourself, not the contact details they gave you."
+    },
+    "money": {
+      "label": "Money",
+      "consider": "The situation involves paying, investing, or moving money before trust is established.",
+      "step": "Don't send money, gift cards, crypto or codes until someone independent has confirmed this is real."
+    },
+    "pressure": {
+      "label": "Pressure",
+      "consider": "There's urgency, threats or pressure to decide quickly.",
+      "step": "Take your time. Real opportunities and real friends can wait while you check."
+    },
+    "isolation": {
+      "label": "Isolation and control",
+      "consider": "You're being asked for secrecy, moved to private apps, or asked to hand over documents or control.",
+      "step": "Tell someone you trust what's happening, and keep your own documents and accounts."
+    },
+    "travel": {
+      "label": "Travel and meeting",
+      "consider": "You're being asked to travel, meet, or move somewhere unfamiliar before independent verification.",
+      "step": "Don't travel or meet alone until you've verified the person, the address and the arrangement independently."
+    },
+    "record": {
+      "label": "Public record",
+      "consider": "Names, websites or addresses match documented cases or public records.",
+      "step": "Read the matching case or record before going any further."
+    }
+  }
 }

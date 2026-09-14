@@ -45,6 +45,10 @@ const CONTENT_RULES = [
   { id: "housing_tied_to_job", any: [/\b(accommodation|housing|dormitory|room)\b[^.]{0,30}\b(deducted|provided by (the )?(employer|company)|comes with the job|must live)\b/i] },
   { id: "refuses_video", any: [/\b(camera|webcam)\b[^.]{0,20}\b(broken|not working|doesn'?t work)\b/i, /\b(can'?t|cannot|won'?t|not allowed to)\s+(do )?(a )?video( call)?\b/i] },
   { id: "verification_code", any: [/\b(send|share|give|tell)\b[^.]{0,30}\b(the |your |a )?(verification|security|6-digit|one-time|otp|login|whatsapp) (code|pin|password)\b/i, /\b(otp|one-time password)\b/i] },
+  { id: "isolation", any: [/\b(don'?t|do not|no need to)\s+(need|tell|trust|listen to|talk to)\b[^.]{0,20}\b(your )?(family|friends|parents|mother|father|anyone else)\b/i, /\b(they|your (family|friends|parents))\b[^.]{0,30}\b(won'?t understand|don'?t understand|are jealous|don'?t care about you)\b/i, /\b(leave|give me|hand over)\b[^.]{0,15}\b(your )?(phone|sim)\b/i, /\bonly (i|we) (understand|care about) you\b/i] },
+  { id: "threats_coercion", any: [/\b(or (else|i'?ll|we'?ll)|if you don'?t)\b[^.]{0,60}\b(share|post|send|leak|tell|report|hurt|police|immigration|deport|family)\b/i, /\byou owe (me|us)\b/i, /\b(i'?ll|we'?ll|going to)\s+(share|post|leak|send)\b[^.]{0,30}\b(photos?|pictures?|videos?|images?)\b/i] },
+  { id: "meet_private", any: [/\b(meet|come)\b[^.]{0,25}\b(alone|by yourself|at my (place|house|flat|apartment|hotel)|in private|somewhere private)\b/i, /\b(i'?ll|we'?ll|someone will|my (friend|driver|cousin) will)\s+(pick you up|collect you|meet you at the (airport|station|border))\b/i] },
+  { id: "link_shortener", any: [/\b(bit\.ly|tinyurl\.com|t\.co|goo\.gl|is\.gd|cutt\.ly|rb\.gy|shorturl\.at|ow\.ly|t\.ly|rebrand\.ly)\/\S+/i] },
   { id: "pay_too_high", any: [/\$\s?([5-9]\d{2}|\d{1,3},?\d{3,})\s*(\/|per|a)\s*day\b/i, /\$\s?([3-9],?\d{3}|\d{2,},?\d{3})\s*(\/|per|a)\s*week\b/i, /\$\s?(1[5-9]\d|[2-9]\d{2})\s*(\/|per|an?)\s*(hr|hour)\b/i] },
 ];
 
@@ -290,6 +294,17 @@ export function checkCatalog(name, cases) {
 }
 
 // ---- Scoring and coverage --------------------------------------------------------------
+
+// Group scored flags into the "things to consider" a person can act on.
+export function considerations(flags, signalsDoc) {
+  const dims = signalsDoc.dimensions || {};
+  const order = ["pressure", "isolation", "travel", "money", "identity", "record"];
+  const groups = {};
+  for (const f of flags) (groups[f.dimension || "pressure"] ||= []).push(f);
+  return order.filter((k) => groups[k]).map((k) => ({
+    id: k, ...dims[k], flags: groups[k], weight: groups[k].reduce((s, f) => s + f.weight, 0),
+  })).sort((a, b) => b.weight - a.weight);
+}
 
 export function score(hits, signalsDoc) {
   const byId = Object.fromEntries(signalsDoc.signals.map((s) => [s.id, s]));
