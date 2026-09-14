@@ -1,8 +1,8 @@
 import {
   assess, considerations, parsePostingUrl, fetchPosting, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js?v=202609141420";
-import { mountFigure } from "./figure.js?v=202609141420";
-import { REPORT_ENDPOINT } from "./config.js?v=202609141420";
+} from "./engine.js?v=202609141429";
+import { mountFigure } from "./figure.js?v=202609141429";
+import { REPORT_ENDPOINT } from "./config.js?v=202609141429";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
@@ -27,8 +27,8 @@ const signalById = Object.fromEntries(signals.signals.map((s) => [s.id, s]));
 const main = $("#main");
 
 const TYPOLOGY = {
-  "scam-compound": { label: "Scam compound", color: "#1F3B63" },
-  "labor-trafficking": { label: "Labour trafficking", color: "#4A7BA6" },
+  "scam-compound": { label: "Scam compound", color: "#14264A" },
+  "labor-trafficking": { label: "Labour trafficking", color: "#2A66B8" },
   "forced-labor-industrial": { label: "Industrial forced labour", color: "#5A5A9A" },
   "laundering": { label: "Laundering network", color: "#2B6A76" },
   "money-mule": { label: "Money mules", color: "#2B6A76" },
@@ -71,9 +71,9 @@ const flagList = (flags) => flags.length ? `<ul class="flags">${flags.map((f) =>
 // ---- FLSRI structural risk -------------------------------------------------------------
 
 const FL_TIER = {
-  higher: { label: "Higher", color: "#27456E" },
-  middle: { label: "Middle", color: "#7E9CB9" },
-  lower: { label: "Lower", color: "#C8D3DC" },
+  higher: { label: "Higher", color: "#14264A" },
+  middle: { label: "Middle", color: "#5F8FCB" },
+  lower: { label: "Lower", color: "#D3DFEE" },
 };
 const flSrc = flsri.source;
 const flLink = (label = "FLSRI") => ext(flSrc.site, label);
@@ -126,7 +126,7 @@ function flsriLayer(geo) {
   return L.geoJSON(geo, {
     style: (f) => {
       const c = flsri.countries[flsri.numericToIso2[f.id]];
-      return { stroke: true, weight: 0.5, color: "#F2ECE1", fillOpacity: c?.scored ? 0.75 : 0.25, fillColor: c?.scored ? FL_TIER[c.tier].color : "#CFC6B8" };
+      return { stroke: true, weight: 0.5, color: "#FFFFFF", fillOpacity: c?.scored ? 0.75 : 0.25, fillColor: c?.scored ? FL_TIER[c.tier].color : "#CFC6B8" };
     },
     onEachFeature: (f, layer) => {
       const iso2 = flsri.numericToIso2[f.id];
@@ -269,7 +269,7 @@ function viewCases() {
     if (map && !ctdcLayer) {
       const pts = await ctdcPoints();
       ctdcLayer = L.layerGroup(top.filter((c) => pts[c.from] && pts[c.to]).map((c) =>
-        L.polyline(arc(pts[c.from], pts[c.to]), { color: "#1F3B63", weight: 1 + 7 * Math.sqrt(c.n / max), opacity: 0.55 })
+        L.polyline(arc(pts[c.from], pts[c.to]), { color: "#2A66B8", weight: 1 + 7 * Math.sqrt(c.n / max), opacity: 0.55 })
           .bindTooltip(`${esc(country(c.from))} → ${esc(country(c.to))}: ${c.n.toLocaleString("en-US")} records`, { sticky: true })
           .on("click", () => showCorridor(c))));
     }
@@ -665,7 +665,7 @@ const NEWS_TYP = {
   "money-mule": "Money mules", "sex-trafficking": "Sex trafficking", "organ-trafficking": "Organ trafficking", "cartel-recruitment": "Cartel recruitment",
 };
 const NEWS_EVENT = { arrest: "Arrests & raids", warning: "Warnings & advisories", rescue: "Rescues & repatriation", sanction: "Sanctions", conviction: "Convictions" };
-const ROLE_COLOR = { origin: "#2B6A76", destination: "#1F3B63", mentioned: "#7F8A94" };
+const ROLE_COLOR = { origin: "#2A66B8", destination: "#14264A", mentioned: "#8C97A6" };
 
 // Catalog entities named in an article (names of 6+ characters, whole words).
 const entityIndex = cases.flatMap((c) => c.entities.flatMap((e) => allNames(e).map((n) => n.name)
@@ -764,7 +764,7 @@ async function viewNews(arg = "") {
     for (const c of a.corridors) {
       const p1 = n.points[c.from], p2 = n.points[c.to];
       if (!p1 || !p2) continue;
-      const line = L.polyline(arc(p1, p2), { color: "#1F3B63", weight: 1 + c.count * 1.2, opacity: 0.7, dashArray: c.count > 1 ? null : "5 6" }).addTo(map);
+      const line = L.polyline(arc(p1, p2), { color: "#2A66B8", weight: 1 + c.count * 1.2, opacity: 0.7, dashArray: c.count > 1 ? null : "5 6" }).addTo(map);
       line.bindTooltip(`${esc(country(c.from))} → ${esc(country(c.to))}: ${c.count} article${c.count > 1 ? "s" : ""}`, { sticky: true });
       const tip = arc(p1, p2);
       const [ya, xa] = tip[tip.length - 3], [yb, xb] = tip[tip.length - 1];
@@ -774,7 +774,7 @@ async function viewNews(arg = "") {
     for (const [k, v] of Object.entries(a.byCountry)) {
       const pt = n.points[k]; if (!pt) continue;
       const dom = v.origin > v.destination ? "origin" : v.destination > v.origin ? "destination" : v.origin ? "origin" : "mentioned";
-      L.circleMarker(pt, { radius: 4 + Math.sqrt(v.mentions / top) * 18, color: "#F2ECE1", weight: 1, fillColor: ROLE_COLOR[dom], fillOpacity: 0.75 })
+      L.circleMarker(pt, { radius: 4 + Math.sqrt(v.mentions / top) * 18, color: "#FFFFFF", weight: 1, fillColor: ROLE_COLOR[dom], fillOpacity: 0.75 })
         .addTo(map)
         .bindTooltip(`<strong>${esc(country(k))}</strong><br>${v.mentions} article(s): ${v.origin} as origin, ${v.destination} as destination`)
         .on("click", () => setCountry(k));

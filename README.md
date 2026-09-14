@@ -44,4 +44,6 @@ npm run serve     # local preview
 
 ## Design
 
-Visual direction from [kateebonner/personal-site](https://github.com/kateebonner/personal-site) (katebonner.ai): ink on grey-green paper (her burgundy, here in blue), hairline rules, tracked uppercase lettering, a near-empty home sheet with one pencil-drawn figure. That repo has no licence, so nothing was copied: the paper grain is generated with SVG noise, the home drawing (`src/figure.js`, a thread that loops and tightens into a knot) is original, and the stylesheet is written for this project. The palette is switched from her burgundy to a deep blue (#0F2A4E), at 5:1 contrast on the paper. Type is Be Vietnam Pro (SIL Open Font License) via Google Fonts.
+Brand: the Digital Safety Check logo (`assets/logo-mark.svg`, also the favicon) and its two colours, navy `#14264A` for text, rules and fills and logo blue `#2A66B8` for links, actions and state, on light paper `#EEF1F5` (13:1 and 5:1 contrast).
+
+Layout direction from [kateebonner/personal-site](https://github.com/kateebonner/personal-site) (katebonner.ai): hairline rules, tracked uppercase lettering, a near-empty home sheet with one pencil-drawn figure. That repo has no licence, so nothing was copied: the paper grain is generated with SVG noise, the home drawing (`src/figure.js`, a thread that loops and tightens into a knot) is original, and the stylesheet is written for this project. Type is Be Vietnam Pro (SIL Open Font License) via Google Fonts.

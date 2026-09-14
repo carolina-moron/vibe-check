@@ -4,7 +4,7 @@
 // passes rather than one clean stroke. Original to Digital Safety Check.
 // Holds as a finished drawing under prefers-reduced-motion.
 
-const INK = [31, 59, 99];
+const INK = [42, 102, 184]; // logo blue
 
 function rng(seed) {
   return () => {

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Digital Safety Check">
+  <!-- pixel squares trailing off the shield -->
+  <rect x="10" y="30" width="12" height="12" fill="#2A66B8"/>
+  <rect x="30" y="42" width="15" height="15" fill="#2A66B8"/>
+  <rect x="2" y="50" width="8" height="8" fill="#3B7CC4"/>
+  <rect x="16" y="61" width="11" height="11" fill="#2A66B8"/>
+  <!-- shield outline, open on the left where the pixels leave it -->
+  <path d="M38 34 V20 L72 8 L106 20 V56 C106 84 88 100 72 108 C56 100 44 90 39 74"
+        fill="none" stroke="#14264A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- check -->
+  <path d="M54 58 L67 71 L91 45" fill="none" stroke="#2A66B8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
