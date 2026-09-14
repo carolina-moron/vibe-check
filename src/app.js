@@ -1582,7 +1582,7 @@ function viewTeam() {
     </article>
     <article class="panel">
       <h2>Get involved</h2>
-      <p>Found a scam or trafficking case? <a href="#/report">Report wrong vibes</a>. Want to help improve Vibe Check? Contribute on <a href="https://github.com/carolina-moron/job-risk-search" target="_blank" rel="noopener">GitHub</a>.</p>
+      <p>Found a scam or trafficking case? <a href="#/report">Report wrong vibes</a>. Want to help improve Vibe Check? Contribute on <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">GitHub</a>.</p>
     </article>`;
 }
 
@@ -1603,7 +1603,7 @@ function viewPartnerships() {
         <li><strong>Email domain checks</strong> — Flag free email or newly-registered domains used by company recruiters</li>
         <li><strong>User warning</strong> — Show Vibe Check score (high concern, caution, or unverified) before application</li>
       </ul>
-      <p class="fine">API documentation coming soon. Interested? <a href="https://github.com/carolina-moron/job-risk-search" target="_blank" rel="noopener">Open an issue on GitHub</a>.</p>
+      <p class="fine">API documentation coming soon. Interested? <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">Open an issue on GitHub</a>.</p>
     </article>
 
     <article class="panel">
@@ -1614,7 +1614,7 @@ function viewPartnerships() {
         <li><strong>Text analysis</strong> — Flag common romance scam phrases and grooming tactics</li>
         <li><strong>Safety tips</strong> — Show context about where the user's potential connection says they are (country-specific trafficking patterns)</li>
       </ul>
-      <p class="fine">Interested in integration? <a href="https://github.com/carolina-moron/job-risk-search" target="_blank" rel="noopener">Contribute on GitHub</a> or open an issue.</p>
+      <p class="fine">Interested in integration? <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">Contribute on GitHub</a> or open an issue.</p>
     </article>
 
     <article class="panel">
@@ -1625,7 +1625,7 @@ function viewPartnerships() {
         <li>Country context about forced labour risks if travel is involved</li>
         <li>Advice on what to verify independently before accepting</li>
       </ul>
-      <p class="fine">Contact us through <a href="https://github.com/carolina-moron/job-risk-search" target="_blank" rel="noopener">GitHub</a>.</p>
+      <p class="fine">Contact us through <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">GitHub</a>.</p>
     </article>
 
     <article class="panel">
