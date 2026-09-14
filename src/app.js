@@ -1586,6 +1586,93 @@ function viewTeam() {
     </article>`;
 }
 
+function viewPartnerships() {
+  main.innerHTML = `
+    <section class="hero small">
+      <div class="eyebrow mono">Partnerships</div>
+      <h1>Integrate Vibe Check</h1>
+      <p class="lede">Platforms, institutions, and services that want to alert users to exploitation risks can integrate Vibe Check. We provide data on documented bad actors and warning signs, and help you surface safety context where people are making decisions.</p>
+    </section>
+
+    <article class="panel">
+      <h2>For hiring platforms (Handshake, LinkedIn, Indeed)</h2>
+      <p>Alert users when they're about to apply to a documented trafficking or scam operation, or show a yellow flag when warning signs appear in the job text. Integration points:</p>
+      <ul>
+        <li><strong>Company name lookup</strong> — Check if a recruiter matches entities in our case catalog</li>
+        <li><strong>Job posting analysis</strong> — Scan for red flags (urgency, visa promises, upfront fees, vague location)</li>
+        <li><strong>Email domain checks</strong> — Flag free email or newly-registered domains used by company recruiters</li>
+        <li><strong>User warning</strong> — Show Vibe Check score (high concern, caution, or unverified) before application</li>
+      </ul>
+      <p class="fine">API documentation coming soon. Interested? <a href="https://github.com/carolina-moron/job-risk-search" target="_blank" rel="noopener">Open an issue on GitHub</a>.</p>
+    </article>
+
+    <article class="panel">
+      <h2>For dating and social platforms</h2>
+      <p>Help users spot romance scams and grooming before they engage:</p>
+      <ul>
+        <li><strong>Profile image fingerprinting</strong> — Check if a photo is reused across multiple accounts (fake profile detector)</li>
+        <li><strong>Text analysis</strong> — Flag common romance scam phrases and grooming tactics</li>
+        <li><strong>Safety tips</strong> — Show context about where the user's potential connection says they are (country-specific trafficking patterns)</li>
+      </ul>
+      <p class="fine">Interested in integration? <a href="https://github.com/carolina-moron/job-risk-search" target="_blank" rel="noopener">Contribute on GitHub</a> or open an issue.</p>
+    </article>
+
+    <article class="panel">
+      <h2>For universities and EDU institutions</h2>
+      <p>Handshake and career services can embed Vibe Check to help students evaluate internship and job offers:</p>
+      <ul>
+        <li>Real-time warnings about bad actors recruiting on campus</li>
+        <li>Country context about forced labour risks if travel is involved</li>
+        <li>Advice on what to verify independently before accepting</li>
+      </ul>
+      <p class="fine">Contact us through <a href="https://github.com/carolina-moron/job-risk-search" target="_blank" rel="noopener">GitHub</a>.</p>
+    </article>
+
+    <article class="panel">
+      <h2>Resources for understanding context</h2>
+      <p>To better understand trafficking patterns and country risk:</p>
+      <ul>
+        <li><strong><a href="https://ethical-tech-colab.github.io/forced-labor-structural-risk-index/" target="_blank" rel="noopener">Forced Labor Structural Risk Index (FLSRI)</a></strong> — Country-level data on recruitment and exploitation phase risks. Scores never identify a company, only structural conditions.</li>
+        <li><strong><a href="https://www.state.gov/reports/2025-trafficking-in-persons-report/" target="_blank" rel="noopener">US TIP Report</a></strong> — Annual country tiers on trafficking prevalence and government action</li>
+        <li><strong><a href="https://www.ctdatacollaborative.org/page/global-dataset" target="_blank" rel="noopener">CTDC Global Synthetic Dataset</a></strong> — 206k case records showing recruitment methods, control tactics, and exploitation phases across sectors</li>
+        <li><strong><a href="https://www.ilo.org/" target="_blank" rel="noopener">ILO Indicators of Forced Labour</a></strong> — 11 signs that appear in job offers and agreements before exploitation begins</li>
+        <li><strong><a href="https://www.dol.gov/agencies/eta/foreign-labor" target="_blank" rel="noopener">DOL Foreign Labor Program Debarments</a></strong> — H-2A, H-2B, and PERM recruiters barred from sponsoring foreign workers</li>
+      </ul>
+    </article>
+
+    <article class="panel">
+      <h2>What exploitation phase means</h2>
+      <p>Trafficking and scams follow a pattern. Understanding where someone is in that pattern helps you decide what to do:</p>
+      <div class="phase-list">
+        <div class="phase-item">
+          <h3>Advertised</h3>
+          <p>The offer or message appears: a job posting, a dating profile, an investment pitch. Red flags are visible in the text or the way it's presented.</p>
+        </div>
+        <div class="phase-item">
+          <h3>Recruited</h3>
+          <p>Contact deepens. The person asks for documents, money, personal details, or asks you to move to a private app. Pressure increases ("limited slots", "decide by Friday").</p>
+        </div>
+        <div class="phase-item">
+          <h3>Transit</h3>
+          <p>Travel, movement, or handover. You're on a plane, in a car, or logging in remotely. Control tightens: location kept secret, phone confiscated, documents retained.</p>
+        </div>
+        <div class="phase-item">
+          <h3>Exploited</h3>
+          <p>The real situation emerges. Wages withheld, debts invented, isolation enforced. For romance scams: requests for money escalate, isolation from friends intensifies.</p>
+        </div>
+        <div class="phase-item">
+          <h3>Escaped / Rescued</h3>
+          <p>The person leaves, is helped to leave, or is found. Recovery and repatriation begin.</p>
+        </div>
+        <div class="phase-item">
+          <h3>Prosecuted</h3>
+          <p>Case reaches law enforcement. Charges, plea, conviction, or settlement.</p>
+        </div>
+      </div>
+      <p class="fine"><strong>Why it matters:</strong> Early phases (advertised, recruited) show warning signs you can see and act on. The earlier you stop, the safer you are. Vibe Check focuses on what you can spot at the advertised and recruited stages.</p>
+    </article>`;
+}
+
 // ---- router ----------------------------------------------------------------------------
 
 function route() {
@@ -1602,6 +1689,7 @@ function route() {
   else if (view === "help") viewHelp();
   else if (view === "report") viewReport();
   else if (view === "team") viewTeam();
+  else if (view === "partnerships") viewPartnerships();
   else if (view === "methodology") viewMethodology();
   else viewCases();
   window.scrollTo(0, 0);
