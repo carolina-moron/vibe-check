@@ -1,10 +1,10 @@
-// The home figure: a network expanding from a central point, showing connections
-// and growth patterns. Nodes branch out, connect, and spread. Some are highlighted
-// to show bad actors in a network. Drawn on a 2D canvas with soft lines and fading.
-// Original to Vibe Check — replaces the pencil knot.
+// The home figure: an animated globe with dots and connections showing network growth.
+// Nodes appear at key trafficking corridors, connecting progressively to show how networks expand.
+// The globe rotates slowly. Styled like the NASA night lights satellite view.
 
 const INK = [42, 102, 184]; // logo blue
 const WARN = [179, 38, 30]; // warning red
+const GLOW = [66, 180, 255]; // bright blue glow
 
 function rng(seed) {
   return () => {
@@ -15,57 +15,70 @@ function rng(seed) {
   };
 }
 
-// Generate network nodes and connections
-function buildNetwork(nodeCount = 12) {
-  const nodes = [];
-  const R = rng(42);
+// Key trafficking corridor endpoints (lat, lon)
+const NODE_LOCATIONS = [
+  { name: "Albania", lat: 41, lon: 20, isBad: true },      // European source
+  { name: "Philippines", lat: 12, lon: 122, isBad: true }, // SE Asia source
+  { name: "Thailand", lat: 15, lon: 101, isBad: true },    // Hub
+  { name: "Myanmar", lat: 22, lon: 98, isBad: true },      // Source
+  { name: "Cambodia", lat: 13, lon: 105, isBad: false },   // Transit
+  { name: "Vietnam", lat: 16, lon: 107, isBad: false },    // Transit
+  { name: "Hong Kong", lat: 22.3, lon: 114.2, isBad: false }, // Hub
+  { name: "Japan", lat: 36, lon: 138, isBad: false },      // Destination
+  { name: "South Korea", lat: 37, lon: 127, isBad: false }, // Destination
+  { name: "Taiwan", lat: 23.7, lon: 120.9, isBad: false }, // Transit
+  { name: "Mexico", lat: 23, lon: -102, isBad: true },     // N. America source
+  { name: "USA", lat: 37, lon: -95, isBad: false },        // Destination
+  { name: "Guatemala", lat: 15.5, lon: -90.25, isBad: true }, // C. America source
+  { name: "Nigeria", lat: 9.08, lon: 8.68, isBad: true },  // African source
+  { name: "Kenya", lat: -0.02, lon: 37.9, isBad: false },  // African transit
+  { name: "Germany", lat: 51.17, lon: 10.45, isBad: false }, // Europe destination
+  { name: "UK", lat: 55.38, lon: -3.44, isBad: false },    // Destination
+  { name: "UAE", lat: 23.42, lon: 53.85, isBad: false },   // Gulf hub
+  { name: "India", lat: 20.59, lon: 78.96, isBad: false }, // South Asia source
+  { name: "Brazil", lat: -14.24, lon: -51.93, isBad: false }, // South America
+];
 
-  // Central node at origin
-  nodes.push({ id: 0, x: 0.5, y: 0.5, depth: 0, isBad: true });
-
-  // Spread nodes outward in waves
-  let nodeId = 1;
-  for (let depth = 1; depth <= 3; depth++) {
-    const nodesAtDepth = Math.floor(depth * 3);
-    for (let i = 0; i < nodesAtDepth && nodeId < nodeCount; i++) {
-      const angle = (i / nodesAtDepth) * Math.PI * 2 + (R() - 0.5) * 0.3;
-      const dist = 0.15 + depth * 0.15 + (R() - 0.5) * 0.08;
-      const isBad = R() < 0.2; // 20% of nodes are "bad actors"
-      nodes.push({
-        id: nodeId,
-        x: 0.5 + Math.cos(angle) * dist,
-        y: 0.5 + Math.sin(angle) * dist,
-        depth,
-        isBad,
-      });
-      nodeId++;
-    }
-  }
-
-  // Create edges: each node connects to 1-2 closer nodes (outward) or random
+// Connect nearby nodes to show corridors
+function buildEdges(nodes) {
   const edges = [];
-  for (let i = 1; i < nodes.length; i++) {
-    const n = nodes[i];
-    // Connect to parent (closer node at lower depth)
-    const closer = nodes.filter((m) => m.depth < n.depth);
-    if (closer.length) {
-      const parent = closer[Math.floor(R() * closer.length)];
-      edges.push([n.id, parent.id]);
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[i].lon - nodes[j].lon;
+      const dy = nodes[i].lat - nodes[j].lat;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      // Connect nodes within ~40 degrees (established corridors)
+      if (dist < 45) {
+        edges.push([i, j, dist]);
+      }
     }
   }
 
-  return { nodes, edges };
+  // Sort by distance (closer = stronger corridors = drawn first)
+  return edges.sort((a, b) => a[2] - b[2]);
 }
 
 export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
   if (!canvas || !canvas.getContext) return () => {};
   const ctx = canvas.getContext("2d");
-  const { nodes, edges } = buildNetwork(12);
+  const nodes = NODE_LOCATIONS;
+  const edges = buildEdges(nodes);
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   let w = 0, h = 0, dpr = 1, start = 0, drawn = 0, raf = 0;
 
-  const toPx = ([x, y]) => [x * w, y * h];
+  // Project lat/lon to canvas, accounting for globe rotation
+  const project = ([lat, lon], rotation) => {
+    const rotLon = lon + rotation;
+    const phi = lat * Math.PI / 180;
+    const theta = rotLon * Math.PI / 180;
+
+    // Simple cylindrical projection
+    const x = (theta / Math.PI + 1) * 0.5 * w;
+    const y = (0.5 - phi / Math.PI) * h;
+    return [x, y];
+  };
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -75,99 +88,65 @@ export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, w, h);
     drawn = 0;
-    if (reduce) drawNetwork(0, nodes.length, 1);
+    if (reduce) drawGlobe(0, nodes.length, 1, 0);
   }
 
-  // Draw edges up to a certain depth
-  function drawEdges(maxDepth, progress) {
-    ctx.lineWidth = 1.2;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
+  function drawGlobe(edgesDrawn, nodesDrawn, progress, rotation) {
+    ctx.fillStyle = "rgba(20, 38, 74, 0.15)";
+    ctx.fillRect(0, 0, w, h);
 
-    for (const [fromId, toId] of edges) {
-      const from = nodes[fromId];
-      const to = nodes[toId];
-
-      // Only draw if both nodes are within depth
-      if (Math.max(from.depth, to.depth) > maxDepth) continue;
-
-      const [x1, y1] = toPx([from.x, from.y]);
-      const [x2, y2] = toPx([to.x, to.y]);
-
+    // Draw edges (connections between nodes)
+    const edgesToDraw = Math.floor(edgesDrawn * edges.length);
+    for (let i = 0; i < edgesToDraw; i++) {
+      const [fromIdx, toIdx] = edges[i];
+      const from = nodes[fromIdx];
+      const to = nodes[toIdx];
       const isBadEdge = from.isBad || to.isBad;
+
+      const [x1, y1] = project([from.lat, from.lon], rotation);
+      const [x2, y2] = project([to.lat, to.lon], rotation);
+
+      ctx.lineWidth = 1.5;
       ctx.strokeStyle = isBadEdge
-        ? `rgba(${WARN},0.4)`
-        : `rgba(${INK},0.25)`;
+        ? `rgba(${WARN},${0.3 * progress})`
+        : `rgba(${INK},${0.2 * progress})`;
 
       ctx.beginPath();
       ctx.moveTo(x1, y1);
       ctx.lineTo(x2, y2);
       ctx.stroke();
     }
-  }
 
-  // Draw nodes
-  function drawNodes(maxDepth, progress) {
-    for (const node of nodes) {
-      if (node.depth > maxDepth) continue;
+    // Draw nodes (dots at locations)
+    const nodesToDraw = Math.floor(nodesDrawn * nodes.length);
+    for (let i = 0; i < nodesToDraw; i++) {
+      const node = nodes[i];
+      const [px, py] = project([node.lat, node.lon], rotation);
 
-      const [px, py] = toPx([node.x, node.y]);
+      // Only draw if on visible hemisphere (rough check)
+      if (px < -50 || px > w + 50) continue;
 
-      // Size grows slightly with progress
-      const baseSize = node.depth === 0 ? 8 : 5;
-      const size = baseSize * (0.6 + progress * 0.4);
+      const size = node.isBad ? 5 : 3.5;
 
-      // Center node is always emphasized
-      if (node.id === 0) {
-        ctx.fillStyle = `rgba(${WARN},0.9)`;
-        ctx.beginPath();
-        ctx.arc(px, py, size, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Pulsing ring around center
-        ctx.strokeStyle = `rgba(${WARN},${0.3 * progress})`;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.arc(px, py, size + 6 * progress, 0, Math.PI * 2);
-        ctx.stroke();
-      } else if (node.isBad) {
-        // Bad actor nodes in warning color
-        ctx.fillStyle = `rgba(${WARN},${0.6 + progress * 0.3})`;
-        ctx.beginPath();
-        ctx.arc(px, py, size, 0, Math.PI * 2);
-        ctx.fill();
+      if (node.isBad) {
+        // Bad actor nodes: red with glow
+        ctx.fillStyle = `rgba(${WARN},${0.7 + progress * 0.3})`;
+        ctx.shadowColor = `rgba(${WARN},0.6)`;
+        ctx.shadowBlur = 8;
       } else {
-        // Normal nodes in blue
-        ctx.fillStyle = `rgba(${INK},${0.5 + progress * 0.3})`;
-        ctx.beginPath();
-        ctx.arc(px, py, size, 0, Math.PI * 2);
-        ctx.fill();
+        // Normal nodes: blue with glow
+        ctx.fillStyle = `rgba(${GLOW},${0.5 + progress * 0.4})`;
+        ctx.shadowColor = `rgba(${GLOW},0.5)`;
+        ctx.shadowBlur = 6;
       }
-    }
-  }
 
-  function drawNetwork(nodeProgress, edgeProgress, opacity) {
-    ctx.clearRect(0, 0, w, h);
-
-    // Draw background guides (subtle)
-    ctx.strokeStyle = `rgba(${INK},0.05)`;
-    ctx.lineWidth = 0.5;
-    for (let i = 0; i < 4; i++) {
-      const y = (h / 3) * (i + 1);
       ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(w, y);
-      ctx.stroke();
+      ctx.arc(px, py, size, 0, Math.PI * 2);
+      ctx.fill();
     }
 
-    ctx.globalAlpha = opacity;
-
-    // Reveal edges first, then nodes
-    const maxDepth = Math.floor(nodeProgress * 4);
-    drawEdges(maxDepth, edgeProgress);
-    drawNodes(maxDepth, edgeProgress);
-
-    ctx.globalAlpha = 1;
+    ctx.shadowColor = "transparent";
+    ctx.shadowBlur = 0;
   }
 
   function frame(now) {
@@ -175,11 +154,14 @@ export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
     const elapsed = now - start;
     const t = Math.min(1, elapsed / duration);
 
-    // Stagger: edges appear first, then nodes fill in
-    const nodeProgress = Math.min(1, t * 1.2);
-    const fadeIn = Math.max(0, Math.min(1, (t - 0.1) * 2)); // delay start
+    // Rotate globe continuously
+    const rotation = t * 360;
 
-    drawNetwork(nodeProgress, fadeIn, 1);
+    // Stagger: edges appear first, nodes fill in
+    const edgeProgress = Math.min(1, t * 1.3);
+    const nodeProgress = Math.max(0, Math.min(1, (t - 0.15) * 1.5));
+
+    drawGlobe(edgeProgress, nodeProgress, nodeProgress, rotation);
 
     if (t < 1) raf = requestAnimationFrame(frame);
   }
