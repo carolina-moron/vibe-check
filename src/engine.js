@@ -34,6 +34,17 @@ const CONTENT_RULES = [
   { id: "lure_role", any: [/\b(modeling|model agency|hostess|companion|chat operator|crypto (trader|operator)|data entry|typing job|game tester|online sales agent)\b/i] },
   { id: "payment_handling", any: [/\b(receive|process|forward|transfer)\b[^.]{0,30}\b(payments?|funds|money|gift cards?|bitcoin|crypto|checks?|cheques?|parcels|packages)\b/i, /\b(money|payment) (transfer|processing) (agent|assistant)\b/i, /\breshipping\b/i] },
   { id: "no_experience_high_pay", any: [/\bno experience (needed|required|necessary)\b/i], also: [/\$\s?\d[\d,]{2,}\s*(\/|per)\s*(day|week)\b/i, /\burgent|high (pay|salary|income)\b/i] },
+  { id: "investment_pitch", any: [/\b(trading (platform|app|account)|crypto(currency)? (trading|platform|investment|exchange)|investment (platform|app|opportunity|plan)|forex (trading|signals)|usdt|mining pool|liquidity mining|guaranteed (returns?|profits?)|daily (returns?|profits?))\b/i] },
+  { id: "romance_money", any: [/\b(send|lend|transfer|need)\b[^.]{0,40}\b(money|cash|funds)\b[^.]{0,40}\b(for|to pay|hospital|ticket|customs|fee|emergency|visa)\b/i, /\b(my love|dear|sweetheart|honey|babe)\b[^.]{0,80}\b(send|transfer|pay)\b/i] },
+  { id: "secrecy", any: [/\b(don'?t|do not|never)\s+(tell|share with|mention (it|this) to)\b[^.]{0,30}\b(anyone|family|friends|parents|police)\b/i, /\bkeep (this|it) (a )?secret\b/i, /\bbetween (you and me|us)\b/i] },
+  { id: "gift_card_crypto", any: [/\b(gift ?cards?|itunes cards?|steam cards?|google play cards?|bitcoin|usdt|tether|crypto wallet|western union|moneygram)\b/i] },
+  { id: "carry_package", any: [/\b(carry|bring|take|deliver)\b[^.]{0,30}\b(a |the |this |some )?(package|parcel|suitcase|luggage|bag|envelope|documents) (for|to)\b/i] },
+  { id: "sponsor_travel_stranger", any: [/\b(i('| wi)ll|we('| wi)ll|let me)\s+(pay|buy|book|send you)\b[^.]{0,30}\b(ticket|flight|bus|travel|trip|visa)\b/i, /\b(ticket|flight)\b[^.]{0,20}\b(is |are )?(on me|paid for|already booked)\b/i] },
+  { id: "housing_unseen_deposit", any: [/\b(deposit|first month|rent|reservation fee|holding fee)\b[^.]{0,50}\b(before (viewing|seeing|you see|visiting|the viewing)|to (hold|reserve|secure) (it|the (room|flat|apartment|house)))\b/i, /\bcan'?t (show|view|see) (it|the (room|flat|apartment|house|property))\b/i] },
+  { id: "owner_unavailable", any: [/\b(i am|i'm|currently|we are)\s+(abroad|overseas|out of the country|working away|on a mission|deployed|offshore)\b/i, /\b(keys?)\b[^.]{0,30}\b(by (post|mail|courier)|sent to you)\b/i] },
+  { id: "housing_tied_to_job", any: [/\b(accommodation|housing|dormitory|room)\b[^.]{0,30}\b(deducted|provided by (the )?(employer|company)|comes with the job|must live)\b/i] },
+  { id: "refuses_video", any: [/\b(camera|webcam)\b[^.]{0,20}\b(broken|not working|doesn'?t work)\b/i, /\b(can'?t|cannot|won'?t|not allowed to)\s+(do )?(a )?video( call)?\b/i] },
+  { id: "verification_code", any: [/\b(send|share|give|tell)\b[^.]{0,30}\b(the |your |a )?(verification|security|6-digit|one-time|otp|login|whatsapp) (code|pin|password)\b/i, /\b(otp|one-time password)\b/i] },
   { id: "pay_too_high", any: [/\$\s?([5-9]\d{2}|\d{1,3},?\d{3,})\s*(\/|per|a)\s*day\b/i, /\$\s?([3-9],?\d{3}|\d{2,},?\d{3})\s*(\/|per|a)\s*week\b/i, /\$\s?(1[5-9]\d|[2-9]\d{2})\s*(\/|per|an?)\s*(hr|hour)\b/i] },
 ];
 
@@ -340,9 +351,10 @@ export async function assess(input, { signals, registers, cases, fetchFn = fetch
   checks.push(result("freemail", emailDomain ? (emailHits.length ? "hit" : "no-evidence-found") : "not-searched",
     emailDomain ? (emailHits.length ? emailHits[0].evidence : `${emailDomain} is not a known free-mail domain.`) : "No recruiter email given.", emailHits));
 
-  const textHits = detectContent(input.posting);
-  checks.push(result("ilo", input.posting?.trim() ? (textHits.length ? "hit" : "no-evidence-found") : "not-searched",
-    input.posting?.trim() ? `${textHits.length} offer-text indicator(s).` : "No posting text given.", textHits));
+  const answerHits = [].concat(input.answers || []).filter(Boolean).map((id) => ({ id, evidence: "from your answers" }));
+  const textHits = [...detectContent(input.posting), ...answerHits];
+  checks.push(result("ilo", input.posting?.trim() || answerHits.length ? (textHits.length ? "hit" : "no-evidence-found") : "not-searched",
+    input.posting?.trim() || answerHits.length ? `${textHits.length} warning sign(s) in the text and your answers.` : "No text given.", textHits));
 
   const hits = checks.flatMap((c) => c.hits);
   const byRegister = Object.fromEntries(registers.registers.map((r) => [r.id, r]));
@@ -350,7 +362,7 @@ export async function assess(input, { signals, registers, cases, fetchFn = fetch
     && (r.covers.includes("*") || !jurisdiction || r.covers.includes(jurisdiction)));
 
   return {
-    input: { name, domain, emailDomain, jurisdiction },
+    input: { name, domain, emailDomain, jurisdiction, kind: input.kind || null },
     checks: checks.map((c) => ({ ...c, meta: byRegister[c.register] })),
     referrals,
     coverage: coverage(jurisdiction ? [jurisdiction] : [], registers),
@@ -455,7 +467,9 @@ export function hammingHex(a, b) {
 export function buildReport(form, now = new Date()) {
   const narrative = redact(form.narrative);
   return {
-    schema: "job-risk-tracer/report@1",
+    schema: "digital-safety-check/report@2",
+    kind: form.kind || null,
+    profile_platform: form.profileUrl ? (normalizeDomain(form.profileUrl) || null) : null,
     submitted_month: now.toISOString().slice(0, 7),
     company_as_presented: String(form.company || "").trim() || null,
     website: normalizeDomain(form.website) || null,

@@ -1,4 +1,6 @@
-# Job Risk Tracer
+# Digital Safety Check
+
+*Before you trust someone online, check the situation.*
 
 **Live site:** https://carolina-moron.github.io/job-risk-search/
 
@@ -6,6 +8,8 @@ Traces fake-job recruitment into scams, forced labour and human trafficking. The
 
 ## What it has
 
+- **Check.** Check a social media profile, screenshot of messages, travel invitation, housing offer, job offer, recruiter message or other suspicious interaction. Screenshots are read on-device (Tesseract.js). Results: Lower concern, Caution or Serious warning signs, with an optional anonymous submission.
+- **Get help.** Hotlines by country, what to do in common situations, and a quick exit. Linked from every page.
 - **Cases and map.** Documented cases, each with its recruitment journey on a world map, the entities involved with their former names, aliases and official actions, lure indicators, and tiered sources.
 - **News patterns.** Recent trafficking and fake-job recruitment news gathered with Tavily (`npm run news`, key from `TAVILY_API_KEY`, never shipped to the site). Rule-based extraction of countries, origin→destination corridors, typologies, events and lure indicators, mapped and linked to catalog cases. Media attention, not case counts.
 - **Structural risk.** Country context from the ETC Forced Labor Structural Risk Index (`npm run import:flsri`), shown on the map, case pages and checks, never in a score.

@@ -7,6 +7,8 @@ const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
 );
 let newsData = null;
+let helpData = null;
+const loadHelp = async () => (helpData ||= await fetch("data/help.json").then((r) => (r.ok ? r.json() : null)).catch(() => null));
 const loadNews = async () => (newsData ||= await fetch("data/news.json").then((r) => r.json()));
 
 // ---- helpers ---------------------------------------------------------------------------
@@ -244,13 +246,13 @@ function viewCases() {
 
 function viewCase(id) {
   const c = cases.find((x) => x.id === id);
-  if (!c) { main.innerHTML = `<section><h1>Case not found</h1><p><a href="#/">Back to cases</a></p></section>`; return; }
+  if (!c) { main.innerHTML = `<section><h1>Case not found</h1><p><a href="#/cases">Back to cases</a></p></section>`; return; }
   const s = caseEvidence(c, signals);
   const cov = coverage(caseJurisdictions(c), registers);
   const typ = TYPOLOGY[c.typology] || {};
 
   main.innerHTML = `
-    <p class="crumb"><a href="#/">← All cases</a></p>
+    <p class="crumb"><a href="#/cases">← All cases</a></p>
     <section class="casehead">
       <div>
         <div class="eyebrow mono"><span class="typ" style="--c:${typ.color}">${esc(typ.label)}</span> ${esc(c.period)} · ${esc(STATUS[c.status])}</div>
@@ -338,6 +340,113 @@ function flsriPanel(c) {
         <ul class="corridors">${r.corridors.slice(0, 6).map((k) => `<li><span>${esc(k.region)}</span><span>${bar(k.risk)}</span></li>`).join("")}</ul>`).join("")}
       <p class="fine">FLSRI build ${esc(flSrc.build_date)}, imported ${esc(flSrc.imported)}. ${esc(flSrc.rank_band)}. ${esc(flSrc.citation)}</p>
     </section>`;
+}
+
+// ---- views: help -----------------------------------------------------------------------
+
+const telHref = (v) => `tel:${String(v).replace(/[^\d+]/g, "")}`;
+const contactHtml = (c) => {
+  const v = esc(c.value);
+  const link = c.type === "phone" ? `<a class="dial" href="${telHref(c.value)}">${v}</a>`
+    : c.type === "sms" ? `<span class="mono">${v}</span>`
+    : c.type === "whatsapp" ? `<span class="mono">${v}</span>`
+    : c.type === "email" ? `<a href="mailto:${v}">${v}</a>`
+    : ext(c.value, c.value.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, ""));
+  return `<li><span class="ctype">${esc({ phone: "Call", sms: "Text", whatsapp: "WhatsApp", web: "Online", email: "Email" }[c.type] || c.type)}</span> ${link}${c.note ? ` <span class="muted">${esc(c.note)}</span>` : ""}</li>`;
+};
+const FOR_LABEL = { trafficking: "Human trafficking", "forced-labour": "Forced labour", "job-scam": "Job scams and fraud", "migrant-workers": "Migrant workers", children: "Children" };
+
+const SITUATIONS = [
+  { id: "danger", title: "I'm being held, threatened or can't leave", urgent: true, steps: [
+    "If you can, call the emergency number or a trafficking hotline for the country you're in (choose it above). If you can't speak, many hotlines accept texts.",
+    "If you're abroad, contact your own country's embassy or consulate, or IOM. They help people stranded or exploited abroad, including without a passport.",
+    "Don't confront the people holding you. Keep your phone hidden and charged if you can, and delete this page from your history if your phone is checked.",
+    "Try to note where you are (building names, landmarks, a map pin) and share it with someone you trust.",
+  ] },
+  { id: "someone", title: "Someone I know went for a job and I've lost contact", urgent: true, steps: [
+    "Call a trafficking hotline in the country where they went, or in yours. You don't need proof to call.",
+    "Contact your country's foreign ministry or embassy in the destination country and report a citizen at risk.",
+    "Collect what you have: the job ad, recruiter names and numbers, chat screenshots, travel dates, their last known location. Hotlines and police will ask for these.",
+    "Be careful about posting publicly. It can put the person at risk if the recruiters see it.",
+  ] },
+  { id: "paid", title: "I paid a fee or sent my passport, ID or bank details", steps: [
+    "Stop paying. Recruiters who ask for more money \"to release\" a job, visa or refund are usually running the same scam.",
+    "Call your bank or payment app now to try to stop or reverse the payment. For crypto or gift cards, report to the platform straight away.",
+    "If you sent ID documents, report them lost or stolen to the issuing authority and watch for accounts opened in your name.",
+    "Report it (job-scam channels are listed by country above), and keep screenshots and receipts.",
+  ] },
+  { id: "unsure", title: "I'm not sure whether a job offer is real", steps: [
+    "Run it through <a href=\"#/check\">Check an offer</a>, which looks for the warning signs seen in real cases.",
+    "Contact the company yourself using the phone number or email on its official website, not the details the recruiter gave you.",
+    "Real employers don't charge you for a job, don't need your passport before an interview, and don't interview only over Telegram or WhatsApp.",
+    "Be most careful about jobs abroad with free flights and housing, very high pay for easy work, or a workplace address you'll only get \"on arrival\".",
+  ] },
+  { id: "report", title: "I want to report a recruiter or employer", steps: [
+    "If anyone is in danger, call a hotline first.",
+    "Report job scams to the official channel for your country (listed above).",
+    "You can also <a href=\"#/report\">report it here anonymously</a>. We don't ask who you are, and your details are removed before anything is sent. It helps warn other job seekers.",
+  ] },
+];
+
+async function viewHelp() {
+  const help = await loadHelp();
+  const regionGuess = (navigator.languages || [navigator.language]).map((l) => (l.split("-")[1] || "").toUpperCase()).find(Boolean);
+  let saved = null; try { saved = localStorage.getItem("jrt-help-country"); } catch {}
+  const countries = help?.countries || [];
+  const initial = [saved, regionGuess].find((c) => c && countries.some((x) => x.iso2 === c)) || countries[0]?.iso2 || "";
+
+  main.innerHTML = `
+    <section class="hero small help-hero">
+      <div class="eyebrow mono">Get help</div>
+      <h1>Help is available</h1>
+      <p class="lede">Whether you're in danger now, worried about someone, or unsure about a job offer, you don't need proof to ask for help. Choose your country for hotlines, then find your situation below.</p>
+    </section>
+
+    <section class="panel emergency">
+      <div class="emerg-head">
+        <div><h2>In immediate danger?</h2><p>Call the emergency number for the country you're in.</p></div>
+        <label class="short">Country you're in
+          <select id="help-country">${countries.map((c) => `<option value="${esc(c.iso2)}"${c.iso2 === initial ? " selected" : ""}>${esc(country(c.iso2))}</option>`).join("")}</select>
+        </label>
+      </div>
+      <div id="help-lines" aria-live="polite">${help ? "" : `<p>Hotline list is loading or unavailable. In the US call <a class="dial" href="tel:18883737888">1-888-373-7888</a>; in the UK <a class="dial" href="tel:08000121700">08000 121 700</a>; anywhere else, local emergency services.</p>`}</div>
+    </section>
+
+    <section>
+      <h2 class="sec">What's happening?</h2>
+      <div class="situations">${SITUATIONS.map((s, i) => `
+        <details class="situation${s.urgent ? " urgent" : ""}" ${i === 0 ? "open" : ""} id="h-${s.id}">
+          <summary>${esc(s.title)}</summary>
+          <ol>${s.steps.map((t) => `<li>${t}</li>`).join("")}</ol>
+        </details>`).join("")}
+      </div>
+    </section>
+
+    ${help?.global?.length ? `<section class="panel"><h2>Anywhere in the world</h2>
+      <div class="global">${help.global.map((g) => `<div><h3>${esc(g.name)}</h3><p class="fine">${esc(g.what)}</p><ul class="contacts">${g.contacts.map(contactHtml).join("")}</ul></div>`).join("")}</div></section>` : ""}
+
+    <section class="panel">
+      <h2>Staying safe while you look for help</h2>
+      <ul>
+        <li>The red <strong>Quick exit</strong> button (or the Esc key on the report page) leaves this site at once and replaces it in your browser's back button.</li>
+        <li>If someone checks your phone, use a private or incognito window, or clear your browsing history afterwards.</li>
+        <li>This site doesn't use cookies or tracking. The only thing it remembers on your device is the country you chose on this page.</li>
+      </ul>
+    </section>
+    ${help ? `<p class="fine">Contacts checked against official sources on ${esc(help.verified)}. Numbers change: if one doesn't work, try the emergency number or IOM. <a href="#/report">Tell us</a> about a number that is wrong.</p>` : ""}`;
+
+  const render = (iso2) => {
+    const c = countries.find((x) => x.iso2 === iso2);
+    if (!c) return;
+    $("#help-lines").innerHTML = `
+      <div class="emerg-num"><span>Emergency in ${esc(country(c.iso2))}</span><a class="dial big" href="${telHref(c.emergency)}">${esc(c.emergency)}</a></div>
+      <div class="lines">${c.lines.map((l) => `
+        <div class="line"><div class="fine for">${esc(FOR_LABEL[l.for] || l.for)}</div><h3>${esc(l.name)}</h3>
+          <ul class="contacts">${l.contacts.map(contactHtml).join("")}</ul>
+          <div class="fine">${ext(l.source, "Source")}</div></div>`).join("")}</div>`;
+    try { localStorage.setItem("jrt-help-country", iso2); } catch {}
+  };
+  if (help) { render(initial); $("#help-country").addEventListener("change", (e) => render(e.target.value)); }
 }
 
 // ---- views: news patterns --------------------------------------------------------------
@@ -496,52 +605,124 @@ async function viewNews() {
 
 // ---- views: live check -----------------------------------------------------------------
 
-function viewCheck() {
-  main.innerHTML = `
-    <section class="hero small">
-      <div class="eyebrow mono">Live check</div>
-      <h1>Check a job offer</h1>
-      <p class="lede">Runs the organisation, its website and the recruiter's email domain through open registers, then reads the offer text for forced-labour and scam indicators. Results show what each register returned, including the ones that couldn't be searched.</p>
-    </section>
-    <form id="check" class="panel">
-      <div class="grid3">
-        <label>Company name <input name="company" autocomplete="off" placeholder="As written in the offer"></label>
-        <label>Website <input name="website" autocomplete="off" placeholder="company.com"></label>
-        <label>Recruiter email <input name="email" autocomplete="off" placeholder="recruiter@…"></label>
-      </div>
-      <label>Where the employer says it is based
-        <select name="jurisdiction"><option value="">Not stated</option>${["US", "GB", "BR", "CA", "AE", "TH", "KH", "MM", "LA", "MY", "PH", "RU", "IN", "NG", "KE"].map((c) => `<option value="${c}">${esc(country(c))}</option>`).join("")}</select>
-      </label>
-      <label>Country where the job is <span class="muted">(optional)</span>
-        <select name="workCountry"><option value="">Not stated</option>${Object.entries(flsri.countries).filter(([, c]) => c.scored).sort((a, b) => a[1].name.localeCompare(b[1].name)).map(([k]) => `<option value="${k}">${esc(country(k))}</option>`).join("")}</select>
-      </label>
-      <label>Offer text <textarea name="posting" rows="6" placeholder="Paste the job ad, email or chat messages"></textarea></label>
-      <div class="btns"><button class="primary" type="submit">Run checks</button><button class="ghost" type="button" id="example">Load an example</button></div>
-      <p class="fine">Only organisations are checked. This tool does not search criminal records or registries about individuals (see <a href="#/methodology">Methodology</a>).</p>
-    </form>
-    <div id="out" aria-live="polite"></div>`;
+const KINDS = {
+  profile: { label: "Social media profile", hint: "An account that contacted you, or that you met on an app", fields: ["profileUrl", "photo"], text: "Bio, posts or messages from this account", questions: ["profile_new", "profile_photos_too_polished", "profile_mismatch", "refuses_video", "chat_only_contact", "romance_money", "investment_pitch"] },
+  screenshot: { label: "Screenshot of messages", hint: "A chat, DM, text or email you received", fields: ["profileUrl"], text: "Text from the messages", screenshotFirst: true, questions: ["secrecy", "urgency", "refuses_video", "verification_code", "gift_card_crypto", "romance_money"] },
+  travel: { label: "Travel invitation", hint: "Someone offering to bring you somewhere to meet, study or work", fields: ["destination", "profileUrl"], text: "The invitation or messages about the trip", questions: ["sponsor_travel_stranger", "carry_package", "vague_location", "document_retention", "secrecy", "visa_fraud"] },
+  housing: { label: "Housing offer", hint: "A room, flat or accommodation offered to you", fields: ["website", "email", "destination"], text: "The listing or messages from the landlord or host", questions: ["housing_unseen_deposit", "owner_unavailable", "housing_tied_to_job", "gift_card_crypto", "urgency"] },
+  job: { label: "Job offer", hint: "A job ad, offer letter or contract", fields: ["company", "website", "email", "jurisdiction", "workCountry"], text: "The job ad or offer", questions: ["upfront_fee", "id_before_interview", "chat_only_contact", "employer_housing_travel", "vague_location", "document_retention", "debt_bondage"] },
+  recruiter: { label: "Recruiter message", hint: "A recruiter or agent who reached out to you", fields: ["company", "email", "profileUrl", "workCountry"], text: "What the recruiter wrote", questions: ["chat_only_contact", "upfront_fee", "id_before_interview", "urgency", "pay_too_high", "payment_handling"] },
+  other: { label: "Other suspicious interaction", hint: "Anything else that doesn't feel right", fields: ["profileUrl", "website", "email"], text: "What happened, or what they said", questions: ["secrecy", "verification_code", "gift_card_crypto", "urgency", "investment_pitch", "carry_package"] },
+};
+const FIELD = {
+  company: () => `<label>Company or agency name <input name="company" autocomplete="off" placeholder="As they wrote it"></label>`,
+  website: () => `<label>Website <input name="website" autocomplete="off" placeholder="example.com"></label>`,
+  email: () => `<label>Their email address <input name="email" autocomplete="off" placeholder="name@…"></label>`,
+  profileUrl: () => `<label>Profile link or username <input name="profileUrl" autocomplete="off" placeholder="instagram.com/… or @username"></label>`,
+  jurisdiction: () => `<label>Where they say they're based <select name="jurisdiction"><option value="">Not stated</option>${["US", "GB", "BR", "CA", "AE", "TH", "KH", "MM", "LA", "MY", "PH", "RU", "IN", "NG", "KE"].map((c) => `<option value="${c}">${esc(country(c))}</option>`).join("")}</select></label>`,
+  workCountry: () => `<label>Country where the job is <select name="workCountry"><option value="">Not stated</option>${flCountryOptions()}</select></label>`,
+  destination: () => `<label>Country you'd be going to <select name="workCountry"><option value="">Not stated</option>${flCountryOptions()}</select></label>`,
+  photo: () => `<label>Their profile photo <span class="muted">(optional)</span><input type="file" name="photo" accept="image/*"><span class="fine">Turned into a fingerprint on your device so the same face can be spotted under other names. Never uploaded.</span></label><p class="mono fine" id="photo-hash"></p>`,
+};
+const flCountryOptions = () => Object.entries(flsri.countries).filter(([, c]) => c.scored).sort((a, b) => a[1].name.localeCompare(b[1].name)).map(([k]) => `<option value="${k}">${esc(country(k))}</option>`).join("");
+const KIND_ICON = { profile: "◉", screenshot: "▣", travel: "✈", housing: "⌂", job: "▤", recruiter: "✉", other: "?" };
 
-  $("#example").addEventListener("click", () => {
-    const f = $("#check");
-    f.company.value = "Huione Guarantee";
-    f.website.value = "";
-    f.email.value = "hr.bangkokjobs@gmail.com";
-    f.jurisdiction.value = "TH";
-    f.workCountry.value = "KH";
-    f.posting.value = "URGENT: customer service representatives for an online company in Thailand. No experience needed, earn $3,000 per week! Free flight and accommodation provided. Exact workplace location will be disclosed on arrival. Interviews on Telegram only. Send your passport scan and pay the visa processing fee within 48 hours.";
+let ocrLib = null;
+async function readScreenshot(file, onProgress) {
+  if (!ocrLib) {
+    await new Promise((res, rej) => { const sc = document.createElement("script"); sc.src = "https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"; sc.onload = res; sc.onerror = rej; document.head.appendChild(sc); });
+    ocrLib = window.Tesseract;
+  }
+  const { data } = await ocrLib.recognize(file, "eng", { logger: (m) => m.status === "recognizing text" && onProgress(Math.round(m.progress * 100)) });
+  return data.text;
+}
+
+function viewCheck(kind = "") {
+  const k = KINDS[kind];
+  main.innerHTML = `
+    <section class="hero small check-hero">
+      <div class="eyebrow mono">Digital Safety Check</div>
+      <h1>Before you trust someone online, check the situation.</h1>
+      <p class="lede">Choose what you want to check. We look for the warning signs seen in real scam and trafficking cases, and tell you whether it's a lower concern, a reason for caution, or a serious warning sign. Nothing you enter is stored unless you choose to submit it.</p>
+    </section>
+    <nav class="kinds" aria-label="What do you want to check?">${Object.entries(KINDS).map(([id, x]) => `
+      <a class="kind${id === kind ? " on" : ""}" href="#/check/${id}"${id === kind ? ' aria-current="true"' : ""}><span class="ki" aria-hidden="true">${KIND_ICON[id]}</span><strong>${esc(x.label)}</strong><span class="fine">${esc(x.hint)}</span></a>`).join("")}
+    </nav>
+    ${k ? `
+    <form id="check" class="panel">
+      <h2>${esc(k.label)}</h2>
+      <input type="hidden" name="kind" value="${esc(kind)}">
+      <div class="drop">
+        <label>Screenshots <span class="muted">(optional${k.screenshotFirst ? ", recommended" : ""})</span>
+          <input type="file" id="shots" accept="image/*" multiple>
+          <span class="fine">The text is read from the image on your device, and the image isn't uploaded. Check and correct the text below.</span></label>
+        <p class="fine mono" id="ocr-status" aria-live="polite"></p>
+      </div>
+      <label>${esc(k.text)} <textarea name="posting" rows="6" placeholder="Paste or type it here"></textarea></label>
+      <div class="grid3">${k.fields.map((f) => FIELD[f]()).join("")}</div>
+      <fieldset class="checkset"><legend><strong>Has any of this happened?</strong> <span class="fine">Tick what applies.</span></legend>
+        ${k.questions.map((id) => `<label class="check"><input type="checkbox" name="answers" value="${id}"> ${esc(signalById[id].label)}</label>`).join("")}
+      </fieldset>
+      <div class="btns"><button class="primary" type="submit">Check it</button><button class="ghost" type="button" id="example">Show an example</button></div>
+      <p class="fine">We check organisations, websites and email domains, never a private person's criminal record (see <a href="#/methodology">Methodology</a>). If you feel unsafe, <a href="#/help">get help now</a>.</p>
+    </form>
+    <div id="out" aria-live="polite"></div>` : `<p class="muted pad">Choose one of the options above to start.</p>`}`;
+  if (!k) return;
+
+  const form = $("#check");
+  let photoHash = null;
+  form.photo?.addEventListener("change", async (e) => {
+    photoHash = e.target.files[0] ? await hashImage(e.target.files[0]) : null;
+    $("#photo-hash").textContent = photoHash ? `Photo fingerprint: ${photoHash}` : "";
+  });
+  $("#shots").addEventListener("change", async (e) => {
+    const files = [...e.target.files];
+    if (!files.length) return;
+    const status = $("#ocr-status");
+    const texts = [];
+    try {
+      for (const [i, f] of files.entries()) {
+        texts.push(await readScreenshot(f, (pct) => { status.textContent = `Reading screenshot ${i + 1} of ${files.length}… ${pct}%`; }));
+      }
+      form.posting.value = [form.posting.value.trim(), ...texts.map((t) => t.trim())].filter(Boolean).join("\n\n");
+      status.textContent = `Read ${files.length} screenshot${files.length > 1 ? "s" : ""}. Check the text for mistakes before you continue.`;
+    } catch {
+      status.textContent = "Couldn't read the screenshot here. You can type the messages instead.";
+    }
   });
 
-  $("#check").addEventListener("submit", async (ev) => {
+  const EXAMPLES = {
+    profile: { posting: "Hi dear, I saw your profile and felt a connection. I'm an engineer working offshore so my camera is broken for video calls. My uncle taught me a crypto trading platform with daily profits, I can show you. Let's continue on Telegram.", answers: ["profile_new", "profile_photos_too_polished"] },
+    screenshot: { posting: "You've been selected! Just send the 6-digit verification code we texted you so we can confirm your account. Don't tell anyone, this offer is only for today. Payment by Steam gift cards is fine." },
+    travel: { posting: "I'll pay for your flight to Bangkok, the ticket is already booked. My friend there has a job for you. Could you bring a small package for him? Keep it between us for now, the workplace location will be shared on arrival." },
+    housing: { posting: "The flat is available now. I'm currently abroad so I can't show it, but the keys will be sent to you by courier. Please pay the first month and deposit before viewing to reserve it. Western Union preferred." },
+    job: { company: "Huione Guarantee", email: "hr.bangkokjobs@gmail.com", posting: "URGENT: customer service representatives for an online company. No experience needed, earn $3,000 per week! Free flight and accommodation provided. Exact workplace location will be disclosed on arrival. Send your passport scan and pay the visa processing fee within 48 hours.", workCountry: "KH" },
+    recruiter: { company: "Global Talent Link", email: "talentlink.hiring@outlook.com", posting: "Hello! We found your CV. Remote data entry, $200 per hour, start tomorrow. Interview on WhatsApp only. You will receive payments and forward them to our clients. A small training fee is required.", workCountry: "" },
+    other: { posting: "This is your bank's security team. Share the one-time password you just received so we can stop the fraud on your account. Do not tell anyone at the branch." },
+  };
+  $("#example").addEventListener("click", () => {
+    const ex = EXAMPLES[kind];
+    for (const [f, v] of Object.entries(ex)) if (f !== "answers" && form[f]) form[f].value = v;
+    form.querySelectorAll("[name=answers]").forEach((c) => { c.checked = (ex.answers || []).includes(c.value); });
+  });
+
+  form.addEventListener("submit", async (ev) => {
     ev.preventDefault();
-    const input = Object.fromEntries(new FormData(ev.target));
-    if (![input.company, input.website, input.email, input.posting].some((v) => v.trim())) return;
-    const btn = ev.target.querySelector("[type=submit]");
-    btn.disabled = true; btn.textContent = "Checking registers…";
-    $("#out").innerHTML = `<p class="muted pad">Querying registers…</p>`;
-    try { renderCheck(await assess(input, { signals, registers, cases }), input); }
-    finally { btn.disabled = false; btn.textContent = "Run checks"; }
+    const fd = new FormData(form);
+    const input = Object.fromEntries(fd);
+    input.answers = fd.getAll("answers");
+    if (!input.email && input.profileUrl && !normalizeDomainClient(input.profileUrl)) input.profileUrl = input.profileUrl.trim();
+    if (![input.company, input.website, input.email, input.posting, input.profileUrl].some((v) => v && v.trim()) && !input.answers.length) {
+      $("#out").innerHTML = `<p class="callout">Add some text, a screenshot, a link, or tick what happened, then check again.</p>`; return;
+    }
+    const btn = form.querySelector("[type=submit]");
+    btn.disabled = true; btn.textContent = "Checking…";
+    $("#out").innerHTML = `<p class="muted pad">Checking…</p>`;
+    try { renderCheck(await assess(input, { signals, registers, cases }), { ...input, photoHash }); }
+    finally { btn.disabled = false; btn.textContent = "Check it"; }
   });
 }
+const normalizeDomainClient = (v) => /^[a-z0-9-]+(\.[a-z0-9-]+)+/i.test(String(v).replace(/^https?:\/\//, ""));
 
 function contextPanel(input) {
   const rows = [
@@ -556,34 +737,78 @@ function contextPanel(input) {
         <div class="fine">${r.phase === "R" ? "Recruitment" : "Exploitation"} phase ${bar(r.phase === "R" ? r.R : r.E)}${r.lowConfidence ? " · lower confidence" : ""}${r.phase === "E" && r.tier !== "higher" ? " · FLSRI under-reads destination and sponsorship systems, so a lower score here is not reassurance." : ""}</div>` : `<div class="fine">${esc(r.reason)}</div>`}</li>`).join("")}</ul></section>`;
 }
 
+function verdictBox(r, orgChecked) {
+  return `<div class="scorebox t-${esc(r.tier.id)}">
+    <div class="num">${r.points}<small>/100</small></div>
+    <div><div class="tierlabel">${esc(r.tier.label)}</div>${orgChecked && r.input.jurisdiction ? `<div class="cov c-${esc(r.coverage.class)}" title="${esc(r.coverage.explain)}">${esc(r.coverage.label)}</div>` : `<div class="fine">${r.flags.length} warning sign${r.flags.length === 1 ? "" : "s"}</div>`}</div>
+  </div>`;
+}
+
+function nextSteps(r, input) {
+  const serious = r.tier.id === "high";
+  return `<section class="panel span2 next">
+    <h2>What to do next</h2>
+    <ul>
+      ${serious ? `<li><strong>Stop before you pay, share documents or travel.</strong> If you feel pressured, threatened or unsafe, <a href="#/help">get help now</a>.</li>` : ""}
+      <li>Verify through an official channel: the company's own website or phone number, not the details they gave you.</li>
+      <li>Talk it through with someone you trust before deciding.</li>
+    </ul>
+    <div class="submitbox">
+      <h3>Submit this check anonymously</h3>
+      <p class="fine">Help warn others. We send only the type of check, the warning signs, the website and email domains, and your text with personal details removed. No name, contact details or IP address, and never the screenshots. You'll see exactly what will be sent first.</p>
+      <label class="check consent"><input type="checkbox" id="sub-consent"> I agree this anonymous record can be stored and used, in aggregate, to warn others and for research.</label>
+      <div class="btns"><button type="button" class="ghost" id="sub-preview">Preview what will be sent</button></div>
+      <div id="sub-out"></div>
+    </div>
+  </section>`;
+}
+
+function wireSubmit(r, input) {
+  const btn = $("#sub-preview"); if (!btn) return;
+  btn.addEventListener("click", () => {
+    if (!$("#sub-consent").checked) { $("#sub-out").innerHTML = `<p class="fine">Tick the box above to continue.</p>`; return; }
+    const record = buildReport({
+      kind: input.kind, company: input.company, website: input.website, recruiterEmail: input.email, profileUrl: input.profileUrl,
+      destinationCountry: input.workCountry || null, signals: r.flags.map((f) => f.id), narrative: input.posting, photoHash: input.photoHash, consent: true,
+    });
+    record.result_tier = r.tier.id;
+    $("#sub-out").innerHTML = `<pre class="json">${esc(JSON.stringify(record, null, 2))}</pre><div class="btns"><button class="primary" id="send" type="button">Send anonymously</button></div><p id="sent" class="fine" aria-live="polite"></p>`;
+    $("#send").addEventListener("click", () => sendReport(record));
+  });
+}
+
 function renderCheck(r, input = {}) {
   const layers = ["identity", "enforcement", "domain", "priors"];
   const grouped = Object.fromEntries(layers.map((l) => [l, r.checks.filter((c) => c.meta?.layer === l)]));
   const counts = { searched: r.checks.filter((c) => c.verdict === "hit" || c.verdict === "no-evidence-found").length, failed: r.checks.filter((c) => c.verdict === "error").length };
 
+  const orgChecked = !!(r.input.name || r.input.domain || r.input.emailDomain);
+  const kindLabel = KINDS[input.kind]?.label || "Your check";
   $("#out").innerHTML = `
     <section class="casehead">
-      <div><h2>${esc(r.input.name || r.input.domain || "Offer")}</h2>
-        <p class="fine">${counts.searched} register(s) searched, ${counts.failed} unreachable, ${r.referrals.length} more need a manual search (below). Nothing on this page is a clearance.</p></div>
-      ${scoreBadge(r, r.coverage)}
+      <div><div class="eyebrow mono">${esc(kindLabel)}</div><h2>${esc(r.input.name || r.input.domain || "Result")}</h2>
+        <p class="fine">${orgChecked ? `${counts.searched} register(s) searched, ${counts.failed} unreachable. ` : ""}${esc(r.tier.advice)}</p></div>
+      ${verdictBox(r, orgChecked)}
     </section>
     ${r.catalogMatches.length ? `<div class="callout red">Matches a documented case: ${r.catalogMatches.map((m) => `<a href="#/case/${esc(m.caseId)}">${esc(m.entity)}</a> via ${esc(m.via.type)} name “${esc(m.via.name)}”`).join("; ")}</div>` : ""}
     <div class="dash">
-      <section class="panel"><h2>Indicators found</h2>${flagList(r.flags)}</section>
-      <section class="panel"><h2>What each register returned</h2>
+      <section class="panel${orgChecked ? "" : " span2"}"><h2>Warning signs found</h2>${flagList(r.flags)}</section>
+      ${orgChecked ? `<section class="panel"><h2>What each register returned</h2>
         ${layers.filter((l) => grouped[l].length).map((l) => `<h3>${esc(registers.layers[l])}</h3><ul class="checks">${grouped[l].map((c) => `
           <li><div class="row"><span>${esc(c.meta?.name || c.register)} <span class="acc ${ACCESS[c.meta?.access]?.cls || ""}">${esc(ACCESS[c.meta?.access]?.label || "")}</span></span><span class="verdict ${VERDICT[c.verdict].cls}">${VERDICT[c.verdict].label}</span></div>
             <div class="meta">${esc(c.detail)}</div>
             ${c.register === "courtlistener" && c.records.length ? `<ul class="records">${c.records.map((d) => `<li>${d.url ? ext(d.url, d.name) : esc(d.name)} <span class="muted">${esc(d.court)} · ${esc(d.date)}</span></li>`).join("")}</ul>` : ""}
             ${c.register === "gleif" && c.records.length ? `<ul class="records">${c.records.map((d) => `<li>${ext(d.url, d.name)} <span class="muted">${esc(d.status)} · ${esc(d.jurisdiction)}${d.otherNames.length ? ` · also: ${esc(d.otherNames.map((o) => o.name).join(", "))}` : ""}</span></li>`).join("")}</ul>` : ""}
             <div class="fine">${esc(c.meta?.caveat || "")}</div></li>`).join("")}</ul>`).join("")}
-      </section>
+      </section>` : ""}
       ${contextPanel(input)}
-      <section class="panel span2"><h2>Search these by hand</h2>
+      ${nextSteps(r, input)}
+      ${orgChecked ? `<section class="panel span2"><h2>Search these by hand</h2>
         <p class="fine">These registers are public but can't be queried from a browser (they need a key, a declared client, or have no API). ${esc(r.coverage.explain)}</p>
         <ul class="reglist cols">${r.referrals.map((reg) => `<li><span class="acc ${ACCESS[reg.access].cls}">${ACCESS[reg.access].label}</span> ${ext(linkFor(reg, { name: r.input.name, domain: r.input.domain }), reg.name)}<div class="fine">${esc(reg.holds)}</div></li>`).join("")}</ul>
-      </section>
+      </section>` : ""}
     </div>`;
+  wireSubmit(r, input);
 }
 
 // ---- views: report ---------------------------------------------------------------------
@@ -597,7 +822,7 @@ function viewReport() {
       <h1>Report a job offer or abuse</h1>
       <p class="lede">Tell us about a recruiter, agency or employer. Reports are anonymous: we never ask who you are, your details are removed from your story in this browser before anything is sent, and you see exactly what will be sent first.</p>
     </section>
-    <div class="callout red"><strong>If you are in danger or can't leave, call for help first.</strong> US 1-888-373-7888 (text 233733) · UK 08000 121 700 · or local police. Use a device and connection you feel safe on. The <em>Quick exit</em> button at the top leaves this site immediately.</div>
+    <div class="callout red"><strong>If you are in danger or can't leave, call for help first.</strong> <a href="#/help">Find the hotline for your country</a>, or call local emergency services. Use a device and connection you feel safe on. The <em>Quick exit</em> button at the top leaves this site immediately.</div>
     <form id="report" class="panel">
       <h2>About the offer</h2>
       <div class="grid3">
@@ -697,11 +922,11 @@ function viewMethodology() {
   main.innerHTML = `
     <article class="doc">
       <div class="eyebrow mono">Methodology</div>
-      <h1>How the tracer works, and what it won't do</h1>
-      <p class="lede">The tracer is built on the same rules as the Digital Provenance Passport: no claim without a source, no check that can return “clear”, and a score that is always shown with how much could have been found.</p>
+      <h1>How Digital Safety Check works, and what it won't do</h1>
+      <p class="lede">Digital Safety Check is built on the same rules as the Digital Provenance Passport: no claim without a source, no check that can return “clear”, and a score that is always shown with how much could have been found.</p>
 
       <nav class="toc" aria-label="On this page">
-        <a href="#m-principles">Principles</a><a href="#m-people">People are out of scope</a><a href="#m-score">Score and coverage</a>
+        <a href="#m-principles">Principles</a><a href="#m-check">What you can check</a><a href="#m-people">People are out of scope</a><a href="#m-score">Score and coverage</a>
         <a href="#m-signals">Risk signals</a><a href="#m-registers">Registers</a><a href="#m-cases">Case catalog</a>
         <a href="#m-flsri">Structural risk index</a><a href="#m-news">News patterns</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-limits">Limits</a>
       </nav>
@@ -714,11 +939,24 @@ function viewMethodology() {
         <li><strong>Every fact carries its source.</strong> Case records cite official, court, multilateral, press or NGO sources, labelled by tier.</li>
       </ol>
 
+      <h2 id="m-check">What you can check</h2>
+      <p>Seven kinds of situation: a social media profile, a screenshot of messages, a travel invitation, a housing offer, a job offer, a recruiter message, or another suspicious interaction. Each asks for the details that matter for that situation and a few yes/no questions about what happened. The text is read with the same warning-sign rules for every kind, so a job offer that also pushes a crypto platform is caught.</p>
+      <p><strong>Results</strong> come in three levels:</p>
+      <ul>
+        <li><em>Lower concern</em>: few warning signs.</li>
+        <li><em>Caution</em>: some warning signs.</li>
+        <li><em>Serious warning signs</em>: the pattern matches real scam and trafficking cases.</li>
+      </ul>
+      <p>A lower-concern result is never a clearance.</p>
+      <p><strong>Screenshots</strong> are read on your own device with open-source text recognition (Tesseract). The image is never uploaded, and you can correct the text before checking.</p>
+      <p><strong>Profile photos</strong> become a 64-bit fingerprint on your device, so the same face can be matched across reports without storing the image.</p>
+      <p><strong>Submitting</strong> is optional and anonymous, and you preview the exact record first.</p>
+
       <h2 id="m-people">People are out of scope</h2>
       <div class="callout red">
         <p><strong>Criminal background checks on people are the one piece to drop.</strong> Checkr and peers will not run checks on a company or on a recruiter you have not hired, and compiling criminal history on named individuals risks making your tool a consumer reporting agency under FCRA. Entity-level checks and principals on public enforcement lists are fine; “recruiter has a record” is not.</p>
       </div>
-      <p>So the tracer checks organisations, websites and email domains only. Individuals appear only where an official source already names them in an indictment, judgment or sanctions designation, and only inside that case record. There is no person search, no offender-registry lookup and no criminal-history field. Sex-offender registry data (NSOPW) has no public API, and misusing it is an offence. Fifteen US states and New York City also restrict criminal-history questions before a conditional job offer. “Recruiter's name is not among the registered officers” is an acceptable check; “recruiter has a criminal record” is not.</p>
+      <p>So the check looks at organisations, websites and email domains only. Individuals appear only where an official source already names them in an indictment, judgment or sanctions designation, and only inside that case record. There is no person search, no offender-registry lookup and no criminal-history field. Sex-offender registry data (NSOPW) has no public API, and misusing it is an offence. Fifteen US states and New York City also restrict criminal-history questions before a conditional job offer. “Recruiter's name is not among the registered officers” is an acceptable check; “recruiter has a criminal record” is not.</p>
 
       <h2 id="m-score">Score and coverage</h2>
       <p>The <strong>evidence score</strong> (0–100) adds up the weights of indicators found, capped at 100. Tiers: ${signals.tiers.map((t) => `<em>${esc(t.label)}</em> from ${t.min}`).join(", ")}. On a case page the score counts what the sources document (lures, official actions, name history). In a live check it counts what the registers and offer text returned.</p>
@@ -735,7 +973,7 @@ function viewMethodology() {
       ${cats.map(([k, label]) => `<h3>${esc(label)}</h3><div class="tblwrap"><table><thead><tr><th>Signal</th><th>Weight</th><th>Why it matters</th></tr></thead><tbody>${signals.signals.filter((s) => s.category === k).sort((a, b) => b.weight - a.weight).map((s) => `<tr><td>${esc(s.label)}</td><td class="mono">+${s.weight}</td><td>${esc(s.why)}</td></tr>`).join("")}</tbody></table></div>`).join("")}
 
       <h2 id="m-registers">Registers</h2>
-      <p>Each register is labelled by how the tracer reaches it: <span class="acc a-live">queried live</span> from your browser, <span class="acc a-ref">referral</span> (public, but it needs a key, a declared client or a human search, so you get a link), or <span class="acc a-plan">planned</span> (bulk data for the backend).</p>
+      <p>Each register is labelled by how the tool reaches it: <span class="acc a-live">queried live</span> from your browser, <span class="acc a-ref">referral</span> (public, but it needs a key, a declared client or a human search, so you get a link), or <span class="acc a-plan">planned</span> (bulk data for the backend).</p>
       ${Object.entries(registers.layers).map(([l, label]) => `<h3>${esc(label)}</h3><div class="tblwrap"><table><thead><tr><th>Register</th><th>Access</th><th>Holds</th><th>Caveat</th></tr></thead><tbody>${byLayer(l).map((r) => `<tr><td>${ext(r.url.includes("{") ? r.url.replace(/[?#].*$/, "") : r.url, r.name)}</td><td><span class="acc ${ACCESS[r.access].cls}">${ACCESS[r.access].label}</span></td><td>${esc(r.holds)}</td><td>${esc(r.caveat)}</td></tr>`).join("")}</tbody></table></div>`).join("")}
       <p><strong>Identity.</strong> The key free sources:</p>
       <ul>
@@ -754,7 +992,7 @@ function viewMethodology() {
       <p>Country context comes from the Ethical Tech CoLab's ${flLink("Forced Labor Structural Risk Index")} (FLSRI), imported unchanged from its published build (${esc(flSrc.build_date)}, ${flSrc.n_scored} of ${flSrc.n_universe} countries scored).</p>
       <p><strong>What FLSRI scores.</strong> Each country gets a 0–1 score for the structural conditions under which forced labour becomes more likely. It is organised as phase, then domain, then indicator: Recruitment (${Object.values(flsri.domains).filter((d) => d.phase === "Recruitment").map((d) => esc(d.label)).join(", ")}) and Exploitation (${Object.values(flsri.domains).filter((d) => d.phase === "Exploitation").map((d) => esc(d.label)).join(", ")}). The composite is the geometric mean of the two phases.</p>
       <p><strong>How it's read.</strong> Scores are read in tiers, with cut points at ${flSrc.tier_cuts.join(" and ")}, each with a ${esc(flSrc.rank_band)}. Countries with too little data are left unscored, not guessed.</p>
-      <p>How the tracer uses it:</p>
+      <p>How the tool uses it:</p>
       <ul>
         <li><strong>On case pages</strong>, recruitment and transit countries are read on the Recruitment phase and exploitation countries on the Exploitation phase. Rank bands, lower-confidence flags and the highest-risk sub-national corridors are shown.</li>
         <li><strong>On the world map</strong>, countries can be shaded by FLSRI tier beneath the case journeys.</li>
@@ -800,7 +1038,7 @@ function viewMethodology() {
       <p>This is the “first report versus repeatedly reported” distinction, and it is the only reputation source the project fully controls. The collection endpoint must not log IP addresses. Until one is connected, the form builds and previews the record but sends nothing.</p>
 
       <h2 id="m-social">Social and image signals</h2>
-      <p>Instagram gives you almost nothing programmatically; AI-image detectors run 10 to 20 percent error. Better signal: the same headshot reused across “companies.” The tracer therefore does not guess whether a photo is AI-generated. It fingerprints recruiter photos submitted in reports and looks for the same fingerprint appearing under different company names.</p>
+      <p>Instagram gives you almost nothing programmatically; AI-image detectors run 10 to 20 percent error. Better signal: the same headshot reused across “companies.” The tool therefore does not guess whether a photo is AI-generated. It fingerprints recruiter photos submitted in reports and looks for the same fingerprint appearing under different company names.</p>
 
       <h2 id="m-data">Training data</h2>
       <p>The only public labeled corpus of job postings (EMSCAD) is from 2014; you will need to build your own from FTC/BBB narratives, r/Scams, and Adzuna negatives. EMSCAD predates task scams and contains almost no URLs or emails, so it can't train the domain layer. The anonymised report ledger is designed to become that labeled set, with Adzuna and ATS-listed postings as negatives.</p>
@@ -825,10 +1063,13 @@ function viewMethodology() {
 function route() {
   resetMaps();
   const [, view = "", arg] = (location.hash.match(/^#\/([^/]*)\/?(.*)$/) || []);
-  document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" || view === "" ? "cases" : view)));
+  document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" ? "cases" : view === "" ? "check" : view)));
+  $("#helpstrip").hidden = view === "help";
   if (view === "case") viewCase(decodeURIComponent(arg));
-  else if (view === "check") viewCheck();
+  else if (view === "check" || view === "") viewCheck(decodeURIComponent(arg || ""));
+  else if (view === "cases") viewCases();
   else if (view === "news") viewNews();
+  else if (view === "help") viewHelp();
   else if (view === "report") viewReport();
   else if (view === "methodology") viewMethodology();
   else viewCases();

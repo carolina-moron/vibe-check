@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Job Risk Tracer</title>
-  <meta name="description" content="Trace fake-job recruitment into scams, forced labour and trafficking: documented cases on a world map, live entity checks, and anonymous reporting.">
+  <title>Digital Safety Check</title>
+  <meta name="description" content="Before you trust someone online, check the situation. Check profiles, messages, travel invitations, housing and job offers for scam and trafficking warning signs.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -12,24 +12,28 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="helpstrip" id="helpstrip"><a href="#/help"><strong>Need help now?</strong> Hotlines, what to do, and how to get out safely →</a></div>
   <header class="site">
     <div class="bar">
-      <a class="brand" href="#/"><span class="mark" aria-hidden="true">◈</span> Job Risk Tracer</a>
+      <a class="brand" href="#/"><span class="mark" aria-hidden="true">◈</span> Digital Safety Check</a>
       <nav aria-label="Main">
-        <a href="#/" data-nav="cases">Cases &amp; map</a>
+        <a href="#/" data-nav="check">Check</a>
+        <a href="#/cases" data-nav="cases">Cases &amp; map</a>
         <a href="#/news" data-nav="news">News patterns</a>
-        <a href="#/check" data-nav="check">Check an offer</a>
         <a href="#/report" data-nav="report">Report abuse</a>
         <a href="#/methodology" data-nav="methodology">Methodology</a>
       </nav>
-      <button class="exit" id="quick-exit" type="button" title="Leave this site immediately">Quick exit</button>
+      <div class="bar-actions">
+        <a class="help-btn" href="#/help" data-nav="help">Get help</a>
+        <button class="exit" id="quick-exit" type="button" title="Leave this site immediately">Quick exit</button>
+      </div>
     </div>
   </header>
 
   <main id="main" tabindex="-1"></main>
 
   <footer class="site">
-    <p><strong>In danger or being held?</strong> US National Human Trafficking Hotline <a href="tel:18883737888">1-888-373-7888</a> (text 233733). UK Modern Slavery Helpline <a href="tel:08000121700">08000 121 700</a>. Elsewhere, <a href="https://www.iom.int/where-we-work" target="_blank" rel="noopener">IOM country offices</a> help people stranded abroad. Report job scams to the <a href="https://reportfraud.ftc.gov/" target="_blank" rel="noopener">FTC</a> or <a href="https://www.ic3.gov/" target="_blank" rel="noopener">FBI IC3</a>.</p>
+    <p><a href="#/help"><strong>Get help</strong></a> · <strong>In danger or being held?</strong> US National Human Trafficking Hotline <a href="tel:18883737888">1-888-373-7888</a> (text 233733). UK Modern Slavery Helpline <a href="tel:08000121700">08000 121 700</a>. Elsewhere, <a href="https://www.iom.int/where-we-work" target="_blank" rel="noopener">IOM country offices</a> help people stranded abroad. Report job scams to the <a href="https://reportfraud.ftc.gov/" target="_blank" rel="noopener">FTC</a> or <a href="https://www.ic3.gov/" target="_blank" rel="noopener">FBI IC3</a>.</p>
     <p class="fine">Indicators and public records, not legal findings. Checks run on organisations, never on private individuals. Country risk context from the ETC <a href="https://ethical-tech-colab.github.io/forced-labor-structural-risk-index/">Forced Labor Structural Risk Index</a>. <a href="https://github.com/carolina-moron/job-risk-search">Source code</a>.</p>
   </footer>
 

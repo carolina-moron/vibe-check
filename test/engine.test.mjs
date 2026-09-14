@@ -157,3 +157,15 @@ test("FLSRI priors: origin and destination roles, never scored", async () => {
   assert.equal(caseEvidence({ lures: [], entities: [], journey: c.journey }, signals).points, 0);
   for (const x of Object.values(flsri.countries)) if (x.scored) assert.ok(x.composite >= 0 && x.composite <= 1 && ["lower", "middle", "higher"].includes(x.tier));
 });
+
+test("social, travel and housing warning signs", () => {
+  const t = (text) => detectContent(text).map((h) => h.id).sort();
+  assert.ok(t("My camera is broken. Try this crypto trading platform with daily profits.").includes("investment_pitch"));
+  assert.ok(t("My camera is broken so no video.").includes("refuses_video"));
+  assert.ok(t("Please send the verification code you received.").includes("verification_code"));
+  assert.ok(t("I'll pay for your flight, and can you bring a package for my friend?").includes("carry_package"));
+  assert.ok(t("Pay the deposit before viewing to reserve it. I'm currently abroad.").includes("housing_unseen_deposit"));
+  assert.deepEqual(t("We invest in our employees' training and growth."), []);
+  const labels = signals.tiers.map((x) => x.label);
+  assert.deepEqual(labels, ["Lower concern", "Caution", "Serious warning signs"]);
+});

@@ -1,11 +1,12 @@
 {
   "version": 1,
-  "note": "Single source of truth for risk signals, shared by the tracer's live check, the case catalog's lure tags, and (later) the agentic job-cleaner skill. Weights are additive evidence points; silence adds nothing.",
+  "note": "Single source of truth for risk signals, shared by the Digital Safety Check, the case catalog's lure tags, and (later) the agentic job-cleaner skill. Weights are additive evidence points; silence adds nothing.",
   "categories": {
     "entity": "Identity and name history",
     "digital": "Domain and email",
     "offer": "Offer content",
-    "reputation": "Watchlists and enforcement"
+    "reputation": "Watchlists and enforcement",
+    "social": "Profile and conversation"
   },
   "signals": [
     {
@@ -26,42 +27,42 @@
       "id": "free_email",
       "category": "digital",
       "weight": 15,
-      "label": "Recruiter uses a free email provider",
+      "label": "Uses a free email address instead of an organisation's",
       "why": "Legitimate employers almost always recruit from a company domain."
     },
     {
       "id": "email_domain_mismatch",
       "category": "digital",
       "weight": 15,
-      "label": "Recruiter email domain differs from the company website",
+      "label": "Email address doesn't match the organisation's website",
       "why": "Common impersonation pattern: a real company's name with a look-alike or unrelated email domain."
     },
     {
       "id": "chat_only_contact",
       "category": "offer",
       "weight": 15,
-      "label": "Interview or contact only via Telegram, WhatsApp, Signal or similar",
+      "label": "Moves you to Telegram, WhatsApp, Signal or another private app",
       "why": "Moves the conversation off platforms that keep records or moderate."
     },
     {
       "id": "upfront_fee",
       "category": "offer",
       "weight": 30,
-      "label": "Asks the candidate to pay (training, equipment, visa, placement, deposit)",
-      "why": "Legitimate employers do not charge applicants. Recruitment fees are a core forced-labour indicator (ILO)."
+      "label": "Asks you to pay a fee or deposit up front (training, visa, placement, equipment)",
+      "why": "Real employers, schools and landlords don't charge before you've seen or signed anything. Recruitment fees are a core ILO forced-labour indicator."
     },
     {
       "id": "id_before_interview",
       "category": "offer",
       "weight": 20,
-      "label": "Requests passport, ID, SSN or bank details before an interview",
-      "why": "Identity theft risk; document retention is a trafficking control tactic."
+      "label": "Asks for your passport, ID, SSN or bank details early on",
+      "why": "Identity theft risk, and taking people's documents is a common way to control them."
     },
     {
       "id": "pay_too_high",
       "category": "offer",
       "weight": 12,
-      "label": "Pay far above market for little experience",
+      "label": "Pay far above normal for little experience",
       "why": "Bait pay is the most common lure in both scam and trafficking recruitment."
     },
     {
@@ -75,21 +76,21 @@
       "id": "urgency",
       "category": "offer",
       "weight": 8,
-      "label": "Pressure to accept or travel within hours or days",
+      "label": "Pressures you to decide, pay or travel within hours or days",
       "why": "Urgency prevents the candidate from checking the offer."
     },
     {
       "id": "employer_housing_travel",
       "category": "offer",
       "weight": 12,
-      "label": "Employer arranges and controls travel and housing",
+      "label": "They arrange and control your travel and housing",
       "why": "Control of movement and lodging is a trafficking indicator (Polaris, UNODC), especially abroad."
     },
     {
       "id": "vague_location",
       "category": "offer",
       "weight": 10,
-      "label": "Work location is vague or disclosed only on arrival",
+      "label": "Won't say exactly where you'll work or stay until you arrive",
       "why": "Prevents the candidate or family from knowing where they will be."
     },
     {
@@ -110,7 +111,7 @@
       "id": "payment_handling",
       "category": "offer",
       "weight": 20,
-      "label": "Job involves receiving or forwarding money, gift cards or crypto",
+      "label": "Involves receiving or forwarding money, parcels or crypto",
       "why": "Money-mule and check-cashing scams."
     },
     {
@@ -196,26 +197,124 @@
       "weight": 5,
       "label": "Entity has previous legal names on record",
       "why": "Name changes are usually benign; they matter when an earlier name is linked to reports or enforcement."
+    },
+    {
+      "id": "investment_pitch",
+      "category": "social",
+      "weight": 25,
+      "label": "Pushes an investment, trading platform or crypto opportunity",
+      "why": "The core of \"pig-butchering\" scams run from scam compounds: trust first, then a fake trading app."
+    },
+    {
+      "id": "romance_money",
+      "category": "social",
+      "weight": 25,
+      "label": "Someone you've only met online asks for money, gifts or help paying a fee",
+      "why": "Romance and friendship scams build affection, then invent an emergency, fee or travel cost."
+    },
+    {
+      "id": "secrecy",
+      "category": "social",
+      "weight": 12,
+      "label": "Asks you to keep it secret or not to tell family or friends",
+      "why": "Isolation stops anyone from warning you. It's an ILO forced-labour indicator."
+    },
+    {
+      "id": "gift_card_crypto",
+      "category": "social",
+      "weight": 20,
+      "label": "Wants payment in gift cards, crypto or a money transfer app",
+      "why": "These payments are hard to trace or reverse, so scammers prefer them."
+    },
+    {
+      "id": "carry_package",
+      "category": "offer",
+      "weight": 25,
+      "label": "Asks you to carry a package, luggage or documents for someone",
+      "why": "Couriers are used to move drugs or cash and can be arrested in their place."
+    },
+    {
+      "id": "sponsor_travel_stranger",
+      "category": "offer",
+      "weight": 18,
+      "label": "Someone met online offers to pay for your travel to meet or work",
+      "why": "A paid ticket creates a debt and gets you to a place where you depend on them."
+    },
+    {
+      "id": "housing_unseen_deposit",
+      "category": "offer",
+      "weight": 22,
+      "label": "Deposit or rent demanded before you can see the place or sign anything",
+      "why": "Rental scams take deposits for homes the \"landlord\" doesn't own or that don't exist."
+    },
+    {
+      "id": "owner_unavailable",
+      "category": "offer",
+      "weight": 10,
+      "label": "Landlord or host is abroad or can't meet in person",
+      "why": "A common excuse in rental scams for never showing the property."
+    },
+    {
+      "id": "housing_tied_to_job",
+      "category": "offer",
+      "weight": 12,
+      "label": "Housing comes only with a job, or the employer controls where you live",
+      "why": "Employer-controlled housing can be used to confine workers and deduct wages."
+    },
+    {
+      "id": "profile_new",
+      "category": "social",
+      "weight": 10,
+      "label": "Profile was created recently or has very little history",
+      "why": "Fake accounts are created in batches and abandoned when reported."
+    },
+    {
+      "id": "profile_photos_too_polished",
+      "category": "social",
+      "weight": 6,
+      "label": "Photos look like a model, stock images or AI, and none are casual",
+      "why": "Weak alone. Stolen or generated photos are common; the same face under different names is the stronger sign."
+    },
+    {
+      "id": "profile_mismatch",
+      "category": "social",
+      "weight": 10,
+      "label": "Name, location, job or story doesn't match across profile and messages",
+      "why": "Scripts run by teams often contradict themselves."
+    },
+    {
+      "id": "refuses_video",
+      "category": "social",
+      "weight": 15,
+      "label": "Won't do a live video call, or the camera is always \"broken\"",
+      "why": "The person may not be who the photos show."
+    },
+    {
+      "id": "verification_code",
+      "category": "social",
+      "weight": 25,
+      "label": "Asks you to share a verification code, password or log-in",
+      "why": "Used to take over your accounts, bank or identity."
     }
   ],
   "tiers": [
     {
       "id": "low",
       "min": 0,
-      "label": "Little evidence found",
-      "advice": "The checks that ran found little. That is not a clearance: see coverage, and verify the recruiter through the company's official website or phone line before sharing documents or travelling."
+      "label": "Lower concern",
+      "advice": "The checks found few warning signs. That doesn't prove it's safe: verify the person or company through an official channel before you pay, share documents or travel."
     },
     {
       "id": "caution",
       "min": 20,
       "label": "Caution",
-      "advice": "Several weak signals. Verify independently before sharing documents or accepting travel."
+      "advice": "Some warning signs. Slow down and verify independently before sharing personal details, paying anything or agreeing to travel."
     },
     {
       "id": "high",
       "min": 45,
-      "label": "High risk",
-      "advice": "Strong scam or exploitation indicators. Do not pay, send ID, or travel. Consider reporting."
+      "label": "Serious warning signs",
+      "advice": "This matches patterns seen in scams and trafficking. Don't pay, send ID or travel. Talk to someone you trust, and see Get help if you feel pressured or unsafe."
     }
   ]
 }
