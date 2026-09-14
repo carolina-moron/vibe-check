@@ -8,6 +8,7 @@ const [signals, registers, { cases }, flsri] = await Promise.all(
 );
 let newsData = null;
 let helpData = null;
+const loadPartners = async () => fetch("data/partners.json").then((r) => (r.ok ? r.json() : null)).catch(() => null);
 const loadHelp = async () => (helpData ||= await fetch("data/help.json").then((r) => (r.ok ? r.json() : null)).catch(() => null));
 const loadNews = async () => (newsData ||= await fetch("data/news.json").then((r) => r.json()));
 
@@ -23,13 +24,13 @@ const signalById = Object.fromEntries(signals.signals.map((s) => [s.id, s]));
 const main = $("#main");
 
 const TYPOLOGY = {
-  "scam-compound": { label: "Scam compound", color: "#B4392C" },
-  "labor-trafficking": { label: "Labour trafficking", color: "#B27A1B" },
-  "forced-labor-industrial": { label: "Industrial forced labour", color: "#7A4FA0" },
-  "laundering": { label: "Laundering network", color: "#2F6DB5" },
-  "money-mule": { label: "Money mules", color: "#2F6DB5" },
-  "job-scam": { label: "Job scam", color: "#0E6B60" },
-  "sex-trafficking": { label: "Sex trafficking", color: "#A33A6B" },
+  "scam-compound": { label: "Scam compound", color: "#7A1E2C" },
+  "labor-trafficking": { label: "Labour trafficking", color: "#A9642B" },
+  "forced-labor-industrial": { label: "Industrial forced labour", color: "#5B4A78" },
+  "laundering": { label: "Laundering network", color: "#2E5A66" },
+  "money-mule": { label: "Money mules", color: "#2E5A66" },
+  "job-scam": { label: "Job scam", color: "#56693A" },
+  "sex-trafficking": { label: "Sex trafficking", color: "#9A4768" },
 };
 const STATUS = {
   enforcement_action: "Enforcement action", sanctioned: "Sanctioned", convicted: "Convicted",
@@ -67,13 +68,13 @@ const flagList = (flags) => flags.length ? `<ul class="flags">${flags.map((f) =>
 // ---- FLSRI structural risk -------------------------------------------------------------
 
 const FL_TIER = {
-  higher: { label: "Higher", color: "#A8472A" },
-  middle: { label: "Middle", color: "#D99A6C" },
-  lower: { label: "Lower", color: "#F0DCC8" },
+  higher: { label: "Higher", color: "#8E3A43" },
+  middle: { label: "Middle", color: "#C3927F" },
+  lower: { label: "Lower", color: "#E7D9C4" },
 };
 const flSrc = flsri.source;
 const flLink = (label = "FLSRI") => ext(flSrc.site, label);
-const bar = (v, color = "var(--risk)") => v == null ? `<span class="muted">—</span>` : `<span class="meter"><i style="width:${Math.round(v * 100)}%;background:${color}"></i></span><span class="mono">${v.toFixed(2)}</span>`;
+const bar = (v, color = "var(--ink)") => v == null ? `<span class="muted">—</span>` : `<span class="meter"><i style="width:${Math.round(v * 100)}%;background:${color}"></i></span><span class="mono">${v.toFixed(2)}</span>`;
 const tierChip = (t) => `<span class="fltier" style="--c:${FL_TIER[t].color}">${FL_TIER[t].label}</span>`;
 
 let worldGeo = null;
@@ -101,7 +102,7 @@ function flsriLayer(geo) {
   return L.geoJSON(geo, {
     style: (f) => {
       const c = flsri.countries[flsri.numericToIso2[f.id]];
-      return { stroke: true, weight: 0.5, color: "#fff", fillOpacity: c?.scored ? 0.75 : 0.25, fillColor: c?.scored ? FL_TIER[c.tier].color : "#bbb" };
+      return { stroke: true, weight: 0.5, color: "#F2ECE1", fillOpacity: c?.scored ? 0.75 : 0.25, fillColor: c?.scored ? FL_TIER[c.tier].color : "#CFC6B8" };
     },
     onEachFeature: (f, layer) => {
       const iso2 = flsri.numericToIso2[f.id];
@@ -186,9 +187,10 @@ function viewCases() {
       </div>
       <div id="worldmap" class="map world" role="img" aria-label="World map of case journeys"></div>
       <div id="fl-legend" class="fllegend pad" hidden>
-        <span class="fine">FLSRI tier:</span>${Object.values(FL_TIER).map((t) => `<span><i style="background:${t.color}"></i>${t.label}</span>`).join("")}<span><i style="background:#bbb;opacity:.5"></i>Not scored</span>
+        <span class="fine">FLSRI tier:</span>${Object.values(FL_TIER).map((t) => `<span><i style="background:${t.color}"></i>${t.label}</span>`).join("")}<span><i style="background:#CFC6B8"></i>Not scored</span>
         <span class="fine">Structural conditions, not prevalence. Build ${esc(flSrc.build_date)}. Under-reads destination and sponsorship systems such as the Gulf.</span>
       </div>
+      <p class="fine pad">For victim-level trafficking patterns between countries, see the <a href="https://www.ctdatacollaborative.org/map" target="_blank" rel="noopener">Counter-Trafficking Data Collaborative (CTDC) map</a>, run by IOM. Source: Counter-Trafficking Data Collaborative (CTDC), September 2026.</p>
       <p class="fine pad">Pins are approximate, city or country level. Lines join the stages of each journey in order; dashed segments lead to where the case was prosecuted or sanctioned. Click a pin for the stage, or a card below for the full case.</p>
     </section>
     <section>
@@ -359,7 +361,7 @@ const FOR_LABEL = { trafficking: "Human trafficking", "forced-labour": "Forced l
 const SITUATIONS = [
   { id: "danger", title: "I'm being held, threatened or can't leave", urgent: true, steps: [
     "If you can, call the emergency number or a trafficking hotline for the country you're in (choose it above). If you can't speak, many hotlines accept texts.",
-    "If you're abroad, contact your own country's embassy or consulate, or IOM. They help people stranded or exploited abroad, including without a passport.",
+    "If you're abroad, contact your own country's embassy or consulate, or IOM. They help people stranded or exploited abroad, including without a passport. <a href=\"#partners\" data-jump>Organisations that take requests for help</a> are listed below.",
     "Don't confront the people holding you. Keep your phone hidden and charged if you can, and delete this page from your history if your phone is checked.",
     "Try to note where you are (building names, landmarks, a map pin) and share it with someone you trust.",
   ] },
@@ -389,7 +391,7 @@ const SITUATIONS = [
 ];
 
 async function viewHelp() {
-  const help = await loadHelp();
+  const [help, partners] = await Promise.all([loadHelp(), loadPartners()]);
   const regionGuess = (navigator.languages || [navigator.language]).map((l) => (l.split("-")[1] || "").toUpperCase()).find(Boolean);
   let saved = null; try { saved = localStorage.getItem("jrt-help-country"); } catch {}
   const countries = help?.countries || [];
@@ -425,6 +427,16 @@ async function viewHelp() {
     ${help?.global?.length ? `<section class="panel"><h2>Anywhere in the world</h2>
       <div class="global">${help.global.map((g) => `<div><h3>${esc(g.name)}</h3><p class="fine">${esc(g.what)}</p><ul class="contacts">${g.contacts.map(contactHtml).join("")}</ul></div>`).join("")}</div></section>` : ""}
 
+    ${partners?.partners?.length ? `<section class="panel" id="partners">
+      <h2>Organisations working against trafficking</h2>
+      <p class="fine">Groups that support survivors, migrant workers and families, or that research and campaign on trafficking and scam compounds. Some take requests for help directly; others refer people on or work through partners. ${esc(partners.note)} Details checked on each organisation's own website on ${esc(partners.verified)}.</p>
+      <div class="pfilter">
+        <label class="check"><input type="checkbox" id="p-direct"> Only organisations that take requests for help</label>
+        <label>Region <select id="p-region"><option value="">All regions</option>${[...new Set(partners.partners.flatMap((x) => x.regions))].sort().map((r) => `<option>${esc(r)}</option>`).join("")}</select></label>
+      </div>
+      <div class="partners" id="p-list"></div>
+    </section>` : ""}
+
     <section class="panel">
       <h2>Staying safe while you look for help</h2>
       <ul>
@@ -447,7 +459,30 @@ async function viewHelp() {
           <div class="fine">${ext(l.source, "Source")}</div></div>`).join("")}</div>`;
     try { localStorage.setItem("jrt-help-country", iso2); } catch {}
   };
+  if (partners?.partners?.length) {
+    const renderPartners = () => {
+      const direct = $("#p-direct").checked, region = $("#p-region").value;
+      const list = partners.partners.filter((x) => (!direct || x.direct_help) && (!region || x.regions.includes(region) || x.regions.includes("Global")))
+        .sort((a, b) => (b.direct_help - a.direct_help) || a.name.localeCompare(b.name));
+      $("#p-list").innerHTML = list.map((x) => `
+        <div class="partner">
+          <div class="for">${x.direct_help ? "Takes requests for help" : "Referral, research or advocacy"} · ${esc(x.regions.join(", "))}</div>
+          <h3>${esc(x.name)}</h3>
+          <p class="fine">${esc(x.what)}</p>
+          <ul class="contacts">
+            ${x.contact.web ? `<li><span class="ctype">Online</span> ${ext(x.contact.web, x.contact.web.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, ""))}</li>` : ""}
+            ${x.contact.phone ? `<li><span class="ctype">Call</span> <a class="dial" href="${telHref(x.contact.phone)}">${esc(x.contact.phone)}</a></li>` : ""}
+            ${x.contact.email ? `<li><span class="ctype">Email</span> <a href="mailto:${esc(x.contact.email)}">${esc(x.contact.email)}</a></li>` : ""}
+          </ul>
+          <div class="fine">${ext(x.source, "Source")}</div>
+        </div>`).join("") || `<p class="fine pad">No organisations match.</p>`;
+    };
+    $("#p-direct").addEventListener("change", renderPartners);
+    $("#p-region").addEventListener("change", renderPartners);
+    renderPartners();
+  }
   if (help) { render(initial); $("#help-country").addEventListener("change", (e) => render(e.target.value)); }
+  main.querySelectorAll("[data-jump]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); $("#partners")?.scrollIntoView({ behavior: "smooth" }); }));
 }
 
 // ---- views: news patterns --------------------------------------------------------------
@@ -457,7 +492,7 @@ const NEWS_TYP = {
   "money-mule": "Money mules", "sex-trafficking": "Sex trafficking", "organ-trafficking": "Organ trafficking", "cartel-recruitment": "Cartel recruitment",
 };
 const NEWS_EVENT = { arrest: "Arrests & raids", warning: "Warnings & advisories", rescue: "Rescues & repatriation", sanction: "Sanctions", conviction: "Convictions" };
-const ROLE_COLOR = { origin: "#0E6B60", destination: "#B4392C", mentioned: "#8B95A1" };
+const ROLE_COLOR = { origin: "#2E5A66", destination: "#7A1E2C", mentioned: "#A6927C" };
 
 // Catalog entities named in an article (names of 6+ characters, whole words).
 const entityIndex = cases.flatMap((c) => c.entities.flatMap((e) => allNames(e).map((n) => n.name)
@@ -555,7 +590,7 @@ async function viewNews() {
     for (const c of a.corridors) {
       const p1 = n.points[c.from], p2 = n.points[c.to];
       if (!p1 || !p2) continue;
-      const line = L.polyline(arc(p1, p2), { color: "#5A5F9E", weight: 1.5 + c.count * 1.5, opacity: 0.7, dashArray: c.count > 1 ? null : "5 6" }).addTo(map);
+      const line = L.polyline(arc(p1, p2), { color: "#7A1E2C", weight: 1 + c.count * 1.2, opacity: 0.7, dashArray: c.count > 1 ? null : "5 6" }).addTo(map);
       line.bindTooltip(`${esc(country(c.from))} → ${esc(country(c.to))}: ${c.count} article${c.count > 1 ? "s" : ""}`, { sticky: true });
       const tip = arc(p1, p2);
       const [ya, xa] = tip[tip.length - 3], [yb, xb] = tip[tip.length - 1];
@@ -565,7 +600,7 @@ async function viewNews() {
     for (const [k, v] of Object.entries(a.byCountry)) {
       const pt = n.points[k]; if (!pt) continue;
       const dom = v.origin > v.destination ? "origin" : v.destination > v.origin ? "destination" : v.origin ? "origin" : "mentioned";
-      L.circleMarker(pt, { radius: 4 + Math.sqrt(v.mentions / top) * 18, color: "#fff", weight: 1, fillColor: ROLE_COLOR[dom], fillOpacity: 0.75 })
+      L.circleMarker(pt, { radius: 4 + Math.sqrt(v.mentions / top) * 18, color: "#F2ECE1", weight: 1, fillColor: ROLE_COLOR[dom], fillOpacity: 0.75 })
         .addTo(map)
         .bindTooltip(`<strong>${esc(country(k))}</strong><br>${v.mentions} article(s): ${v.origin} as origin, ${v.destination} as destination`)
         .on("click", () => setCountry(k));
@@ -929,7 +964,7 @@ function viewMethodology() {
       <nav class="toc" aria-label="On this page">
         <a href="#m-principles">Principles</a><a href="#m-check">What you can check</a><a href="#m-people">People are out of scope</a><a href="#m-score">Score and coverage</a>
         <a href="#m-signals">Risk signals</a><a href="#m-registers">Registers</a><a href="#m-cases">Case catalog</a>
-        <a href="#m-flsri">Structural risk index</a><a href="#m-news">News patterns</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-limits">Limits</a>
+        <a href="#m-flsri">Structural risk index</a><a href="#m-news">News patterns</a><a href="#m-partners">Help contacts and CTDC</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-limits">Limits</a>
       </nav>
 
       <h2 id="m-principles">Principles</h2>
@@ -1014,6 +1049,10 @@ function viewMethodology() {
       </ul>
       <p><strong>Known errors.</strong> A long article that names many countries can produce false corridors; an early run paired South Africa and Kenya with Poland from an article about Russia. Snippets are short, so lures undercount. Coverage favours English-language and wire outlets. Each corridor shows the words it came from so a reader can check it, and single-article corridors are drawn dashed.</p>
       <p><strong>Use.</strong> News patterns are for spotting emerging routes, lures and recruitment channels to research. They are never case counts, never evidence about an entity, and never part of a score. A pattern that holds up is researched from primary sources and, if documented, added to the case catalog.</p>
+
+      <h2 id="m-partners">Help contacts, partners and CTDC</h2>
+      <p><strong>Hotlines and organisations.</strong> The hotlines and organisations on Get help were each checked on an official or the organisation's own website, and each links to its source. Numbers that could only be found in news or secondary sources were left out. An organisation's listing is not an endorsement, and none is affiliated with this tool. Organisations are marked as taking requests for help only where their own site says so.</p>
+      <p><strong>CTDC.</strong> The Counter-Trafficking Data Collaborative (CTDC), run by IOM, publishes victim-level trafficking data and a country map. Its terms allow non-commercial use and derived material with credit, but prohibit automated access and re-hosting its raw datasets without IOM's written consent. So this site links to the CTDC map rather than embedding or copying it. Source: Counter-Trafficking Data Collaborative (CTDC), September 2026.</p>
 
       <h2 id="m-cases">Case catalog</h2>
       <p>Cases are researched by hand from sources opened at the time of writing. Each file in <code>data/cases/</code> is validated before publishing: known typologies and statuses, ISO country codes, coordinates, https sources, and lure tags that exist in the signal taxonomy.</p>

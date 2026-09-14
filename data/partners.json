@@ -1,0 +1,457 @@
+{
+  "verified": "2026-09-14",
+  "note": "Organisations listed for information; inclusion is not an endorsement and they are not affiliated with this tool.",
+  "partners": [
+    {
+      "name": "International Organization for Migration (IOM) – Counter-trafficking",
+      "what": "UN migration agency; says it has directly assisted over 100,000 people who experienced trafficking and supports people vulnerable to trafficking, exploitation and abuse.",
+      "regions": [
+        "Global"
+      ],
+      "countries": [],
+      "helps": [
+        "survivors",
+        "migrant workers",
+        "people at risk of trafficking"
+      ],
+      "direct_help": true,
+      "contact": {
+        "web": "https://www.iom.int/get-help",
+        "email": null,
+        "phone": "+41 22 717 9805"
+      },
+      "source": "https://www.iom.int/counter-trafficking"
+    },
+    {
+      "name": "International Justice Mission (IJM)",
+      "what": "Partners with local authorities to protect people in poverty from violence, including forced labour and trafficking.",
+      "regions": [
+        "Southeast Asia",
+        "South Asia",
+        "Africa",
+        "Latin America",
+        "Europe"
+      ],
+      "countries": [
+        "KH",
+        "PH",
+        "TH",
+        "MY",
+        "MM",
+        "GH",
+        "KE",
+        "UG",
+        "DO",
+        "BO",
+        "GT",
+        "SV",
+        "RO"
+      ],
+      "helps": [
+        "survivors",
+        "people in forced labour"
+      ],
+      "direct_help": true,
+      "contact": {
+        "web": "https://www.ijmuk.org/frequently-asked-questions",
+        "email": null,
+        "phone": null
+      },
+      "source": "https://www.ijmuk.org/frequently-asked-questions"
+    },
+    {
+      "name": "Global Alliance Against Traffic in Women (GAATW)",
+      "what": "International alliance working on trafficking as embedded in labour migration, through advocacy and member organisations.",
+      "regions": [
+        "Global"
+      ],
+      "countries": [
+        "TH"
+      ],
+      "helps": [
+        "women migrant workers",
+        "survivors"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://gaatw.org/contact",
+        "email": "gaatw@gaatw.org",
+        "phone": "+66 2 864 1427"
+      },
+      "source": "https://gaatw.org/contact"
+    },
+    {
+      "name": "La Strada International",
+      "what": "European anti-trafficking network whose members run helplines and support services, including emergency assistance and information for migrants.",
+      "regions": [
+        "Europe"
+      ],
+      "countries": [
+        "NL"
+      ],
+      "helps": [
+        "survivors",
+        "migrants",
+        "people at risk of trafficking"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://www.lastradainternational.org/contact/",
+        "email": "info@lastradainternational.org",
+        "phone": "+31 20 688 14 14"
+      },
+      "source": "https://www.lastradainternational.org/contact/"
+    },
+    {
+      "name": "Hope for Justice",
+      "what": "Charity combating modern slavery and human trafficking and supporting survivors.",
+      "regions": [
+        "North America",
+        "Europe",
+        "Oceania"
+      ],
+      "countries": [
+        "US",
+        "GB",
+        "AU"
+      ],
+      "helps": [
+        "survivors"
+      ],
+      "direct_help": true,
+      "contact": {
+        "web": "https://hopeforjustice.org/contact/",
+        "email": "help@hopeforjustice.org",
+        "phone": "+1 615 356 0946"
+      },
+      "source": "https://hopeforjustice.org/contact/"
+    },
+    {
+      "name": "A21",
+      "what": "Non-profit fighting human trafficking and supporting survivors.",
+      "regions": [
+        "Global"
+      ],
+      "countries": [
+        "AU",
+        "KH",
+        "GR",
+        "ZA",
+        "TH",
+        "GB",
+        "US"
+      ],
+      "helps": [
+        "survivors",
+        "children"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://www.a21.org/content/contact-us/gnbxtc",
+        "email": "info@A21.org",
+        "phone": null
+      },
+      "source": "https://www.a21.org/content/contact-us/gnbxtc"
+    },
+    {
+      "name": "Justice and Care",
+      "what": "Supports police to free victims of modern slavery and secure justice.",
+      "regions": [
+        "Europe",
+        "South Asia",
+        "North America"
+      ],
+      "countries": [
+        "GB",
+        "BD",
+        "RO",
+        "US"
+      ],
+      "helps": [
+        "survivors",
+        "people in forced labour",
+        "children"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://www.justiceandcare.org/contact/",
+        "email": null,
+        "phone": null
+      },
+      "source": "https://www.justiceandcare.org/contact/"
+    },
+    {
+      "name": "STOP THE TRAFFIK",
+      "what": "Uses community awareness and data to disrupt and prevent human trafficking, modern slavery and exploitation.",
+      "regions": [
+        "Global"
+      ],
+      "countries": [
+        "GB"
+      ],
+      "helps": [
+        "communities at risk"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://www.stopthetraffik.org/contact/",
+        "email": "info@stopthetraffik.org",
+        "phone": null
+      },
+      "source": "https://www.stopthetraffik.org/contact/"
+    },
+    {
+      "name": "Anti-Slavery International",
+      "what": "Campaigns against modern slavery; states it is not a frontline organisation and refers people to specialist helplines.",
+      "regions": [
+        "Global"
+      ],
+      "countries": [
+        "GB"
+      ],
+      "helps": [
+        "people in forced labour",
+        "bonded labourers",
+        "children"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://www.antislavery.org/contact-us/",
+        "email": "info@antislavery.org",
+        "phone": "+44 20 7501 8920"
+      },
+      "source": "https://www.antislavery.org/contact-us/"
+    },
+    {
+      "name": "ECPAT International",
+      "what": "Global network working towards a world where every child lives free from sexual exploitation.",
+      "regions": [
+        "Global"
+      ],
+      "countries": [
+        "TH"
+      ],
+      "helps": [
+        "children"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://ecpat.org/contact/",
+        "email": "info@ecpat.org",
+        "phone": "+66 2 215 3388"
+      },
+      "source": "https://ecpat.org/contact/"
+    },
+    {
+      "name": "Walk Free",
+      "what": "International human rights group focused on eradicating modern slavery through research and advocacy.",
+      "regions": [
+        "Global"
+      ],
+      "countries": [],
+      "helps": [
+        "policy and research (no casework)"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://www.walkfree.org/",
+        "email": "info@walkfree.org",
+        "phone": null
+      },
+      "source": "https://www.walkfree.org/"
+    },
+    {
+      "name": "Migrant Forum in Asia",
+      "what": "Regional network of NGOs, associations and trade unions protecting the rights and welfare of migrant workers.",
+      "regions": [
+        "Asia"
+      ],
+      "countries": [
+        "PH"
+      ],
+      "helps": [
+        "migrant workers",
+        "domestic workers"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://mfasia.org/contact-us/",
+        "email": "mfa@mfasia.org",
+        "phone": "+63 2 8277 9484"
+      },
+      "source": "https://mfasia.org/contact-us/"
+    },
+    {
+      "name": "Blue Dragon Children's Foundation",
+      "what": "Works so all are safe from human trafficking and modern slavery, including rescue and outreach in Vietnam.",
+      "regions": [
+        "Southeast Asia"
+      ],
+      "countries": [
+        "VN"
+      ],
+      "helps": [
+        "children",
+        "families",
+        "survivors"
+      ],
+      "direct_help": true,
+      "contact": {
+        "web": "https://www.bluedragon.org/contact-us/",
+        "email": "info@bdcf.org",
+        "phone": "+84 24 3717 2307"
+      },
+      "source": "https://www.bluedragon.org/contact-us/"
+    },
+    {
+      "name": "Destiny Rescue",
+      "what": "Rescue and reintegration of children from trafficking and sexual exploitation.",
+      "regions": [
+        "Global"
+      ],
+      "countries": [
+        "US",
+        "AU",
+        "NZ",
+        "GB"
+      ],
+      "helps": [
+        "children",
+        "survivors"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://www.destinyrescue.org/contact/",
+        "email": null,
+        "phone": null
+      },
+      "source": "https://www.destinyrescue.org/contact/"
+    },
+    {
+      "name": "Global Anti-Scam Organization (GASO)",
+      "what": "Field-embedded initiative analysing transnational scam operations; refers verified cases of imminent risk through appropriate channels (not a rescue service).",
+      "regions": [
+        "Southeast Asia"
+      ],
+      "countries": [
+        "KH"
+      ],
+      "helps": [
+        "scam-compound victims",
+        "scam victims"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://www.globalantiscam.org/contact",
+        "email": "info@globalantiscam.org",
+        "phone": null
+      },
+      "source": "https://www.globalantiscam.org/"
+    },
+    {
+      "name": "Humanity Research Consultancy",
+      "what": "Social enterprise investigating emerging forms of human trafficking, including trafficking-fuelled scam compounds.",
+      "regions": [
+        "Global",
+        "Southeast Asia"
+      ],
+      "countries": [],
+      "helps": [
+        "scam-compound victims (via partners)",
+        "organisations"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://www.humanity-consultancy.com/about",
+        "email": null,
+        "phone": null
+      },
+      "source": "https://www.humanity-consultancy.com/about"
+    },
+    {
+      "name": "HAART Kenya (Awareness Against Human Trafficking)",
+      "what": "Fights human trafficking in Kenya and East Africa, with a helpline for survivors.",
+      "regions": [
+        "East Africa"
+      ],
+      "countries": [
+        "KE"
+      ],
+      "helps": [
+        "survivors",
+        "migrant workers"
+      ],
+      "direct_help": true,
+      "contact": {
+        "web": "https://haartkenya.org/contact-us/",
+        "email": "help@haartkenya.org",
+        "phone": "+254 780 211 113"
+      },
+      "source": "https://haartkenya.org/contact-us/"
+    },
+    {
+      "name": "Apne Aap Women Worldwide",
+      "what": "Grassroots Indian organisation that empowers marginalised girls and women to resist and end sex trafficking.",
+      "regions": [
+        "South Asia"
+      ],
+      "countries": [
+        "IN"
+      ],
+      "helps": [
+        "women",
+        "girls",
+        "survivors"
+      ],
+      "direct_help": false,
+      "contact": {
+        "web": "https://apneaap.org/contact/",
+        "email": "Contact@apneaap.org",
+        "phone": "+91 8232085060"
+      },
+      "source": "https://apneaap.org/contact/"
+    },
+    {
+      "name": "Shakti Vahini",
+      "what": "Indian organisation working against human trafficking and child marriage, with legal aid and a trafficking response centre.",
+      "regions": [
+        "South Asia"
+      ],
+      "countries": [
+        "IN"
+      ],
+      "helps": [
+        "women",
+        "children",
+        "survivors"
+      ],
+      "direct_help": true,
+      "contact": {
+        "web": "https://shaktivahini.org/contact-us/",
+        "email": "shaktivahini@gmail.com",
+        "phone": "+91 9582909025"
+      },
+      "source": "https://shaktivahini.org/contact-us/"
+    },
+    {
+      "name": "CAST (Coalition to Abolish Slavery & Trafficking)",
+      "what": "Provides direct services to trafficking survivors in Los Angeles; all service requests go through its 24/7 hotline.",
+      "regions": [
+        "North America"
+      ],
+      "countries": [
+        "US"
+      ],
+      "helps": [
+        "survivors"
+      ],
+      "direct_help": true,
+      "contact": {
+        "web": "https://www.castla.org/contact/",
+        "email": "info@castla.org",
+        "phone": "+1 888 539 2373"
+      },
+      "source": "https://www.castla.org/contact/"
+    }
+  ]
+}
