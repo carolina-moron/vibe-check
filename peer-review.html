@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vibe Check Peer Review</title>
+  <style>
+    :root {
+      --paper: #F2ECE1;
+      --ink: #14264A;
+      --accent: #2A66B8;
+      --high: #B3261E;
+      --med: #7A5A00;
+      --low: #2E6B30;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.6 "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 2.2rem; margin: 0 0 12px; }
+    h2 { font-size: 1.4rem; margin: 32px 0 12px; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--ink); padding-bottom: 8px; }
+    h3 { font-size: 1.1rem; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .meta { font-size: 0.9rem; color: #666; margin-bottom: 24px; }
+
+    .grade {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 2px;
+      font-weight: 600;
+      margin-left: 12px;
+    }
+
+    .section { margin: 24px 0; padding: 16px; border-left: 4px solid var(--accent); background: rgba(42, 102, 184, 0.05); }
+    .strengths { border-left-color: var(--low); background: rgba(46, 107, 48, 0.05); }
+    .gaps { border-left-color: var(--med); background: rgba(122, 90, 0, 0.05); }
+    .risks { border-left-color: var(--high); background: rgba(179, 38, 30, 0.08); }
+
+    ul, ol { margin: 8px 0; padding-left: 20px; }
+    li { margin: 6px 0; }
+
+    .check { color: var(--low); font-weight: 600; }
+    .warn { color: var(--med); font-weight: 600; }
+    .risk { color: var(--high); font-weight: 600; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th { background: var(--ink); color: white; font-weight: 600; }
+
+    .metric { display: inline-block; background: var(--paper); padding: 8px 12px; border: 1px solid #ccc; margin: 4px; border-radius: 2px; font-family: monospace; }
+
+    .roadmap { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+    .phase { padding: 12px; border: 1px solid var(--ink); border-radius: 2px; }
+    .phase h4 { margin: 0 0 8px; }
+    .phase li { margin: 4px 0; font-size: 0.9rem; }
+
+    .rating { font-size: 1.4rem; margin: 12px 0; }
+    .conclusion { background: var(--ink); color: white; padding: 20px; border-radius: 2px; margin: 24px 0; }
+    .conclusion h2 { color: white; border-color: white; }
+
+    code { background: #f0f0f0; padding: 2px 6px; border-radius: 2px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>Vibe Check — Peer Review</h1>
+  <div class="meta">
+    <strong>Date:</strong> September 14, 2026 | <strong>Reviewer:</strong> Claude<br>
+    <strong>Project:</strong> Static no-build safety-check app for trafficking/scam risk assessment
+  </div>
+
+  <h2>Executive Summary</h2>
+  <p><strong>Status:</strong> ✓ Functional MVP with strong foundations; ready for user testing</p>
+
+  <div class="section strengths">
+    <h3>Strengths</h3>
+    <ul>
+      <li><span class="check">✓</span> Clear methodology, multi-register architecture, honest scoring model (no false "clear")</li>
+      <li><span class="check">✓</span> Excellent sourcing discipline; all cases verified against DOJ, FinCEN, UNODC</li>
+      <li><span class="check">✓</span> Pessimistic verification model protects users (unverified by default)</li>
+    </ul>
+  </div>
+
+  <div class="section gaps">
+    <h3>Gaps</h3>
+    <ul>
+      <li><span class="warn">⚠</span> Report backend undefined; forms build correctly but nothing submits</li>
+      <li><span class="warn">⚠</span> CTDC integration pending (data needs manual CSV import)</li>
+      <li><span class="warn">⚠</span> Limited geographic coverage (US/EU-centric registers)</li>
+    </ul>
+  </div>
+
+  <div class="section risks">
+    <h3>Risk</h3>
+    <ul>
+      <li><span class="risk">⚠</span> Legal/defamation risk if screening logic keys on geography (e.g., flagging all US small businesses because CPI score is low) instead of entity-specific conduct. Sayari handoff warned on this.</li>
+    </ul>
+  </div>
+
+  <h2>Architecture & Code Quality</h2>
+
+  <h3>Core Engine <code>src/engine.js</code> <span class="grade">B+</span></h3>
+  <div class="section">
+    <p><strong>629 lines • Pure functions • No side effects</strong></p>
+    <ul>
+      <li><span class="check">✓</span> Pessimistic scoring: unverified by default (safe for users)</li>
+      <li><span class="check">✓</span> Exact-name-only matching prevents false positives ("Quillmere Freight" vs "Northfield Logistics")</li>
+      <li><span class="warn">⚠</span> <code>assess()</code> is 100+ lines; could split into <code>assessOrganisation()</code>, <code>assessText()</code>, <code>assessDomain()</code></li>
+      <li><span class="warn">⚠</span> No caching of register lookups; every check re-queries</li>
+    </ul>
+  </div>
+
+  <h3>UI & State <code>src/app.js</code> <span class="grade">B</span></h3>
+  <div class="section">
+    <p><strong>1,714 lines • Modular views • Hash routing</strong></p>
+    <ul>
+      <li><span class="check">✓</span> Clean view functions (<code>viewCheck</code>, <code>viewCases</code>, <code>viewTeam</code>, etc.)</li>
+      <li><span class="check">✓</span> Responsive routing with hash-based navigation</li>
+      <li><span class="warn">⚠</span> Single 1,700-line file; consider splitting into <code>views/</code>, <code>components/</code>, <code>pages/</code></li>
+      <li><span class="warn">⚠</span> Inline SVG namespacing in HTML; could cause parsing issues</li>
+    </ul>
+  </div>
+
+  <h3>Visual Design <code>src/figure.js</code>, <code>src/styles.css</code> <span class="grade">A−</span></h3>
+  <div class="section">
+    <p><strong>Globe animation • Paper aesthetic • Responsive</strong></p>
+    <ul>
+      <li><span class="check">✓</span> Globe animation shows 20 trafficking corridor endpoints (real coordinates)</li>
+      <li><span class="check">✓</span> Color coding clear: red=sources, blue=transit/destination</li>
+      <li><span class="check">✓</span> Paper aesthetic consistent (beige + navy + accent blue)</li>
+      <li><span class="warn">⚠</span> Cylindrical projection distorts poles (minor; not critical for UI)</li>
+    </ul>
+  </div>
+
+  <h2>Data Integrity & Sourcing</h2>
+
+  <div class="section">
+    <h3>Cases <span class="grade">A</span></h3>
+    <ul>
+      <li><span class="check">✓</span> 20 documented cases; all sourced to DOJ, FinCEN, UNODC</li>
+      <li><span class="check">✓</span> NXIVM case excellent true positive: Keith Raniere conviction (120 years), beneficial owners</li>
+      <li><span class="check">✓</span> No victim names; unnamed entities excluded from matching</li>
+      <li><span class="check">✓</span> Methodology page transparent about FCRA constraints</li>
+      <li><span class="warn">⚠</span> Cases are static; no automated DOJ press release updates</li>
+    </ul>
+
+    <h3>Signal Taxonomy <span class="grade">A−</span></h3>
+    <ul>
+      <li><span class="check">✓</span> 50 signals in 6 dimensions (identity, money, pressure, isolation, travel, record)</li>
+      <li><span class="check">✓</span> Weights assigned (low/medium/high) with justification</li>
+      <li><span class="warn">⚠</span> Some signals under-tested (<code>followers_fake</code>, <code>images_ai</code> — no test cases verify these)</li>
+    </ul>
+  </div>
+
+  <h2>User Experience</h2>
+
+  <div class="section strengths">
+    <h3>Strengths</h3>
+    <ul>
+      <li><span class="check">✓</span> Clear value prop: "Something feels off? Check the vibe." (vs. vague "safety score")</li>
+      <li><span class="check">✓</span> Multiple input paths: profile, screenshot (OCR), job posting, free text</li>
+      <li><span class="check">✓</span> Honest results: shows "Unverified" when incomplete, not "clear"</li>
+      <li><span class="check">✓</span> Privacy-first: removes personal details before preview; photo → perceptual hash only</li>
+      <li><span class="check">✓</span> Help integration: hotlines on every page; quick-exit button</li>
+    </ul>
+  </div>
+
+  <div class="section gaps">
+    <h3>Gaps</h3>
+    <ul>
+      <li><span class="warn">⚠</span> Report backend is <code>null</code>: forms build/preview, but nothing submits</li>
+      <li><span class="warn">⚠</span> CTDC not loaded: feature ready, but data needs manual import</li>
+      <li><span class="warn">⚠</span> Screenshot OCR slow: Tesseract.js blocks UI for 3–5 seconds on large images</li>
+      <li><span class="warn">⚠</span> No offline mode: register timeout shows "could not search" without manual fallback</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Recommendations</h3>
+    <ol>
+      <li>Disable report form if <code>REPORT_ENDPOINT === null</code>, or show "reporting coming soon"</li>
+      <li>Add loading state during OCR: "Reading screenshot… 45%"</li>
+      <li>Offer manual register links if lookup fails: "Search by hand here: [DOL] [OpenSanctions] [BBB]"</li>
+    </ol>
+  </div>
+
+  <h2>Register Integration</h2>
+
+  <table>
+    <tr>
+      <th>Register</th>
+      <th>Coverage</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>GLEIF</td>
+      <td>Global legal entities</td>
+      <td><span class="check">✓ Live</span></td>
+    </tr>
+    <tr>
+      <td>NY DOS + Colorado SOS</td>
+      <td>US incorporations; exact-name match</td>
+      <td><span class="check">✓ Live</span></td>
+    </tr>
+    <tr>
+      <td>RDAP, crt.sh, CourtListener</td>
+      <td>Domains, certificates, dockets</td>
+      <td><span class="check">✓ Live</span></td>
+    </tr>
+    <tr>
+      <td>BBB, OpenSanctions, Glassdoor</td>
+      <td>Community reports, sanctions</td>
+      <td><span class="warn">⚠ Referral (manual)</span></td>
+    </tr>
+    <tr>
+      <td>Companies House (UK)</td>
+      <td>Officer disqualifications</td>
+      <td><span class="risk">✗ Blocked (needs server key)</span></td>
+    </tr>
+    <tr>
+      <td>OFLC (H-2A/H-2B debarments)</td>
+      <td>Recruiter history</td>
+      <td><span class="risk">✗ Not integrated</span></td>
+    </tr>
+  </table>
+
+  <h2>Legal & Compliance</h2>
+
+  <div class="section strengths">
+    <h3>Strengths</h3>
+    <ul>
+      <li><span class="check">✓</span> FCRA-compliant: no person checks, no criminal-record lookups</li>
+      <li><span class="check">✓</span> Methodology page discloses limitations</li>
+      <li><span class="check">✓</span> Coverage model shown: what was searched, what couldn't be reached</li>
+    </ul>
+  </div>
+
+  <div class="section risks">
+    <h3>Risks</h3>
+    <ul>
+      <li><span class="risk">⚠</span> <strong>False positive on geography:</strong> If logic flags "US small business" because CPI is low, product becomes defamatory. Sayari handoff warned on this. Current logic appears sound (entity-specific flags only), but audit regularly.</li>
+      <li><span class="risk">⚠</span> <strong>Benchmark clarity:</strong> "Serious warning signs" tier could be misread as "conviction." Consider: "High concern — requires verification before proceeding"</li>
+      <li><span class="check">✓</span> Religious organization exclusion (BAPS) correctly identified; good precedent to document</li>
+    </ul>
+  </div>
+
+  <h2>Testing</h2>
+
+  <div class="section">
+    <p><strong>31 unit tests • All pass</strong></p>
+    <ul>
+      <li><span class="check">✓</span> Covers: exact-name matching, verification model, corridor parsing, news aggregation</li>
+      <li><span class="warn">⚠</span> No integration tests (screenshot → OCR → check → report preview)</li>
+      <li><span class="warn">⚠</span> No E2E tests (actual register queries)</li>
+      <li><span class="warn">⚠</span> No accessibility tests (keyboard, screen reader, WCAG AA)</li>
+    </ul>
+  </div>
+
+  <h2>Performance</h2>
+
+  <div class="section">
+    <p><strong>Grade: B</strong></p>
+    <ul>
+      <li><span class="check">✓</span> Static site; no server required</li>
+      <li><span class="check">✓</span> Lazy-load news data (on-demand)</li>
+      <li><span class="check">✓</span> 12-second timeout on register queries (prevents blocking)</li>
+      <li><span class="warn">⚠</span> No code splitting; app.js is 1,714 lines in single module</li>
+      <li><span class="warn">⚠</span> No caching of register results</li>
+      <li><span class="warn">⚠</span> Tesseract.js is ~400KB; slow on 3G</li>
+    </ul>
+    <h3>Recommendations</h3>
+    <ol>
+      <li>Cache register results in sessionStorage (30-min TTL)</li>
+      <li>Lazy-load Tesseract only when screenshot tab clicked</li>
+      <li>Split app.js into views/ + components/ for faster parsing</li>
+    </ol>
+  </div>
+
+  <h2>Accessibility</h2>
+
+  <div class="section">
+    <p><strong>Grade: B−</strong></p>
+    <ul>
+      <li><span class="check">✓</span> Semantic HTML; ARIA live regions; skip link</li>
+      <li><span class="check">✓</span> 13:1 contrast (navy on beige)</li>
+      <li><span class="warn">⚠</span> Color-only indicators (red=high, blue=normal) — needs label</li>
+      <li><span class="warn">⚠</span> No keyboard-only navigation test</li>
+      <li><span class="warn">⚠</span> Animation can't be paused (only respects <code>prefers-reduced-motion</code>)</li>
+    </ul>
+    <h3>Quick Wins</h3>
+    <ol>
+      <li>Add <code>aria-label</code> to risk color badges ("High concern: red")</li>
+      <li>Keyboard navigation audit (Tab through entire form)</li>
+      <li>Add pause button to globe animation</li>
+    </ol>
+  </div>
+
+  <h2>Roadmap & Recommendations</h2>
+
+  <h3>Must-Do (Before Public Launch)</h3>
+  <div class="roadmap">
+    <div class="phase">
+      <h4>1. Report Backend</h4>
+      <p>Choose storage: Supabase? Firebase? Custom Node? Without it, "Report wrong vibes" is incomplete UX.</p>
+    </div>
+    <div class="phase">
+      <h4>2. Register Fallback</h4>
+      <p>If registers time out, show manual search links instead of silent "could not search."</p>
+    </div>
+    <div class="phase">
+      <h4>3. Screening Audit</h4>
+      <p>Verify logic against Sayari handoff: no false-positive geography flags.</p>
+    </div>
+  </div>
+
+  <h3>Should-Do (v0.2.1)</h3>
+  <div class="roadmap">
+    <div class="phase">
+      <h4>Code Organization</h4>
+      <p>Split app.js into views/ subdirectory</p>
+    </div>
+    <div class="phase">
+      <h4>Testing</h4>
+      <p>Add OCR + screenshot handling tests</p>
+    </div>
+    <div class="phase">
+      <h4>Performance</h4>
+      <p>Cache register results (sessionStorage, 30-min TTL)</p>
+    </div>
+    <div class="phase">
+      <h4>Accessibility</h4>
+      <p>Keyboard nav audit + ARIA labels</p>
+    </div>
+  </div>
+
+  <h3>Nice-To-Do (v0.3)</h3>
+  <div class="roadmap">
+    <div class="phase">
+      <h4>Lazy-Loading</h4>
+      <p>Load Tesseract.js on demand</p>
+    </div>
+    <div class="phase">
+      <h4>Animation Controls</h4>
+      <p>Pause button on globe</p>
+    </div>
+    <div class="phase">
+      <h4>Case Updates</h4>
+      <p>Automated DOJ + FinCEN press release parsing</p>
+    </div>
+  </div>
+
+  <div class="conclusion">
+    <h2>Conclusion</h2>
+    <p><strong>Vibe Check is a thoughtfully designed, well-sourced safety-check tool.</strong> The pessimistic scoring model (unverified by default), exact-name matching to avoid false positives, and transparent methodology set it apart from clickbait "scam checkers."</p>
+
+    <h3>Ready for:</h3>
+    <ul>
+      <li><span class="check">✓</span> User testing with beta cohort</li>
+      <li><span class="check">✓</span> Security audit (anonymisation, privacy)</li>
+      <li><span class="check">✓</span> Legal review (defamation, FCRA compliance)</li>
+    </ul>
+
+    <h3>Not ready for:</h3>
+    <ul>
+      <li><span class="warn">⚠</span> Public launch (report backend missing; UX falls short when registers timeout)</li>
+      <li><span class="warn">⚠</span> Platform integration (APIs not built yet)</li>
+    </ul>
+
+    <div class="rating">
+      <strong>Overall: B+ (75–85%)</strong><br>
+      Solid foundation. Ship with backend and fallback UX. Plan Phase 2 in Q4.
+    </div>
+  </div>
+
+  <hr style="margin: 40px 0; border: none; border-top: 1px solid #ccc;">
+  <p style="font-size: 0.85rem; color: #999;">Review created September 14, 2026 | For internal use | Contact: claude@anthropic.com</p>
+</body>
+</html>
