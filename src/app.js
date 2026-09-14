@@ -1,8 +1,8 @@
 import {
-  assess, considerations, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js?v=202609141416";
-import { mountFigure } from "./figure.js?v=202609141416";
-import { REPORT_ENDPOINT } from "./config.js?v=202609141416";
+  assess, considerations, parsePostingUrl, fetchPosting, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
+} from "./engine.js?v=202609141420";
+import { mountFigure } from "./figure.js?v=202609141420";
+import { REPORT_ENDPOINT } from "./config.js?v=202609141420";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
@@ -27,13 +27,13 @@ const signalById = Object.fromEntries(signals.signals.map((s) => [s.id, s]));
 const main = $("#main");
 
 const TYPOLOGY = {
-  "scam-compound": { label: "Scam compound", color: "#7A1E2C" },
-  "labor-trafficking": { label: "Labour trafficking", color: "#A9642B" },
-  "forced-labor-industrial": { label: "Industrial forced labour", color: "#5B4A78" },
-  "laundering": { label: "Laundering network", color: "#2E5A66" },
-  "money-mule": { label: "Money mules", color: "#2E5A66" },
-  "job-scam": { label: "Job scam", color: "#56693A" },
-  "sex-trafficking": { label: "Sex trafficking", color: "#9A4768" },
+  "scam-compound": { label: "Scam compound", color: "#1F3B63" },
+  "labor-trafficking": { label: "Labour trafficking", color: "#4A7BA6" },
+  "forced-labor-industrial": { label: "Industrial forced labour", color: "#5A5A9A" },
+  "laundering": { label: "Laundering network", color: "#2B6A76" },
+  "money-mule": { label: "Money mules", color: "#2B6A76" },
+  "job-scam": { label: "Job scam", color: "#6D8299" },
+  "sex-trafficking": { label: "Sex trafficking", color: "#35468F" },
 };
 const STATUS = {
   enforcement_action: "Enforcement action", sanctioned: "Sanctioned", convicted: "Convicted",
@@ -71,9 +71,9 @@ const flagList = (flags) => flags.length ? `<ul class="flags">${flags.map((f) =>
 // ---- FLSRI structural risk -------------------------------------------------------------
 
 const FL_TIER = {
-  higher: { label: "Higher", color: "#8E3A43" },
-  middle: { label: "Middle", color: "#C3927F" },
-  lower: { label: "Lower", color: "#E7D9C4" },
+  higher: { label: "Higher", color: "#27456E" },
+  middle: { label: "Middle", color: "#7E9CB9" },
+  lower: { label: "Lower", color: "#C8D3DC" },
 };
 const flSrc = flsri.source;
 const flLink = (label = "FLSRI") => ext(flSrc.site, label);
@@ -269,7 +269,7 @@ function viewCases() {
     if (map && !ctdcLayer) {
       const pts = await ctdcPoints();
       ctdcLayer = L.layerGroup(top.filter((c) => pts[c.from] && pts[c.to]).map((c) =>
-        L.polyline(arc(pts[c.from], pts[c.to]), { color: "#7A1E2C", weight: 1 + 7 * Math.sqrt(c.n / max), opacity: 0.55 })
+        L.polyline(arc(pts[c.from], pts[c.to]), { color: "#1F3B63", weight: 1 + 7 * Math.sqrt(c.n / max), opacity: 0.55 })
           .bindTooltip(`${esc(country(c.from))} → ${esc(country(c.to))}: ${c.n.toLocaleString("en-US")} records`, { sticky: true })
           .on("click", () => showCorridor(c))));
     }
@@ -665,7 +665,7 @@ const NEWS_TYP = {
   "money-mule": "Money mules", "sex-trafficking": "Sex trafficking", "organ-trafficking": "Organ trafficking", "cartel-recruitment": "Cartel recruitment",
 };
 const NEWS_EVENT = { arrest: "Arrests & raids", warning: "Warnings & advisories", rescue: "Rescues & repatriation", sanction: "Sanctions", conviction: "Convictions" };
-const ROLE_COLOR = { origin: "#2E5A66", destination: "#7A1E2C", mentioned: "#A6927C" };
+const ROLE_COLOR = { origin: "#2B6A76", destination: "#1F3B63", mentioned: "#7F8A94" };
 
 // Catalog entities named in an article (names of 6+ characters, whole words).
 const entityIndex = cases.flatMap((c) => c.entities.flatMap((e) => allNames(e).map((n) => n.name)
@@ -764,7 +764,7 @@ async function viewNews(arg = "") {
     for (const c of a.corridors) {
       const p1 = n.points[c.from], p2 = n.points[c.to];
       if (!p1 || !p2) continue;
-      const line = L.polyline(arc(p1, p2), { color: "#7A1E2C", weight: 1 + c.count * 1.2, opacity: 0.7, dashArray: c.count > 1 ? null : "5 6" }).addTo(map);
+      const line = L.polyline(arc(p1, p2), { color: "#1F3B63", weight: 1 + c.count * 1.2, opacity: 0.7, dashArray: c.count > 1 ? null : "5 6" }).addTo(map);
       line.bindTooltip(`${esc(country(c.from))} → ${esc(country(c.to))}: ${c.count} article${c.count > 1 ? "s" : ""}`, { sticky: true });
       const tip = arc(p1, p2);
       const [ya, xa] = tip[tip.length - 3], [yb, xb] = tip[tip.length - 1];
@@ -821,7 +821,7 @@ const KINDS = {
   conversation: { label: "Conversation or DM", hint: "A chat, DM, text or email thread", fields: ["profileUrl"], text: "The messages", screenshotFirst: true, questions: ["secrecy", "isolation", "urgency", "threats_coercion", "chat_only_contact", "refuses_video", "romance_money", "verification_code"] },
   profile: { label: "Social profile", hint: "An account that contacted you or that you met on an app", fields: ["profileUrl", "photo"], text: "Bio, posts or messages from this account", questions: ["profile_new", "profile_photos_too_polished", "profile_mismatch", "refuses_video", "chat_only_contact", "romance_money", "investment_pitch"] },
   travel: { label: "Invitation to travel or meet", hint: "Someone offering to bring you somewhere, or to meet in person", fields: ["destination", "profileUrl"], text: "The invitation or messages about the trip or meeting", questions: ["sponsor_travel_stranger", "meet_private", "carry_package", "vague_location", "document_retention", "secrecy", "visa_fraud"] },
-  job: { label: "Job opportunity", hint: "A job ad, offer, or a recruiter who reached out", fields: ["company", "website", "email", "jurisdiction", "workCountry"], text: "The job ad, offer or recruiter's message", questions: ["upfront_fee", "id_before_interview", "chat_only_contact", "employer_housing_travel", "vague_location", "document_retention", "debt_bondage", "payment_handling"] },
+  job: { label: "Job opportunity", hint: "A job ad, offer, or a recruiter who reached out", fields: ["postingUrl", "company", "website", "email", "jurisdiction", "workCountry"], text: "The job ad, offer or recruiter's message", questions: ["upfront_fee", "id_before_interview", "chat_only_contact", "employer_housing_travel", "vague_location", "document_retention", "debt_bondage", "payment_handling"] },
   housing: { label: "Housing offer", hint: "A room, flat or accommodation offered to you", fields: ["website", "email", "destination"], text: "The listing or messages from the landlord or host", questions: ["housing_unseen_deposit", "owner_unavailable", "housing_tied_to_job", "gift_card_crypto", "urgency"] },
   money: { label: "Request for money", hint: "Someone asking you to pay, lend, invest or send codes", fields: ["profileUrl", "website"], text: "What they asked for and why", questions: ["romance_money", "investment_pitch", "gift_card_crypto", "verification_code", "urgency", "threats_coercion", "secrecy"] },
   link: { label: "Link", hint: "A website or link someone sent you", fields: ["website", "email"], text: "The message the link came with", questions: ["link_shortener", "urgency", "verification_code", "upfront_fee"] },
@@ -830,6 +830,9 @@ const KINDS = {
 // Old links keep working.
 KINDS.screenshot = KINDS.conversation; KINDS.recruiter = KINDS.job;
 const FIELD = {
+  postingUrl: () => `<div class="posting span-all"><label>Link to the job posting <span class="muted">(optional)</span>
+      <span class="inline"><input name="postingUrl" type="url" inputmode="url" autocomplete="off" placeholder="https://…"><button type="button" class="ghost" id="read-posting">Read posting</button></span>
+      <span class="fine">Postings on Greenhouse, Lever and Ashby are read directly. For other sites we check the website, and you can paste the text below.</span></label><p class="fine" id="posting-status" aria-live="polite"></p></div>`,
   company: () => `<label>Company or agency name <input name="company" autocomplete="off" placeholder="As they wrote it"></label>`,
   website: () => `<label>Website <input name="website" autocomplete="off" placeholder="example.com"></label>`,
   email: () => `<label>Their email address <input name="email" autocomplete="off" placeholder="name@…"></label>`,
@@ -902,6 +905,21 @@ function viewCheck(kind = "") {
 
   const form = $("#check");
   let photoHash = null;
+  $("#read-posting")?.addEventListener("click", async () => {
+    const status = $("#posting-status");
+    const parsed = parsePostingUrl(form.postingUrl.value);
+    if (!parsed) { status.textContent = "That doesn't look like a web address."; return; }
+    if (!parsed.ats) { status.textContent = `We can't read postings from ${parsed.host} directly. We'll still check the website when you run the check; paste the ad text below.`; return; }
+    status.textContent = "Reading the posting…";
+    try {
+      const p = await fetchPosting(parsed);
+      form.posting.value = [`${p.title}${p.location ? ` (${p.location})` : ""}`, p.text].filter(Boolean).join("\n\n");
+      if (form.company && !form.company.value) form.company.value = p.company;
+      status.textContent = `Read "${p.title}" from ${parsed.ats[0].toUpperCase() + parsed.ats.slice(1)}. A posting on a real hiring system is a good sign, but scammers can use them too, so still check the details.`;
+    } catch {
+      status.textContent = "Couldn't read that posting (it may have closed). Paste the text below instead.";
+    }
+  });
   form.photo?.addEventListener("change", async (e) => {
     photoHash = e.target.files[0] ? await hashImage(e.target.files[0]) : null;
     $("#photo-hash").textContent = photoHash ? `Photo fingerprint: ${photoHash}` : "";
@@ -1206,6 +1224,7 @@ function viewMethodology() {
         <li><em>Serious warning signs</em>: the pattern matches real scam and trafficking cases.</li>
       </ul>
       <p>A lower-concern result is never a clearance.</p>
+      <p><strong>Job posting links.</strong> Postings on Greenhouse, Lever and Ashby are read through those systems' public job APIs, directly from your browser. A posting there is a good sign but not proof, since anyone can open an account. Other links are checked by domain (registration age, certificates, archive history), and postings on free site builders or form tools are flagged.</p>
       <p><strong>Screenshots</strong> are read on your own device with open-source text recognition (Tesseract). The image is never uploaded, and you can correct the text before checking.</p>
       <p><strong>Profile photos</strong> become a 64-bit fingerprint on your device, so the same face can be matched across reports without storing the image.</p>
       <p><strong>Submitting</strong> is optional and anonymous, and you preview the exact record first.</p>

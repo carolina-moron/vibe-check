@@ -183,3 +183,16 @@ test("situation-level signals and considerations", async () => {
   assert.deepEqual(c.map((x) => x.id).sort(), ["identity", "isolation", "travel"]);
   assert.ok(c.every((x) => x.consider && x.step));
 });
+
+test("job posting URLs: ATS parsing, reading, free hosts", async () => {
+  const { parsePostingUrl, fetchPosting, checkPostingHost } = await import("../src/engine.js");
+  assert.deepEqual((({ ats, board, id }) => ({ ats, board, id }))(parsePostingUrl("https://job-boards.greenhouse.io/acme/jobs/123")), { ats: "greenhouse", board: "acme", id: "123" });
+  assert.equal(parsePostingUrl("jobs.lever.co/acme/ab-12").ats, "lever");
+  assert.equal(parsePostingUrl("https://jobs.ashbyhq.com/acme/uuid-1").ats, "ashby");
+  assert.equal(parsePostingUrl("https://example.com/careers/1").ats, null);
+  const gh = await fetchPosting(parsePostingUrl("https://boards.greenhouse.io/acme/jobs/9"), stub({ "boards-api.greenhouse.io": { title: "Driver", company_name: "Acme", location: { name: "Dubai" }, content: "&lt;p&gt;Pay the visa fee&lt;/p&gt;", absolute_url: "https://x" } }));
+  assert.equal(gh.title, "Driver");
+  assert.equal(gh.text, "Pay the visa fee");
+  assert.deepEqual(checkPostingHost(parsePostingUrl("https://hiring-now.wixsite.com/jobs")).map((h) => h.id), ["posting_free_host"]);
+  assert.deepEqual(checkPostingHost(parsePostingUrl("https://jobs.lever.co/acme/1")), []);
+});

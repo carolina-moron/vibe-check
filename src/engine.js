@@ -111,6 +111,54 @@ export function checkEmail(email, siteDomain) {
   return hits;
 }
 
+// ---- Job posting URLs ------------------------------------------------------------------
+// Greenhouse, Lever and Ashby publish postings through open, browser-readable APIs, so the
+// posting text can be read directly. Other links are checked by their domain only.
+
+const FREE_HOSTS = /(^|\.)(sites\.google\.com|docs\.google\.com|forms\.gle|wixsite\.com|weebly\.com|blogspot\.com|wordpress\.com|notion\.site|telegra\.ph|carrd\.co|linktr\.ee|jotform\.com|typeform\.com|tally\.so|000webhostapp\.com|github\.io|netlify\.app|vercel\.app|glitch\.me)$/i;
+
+export function parsePostingUrl(raw) {
+  let u;
+  try { u = new URL(/^https?:\/\//i.test(String(raw).trim()) ? String(raw).trim() : `https://${String(raw).trim()}`); } catch { return null; }
+  const host = u.hostname.replace(/^www\./, "").toLowerCase();
+  const parts = u.pathname.split("/").filter(Boolean);
+  const out = { url: u.href, host, ats: null, board: null, id: null };
+  if (/^(job-)?boards\.greenhouse\.io$/.test(host) && parts[1] === "jobs") Object.assign(out, { ats: "greenhouse", board: parts[0], id: parts[2] });
+  else if (host === "jobs.lever.co" && parts.length >= 2) Object.assign(out, { ats: "lever", board: parts[0], id: parts[1] });
+  else if (host === "jobs.ashbyhq.com" && parts.length >= 2) Object.assign(out, { ats: "ashby", board: parts[0], id: parts[1] });
+  return out;
+}
+
+const stripHtml = (html) => String(html || "").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&")
+  .replace(/<(br|\/p|\/li|\/h\d)>/gi, "\n").replace(/<[^>]+>/g, " ").replace(/[ \t]+/g, " ").replace(/\n\s*\n+/g, "\n\n").trim();
+
+export async function fetchPosting(parsed, fetchFn = fetch) {
+  if (!parsed?.ats) return null;
+  const b = encodeURIComponent(parsed.board), id = encodeURIComponent(parsed.id);
+  if (parsed.ats === "greenhouse") {
+    const j = await getJson(fetchFn, `https://boards-api.greenhouse.io/v1/boards/${b}/jobs/${id}`);
+    return { title: j.title, company: j.company_name || parsed.board, location: j.location?.name || "", text: stripHtml(j.content), url: j.absolute_url };
+  }
+  if (parsed.ats === "lever") {
+    const j = await getJson(fetchFn, `https://api.lever.co/v0/postings/${b}/${id}?mode=json`);
+    const lists = (j.lists || []).map((l) => `${l.text}\n${stripHtml(l.content)}`).join("\n\n");
+    return { title: j.text, company: parsed.board, location: j.categories?.location || "", text: [j.descriptionPlain, lists, j.additionalPlain].filter(Boolean).join("\n\n"), url: j.hostedUrl };
+  }
+  if (parsed.ats === "ashby") {
+    const d = await getJson(fetchFn, `https://api.ashbyhq.com/posting-api/job-board/${b}`);
+    const j = (d.jobs || []).find((x) => x.id === parsed.id);
+    if (!j) throw new Error("posting not found");
+    return { title: j.title, company: parsed.board, location: j.location || "", text: j.descriptionPlain || stripHtml(j.descriptionHtml), url: j.jobUrl };
+  }
+  return null;
+}
+
+export function checkPostingHost(parsed) {
+  if (!parsed) return [];
+  if (FREE_HOSTS.test(parsed.host)) return [{ id: "posting_free_host", evidence: parsed.host }];
+  return [];
+}
+
 // ---- Check results ---------------------------------------------------------------------
 // Every register check returns { register, verdict, detail, hits, records }.
 // verdict: "hit" | "no-evidence-found" | "not-searched" | "error". There is no "clear".
@@ -342,7 +390,8 @@ export function linkFor(register, { name = "", domain = "" }) {
 
 export async function assess(input, { signals, registers, cases, fetchFn = fetch, now = new Date() }) {
   const name = String(input.company || "").trim();
-  const domain = normalizeDomain(input.website);
+  const posting = input.postingUrl ? parsePostingUrl(input.postingUrl) : null;
+  const domain = normalizeDomain(input.website) || (posting && !posting.ats ? normalizeDomain(posting.host) : "");
   const emailDomain = input.email && input.email.includes("@") ? normalizeDomain(input.email) : "";
   const jurisdiction = input.jurisdiction || "";
   const opts = { fetchFn, now };
@@ -367,7 +416,7 @@ export async function assess(input, { signals, registers, cases, fetchFn = fetch
     emailDomain ? (emailHits.length ? emailHits[0].evidence : `${emailDomain} is not a known free-mail domain.`) : "No recruiter email given.", emailHits));
 
   const answerHits = [].concat(input.answers || []).filter(Boolean).map((id) => ({ id, evidence: "from your answers" }));
-  const textHits = [...detectContent(input.posting), ...answerHits];
+  const textHits = [...detectContent(input.posting), ...answerHits, ...checkPostingHost(posting)];
   checks.push(result("ilo", input.posting?.trim() || answerHits.length ? (textHits.length ? "hit" : "no-evidence-found") : "not-searched",
     input.posting?.trim() || answerHits.length ? `${textHits.length} warning sign(s) in the text and your answers.` : "No text given.", textHits));
 

@@ -1,4 +1,4 @@
-/* Digital Safety Check — drawn in burgundy ink on grey paper.
+/* Digital Safety Check — drawn in blue ink on grey paper.
    Visual direction from kateebonner/personal-site (katebonner.ai): one ink, 1px rules, square corners,
    uppercase tracked lettering, a label column divided from the body, no shadows or tints.
    Fills are 45° ink hatching; the only solid fill is an ink inversion. */
@@ -7,9 +7,9 @@
   --paper: #9C9C96;
   --paper-2: #A6A6A0;
   --on-ink: #EFECE4;          /* lettering on an ink fill */
-  --ink: #561320;             /* her burgundy #7A1E2C, deepened to 5:1 on this paper for readable text */
-  --ink-soft: #561320;
-  --line: #6A1A27;
+  --ink: #0F2A4E;             /* deep blue, 5:1 on this paper for readable text */
+  --ink-soft: #0F2A4E;
+  --line: #1F3B63;
   --rule: 1px solid var(--line);
   --hatch: repeating-linear-gradient(45deg, var(--ink) 0 1px, transparent 1px 7px);
 
@@ -420,3 +420,7 @@ footer.site p { max-width: 90ch; }
 .helpline { margin: 0 0 10px; }
 .kinds { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 1000px) { .kinds { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.posting { grid-column: 1 / -1; }
+.posting .inline { display: flex; gap: 8px; align-items: stretch; margin-top: 6px; }
+.posting .inline input { margin-top: 0 !important; flex: 1; }
+.posting .inline button { white-space: nowrap; padding-block: 0; }

@@ -368,6 +368,14 @@
       "label": "Link is shortened or hides where it really goes",
       "why": "Shortened and redirecting links hide the real destination, a common phishing tactic.",
       "dimension": "identity"
+    },
+    {
+      "id": "posting_free_host",
+      "category": "digital",
+      "weight": 14,
+      "label": "Job posting is hosted on a free site builder or form tool, not the employer's own site or a job board",
+      "why": "Real employers post on their careers page, a job board or an applicant tracking system. Free pages and forms are quick to create and abandon.",
+      "dimension": "identity"
     }
   ],
   "tiers": [
