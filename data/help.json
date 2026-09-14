@@ -1,0 +1,220 @@
+{
+  "verified": "2026-09-14",
+  "global": [
+    {
+      "name": "IOM, the UN Migration Agency",
+      "what": "Helps trafficked, stranded and exploited migrants. Contact the IOM office in the country you are in.",
+      "contacts": [
+        { "type": "web", "value": "https://www.iom.int/where-we-work", "note": "find the IOM office in your country (171 countries)" },
+        { "type": "phone", "value": "+41 22 717 9805", "note": "IOM headquarters, Geneva" }
+      ],
+      "source": "https://www.iom.int/contact-us"
+    },
+    {
+      "name": "Global Modern Slavery Directory (Polaris)",
+      "what": "Searchable directory of vetted anti-trafficking hotlines and organisations in every country.",
+      "contacts": [
+        { "type": "web", "value": "https://globalmodernslavery.org/", "note": "search by country" }
+      ],
+      "source": "https://globalmodernslavery.org/"
+    }
+  ],
+  "countries": [
+    { "iso2": "US", "emergency": "911",
+      "lines": [
+        { "name": "National Human Trafficking Hotline", "for": "trafficking",
+          "contacts": [
+            { "type": "phone", "value": "1-888-373-7888", "note": "free, confidential, 24/7; TTY 711" },
+            { "type": "sms", "value": "233733", "note": "text HELP or INFO (BeFree)" },
+            { "type": "web", "value": "https://humantraffickinghotline.org/", "note": "online chat" }
+          ],
+          "source": "https://humantraffickinghotline.org/en" },
+        { "name": "ICE Homeland Security Investigations Tip Line", "for": "trafficking",
+          "contacts": [
+            { "type": "phone", "value": "1-866-347-2423", "note": "federal law enforcement, 24/7" },
+            { "type": "phone", "value": "+1 802 872 6199", "note": "from outside the US" }
+          ],
+          "source": "https://www.dhs.gov/blue-campaign/identify-victim" },
+        { "name": "FTC ReportFraud", "for": "job-scam",
+          "contacts": [ { "type": "web", "value": "https://reportfraud.ftc.gov/", "note": "report job scams" } ],
+          "source": "https://consumer.ftc.gov/articles/job-scams" },
+        { "name": "FBI Internet Crime Complaint Center (IC3)", "for": "job-scam",
+          "contacts": [ { "type": "web", "value": "https://www.ic3.gov/", "note": "online scams and cyber-enabled fraud" } ],
+          "source": "https://www.ic3.gov/" }
+      ] },
+    { "iso2": "GB", "emergency": "999",
+      "lines": [
+        { "name": "Modern Slavery & Exploitation Helpline (Unseen)", "for": "trafficking",
+          "contacts": [
+            { "type": "phone", "value": "08000 121 700", "note": "free to call; confidential" },
+            { "type": "web", "value": "https://www.modernslaveryhelpline.org/report", "note": "report online" }
+          ],
+          "source": "https://www.modernslaveryhelpline.org/" },
+        { "name": "Report Fraud (formerly Action Fraud), City of London Police", "for": "job-scam",
+          "contacts": [
+            { "type": "phone", "value": "0300 123 2040", "note": "England, Wales and Northern Ireland" },
+            { "type": "web", "value": "https://www.reportfraud.police.uk/", "note": "report online" }
+          ],
+          "source": "https://www.gov.uk/government/news/report-fraud-new-service-from-city-of-london-police" }
+      ] },
+    { "iso2": "CA", "emergency": "911",
+      "lines": [
+        { "name": "Canadian Human Trafficking Hotline", "for": "trafficking",
+          "contacts": [
+            { "type": "phone", "value": "1-833-900-1010", "note": "free, confidential, 24/7, 200+ languages" },
+            { "type": "web", "value": "https://canadianhumantraffickinghotline.ca/contact/", "note": "chat and email" }
+          ],
+          "source": "https://canadianhumantraffickinghotline.ca/contact/" },
+        { "name": "Canadian Anti-Fraud Centre", "for": "job-scam",
+          "contacts": [ { "type": "web", "value": "https://antifraudcentre-centreantifraude.ca/", "note": "report fraud and scams online" } ],
+          "source": "https://antifraudcentre-centreantifraude.ca/index-eng.htm" }
+      ] },
+    { "iso2": "AU", "emergency": "000",
+      "lines": [
+        { "name": "Australian Federal Police", "for": "trafficking",
+          "contacts": [
+            { "type": "phone", "value": "131 237", "note": "AFP national non-emergency line" },
+            { "type": "web", "value": "https://forms.afp.gov.au/online_forms/human_trafficking_form", "note": "report trafficking or slavery" }
+          ],
+          "source": "https://www.afp.gov.au/crimes/human-trafficking-and-slavery" },
+        { "name": "Scamwatch (ACCC)", "for": "job-scam",
+          "contacts": [
+            { "type": "web", "value": "https://portal.scamwatch.gov.au/report-a-scam/", "note": "report a scam" },
+            { "type": "web", "value": "https://www.cyber.gov.au/report-and-recover/report", "note": "ReportCyber, if money or data was stolen" }
+          ],
+          "source": "https://www.scamwatch.gov.au/report-a-scam" }
+      ] },
+    { "iso2": "EU", "emergency": "112",
+      "lines": [
+        { "name": "112 European emergency number", "for": "trafficking",
+          "contacts": [ { "type": "phone", "value": "112", "note": "free, everywhere in the EU" } ],
+          "source": "https://digital-strategy.ec.europa.eu/en/policies/112" },
+        { "name": "National anti-trafficking hotlines of EU member states (European Commission list)", "for": "trafficking",
+          "contacts": [ { "type": "web", "value": "https://home-affairs.ec.europa.eu/policies/internal-security/organised-crime/together-against-trafficking-human-beings/national-hotlines_en", "note": "no single EU-wide trafficking line; one per country" } ],
+          "source": "https://home-affairs.ec.europa.eu/policies/internal-security/organised-crime/together-against-trafficking-human-beings/national-hotlines_en" }
+      ] },
+    { "iso2": "PH", "emergency": "911",
+      "lines": [
+        { "name": "IACAT 1343 Actionline Against Human Trafficking", "for": "trafficking",
+          "contacts": [ { "type": "phone", "value": "1343", "note": "Inter-Agency Council Against Trafficking" } ],
+          "source": "https://old.dswd.gov.ph/report-human-trafficking-to-iacat-action-line-1343-dswd/" }
+      ] },
+    { "iso2": "IN", "emergency": "112",
+      "lines": [
+        { "name": "National Cyber Crime Helpline (Ministry of Home Affairs)", "for": "job-scam",
+          "contacts": [
+            { "type": "phone", "value": "1930", "note": "toll-free; financial fraud" },
+            { "type": "web", "value": "https://cybercrime.gov.in/", "note": "National Cyber Crime Reporting Portal" }
+          ],
+          "source": "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=1814120" },
+        { "name": "Child Helpline", "for": "children",
+          "contacts": [ { "type": "phone", "value": "1098", "note": "toll-free" } ],
+          "source": "https://www.wcd.gov.in/" },
+        { "name": "Women Helpline", "for": "trafficking",
+          "contacts": [ { "type": "phone", "value": "181", "note": "toll-free" } ],
+          "source": "https://www.wcd.gov.in/" }
+      ] },
+    { "iso2": "BD", "emergency": "999",
+      "lines": [
+        { "name": "Probash-Bondhu Call Center (Wage Earners' Welfare Board)", "for": "migrant-workers",
+          "contacts": [
+            { "type": "phone", "value": "16135", "note": "toll-free, 24/7" },
+            { "type": "phone", "value": "+880 9610 102030", "note": "from abroad" }
+          ],
+          "source": "https://wewb.gov.bd/site/page/ea2e41f4-27ba-4c57-9b03-601611dccd58/" }
+      ] },
+    { "iso2": "NP", "emergency": "100",
+      "lines": [
+        { "name": "Department of Foreign Employment", "for": "migrant-workers",
+          "contacts": [
+            { "type": "phone", "value": "1140", "note": "toll-free" },
+            { "type": "phone", "value": "01-4792671", "note": "office, Kathmandu" },
+            { "type": "email", "value": "info@dofe.gov.np", "note": "" }
+          ],
+          "source": "https://dofe.gov.np/" }
+      ] },
+    { "iso2": "ID", "emergency": "110",
+      "lines": [
+        { "name": "KP2MI / BP2MI (Ministry of Protection of Indonesian Migrant Workers)", "for": "migrant-workers",
+          "contacts": [
+            { "type": "phone", "value": "0800 1000", "note": "call centre, from inside Indonesia" },
+            { "type": "phone", "value": "+62 21 2924 4800", "note": "from abroad" },
+            { "type": "whatsapp", "value": "0811 8080 141", "note": "complaints" },
+            { "type": "email", "value": "halopelindungan@bp2mi.go.id", "note": "complaints" }
+          ],
+          "source": "https://kp2mi.go.id/profil-kontak" }
+      ] },
+    { "iso2": "TH", "emergency": "191",
+      "lines": [
+        { "name": "Anti-Human Trafficking Center, Royal Thai Police", "for": "trafficking",
+          "contacts": [
+            { "type": "phone", "value": "1599", "note": "24 hours" },
+            { "type": "web", "value": "https://humantrafficking-report.police.go.th/reporting", "note": "report online" }
+          ],
+          "source": "https://humantrafficking.police.go.th/en/contact-us/" },
+        { "name": "1300 Hotline, Ministry of Social Development and Human Security", "for": "trafficking",
+          "contacts": [ { "type": "phone", "value": "1300", "note": "PROTECT-U app also available" } ],
+          "source": "https://www.thaianti-humantraffickingaction.org/Home/2020/02/03/ministry-of-social-development-and-human-security-launched-protect-u/" }
+      ] },
+    { "iso2": "KH", "emergency": "117", "lines": [] },
+    { "iso2": "MM", "emergency": "199", "lines": [] },
+    { "iso2": "MY", "emergency": "999",
+      "lines": [
+        { "name": "National Scam Response Centre (NSRC)", "for": "job-scam",
+          "contacts": [ { "type": "phone", "value": "997", "note": "24 hours; call within 24 hours of losing money" } ],
+          "source": "https://www.malaysia.gov.my/en/categories/safety-and-community/cybersecurity/nsrc-997-hotline" }
+      ] },
+    { "iso2": "KE", "emergency": "999", "lines": [] },
+    { "iso2": "UG", "emergency": "999",
+      "lines": [
+        { "name": "Coordination Office to Combat Trafficking in Persons (COPTIP), Ministry of Internal Affairs", "for": "trafficking",
+          "contacts": [
+            { "type": "phone", "value": "0800 199 004", "note": "toll-free" },
+            { "type": "phone", "value": "0800 199 003", "note": "toll-free" }
+          ],
+          "source": "https://mia.go.ug/departments/trafficking-persons" }
+      ] },
+    { "iso2": "NG", "emergency": "112",
+      "lines": [
+        { "name": "NAPTIP (National Agency for the Prohibition of Trafficking in Persons)", "for": "trafficking",
+          "contacts": [
+            { "type": "phone", "value": "627", "note": "short code" },
+            { "type": "phone", "value": "0800 2255 627874", "note": "toll-free (0800CALLNAPTIP)" },
+            { "type": "phone", "value": "0703 000 0203", "note": "" },
+            { "type": "email", "value": "info@naptip.gov.ng", "note": "" }
+          ],
+          "source": "https://naptip.gov.ng/contact-us/" }
+      ] },
+    { "iso2": "GH", "emergency": "112", "lines": [] },
+    { "iso2": "ZA", "emergency": "112",
+      "lines": [
+        { "name": "South African National Human Trafficking Hotline", "for": "trafficking",
+          "contacts": [
+            { "type": "phone", "value": "0800 222 777", "note": "free, confidential, 24/7; also checks whether a job offer is legitimate" },
+            { "type": "phone", "value": "00 27 800 222 777", "note": "from abroad" }
+          ],
+          "source": "https://0800222777.org.za/" }
+      ] },
+    { "iso2": "ET", "emergency": "911",
+      "lines": [
+        { "name": "National Anti-Trafficking Hotline (Ministry of Justice, with IOM)", "for": "trafficking",
+          "contacts": [ { "type": "phone", "value": "8797", "note": "toll-free; Amharic, Afan Oromo, English, Tigrigna" } ],
+          "source": "https://ethiopia.iom.int/news/ethiopia-launches-first-national-anti-trafficking-hotline-protect-vulnerable-individuals" }
+      ] },
+    { "iso2": "MX", "emergency": "911",
+      "lines": [
+        { "name": "Línea Nacional contra la Trata de Personas", "for": "trafficking",
+          "contacts": [ { "type": "phone", "value": "800 5533 000", "note": "free, anonymous" } ],
+          "source": "https://www.gob.mx/indesol/articulos/linea-nacional-contra-la-trata-de-personas-800-5533-000-249470" }
+      ] },
+    { "iso2": "BR", "emergency": "190",
+      "lines": [
+        { "name": "Disque Direitos Humanos (Disque 100)", "for": "trafficking",
+          "contacts": [
+            { "type": "phone", "value": "100", "note": "free, 24 hours, every day; can be anonymous" },
+            { "type": "whatsapp", "value": "(61) 99611-0100", "note": "" }
+          ],
+          "source": "https://agenciagov.ebc.com.br/noticias/202607/trafico-de-pessoas-informacao-e-denuncia-sao-essenciais-para-combater-o-crime" }
+      ] }
+  ]
+}

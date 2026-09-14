@@ -406,7 +406,7 @@ async function viewHelp() {
       <div class="emerg-head">
         <div><h2>In immediate danger?</h2><p>Call the emergency number for the country you're in.</p></div>
         <label class="short">Country you're in
-          <select id="help-country">${countries.map((c) => `<option value="${esc(c.iso2)}"${c.iso2 === initial ? " selected" : ""}>${esc(country(c.iso2))}</option>`).join("")}</select>
+          <select id="help-country">${[...countries].sort((x, y) => country(x.iso2).localeCompare(country(y.iso2))).map((c) => `<option value="${esc(c.iso2)}"${c.iso2 === initial ? " selected" : ""}>${esc(country(c.iso2))}</option>`).join("")}</select>
         </label>
       </div>
       <div id="help-lines" aria-live="polite">${help ? "" : `<p>Hotline list is loading or unavailable. In the US call <a class="dial" href="tel:18883737888">1-888-373-7888</a>; in the UK <a class="dial" href="tel:08000121700">08000 121 700</a>; anywhere else, local emergency services.</p>`}</div>
@@ -440,6 +440,7 @@ async function viewHelp() {
     if (!c) return;
     $("#help-lines").innerHTML = `
       <div class="emerg-num"><span>Emergency in ${esc(country(c.iso2))}</span><a class="dial big" href="${telHref(c.emergency)}">${esc(c.emergency)}</a></div>
+      ${c.lines.length ? "" : `<p class="callout">We haven't been able to verify a national trafficking hotline for ${esc(country(c.iso2))} from an official source yet. If you're from another country, contact your embassy. ${help.global[0] ? `You can also reach <strong>${esc(help.global[0].name)}</strong> (below), which helps people who are stranded or exploited abroad.` : ""}</p>`}
       <div class="lines">${c.lines.map((l) => `
         <div class="line"><div class="fine for">${esc(FOR_LABEL[l.for] || l.for)}</div><h3>${esc(l.name)}</h3>
           <ul class="contacts">${l.contacts.map(contactHtml).join("")}</ul>
