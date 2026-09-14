@@ -1,7 +1,7 @@
-// The home figure: an expanding cyber network showing threat propagation.
-// Nodes represent attackers, victims, infrastructure. Edges show malicious connections.
-// Red nodes = threat actors / botnet command centers. Blue nodes = compromised hosts / victims.
-// Network grows and connections reveal the structure of digital exploitation.
+// The home figure: a visual representation of checking vibes and detecting warning signs.
+// A radar pulse expands outward. Warning symbols appear as the pulse passes.
+// Information nodes are detected and connect together, showing verification.
+// Red = alerts/warnings detected. Blue = verified/safe information.
 
 const INK = [42, 102, 184]; // logo blue
 const WARN = [179, 38, 30]; // warning red
@@ -16,94 +16,77 @@ function rng(seed) {
   };
 }
 
-// Cyber network: C2 servers, botnets, compromised hosts
-function buildNetwork() {
-  const nodes = [];
+// Information nodes to check: mix of warnings and verified data
+function buildNodes() {
   const R = rng(42);
+  const nodes = [];
 
-  // Central C2 (Command & Control) servers - red threat actors
-  for (let i = 0; i < 3; i++) {
+  // Central scanner point
+  nodes.push({
+    x: 0.5,
+    y: 0.5,
+    type: "scanner",
+    isWarning: false,
+  });
+
+  // Scattered data points: some warnings (red), some verified (blue)
+  for (let i = 0; i < 12; i++) {
+    const angle = (i / 12) * Math.PI * 2 + (R() - 0.5) * 0.3;
+    const dist = 0.2 + R() * 0.25;
     nodes.push({
-      x: 0.3 + i * 0.2,
-      y: 0.25,
-      isBad: true,
-      label: 'C2',
-      size: 1.2,
+      x: 0.5 + Math.cos(angle) * dist,
+      y: 0.5 + Math.sin(angle) * dist,
+      type: "data",
+      isWarning: R() < 0.4, // 40% warnings, 60% verified
+      angle,
+      dist,
     });
   }
 
-  // Botnet nodes radiating from C2 - red, medium threat
-  for (let c2Idx = 0; c2Idx < 3; c2Idx++) {
-    for (let i = 0; i < 3; i++) {
-      const angle = (i / 3) * Math.PI * 2 + (c2Idx * Math.PI / 6);
-      const dist = 0.15;
-      nodes.push({
-        x: (0.3 + c2Idx * 0.2) + Math.cos(angle) * dist,
-        y: 0.25 + Math.sin(angle) * dist,
-        isBad: true,
-        label: 'bot',
-        size: 0.8,
-        parent: c2Idx,
+  return nodes;
+}
+
+// Edges: connect nearby verified nodes, warnings connect to center
+function buildEdges(nodes) {
+  const edges = [];
+
+  // Warnings connect to scanner (center)
+  for (let i = 1; i < nodes.length; i++) {
+    const node = nodes[i];
+    if (node.isWarning) {
+      edges.push({
+        from: 0,
+        to: i,
+        isWarning: true,
       });
     }
   }
 
-  // Compromised hosts (victims) - blue, spread across lower area
-  for (let i = 0; i < 8; i++) {
-    nodes.push({
-      x: 0.15 + (i % 4) * 0.18 + (R() - 0.5) * 0.06,
-      y: 0.60 + Math.floor(i / 4) * 0.18 + (R() - 0.5) * 0.06,
-      isBad: false,
-      label: 'host',
-      size: 0.7,
-    });
-  }
-
-  // Edges: connections from threat actors to victims (malicious traffic)
-  const edges = [];
-
-  // Botnet to compromised hosts
-  for (let i = 3; i < nodes.length - 8; i++) {
-    // Each botnet node connects to 1-3 victim hosts
-    const numConnections = Math.floor(R() * 3) + 1;
-    for (let j = 0; j < numConnections; j++) {
-      const victimIdx = nodes.length - 8 + Math.floor(R() * 8);
-      if (victimIdx !== i) {
+  // Verified nodes connect to each other nearby
+  const verified = nodes.filter((n) => !n.isWarning && n.type === "data");
+  for (let i = 0; i < verified.length; i++) {
+    for (let j = i + 1; j < verified.length; j++) {
+      const dx = verified[i].x - verified[j].x;
+      const dy = verified[i].y - verified[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 0.25) {
         edges.push({
-          from: i,
-          to: victimIdx,
-          isBad: true,
+          from: nodes.indexOf(verified[i]),
+          to: nodes.indexOf(verified[j]),
+          isWarning: false,
         });
       }
     }
   }
 
-  // Some inter-botnet connections (peer-to-peer propagation)
-  for (let i = 3; i < 9; i++) {
-    if (R() < 0.5 && i + 2 < nodes.length - 8) {
-      edges.push({
-        from: i,
-        to: i + Math.floor(R() * 3) + 1,
-        isBad: true,
-      });
-    }
-  }
-
-  // Remove duplicates
-  const edgeSet = new Set(edges.map((e) => JSON.stringify([Math.min(e.from, e.to), Math.max(e.from, e.to)])));
-  return {
-    nodes,
-    edges: Array.from(edgeSet).map((s) => {
-      const [from, to] = JSON.parse(s);
-      return { from, to, isBad: true };
-    }),
-  };
+  return edges;
 }
 
 export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
   if (!canvas || !canvas.getContext) return () => {};
   const ctx = canvas.getContext("2d");
-  const { nodes, edges } = buildNetwork();
+  const nodes = buildNodes();
+  const edges = buildEdges(nodes);
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   let w = 0, h = 0, dpr = 1, start = 0, raf = 0;
@@ -116,31 +99,35 @@ export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
     canvas.width = Math.round(w * dpr);
     canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (reduce) drawNetwork(1, 1);
+    if (reduce) drawScene(1);
   }
 
-  function drawNetwork(edgeProgress, nodeProgress) {
+  function drawScene(t) {
     ctx.clearRect(0, 0, w, h);
 
-    // Background: subtle grid
-    ctx.strokeStyle = `rgba(${INK},0.03)`;
-    ctx.lineWidth = 0.5;
-    const gridSpacing = Math.min(w, h) / 6;
-    for (let x = 0; x <= w; x += gridSpacing) {
+    // Radar pulse: expanding circle with fading opacity
+    const pulseRadius = 0.35 * t;
+    const pulseOpacity = Math.max(0, 1 - t);
+
+    ctx.strokeStyle = `rgba(${GLOW},${pulseOpacity * 0.6})`;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(0.5 * w, 0.5 * h, pulseRadius * Math.min(w, h), 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Inner radar rings
+    ctx.strokeStyle = `rgba(${INK},${pulseOpacity * 0.2})`;
+    ctx.lineWidth = 1;
+    for (let r = 0.1; r < pulseRadius; r += 0.1) {
       ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, h);
-      ctx.stroke();
-    }
-    for (let y = 0; y <= h; y += gridSpacing) {
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(w, y);
+      ctx.arc(0.5 * w, 0.5 * h, r * Math.min(w, h), 0, Math.PI * 2);
       ctx.stroke();
     }
 
-    // Draw edges (malicious traffic connections)
-    const edgesDrawn = Math.floor(edgeProgress * edges.length);
+    // Draw edges (verified connections and warning links)
+    const edgePhase = Math.max(0, Math.min(1, t * 1.5 - 0.2));
+    const edgesDrawn = Math.floor(edgePhase * edges.length);
+
     for (let i = 0; i < edgesDrawn; i++) {
       const edge = edges[i];
       const fromNode = nodes[edge.from];
@@ -151,9 +138,11 @@ export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
       const x2 = toNode.x * w;
       const y2 = toNode.y * h;
 
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = edge.isWarning ? 2 : 1;
       ctx.lineCap = "round";
-      ctx.strokeStyle = `rgba(${WARN},${0.3 * edgeProgress})`;
+      ctx.strokeStyle = edge.isWarning
+        ? `rgba(${WARN},${0.5 * edgePhase})`
+        : `rgba(${GLOW},${0.3 * edgePhase})`;
 
       ctx.beginPath();
       ctx.moveTo(x1, y1);
@@ -161,48 +150,59 @@ export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
       ctx.stroke();
     }
 
-    // Draw nodes
-    const nodesDrawn = Math.floor(nodeProgress * nodes.length);
+    // Draw nodes (data points)
+    const nodePhase = Math.max(0, Math.min(1, t * 1.3 - 0.1));
+    const nodesDrawn = Math.floor(nodePhase * (nodes.length - 1)) + 1; // +1 for scanner
+
     for (let i = 0; i < nodesDrawn; i++) {
       const node = nodes[i];
       const px = node.x * w;
       const py = node.y * h;
 
-      const size = node.size * (2 + (nodeProgress * 1.5));
-
-      if (node.isBad) {
-        // Threat actors: red with emphasis
-        ctx.fillStyle = `rgba(${WARN},${0.8 * nodeProgress})`;
-      } else {
-        // Victims: blue
-        ctx.fillStyle = `rgba(${GLOW},${0.7 * nodeProgress})`;
-      }
-
-      ctx.beginPath();
-      ctx.arc(px, py, size, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Outline for threat actors
-      if (node.isBad) {
-        ctx.strokeStyle = `rgba(${WARN},${0.5 * nodeProgress})`;
-        ctx.lineWidth = 1.2;
+      if (node.type === "scanner") {
+        // Center scanner: blue pulsing circle
+        const scannerSize = 4 + Math.sin(t * Math.PI * 4) * 2;
+        ctx.fillStyle = `rgba(${GLOW},0.8)`;
         ctx.beginPath();
-        ctx.arc(px, py, size + 1, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-    }
+        ctx.arc(px, py, scannerSize, 0, Math.PI * 2);
+        ctx.fill();
 
-    // Labels (subtle)
-    ctx.font = "10px sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillStyle = `rgba(${INK},${0.3 * nodeProgress})`;
-    for (let i = 0; i < Math.min(nodesDrawn, 3); i++) {
-      const node = nodes[i];
-      if (node.label === 'C2') {
-        const px = node.x * w;
-        const py = node.y * h;
-        ctx.fillText("C2", px, py - node.size * 3);
+        ctx.strokeStyle = `rgba(${GLOW},0.5)`;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(px, py, scannerSize + 3, 0, Math.PI * 2);
+        ctx.stroke();
+      } else {
+        // Data points
+        const size = node.isWarning ? 4 : 3;
+        const opacity = (i / (nodes.length - 1)) * nodePhase;
+
+        if (node.isWarning) {
+          // Warning: red alert symbol
+          ctx.fillStyle = `rgba(${WARN},${0.7 + opacity * 0.3})`;
+          ctx.beginPath();
+          ctx.arc(px, py, size, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Triangle inside for warning symbol effect
+          ctx.fillStyle = `rgba(255,255,255,0.6)`;
+          ctx.font = "bold 8px sans-serif";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText("!", px, py);
+        } else {
+          // Verified: blue checkmark style
+          ctx.fillStyle = `rgba(${GLOW},${0.6 + opacity * 0.3})`;
+          ctx.beginPath();
+          ctx.arc(px, py, size, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.strokeStyle = `rgba(${GLOW},${0.4 + opacity * 0.2})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.arc(px, py, size + 1.5, 0, Math.PI * 2);
+          ctx.stroke();
+        }
       }
     }
   }
@@ -212,11 +212,7 @@ export function mountFigure(canvas, { seed = 7, duration = 6500 } = {}) {
     const elapsed = now - start;
     const t = Math.min(1, elapsed / duration);
 
-    // Stagger: edges first, nodes follow
-    const edgeProgress = Math.min(1, t * 1.4);
-    const nodeProgress = Math.max(0, Math.min(1, (t - 0.1) * 1.6));
-
-    drawNetwork(edgeProgress, nodeProgress);
+    drawScene(t);
 
     if (t < 1) raf = requestAnimationFrame(frame);
   }
