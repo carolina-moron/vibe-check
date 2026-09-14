@@ -6,6 +6,8 @@ import { REPORT_ENDPOINT } from "./config.js";
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
 );
+let newsData = null;
+const loadNews = async () => (newsData ||= await fetch("data/news.json").then((r) => r.json()));
 
 // ---- helpers ---------------------------------------------------------------------------
 
@@ -338,6 +340,160 @@ function flsriPanel(c) {
     </section>`;
 }
 
+// ---- views: news patterns --------------------------------------------------------------
+
+const NEWS_TYP = {
+  "scam-compound": "Scam compounds", "labor-trafficking": "Labour trafficking", "military-recruitment": "Recruited to fight",
+  "money-mule": "Money mules", "sex-trafficking": "Sex trafficking", "organ-trafficking": "Organ trafficking", "cartel-recruitment": "Cartel recruitment",
+};
+const NEWS_EVENT = { arrest: "Arrests & raids", warning: "Warnings & advisories", rescue: "Rescues & repatriation", sanction: "Sanctions", conviction: "Convictions" };
+const ROLE_COLOR = { origin: "#0E6B60", destination: "#B4392C", mentioned: "#8B95A1" };
+
+// Catalog entities named in an article (names of 6+ characters, whole words).
+const entityIndex = cases.flatMap((c) => c.entities.flatMap((e) => allNames(e).map((n) => n.name)
+  .filter((n) => n.length >= 6)
+  .map((n) => ({ caseId: c.id, title: c.title, re: new RegExp(`(?<![\\p{L}])${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}])`, "iu") }))));
+const relatedCases = (a) => [...new Map(entityIndex.filter((x) => x.re.test(`${a.title} ${a.snippet}`)).map((x) => [x.caseId, x])).values()];
+
+const hbars = (obj, labels, max = null) => {
+  const rows = Object.entries(obj).sort((a, b) => b[1] - a[1]);
+  const top = max ?? Math.max(1, ...rows.map(([, n]) => n));
+  return rows.length ? `<ul class="hbars">${rows.map(([k, n]) => `<li><span>${esc(labels[k] || k)}</span><span class="hb"><i style="width:${Math.round((n / top) * 100)}%"></i></span><span class="mono">${n}</span></li>`).join("")}</ul>` : `<p class="muted">None detected.</p>`;
+};
+
+async function viewNews() {
+  main.innerHTML = `<section class="hero small"><div class="eyebrow mono">News patterns</div><h1>What the news is reporting</h1><p class="muted">Loading…</p></section>`;
+  const n = await loadNews();
+  const a = n.aggregates;
+  const state = { country: null, typology: null, limit: 20 };
+  const gen = new Date(n.generated);
+
+  main.innerHTML = `
+    <section class="hero small">
+      <div class="eyebrow mono">News patterns · last ${n.window_days} days · updated ${esc(gen.toISOString().slice(0, 10))}</div>
+      <h1>What the news is reporting</h1>
+      <p class="lede">${n.n_articles} recent news reports on trafficking, forced labour and fake-job recruitment, gathered with ${esc(n.provider)} and read by rules for countries, direction of movement, typology and lure indicators. The map shows where reporting points, not where most cases are.</p>
+    </section>
+    <div class="callout">This is <strong>media attention, not case counts</strong>. Coverage follows English-language outlets, government press releases and whatever is in the news cycle. Country roles and corridors are extracted automatically from headlines and snippets and can be wrong; each corridor lists the words it came from. Nothing here feeds a score.</div>
+
+    <section class="mapcard">
+      <div class="maphead">
+        <div><h2>Countries and corridors in the news</h2>
+          <label class="check toggle"><input type="checkbox" id="news-fl"> Shade countries by structural forced-labour risk (${flLink()})</label></div>
+        <div class="legend">
+          <span class="lg on"><i style="background:${ROLE_COLOR.origin}"></i>Mostly origin</span>
+          <span class="lg on"><i style="background:${ROLE_COLOR.destination}"></i>Mostly destination</span>
+          <span class="lg on"><i style="background:${ROLE_COLOR.mentioned}"></i>Mentioned</span>
+        </div>
+      </div>
+      <div id="newsmap" class="map world" role="img" aria-label="Map of countries and corridors in recent news"></div>
+      <p class="fine pad">Circle size = number of articles naming the country. Arrows run from origin to destination; solid lines have two or more articles behind them, dashed lines one. Click a country to filter the articles.</p>
+    </section>
+
+    <div class="dash">
+      <section class="panel">
+        <h2>Corridors</h2>
+        <p class="fine">Origin to destination, as extracted from the text.</p>
+        <ol class="corrlist">${a.corridors.slice(0, 14).map((c) => {
+          const art = n.articles[c.articles[0]];
+          const why = art.places.filter((p) => p.iso2 === c.from || p.iso2 === c.to).map((p) => `${p.terms.join(" / ")} → ${p.roles.join("/")}`).join("; ");
+          return `<li><div class="row"><strong>${esc(country(c.from))} → ${esc(country(c.to))}</strong><span class="mono">${c.count} article${c.count > 1 ? "s" : ""}</span></div>
+            <div class="fine">${ext(art.url, art.title)} · <span title="Words the extractor used">${esc(why)}</span></div></li>`;
+        }).join("") || `<li class="muted">No directed corridors detected.</li>`}</ol>
+      </section>
+      <section class="panel">
+        <h2>Most-named countries</h2>
+        <ul class="hbars">${Object.entries(a.byCountry).sort((x, y) => y[1].mentions - x[1].mentions).slice(0, 12).map(([k, v]) => {
+          const top = Math.max(...Object.values(a.byCountry).map((x) => x.mentions));
+          return `<li><button type="button" class="linklike" data-country="${esc(k)}">${esc(country(k))}</button><span class="hb split"><i style="width:${(v.origin / top) * 100}%;background:${ROLE_COLOR.origin}"></i><i style="width:${(v.destination / top) * 100}%;background:${ROLE_COLOR.destination}"></i><i style="width:${((v.mentions - v.origin - v.destination) / top) * 100}%;background:${ROLE_COLOR.mentioned}"></i></span><span class="mono">${v.mentions}</span></li>`;
+        }).join("")}</ul>
+        <p class="fine">Green = named as an origin, red = as a destination, grey = mentioned without a clear role.</p>
+      </section>
+      <section class="panel">
+        <h2>Typologies</h2>${hbars(a.typologies, NEWS_TYP)}
+        <h3>What happened</h3>${hbars(a.events, NEWS_EVENT)}
+      </section>
+      <section class="panel">
+        <h2>Lure indicators in coverage</h2>
+        <p class="fine">The same offer-text rules as the live check, run on headlines and snippets. Snippets are short, so these undercount.</p>
+        ${hbars(a.signals, Object.fromEntries(signals.signals.map((s) => [s.id, s.label])))}
+        <h3>Articles per week</h3>
+        <div class="weeks">${a.weeks.map((w) => `<div title="${esc(w.week)}: ${w.n}"><i style="height:${Math.round((w.n / Math.max(...a.weeks.map((x) => x.n))) * 100)}%"></i><span class="mono">${esc(w.week.slice(-3))}</span></div>`).join("")}</div>
+        <p class="fine">The latest week is partial.</p>
+      </section>
+
+      <section class="panel span2">
+        <div class="gridhead"><h2>Articles</h2>
+          <div class="filters">
+            <select id="nf-typ" aria-label="Filter by typology"><option value="">All typologies</option>${Object.keys(a.typologies).map((t) => `<option value="${esc(t)}">${esc(NEWS_TYP[t] || t)}</option>`).join("")}</select>
+            <span id="nf-country"></span>
+          </div>
+        </div>
+        <ul class="articles" id="articles"></ul>
+        <div class="btns"><button type="button" class="ghost" id="more" hidden>Show more</button></div>
+      </section>
+      <section class="panel span2">
+        <h2>How this page is built</h2>
+        <p class="fine">Queries run through Tavily's news search (${n.queries.length} queries, ${n.n_results} results, ${n.n_articles} kept after relevance filtering and de-duplication): ${n.queries.map(esc).join(" · ")}. Countries are matched from names, nationality words and known compound hubs. A nationality counts as an origin only in a sentence about victims; capital cities count as plain mentions because they are usually datelines. See <a href="#/methodology">Methodology</a>.</p>
+      </section>
+    </div>`;
+
+  // map
+  const map = baseMap($("#newsmap"), { center: [20, 40], zoom: 2, minZoom: 2 });
+  if (map) {
+    const top = Math.max(...Object.values(a.byCountry).map((v) => v.mentions));
+    for (const c of a.corridors) {
+      const p1 = n.points[c.from], p2 = n.points[c.to];
+      if (!p1 || !p2) continue;
+      const line = L.polyline(arc(p1, p2), { color: "#5A5F9E", weight: 1.5 + c.count * 1.5, opacity: 0.7, dashArray: c.count > 1 ? null : "5 6" }).addTo(map);
+      line.bindTooltip(`${esc(country(c.from))} → ${esc(country(c.to))}: ${c.count} article${c.count > 1 ? "s" : ""}`, { sticky: true });
+      const tip = arc(p1, p2);
+      const [ya, xa] = tip[tip.length - 3], [yb, xb] = tip[tip.length - 1];
+      const ang = Math.atan2(yb - ya, xb - xa) * 180 / Math.PI;
+      L.marker([yb, xb], { icon: L.divIcon({ className: "arrow", html: `<span style="transform:rotate(${-ang}deg)">➤</span>`, iconSize: [14, 14] }), interactive: false }).addTo(map);
+    }
+    for (const [k, v] of Object.entries(a.byCountry)) {
+      const pt = n.points[k]; if (!pt) continue;
+      const dom = v.origin > v.destination ? "origin" : v.destination > v.origin ? "destination" : v.origin ? "origin" : "mentioned";
+      L.circleMarker(pt, { radius: 4 + Math.sqrt(v.mentions / top) * 18, color: "#fff", weight: 1, fillColor: ROLE_COLOR[dom], fillOpacity: 0.75 })
+        .addTo(map)
+        .bindTooltip(`<strong>${esc(country(k))}</strong><br>${v.mentions} article(s): ${v.origin} as origin, ${v.destination} as destination`)
+        .on("click", () => setCountry(k));
+    }
+    let fl = null;
+    $("#news-fl").addEventListener("change", async (e) => {
+      if (!e.target.checked) { fl?.remove(); return; }
+      try { fl ||= flsriLayer(await loadWorld()); fl.addTo(map).bringToBack(); } catch {}
+    });
+  }
+
+  const renderArticles = () => {
+    const list = n.articles.filter((x) => (!state.country || x.places.some((p) => p.iso2 === state.country)) && (!state.typology || x.typologies.includes(state.typology)));
+    $("#nf-country").innerHTML = state.country ? `<button type="button" class="chip-btn" id="nf-clear">${esc(country(state.country))} ✕</button>` : "";
+    $("#nf-clear")?.addEventListener("click", () => setCountry(null));
+    $("#more").hidden = list.length <= state.limit;
+    $("#more").textContent = `Show more (${list.length - state.limit} left)`;
+    $("#articles").innerHTML = list.slice(0, state.limit).map((x) => {
+      const rel = relatedCases(x);
+      return `<li>
+        <div class="row"><span class="mono muted">${esc(x.date || "")} · ${esc(x.source)}</span>${x.fake_job ? `<span class="tag">fake job offer</span>` : ""}</div>
+        <h3>${ext(x.url, x.title)}</h3>
+        <p>${esc(x.snippet)}…</p>
+        <div class="chips">
+          ${x.places.map((p) => `<span class="pchip" style="--c:${ROLE_COLOR[p.roles.includes("origin") ? "origin" : p.roles.includes("destination") ? "destination" : "mentioned"]}" title="${esc(p.terms.join(", "))}">${esc(country(p.iso2))} · ${esc(p.roles.join("/"))}</span>`).join("")}
+          ${x.typologies.map((t) => `<span class="acc">${esc(NEWS_TYP[t] || t)}</span>`).join("")}
+          ${x.signals.map((sid) => `<span class="acc a-plan">${esc(signalById[sid]?.label || sid)}</span>`).join("")}
+          ${rel.map((r) => `<a class="acc a-live" href="#/case/${esc(r.caseId)}">case: ${esc(r.title)}</a>`).join("")}
+        </div></li>`;
+    }).join("") || `<li class="muted">No articles match.</li>`;
+  };
+  $("#more").addEventListener("click", () => { state.limit += 20; renderArticles(); });
+  const setCountry = (k) => { state.country = k; state.limit = 20; renderArticles(); if (k) $("#articles").scrollIntoView({ behavior: "smooth", block: "start" }); };
+  $("#nf-typ").addEventListener("change", (e) => { state.typology = e.target.value || null; state.limit = 20; renderArticles(); });
+  main.querySelectorAll("[data-country]").forEach((b) => b.addEventListener("click", () => setCountry(b.dataset.country)));
+  renderArticles();
+}
+
 // ---- views: live check -----------------------------------------------------------------
 
 function viewCheck() {
@@ -547,7 +703,7 @@ function viewMethodology() {
       <nav class="toc" aria-label="On this page">
         <a href="#m-principles">Principles</a><a href="#m-people">People are out of scope</a><a href="#m-score">Score and coverage</a>
         <a href="#m-signals">Risk signals</a><a href="#m-registers">Registers</a><a href="#m-cases">Case catalog</a>
-        <a href="#m-flsri">Structural risk index</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-limits">Limits</a>
+        <a href="#m-flsri">Structural risk index</a><a href="#m-news">News patterns</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-limits">Limits</a>
       </nav>
 
       <h2 id="m-principles">Principles</h2>
@@ -607,6 +763,19 @@ function viewMethodology() {
       </ul>
       <p class="callout"><strong>Read destination scores with care.</strong> FLSRI reads origin-side structural risk well and under-reads destination and sponsorship systems: kafala-style tied status, recruitment debt and brokerage aren't yet sourced at country scale. Several wealthy migrant-destination states, including in the Gulf, score low despite well-documented risk. Almost every case here runs from a higher-scoring origin to a lower-scoring destination, which is exactly that gap. A low destination score means the index doesn't capture that pathway yet, not that the destination is safe.</p>
 
+      <h2 id="m-news">News patterns</h2>
+      <p>The News patterns page is rebuilt by <code>npm run news</code>, which runs a fixed set of queries through Tavily's news search over a rolling window. The API key stays on the maintainer's machine; the site only reads the generated <code>data/news.json</code>.</p>
+      <p><strong>Filtering.</strong> Results are de-duplicated by URL and headline and kept only if they mention trafficking, forced labour, scam compounds, fake jobs, recruitment or related terms.</p>
+      <p><strong>What the extraction reads.</strong> Rules, not a model, applied to the headline and snippet:</p>
+      <ul>
+        <li><strong>Countries</strong> from country names, nationality words and named compound hubs (Myawaddy, KK Park, Shwe Kokko, Sihanoukville, the Golden Triangle SEZ, Mae Sot, Alabuga, Bamban). The longest name wins, so “South Sudan” is not also counted as “Sudan”.</li>
+        <li><strong>Direction.</strong> A nationality word counts as an origin only in a sentence about victims (trafficked, lured, rescued, recruited, workers, nationals…). Phrases like “trafficked to”, “lured into” and “compounds in” mark destinations. Capitals and big cities are plain mentions, because they are usually datelines or government sources.</li>
+        <li><strong>Corridors</strong> pair every origin with every destination in the same article.</li>
+        <li><strong>Typology and event type</strong> come from keyword rules. Lure indicators use the same offer-text rules as the live check.</li>
+      </ul>
+      <p><strong>Known errors.</strong> A long article that names many countries can produce false corridors; an early run paired South Africa and Kenya with Poland from an article about Russia. Snippets are short, so lures undercount. Coverage favours English-language and wire outlets. Each corridor shows the words it came from so a reader can check it, and single-article corridors are drawn dashed.</p>
+      <p><strong>Use.</strong> News patterns are for spotting emerging routes, lures and recruitment channels to research. They are never case counts, never evidence about an entity, and never part of a score. A pattern that holds up is researched from primary sources and, if documented, added to the case catalog.</p>
+
       <h2 id="m-cases">Case catalog</h2>
       <p>Cases are researched by hand from sources opened at the time of writing. Each file in <code>data/cases/</code> is validated before publishing: known typologies and statuses, ISO country codes, coordinates, https sources, and lure tags that exist in the signal taxonomy.</p>
       <p>Facts that could only be seen in search snippets were left out. Journey pins are approximate, and an “advertised” pin for an online ad marks where the ads targeted, not a physical place. Case outcomes are reported as the sources give them, including dismissed charges.</p>
@@ -659,6 +828,7 @@ function route() {
   document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" || view === "" ? "cases" : view)));
   if (view === "case") viewCase(decodeURIComponent(arg));
   else if (view === "check") viewCheck();
+  else if (view === "news") viewNews();
   else if (view === "report") viewReport();
   else if (view === "methodology") viewMethodology();
   else viewCases();

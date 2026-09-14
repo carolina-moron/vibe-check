@@ -195,3 +195,31 @@ footer .fine { margin-top: 6px; }
 .corridors li:first-child { border: 0; }
 .context li { padding: 8px 0; border-top: 1px solid var(--line); }
 .context li:first-child { border: 0; }
+
+/* News patterns */
+.hbars { list-style: none; margin: 0; padding: 0; }
+.hbars li { display: grid; grid-template-columns: minmax(110px, 38%) 1fr 34px; gap: 10px; align-items: center; padding: 3px 0; font-size: 13.5px; }
+.hb { height: 9px; background: var(--bg2); border-radius: 4px; overflow: hidden; display: flex; }
+.hb i { display: block; height: 100%; background: var(--gated); }
+.hb.split i { border-radius: 0; }
+.linklike { font: inherit; background: none; border: 0; padding: 0; color: var(--acc); cursor: pointer; text-align: left; }
+.corrlist { list-style: none; margin: 0; padding: 0; }
+.corrlist li { padding: 8px 0; border-top: 1px solid var(--line); }
+.corrlist li:first-child { border: 0; }
+.weeks { display: flex; gap: 6px; align-items: flex-end; height: 110px; padding-top: 6px; }
+.weeks div { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; gap: 4px; }
+.weeks i { width: 100%; background: var(--gated); border-radius: 3px 3px 0 0; min-height: 2px; }
+.weeks span { font-size: 10px; color: var(--mute); }
+.articles { list-style: none; margin: 0; padding: 0; }
+.articles li { padding: 12px 0; border-top: 1px solid var(--line); }
+.articles li:first-child { border: 0; }
+.articles h3 { margin: 4px 0; font-size: 15.5px; }
+.articles p { margin: 4px 0 8px; font-size: 14px; color: var(--ink2); }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.pchip { font-size: 12px; border: 1px solid var(--c); color: var(--c); border-radius: 99px; padding: 0 8px; }
+.filters { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.filters select { width: auto; margin: 0; }
+.chip-btn { font: 13px var(--font); border: 1px solid var(--acc); color: var(--acc); background: var(--acc-soft); border-radius: 99px; padding: 3px 10px; cursor: pointer; }
+.arrow span { display: block; color: #5A5F9E; font-size: 13px; line-height: 14px; text-align: center; }
+
+.chips .acc { white-space: normal; overflow-wrap: anywhere; max-width: 100%; }
