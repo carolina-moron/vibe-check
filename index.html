@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job Risk Search</title>
+  <meta name="description" content="Check a job offer, company or recruiter for scam and human-trafficking risk indicators.">
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <header class="wrap">
+    <h1>Job Risk Search</h1>
+    <p class="lede">Check a job offer, company or recruiter for scam and human-trafficking red flags. Every flag shows its evidence and source.</p>
+    <nav class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="job">Check a job</button>
+      <button role="tab" aria-selected="false" data-tab="person">Check a person</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section id="tab-job" role="tabpanel">
+      <form id="job-form" class="card">
+        <div class="grid">
+          <label>Company name <input name="company" placeholder="e.g. BrightPath Talent" autocomplete="off"></label>
+          <label>Company website <input name="website" placeholder="e.g. brightpath-talent.example" autocomplete="off"></label>
+          <label>Recruiter email <input name="email" placeholder="e.g. hiring@gmail.com" autocomplete="off"></label>
+        </div>
+        <label>Job posting or recruiter message <textarea name="posting" rows="6" placeholder="Paste the full text of the ad, email or chat message"></textarea></label>
+        <div class="actions">
+          <button type="submit" class="primary">Check risk</button>
+          <button type="button" id="demo" class="ghost">Load demo example</button>
+        </div>
+      </form>
+      <div id="job-result" aria-live="polite"></div>
+    </section>
+
+    <section id="tab-person" role="tabpanel" hidden>
+      <form id="person-form" class="card">
+        <label>Recruiter or company officer full name <input name="name" placeholder="First and last name" autocomplete="off"></label>
+        <p class="note">Searches FBI Wanted and federal court dockets live, then links to public offender registries and maps. <strong>Results are possible name matches, not identity matches.</strong> Many people share a name. They never count toward a risk score. Confirm with photo, date of birth or location before drawing any conclusion.</p>
+        <div class="actions"><button type="submit" class="primary">Search public records</button></div>
+      </form>
+      <div id="person-result" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>If you or someone you know may be a victim of trafficking: US National Human Trafficking Hotline <a href="tel:18883737888">1-888-373-7888</a> (text 233733). Report job scams to the <a href="https://reportfraud.ftc.gov/">FTC</a> or <a href="https://www.ic3.gov/">FBI IC3</a>.</p>
+    <p class="small">Automated indicators, not legal findings. The reports dataset is demo data during development.</p>
+  </footer>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>

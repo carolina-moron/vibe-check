@@ -1,0 +1,39 @@
+{
+  "note": "DEMO DATA. Every entity below is fictional and uses reserved .example domains. Replace with sourced records before any public use. Status is kept separate from risk score: 'community_report' is an allegation, 'enforcement_action' is an official public action with a source link.",
+  "statuses": {
+    "community_report": "Community report (unverified allegation)",
+    "under_review": "Under review",
+    "enforcement_action": "Official enforcement action"
+  },
+  "entities": [
+    {
+      "id": "demo-001",
+      "demo": true,
+      "name": "Brightpath Global Staffing LLC",
+      "aliases": ["BrightPath Talent", "Northstar Overseas Recruitment"],
+      "domains": ["brightpath-talent.example", "northstar-overseas.example"],
+      "jurisdiction": "US-DE",
+      "lineage": [
+        { "date": "2022-03-01", "event": "Registered as Northstar Overseas Recruitment LLC" },
+        { "date": "2023-09-15", "event": "Dissolved after complaints" },
+        { "date": "2023-10-02", "event": "Brightpath Global Staffing LLC registered, same registered agent and officer" },
+        { "date": "2024-01-20", "event": "DBA filed: BrightPath Talent" }
+      ],
+      "status": "community_report",
+      "summary": "Reports describe overseas \"customer service\" offers with employer-paid flights and a visa fee paid up front.",
+      "sources": []
+    },
+    {
+      "id": "demo-002",
+      "demo": true,
+      "name": "Meridian Remote Assist",
+      "aliases": ["Meridian Payments Desk"],
+      "domains": ["meridian-assist.example"],
+      "jurisdiction": "unknown",
+      "lineage": [],
+      "status": "under_review",
+      "summary": "Remote \"payment processing assistant\" role that asks hires to receive and forward funds.",
+      "sources": []
+    }
+  ]
+}
