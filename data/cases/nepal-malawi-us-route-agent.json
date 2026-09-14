@@ -1,0 +1,96 @@
+{
+  "id": "nepal-malawi-us-route-agent",
+  "title": "Nepali migrants diverted to Malawi (Blantyre rescue)",
+  "typology": "labor-trafficking",
+  "period": "2018–2019",
+  "summary": "According to UNODC, six Nepali nationals said they had been recruited through an agent about a year earlier and set out to reach the United States via Bolivia. Instead they were moved over months through Vietnam, Madagascar, Jordan, Dubai, Azerbaijan and Ethiopia (where they stayed four months), then brought to Malawi and told they would have to work there instead. They were locked in a house in Blantyre with their passports taken. Nepal's Anti-Human Trafficking Bureau, alerted by the families, tipped off Malawian police, who rescued the group on 6 November 2019. The victims were repatriated to Nepal and Malawian police said a Malawian suspect was arrested. UNODC describes them as presumed victims; no court outcome is reported and the agent is not named.",
+  "status": "enforcement_action",
+  "entities": [
+    {
+      "name": "Unnamed recruitment agent and Malawi-based network",
+      "kind": "network",
+      "jurisdiction": "MW",
+      "names": [],
+      "actions": [
+        {
+          "body": "Malawi Police Service",
+          "action": "rescue of six presumed victims; arrest of one Malawian suspect",
+          "date": "2019-11-06",
+          "url": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Nepal",
+      "country": "NP",
+      "lat": 27.72,
+      "lon": 85.32,
+      "note": "Recruited through an agent with the promise of reaching the United States via Bolivia.",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+      "stage": "transit",
+      "place": "Ethiopia",
+      "country": "ET",
+      "lat": 9.03,
+      "lon": 38.74,
+      "note": "Routed through Vietnam, Madagascar, Jordan, Dubai and Azerbaijan, then held four months in Ethiopia.",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+      "stage": "exploited",
+      "place": "Blantyre",
+      "country": "MW",
+      "lat": -15.79,
+      "lon": 35.01,
+      "note": "Told they would have to work in Malawi; locked in a house with passports taken.",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+      "stage": "escaped",
+      "place": "Blantyre",
+      "country": "MW",
+      "lat": -15.79,
+      "lon": 35.01,
+      "note": "Rescued by Malawian police on 6 November 2019 after an alert from Nepal's Anti-Human Trafficking Bureau; later repatriated.",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    }
+  ],
+  "victim_origins": [
+    "NP"
+  ],
+  "lures": [
+    {
+      "signal": "visa_fraud",
+      "quote_or_description": "An agent promised passage to the United States through Bolivia; the group was instead taken to Malawi.",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+      "signal": "vague_location",
+      "quote_or_description": "After months of travel the group was \"informed they would have to work in the country instead of the United States\".",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+      "signal": "document_retention",
+      "quote_or_description": "\"Their passports were taken away.\"",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+      "signal": "isolation",
+      "quote_or_description": "The group was \"locked in a house in Malawi\".",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Malawi Police Officers trained by UNODC rescue trafficked Nepali Nationals",
+      "publisher": "UNODC",
+      "date": "2019-11-21",
+      "url": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html",
+      "tier": "multilateral"
+    }
+  ]
+}

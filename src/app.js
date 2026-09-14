@@ -1,8 +1,8 @@
 import {
   assess, considerations, parsePostingUrl, fetchPosting, caseEvidence, caseJurisdictions, coverage, linkFor, allNames, buildReport, dHash, flsriCountry, flsriRoute,
-} from "./engine.js?v=202609141431";
-import { mountFigure } from "./figure.js?v=202609141431";
-import { REPORT_ENDPOINT } from "./config.js?v=202609141431";
+} from "./engine.js?v=202609141438";
+import { mountFigure } from "./figure.js?v=202609141438";
+import { REPORT_ENDPOINT } from "./config.js?v=202609141438";
 
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
@@ -668,7 +668,7 @@ const NEWS_EVENT = { arrest: "Arrests & raids", warning: "Warnings & advisories"
 const ROLE_COLOR = { origin: "#2A66B8", destination: "#14264A", mentioned: "#8C97A6" };
 
 // Catalog entities named in an article (names of 6+ characters, whole words).
-const entityIndex = cases.flatMap((c) => c.entities.flatMap((e) => allNames(e).map((n) => n.name)
+const entityIndex = cases.flatMap((c) => c.entities.filter((e) => !/^unnamed\b/i.test(e.name)).flatMap((e) => allNames(e).map((n) => n.name)
   .filter((n) => n.length >= 6)
   .map((n) => ({ caseId: c.id, title: c.title, re: new RegExp(`(?<![\\p{L}])${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}])`, "iu") }))));
 const relatedCases = (a) => [...new Map(entityIndex.filter((x) => x.re.test(`${a.title} ${a.snippet}`)).map((x) => [x.caseId, x])).values()];
@@ -863,8 +863,8 @@ function viewCheck(kind = "") {
     </nav>`;
   main.innerHTML = (k ? `
     <section class="hero small check-hero">
-      <div class="eyebrow mono">Digital Safety Check</div>
-      <h1>Before you trust someone online, check the situation.</h1>
+      <div class="eyebrow mono">Vibe Check</div>
+      <h1>Something feels off? Check the vibe.</h1>
       <p class="lede">We look for the warning signs seen in real scam and trafficking cases, and tell you whether it's a lower concern, a reason for caution, or a serious warning sign. Nothing you enter is stored unless you choose to submit it.</p>
     </section>
     ${kindsNav}` : `
@@ -875,8 +875,8 @@ function viewCheck(kind = "") {
       </figure>
       <section class="story">
         <div>
-          <h1>Before you trust someone online, check the situation.</h1>
-          <p class="sub"><strong>Something doesn't feel right? Check it before you act.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. Nothing you enter is stored unless you choose to submit it.</p>
+          <h1>Something feels off? Check the vibe.</h1>
+          <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. Nothing you enter is stored unless you choose to submit it.</p>
         </div>
       </section>
       ${kindsNav}
@@ -1196,8 +1196,8 @@ function viewMethodology() {
   main.innerHTML = `
     <article class="doc">
       <div class="eyebrow mono">Methodology</div>
-      <h1>How Digital Safety Check works, and what it won't do</h1>
-      <p class="lede">Digital Safety Check is built on the same rules as the Digital Provenance Passport: no claim without a source, no check that can return “clear”, and a score that is always shown with how much could have been found.</p>
+      <h1>How Vibe Check works, and what it won't do</h1>
+      <p class="lede">Vibe Check is built on the same rules as the Digital Provenance Passport: no claim without a source, no check that can return “clear”, and a score that is always shown with how much could have been found.</p>
 
       <nav class="toc" aria-label="On this page">
         <a href="#m-principles">Principles</a><a href="#m-check">What you can check</a><a href="#m-people">People are out of scope</a><a href="#m-score">Score and coverage</a>
@@ -1303,7 +1303,7 @@ function viewMethodology() {
       <p><strong>CTDC.</strong> The Counter-Trafficking Data Collaborative (CTDC), run by IOM, publishes victim-level trafficking data and a country map. Its terms allow non-commercial use and derived material with credit, but prohibit automated access and re-hosting its raw datasets without IOM's written consent. So this site links to the CTDC map rather than embedding or copying it. Source: Counter-Trafficking Data Collaborative (CTDC), September 2026.</p>
 
       <h2 id="m-landscape">Related tools</h2>
-      <p>Consumer tools already let people submit a message, link or screenshot and ask whether it's a scam, and anti-trafficking organisations publish education on grooming and online recruitment. We didn't find a consumer tool that checks a whole situation (identity, pressure, isolation, money and travel together) for exploitation risk. Digital Safety Check aims to answer "is this situation safe?" rather than only "is this a scam?", and to lead to prevention and confidential help.</p>
+      <p>Consumer tools already let people submit a message, link or screenshot and ask whether it's a scam, and anti-trafficking organisations publish education on grooming and online recruitment. We didn't find a consumer tool that checks a whole situation (identity, pressure, isolation, money and travel together) for exploitation risk. Vibe Check aims to answer "is this situation safe?" rather than only "is this a scam?", and to lead to prevention and confidential help.</p>
       <div id="landscape"><p class="fine">Loading…</p></div>
 
       <h2 id="m-cases">Case catalog</h2>

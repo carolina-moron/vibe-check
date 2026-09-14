@@ -322,6 +322,7 @@ export function matchCatalog({ name, domains = [] }, cases) {
   if (q.length < 4) return matches;
   for (const c of cases) {
     for (const entity of c.entities || []) {
+      if (/^unnamed\b/i.test(entity.name)) continue; // descriptive placeholders are not names
       const hit = allNames(entity).find((n) => {
         const nn = normalizeName(n.name);
         return nn && (nn === q || (q.length >= 6 && nn.length >= 6 && (nn.includes(q) || q.includes(nn))));
@@ -531,7 +532,7 @@ export function hammingHex(a, b) {
 export function buildReport(form, now = new Date()) {
   const narrative = redact(form.narrative);
   return {
-    schema: "digital-safety-check/report@2",
+    schema: "vibe-check/report@2",
     kind: form.kind || null,
     profile_platform: form.profileUrl ? (normalizeDomain(form.profileUrl) || null) : null,
     submitted_month: now.toISOString().slice(0, 7),

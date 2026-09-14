@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Single source of truth for risk signals, shared by the Digital Safety Check, the case catalog's lure tags, and (later) the agentic job-cleaner skill. Weights are additive evidence points; silence adds nothing.",
+  "note": "Single source of truth for risk signals, shared by Vibe Check, the case catalog's lure tags, and (later) the agentic job-cleaner skill. Weights are additive evidence points; silence adds nothing.",
   "categories": {
     "entity": "Identity and name history",
     "digital": "Domain and email",

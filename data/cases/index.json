@@ -164,6 +164,191 @@
    ]
   },
   {
+   "id": "colombia-vaupes-domestic-servitude",
+   "title": "Colombia's first domestic-servitude trafficking conviction (Vaupés to Bogotá)",
+   "typology": "labor-trafficking",
+   "period": "2018",
+   "summary": "In September 2018 a Colombian court handed down the country's first conviction for trafficking in persons for domestic servitude, sentencing a Colombian woman (not named by UNODC) to 13 years and 2 months. The victim, an 18-year-old Indigenous woman from Vaupés, was promised domestic work and a salary of US$77. On arrival in Bogotá she was told she would get no pay for two months to cover her travel tickets, then another 20 months unpaid for a decorative item she had broken. She worked over 12 hours a day with restrictions on her freedom. The prosecution argued abuse of a position of vulnerability, citing a UNODC issue paper.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Unnamed Colombian employer",
+     "kind": "person",
+     "jurisdiction": "CO",
+     "names": [],
+     "actions": [
+      {
+       "body": "Colombian criminal court",
+       "action": "convicted of trafficking in persons for domestic servitude; sentenced to 13 years 2 months",
+       "date": "2018-09",
+       "url": "https://www.unodc.org/unodc/en/frontpage/2019/January/first-conviction-in-colombia-for-trafficking-in-persons-for-domestic-servitude.html"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Vaupés department",
+     "country": "CO",
+     "lat": 1.25,
+     "lon": -70.23,
+     "note": "A young Indigenous woman was promised domestic work and a salary of US$77.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/January/first-conviction-in-colombia-for-trafficking-in-persons-for-domestic-servitude.html"
+    },
+    {
+     "stage": "exploited",
+     "place": "Bogotá",
+     "country": "CO",
+     "lat": 4.71,
+     "lon": -74.07,
+     "note": "Unpaid for months under invented debts, working 12+ hours a day with restricted freedom.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/January/first-conviction-in-colombia-for-trafficking-in-persons-for-domestic-servitude.html"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Bogotá",
+     "country": "CO",
+     "lat": 4.71,
+     "lon": -74.07,
+     "note": "Employer convicted in September 2018 and sentenced to 13 years 2 months.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/January/first-conviction-in-colombia-for-trafficking-in-persons-for-domestic-servitude.html"
+    }
+   ],
+   "victim_origins": [
+    "CO"
+   ],
+   "lures": [
+    {
+     "signal": "lure_role",
+     "quote_or_description": "The victim \"was promised domestic work and a salary of $77 USD\".",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/January/first-conviction-in-colombia-for-trafficking-in-persons-for-domestic-servitude.html"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "The employer covered the travel from her home town to Bogotá, then withheld two months' pay for the tickets.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/January/first-conviction-in-colombia-for-trafficking-in-persons-for-domestic-servitude.html"
+    },
+    {
+     "signal": "debt_bondage",
+     "quote_or_description": "Told she would work \"an additional 20 months without a salary\" to pay for a decorative piece she had broken.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/January/first-conviction-in-colombia-for-trafficking-in-persons-for-domestic-servitude.html"
+    },
+    {
+     "signal": "isolation",
+     "quote_or_description": "She worked \"more than 12 hours a day with restrictions to her freedom\".",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/January/first-conviction-in-colombia-for-trafficking-in-persons-for-domestic-servitude.html"
+    }
+   ],
+   "sources": [
+    {
+     "title": "First Conviction in Colombia for Trafficking in Persons for Domestic Servitude",
+     "publisher": "UNODC",
+     "date": "2019-01-09",
+     "url": "https://www.unodc.org/unodc/en/frontpage/2019/January/first-conviction-in-colombia-for-trafficking-in-persons-for-domestic-servitude.html",
+     "tier": "multilateral"
+    }
+   ]
+  },
+  {
+   "id": "dzaleka-refugee-camp-network",
+   "title": "Dzaleka refugee camp trafficking network (Malawi)",
+   "typology": "labor-trafficking",
+   "period": "2020–2022",
+   "summary": "UNODC and the Malawi Police Service report that a trafficking network used the Dzaleka Refugee Camp, 41 km from Lilongwe, as a hub. Agents in Ethiopia, the DRC and Burundi recruited people under false pretences, offering work in South Africa, and arranged their crossing into Malawi and entry into the camp; there they were told to pay off debts for being smuggled and were exploited in the camp or moved on for forced labour. Children were exploited for farm and domestic work and women and girls for sexual exploitation, in the camp, in Malawi and elsewhere in Southern Africa. After UNODC training, over 90 victims were identified and rescued, most of them Ethiopian men aged 18–30. As of May 2022 there were five arrests of suspects from Malawi, Ethiopia, Burundi, Rwanda and the DRC and cases were ongoing; police said victims' fear of testifying was hampering convictions. No one is named.",
+   "status": "enforcement_action",
+   "entities": [
+    {
+     "name": "Unnamed network operating from Dzaleka Refugee Camp",
+     "kind": "network",
+     "jurisdiction": "MW",
+     "names": [],
+     "actions": [
+      {
+       "body": "Malawi Police Service",
+       "action": "over 90 victims rescued; five arrests, cases ongoing",
+       "date": "2022-05",
+       "url": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Ethiopia",
+     "country": "ET",
+     "lat": 9.03,
+     "lon": 38.74,
+     "note": "Network agents in Ethiopia, the DRC and Burundi offered work opportunities in South Africa.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+     "stage": "transit",
+     "place": "Dzaleka Refugee Camp, Dowa",
+     "country": "MW",
+     "lat": -13.66,
+     "lon": 33.93,
+     "note": "Recruits were helped across the border into Malawi and into the camp, used as a processing hub.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+     "stage": "exploited",
+     "place": "Dzaleka Refugee Camp, Dowa",
+     "country": "MW",
+     "lat": -13.66,
+     "lon": 33.93,
+     "note": "Told to repay smuggling debts; exploited in forced labour and sexual exploitation in the camp and on farms, or moved to other countries in the region.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+     "stage": "escaped",
+     "place": "Lilongwe",
+     "country": "MW",
+     "lat": -13.96,
+     "lon": 33.79,
+     "note": "Over 90 victims identified and rescued and referred to safe houses; some repatriated.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    }
+   ],
+   "victim_origins": [
+    "ET",
+    "BI",
+    "CD"
+   ],
+   "lures": [
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Agents were \"offering work opportunities in South Africa\".",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+     "signal": "debt_bondage",
+     "quote_or_description": "\"At the camp, they are told they need to pay off the debts incurred from being smuggled into Malawi.\"",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "Traffickers \"arrange for them to cross the border into Malawi and enter the camp\".",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+     "signal": "vague_location",
+     "quote_or_description": "Recruits expecting work in South Africa were held in Malawi or moved to other countries in the region for forced labour.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    }
+   ],
+   "sources": [
+    {
+     "title": "90 victims of human trafficking rescued at refugee camp in Malawi; five arrests made",
+     "publisher": "UNODC",
+     "date": "2022-05",
+     "url": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html",
+     "tier": "multilateral"
+    }
+   ]
+  },
+  {
    "id": "global-horizons-manpower",
    "title": "Global Horizons Manpower (Thai farmworkers)",
    "typology": "labor-trafficking",
@@ -1062,6 +1247,102 @@
      "date": "2012-08-21",
      "url": "https://www.justice.gov/archive/usao/gan/press/2012/08-21-12.html",
      "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "nepal-malawi-us-route-agent",
+   "title": "Nepali migrants diverted to Malawi (Blantyre rescue)",
+   "typology": "labor-trafficking",
+   "period": "2018–2019",
+   "summary": "According to UNODC, six Nepali nationals said they had been recruited through an agent about a year earlier and set out to reach the United States via Bolivia. Instead they were moved over months through Vietnam, Madagascar, Jordan, Dubai, Azerbaijan and Ethiopia (where they stayed four months), then brought to Malawi and told they would have to work there instead. They were locked in a house in Blantyre with their passports taken. Nepal's Anti-Human Trafficking Bureau, alerted by the families, tipped off Malawian police, who rescued the group on 6 November 2019. The victims were repatriated to Nepal and Malawian police said a Malawian suspect was arrested. UNODC describes them as presumed victims; no court outcome is reported and the agent is not named.",
+   "status": "enforcement_action",
+   "entities": [
+    {
+     "name": "Unnamed recruitment agent and Malawi-based network",
+     "kind": "network",
+     "jurisdiction": "MW",
+     "names": [],
+     "actions": [
+      {
+       "body": "Malawi Police Service",
+       "action": "rescue of six presumed victims; arrest of one Malawian suspect",
+       "date": "2019-11-06",
+       "url": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Nepal",
+     "country": "NP",
+     "lat": 27.72,
+     "lon": 85.32,
+     "note": "Recruited through an agent with the promise of reaching the United States via Bolivia.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+     "stage": "transit",
+     "place": "Ethiopia",
+     "country": "ET",
+     "lat": 9.03,
+     "lon": 38.74,
+     "note": "Routed through Vietnam, Madagascar, Jordan, Dubai and Azerbaijan, then held four months in Ethiopia.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+     "stage": "exploited",
+     "place": "Blantyre",
+     "country": "MW",
+     "lat": -15.79,
+     "lon": 35.01,
+     "note": "Told they would have to work in Malawi; locked in a house with passports taken.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+     "stage": "escaped",
+     "place": "Blantyre",
+     "country": "MW",
+     "lat": -15.79,
+     "lon": 35.01,
+     "note": "Rescued by Malawian police on 6 November 2019 after an alert from Nepal's Anti-Human Trafficking Bureau; later repatriated.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    }
+   ],
+   "victim_origins": [
+    "NP"
+   ],
+   "lures": [
+    {
+     "signal": "visa_fraud",
+     "quote_or_description": "An agent promised passage to the United States through Bolivia; the group was instead taken to Malawi.",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+     "signal": "vague_location",
+     "quote_or_description": "After months of travel the group was \"informed they would have to work in the country instead of the United States\".",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+     "signal": "document_retention",
+     "quote_or_description": "\"Their passports were taken away.\"",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    },
+    {
+     "signal": "isolation",
+     "quote_or_description": "The group was \"locked in a house in Malawi\".",
+     "source": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Malawi Police Officers trained by UNODC rescue trafficked Nepali Nationals",
+     "publisher": "UNODC",
+     "date": "2019-11-21",
+     "url": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html",
+     "tier": "multilateral"
     }
    ]
   },

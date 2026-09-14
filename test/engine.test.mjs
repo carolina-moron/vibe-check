@@ -196,3 +196,9 @@ test("job posting URLs: ATS parsing, reading, free hosts", async () => {
   assert.deepEqual(checkPostingHost(parsePostingUrl("https://hiring-now.wixsite.com/jobs")).map((h) => h.id), ["posting_free_host"]);
   assert.deepEqual(checkPostingHost(parsePostingUrl("https://jobs.lever.co/acme/1")), []);
 });
+
+test("unnamed placeholder entities never match a name search", () => {
+  const cs = [{ id: "u", title: "U", entities: [{ name: "Unnamed recruitment agent and Malawi-based network", names: [] }] }];
+  assert.equal(matchCatalog({ name: "Malawi-based network" }, cs).length, 0);
+  assert.equal(matchCatalog({ name: "recruitment agent" }, cs).length, 0);
+});

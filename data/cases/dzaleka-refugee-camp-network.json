@@ -1,0 +1,98 @@
+{
+  "id": "dzaleka-refugee-camp-network",
+  "title": "Dzaleka refugee camp trafficking network (Malawi)",
+  "typology": "labor-trafficking",
+  "period": "2020–2022",
+  "summary": "UNODC and the Malawi Police Service report that a trafficking network used the Dzaleka Refugee Camp, 41 km from Lilongwe, as a hub. Agents in Ethiopia, the DRC and Burundi recruited people under false pretences, offering work in South Africa, and arranged their crossing into Malawi and entry into the camp; there they were told to pay off debts for being smuggled and were exploited in the camp or moved on for forced labour. Children were exploited for farm and domestic work and women and girls for sexual exploitation, in the camp, in Malawi and elsewhere in Southern Africa. After UNODC training, over 90 victims were identified and rescued, most of them Ethiopian men aged 18–30. As of May 2022 there were five arrests of suspects from Malawi, Ethiopia, Burundi, Rwanda and the DRC and cases were ongoing; police said victims' fear of testifying was hampering convictions. No one is named.",
+  "status": "enforcement_action",
+  "entities": [
+    {
+      "name": "Unnamed network operating from Dzaleka Refugee Camp",
+      "kind": "network",
+      "jurisdiction": "MW",
+      "names": [],
+      "actions": [
+        {
+          "body": "Malawi Police Service",
+          "action": "over 90 victims rescued; five arrests, cases ongoing",
+          "date": "2022-05",
+          "url": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Ethiopia",
+      "country": "ET",
+      "lat": 9.03,
+      "lon": 38.74,
+      "note": "Network agents in Ethiopia, the DRC and Burundi offered work opportunities in South Africa.",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+      "stage": "transit",
+      "place": "Dzaleka Refugee Camp, Dowa",
+      "country": "MW",
+      "lat": -13.66,
+      "lon": 33.93,
+      "note": "Recruits were helped across the border into Malawi and into the camp, used as a processing hub.",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+      "stage": "exploited",
+      "place": "Dzaleka Refugee Camp, Dowa",
+      "country": "MW",
+      "lat": -13.66,
+      "lon": 33.93,
+      "note": "Told to repay smuggling debts; exploited in forced labour and sexual exploitation in the camp and on farms, or moved to other countries in the region.",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+      "stage": "escaped",
+      "place": "Lilongwe",
+      "country": "MW",
+      "lat": -13.96,
+      "lon": 33.79,
+      "note": "Over 90 victims identified and rescued and referred to safe houses; some repatriated.",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    }
+  ],
+  "victim_origins": [
+    "ET",
+    "BI",
+    "CD"
+  ],
+  "lures": [
+    {
+      "signal": "lure_role",
+      "quote_or_description": "Agents were \"offering work opportunities in South Africa\".",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+      "signal": "debt_bondage",
+      "quote_or_description": "\"At the camp, they are told they need to pay off the debts incurred from being smuggled into Malawi.\"",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+      "signal": "employer_housing_travel",
+      "quote_or_description": "Traffickers \"arrange for them to cross the border into Malawi and enter the camp\".",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    },
+    {
+      "signal": "vague_location",
+      "quote_or_description": "Recruits expecting work in South Africa were held in Malawi or moved to other countries in the region for forced labour.",
+      "source": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "90 victims of human trafficking rescued at refugee camp in Malawi; five arrests made",
+      "publisher": "UNODC",
+      "date": "2022-05",
+      "url": "https://www.unodc.org/unodc/en/frontpage/2022/June/90-victims-of-human-trafficking-rescued-at-refugee-camp-in-malawi-five-arrests-made.html",
+      "tier": "multilateral"
+    }
+  ]
+}
