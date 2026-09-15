@@ -694,3 +694,4 @@ canvas.voice-photo { display: block; }
 .scoreguide-body h3 { margin-top: 4px; }
 .scoreguide-body p { font-size: var(--fs-1); margin: 0 0 10px; }
 @media (max-width: 860px) { .scoreguide-body { grid-template-columns: minmax(0, 1fr); } }
+.articles .row .tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }

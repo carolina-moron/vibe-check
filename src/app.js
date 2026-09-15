@@ -689,6 +689,15 @@ const NEWS_TYP = {
   "deepfake-fraud": "Deepfakes and voice clones",
   "scam-compound": "Scam compounds", "labor-trafficking": "Labour trafficking", "military-recruitment": "Recruited to fight",
   "money-mule": "Money mules", "sex-trafficking": "Sex trafficking", "organ-trafficking": "Organ trafficking", "cartel-recruitment": "Cartel recruitment",
+  "online-scam": "Online scams", "human-trafficking": "Human trafficking (general)",
+};
+// Every article gets at least one type tag. The general labels only show when nothing more specific matched.
+const articleTags = (x) => {
+  const specific = x.typologies.filter((t) => t !== "online-scam" && t !== "human-trafficking");
+  const typ = specific.length ? specific : x.typologies.slice(0, 1);
+  const tags = typ.map((t) => NEWS_TYP[t] || t);
+  if (x.fake_job) tags.push("Fake job offer");
+  return tags.length ? tags : ["General coverage"];
 };
 const NEWS_EVENT = { arrest: "Arrests & raids", warning: "Warnings & advisories", rescue: "Rescues & repatriation", sanction: "Sanctions", conviction: "Convictions" };
 // Corridors backed by several articles get their own row. Corridors that come from a single
@@ -842,7 +851,8 @@ async function viewNews(arg = "") {
         }).join("")}</ul>
         <p class="fine">Blue = named as an origin, navy = as a destination, grey = mentioned without a clear role.</p>
         <hr class="split">
-        <h2>Typologies</h2>${hbars(a.typologies, NEWS_TYP)}
+        <h2>Typologies</h2>${hbars(Object.fromEntries(Object.entries(a.typologies).filter(([t]) => t !== "online-scam" && t !== "human-trafficking")), NEWS_TYP)}
+        <p class="fine">Plus ${a.typologies["online-scam"] || 0} articles about scams in general and ${a.typologies["human-trafficking"] || 0} about trafficking in general.</p>
       </section>
       <section class="panel">
         <h2>Lure indicators in coverage</h2>
@@ -930,12 +940,11 @@ async function viewNews(arg = "") {
     $("#articles").innerHTML = list.slice(0, state.limit).map((x) => {
       const rel = relatedCases(x);
       return `<li>
-        <div class="row"><span class="mono muted">${esc(x.date || "")} · ${esc(x.source)}</span>${x.fake_job ? `<span class="tag">fake job offer</span>` : ""}</div>
+        <div class="row"><span class="mono muted">${esc(x.date || "")} · ${esc(x.source)}</span><span class="tags">${articleTags(x).map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</span></div>
         <h3>${ext(x.url, x.title)}</h3>
         <p>${esc(x.snippet)}…</p>
         <div class="chips">
           ${x.places.map((p) => `<span class="pchip" style="--c:${ROLE_COLOR[p.roles.includes("origin") ? "origin" : p.roles.includes("destination") ? "destination" : "mentioned"]}" title="${esc(p.terms.join(", "))}">${esc(country(p.iso2))} · ${esc(p.roles.join("/"))}</span>`).join("")}
-          ${x.typologies.map((t) => `<span class="acc">${esc(NEWS_TYP[t] || t)}</span>`).join("")}
           ${x.signals.map((sid) => `<span class="acc a-plan">${esc(signalById[sid]?.label || sid)}</span>`).join("")}
           ${rel.map((r) => `<a class="acc a-live" href="#/case/${esc(r.caseId)}">case: ${esc(r.title)}</a>`).join("")}
         </div></li>`;

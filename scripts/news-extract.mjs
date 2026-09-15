@@ -71,14 +71,16 @@ const DEST_CUE = /\b(trafficked|lured|taken|sent|smuggled|transported|brought|mo
 const COMPOUND_CUE = /\b(scam (centres?|centers?|compounds?|hubs?|parks?)|compounds?)\s+(in|of|near|across)\s*$/i;
 
 const TYPOLOGY_RULES = [
-  ["scam-compound", /\b(scam (centre|center|compound|hub|park|factory|factories)|cyber ?scam|online scam operations?|pig[- ]butchering|forced (to )?(commit|run|carry out) (online )?(scams|fraud)|Myawaddy|KK Park|Shwe Kokko|Sihanoukville|Golden Triangle)/i],
-  ["military-recruitment", /\b(fight(ing)? for russia|russian army|combat roles?|front ?line|mercenar(y|ies)|drone factory)\b/i],
-  ["labor-trafficking", /\b(labou?r trafficking|forced labou?r|debt bondage|recruitment fees?|domestic work(ers?)?|farm ?workers?|construction workers?|fishing vessels?|H-2A|H-2B|kafala)\b/i],
+  ["scam-compound", /\b(scam (centre|center|compound|hub|park|factory|factories)|cyber ?scam|online scam operations?|pig[- ]butchering|forced (to )?(commit|run|carry out) (online )?(scams|fraud)|trafficked into (online )?(fraud|scams?|scam work)|Myawaddy|KK Park|Shwe Kokko|Sihanoukville|Golden Triangle)/i],
+  ["military-recruitment", /\b(fight(ing)? for russia|russian army|russia'?s (armed forces|army|military)|foreign (recruits?|fighters?)|recruits?\b[^.]{0,40}\brussia|russia'?s [^.]{0,30}recruitment|recruit(s|ed|ment)? (drive )?(for|into|to) (the )?(russian|russia)|combat roles?|front ?line|mercenar(y|ies)|drone factory)\b/i],
+  ["labor-trafficking", /\b(labou?r trafficking|forced labou?r|debt bondage|recruitment fees?|domestic work(ers?)?|farm ?workers?|construction workers?|fishing vessels?|H-2A|H-2B|kafala|bonded labou?r|modern slavery|(migrant|foreign) workers?|workers? recruitment|recruit\w* [\d,.]+ (\w+ )?workers)\b/i],
   ["sex-trafficking", /\b(sex(ual)? (trafficking|exploitation)|forced prostitution|brothels?)\b/i],
   ["money-mule", /\b(money mules?|mule accounts?|money laundering)\b/i],
   ["organ-trafficking", /\b(organ (trafficking|harvesting|removal))\b/i],
   ["deepfake-fraud", /\b(deep ?fakes?|voice[- ]clon(e|ed|ing)|cloned (voice|his voice|her voice)|AI[- ](generated|cloned) (video|voice|image)s?)\b/i],
   ["cartel-recruitment", /\b(cartels?|gangs? recruit)/i],
+  ["online-scam", /\b(scams?|scammers?|fraud(sters?)?|phishing|fake (job )?postings?)\b/i],
+  ["human-trafficking", /\b(human trafficking|trafficked|traffickers?|trafficking)\b/i],
 ];
 const EVENT_RULES = [
   ["rescue", /\b(rescued|freed|repatriated|returned home|escaped|evacuated)\b/i],
