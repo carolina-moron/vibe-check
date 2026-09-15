@@ -725,3 +725,10 @@ canvas.voice-photo { display: block; }
 .impact h2 { margin-bottom: 8px; }
 .impact-stats > div { padding-right: 24px; margin-right: 24px; margin-bottom: 10px; }
 .impact-stats b { font-size: clamp(1.6rem, 1rem + 1.4vw, 2.2rem); }
+.globecard { border: var(--rule); margin: 24px 0 0; overflow: hidden; background: radial-gradient(ellipse at 50% 40%, #1c2f57 0%, #0d1730 60%, #080f22 100%); color: var(--on-ink); }
+.globecard .maphead { padding: 14px 24px 0; }
+.globecard h2, .globecard .fine, .globecard label { color: var(--on-ink); }
+.globecard .fine { opacity: .85; }
+.globe { height: 680px; width: 100%; }
+.globe canvas { outline: none; }
+@media (max-width: 860px) { .globe { height: 360px; } }

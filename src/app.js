@@ -231,6 +231,49 @@ function ctdcCorridorHtml(c, src) {
 }
 const ctdcCredit = (src) => `<p class="fine credit">${esc(src.credit)} Derived summaries; corridors with fewer than ${src.min_count} records are withheld. ${ext(src.terms, "CTDC terms of use")}.</p>`;
 
+// ---- 3D globe: pulse rings on case and news countries (globe.gl, loaded on demand) ----------
+
+let globeLib = null;
+const loadGlobe = () => globeLib ||= new Promise((res, rej) => {
+  if (window.Globe) return res(window.Globe);
+  const sc = document.createElement("script");
+  sc.src = "https://cdn.jsdelivr.net/npm/globe.gl@2.33.2/dist/globe.gl.min.js";
+  sc.onload = () => res(window.Globe); sc.onerror = rej; document.head.appendChild(sc);
+});
+
+async function mountGlobe(el) {
+  if (!el) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { el.innerHTML = `<p class="muted pad">Globe animation off (reduced motion).</p>`; return; }
+  let Globe;
+  try { Globe = await loadGlobe(); } catch { el.innerHTML = `<p class="muted pad">Globe could not load.</p>`; return; }
+  if (!document.body.contains(el)) return;
+  const pts = new Map();
+  const add = (lat, lng, kind, label) => { const k = `${lat.toFixed(1)},${lng.toFixed(1)}`; if (!pts.has(k)) pts.set(k, { lat, lng, kind, label, n: 0 }); pts.get(k).n++; };
+  for (const c of cases) for (const j of c.journey) add(j.lat, j.lon, ["exploited", "laundered"].includes(j.stage) ? "exploited" : j.stage === "prosecuted" ? "prosecuted" : "recruited", c.title);
+  try {
+    const n = await loadNews();
+    for (const [k, v] of Object.entries(n.aggregates.byCountry)) { const p = n.points[k]; if (p) add(p[0], p[1], "news", `${country(k)}: ${v.mentions} news reports`); }
+  } catch {}
+  const COLOR = { recruited: "#2A66B8", exploited: "#B3261E", prosecuted: "#14264A", news: "#8C97A6" };
+  const rings = [...pts.values()].filter((p) => p.kind !== "prosecuted");
+  const arcs = cases.flatMap((c) => c.journey.slice(0, -1).map((j, i) => ({ startLat: j.lat, startLng: j.lon, endLat: c.journey[i + 1].lat, endLng: c.journey[i + 1].lon, color: TYPOLOGY[c.typology]?.color || "#2A66B8" })));
+  const g = Globe({ animateIn: true })(el)
+    .width(el.clientWidth).height(el.clientHeight)
+    .backgroundColor("rgba(0,0,0,0)")
+    .globeImageUrl("https://cdn.jsdelivr.net/npm/three-globe@2.31.0/example/img/earth-blue-marble.jpg")
+    .showAtmosphere(true).atmosphereColor("#2A66B8").atmosphereAltitude(0.18)
+    .ringsData(rings).ringColor((d) => (t) => `rgba(${d.kind === "exploited" ? "179,38,30" : d.kind === "news" ? "140,151,166" : "42,102,184"},${1 - t})`)
+    .ringMaxRadius((d) => (d.kind === "news" ? 2 + Math.min(4, d.n) : 5)).ringPropagationSpeed((d) => (d.kind === "news" ? 1.2 : 2)).ringRepeatPeriod((d) => (d.kind === "news" ? 1600 : 900))
+    .pointsData([...pts.values()]).pointColor((d) => COLOR[d.kind]).pointAltitude(0.01).pointRadius((d) => (d.kind === "news" ? 0.25 : 0.4)).pointLabel((d) => d.label)
+    .arcsData(arcs).arcColor("color").arcAltitude(0.18).arcStroke(0.5).arcDashLength(0.5).arcDashGap(0.2).arcDashAnimateTime(2500);
+  g.pointOfView({ lat: 15, lng: 30, altitude: 1.6 }, 0);
+  const ctl = g.controls(); ctl.autoRotate = true; ctl.autoRotateSpeed = 0.6; ctl.enableZoom = true;
+  $("#globe-spin")?.addEventListener("change", (e) => { ctl.autoRotate = e.target.checked; });
+  const ro = new ResizeObserver(() => g.width(el.clientWidth).height(el.clientHeight)); ro.observe(el);
+  globeCleanup = () => { ro.disconnect(); g._destructor?.(); };
+}
+let globeCleanup = () => {};
+
 // ---- views: catalog + world map --------------------------------------------------------
 
 function viewCases() {
@@ -251,6 +294,11 @@ function viewCases() {
         <div><b>${names}</b><span>former names &amp; aliases</span></div>
         <div><b>${origins.size}</b><span>victim origin countries</span></div>
       </div>
+    </section>
+    <section class="globecard">
+      <div class="maphead"><div><h2>Where the signals are</h2><p class="fine">A rotating view of every country in the researched cases (blue and red pulses: recruitment and exploitation) and in recent news reports (grey pulses). Drag to turn, scroll to zoom.</p></div>
+        <label class="check toggle"><input type="checkbox" id="globe-spin" checked> Rotate</label></div>
+      <div id="globe" class="globe" role="img" aria-label="Rotating globe with pulses on countries in cases and news"></div>
     </section>
     <section class="mapcard">
       <div class="maphead">
@@ -280,6 +328,7 @@ function viewCases() {
       <div class="cards" id="cards"></div>
     </section>`;
 
+  mountGlobe($("#globe"));
   const map = baseMap($("#worldmap"), { center: [22, 40], zoom: 2, minZoom: 2 });
   const groups = {};
   if (map) {
@@ -1997,6 +2046,7 @@ function viewPartnerships() {
 
 function route() {
   main.querySelectorAll("video, audio").forEach((m) => m.pause());
+  globeCleanup(); globeCleanup = () => {};
   resetMaps();
   figureCleanup(); figureCleanup = () => {};
   const [, view = "", arg] = (location.hash.match(/^#\/([^/]*)\/?(.*)$/) || []);
