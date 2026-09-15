@@ -1566,103 +1566,59 @@ function viewMethodology() {
   }));
 }
 
-async function viewVoices() {
-  const voicesData = await fetch("data/voices.json").then((r) => r.json());
-  const allVoices = [...voicesData.voices, ...(voicesData.survivors || [])];
+const STORIES_BASE = "https://ethical-tech-colab.github.io/Avatar-Impact-Stories/";
 
+async function viewVoices() {
   main.innerHTML = `
     <section class="hero small">
-      <div class="eyebrow mono">Diverse perspectives</div>
-      <h1>Many voices on the issue</h1>
-      <p class="lede">Click on any voice to hear their full story. Trafficking and scams affect people across different contexts. Here are perspectives from researchers, practitioners, and survivors from the Ethical Tech Collaborative and Avatar Impact Stories.</p>
+      <div class="eyebrow mono">Many voices</div>
+      <h1>Stories from people who lived it</h1>
+      <p class="lede">Click a story to watch it. These are survivor accounts from <a href="${STORIES_BASE}" target="_blank" rel="noopener">Avatar Impact Stories</a> by the Ethical Tech Collaborative. The presenters are AI avatars, so the people who told these stories stay protected.</p>
     </section>
-
-    <section class="voices-grid">
-      ${allVoices.map((v) => `
-        <button class="voice-card clickable" data-voice-id="${esc(v.id)}" style="--avatar-color: ${v.color}">
-          <div class="voice-image">
-            ${v.image ? `<img src="${esc(v.image)}" alt="${esc(v.name)}" class="voice-photo">` : `<div class="voice-avatar">${v.avatar}</div>`}
-          </div>
-          <div class="voice-info">
-            <blockquote class="voice-quote">"${esc(v.quote.substring(0, 100))}${v.quote.length > 100 ? '...' : ''}"</blockquote>
-            <h3>${esc(v.name)}</h3>
-            <p class="voice-role">${esc(v.role)}</p>
-            <p class="voice-action">▶ Hear story</p>
-          </div>
-        </button>
-      `).join("")}
-    </section>
-
+    <section class="voices-grid" id="stories-grid"><p class="fine">Loading stories…</p></section>
     <div id="voice-modal" class="modal" hidden>
       <div class="modal-content">
-        <button class="modal-close" aria-label="Close">&times;</button>
-        <div class="modal-header" id="modal-voice-header"></div>
-        <div class="modal-body">
-          <blockquote class="modal-quote" id="modal-quote"></blockquote>
-          <div class="audio-player">
-            <button id="play-btn" class="play-button">▶ Listen to story</button>
-            <audio id="voice-audio" style="width: 100%; margin-top: 12px;"></audio>
-          </div>
-          <div id="modal-bio" class="modal-bio"></div>
-        </div>
+        <button class="modal-close" type="button" aria-label="Close">&times;</button>
+        <div class="modal-header"><h3 id="modal-title"></h3><p class="voice-role">AI presenter. The story comes from a real account.</p></div>
+        <div class="modal-body"><video id="story-video" controls playsinline preload="none"></video></div>
       </div>
     </div>
-
     <article class="panel">
-      <h2>Why multiple voices matter</h2>
-      <p>Trafficking and exploitation take many forms: labour trafficking in agriculture, sex trafficking online, romance scams, housing fraud. Each form has its own patterns, but they all share common warning signs: isolation, secrecy, urgency, financial control.</p>
-      <p>The people working to prevent these harms come from different disciplines — law, data science, direct services, research. Each brings different insights. Vibe Check synthesizes those insights into a tool anyone can use, in any situation, to check their vibe and decide whether to trust.</p>
-      <p><strong>Your story matters too.</strong> If you've encountered a scam or exploitation, <a href="#/report">report it</a>. Anonymous reports help us understand patterns and warn others.</p>
+      <h2>Why these stories matter</h2>
+      <p>Trafficking and exploitation take many forms: child labour, forced labour, sex trafficking, forced conscription, domestic abuse. The warning signs repeat across all of them: isolation, secrecy, debt, urgency and someone else controlling your documents or money.</p>
+      <p><strong>Your story matters too.</strong> If you've run into a scam or exploitation, <a href="#/report">report it</a>. Anonymous reports help us spot patterns and warn others.</p>
     </article>`;
 
-  // Setup voice cards
-  const modal = $("#voice-modal");
-  const audio = $("#voice-audio");
-  const playBtn = $("#play-btn");
+  const grid = $("#stories-grid");
+  let stories;
+  try {
+    stories = (await fetch(STORIES_BASE + "stories.json").then((r) => r.json())).stories;
+  } catch {
+    grid.innerHTML = `<p>Stories could not load. <a href="${STORIES_BASE}" target="_blank" rel="noopener">Watch them on Avatar Impact Stories ↗</a></p>`;
+    return;
+  }
+  grid.innerHTML = stories.map((s, i) => `
+    <button class="voice-card clickable" type="button" data-i="${i}">
+      <div class="voice-image"><img class="voice-photo" src="${esc(STORIES_BASE + (s.posterWebp || s.poster))}" alt="" loading="lazy"></div>
+      <div class="voice-info">
+        <h3>${esc(s.title)}</h3>
+        <p class="voice-action">▶ Watch story</p>
+      </div>
+    </button>`).join("");
 
-  document.querySelectorAll(".voice-card.clickable").forEach((card) => {
-    card.addEventListener("click", () => {
-      const voiceId = card.dataset.voiceId;
-      const voice = allVoices.find((v) => v.id === voiceId);
-      if (!voice) return;
-
-      $("#modal-voice-header").innerHTML = `
-        <div style="--avatar-color: ${voice.color}">
-          <div class="voice-avatar">${voice.avatar}</div>
-          <div class="voice-info">
-            <h3>${esc(voice.name)}</h3>
-            <p class="voice-role">${esc(voice.role)}</p>
-          </div>
-        </div>`;
-
-      $("#modal-quote").textContent = voice.quote;
-      $("#modal-bio").innerHTML = `<p><strong>${esc(voice.name)}</strong> works on ${voice.role.toLowerCase()} at ${esc(voice.source)}. ${voice.bio || ""}</p>`;
-
-      // Set audio source (placeholder path - ready for real audio files)
-      audio.src = `audio/voices/${voiceId}.mp3`;
-      audio.style.display = "block";
-
-      modal.hidden = false;
-    });
-  });
-
-  // Modal controls
-  $(".modal-close").addEventListener("click", () => { modal.hidden = true; audio.pause(); });
-  modal.addEventListener("click", (e) => { if (e.target === modal) { modal.hidden = true; audio.pause(); } });
-
-  playBtn.addEventListener("click", () => {
-    if (audio.paused) {
-      audio.play().catch(() => {
-        playBtn.textContent = "📁 Audio story not yet recorded";
-        playBtn.disabled = true;
-      });
-    } else {
-      audio.pause();
-    }
-  });
-
-  audio.addEventListener("play", () => { playBtn.textContent = "⏸ Pause"; });
-  audio.addEventListener("pause", () => { playBtn.textContent = "▶ Listen to story"; });
+  const modal = $("#voice-modal"), video = $("#story-video");
+  const close = () => { video.pause(); video.removeAttribute("src"); video.load(); modal.hidden = true; };
+  grid.querySelectorAll(".voice-card").forEach((card) => card.addEventListener("click", () => {
+    const s = stories[card.dataset.i];
+    $("#modal-title").textContent = s.title;
+    video.poster = STORIES_BASE + (s.posterWebp || s.poster);
+    video.src = STORIES_BASE + s.video;
+    modal.hidden = false;
+    video.play().catch(() => {});
+  }));
+  $(".modal-close").addEventListener("click", close);
+  modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) close(); });
 }
 
 function viewTeam() {

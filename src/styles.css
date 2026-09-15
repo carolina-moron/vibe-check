@@ -689,3 +689,6 @@ input[type=checkbox] { accent-color: var(--accent); }
 .play-button:hover { background: #1e5aa8; }
 .play-button:disabled { background: #ccc; cursor: not-allowed; }
 .modal-bio { font-size: var(--fs-0); line-height: 1.6; color: #666; margin-top: 20px; }
+#story-video { width: 100%; max-height: 70vh; background: #000; display: block; }
+.modal-header h3 { margin: 0 0 4px; text-transform: none; letter-spacing: 0; }
+.voice-card .voice-image { height: 220px; background: var(--ink); }
