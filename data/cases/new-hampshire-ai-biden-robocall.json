@@ -1,0 +1,97 @@
+{
+  "id": "new-hampshire-ai-biden-robocall",
+  "title": "AI voice-clone Biden robocalls (New Hampshire primary)",
+  "typology": "deepfake-fraud",
+  "period": "2024–2025",
+  "summary": "Two days before the January 2024 New Hampshire primary, voters received robocalls with an AI-generated voice imitating President Biden, spoofed to look as if they came from a prominent local Democrat. Political consultant Steve Kramer admitted creating the calls. Lingo Telecom, which carried them, agreed in August 2024 to a $1 million FCC fine and stronger caller-verification (STIR/SHAKEN) procedures, and in September 2024 the FCC fined Kramer $6 million. In June 2025 a New Hampshire jury found Kramer not guilty of state voter-suppression and candidate-impersonation charges. The case is included because it shows how convincing a cloned voice on a phone call can be.",
+  "status": "sanctioned",
+  "entities": [
+    {
+      "name": "Lingo Telecom",
+      "kind": "company",
+      "jurisdiction": "US",
+      "names": [],
+      "actions": [
+        {
+          "body": "US Federal Communications Commission",
+          "action": "Settlement: $1 million fine and STIR/SHAKEN compliance plan",
+          "date": "2024-08-21",
+          "url": "https://cyberscoop.com/telecom-behind-ai-powered-biden-robocall-agrees-to-1-million-fcc-fine/"
+        }
+      ]
+    },
+    {
+      "name": "Steve Kramer",
+      "kind": "person",
+      "jurisdiction": "US",
+      "names": [],
+      "actions": [
+        {
+          "body": "US Federal Communications Commission",
+          "action": "$6 million fine",
+          "date": "2024-09",
+          "url": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+        },
+        {
+          "body": "New Hampshire state court (jury)",
+          "action": "Found not guilty of voter-suppression and candidate-impersonation charges",
+          "date": "2025-06-13",
+          "url": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "exploited",
+      "place": "New Hampshire",
+      "country": "US",
+      "lat": 43.2,
+      "lon": -71.5,
+      "note": "Voters received robocalls with a cloned Biden voice before the primary.",
+      "source": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Belknap County, New Hampshire",
+      "country": "US",
+      "lat": 43.53,
+      "lon": -71.47,
+      "note": "A jury found Kramer not guilty on the state charges; FCC fines stood separately.",
+      "source": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+    }
+  ],
+  "victim_origins": [
+    "US"
+  ],
+  "lures": [
+    {
+      "signal": "voice_clone_emergency",
+      "quote_or_description": "An AI-generated replica of the President's voice was used on robocalls, spoofed to appear to come from a known local figure.",
+      "source": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Political operative who admitted to creating fake Biden robocalls found not guilty",
+      "publisher": "New Hampshire Public Radio",
+      "date": "2025-06-13",
+      "url": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty",
+      "tier": "press"
+    },
+    {
+      "title": "Telecom behind AI-powered Biden robocall agrees to $1 million FCC fine",
+      "publisher": "CyberScoop",
+      "date": "2024-08-21",
+      "url": "https://cyberscoop.com/telecom-behind-ai-powered-biden-robocall-agrees-to-1-million-fcc-fine/",
+      "tier": "press"
+    },
+    {
+      "title": "Scammers use AI to enhance their family emergency schemes",
+      "publisher": "Federal Trade Commission",
+      "date": "2023-03-20",
+      "url": "https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes",
+      "tier": "official"
+    }
+  ]
+}

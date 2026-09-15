@@ -256,3 +256,11 @@ test("wider phrasings for secrecy, meetings, debts, forms and new-number imperso
   assert.ok(t("He says I owe them for processing.").includes("threats_coercion"));
   assert.ok(t("Fill in your ID number and bank details to get paid.").includes("id_before_interview"));
 });
+
+test("deepfake and voice-clone phrasings", () => {
+  const t = (x) => detectContent(x).map((h) => h.id);
+  assert.ok(t("Elon Musk explains his new crypto trading platform with guaranteed returns.").includes("celebrity_endorsement"));
+  assert.ok(t("On the video call the CFO asked me to make a confidential transfer to five accounts.").includes("deepfake_video_call"));
+  assert.ok(t("It sounded just like my grandson, he said he needed bail money and not to tell his parents.").includes("voice_clone_emergency"));
+  assert.ok(!t("My boss scheduled a video call about the quarterly plan.").includes("deepfake_video_call"));
+});

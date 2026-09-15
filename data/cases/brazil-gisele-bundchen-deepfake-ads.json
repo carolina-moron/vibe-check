@@ -1,0 +1,53 @@
+{
+  "id": "brazil-gisele-bundchen-deepfake-ads",
+  "title": "Brazil: Gisele Bündchen deepfake Instagram ads",
+  "typology": "deepfake-fraud",
+  "period": "2024–2025",
+  "summary": "Police in Rio Grande do Sul, Brazil, working with the financial intelligence unit COAF, arrested four suspects in October 2025 in an investigation that began in August 2024, after a victim reported an Instagram ad with an altered video of supermodel Gisele Bündchen promoting a skincare product. Another ad used her likeness to promise a giveaway of suitcases, with buyers paying shipping fees for items that never arrived. Investigators found more than 20 million reais (about US$3.9 million) in suspicious funds and froze assets across five states. Most victims lost under 100 reais and did not report it. These are arrests and allegations; no conviction was reported.",
+  "status": "enforcement_action",
+  "entities": [],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "Instagram ads (Brazil)",
+      "country": "BR",
+      "lat": -15.79,
+      "lon": -47.88,
+      "note": "Deepfake videos of Gisele Bündchen promoted a skincare product and a suitcase giveaway (country-level point).",
+      "source": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Rio Grande do Sul",
+      "country": "BR",
+      "lat": -30.03,
+      "lon": -51.23,
+      "note": "State police arrested four suspects and froze assets across five states.",
+      "source": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html"
+    }
+  ],
+  "victim_origins": [
+    "BR"
+  ],
+  "lures": [
+    {
+      "signal": "celebrity_endorsement",
+      "quote_or_description": "An Instagram ad showed an altered video of Gisele Bündchen promoting a skincare product.",
+      "source": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html"
+    },
+    {
+      "signal": "upfront_fee",
+      "quote_or_description": "A giveaway of suitcases required buyers to pay shipping for items that never arrived.",
+      "source": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Brazilian scammers, raking in millions, used Gisele Bundchen deepfakes on Instagram ads",
+      "publisher": "Reuters (via Yahoo News)",
+      "date": "2025-10-03",
+      "url": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html",
+      "tier": "press"
+    }
+  ]
+}

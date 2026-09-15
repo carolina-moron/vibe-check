@@ -34,6 +34,7 @@ const TYPOLOGY = {
   "money-mule": { label: "Money mules", color: "#2B6A76" },
   "job-scam": { label: "Job scam", color: "#6D8299" },
   "sex-trafficking": { label: "Sex trafficking", color: "#35468F" },
+  "deepfake-fraud": { label: "Deepfakes and voice clones", color: "#8A4F9E" },
 };
 const STATUS = {
   enforcement_action: "Enforcement action", sanctioned: "Sanctioned", convicted: "Convicted",
@@ -220,8 +221,8 @@ function viewCases() {
   main.innerHTML = `
     <section class="hero">
       <div class="eyebrow mono">Documented cases · ${cases.length} traced</div>
-      <h1>Where fake job offers lead</h1>
-      <p class="lede">Each case follows a recruitment journey from the job ad to the place people were exploited, and the entities behind it through their former names, aliases and enforcement record. Every fact links to the source it came from.</p>
+      <h1>Where fake offers lead</h1>
+      <p class="lede">Each case follows a journey from the first contact (a job ad, a message, a deepfake video or call) to the place people were exploited, and the entities behind it through their former names, aliases and enforcement record. Every fact links to the source it came from.</p>
       <div class="stats">
         <div><b>${cases.length}</b><span>cases</span></div>
         <div><b>${actions}</b><span>official actions</span></div>
@@ -706,6 +707,10 @@ const SCAM_TYPES = [
     how: "An “employer” sends a check and asks you to send part of it back or on to someone else. The check bounces and you owe the full amount.",
     tells: ["check arrives before any work", "asked to send money back or buy equipment from “their vendor”"],
     signals: ["payment_handling", "gift_card_crypto"], source: ["FTC, Job scams", "https://consumer.ftc.gov/articles/job-scams"] },
+  { name: "Deepfakes and cloned voices", typ: "deepfake-fraud",
+    how: "AI copies a real face or voice: a celebrity selling an investment in an ad, a relative calling in a panic, or a boss on a video call asking for a confidential transfer.",
+    tells: ["a famous person promoting crypto or a giveaway", "a loved one's voice asking for money right now", "a video call that ends in an urgent, secret payment", "you're told not to hang up or check"],
+    signals: ["celebrity_endorsement", "voice_clone_emergency", "deepfake_video_call"], source: ["FBI IC3, Criminals use generative AI to facilitate financial fraud", "https://www.ic3.gov/PSA/2024/PSA241203"] },
   { name: "Romance and investment scams", typ: null,
     how: "Someone you've met online builds a relationship, avoids meeting, then needs money for medical bills, a ticket, a visa or fees, or offers to get you started in crypto investing.",
     tells: ["always abroad, on a rig, in the military", "gift cards, wire transfers or crypto", "an investment platform with guaranteed profits"],
@@ -894,12 +899,12 @@ async function viewNews(arg = "") {
 // ---- views: live check -----------------------------------------------------------------
 
 const KINDS = {
-  conversation: { label: "Conversation or DM", hint: "A chat, DM, text or email thread", fields: ["profileUrl"], text: "The messages", screenshotFirst: true, questions: ["secrecy", "isolation", "urgency", "threats_coercion", "chat_only_contact", "refuses_video", "romance_money", "verification_code"] },
-  profile: { label: "Social profile", hint: "An account that contacted you or that you met on an app", fields: ["profileUrl", "photo"], text: "Bio, posts or messages from this account", questions: ["profile_new", "images_ai", "followers_fake", "profile_mismatch", "refuses_video", "chat_only_contact", "romance_money", "investment_pitch", "public_complaints"] },
+  conversation: { label: "Conversation or DM", hint: "A chat, DM, text or email thread", fields: ["profileUrl"], text: "The messages", screenshotFirst: true, questions: ["secrecy", "isolation", "urgency", "threats_coercion", "chat_only_contact", "refuses_video", "romance_money", "verification_code", "deepfake_video_call", "voice_clone_emergency"] },
+  profile: { label: "Social profile", hint: "An account that contacted you or that you met on an app", fields: ["profileUrl", "photo"], text: "Bio, posts or messages from this account", questions: ["profile_new", "images_ai", "followers_fake", "profile_mismatch", "refuses_video", "chat_only_contact", "romance_money", "investment_pitch", "celebrity_endorsement", "public_complaints"] },
   travel: { label: "Invitation to travel or meet", hint: "Someone offering to bring you somewhere, or to meet in person", fields: ["destination", "profileUrl"], text: "The invitation or messages about the trip or meeting", questions: ["sponsor_travel_stranger", "meet_private", "carry_package", "vague_location", "document_retention", "secrecy", "visa_fraud"] },
   job: { label: "Job opportunity", hint: "A job ad, offer, or a recruiter who reached out", fields: ["postingUrl", "company", "website", "email", "jurisdiction", "workCountry"], text: "The job ad, offer or recruiter's message", questions: ["upfront_fee", "id_before_interview", "chat_only_contact", "employer_housing_travel", "vague_location", "document_retention", "debt_bondage", "payment_handling", "fast_promotion", "images_ai", "followers_fake", "website_mismatch", "public_complaints"] },
   housing: { label: "Housing offer", hint: "A room, flat or accommodation offered to you", fields: ["website", "email", "destination"], text: "The listing or messages from the landlord or host", questions: ["housing_unseen_deposit", "owner_unavailable", "housing_tied_to_job", "gift_card_crypto", "urgency", "images_ai", "public_complaints"] },
-  money: { label: "Request for money", hint: "Someone asking you to pay, lend, invest or send codes", fields: ["profileUrl", "website"], text: "What they asked for and why", questions: ["romance_money", "new_number_impersonation", "investment_pitch", "gift_card_crypto", "verification_code", "urgency", "threats_coercion", "secrecy", "public_complaints"] },
+  money: { label: "Request for money", hint: "Someone asking you to pay, lend, invest or send codes", fields: ["profileUrl", "website"], text: "What they asked for and why", questions: ["romance_money", "new_number_impersonation", "voice_clone_emergency", "deepfake_video_call", "celebrity_endorsement", "investment_pitch", "gift_card_crypto", "verification_code", "urgency", "threats_coercion", "secrecy", "public_complaints"] },
   link: { label: "Link", hint: "A website or link someone sent you", fields: ["website", "email"], text: "The message the link came with", questions: ["link_shortener", "urgency", "verification_code", "upfront_fee", "website_mismatch", "images_ai", "public_complaints"] },
   other: { label: "Describe what's happening", hint: "Anything else that doesn't feel right", fields: ["profileUrl", "website", "email"], text: "Tell us what's happening, in your own words", questions: ["secrecy", "isolation", "threats_coercion", "meet_private", "gift_card_crypto", "urgency", "public_complaints"] },
 };

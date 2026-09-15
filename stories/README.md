@@ -12,5 +12,6 @@ Each story here retells a real case from `data/cases/` in the first person. They
 | [The job in Bangkok](kk-park-myawaddy.md) | KK Park, Myawaddy scam compounds | Scam compound |
 | [Six days a week in the fields](los-villatoros-h2a.md) | Los Villatoros Harvesting | Labour trafficking |
 | [A student visa and a house to clean](bolarinwa-domestic-servitude.md) | Bolaji Bolarinwa | Domestic servitude |
+| [The CFO on the video call](arup-deepfake-video-call.md) | Arup, Hong Kong | Deepfake fraud |
 
 To add a story, pick a case from `data/cases/`, use only facts from its sources, keep the narrator unnamed or clearly invented, and end with the warning signs and sources.

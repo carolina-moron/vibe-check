@@ -1,8 +1,39 @@
-{"stories":[
-{"file":"signal-international.md","title":"The welding job with a green card","type":"Labour trafficking"},
-{"file":"worldwide-executive-job-search.md","title":"The executive recruiter on LinkedIn","type":"Job scam"},
-{"file":"mattox-hudson-booklets.md","title":"$5,000 a week folding booklets","type":"Work-from-home scam"},
-{"file":"kk-park-myawaddy.md","title":"The job in Bangkok","type":"Scam compound"},
-{"file":"los-villatoros-h2a.md","title":"Six days a week in the fields","type":"Labour trafficking"},
-{"file":"bolarinwa-domestic-servitude.md","title":"A student visa and a house to clean","type":"Domestic servitude"}
-]}
+{
+ "stories": [
+  {
+   "file": "signal-international.md",
+   "title": "The welding job with a green card",
+   "type": "Labour trafficking"
+  },
+  {
+   "file": "worldwide-executive-job-search.md",
+   "title": "The executive recruiter on LinkedIn",
+   "type": "Job scam"
+  },
+  {
+   "file": "mattox-hudson-booklets.md",
+   "title": "$5,000 a week folding booklets",
+   "type": "Work-from-home scam"
+  },
+  {
+   "file": "kk-park-myawaddy.md",
+   "title": "The job in Bangkok",
+   "type": "Scam compound"
+  },
+  {
+   "file": "los-villatoros-h2a.md",
+   "title": "Six days a week in the fields",
+   "type": "Labour trafficking"
+  },
+  {
+   "file": "bolarinwa-domestic-servitude.md",
+   "title": "A student visa and a house to clean",
+   "type": "Domestic servitude"
+  },
+  {
+   "file": "arup-deepfake-video-call.md",
+   "title": "The CFO on the video call",
+   "type": "Deepfake fraud"
+  }
+ ]
+}

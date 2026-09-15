@@ -424,6 +424,30 @@
       "dimension": "identity",
       "label": "Someone says they're a friend or relative on a new number and asks for money",
       "why": "A common impersonation scam: the message uses a familiar name and an urgent reason, and the number is new so you can't check it."
+    },
+    {
+      "id": "celebrity_endorsement",
+      "category": "social",
+      "weight": 22,
+      "dimension": "money",
+      "label": "A celebrity or public figure seems to promote an investment, giveaway or product in an ad or video",
+      "why": "Scammers use deepfake video and cloned voices of famous people in social media ads. A real celebrity endorsement doesn't come through a random ad asking you to pay or invest."
+    },
+    {
+      "id": "deepfake_video_call",
+      "category": "social",
+      "weight": 25,
+      "dimension": "identity",
+      "label": "On a video or voice call, a boss, colleague or official asks for an urgent or confidential payment",
+      "why": "Faces and voices can be faked in real time. In Hong Kong in 2024 an employee sent about US$25 million after a video call where the executives were deepfakes. Hang up and confirm through a number you already know."
+    },
+    {
+      "id": "voice_clone_emergency",
+      "category": "social",
+      "weight": 25,
+      "dimension": "pressure",
+      "label": "A call in a loved one's voice says they're in trouble and need money fast",
+      "why": "A few seconds of audio from social media is enough to clone a voice. The FTC advises: don't trust the voice, call the person back on a number you know."
     }
   ],
   "tiers": [

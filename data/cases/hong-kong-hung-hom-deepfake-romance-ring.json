@@ -1,0 +1,76 @@
+{
+  "id": "hong-kong-hung-hom-deepfake-romance-ring",
+  "title": "Hong Kong: Hung Hom deepfake romance scam centre",
+  "typology": "deepfake-fraud",
+  "period": "2023–2024",
+  "summary": "In October 2024 Hong Kong police arrested 27 people for allegedly using online romance scams to trick victims into fake investments totalling about HK$360 million. The syndicate, run by members with triad backgrounds, operated from a 4,000-square-foot industrial unit in Hung Hom, used AI-generated images and deepfakes to pose as women online, and trained its scammers. Victims were mostly men from India, Singapore and Malaysia. The group recruited some members under false pretences of clerical jobs. These are arrests; the investigation was ongoing.",
+  "status": "enforcement_action",
+  "entities": [],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Hong Kong",
+      "country": "HK",
+      "lat": 22.3,
+      "lon": 114.17,
+      "note": "Some members were recruited under the false pretence of clerical jobs.",
+      "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    },
+    {
+      "stage": "exploited",
+      "place": "Hung Hom, Hong Kong",
+      "country": "HK",
+      "lat": 22.31,
+      "lon": 114.18,
+      "note": "Deepfake personas drew victims, mostly men in India, Singapore and Malaysia, into fake investments.",
+      "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Hung Hom, Hong Kong",
+      "country": "HK",
+      "lat": 22.31,
+      "lon": 114.18,
+      "note": "Police raided the centre and arrested 27 people.",
+      "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    }
+  ],
+  "victim_origins": [
+    "IN",
+    "SG",
+    "MY"
+  ],
+  "lures": [
+    {
+      "signal": "romance_money",
+      "quote_or_description": "Online romance scams tricked victims into false investments.",
+      "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    },
+    {
+      "signal": "investment_pitch",
+      "quote_or_description": "Victims were steered into fake investments totalling about HK$360 million.",
+      "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    },
+    {
+      "signal": "images_ai",
+      "quote_or_description": "Scammers used AI-generated images and deepfakes to pose as women.",
+      "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Police arrest 27 for deepfake love scams totaling $360m, seizes scam-training documents",
+      "publisher": "The Standard (Hong Kong)",
+      "date": "2024-10-14",
+      "url": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents",
+      "tier": "press"
+    },
+    {
+      "title": "Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud",
+      "publisher": "FBI Internet Crime Complaint Center",
+      "date": "2024-12-03",
+      "url": "https://www.ic3.gov/PSA/2024/PSA241203",
+      "tier": "official"
+    }
+  ]
+}

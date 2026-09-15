@@ -164,6 +164,64 @@
    ]
   },
   {
+   "id": "arup-hong-kong-deepfake-video-call",
+   "title": "Arup Hong Kong (deepfake CFO video call)",
+   "typology": "deepfake-fraud",
+   "period": "2024",
+   "summary": "A staff member in engineering firm Arup's Hong Kong office received a message said to be from the company's UK-based chief financial officer about a confidential transaction, then joined a video conference with the false CFO and other AI-generated employees. The employee made transfers totalling about US$25 million to five Hong Kong bank accounts before discovering the fraud. Arup notified Hong Kong police in January 2024 and confirmed to the Financial Times that false voices and images were used. No one has been publicly charged.",
+   "status": "reported",
+   "entities": [],
+   "journey": [
+    {
+     "stage": "exploited",
+     "place": "Hong Kong",
+     "country": "HK",
+     "lat": 22.28,
+     "lon": 114.16,
+     "note": "An employee joined a video call where the CFO and colleagues were deepfakes, then authorised the transfers.",
+     "source": "https://www.cfodive.com/news/scammers-siphon-25m-engineering-firm-arup-deepfake-cfo-ai/716501/"
+    },
+    {
+     "stage": "laundered",
+     "place": "Hong Kong bank accounts",
+     "country": "HK",
+     "lat": 22.32,
+     "lon": 114.19,
+     "note": "About US$25 million went to five Hong Kong bank accounts.",
+     "source": "https://www.cfodive.com/news/scammers-siphon-25m-engineering-firm-arup-deepfake-cfo-ai/716501/"
+    }
+   ],
+   "victim_origins": [],
+   "lures": [
+    {
+     "signal": "deepfake_video_call",
+     "quote_or_description": "A video conference with deepfaked versions of the CFO and other staff backed up a request for transfers.",
+     "source": "https://www.cfodive.com/news/scammers-siphon-25m-engineering-firm-arup-deepfake-cfo-ai/716501/"
+    },
+    {
+     "signal": "secrecy",
+     "quote_or_description": "The first message described a confidential transaction.",
+     "source": "https://www.cfodive.com/news/scammers-siphon-25m-engineering-firm-arup-deepfake-cfo-ai/716501/"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Scammers siphon $25M from engineering firm Arup via AI deepfake 'CFO'",
+     "publisher": "CFO Dive",
+     "date": "2024-05-17",
+     "url": "https://www.cfodive.com/news/scammers-siphon-25m-engineering-firm-arup-deepfake-cfo-ai/716501/",
+     "tier": "press"
+    },
+    {
+     "title": "Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud",
+     "publisher": "FBI Internet Crime Complaint Center",
+     "date": "2024-12-03",
+     "url": "https://www.ic3.gov/PSA/2024/PSA241203",
+     "tier": "official"
+    }
+   ]
+  },
+  {
    "id": "bolarinwa-moorestown-domestic-servitude",
    "title": "Bolaji Bolarinwa (domestic servitude, New Jersey)",
    "typology": "labor-trafficking",
@@ -315,6 +373,59 @@
      "date": "2026-08-27",
      "url": "https://www.justice.gov/opa/pr/maryland-man-pleads-guilty-sex-trafficking-offenses",
      "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "brazil-gisele-bundchen-deepfake-ads",
+   "title": "Brazil: Gisele Bündchen deepfake Instagram ads",
+   "typology": "deepfake-fraud",
+   "period": "2024–2025",
+   "summary": "Police in Rio Grande do Sul, Brazil, working with the financial intelligence unit COAF, arrested four suspects in October 2025 in an investigation that began in August 2024, after a victim reported an Instagram ad with an altered video of supermodel Gisele Bündchen promoting a skincare product. Another ad used her likeness to promise a giveaway of suitcases, with buyers paying shipping fees for items that never arrived. Investigators found more than 20 million reais (about US$3.9 million) in suspicious funds and froze assets across five states. Most victims lost under 100 reais and did not report it. These are arrests and allegations; no conviction was reported.",
+   "status": "enforcement_action",
+   "entities": [],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Instagram ads (Brazil)",
+     "country": "BR",
+     "lat": -15.79,
+     "lon": -47.88,
+     "note": "Deepfake videos of Gisele Bündchen promoted a skincare product and a suitcase giveaway (country-level point).",
+     "source": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Rio Grande do Sul",
+     "country": "BR",
+     "lat": -30.03,
+     "lon": -51.23,
+     "note": "State police arrested four suspects and froze assets across five states.",
+     "source": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html"
+    }
+   ],
+   "victim_origins": [
+    "BR"
+   ],
+   "lures": [
+    {
+     "signal": "celebrity_endorsement",
+     "quote_or_description": "An Instagram ad showed an altered video of Gisele Bündchen promoting a skincare product.",
+     "source": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html"
+    },
+    {
+     "signal": "upfront_fee",
+     "quote_or_description": "A giveaway of suitcases required buyers to pay shipping for items that never arrived.",
+     "source": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Brazilian scammers, raking in millions, used Gisele Bundchen deepfakes on Instagram ads",
+     "publisher": "Reuters (via Yahoo News)",
+     "date": "2025-10-03",
+     "url": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html",
+     "tier": "press"
     }
    ]
   },
@@ -700,6 +811,82 @@
      "date": "2012-07-20",
      "url": "https://www.civilbeat.org/2012/07/feds-drop-all-charges-in-global-horizons-human/",
      "tier": "press"
+    }
+   ]
+  },
+  {
+   "id": "hong-kong-hung-hom-deepfake-romance-ring",
+   "title": "Hong Kong: Hung Hom deepfake romance scam centre",
+   "typology": "deepfake-fraud",
+   "period": "2023–2024",
+   "summary": "In October 2024 Hong Kong police arrested 27 people for allegedly using online romance scams to trick victims into fake investments totalling about HK$360 million. The syndicate, run by members with triad backgrounds, operated from a 4,000-square-foot industrial unit in Hung Hom, used AI-generated images and deepfakes to pose as women online, and trained its scammers. Victims were mostly men from India, Singapore and Malaysia. The group recruited some members under false pretences of clerical jobs. These are arrests; the investigation was ongoing.",
+   "status": "enforcement_action",
+   "entities": [],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Hong Kong",
+     "country": "HK",
+     "lat": 22.3,
+     "lon": 114.17,
+     "note": "Some members were recruited under the false pretence of clerical jobs.",
+     "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    },
+    {
+     "stage": "exploited",
+     "place": "Hung Hom, Hong Kong",
+     "country": "HK",
+     "lat": 22.31,
+     "lon": 114.18,
+     "note": "Deepfake personas drew victims, mostly men in India, Singapore and Malaysia, into fake investments.",
+     "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Hung Hom, Hong Kong",
+     "country": "HK",
+     "lat": 22.31,
+     "lon": 114.18,
+     "note": "Police raided the centre and arrested 27 people.",
+     "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    }
+   ],
+   "victim_origins": [
+    "IN",
+    "SG",
+    "MY"
+   ],
+   "lures": [
+    {
+     "signal": "romance_money",
+     "quote_or_description": "Online romance scams tricked victims into false investments.",
+     "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    },
+    {
+     "signal": "investment_pitch",
+     "quote_or_description": "Victims were steered into fake investments totalling about HK$360 million.",
+     "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    },
+    {
+     "signal": "images_ai",
+     "quote_or_description": "Scammers used AI-generated images and deepfakes to pose as women.",
+     "source": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Police arrest 27 for deepfake love scams totaling $360m, seizes scam-training documents",
+     "publisher": "The Standard (Hong Kong)",
+     "date": "2024-10-14",
+     "url": "https://www.thestandard.com.hk/news/article/221507/Police-arrest-27-for-deepfake-love-scams-totaling-360m-seizes-scam-training-documents",
+     "tier": "press"
+    },
+    {
+     "title": "Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud",
+     "publisher": "FBI Internet Crime Complaint Center",
+     "date": "2024-12-03",
+     "url": "https://www.ic3.gov/PSA/2024/PSA241203",
+     "tier": "official"
     }
    ]
   },
@@ -1759,6 +1946,103 @@
      "date": "2019-11-21",
      "url": "https://www.unodc.org/unodc/en/frontpage/2019/November/malawi-police-officers-trained-by-unodc-rescue-trafficked-nepali-nationals.html",
      "tier": "multilateral"
+    }
+   ]
+  },
+  {
+   "id": "new-hampshire-ai-biden-robocall",
+   "title": "AI voice-clone Biden robocalls (New Hampshire primary)",
+   "typology": "deepfake-fraud",
+   "period": "2024–2025",
+   "summary": "Two days before the January 2024 New Hampshire primary, voters received robocalls with an AI-generated voice imitating President Biden, spoofed to look as if they came from a prominent local Democrat. Political consultant Steve Kramer admitted creating the calls. Lingo Telecom, which carried them, agreed in August 2024 to a $1 million FCC fine and stronger caller-verification (STIR/SHAKEN) procedures, and in September 2024 the FCC fined Kramer $6 million. In June 2025 a New Hampshire jury found Kramer not guilty of state voter-suppression and candidate-impersonation charges. The case is included because it shows how convincing a cloned voice on a phone call can be.",
+   "status": "sanctioned",
+   "entities": [
+    {
+     "name": "Lingo Telecom",
+     "kind": "company",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Federal Communications Commission",
+       "action": "Settlement: $1 million fine and STIR/SHAKEN compliance plan",
+       "date": "2024-08-21",
+       "url": "https://cyberscoop.com/telecom-behind-ai-powered-biden-robocall-agrees-to-1-million-fcc-fine/"
+      }
+     ]
+    },
+    {
+     "name": "Steve Kramer",
+     "kind": "person",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US Federal Communications Commission",
+       "action": "$6 million fine",
+       "date": "2024-09",
+       "url": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+      },
+      {
+       "body": "New Hampshire state court (jury)",
+       "action": "Found not guilty of voter-suppression and candidate-impersonation charges",
+       "date": "2025-06-13",
+       "url": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "exploited",
+     "place": "New Hampshire",
+     "country": "US",
+     "lat": 43.2,
+     "lon": -71.5,
+     "note": "Voters received robocalls with a cloned Biden voice before the primary.",
+     "source": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Belknap County, New Hampshire",
+     "country": "US",
+     "lat": 43.53,
+     "lon": -71.47,
+     "note": "A jury found Kramer not guilty on the state charges; FCC fines stood separately.",
+     "source": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+    }
+   ],
+   "victim_origins": [
+    "US"
+   ],
+   "lures": [
+    {
+     "signal": "voice_clone_emergency",
+     "quote_or_description": "An AI-generated replica of the President's voice was used on robocalls, spoofed to appear to come from a known local figure.",
+     "source": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Political operative who admitted to creating fake Biden robocalls found not guilty",
+     "publisher": "New Hampshire Public Radio",
+     "date": "2025-06-13",
+     "url": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty",
+     "tier": "press"
+    },
+    {
+     "title": "Telecom behind AI-powered Biden robocall agrees to $1 million FCC fine",
+     "publisher": "CyberScoop",
+     "date": "2024-08-21",
+     "url": "https://cyberscoop.com/telecom-behind-ai-powered-biden-robocall-agrees-to-1-million-fcc-fine/",
+     "tier": "press"
+    },
+    {
+     "title": "Scammers use AI to enhance their family emergency schemes",
+     "publisher": "Federal Trade Commission",
+     "date": "2023-03-20",
+     "url": "https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes",
+     "tier": "official"
     }
    ]
   },

@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 const dir = new URL("../data/cases/", import.meta.url);
 const signals = new Set(JSON.parse(readFileSync(new URL("../data/signals.json", import.meta.url))).signals.map((s) => s.id));
 
-const TYPOLOGIES = ["scam-compound", "labor-trafficking", "money-mule", "laundering", "sex-trafficking", "forced-labor-industrial", "job-scam"];
+const TYPOLOGIES = ["scam-compound", "labor-trafficking", "money-mule", "laundering", "sex-trafficking", "forced-labor-industrial", "job-scam", "deepfake-fraud"];
 const STATUSES = ["enforcement_action", "sanctioned", "convicted", "civil_judgment", "settled", "charges_dismissed", "reported"];
 const STAGES = ["advertised", "recruited", "transit", "exploited", "laundered", "escaped", "prosecuted"];
 const TIERS = ["official", "court", "press", "ngo", "multilateral"];

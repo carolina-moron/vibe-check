@@ -1,0 +1,58 @@
+{
+  "id": "arup-hong-kong-deepfake-video-call",
+  "title": "Arup Hong Kong (deepfake CFO video call)",
+  "typology": "deepfake-fraud",
+  "period": "2024",
+  "summary": "A staff member in engineering firm Arup's Hong Kong office received a message said to be from the company's UK-based chief financial officer about a confidential transaction, then joined a video conference with the false CFO and other AI-generated employees. The employee made transfers totalling about US$25 million to five Hong Kong bank accounts before discovering the fraud. Arup notified Hong Kong police in January 2024 and confirmed to the Financial Times that false voices and images were used. No one has been publicly charged.",
+  "status": "reported",
+  "entities": [],
+  "journey": [
+    {
+      "stage": "exploited",
+      "place": "Hong Kong",
+      "country": "HK",
+      "lat": 22.28,
+      "lon": 114.16,
+      "note": "An employee joined a video call where the CFO and colleagues were deepfakes, then authorised the transfers.",
+      "source": "https://www.cfodive.com/news/scammers-siphon-25m-engineering-firm-arup-deepfake-cfo-ai/716501/"
+    },
+    {
+      "stage": "laundered",
+      "place": "Hong Kong bank accounts",
+      "country": "HK",
+      "lat": 22.32,
+      "lon": 114.19,
+      "note": "About US$25 million went to five Hong Kong bank accounts.",
+      "source": "https://www.cfodive.com/news/scammers-siphon-25m-engineering-firm-arup-deepfake-cfo-ai/716501/"
+    }
+  ],
+  "victim_origins": [],
+  "lures": [
+    {
+      "signal": "deepfake_video_call",
+      "quote_or_description": "A video conference with deepfaked versions of the CFO and other staff backed up a request for transfers.",
+      "source": "https://www.cfodive.com/news/scammers-siphon-25m-engineering-firm-arup-deepfake-cfo-ai/716501/"
+    },
+    {
+      "signal": "secrecy",
+      "quote_or_description": "The first message described a confidential transaction.",
+      "source": "https://www.cfodive.com/news/scammers-siphon-25m-engineering-firm-arup-deepfake-cfo-ai/716501/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Scammers siphon $25M from engineering firm Arup via AI deepfake 'CFO'",
+      "publisher": "CFO Dive",
+      "date": "2024-05-17",
+      "url": "https://www.cfodive.com/news/scammers-siphon-25m-engineering-firm-arup-deepfake-cfo-ai/716501/",
+      "tier": "press"
+    },
+    {
+      "title": "Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud",
+      "publisher": "FBI Internet Crime Complaint Center",
+      "date": "2024-12-03",
+      "url": "https://www.ic3.gov/PSA/2024/PSA241203",
+      "tier": "official"
+    }
+  ]
+}
