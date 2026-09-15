@@ -1621,6 +1621,43 @@ async function viewVoices() {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) close(); });
 }
 
+// Minimal markdown for stories/: headings, paragraphs, lists, bold, italic, links.
+function mdToHtml(md) {
+  const inline = (t) => esc(t)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+  return md.trim().split(/\n{2,}/).map((block) => {
+    const lines = block.split("\n");
+    if (/^#{1,3} /.test(block)) { const n = block.match(/^#+/)[0].length; return `<h${n + 1}>${inline(block.replace(/^#+ /, ""))}</h${n + 1}>`; }
+    if (lines.every((l) => l.startsWith("- "))) return `<ul>${lines.map((l) => `<li>${inline(l.slice(2))}</li>`).join("")}</ul>`;
+    return `<p>${inline(block.replace(/\n/g, " "))}</p>`;
+  }).join("");
+}
+
+async function viewStories(file) {
+  const { stories } = await fetch("stories/index.json").then((r) => r.json());
+  const story = stories.find((s) => s.file === file);
+  if (!story) {
+    main.innerHTML = `
+      <section class="hero small">
+        <div class="eyebrow mono">In their words, retold</div>
+        <h1>How it happened</h1>
+        <p class="lede">Real cases from the news, retold in the first person so you can see the warning signs from the inside. The narrators are composites, not real victims. The facts, and how each case came to light, come from the public sources listed in each story.</p>
+      </section>
+      <section class="voices-grid">${stories.map((s) => `
+        <a class="panel story-link" href="#/stories/${encodeURIComponent(s.file)}">
+          <div class="eyebrow mono">${esc(s.type)}</div>
+          <h3>${esc(s.title)}</h3>
+          <p class="voice-action">Read story →</p>
+        </a>`).join("")}
+      </section>`;
+    return;
+  }
+  const md = await fetch(`stories/${story.file}`).then((r) => r.text());
+  main.innerHTML = `<p class="crumb"><a href="#/stories">← All stories</a></p><article class="panel story-body">${mdToHtml(md)}</article>`;
+}
+
 function viewTeam() {
   main.innerHTML = `
     <section class="hero small">
@@ -1757,6 +1794,7 @@ function route() {
   else if (view === "help") viewHelp();
   else if (view === "report") viewReport();
   else if (view === "voices") viewVoices();
+  else if (view === "stories") viewStories(decodeURIComponent(arg || ""));
   else if (view === "team") viewTeam();
   else if (view === "partnerships") viewPartnerships();
   else if (view === "methodology") viewMethodology();

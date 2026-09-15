@@ -693,3 +693,10 @@ input[type=checkbox] { accent-color: var(--accent); }
 .modal-header h3 { margin: 0 0 4px; text-transform: none; letter-spacing: 0; }
 .voice-card .voice-image { height: 220px; background: var(--ink); }
 .modal[hidden] { display: none; }
+.story-link { display: block; text-decoration: none; color: var(--ink); }
+.story-link h3 { font-size: var(--fs-2); text-transform: none; letter-spacing: 0; margin: 8px 0; }
+.story-link:hover { border-color: var(--accent); }
+.story-body { margin: 16px 0 32px; max-width: 760px; }
+.story-body h2 { text-transform: none; letter-spacing: 0; font-size: var(--fs-display); }
+.story-body h3 { margin-top: 24px; }
+.story-body a { overflow-wrap: anywhere; }
