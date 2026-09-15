@@ -669,3 +669,11 @@ canvas.voice-photo { display: block; }
 @media (max-width: 860px) { .mapnotes, .twocol { grid-template-columns: minmax(0, 1fr); } .querylist { columns: 1; } }
 #stories-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
 #stories-grid .voice-info { padding: 10px 12px; }
+
+/* Use the full width: text fills its box instead of stopping at a narrow reading measure */
+:root { --measure: none; }
+.lede, .seeing-head .sub, .situation li, .considerations li, footer.site p { max-width: none; }
+.doc { max-width: none; }
+.callout { max-width: none; }
+/* long single articles stay readable, centred rather than left-aligned */
+.story-body { max-width: 960px; margin-inline: auto; }
