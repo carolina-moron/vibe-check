@@ -6,3 +6,6 @@ data/raw/
 *CTDC*.csv
 *synthetic*.csv
 !test/fixtures/ctdc-fake.csv
+data/agent/queue/
+data/agent/outbox/
+data/agent/outcomes.jsonl

@@ -1493,7 +1493,7 @@ function viewMethodology() {
       <nav class="toc" aria-label="On this page">
         <a href="#m-principles">Principles</a><a href="#m-check">What you can check</a><a href="#m-people">People are out of scope</a><a href="#m-score">Score and coverage</a>
         <a href="#m-signals">Risk signals</a><a href="#m-registers">Registers</a><a href="#m-cases">Case catalog</a>
-        <a href="#m-flsri">Structural risk index</a><a href="#m-news">News patterns</a><a href="#m-partners">Help contacts and CTDC</a><a href="#m-landscape">Related tools</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-limits">Limits</a>
+        <a href="#m-flsri">Structural risk index</a><a href="#m-news">News patterns</a><a href="#m-partners">Help contacts and CTDC</a><a href="#m-landscape">Related tools</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-agent">Automation</a><a href="#m-limits">Limits</a>
       </nav>
 
       <h2 id="m-principles">Principles</h2>
@@ -1642,6 +1642,9 @@ function viewMethodology() {
 
       <h2 id="m-data">Training data</h2>
       <p>The only public labeled corpus of job postings (EMSCAD) is from 2014; you will need to build your own from FTC/BBB narratives, r/Scams, and Adzuna negatives. EMSCAD predates task scams and contains almost no URLs or emails, so it can't train the domain layer. The anonymised report ledger is designed to become that labeled set, with Adzuna and ATS-listed postings as negatives.</p>
+
+      <h2 id="m-agent">Automation: the agent</h2>
+      <p>An agent (<code>scripts/agent.mjs</code>, skills in <code>docs/agent-openapi.yaml</code>) runs the same check as this site on job postings, stores anonymised results, and drafts reports for the platform, the company whose name is being used, and the FTC or FBI IC3. It follows two rules. It never scrapes platforms that forbid it: LinkedIn and Handshake postings reach it only when a person shares them or through a partnership feed, while ATS boards with public APIs (Greenhouse, Lever, Ashby) are read directly. And it never sends anything itself: every report waits in a review queue, a person approves it, and each draft says the warning signs come from an automated check, not a finding. Outcomes are logged so warning signs that reviewers keep dismissing can be tuned down. Built to run as Copilot Studio skills on Azure Functions, with review cards in Teams. Details in <a href="https://github.com/carolina-moron/vibe-check/blob/main/docs/agent.md" target="_blank" rel="noopener">docs/agent.md</a>.</p>
 
       <h2 id="m-limits">Limits</h2>
       <ul>

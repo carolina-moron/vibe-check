@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  title: Vibe Check agent skills
+  version: 0.1.0
+  description: >
+    Skills a Copilot Studio agent calls to check job postings, queue them for human review,
+    and release drafted reports. Nothing is sent to a platform or company until a person approves it.
+servers:
+  - url: https://YOUR-FUNCTION-APP.azurewebsites.net/api
+components:
+  securitySchemes:
+    bearer: { type: http, scheme: bearer }
+security: [{ bearer: [] }]
+paths:
+  /check:
+    post:
+      operationId: vibe_check
+      summary: Check a job posting for warning signs of scams or trafficking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url: { type: string, description: Posting URL (public ATS pages are fetched; others are checked by domain only) }
+                company: { type: string }
+                text: { type: string, description: Posting text as shared by the user }
+                email: { type: string, description: Recruiter email, if any }
+                website: { type: string }
+                jurisdiction: { type: string, description: ISO2 country of the claimed employer }
+                source: { type: string, description: Where the posting came from, e.g. user submission, Handshake share }
+      responses:
+        "200": { description: Score, warning signs, drafted reports and a Teams review card }
+  /queue:
+    get:
+      operationId: list_review_queue
+      summary: List postings waiting for a reviewer
+      responses: { "200": { description: Queue items without draft text } }
+  /queue/{id}:
+    get:
+      operationId: get_queued_item
+      summary: Full record and review card for one item
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Record } }
+  /review/{id}:
+    post:
+      operationId: queue_for_review_decision
+      summary: Record a reviewer's decision (approve or dismiss)
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [decision]
+              properties:
+                decision: { type: string, enum: [approved, dismissed] }
+                reviewer: { type: string }
+      responses: { "200": { description: Updated record } }
+  /send/{id}:
+    post:
+      operationId: send_report
+      summary: Send the drafted reports for an approved item (refuses anything not approved)
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Record marked sent } }
+  /outcome/{id}:
+    post:
+      operationId: record_outcome
+      summary: Record what the platform or company did after the report
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [outcome]
+              properties:
+                outcome: { type: string, enum: [removed, confirmed, no-action] }
+      responses: { "200": { description: Updated record } }
+  /stats:
+    get:
+      operationId: agent_stats
+      summary: Reviewer agreement, confirmed reports, and warning signs that get dismissed too often
+      responses: { "200": { description: Stats } }
