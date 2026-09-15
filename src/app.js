@@ -1870,7 +1870,7 @@ function viewTeam() {
       <p class="lede">VibeCheck was built at The Garage in New York City for the Hack for Good track of the Microsoft Global Hackathon, with the nonprofit <a href="https://apneaap.org" target="_blank" rel="noopener">Apne Aap Women Worldwide</a> and the <a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a>. It helps people recognise warning signs of scams and exploitation before they act.</p>
       <p class="stats home-cta"><a class="help-btn" href="#/check">Run a check →</a> <a class="ghostlink" href="#/cases">Cases &amp; map</a> <a class="ghostlink" href="#/stories">You are NOT alone</a></p>
     </section>
-    <figure class="poster"><a href="assets/poster.png" target="_blank" rel="noopener"><img src="assets/poster.png" alt="VibeCheck one-page overview for the Hack for Good track of the Microsoft Global Hackathon"></a><figcaption class="fine">One-page overview for Hack for Good, Microsoft Global Hackathon. Click to open full size.</figcaption></figure>
+    <figure class="poster"><a href="assets/poster.html" target="_blank" rel="noopener"><img src="assets/poster.png" alt="VibeCheck one-page overview for the Hack for Good track of the Microsoft Global Hackathon"></a><figcaption class="fine">One-page overview for Hack for Good, Microsoft Global Hackathon. Click to open it full size and zoomable; <a href="assets/poster.png" download>download the PNG</a>.</figcaption></figure>
     <article class="panel">
       <h2>Mission</h2>
       <p>We believe people should be able to get a second opinion before trusting someone online or engaging with an offer. By combining public records, enforcement data, and indicators from real cases, we help identify patterns that matter.</p>

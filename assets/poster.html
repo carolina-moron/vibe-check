@@ -4,7 +4,7 @@
 <style>
   :root { --paper:#F2ECE1; --ink:#14264A; --accent:#2A66B8; --soft:#33445F; --red:#B3261E; --yel:#7A5A00; --grn:#2E6B30; }
   * { box-sizing:border-box; }
-  body { margin:0; width:1600px; height:1000px; background:var(--paper); color:var(--ink); font-family:"Be Vietnam Pro",Arial,sans-serif; position:relative; overflow:hidden; }
+  body { margin:0; width:1600px; height:1280px; background:var(--paper); color:var(--ink); font-family:"Be Vietnam Pro",Arial,sans-serif; position:relative; overflow:hidden; }
   body::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
     background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/><feColorMatrix values='0 0 0 0 0.6 0 0 0 0 0.55 0 0 0 0 0.45 0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
   .wrap { position:relative; padding:36px 44px; height:100%; display:grid; grid-template-rows:auto auto 1fr auto auto; gap:12px; }
@@ -13,42 +13,42 @@
   .brand img { width:96px; height:96px; }
   .brand h1 { margin:0; font-size:84px; font-weight:700; letter-spacing:-.03em; line-height:1; }
   .brand h1 span { color:var(--accent); }
-  .tag { margin:6px 0 0; font-size:22px; font-style:italic; color:var(--soft); }
-  .pill { display:inline-block; margin-top:8px; background:var(--ink); color:#fff; padding:6px 14px; font-size:14px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
+  .tag { margin:8px 0 0; font-size:27px; font-style:italic; color:var(--soft); }
+  .pill { display:inline-block; margin-top:10px; background:var(--ink); color:#fff; padding:8px 16px; font-size:17px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
   .hack { border:2px solid var(--ink); padding:16px 20px; background:#fff; display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:center; }
   .hack .ms { display:grid; grid-template-columns:1fr 1fr; gap:3px; width:44px; }
   .hack .ms i { display:block; aspect-ratio:1; }
-  .hack b { display:block; font-size:22px; }
-  .hack small { display:block; font-size:14px; color:var(--soft); margin-top:2px; }
+  .hack b { display:block; font-size:25px; }
+  .hack small { display:block; font-size:16px; color:var(--soft); margin-top:2px; }
   .pillars { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--ink); border-bottom:1px solid var(--ink); }
-  .pillars div { padding:12px 16px; border-right:1px solid var(--ink); font-size:15px; line-height:1.35; }
+  .pillars div { padding:14px 16px; border-right:1px solid var(--ink); font-size:18px; line-height:1.35; }
   .pillars div:last-child { border-right:0; }
-  .pillars b { display:block; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:4px; }
+  .pillars b { display:block; font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:4px; }
   .mid { display:grid; grid-template-columns:1.05fr 1.05fr 1fr; gap:18px; }
   .box { border:1px solid var(--ink); padding:12px 16px; background:rgba(255,255,255,.55); }
-  .box h2 { margin:0 0 8px; font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:#fff; background:var(--ink); display:inline-block; padding:4px 10px; }
+  .box h2 { margin:0 0 10px; font-size:15px; letter-spacing:.16em; text-transform:uppercase; color:#fff; background:var(--ink); display:inline-block; padding:4px 10px; }
   .box.sol h2 { background:var(--accent); }
-  .box p { margin:0 0 8px; font-size:15px; line-height:1.45; }
+  .box p { margin:0 0 10px; font-size:18px; line-height:1.45; }
   .signs { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-  .signs span { font-size:11px; letter-spacing:.1em; text-transform:uppercase; border:1px solid var(--accent); color:var(--accent); padding:3px 7px; }
+  .signs span { font-size:13px; letter-spacing:.1em; text-transform:uppercase; border:1px solid var(--accent); color:var(--accent); padding:3px 7px; }
   .kinds { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:8px; }
-  .kinds div { border:1px solid var(--ink); padding:6px; font-size:12px; text-align:center; line-height:1.25; }
+  .kinds div { border:1px solid var(--ink); padding:8px; font-size:15px; text-align:center; line-height:1.25; }
   .why ul { margin:6px 0 0; padding:0; list-style:none; }
-  .why li { font-size:15px; line-height:1.4; padding:5px 0 5px 26px; position:relative; }
-  .why li::before { content:"✓"; position:absolute; left:0; color:#fff; background:var(--accent); width:18px; height:18px; font-size:12px; text-align:center; line-height:18px; top:7px; }
+  .why li { font-size:18px; line-height:1.4; padding:6px 0 6px 28px; position:relative; }
+  .why li::before { content:"✓"; position:absolute; left:0; color:#fff; background:var(--accent); width:20px; height:20px; font-size:13px; text-align:center; line-height:20px; top:9px; }
   .does { border:1px solid var(--ink); padding:10px 16px 12px; }
-  .does h2 { margin:0 0 10px; font-size:14px; letter-spacing:.18em; text-transform:uppercase; text-align:center; }
+  .does h2 { margin:0 0 12px; font-size:16px; letter-spacing:.18em; text-transform:uppercase; text-align:center; }
   .steps { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; }
-  .steps div { border:1px solid var(--ink); padding:10px 10px 12px; font-size:13px; line-height:1.35; background:rgba(255,255,255,.55); }
-  .steps b { display:block; width:24px; height:24px; background:var(--accent); color:#fff; font-size:13px; text-align:center; line-height:24px; margin-bottom:8px; }
+  .steps div { border:1px solid var(--ink); padding:12px 12px 14px; font-size:16px; line-height:1.35; background:rgba(255,255,255,.55); }
+  .steps b { display:block; width:26px; height:26px; background:var(--accent); color:#fff; font-size:14px; text-align:center; line-height:26px; margin-bottom:8px; }
   .score { display:flex; gap:6px; margin-top:8px; }
-  .score span { flex:1; color:#fff; font-size:10px; letter-spacing:.08em; text-transform:uppercase; padding:4px 6px; text-align:center; font-weight:600; }
+  .score span { flex:1; color:#fff; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:4px 6px; text-align:center; font-weight:600; }
   .metrics { display:grid; grid-template-columns:auto repeat(5,1fr); gap:0; border-top:2px solid var(--ink); padding-top:12px; align-items:center; }
-  .metrics h2 { margin:0 24px 0 0; font-size:14px; letter-spacing:.18em; text-transform:uppercase; }
-  .metrics div { border-left:1px solid var(--ink); padding:2px 18px; }
-  .metrics b { display:block; font-size:30px; font-weight:600; line-height:1; }
-  .metrics small { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--soft); }
-  .url { text-align:right; font-size:13px; color:var(--soft); letter-spacing:.06em; margin-top:-6px; }
+  .metrics h2 { margin:0 24px 0 0; font-size:16px; letter-spacing:.18em; text-transform:uppercase; }
+  .metrics div { border-left:1px solid var(--ink); padding:2px 14px; }
+  .metrics b { display:block; font-size:36px; font-weight:600; line-height:1; }
+  .metrics small { font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:var(--soft); }
+  .url { text-align:right; font-size:15px; color:var(--soft); letter-spacing:.06em; margin-top:-6px; }
   .pill.ms-pill { background:#fff; color:var(--ink); border:2px solid var(--ink); }
   .pill { margin-right:8px; }
 </style></head>
@@ -109,10 +109,10 @@
 
   <div class="metrics">
     <h2>Impact metrics</h2>
-    <div><b>8</b><small>kinds of situation checked</small></div>
-    <div><b>55+</b><small>warning signs detected</small></div>
-    <div><b>23</b><small>researched cases mapped</small></div>
-    <div><b>161</b><small>news reports analysed</small></div>
+    <div><b>8</b><small>situation types</small></div>
+    <div><b>55+</b><small>warning signs</small></div>
+    <div><b>23</b><small>researched cases</small></div>
+    <div><b>161</b><small>news reports</small></div>
     <div><b>23</b><small>survivor voices</small></div>
   </div>
   <div class="url">Carolina Pernambuco Moron (NYU) · Dr. Obianuju Okafor (Microsoft) · Elena Kennedy (Microsoft) · carolina-moron.github.io/vibe-check</div>
