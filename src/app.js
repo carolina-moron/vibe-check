@@ -56,11 +56,24 @@ const ACCESS = {
   planned: { label: "planned", cls: "a-plan" },
 };
 
+// On a case, the score counts the warning signs its sources document, so the tiers read differently from a live check.
+const CASE_TIER = { high: "Many warning signs documented", caution: "Some warning signs documented", low: "Few warning signs documented" };
+const caseTierLabel = (s) => CASE_TIER[s.tier.id] || s.tier.label;
 const scoreBadge = (s, cov) => `
   <div class="scorebox t-${esc(s.tier.id)}">
     <div class="num">${s.points}<small>/100</small></div>
-    <div><div class="tierlabel">${esc(s.tier.label)}</div><div class="cov c-${esc(cov.class)}" title="${esc(cov.explain)}">${esc(cov.label)}</div></div>
+    <div><div class="tierlabel">${esc(caseTierLabel(s))}</div><div class="cov c-${esc(cov.class)}" title="${esc(cov.explain)}">${esc(cov.label)}</div></div>
   </div>`;
+const scoreGuide = `<details class="scoreguide">
+    <summary>What do the score and “public records” mean?</summary>
+    <div class="scoreguide-body">
+      <div><h3>Warning-sign score (0–100)</h3>
+        <p>Each warning sign the sources document adds points: lures such as upfront fees or confiscated passports, official actions, and name changes. More documented signs mean a higher score, capped at 100. It measures how much evidence exists, not how bad a case was.</p>
+        <p class="concern-legend"><span class="scorechip t-high">45–100 · Many warning signs</span><span class="scorechip t-caution">20–44 · Some warning signs</span><span class="scorechip t-low">0–19 · Few warning signs</span></p></div>
+      <div><h3>Public records</h3>
+        <p>A separate question: could official registers (company, court and enforcement records) in the countries involved have recorded this? <strong>Many</strong> means three or more registers apply, <strong>some</strong> means one or two, and <strong>none</strong> means only global watchlists apply. Where there are no public records, a low score doesn't mean a case or company is safe.</p></div>
+    </div>
+  </details>`;
 
 const CONCERN = (w) => w >= 20 ? { cls: "c-high", label: "High concern" } : w >= 10 ? { cls: "c-med", label: "Medium concern" } : { cls: "c-low", label: "Low concern" };
 const concernLegend = `<p class="concern-legend"><span class="clevel c-high">High concern</span><span class="clevel c-med">Medium concern</span><span class="clevel c-low">Low concern</span></p>`;
@@ -253,6 +266,7 @@ function viewCases() {
     </section>
     <section>
       <div class="gridhead"><h2>Cases</h2><input id="filter" type="search" placeholder="Filter by name, alias, country…" aria-label="Filter cases"></div>
+      ${scoreGuide}
       <div class="cards" id="cards"></div>
     </section>`;
 
@@ -324,7 +338,7 @@ function viewCases() {
         <div class="cardtop"><span class="typ" style="--c:${TYPOLOGY[c.typology]?.color}">${esc(TYPOLOGY[c.typology]?.label)}</span><span class="mono muted">${esc(c.period)}</span></div>
         <h3>${esc(c.title)}</h3>
         <p class="route">${esc(route)}</p>
-        <div class="cardfoot"><span class="status">${esc(STATUS[c.status])}</span><span class="mini t-${esc(s.tier.id)}" title="Warning-sign score: ${s.points} out of 100">${s.points}<span class="sr"> out of 100 warning-sign score</span></span><span class="cov c-${esc(cov.class)}" title="${esc(cov.explain)}">${esc(cov.label)}</span></div>
+        <div class="cardfoot"><span class="status">${esc(STATUS[c.status])}</span><span class="mini t-${esc(s.tier.id)}" title="${esc(caseTierLabel(s))}: ${s.points} out of 100">${s.points}<small>/100</small><span class="sr"> warning-sign score, ${esc(caseTierLabel(s))}</span></span><span class="cov c-${esc(cov.class)}" title="${esc(cov.explain)}">${esc(cov.label)}</span></div>
       </a>`;
     }).join("") || `<p class="muted">No cases match.</p>`;
   };
@@ -362,8 +376,9 @@ function viewCase(id) {
       </section>
 
       <section class="panel">
-        <h2>Evidence score</h2>
-        <p class="fine">Counts what is documented: lure indicators, official actions and name history. <strong>${esc(cov.label)}:</strong> ${esc(cov.explain)}</p>
+        <h2>Warning-sign score</h2>
+        <p class="fine"><strong>${s.points}/100 · ${esc(caseTierLabel(s))}.</strong> Each warning sign the sources document adds points (lures, official actions, name changes), capped at 100. It measures how much evidence exists, not how serious the harm was.</p>
+        <p class="fine"><strong>${esc(cov.label)}.</strong> ${esc(cov.explain)}</p>
         ${flagList(s.flags)}
       </section>
 
@@ -1499,12 +1514,12 @@ function viewMethodology() {
       <p>So the check looks at organisations, websites and email domains only. Individuals appear only where an official source already names them in an indictment, judgment or sanctions designation, and only inside that case record. There is no person search, no offender-registry lookup and no criminal-history field. Sex-offender registry data (NSOPW) has no public API, and misusing it is an offence. Fifteen US states and New York City also restrict criminal-history questions before a conditional job offer. “Recruiter's name is not among the registered officers” is an acceptable check; “recruiter has a criminal record” is not.</p>
 
       <h2 id="m-score">Score and coverage</h2>
-      <p>The <strong>evidence score</strong> (0–100) adds up the weights of indicators found, capped at 100. Tiers: ${signals.tiers.map((t) => `<em>${esc(t.label)}</em> from ${t.min}`).join(", ")}. On a case page the score counts what the sources document (lures, official actions, name history). In a live check it counts what the registers and offer text returned.</p>
+      <p>The <strong>evidence score</strong> (0–100) adds up the weights of indicators found, capped at 100. Tiers: ${signals.tiers.filter((t) => t.min != null).map((t) => `<em>${esc(t.label)}</em> from ${t.min}`).join(", ")}, and <em>Unverified</em> whenever the organisation cannot be confirmed. Colours follow the tier: red for serious warning signs, yellow for caution, green for lower concern. On a case page the score counts what the sources document (lures, official actions, name history). In a live check it counts what the registers and offer text returned.</p>
       <p><strong>Coverage</strong> asks a separate question: could any open national register have recorded this entity? It is judged on the jurisdictions where the entities are based and where people were exploited.</p>
       <ul>
-        <li><em>Well covered</em>: three or more reachable jurisdiction-specific registers.</li>
-        <li><em>Partly covered</em>: one or two.</li>
-        <li><em>Structurally uncovered</em>: none. Only global watchlists apply.</li>
+        <li><em>Public records: many</em>: three or more reachable registers for those countries.</li>
+        <li><em>Public records: some</em>: one or two.</li>
+        <li><em>Public records: none</em>: no open national register. Only global watchlists apply.</li>
       </ul>
       <p>A low score in an uncovered jurisdiction means almost nothing. Coverage is never folded into the score, because that would make one number mean two things.</p>
 

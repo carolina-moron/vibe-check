@@ -677,3 +677,20 @@ canvas.voice-photo { display: block; }
 .callout { max-width: none; }
 /* long single articles stay readable, centred rather than left-aligned */
 .story-body { max-width: 960px; margin-inline: auto; }
+
+/* Score colours: dark red, yellow and green, solid fills in the site's square style */
+.scorebox.t-high, .mini.t-high, .scorechip.t-high { background: var(--c-high); border: 1px solid var(--c-high); color: #fff; }
+.scorebox.t-caution, .mini.t-caution, .scorechip.t-caution { background: var(--c-med); border: 1px solid var(--c-med); color: #fff; }
+.scorebox.t-low, .mini.t-low, .scorechip.t-low { background: var(--c-low); border: 1px solid var(--c-low); color: #fff; }
+.scorebox.t-caution > * { background: transparent; padding: 0; }
+.scorebox.t-high .fine, .scorebox.t-caution .fine, .scorebox.t-low .fine,
+.scorebox.t-high small, .scorebox.t-caution small, .scorebox.t-low small { color: #fff; }
+.scorebox.t-high .cov, .scorebox.t-caution .cov, .scorebox.t-low .cov { border-color: #fff; color: #fff; }
+.mini small { font-size: 0.75em; opacity: 0.85; }
+.scorechip { display: inline-block; font-size: var(--fs-0); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; }
+.scoreguide { border: var(--rule); margin: 0 0 16px; }
+.scoreguide summary { cursor: pointer; padding: 10px 16px; font-size: var(--fs-1); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.scoreguide-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; padding: 0 16px 16px; }
+.scoreguide-body h3 { margin-top: 4px; }
+.scoreguide-body p { font-size: var(--fs-1); margin: 0 0 10px; }
+@media (max-width: 860px) { .scoreguide-body { grid-template-columns: minmax(0, 1fr); } }

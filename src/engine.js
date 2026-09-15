@@ -415,11 +415,11 @@ export function coverage(jurisdictions, registersDoc, layers = ["identity", "enf
     && !r.covers.includes("*") && r.covers.some((c) => js.has(c)));
   const reachable = applicable.filter((r) => r.access !== "planned");
   const cls = reachable.length >= 3 ? "well" : reachable.length >= 1 ? "partial" : "uncovered";
-  const labels = { well: "Well covered", partial: "Partly covered", uncovered: "Structurally uncovered" };
+  const labels = { well: "Public records: many", partial: "Public records: some", uncovered: "Public records: none" };
   const explain = {
-    well: "National registers in these jurisdictions could have recorded this entity's identity and enforcement history.",
-    partial: "Only one or two jurisdiction-specific registers apply; a low score here is weak evidence.",
-    uncovered: "No open national register covers these jurisdictions. Only global watchlists apply, so absence of evidence says almost nothing.",
+    well: "The countries involved have three or more official registers (company, court or enforcement records) we can search, so a clean result means something.",
+    partial: "Only one or two official registers cover the countries involved, so a missing record is weak evidence either way.",
+    uncovered: "No open official register covers the countries involved. Only global watchlists apply, so finding nothing tells you almost nothing.",
   };
   return { class: cls, label: labels[cls], explain: explain[cls], applicable, reachable };
 }
