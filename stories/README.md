@@ -15,3 +15,7 @@ Each story here retells a real case from `data/cases/` in the first person. They
 | [The CFO on the video call](arup-deepfake-video-call.md) | Arup, Hong Kong | Deepfake fraud |
 
 To add a story, pick a case from `data/cases/`, use only facts from its sources, keep the narrator unnamed or clearly invented, and end with the warning signs and sources.
+
+## Scripts for AI avatar videos
+
+[voices-scripts.md](voices-scripts.md) has 15 short first-person monologues, one for each scam and exploitation type, written to be voiced by AI avatars. It includes production and safety notes.
