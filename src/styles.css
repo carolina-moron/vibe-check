@@ -750,7 +750,7 @@ canvas.voice-photo { display: block; }
 .globe { height: 760px; }
 .logos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 24px 0 0; }
 .logo-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: var(--rule); padding: 18px 12px; text-decoration: none; color: var(--ink); text-align: center; min-height: 128px; background: #fff; }
-.logo-item img { max-height: 56px; max-width: 80%; object-fit: contain; }
+.logo-item img { max-height: 64px; max-width: 85%; object-fit: contain; }
 .logo-item > span:last-child { font-size: var(--fs-0); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
 .logo-item .wordmark { font-size: 1.15rem; font-weight: 600; letter-spacing: -.01em; }
 .logo-item .wordmark.garage { font-family: "Segoe UI", var(--font); font-weight: 700; }
@@ -758,3 +758,22 @@ canvas.voice-photo { display: block; }
 .ms-mark i { display: block; aspect-ratio: 1; }
 .logo-item:hover { border-color: var(--accent); }
 @media (max-width: 860px) { .logos { grid-template-columns: 1fr 1fr; } }
+.scale { margin: 24px 0 0; border: var(--rule); padding: 18px 24px 8px; background: var(--ink); color: var(--on-ink); }
+.scale h2, .scale h3, .scale .fine, .scale a { color: var(--on-ink); }
+.scale .fine { opacity: .8; }
+.scale-head { margin-bottom: 14px; }
+.scale-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.scale-item { border: 1px solid rgba(255,255,255,.35); padding: 14px 16px; }
+.scale-big b { display: block; font-size: clamp(2rem, 1.4rem + 2.2vw, 3.4rem); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; color: #FFD166; }
+.scale-big span { display: block; font-size: var(--fs-0); letter-spacing: .12em; text-transform: uppercase; opacity: .8; margin: 4px 0 10px; }
+.scale-rates { display: flex; gap: 14px; flex-wrap: wrap; font-size: var(--fs-1); margin-bottom: 8px; }
+.scale-rates b { font-variant-numeric: tabular-nums; }
+.scale-what { margin: 0 0 6px; font-weight: 600; }
+.scale-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 16px 0 10px; }
+.scale-group { border-top: 1px solid rgba(255,255,255,.35); padding-top: 10px; }
+.scale-group h3 { margin: 0 0 6px; }
+.scale-group ul { margin: 0; padding: 0; list-style: none; }
+.scale-group li { font-size: var(--fs-1); margin-bottom: 8px; line-height: 1.45; }
+.scale-group li b { color: #FFD166; }
+.scale-group li a { opacity: .7; margin-left: 4px; }
+@media (max-width: 860px) { .scale-grid, .scale-groups { grid-template-columns: minmax(0, 1fr); } }

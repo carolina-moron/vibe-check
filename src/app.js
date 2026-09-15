@@ -1871,7 +1871,35 @@ async function viewStory(file) {
   main.innerHTML = md === null ? `${back}<p>This story could not load.</p>` : `${back}<article class="panel story-body">${mdToHtml(md)}</article>`;
 }
 
+// "The scale, right now": annual figures from data/scale.json become per-day/hour/minute rates and a live ticker.
+function mountScale() {
+  fetch("data/scale.json").then((r) => r.json()).then((d) => {
+    const grid = document.getElementById("scale-grid"), groups = document.getElementById("scale-groups");
+    if (!grid || !d.rates?.length) return;
+    document.getElementById("scale").hidden = false;
+    const fmt = (n) => n >= 100 ? Math.round(n).toLocaleString("en-US") : n >= 10 ? n.toFixed(1) : n.toFixed(2);
+    const opened = Date.now();
+    grid.innerHTML = d.rates.map((r, i) => {
+      const perDay = r.per_year / 365;
+      return `<div class="scale-item">
+        <div class="scale-big"><b id="tick-${i}">0</b><span>${esc(r.unit)} since you opened this page</span></div>
+        <div class="scale-rates"><span><b>${fmt(perDay)}</b> a day</span><span><b>${fmt(perDay / 24)}</b> an hour</span><span><b>${fmt(perDay / 1440)}</b> a minute</span></div>
+        <p class="scale-what">${esc(r.label)}</p>
+        <p class="fine">${esc(r.note)} Source: <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.source)}</a>.</p>
+      </div>`;
+    }).join("");
+    groups.innerHTML = d.groups.map((g) => `<div class="scale-group"><h3>${esc(g.title)}</h3><ul>${g.items.map((it) => `<li><b>${esc(it.figure)}</b> ${esc(it.text)} <a class="fine" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.source)}</a></li>`).join("")}</ul></div>`).join("");
+    const tick = () => {
+      const secs = (Date.now() - opened) / 1000;
+      d.rates.forEach((r, i) => { const el = document.getElementById(`tick-${i}`); if (el) el.textContent = Math.floor(secs * r.per_year / 31536000).toLocaleString("en-US"); });
+      if (document.getElementById("tick-0")) requestAnimationFrame(() => setTimeout(tick, 250));
+    };
+    tick();
+  }).catch(() => {});
+}
+
 function viewTeam() {
+  mountScale();
   loadConfig().then(({ agentUrl }) => fetch(agentUrl ? `${agentUrl.replace(/\/$/, "")}/public-stats` : "data/agent/stats.json")).then((r) => r.json()).then((st) => {
     const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = (v ?? 0).toLocaleString("en-US"); };
     set("imp-checks", st.checks_run); set("imp-signs", st.warning_signs_found); set("imp-acted", st.reports_acted_on);
@@ -1894,8 +1922,13 @@ function viewTeam() {
     <section class="logos" aria-label="Partners and hosts">
       <a class="logo-item" href="https://apneaap.org" target="_blank" rel="noopener"><img src="assets/partners/apne-aap.png" alt="Apne Aap Women Worldwide"><span>Nonprofit partner</span></a>
       <a class="logo-item" href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener"><span class="wordmark">Ethical Tech CoLab</span><span>Data partner</span></a>
-      <a class="logo-item" href="https://innovationstudio.microsoft.com/hackathons" target="_blank" rel="noopener"><span class="ms-mark"><i style="background:#F25022"></i><i style="background:#7FBA00"></i><i style="background:#00A4EF"></i><i style="background:#FFB900"></i></span><span class="wordmark">Microsoft Global Hackathon</span><span>Hack for Good</span></a>
-      <a class="logo-item" href="https://www.microsoft.com/en-us/garage/" target="_blank" rel="noopener"><span class="wordmark garage">&gt; The Garage</span><span>New York City</span></a>
+      <a class="logo-item" href="https://innovationstudio.microsoft.com/hackathons" target="_blank" rel="noopener"><img src="assets/partners/microsoft.png" alt="Microsoft"><span>Global Hackathon · Hack for Good</span></a>
+      <a class="logo-item" href="https://www.microsoft.com/en-us/garage/" target="_blank" rel="noopener"><img src="assets/partners/the-garage.png" alt="The Garage"><span>New York City</span></a>
+    </section>
+    <section class="scale" id="scale" hidden>
+      <div class="scale-head"><h2>The scale, right now</h2><p class="fine">Reported figures turned into rates. Counters tick from the moment you opened this page. Every number links to its source, and reported figures are a floor: most scams and most trafficking are never reported.</p></div>
+      <div class="scale-grid" id="scale-grid"><p class="fine">Loading figures…</p></div>
+      <div class="scale-groups" id="scale-groups"></div>
     </section>
     <section class="impact" id="impact">
       <h2>Impact so far</h2>
