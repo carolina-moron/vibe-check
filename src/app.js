@@ -1005,7 +1005,7 @@ function viewCheck(kind = "") {
           <figcaption class="figure-caption">Fig. 1 — an offer, a loop, a knot</figcaption>
         </figure>
         <div class="figure-balloon">
-          <p><strong>The phrase and significance:</strong> A single blue line drawn by hand. It starts loose (the offer looks easy), loops and tightens (you realize you're trapped), then continues taut to the edge (the only way out). This is how trafficking and scams work.</p>
+          <p><strong>The animation and symbology:</strong> This is how trafficking and scams work. A single blue line drawn by hand. It starts loose (the offer looks easy), loops and tightens (but then you realize you're trapped), then continues taut to the edge (the only way out).</p>
         </div>
       </div>
       <div class="kinds-head">
