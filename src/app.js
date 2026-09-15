@@ -154,16 +154,23 @@ function baseMap(el, opts = {}) {
   return map;
 }
 
-// A gentle great-circle-ish arc so overlapping legs stay readable.
+// A gentle arc between two points that takes the short way round, so Thailand to Hawaii
+// crosses the Pacific instead of the whole map. Legs that cross the date line are drawn
+// twice, shifted a world apart, so both ends of the line meet their pins.
 function arc(a, b, n = 24) {
-  const pts = [];
-  const [lat1, lon1] = a, [lat2, lon2] = b;
+  const [lat1, lon1] = a;
+  let [lat2, lon2] = b;
+  if (lon2 - lon1 > 180) lon2 -= 360;
+  else if (lon1 - lon2 > 180) lon2 += 360;
   const dx = lon2 - lon1, dy = lat2 - lat1, bend = 0.18;
+  const pts = [];
   for (let i = 0; i <= n; i++) {
     const t = i / n;
     pts.push([lat1 + dy * t + -dx * bend * t * (1 - t), lon1 + dx * t + dy * bend * t * (1 - t)]);
   }
-  return pts;
+  if (lon2 === b[1]) return [pts];
+  const shift = lon2 > b[1] ? -360 : 360;
+  return [pts, pts.map(([la, lo]) => [la, lo + shift])];
 }
 
 function drawJourney(map, c, { numbered = true, weight = 3, link = false } = {}) {
@@ -663,6 +670,7 @@ async function viewHelp() {
 // ---- views: news patterns --------------------------------------------------------------
 
 const NEWS_TYP = {
+  "deepfake-fraud": "Deepfakes and voice clones",
   "scam-compound": "Scam compounds", "labor-trafficking": "Labour trafficking", "military-recruitment": "Recruited to fight",
   "money-mule": "Money mules", "sex-trafficking": "Sex trafficking", "organ-trafficking": "Organ trafficking", "cartel-recruitment": "Cartel recruitment",
 };
@@ -756,7 +764,7 @@ async function viewNews(arg = "") {
     <section class="hero small">
       <div class="eyebrow mono">News patterns · last ${n.window_days} days · updated ${esc(gen.toISOString().slice(0, 10))}</div>
       <h1>What the news is reporting</h1>
-      <p class="lede">${n.n_articles} recent news reports on trafficking, forced labour and fake-job recruitment, gathered with ${esc(n.provider)} and read by rules for countries, direction of movement, typology and lure indicators. The map shows where reporting points, not where most cases are.</p>
+      <p class="lede">${n.n_articles} recent news reports on trafficking, forced labour, fake-job recruitment and deepfake scams, gathered with ${esc(n.provider)} and read by rules for countries, direction of movement, typology and lure indicators. The map shows where reporting points, not where most cases are.</p>
     </section>
     <div class="callout">This is <strong>media attention, not case counts</strong>. Coverage follows English-language outlets, government press releases and whatever is in the news cycle. Country roles and corridors are extracted automatically from headlines and snippets and can be wrong; each corridor lists the words it came from. Nothing here feeds a score.</div>
 
@@ -833,10 +841,11 @@ async function viewNews(arg = "") {
       if (!p1 || !p2) continue;
       const line = L.polyline(arc(p1, p2), { color: "#2A66B8", weight: 1 + c.count * 1.2, opacity: 0.7, dashArray: c.count > 1 ? null : "5 6" }).addTo(map);
       line.bindTooltip(`${esc(country(c.from))} → ${esc(country(c.to))}: ${c.count} article${c.count > 1 ? "s" : ""}`, { sticky: true });
-      const tip = arc(p1, p2);
-      const [ya, xa] = tip[tip.length - 3], [yb, xb] = tip[tip.length - 1];
-      const ang = Math.atan2(yb - ya, xb - xa) * 180 / Math.PI;
-      L.marker([yb, xb], { icon: L.divIcon({ className: "arrow", html: `<span style="transform:rotate(${-ang}deg)">➤</span>`, iconSize: [14, 14] }), interactive: false }).addTo(map);
+      for (const tip of arc(p1, p2)) {
+        const [ya, xa] = tip[tip.length - 3], [yb, xb] = tip[tip.length - 1];
+        const ang = Math.atan2(yb - ya, xb - xa) * 180 / Math.PI;
+        L.marker([yb, xb], { icon: L.divIcon({ className: "arrow", html: `<span style="transform:rotate(${-ang}deg)">➤</span>`, iconSize: [14, 14] }), interactive: false }).addTo(map);
+      }
     }
     for (const [k, v] of Object.entries(a.byCountry)) {
       const pt = n.points[k]; if (!pt) continue;

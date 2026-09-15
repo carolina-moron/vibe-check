@@ -77,6 +77,7 @@ const TYPOLOGY_RULES = [
   ["sex-trafficking", /\b(sex(ual)? (trafficking|exploitation)|forced prostitution|brothels?)\b/i],
   ["money-mule", /\b(money mules?|mule accounts?|money laundering)\b/i],
   ["organ-trafficking", /\b(organ (trafficking|harvesting|removal))\b/i],
+  ["deepfake-fraud", /\b(deep ?fakes?|voice[- ]clon(e|ed|ing)|cloned (voice|his voice|her voice)|AI[- ](generated|cloned) (video|voice|image)s?)\b/i],
   ["cartel-recruitment", /\b(cartels?|gangs? recruit)/i],
 ];
 const EVENT_RULES = [

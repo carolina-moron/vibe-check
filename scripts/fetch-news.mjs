@@ -30,10 +30,14 @@ const QUERIES = [
   "sex trafficking fake modelling job offer",
   "online job scam trafficking warning government",
   "human trafficking ring busted job promises",
+  "deepfake video scam celebrity investment",
+  "AI voice cloning scam family emergency money",
+  "deepfake video call fraud company transfer",
+  "deepfake romance scam arrested",
 ];
 
 // Search-hit snippets that are about something else entirely.
-const RELEVANT = /\b(traffick|forced labou?r|scam (centre|center|compound)|lured|fake jobs?|job (scam|offer)|recruit|debt bondage|money mules?|exploitat|smuggl|slavery|rescued)/i;
+const RELEVANT = /\b(deep ?fakes?|voice[- ]clon|AI[- ]generated|traffick|forced labou?r|scam (centre|center|compound)|lured|fake jobs?|job (scam|offer)|recruit|debt bondage|money mules?|exploitat|smuggl|slavery|rescued)/i;
 
 async function search(query) {
   const res = await fetch("https://api.tavily.com/search", {
