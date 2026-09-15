@@ -1813,10 +1813,9 @@ function viewTeam() {
       <p>The Vibe Check team includes:</p>
       <ul>
         <li><strong>Carolina Moron</strong> — Lead, product and research</li>
-        <li><strong><a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a> team</strong> — Context, compliance, case research</li>
         <li><strong>Hackathon participants</strong> — Design, frontend, and testing</li>
       </ul>
-      <p>We are grateful for support from the <a href="https://ethical-tech-colab.github.io/" target="_blank" rel="noopener">Ethical Technology Collaborative</a> and the broader community that reports cases and shares feedback.</p>
+      <p>Vibe Check draws on open data published by the <a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a> (the Forced Labor Structural Risk Index and Avatar Impact Stories), and on the community that reports cases and shares feedback.</p>
     </article>
     <article class="panel">
       <h2>Get involved</h2>
