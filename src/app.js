@@ -1568,24 +1568,26 @@ function viewMethodology() {
 
 async function viewVoices() {
   const voicesData = await fetch("data/voices.json").then((r) => r.json());
+  const allVoices = [...voicesData.voices, ...(voicesData.survivors || [])];
 
   main.innerHTML = `
     <section class="hero small">
       <div class="eyebrow mono">Diverse perspectives</div>
       <h1>Many voices on the issue</h1>
-      <p class="lede">Click on any voice to hear their full story. Trafficking and scams affect people across different contexts. Here are perspectives from researchers, practitioners, and teams at the Ethical Tech Collaborative.</p>
+      <p class="lede">Click on any voice to hear their full story. Trafficking and scams affect people across different contexts. Here are perspectives from researchers, practitioners, and survivors from the Ethical Tech Collaborative and Avatar Impact Stories.</p>
     </section>
 
     <section class="voices-grid">
-      ${voicesData.voices.map((v) => `
+      ${allVoices.map((v) => `
         <button class="voice-card clickable" data-voice-id="${esc(v.id)}" style="--avatar-color: ${v.color}">
           <div class="voice-image">
-            <div class="voice-avatar">${v.avatar}</div>
+            ${v.image ? `<img src="${esc(v.image)}" alt="${esc(v.name)}" class="voice-photo">` : `<div class="voice-avatar">${v.avatar}</div>`}
           </div>
           <div class="voice-info">
+            <blockquote class="voice-quote">"${esc(v.quote.substring(0, 100))}${v.quote.length > 100 ? '...' : ''}"</blockquote>
             <h3>${esc(v.name)}</h3>
             <p class="voice-role">${esc(v.role)}</p>
-            <p class="voice-action">Click to hear story</p>
+            <p class="voice-action">▶ Hear story</p>
           </div>
         </button>
       `).join("")}
@@ -1621,7 +1623,7 @@ async function viewVoices() {
   document.querySelectorAll(".voice-card.clickable").forEach((card) => {
     card.addEventListener("click", () => {
       const voiceId = card.dataset.voiceId;
-      const voice = voicesData.voices.find((v) => v.id === voiceId);
+      const voice = allVoices.find((v) => v.id === voiceId);
       if (!voice) return;
 
       $("#modal-voice-header").innerHTML = `
