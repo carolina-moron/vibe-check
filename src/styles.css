@@ -692,3 +692,4 @@ input[type=checkbox] { accent-color: var(--accent); }
 #story-video { width: 100%; max-height: 70vh; background: #000; display: block; }
 .modal-header h3 { margin: 0 0 4px; text-transform: none; letter-spacing: 0; }
 .voice-card .voice-image { height: 220px; background: var(--ink); }
+.modal[hidden] { display: none; }
