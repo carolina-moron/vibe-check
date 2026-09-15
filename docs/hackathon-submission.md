@@ -18,7 +18,7 @@ Trafficking and scams start the same way: an offer that looks easy, a friendly m
 
 ## Nonprofit partner
 
-**Apne Aap Women Worldwide** (apneaap.org) works to end sex trafficking by organising women and girls in India's most vulnerable communities. They bring the frontline: who is recruited, how, and what a warning looks like from inside a community. VibeCheck turns that knowledge into checks anyone can run and reports a reviewer can send. The **Ethical Tech CoLab** provides the open data the site is built on (the Forced Labor Structural Risk Index and Avatar Impact Stories).
+**Apne Aap Women Worldwide** (apneaap.org), founded by Ruchira Gupta, works to end sex trafficking by organising women and girls in India's most vulnerable communities. They bring the frontline: who is recruited, how, and what a warning looks like from inside a community. VibeCheck turns that knowledge into checks anyone can run and reports a reviewer can send. The **Ethical Tech CoLab** provides the open data the site is built on (the Forced Labor Structural Risk Index and Avatar Impact Stories).
 
 ## What it does
 
