@@ -1822,7 +1822,7 @@ function viewTeam() {
     </article>
     <article class="panel">
       <h2>Get involved</h2>
-      <p>Found a scam or trafficking case? <a href="#/report">Report wrong vibes</a>. Want to help improve Vibe Check? Contribute on <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">GitHub</a>.</p>
+      <p>Found a scam or trafficking case? <a href="#/report">Report wrong vibes</a>. Run a platform, a career office or an NGO? See <a href="#/partnerships">how to integrate Vibe Check</a> and the agent that checks postings and drafts reports for your review. Want to help improve Vibe Check? Contribute on <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">GitHub</a>.</p>
     </article>
 
     <article class="panel">
@@ -1848,7 +1848,23 @@ function viewPartnerships() {
         <li><strong>Email domain checks</strong> — Flag free email or newly-registered domains used by company recruiters</li>
         <li><strong>User warning</strong> — Show Vibe Check score (high concern, caution, or unverified) before application</li>
       </ul>
-      <p class="fine">API documentation coming soon. Interested? <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">Open an issue on GitHub</a>.</p>
+      <p class="fine">The skills are documented in <a href="https://github.com/carolina-moron/vibe-check/blob/main/docs/agent-openapi.yaml" target="_blank" rel="noopener">docs/agent-openapi.yaml</a>. Interested? <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">Open an issue on GitHub</a>.</p>
+    </article>
+
+    <article class="panel agentflow">
+      <h2>How the automation works: the Vibe Check agent</h2>
+      <p>An agent runs the same check as this site on job postings, keeps anonymised results, and drafts reports. It works with platforms, not around them, and a person approves every report before it goes anywhere.</p>
+      <ol class="flow">
+        <li><b>1 · Intake</b>Postings arrive from job boards with public APIs (Greenhouse, Lever, Ashby), from people who share a posting, or from a partner feed such as Handshake's institutional API. No scraping of LinkedIn or Handshake.</li>
+        <li><b>2 · Check</b>Warning-sign rules from ILO, FTC and FBI guidance, official registers, domain age, email checks, country context. A score out of 100 with every point explained.</li>
+        <li><b>3 · Store</b>An anonymised record: personal details removed, never the person who shared it.</li>
+        <li><b>4 · Review</b>Postings with warning signs wait in a queue. Reviewers see the evidence in Teams and press Approve or Dismiss.</li>
+        <li><b>5 · Report</b>Drafts for the platform's abuse form, for the company whose name is being used, and for the FTC or FBI IC3. Each says the signs come from an automated check, not a finding.</li>
+        <li><b>6 · Learn</b>What the platform or company did is logged, so warning signs reviewers keep dismissing are tuned down.</li>
+      </ol>
+      <h3>Built as Copilot Studio skills</h3>
+      <div class="skills">${[["vibe_check", "Check a posting: score, warning signs, drafted reports, review card"], ["list_review_queue", "What's waiting for a reviewer"], ["get_queued_item", "The evidence for one item"], ["queue_for_review_decision", "Approve or dismiss"], ["send_report", "Release drafts for an approved item only"], ["record_outcome", "What the platform or company did"], ["agent_stats", "Reviewer agreement and noisy warning signs"], ["find_impersonated_company", "Planned: match a claimed employer to the real company's abuse contact"], ["share_posting", "Planned: browser extension and Teams message extension for LinkedIn and Handshake"]].map(([n, d]) => `<div><code>${n}</code><span>${d}</span></div>`).join("")}</div>
+      <p class="fine">Design and rules in <a href="https://github.com/carolina-moron/vibe-check/blob/main/docs/agent.md" target="_blank" rel="noopener">docs/agent.md</a>; the same steps run from the command line with <code>scripts/agent.mjs</code>.</p>
     </article>
 
     <article class="panel">

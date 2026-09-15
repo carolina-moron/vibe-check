@@ -697,3 +697,10 @@ canvas.voice-photo { display: block; }
 .articles .row .tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
 .newspop { margin: 6px 0; padding-left: 1.1em; max-width: 280px; }
 .poster { margin: 24px 0 8px; } .poster img { width: 100%; border: var(--rule); display: block; }
+.flow { list-style: none; margin: 12px 0 8px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.flow li { border: var(--rule); padding: 12px 14px; font-size: var(--fs-1); line-height: 1.45; }
+.flow li b { display: block; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; font-size: var(--fs-0); margin-bottom: 6px; }
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 8px 0 12px; }
+.skills div { border: var(--rule); padding: 8px 10px; font-size: var(--fs-0); line-height: 1.4; }
+.skills code { display: block; border: 0; padding: 0; color: var(--accent); font-weight: 600; margin-bottom: 2px; }
+@media (max-width: 860px) { .flow, .skills { grid-template-columns: minmax(0, 1fr); } }
