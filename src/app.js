@@ -956,7 +956,7 @@ function viewCheck(kind = "") {
         </div>
       </div>
       <div class="kinds-head">
-        <h2>Vibe Checker</h2>
+        <h1>Vibe Checker</h1>
         <a class="ghostlink" href="#/report">Report wrong vibes</a>
       </div>
       ${kindsNav}
