@@ -247,7 +247,8 @@ function viewCases() {
       <div class="maphead">
         <div><h2>Global map of case journeys</h2>
           <label class="check toggle"><input type="checkbox" id="fl-toggle"> Shade countries by structural forced-labour risk (${flLink()})</label>
-          <label class="check toggle"><input type="checkbox" id="ctdc-toggle"> Show victim corridors from the Counter-Trafficking Data Collaborative (CTDC)</label></div>
+          <label class="check toggle"><input type="checkbox" id="ctdc-toggle"> Show victim corridors from the Counter-Trafficking Data Collaborative (CTDC)</label>
+          <label class="check toggle"><input type="checkbox" id="news-toggle" checked> Show recent news reports (not checked) <span class="fine" id="news-count"></span></label></div>
         <div class="legend" id="legend">${Object.entries(counts).map(([t, n]) => `
           <button type="button" class="lg on" data-typ="${esc(t)}" aria-pressed="true"><i style="background:${TYPOLOGY[t].color}"></i>${esc(TYPOLOGY[t].label)} <span class="mono">${n}</span></button>`).join("")}
         </div>
@@ -258,7 +259,7 @@ function viewCases() {
         <span class="fine">Structural conditions, not prevalence. Build ${esc(flSrc.build_date)}. Under-reads destination and sponsorship systems such as the Gulf.</span>
       </div>
       <p class="fine pad">For victim-level trafficking patterns between countries, see the <a href="https://www.ctdatacollaborative.org/map" target="_blank" rel="noopener">Counter-Trafficking Data Collaborative (CTDC) map</a>, run by IOM. Source: Counter-Trafficking Data Collaborative (CTDC), September 2026.</p>
-      <p class="fine pad">Pins are approximate, city or country level. Lines join the stages of each journey in order; dashed segments lead to where the case was prosecuted or sanctioned. Click a pin for the stage, or a card below for the full case.</p>
+      <p class="fine pad">Pins are approximate, city or country level. Lines join the stages of each journey in order; dashed segments lead to where the case was prosecuted or sanctioned. Click a pin for the stage, or a card below for the full case. Faint grey circles are countries named in recent news reports: collected automatically and not checked, so they are shown apart from the ${cases.length} researched cases (see <a href="#/methodology">Methodology</a>, Limits).</p>
     </section>
     <section class="panel ctdc-panel" id="ctdc-panel" hidden>
       <h2>Victim corridors (CTDC)</h2>
@@ -278,6 +279,26 @@ function viewCases() {
       (groups[c.typology] ||= []).push(g);
     });
   }
+  // News reports layer: countries named in recent articles, kept visually apart from the checked cases.
+  let newsLayer = null;
+  const showNews = async (on) => {
+    if (!map) return;
+    if (!on) { newsLayer?.remove(); return; }
+    if (!newsLayer) {
+      const n = await loadNews();
+      $("#news-count").textContent = `(${n.n_articles} articles)`;
+      const byCountry = {};
+      n.articles.forEach((x, i) => x.places.forEach((pl) => (byCountry[pl.iso2] ||= []).push(i)));
+      const top = Math.max(...Object.values(byCountry).map((v) => v.length));
+      newsLayer = L.layerGroup(Object.entries(byCountry).filter(([k]) => n.points[k]).map(([k, idx]) =>
+        L.circleMarker(n.points[k], { radius: 3 + Math.sqrt(idx.length / top) * 14, color: "#8C97A6", weight: 1, dashArray: "2 3", fillColor: "#8C97A6", fillOpacity: 0.18 })
+          .bindPopup(`<strong>${esc(country(k))}</strong>: ${idx.length} news report${idx.length > 1 ? "s" : ""} (not checked)<ul class="newspop">${idx.slice(0, 5).map((i) => `<li>${ext(n.articles[i].url, n.articles[i].title)}</li>`).join("")}</ul>${idx.length > 5 ? `<a href="#/news/country/${esc(k)}">All ${idx.length} reports →</a>` : ""}`)));
+    }
+    newsLayer.addTo(map);
+    newsLayer.eachLayer((l) => l.bringToBack());
+  };
+  $("#news-toggle").addEventListener("change", (e) => showNews(e.target.checked));
+  showNews(true);
   let ctdcLayer = null;
   $("#ctdc-toggle").addEventListener("change", async (e) => {
     const panel = $("#ctdc-panel");
@@ -1627,6 +1648,7 @@ function viewMethodology() {
         <li>Rules match patterns in text, not intent. Legitimate overseas jobs do provide flights and housing, and every indicator needs context.</li>
         <li>Browser checks reach only registers with open, CORS-enabled APIs. Companies House, OpenSanctions, SEC name search and DOL data need the planned backend.</li>
         <li>Name matching is exact or near-exact on normalised names, so it misses transliterations and catches unrelated companies with similar names. A match is a lead to verify, not an identification.</li>
+        <li><strong>Cases and news are different.</strong> The case catalog holds ${cases.length} cases researched by hand, each with a sourced journey, named entities and official actions. The news layer and the News patterns page hold far more reports, gathered automatically and read by rules. Those rules can misread countries and roles, one event can appear in several articles, and a report is not a verified case. News reports are shown as a separate, faint layer and never feed a score. Turning reports into researched cases is done by hand, a batch at a time.</li>
         <li>Handshake's employer vetting is internal, and its EDU API is issued to institutions (for example NYU career services). Glassdoor and Indeed have no review API and prohibit scraping, so they are link-outs at most.</li>
       </ul>
     </article>`;
