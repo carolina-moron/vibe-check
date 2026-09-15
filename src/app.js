@@ -1666,12 +1666,27 @@ async function viewNotAlone(scrollTo) {
   }
   grid.innerHTML = videos.map((s, i) => `
     <button class="voice-card clickable" type="button" data-i="${i}">
-      <div class="voice-image"><img class="voice-photo" src="${esc(STORIES_BASE + (s.posterWebp || s.poster))}" alt="" loading="lazy"></div>
+      <div class="voice-image"><canvas class="voice-photo" data-src="${esc(STORIES_BASE + (s.posterWebp || s.poster))}" aria-hidden="true"></canvas></div>
       <div class="voice-info">
         <h3>${esc(s.title)}</h3>
         <p class="voice-action">▶ Watch story</p>
       </div>
     </button>`).join("");
+
+  // Posters are animated. Draw just the first frame as a still photo; the video moves only once opened.
+  const still = (canvas) => {
+    const img = new Image();
+    img.onload = () => {
+      const w = canvas.clientWidth || 300, h = canvas.clientHeight || 220, dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      const scale = Math.max(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
+      const dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
+      canvas.getContext("2d").drawImage(img, (canvas.width - dw) / 2, (canvas.height - dh) * 0.2, dw, dh);
+    };
+    img.src = canvas.dataset.src;
+  };
+  const io = "IntersectionObserver" in window && new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { io.unobserve(e.target); still(e.target); } }), { rootMargin: "300px" });
+  grid.querySelectorAll("canvas[data-src]").forEach((c) => (io ? io.observe(c) : still(c)));
 
   const modal = $("#voice-modal"), video = $("#story-video");
   let opener = null;

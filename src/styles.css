@@ -654,3 +654,4 @@ input[type=checkbox] { accent-color: var(--accent); }
 .scamcard { min-width: 0; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .map-caveat { margin: 0; border-left-width: 4px; border-top: 0; border-right: 0; border-bottom: 0; }
+canvas.voice-photo { display: block; }
