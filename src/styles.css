@@ -704,3 +704,8 @@ canvas.voice-photo { display: block; }
 .skills div { border: var(--rule); padding: 8px 10px; font-size: var(--fs-0); line-height: 1.4; }
 .skills code { display: block; border: 0; padding: 0; color: var(--accent); font-weight: 600; margin-bottom: 2px; }
 @media (max-width: 860px) { .flow, .skills { grid-template-columns: minmax(0, 1fr); } }
+.ms-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.ms-cols h3 { margin-top: 4px; }
+.ms-cols ul { margin: 0; padding-left: 1.1em; font-size: var(--fs-1); line-height: 1.5; }
+.ms-cols li { margin-bottom: 8px; }
+@media (max-width: 860px) { .ms-cols { grid-template-columns: minmax(0, 1fr); } .bar nav { mask-image: linear-gradient(90deg, #000 85%, transparent); -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); } }

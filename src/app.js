@@ -1820,6 +1820,28 @@ function viewTeam() {
       </ul>
       <p>Vibe Check draws on open data published by the <a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a> (the Forced Labor Structural Risk Index and Avatar Impact Stories), and on the community that reports cases and shares feedback.</p>
     </article>
+    <article class="panel msstack">
+      <h2>Built with Microsoft tools</h2>
+      <div class="ms-cols">
+        <div><h3>In use today</h3><ul>
+          <li><strong>GitHub</strong> holds the source, the case data and the issues; <strong>GitHub Pages</strong> serves the site with no build step.</li>
+          <li><strong>VS Code</strong> with <strong>GitHub Copilot</strong> is where it is built and tested.</li>
+        </ul></div>
+        <div><h3>The agent, ready for your tenant</h3><ul>
+          <li><strong>Copilot Studio</strong> runs the agent; its skills are described in <code>docs/agent-openapi.yaml</code>.</li>
+          <li><strong>Azure Functions</strong> host the skills (<code>scripts/agent-server.mjs</code>).</li>
+          <li><strong>Microsoft Teams</strong> is the review channel: an Adaptive Card per posting with Approve and Dismiss.</li>
+          <li><strong>Azure Cosmos DB</strong> (or Table Storage) keeps the anonymised records and the anonymous reports.</li>
+          <li><strong>Microsoft Graph</strong> sends approved reports from a shared mailbox; <strong>Entra ID</strong> signs reviewers in so every approval has a name.</li>
+        </ul></div>
+        <div><h3>Next</h3><ul>
+          <li><strong>Azure AI Translator</strong> for Spanish and other languages.</li>
+          <li><strong>Azure OpenAI</strong> to read a screenshot or a long chat and pull out what the rules need; the rules still set the score, so results stay explainable.</li>
+          <li><strong>Power Automate</strong> connectors to file platform and FTC reports after approval.</li>
+          <li><strong>GitHub Actions</strong> for the nightly agent run and the weekly news refresh.</li>
+        </ul></div>
+      </div>
+    </article>
     <article class="panel">
       <h2>Get involved</h2>
       <p>Found a scam or trafficking case? <a href="#/report">Report wrong vibes</a>. Run a platform, a career office or an NGO? See <a href="#/partnerships">how to integrate Vibe Check</a> and the agent that checks postings and drafts reports for your review. Want to help improve Vibe Check? Contribute on <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">GitHub</a>.</p>
@@ -1862,7 +1884,7 @@ function viewPartnerships() {
         <li><b>5 · Report</b>Drafts for the platform's abuse form, for the company whose name is being used, and for the FTC or FBI IC3. Each says the signs come from an automated check, not a finding.</li>
         <li><b>6 · Learn</b>What the platform or company did is logged, so warning signs reviewers keep dismissing are tuned down.</li>
       </ol>
-      <h3>Built as Copilot Studio skills</h3>
+      <h3>Built as Copilot Studio skills, hosted on Azure Functions, reviewed in Teams</h3>
       <div class="skills">${[["vibe_check", "Check a posting: score, warning signs, drafted reports, review card"], ["list_review_queue", "What's waiting for a reviewer"], ["get_queued_item", "The evidence for one item"], ["queue_for_review_decision", "Approve or dismiss"], ["send_report", "Release drafts for an approved item only"], ["record_outcome", "What the platform or company did"], ["agent_stats", "Reviewer agreement and noisy warning signs"], ["find_impersonated_company", "Planned: match a claimed employer to the real company's abuse contact"], ["share_posting", "Planned: browser extension and Teams message extension for LinkedIn and Handshake"]].map(([n, d]) => `<div><code>${n}</code><span>${d}</span></div>`).join("")}</div>
       <p class="fine">Design and rules in <a href="https://github.com/carolina-moron/vibe-check/blob/main/docs/agent.md" target="_blank" rel="noopener">docs/agent.md</a>; the same steps run from the command line with <code>scripts/agent.mjs</code>.</p>
     </article>
