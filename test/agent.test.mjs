@@ -35,5 +35,5 @@ test("skills API: check, review, refuses to send unapproved, stats", async () =>
   assert.equal(r.record.status, "dismissed");
   const s = await handle("GET", "/stats");
   assert.ok(s.reviewed >= 1);
-  await assert.rejects(handle("GET", "/nope"), /not found/);
+  assert.throws(() => handle("GET", "/nope"), /not found/);
 });
