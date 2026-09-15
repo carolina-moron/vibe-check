@@ -1,0 +1,55 @@
+{
+  "note": "Every figure was checked on the linked page (or the official PDF where the page blocks robots). Rates are annual figures divided by 365 days; they are reported cases, so real numbers are higher. No source measures how many people are newly trafficked per day: trafficking figures are people held at a point in time, or victims detected by authorities.",
+  "rates": [
+    {
+      "label": "Internet crime complaints to the FBI (United States only)",
+      "unit": "complaints",
+      "per_year": 859532,
+      "note": "859,532 complaints and $16.6 billion in reported losses in 2024, a record.",
+      "source": "FBI IC3, 2024 Internet Crime Report",
+      "url": "https://www.ic3.gov/AnnualReport/Reports/2024_IC3Report.pdf"
+    },
+    {
+      "label": "Money stolen by scammers worldwide (US dollars)",
+      "unit": "dollars",
+      "per_year": 1030000000000,
+      "note": "Over $1.03 trillion in twelve months; only 4% of victims recovered their losses.",
+      "source": "Global Anti-Scam Alliance, Global State of Scams 2024",
+      "url": "https://gasa.org/knowledge-base/blog/global-state-of-scams-report-2024-1-trillion-stolen-in-12-months-gasa-feedzai"
+    },
+    {
+      "label": "Reports of online child sexual exploitation to NCMEC's CyberTipline",
+      "unit": "reports",
+      "per_year": 20500000,
+      "note": "20.5 million reports in 2024, including nearly 100 reports of financial sextortion a day.",
+      "source": "NCMEC, 2024 in numbers",
+      "url": "https://www.missingkids.org/blog/2025/ncmec-releases-new-data-2024-in-numbers"
+    }
+  ],
+  "groups": [
+    {
+      "title": "Children",
+      "items": [
+        { "figure": "38%", "text": "of trafficking victims detected worldwide in 2022 were children; detected child victims rose 31% from 2019, and 38% for girls.", "source": "UNODC Global Report on Trafficking in Persons 2024", "url": "https://www.unodc.org/unodc/en/press/releases/2024/December/unodc-global-human-trafficking-report_-detected-victims-up-25-per-cent-as-more-children-are-exploited-and-forced-labour-cases-spike.html" },
+        { "figure": "3.3 million", "text": "children in forced labour on any given day in 2021, almost one in eight of all people in forced labour; more than half of them in commercial sexual exploitation.", "source": "ILO, Walk Free and IOM, Global Estimates of Modern Slavery 2022", "url": "https://www.ilo.org/resource/news/50-million-people-worldwide-modern-slavery-0" },
+        { "figure": "~100 a day", "text": "reports of financial sextortion of children received by NCMEC over the last year.", "source": "NCMEC, 2024 in numbers", "url": "https://www.missingkids.org/blog/2025/ncmec-releases-new-data-2024-in-numbers" }
+      ]
+    },
+    {
+      "title": "Older adults",
+      "items": [
+        { "figure": "147,127", "text": "internet crime complaints from people over 60 in the United States in 2024, about 403 a day, up 46% in a year.", "source": "FBI IC3, 2024 Internet Crime Report", "url": "https://www.ic3.gov/AnnualReport/Reports/2024_IC3Report.pdf" },
+        { "figure": "$4.885 billion", "text": "lost by people over 60 in 2024, the most of any age group, up 43% in a year.", "source": "FBI IC3, 2024 Internet Crime Report", "url": "https://www.ic3.gov/AnnualReport/Reports/2024_IC3Report.pdf" },
+        { "figure": "2.6 million", "text": "people reported fraud to the FTC in 2024, losing more than $12.5 billion; 38% of those who reported lost money, up from 27% the year before.", "source": "FTC, March 2025", "url": "https://www.ftc.gov/news-events/news/press-releases/2025/03/new-ftc-data-show-big-jump-reported-losses-fraud-125-billion-2024" }
+      ]
+    },
+    {
+      "title": "People in vulnerable situations",
+      "items": [
+        { "figure": "50 million", "text": "people were living in modern slavery on any given day in 2021: 27.6 million in forced labour and 22 million in forced marriage. Up 10 million since 2016.", "source": "ILO, Walk Free and IOM, Global Estimates of Modern Slavery 2022", "url": "https://www.walkfree.org/global-slavery-index/" },
+        { "figure": "61%", "text": "of trafficking victims detected worldwide in 2022 were women and girls; detected victims overall rose 25% from 2019.", "source": "UNODC Global Report on Trafficking in Persons 2024", "url": "https://www.unodc.org/unodc/en/press/releases/2024/December/unodc-global-human-trafficking-report_-detected-victims-up-25-per-cent-as-more-children-are-exploited-and-forced-labour-cases-spike.html" },
+        { "figure": "220,000+", "text": "people may be held in scam compounds and forced to run online scams: at least 120,000 in Myanmar and 100,000 in Cambodia, many lured by fake job offers.", "source": "UN Human Rights Office, August 2023", "url": "https://news.un.org/en/story/2023/08/1140187" }
+      ]
+    }
+  ]
+}

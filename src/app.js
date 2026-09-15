@@ -1877,13 +1877,13 @@ function mountScale() {
     const grid = document.getElementById("scale-grid"), groups = document.getElementById("scale-groups");
     if (!grid || !d.rates?.length) return;
     document.getElementById("scale").hidden = false;
-    const fmt = (n) => n >= 100 ? Math.round(n).toLocaleString("en-US") : n >= 10 ? n.toFixed(1) : n.toFixed(2);
+    const fmt = (n, unit) => (unit === "dollars" ? "$" : "") + (n >= 1e9 ? (n / 1e9).toFixed(2) + " billion" : n >= 1e6 ? (n / 1e6).toFixed(1) + " million" : n >= 100 ? Math.round(n).toLocaleString("en-US") : n >= 10 ? n.toFixed(1) : n.toFixed(2));
     const opened = Date.now();
     grid.innerHTML = d.rates.map((r, i) => {
       const perDay = r.per_year / 365;
       return `<div class="scale-item">
-        <div class="scale-big"><b id="tick-${i}">0</b><span>${esc(r.unit)} since you opened this page</span></div>
-        <div class="scale-rates"><span><b>${fmt(perDay)}</b> a day</span><span><b>${fmt(perDay / 24)}</b> an hour</span><span><b>${fmt(perDay / 1440)}</b> a minute</span></div>
+        <div class="scale-big"><b id="tick-${i}">0</b><span>${r.unit === "dollars" ? "stolen" : esc(r.unit)} since you opened this page</span></div>
+        <div class="scale-rates"><span><b>${fmt(perDay, r.unit)}</b> a day</span><span><b>${fmt(perDay / 24, r.unit)}</b> an hour</span><span><b>${fmt(perDay / 1440, r.unit)}</b> a minute</span></div>
         <p class="scale-what">${esc(r.label)}</p>
         <p class="fine">${esc(r.note)} Source: <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.source)}</a>.</p>
       </div>`;
@@ -1891,7 +1891,7 @@ function mountScale() {
     groups.innerHTML = d.groups.map((g) => `<div class="scale-group"><h3>${esc(g.title)}</h3><ul>${g.items.map((it) => `<li><b>${esc(it.figure)}</b> ${esc(it.text)} <a class="fine" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.source)}</a></li>`).join("")}</ul></div>`).join("");
     const tick = () => {
       const secs = (Date.now() - opened) / 1000;
-      d.rates.forEach((r, i) => { const el = document.getElementById(`tick-${i}`); if (el) el.textContent = Math.floor(secs * r.per_year / 31536000).toLocaleString("en-US"); });
+      d.rates.forEach((r, i) => { const el = document.getElementById(`tick-${i}`); if (el) el.textContent = (r.unit === "dollars" ? "$" : "") + Math.floor(secs * r.per_year / 31536000).toLocaleString("en-US"); });
       if (document.getElementById("tick-0")) requestAnimationFrame(() => setTimeout(tick, 250));
     };
     tick();
