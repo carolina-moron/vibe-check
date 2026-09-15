@@ -652,3 +652,4 @@ input[type=checkbox] { accent-color: var(--accent); }
 .scamfoot { min-width: 0; }
 .scamfoot .acc { white-space: normal; overflow-wrap: anywhere; max-width: 100%; line-height: 1.35; padding: 3px 6px; display: inline-block; }
 .scamcard { min-width: 0; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

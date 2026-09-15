@@ -29,11 +29,11 @@ const main = $("#main");
 const TYPOLOGY = {
   "scam-compound": { label: "Scam compound", color: "#14264A" },
   "labor-trafficking": { label: "Labour trafficking", color: "#2A66B8" },
-  "forced-labor-industrial": { label: "Industrial forced labour", color: "#5A5A9A" },
+  "forced-labor-industrial": { label: "Industrial forced labour", color: "#6B7A8F" },
   "laundering": { label: "Laundering network", color: "#2B6A76" },
   "money-mule": { label: "Money mules", color: "#2B6A76" },
-  "job-scam": { label: "Job scam", color: "#6D8299" },
-  "sex-trafficking": { label: "Sex trafficking", color: "#35468F" },
+  "job-scam": { label: "Job scam", color: "#9A6A00" },
+  "sex-trafficking": { label: "Sex trafficking", color: "#B3261E" },
   "deepfake-fraud": { label: "Deepfakes and voice clones", color: "#8A4F9E" },
 };
 const STATUS = {
@@ -232,7 +232,7 @@ function viewCases() {
     </section>
     <section class="mapcard">
       <div class="maphead">
-        <div><h2>Global map of recruitment journeys</h2>
+        <div><h2>Global map of case journeys</h2>
           <label class="check toggle"><input type="checkbox" id="fl-toggle"> Shade countries by structural forced-labour risk (${flLink()})</label>
           <label class="check toggle"><input type="checkbox" id="ctdc-toggle"> Show victim corridors from the Counter-Trafficking Data Collaborative (CTDC)</label></div>
         <div class="legend" id="legend">${Object.entries(counts).map(([t, n]) => `
@@ -324,7 +324,7 @@ function viewCases() {
         <div class="cardtop"><span class="typ" style="--c:${TYPOLOGY[c.typology]?.color}">${esc(TYPOLOGY[c.typology]?.label)}</span><span class="mono muted">${esc(c.period)}</span></div>
         <h3>${esc(c.title)}</h3>
         <p class="route">${esc(route)}</p>
-        <div class="cardfoot"><span class="status">${esc(STATUS[c.status])}</span><span class="mini t-${esc(s.tier.id)}">${s.points}</span><span class="cov c-${esc(cov.class)}">${esc(cov.label)}</span></div>
+        <div class="cardfoot"><span class="status">${esc(STATUS[c.status])}</span><span class="mini t-${esc(s.tier.id)}" title="Warning-sign score: ${s.points} out of 100">${s.points}<span class="sr"> out of 100 warning-sign score</span></span><span class="cov c-${esc(cov.class)}" title="${esc(cov.explain)}">${esc(cov.label)}</span></div>
       </a>`;
     }).join("") || `<p class="muted">No cases match.</p>`;
   };
@@ -676,6 +676,20 @@ const NEWS_TYP = {
   "money-mule": "Money mules", "sex-trafficking": "Sex trafficking", "organ-trafficking": "Organ trafficking", "cartel-recruitment": "Cartel recruitment",
 };
 const NEWS_EVENT = { arrest: "Arrests & raids", warning: "Warnings & advisories", rescue: "Rescues & repatriation", sanction: "Sanctions", conviction: "Convictions" };
+// Corridors backed by several articles get their own row. Corridors that come from a single
+// article are merged per article, so one story naming four countries doesn't fill the list.
+function corridorRows(corridors) {
+  const rows = corridors.filter((c) => c.count > 1).map((c) => ({ from: [c.from], to: [c.to], count: c.count, article: c.articles[0] }));
+  const byArticle = new Map();
+  for (const c of corridors.filter((x) => x.count === 1)) {
+    const r = byArticle.get(c.articles[0]) || { from: [], to: [], count: 1, article: c.articles[0] };
+    if (!r.from.includes(c.from)) r.from.push(c.from);
+    if (!r.to.includes(c.to)) r.to.push(c.to);
+    byArticle.set(c.articles[0], r);
+  }
+  return [...rows, ...byArticle.values()];
+}
+
 const ROLE_COLOR = { origin: "#2A66B8", destination: "#14264A", mentioned: "#8C97A6" };
 
 // Catalog entities named in an article (names of 6+ characters, whole words).
@@ -793,10 +807,12 @@ async function viewNews(arg = "") {
       <section class="panel">
         <h2>Corridors</h2>
         <p class="fine">Origin to destination, as extracted from the text.</p>
-        <ol class="corrlist">${a.corridors.slice(0, 14).map((c) => {
-          const art = n.articles[c.articles[0]];
-          const why = art.places.filter((p) => p.iso2 === c.from || p.iso2 === c.to).map((p) => `${p.terms.join(" / ")} → ${p.roles.join("/")}`).join("; ");
-          return `<li><div class="row"><strong>${esc(country(c.from))} → ${esc(country(c.to))}</strong><span class="mono">${c.count} article${c.count > 1 ? "s" : ""}</span></div>
+        <ol class="corrlist">${corridorRows(a.corridors).slice(0, 14).map((r) => {
+          const art = n.articles[r.article];
+          const iso = new Set([...r.from, ...r.to]);
+          const why = art.places.filter((p) => iso.has(p.iso2)).map((p) => `${p.terms.join(" / ")} → ${p.roles.join("/")}`).join("; ");
+          const names = (xs) => xs.map((x) => esc(country(x))).join(", ");
+          return `<li><div class="row"><strong>${names(r.from)} → ${names(r.to)}</strong><span class="mono">${r.count} article${r.count > 1 ? "s" : ""}</span></div>
             <div class="fine">${ext(art.url, art.title)} · <span title="Words the extractor used">${esc(why)}</span></div></li>`;
         }).join("") || `<li class="muted">No directed corridors detected.</li>`}</ol>
       </section>
@@ -806,7 +822,7 @@ async function viewNews(arg = "") {
           const top = Math.max(...Object.values(a.byCountry).map((x) => x.mentions));
           return `<li><button type="button" class="linklike" data-country="${esc(k)}">${esc(country(k))}</button><span class="hb split"><i style="width:${(v.origin / top) * 100}%;background:${ROLE_COLOR.origin}"></i><i style="width:${(v.destination / top) * 100}%;background:${ROLE_COLOR.destination}"></i><i style="width:${((v.mentions - v.origin - v.destination) / top) * 100}%;background:${ROLE_COLOR.mentioned}"></i></span><span class="mono">${v.mentions}</span></li>`;
         }).join("")}</ul>
-        <p class="fine">Green = named as an origin, red = as a destination, grey = mentioned without a clear role.</p>
+        <p class="fine">Blue = named as an origin, navy = as a destination, grey = mentioned without a clear role.</p>
       </section>
       <section class="panel">
         <h2>Typologies</h2>${hbars(a.typologies, NEWS_TYP)}
