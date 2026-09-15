@@ -31,13 +31,14 @@ const CONTENT_RULES = [
   { id: "employer_housing_travel", any: [/\b(free|provided|company|employer)[^.]{0,20}\b(flight|ticket|accommodation|housing|dormitory|visa)\b/i, /\b(flight|accommodation|housing|visa)s?\b[^.]{0,20}\b(provided|arranged|covered|paid by)\b/i] },
   { id: "vague_location", any: [/\blocation (will be )?(disclosed|shared|provided|confirmed) (later|on arrival|after)\b/i, /\b(on arrival|upon arrival)\b[^.]{0,30}\b(location|address|workplace)\b/i] },
   { id: "high_risk_region", any: [/\b(myanmar|burma|cambodia|sihanoukville|phnom penh|laos|golden triangle|myawaddy|shwe kokko|bokeo|mae sot)\b/i] },
-  { id: "lure_role", any: [/\b(modeling|model agency|hostess|companion|chat operator|crypto (trader|operator)|data entry|typing job|game tester|online sales agent)\b/i] },
+  { id: "lure_role", any: [/\b(model(l)?ing (job|work|gig|agency|opportunit)|models? wanted|model agency|hostess|companion|chat operator|crypto (trader|operator)|data entry|typing job|game tester|online sales agent)\b/i] },
   { id: "payment_handling", any: [/\b(receive|process|forward|transfer)\b[^.]{0,30}\b(payments?|funds|money|gift cards?|bitcoin|crypto|checks?|cheques?|parcels|packages)\b/i, /\b(money|payment) (transfer|processing) (agent|assistant)\b/i, /\breshipping\b/i] },
   { id: "no_experience_high_pay", any: [/\bno experience (needed|required|necessary)\b/i], also: [/\$\s?\d[\d,]{2,}\s*(\/|per)\s*(day|week)\b/i, /\burgent|high (pay|salary|income)\b/i] },
   { id: "investment_pitch", any: [/\b(trading (platform|app|account)|crypto(currency)? (trading|platform|investment|exchange)|investment (platform|app|opportunity|plan)|forex (trading|signals)|usdt|mining pool|liquidity mining|guaranteed (returns?|profits?)|daily (returns?|profits?))\b/i] },
   { id: "romance_money", any: [/\b(send|lend|transfer|need)\b[^.]{0,40}\b(money|cash|funds)\b[^.]{0,40}\b(for|to pay|hospital|ticket|customs|fee|emergency|visa)\b/i, /\b(my love|dear|sweetheart|honey|babe)\b[^.]{0,80}\b(send|transfer|pay)\b/i] },
   { id: "secrecy", any: [/\b(don'?t|do not|never|shouldn'?t|should not|mustn'?t)\s+(tell|share with|mention (it|this) to)\b[^.]{0,30}\b(anyone|family|friends|parents|police|mine|yours)\b/i, /\bkeep (this|it) (a )?secret\b/i, /\bbetween (you and me|us)\b/i] },
-  { id: "gift_card_crypto", any: [/\b(gift ?cards?|itunes cards?|steam cards?|google play cards?|bitcoin|usdt|tether|crypto wallet|western union|moneygram)\b/i] },
+  // Not a sign when the text is an employer's own warning ("we will never ask for gift cards").
+  { id: "gift_card_crypto", any: [/\b(gift ?cards?|itunes cards?|steam cards?|google play cards?|bitcoin|usdt|tether|crypto wallet|western union|moneygram)\b/i], not: [/\b(never|not|won'?t|will not|do not|don'?t)\s+(ever\s+)?(ask|request|require)\b[^.]{0,80}\b(gift ?cards?|crypto|bitcoin|payment)/i] },
   { id: "carry_package", any: [/\b(carry|bring|take|deliver)\b[^.]{0,30}\b(a |the |this |some )?(package|parcel|suitcase|luggage|bag|envelope|documents) (for|to)\b/i] },
   { id: "sponsor_travel_stranger", any: [/\b(i('| wi)ll|we('| wi)ll|let me)\s+(pay|buy|book|send you)\b[^.]{0,30}\b(ticket|flight|bus|travel|trip|visa)\b/i, /\b(ticket|flight)\b[^.]{0,20}\b(is |are )?(on me|paid for|already booked)\b/i] },
   { id: "housing_unseen_deposit", any: [/\b(deposit|first month|rent|reservation fee|holding fee)\b[^.]{0,50}\b(before (viewing|seeing|you see|visiting|the viewing)|to (hold|reserve|secure) (it|the (room|flat|apartment|house)))\b/i, /\bcan'?t (show|view|see) (it|the (room|flat|apartment|house|property))\b/i] },
@@ -108,6 +109,7 @@ export function detectContent(text) {
     for (const re of rule.any) { match = text.match(re); if (match) break; }
     if (!match) continue;
     if (rule.also && !rule.also.some((re) => re.test(text))) continue;
+    if (rule.not && rule.not.some((re) => re.test(text))) continue;
     hits.push({ id: rule.id, evidence: snippet(text, match.index, match[0].length) });
   }
   return hits;

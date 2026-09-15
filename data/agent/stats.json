@@ -1,9 +1,15 @@
 {
-  "generated": "2026-09-15T00:00:00Z",
-  "queued": 0,
+  "generated": "2026-09-15T20:09:12.721Z",
+  "store": "files",
+  "checks_run": 1,
+  "site_checks": 0,
+  "postings_checked": 1,
+  "warning_signs_found": 8,
+  "serious": 1,
+  "queued": 1,
   "reviewed": 0,
   "approved": 0,
   "dismissed": 0,
-  "confirmed": 0,
+  "reports_acted_on": 0,
   "precision": null
 }

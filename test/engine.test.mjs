@@ -264,3 +264,11 @@ test("deepfake and voice-clone phrasings", () => {
   assert.ok(t("It sounded just like my grandson, he said he needed bail money and not to tell his parents.").includes("voice_clone_emergency"));
   assert.ok(!t("My boss scheduled a video call about the quarterly plan.").includes("deepfake_video_call"));
 });
+
+test("an employer's own anti-fraud notice and 'data modeling' are not warning signs", () => {
+  const t = (x) => detectContent(x).map((h) => h.id);
+  assert.ok(!t("Twilio will never ask for payment, gift cards, cryptocurrency, or banking information during hiring.").includes("gift_card_crypto"));
+  assert.ok(t("Pay the deposit in gift cards or bitcoin.").includes("gift_card_crypto"));
+  assert.ok(!t("Compensation analytics background (modeling, dashboards) required.").includes("lure_role"));
+  assert.ok(t("Modeling job abroad, models wanted, flights paid.").includes("lure_role"));
+});

@@ -35,7 +35,7 @@ async function listBoard(src, fetchFn) {
   }
   if (src.ats === "lever") {
     const j = await (await fetchFn(`https://api.lever.co/v0/postings/${b}?mode=json`)).json();
-    return (j || []).map((x) => x.hostedUrl);
+    return (Array.isArray(j) ? j : j.data || []).map((x) => x.hostedUrl);
   }
   if (src.ats === "ashby") {
     const j = await (await fetchFn(`https://api.ashbyhq.com/posting-api/job-board/${b}`)).json();
