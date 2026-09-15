@@ -298,7 +298,22 @@ function viewCases() {
     <section class="globecard">
       <div class="maphead"><div><h2>Where the signals are</h2><p class="fine">A rotating view of every country in the researched cases (blue and red pulses: recruitment and exploitation) and in recent news reports (grey pulses). Drag to turn, scroll to zoom.</p></div>
         <label class="check toggle"><input type="checkbox" id="globe-spin" checked> Rotate</label></div>
-      <div id="globe" class="globe" role="img" aria-label="Rotating globe with pulses on countries in cases and news"></div>
+      <div class="globe-wrap">
+        <div id="globe" class="globe" role="img" aria-label="Rotating globe with pulses on countries in cases and news"></div>
+        <aside class="globe-key" aria-label="What the colours mean">
+          <h3>What the colours mean</h3>
+          <ul>
+            <li><i style="background:#2A66B8"></i><span><strong>Blue pulse</strong> Where people were advertised to, recruited or moved through, in a researched case.</span></li>
+            <li><i style="background:#B3261E"></i><span><strong>Red pulse</strong> Where people were exploited, or where the money was laundered.</span></li>
+            <li><i style="background:#14264A;border:1px solid #fff"></i><span><strong>Navy dot</strong> Where a case was prosecuted or sanctioned.</span></li>
+            <li><i style="background:#8C97A6"></i><span><strong>Grey pulse</strong> A country named in recent news reports. Bigger means more reports. Not checked cases.</span></li>
+          </ul>
+          <h3>Arcs connecting the dots</h3>
+          <p class="fine">Each arc is one case's journey, stage to stage. Its colour is the type of case:</p>
+          <ul class="key-types">${Object.entries(TYPOLOGY).filter(([t]) => cases.some((c) => c.typology === t)).map(([t, x]) => `<li><i class="key-arc" style="background:${x.color}"></i><span>${esc(x.label)}</span></li>`).join("")}</ul>
+          <p class="fine">Hover a dot for its case or country. No country is ruled out: this shows what was documented or reported, not where the problem is.</p>
+        </aside>
+      </div>
     </section>
     <section class="mapcard">
       <div class="maphead">
