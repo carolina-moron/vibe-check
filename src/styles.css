@@ -646,3 +646,5 @@ input[type=checkbox] { accent-color: var(--accent); }
 .notalone { margin: 32px 0; }
 .notalone > h2 { margin-bottom: 6px; }
 .notalone .voices-grid { margin-top: 16px; }
+.why-matter { text-align: center; }
+.why-matter p { margin-inline: auto; }

@@ -1610,7 +1610,7 @@ async function viewNotAlone(scrollTo) {
         <div class="modal-body"><video id="story-video" controls playsinline preload="none"></video></div>
       </div>
     </div>
-    <article class="panel">
+    <article class="panel why-matter">
       <h2>Why these stories matter</h2>
       <p>Trafficking and exploitation take many forms: child labour, forced labour, sex trafficking, forced conscription, domestic abuse, scams. The warning signs repeat across all of them: isolation, secrecy, debt, urgency and someone else controlling your documents or money.</p>
       <p><strong>Your story matters too.</strong> If you've run into a scam or exploitation, <a href="#/report">report it</a>. Anonymous reports help us spot patterns and warn others. If you need help now, <a href="#/help">here's where to get it</a>.</p>
