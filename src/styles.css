@@ -655,3 +655,17 @@ input[type=checkbox] { accent-color: var(--accent); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .map-caveat { margin: 0; border-left-width: 4px; border-top: 0; border-right: 0; border-bottom: 0; }
 canvas.voice-photo { display: block; }
+/* News page: use the width */
+.mapnotes { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: start; padding: 16px; }
+.mapnotes .map-caveat { margin: 0; max-width: none; }
+.mapnotes p { max-width: none; margin: 0; }
+.dash .split { border: 0; border-top: var(--rule); margin: 20px 0; }
+.twocol { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.twocol p { max-width: none; margin: 0; }
+.twocol h3 { margin-top: 0; }
+.querylist { columns: 2; column-gap: 24px; margin: 0; padding-left: 1.1em; font-size: var(--fs-1); line-height: 1.45; }
+.querylist li { break-inside: avoid; margin-bottom: 4px; }
+.dash .panel > p.fine { max-width: none; }
+@media (max-width: 860px) { .mapnotes, .twocol { grid-template-columns: minmax(0, 1fr); } .querylist { columns: 1; } }
+#stories-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+#stories-grid .voice-info { padding: 10px 12px; }

@@ -799,22 +799,25 @@ async function viewNews(arg = "") {
         </div>
       </div>
       <div id="newsmap" class="map world" role="img" aria-label="Map of countries and corridors in recent news"></div>
-      <p class="callout map-caveat"><strong>No country is ruled out.</strong> A country that isn't marked as an origin or destination here, or doesn't appear at all, can still have trafficking, forced labour, scams and other harms. This map only shows what recent English-language news happened to report. Online scams, deepfakes and money-mule recruitment also don't follow routes: they reach people in any country with an internet connection, so "origin" and "destination" mostly describe trafficking stories, not where scams happen.</p>
-      <p class="fine pad">Circle size = number of articles naming the country. Use the buttons above to show or hide origin, destination and mentioned countries. Arrows run from origin to destination; solid lines have two or more articles behind them, dashed lines one. Click a country to filter the articles.</p>
+      <div class="mapnotes">
+        <p class="callout map-caveat"><strong>No country is ruled out.</strong> A country that isn't marked as an origin or destination here, or doesn't appear at all, can still have trafficking, forced labour, scams and other harms. This map only shows what recent English-language news happened to report. Online scams, deepfakes and money-mule recruitment also don't follow routes: they reach people in any country with an internet connection, so "origin" and "destination" mostly describe trafficking stories, not where scams happen.</p>
+      <p class="fine">Circle size = number of articles naming the country. Use the buttons above to show or hide origin, destination and mentioned countries. Arrows run from origin to destination; solid lines have two or more articles behind them, dashed lines one. Click a country to filter the articles.</p>
+      </div>
     </section>
 
     <div class="dash">
       <section class="panel">
         <h2>Corridors</h2>
         <p class="fine">Origin to destination, as extracted from the text.</p>
-        <ol class="corrlist">${corridorRows(a.corridors).slice(0, 14).map((r) => {
+        <ol class="corrlist">${corridorRows(a.corridors).slice(0, 20).map((r, i) => {
           const art = n.articles[r.article];
           const iso = new Set([...r.from, ...r.to]);
           const why = art.places.filter((p) => iso.has(p.iso2)).map((p) => `${p.terms.join(" / ")} → ${p.roles.join("/")}`).join("; ");
           const names = (xs) => xs.map((x) => esc(country(x))).join(", ");
-          return `<li><div class="row"><strong>${names(r.from)} → ${names(r.to)}</strong><span class="mono">${r.count} article${r.count > 1 ? "s" : ""}</span></div>
+          return `<li${i >= 8 ? " class=\"extra\" hidden" : ""}><div class="row"><strong>${names(r.from)} → ${names(r.to)}</strong><span class="mono">${r.count} article${r.count > 1 ? "s" : ""}</span></div>
             <div class="fine">${ext(art.url, art.title)} · <span title="Words the extractor used">${esc(why)}</span></div></li>`;
         }).join("") || `<li class="muted">No directed corridors detected.</li>`}</ol>
+        ${corridorRows(a.corridors).length > 8 ? `<div class="btns"><button type="button" class="ghost" id="corr-more">Show more corridors</button></div>` : ""}
       </section>
       <section class="panel">
         <h2>Most-named countries</h2>
@@ -823,20 +826,20 @@ async function viewNews(arg = "") {
           return `<li><button type="button" class="linklike" data-country="${esc(k)}">${esc(country(k))}</button><span class="hb split"><i style="width:${(v.origin / top) * 100}%;background:${ROLE_COLOR.origin}"></i><i style="width:${(v.destination / top) * 100}%;background:${ROLE_COLOR.destination}"></i><i style="width:${((v.mentions - v.origin - v.destination) / top) * 100}%;background:${ROLE_COLOR.mentioned}"></i></span><span class="mono">${v.mentions}</span></li>`;
         }).join("")}</ul>
         <p class="fine">Blue = named as an origin, navy = as a destination, grey = mentioned without a clear role.</p>
-      </section>
-      <section class="panel">
+        <hr class="split">
         <h2>Typologies</h2>${hbars(a.typologies, NEWS_TYP)}
-        <h3>What happened</h3>${hbars(a.events, NEWS_EVENT)}
       </section>
       <section class="panel">
         <h2>Lure indicators in coverage</h2>
         <p class="fine">The same offer-text rules as the live check, run on headlines and snippets. Snippets are short, so these undercount.</p>
         ${hbars(a.signals, Object.fromEntries(signals.signals.map((s) => [s.id, s.label])))}
+      </section>
+      <section class="panel">
+        <h2>What happened</h2>${hbars(a.events, NEWS_EVENT)}
         <h3>Articles per week</h3>
         <div class="weeks">${a.weeks.map((w) => `<div title="${esc(w.week)}: ${w.n}"><i style="height:${Math.round((w.n / Math.max(...a.weeks.map((x) => x.n))) * 100)}%"></i><span class="mono">${esc(w.week.slice(-3))}</span></div>`).join("")}</div>
         <p class="fine">The latest week is partial.</p>
       </section>
-
       <section class="panel span2">
         <div class="gridhead"><h2>Articles</h2>
           <div class="filters">
@@ -849,10 +852,19 @@ async function viewNews(arg = "") {
       </section>
       <section class="panel span2">
         <h2>How this page is built</h2>
-        <p class="fine">Queries run through Tavily's news search (${n.queries.length} queries, ${n.n_results} results, ${n.n_articles} kept after relevance filtering and de-duplication): ${n.queries.map(esc).join(" · ")}. Countries are matched from names, nationality words and known compound hubs. A nationality counts as an origin only in a sentence about victims; capital cities count as plain mentions because they are usually datelines. See <a href="#/methodology">Methodology</a>.</p>
+        <div class="twocol">
+          <p class="fine">News is gathered through Tavily's news search: ${n.queries.length} queries returned ${n.n_results} results, and ${n.n_articles} were kept after relevance filtering and de-duplication. Countries are matched from names, nationality words and known compound hubs. A nationality counts as an origin only in a sentence about victims; capital cities count as plain mentions because they are usually datelines. See <a href="#/methodology">Methodology</a>.</p>
+          <div><h3>Search queries</h3><ul class="querylist">${n.queries.map((q) => `<li>${esc(q)}</li>`).join("")}</ul></div>
+        </div>
       </section>
     </div>`;
 
+  $("#corr-more")?.addEventListener("click", (e) => {
+    const open = e.target.dataset.open !== "1";
+    document.querySelectorAll(".corrlist .extra").forEach((li) => (li.hidden = !open));
+    e.target.dataset.open = open ? "1" : "";
+    e.target.textContent = open ? "Show fewer corridors" : "Show more corridors";
+  });
   // map
   const map = baseMap($("#newsmap"), { center: [20, 40], zoom: 2, minZoom: 2 });
   if (map) {
@@ -1677,11 +1689,15 @@ async function viewNotAlone(scrollTo) {
   const still = (canvas) => {
     const img = new Image();
     img.onload = () => {
-      const w = canvas.clientWidth || 300, h = canvas.clientHeight || 220, dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      const scale = Math.max(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
-      const dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
-      canvas.getContext("2d").drawImage(img, (canvas.width - dw) / 2, (canvas.height - dh) * 0.2, dw, dh);
+      // Show the whole frame, centred: the photo box takes the poster's own shape, so nothing is cut off.
+      const box = canvas.parentElement;
+      box.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+      box.style.height = "auto";
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = box.clientWidth || 300;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round((w * img.naturalHeight / img.naturalWidth) * dpr);
+      canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
     };
     img.src = canvas.dataset.src;
   };
