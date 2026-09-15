@@ -690,6 +690,7 @@ function corridorRows(corridors) {
   return [...rows, ...byArticle.values()];
 }
 
+const countryRole = (v) => (v.origin > v.destination ? "origin" : v.destination > v.origin ? "destination" : v.origin ? "origin" : "mentioned");
 const ROLE_COLOR = { origin: "#2A66B8", destination: "#14264A", mentioned: "#8C97A6" };
 
 // Catalog entities named in an article (names of 6+ characters, whole words).
@@ -760,14 +761,14 @@ function scamTypesSection(a) {
         </div>
         <p class="fine">Source: ${ext(t.source[1], t.source[0])}</p>
       </article>`).join("")}
+      <article class="scamcard">
+        <h3>Money laundering and money mules</h3>
+        <p>${esc(LAUNDERING_TELLS.intro)}</p>
+        <ul class="tells">${LAUNDERING_TELLS.tells.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+        <div class="scamfoot">${a.typologies["money-mule"] ? `<a href="#/news/typ/money-mule">${a.typologies["money-mule"]} news report${a.typologies["money-mule"] > 1 ? "s" : ""} →</a>` : ""}<a class="acc" href="#/concern/payment_handling">Receiving or forwarding money</a></div>
+        <p class="fine">Source: ${ext(LAUNDERING_TELLS.source[1], LAUNDERING_TELLS.source[0])}. If you've already moved money for someone, stop, keep records, and contact your bank.</p>
+      </article>
     </div>
-    <article class="laundering">
-      <h3>Money laundering and money-mule tells</h3>
-      <p>${esc(LAUNDERING_TELLS.intro)}</p>
-      <ul class="tells">${LAUNDERING_TELLS.tells.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-      <div class="scamfoot">${a.typologies["money-mule"] ? `<a href="#/news/typ/money-mule">${a.typologies["money-mule"]} news reports on money mules →</a>` : ""}<a class="acc" href="#/concern/payment_handling">Receiving or forwarding money</a></div>
-      <p class="fine">Source: ${ext(LAUNDERING_TELLS.source[1], LAUNDERING_TELLS.source[0])}. If you've already moved money for someone, stop, keep records, and contact your bank.</p>
-    </article>
   </section>`;
 }
 
@@ -793,14 +794,12 @@ async function viewNews(arg = "") {
       <div class="maphead">
         <div><h2>Countries and corridors in the news</h2>
           <label class="check toggle"><input type="checkbox" id="news-fl"> Shade countries by structural forced-labour risk (${flLink()})</label></div>
-        <div class="legend">
-          <span class="lg on"><i style="background:${ROLE_COLOR.origin}"></i>Mostly origin</span>
-          <span class="lg on"><i style="background:${ROLE_COLOR.destination}"></i>Mostly destination</span>
-          <span class="lg on"><i style="background:${ROLE_COLOR.mentioned}"></i>Mentioned</span>
+        <div class="legend" id="role-legend" role="group" aria-label="Show countries by role">${[["origin", "Mostly origin"], ["destination", "Mostly destination"], ["mentioned", "Mentioned"]].map(([r, label]) => `
+          <button type="button" class="lg on" data-role="${r}" aria-pressed="true"><i style="background:${ROLE_COLOR[r]}"></i>${label} <span class="mono">${Object.values(a.byCountry).filter((v) => countryRole(v) === r).length}</span></button>`).join("")}
         </div>
       </div>
       <div id="newsmap" class="map world" role="img" aria-label="Map of countries and corridors in recent news"></div>
-      <p class="fine pad">Circle size = number of articles naming the country. Arrows run from origin to destination; solid lines have two or more articles behind them, dashed lines one. Click a country to filter the articles.</p>
+      <p class="fine pad">Circle size = number of articles naming the country. Use the buttons above to show or hide origin, destination and mentioned countries. Arrows run from origin to destination; solid lines have two or more articles behind them, dashed lines one. Click a country to filter the articles.</p>
     </section>
 
     <div class="dash">
@@ -857,25 +856,36 @@ async function viewNews(arg = "") {
   const map = baseMap($("#newsmap"), { center: [20, 40], zoom: 2, minZoom: 2 });
   if (map) {
     const top = Math.max(...Object.values(a.byCountry).map((v) => v.mentions));
+    const roleLayers = { origin: L.layerGroup().addTo(map), destination: L.layerGroup().addTo(map), mentioned: L.layerGroup().addTo(map) };
+    const corridorLayer = L.layerGroup().addTo(map);
     for (const c of a.corridors) {
       const p1 = n.points[c.from], p2 = n.points[c.to];
       if (!p1 || !p2) continue;
-      const line = L.polyline(arc(p1, p2), { color: "#2A66B8", weight: 1 + c.count * 1.2, opacity: 0.7, dashArray: c.count > 1 ? null : "5 6" }).addTo(map);
+      const line = L.polyline(arc(p1, p2), { color: "#2A66B8", weight: 1 + c.count * 1.2, opacity: 0.7, dashArray: c.count > 1 ? null : "5 6" }).addTo(corridorLayer);
       line.bindTooltip(`${esc(country(c.from))} → ${esc(country(c.to))}: ${c.count} article${c.count > 1 ? "s" : ""}`, { sticky: true });
       for (const tip of arc(p1, p2)) {
         const [ya, xa] = tip[tip.length - 3], [yb, xb] = tip[tip.length - 1];
         const ang = Math.atan2(yb - ya, xb - xa) * 180 / Math.PI;
-        L.marker([yb, xb], { icon: L.divIcon({ className: "arrow", html: `<span style="transform:rotate(${-ang}deg)">➤</span>`, iconSize: [14, 14] }), interactive: false }).addTo(map);
+        L.marker([yb, xb], { icon: L.divIcon({ className: "arrow", html: `<span style="transform:rotate(${-ang}deg)">➤</span>`, iconSize: [14, 14] }), interactive: false }).addTo(corridorLayer);
       }
     }
     for (const [k, v] of Object.entries(a.byCountry)) {
       const pt = n.points[k]; if (!pt) continue;
-      const dom = v.origin > v.destination ? "origin" : v.destination > v.origin ? "destination" : v.origin ? "origin" : "mentioned";
+      const dom = countryRole(v);
       L.circleMarker(pt, { radius: 4 + Math.sqrt(v.mentions / top) * 18, color: "#FFFFFF", weight: 1, fillColor: ROLE_COLOR[dom], fillOpacity: 0.75 })
-        .addTo(map)
+        .addTo(roleLayers[dom])
         .bindTooltip(`<strong>${esc(country(k))}</strong><br>${v.mentions} article(s): ${v.origin} as origin, ${v.destination} as destination`)
         .on("click", () => setCountry(k));
     }
+    // Role filters: countries show by their main role; corridor arrows stay while origins or destinations are shown.
+    $("#role-legend").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-role]"); if (!b) return;
+      const on = !b.classList.contains("on");
+      b.classList.toggle("on", on); b.setAttribute("aria-pressed", String(on));
+      on ? roleLayers[b.dataset.role].addTo(map) : roleLayers[b.dataset.role].remove();
+      const showLines = ["origin", "destination"].some((r) => $(`#role-legend [data-role="${r}"]`).classList.contains("on"));
+      showLines ? corridorLayer.addTo(map) : corridorLayer.remove();
+    });
     let fl = null;
     $("#news-fl").addEventListener("change", async (e) => {
       if (!e.target.checked) { fl?.remove(); return; }
