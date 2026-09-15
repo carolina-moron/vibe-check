@@ -648,3 +648,7 @@ input[type=checkbox] { accent-color: var(--accent); }
 .notalone .voices-grid { margin-top: 16px; }
 .why-matter { text-align: center; }
 .why-matter p { margin-inline: auto; }
+/* scam card tags wrap inside their card instead of running into the next one */
+.scamfoot { min-width: 0; }
+.scamfoot .acc { white-space: normal; overflow-wrap: anywhere; max-width: 100%; line-height: 1.35; padding: 3px 6px; display: inline-block; }
+.scamcard { min-width: 0; }
