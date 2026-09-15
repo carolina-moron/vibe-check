@@ -784,7 +784,7 @@ async function viewNews(arg = "") {
     <section class="hero small">
       <div class="eyebrow mono">News patterns · last ${n.window_days} days · updated ${esc(gen.toISOString().slice(0, 10))}</div>
       <h1>What the news is reporting</h1>
-      <p class="lede">${n.n_articles} recent news reports on trafficking, forced labour, fake-job recruitment and deepfake scams, gathered with ${esc(n.provider)} and read by rules for countries, direction of movement, typology and lure indicators. The map shows where reporting points, not where most cases are.</p>
+      <p class="lede">${n.n_articles} recent news reports on trafficking, forced labour, fake-job recruitment, online scams and deepfakes, gathered with ${esc(n.provider)} and read by rules for countries, direction of movement, typology and lure indicators. The map shows where reporting points, not where most cases are.</p>
     </section>
     <div class="callout">This is <strong>media attention, not case counts</strong>. Coverage follows English-language outlets, government press releases and whatever is in the news cycle. Country roles and corridors are extracted automatically from headlines and snippets and can be wrong; each corridor lists the words it came from. Nothing here feeds a score.</div>
 
@@ -799,6 +799,7 @@ async function viewNews(arg = "") {
         </div>
       </div>
       <div id="newsmap" class="map world" role="img" aria-label="Map of countries and corridors in recent news"></div>
+      <p class="callout map-caveat"><strong>No country is ruled out.</strong> A country that isn't marked as an origin or destination here, or doesn't appear at all, can still have trafficking, forced labour, scams and other harms. This map only shows what recent English-language news happened to report. Online scams, deepfakes and money-mule recruitment also don't follow routes: they reach people in any country with an internet connection, so "origin" and "destination" mostly describe trafficking stories, not where scams happen.</p>
       <p class="fine pad">Circle size = number of articles naming the country. Use the buttons above to show or hide origin, destination and mentioned countries. Arrows run from origin to destination; solid lines have two or more articles behind them, dashed lines one. Click a country to filter the articles.</p>
     </section>
 
