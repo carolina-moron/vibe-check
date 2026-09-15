@@ -392,6 +392,8 @@ footer.site p { max-width: 90ch; }
 .story.hero-full h1.hero-text { max-width: none; font-size: clamp(2.4rem, 2rem + 4vw, 4.2rem); line-height: 1.1; letter-spacing: -0.02em; }
 .story.hero-full .sub { max-width: 70ch; margin-top: 0; }
 .check-blue { color: var(--accent); }
+.figure-meaning { margin: 20px 0 32px; padding: 16px 20px; border-left: 4px solid var(--accent); background: rgba(42, 102, 184, 0.06); max-width: 65ch; }
+.figure-meaning p { margin: 0; font-size: var(--fs-1); line-height: 1.6; }
 .home .kinds { margin-top: 20px; }
 .home .kind { min-height: 138px; }
 @media (max-width: 860px) {

@@ -946,10 +946,13 @@ function viewCheck(kind = "") {
           <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. <strong>Nothing you enter is stored unless you choose to submit it, and if you do, it will be anonymous.</strong></p>
         </div>
       </section>
-      <figure class="figure-band" aria-label="Animation: a radar scan detecting warnings and verifying information">
+      <figure class="figure-band" aria-label="Animation: a blue line that starts loose, tightens into a knot, then continues taut. A visual metaphor for how offers seem safe at first, then trap you, then become impossible to escape.">
         <canvas id="figure" aria-hidden="true"></canvas>
-        <figcaption class="figure-caption">Fig. 1 — scanning for warnings, connecting the dots</figcaption>
+        <figcaption class="figure-caption">Fig. 1 — an offer, a loop, a knot</figcaption>
       </figure>
+      <div class="figure-meaning">
+        <p><strong>What the animation shows:</strong> A single blue line drawn by hand. It starts loose (the offer looks easy), loops and tightens (you realize you're trapped), then continues taut to the edge (the only way out). This is how trafficking and scams work: they look safe at first, pull you in, then become hard to escape.</p>
+      </div>
       <div class="kinds-head">
         <h2>Vibe Checker</h2>
         <a class="ghostlink" href="#/report">Report wrong vibes</a>
