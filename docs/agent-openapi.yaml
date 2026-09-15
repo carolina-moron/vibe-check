@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Vibe Check agent skills
+  title: VibeCheck agent skills
   version: 0.1.0
   description: >
     Skills a Copilot Studio agent calls to check job postings, queue them for human review,

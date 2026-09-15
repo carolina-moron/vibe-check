@@ -1,4 +1,4 @@
-// HTTP skills for the Vibe Check agent, so a Copilot Studio agent (or an Azure Function host)
+// HTTP skills for the VibeCheck agent, so a Copilot Studio agent (or an Azure Function host)
 // can call the same pipeline as scripts/agent.mjs. One route per skill; see docs/agent-openapi.yaml.
 // Run: AGENT_TOKEN=secret node scripts/agent-server.mjs   (port 8787)
 // Nothing here sends a report: send_report only works on items a person has approved.
@@ -17,7 +17,7 @@ const putRec = (rec) => writeFileSync(new URL(`${rec.id}.json`, QUEUE), JSON.str
 export const reviewCard = (rec) => ({
   type: "AdaptiveCard", version: "1.5", $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
   body: [
-    { type: "TextBlock", size: "Large", weight: "Bolder", text: `Vibe Check: ${rec.score}/100, ${rec.tier_label}` },
+    { type: "TextBlock", size: "Large", weight: "Bolder", text: `VibeCheck: ${rec.score}/100, ${rec.tier_label}` },
     { type: "TextBlock", text: `${rec.company || "No employer named"}${rec.url ? ` · ${rec.url}` : ""}`, wrap: true },
     { type: "FactSet", facts: rec.flags.slice(0, 8).map((f) => ({ title: f.label, value: f.evidence || "" })) },
     { type: "TextBlock", text: "Warning signs from an automated check, not a finding. Approve to release drafted reports for sending.", wrap: true, isSubtle: true, size: "Small" },

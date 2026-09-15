@@ -1,6 +1,6 @@
 # Voices: first-person scripts for AI avatar videos
 
-Short first-person monologues, one for each type of scam and exploitation that Vibe Check covers. They are written to be spoken by an AI avatar in a GIF or short video, so people can feel what these situations are like from the inside.
+Short first-person monologues, one for each type of scam and exploitation that VibeCheck covers. They are written to be spoken by an AI avatar in a GIF or short video, so people can feel what these situations are like from the inside.
 
 ## Read this before producing anything
 

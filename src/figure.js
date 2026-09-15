@@ -1,7 +1,7 @@
 // The home figure: a single blue pencil line drawn across the sheet. It starts as a loose, easy
 // thread (an offer), then loops back on itself and tightens into a knot (the trap), and the
 // line continues on, taut. Drawn on a 2D canvas with a pencil brush: many faint, jittered
-// passes rather than one clean stroke. Original to Vibe Check.
+// passes rather than one clean stroke. Original to VibeCheck.
 // Holds as a finished drawing under prefers-reduced-motion.
 
 const INK = [42, 102, 184]; // logo blue

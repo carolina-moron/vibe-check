@@ -1,4 +1,4 @@
-// Vibe Check agent: pulls job postings from sources that allow it, runs the same check as the
+// VibeCheck agent: pulls job postings from sources that allow it, runs the same check as the
 // site, stores anonymised results, and drafts reports for a person to review and send.
 // It never scrapes platforms that forbid it, and it never sends anything by itself.
 //
@@ -116,7 +116,7 @@ ${caveat}`;
 
 Hello,
 
-We run Vibe Check, a free tool that checks job offers for signs of scams and trafficking. A posting that names ${rec.company} as the employer shows the warning signs below. We are not saying it is a scam; we are passing it on so your security team can confirm whether it is yours.
+We run VibeCheck, a free tool that checks job offers for signs of scams and trafficking. A posting that names ${rec.company} as the employer shows the warning signs below. We are not saying it is a scam; we are passing it on so your security team can confirm whether it is yours.
 
 ${where}
 
@@ -156,7 +156,7 @@ export async function send(id, { mailer = null } = {}) {
   const rec = JSON.parse(readFileSync(file, "utf8"));
   if (rec.status !== "approved") throw new Error(`${id} is ${rec.status}; only approved items can be sent`);
   const body = [rec.drafts.platform, rec.drafts.company, rec.drafts.ftc].filter(Boolean).join("\n\n---\n\n");
-  if (mailer) await mailer({ subject: `Vibe Check report ${id}`, body });
+  if (mailer) await mailer({ subject: `VibeCheck report ${id}`, body });
   else {
     const outbox = new URL("data/agent/outbox/", root); mkdirSync(outbox, { recursive: true });
     writeFileSync(new URL(`${id}.txt`, outbox), body + "\n");
@@ -230,6 +230,8 @@ if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop()
     console.log(`${r.id} outcome: ${r.outcome}`);
   } else if (cmd === "stats") {
     const s = stats(readQueue());
+    // The site reads data/agent/stats.json for its impact counters.
+    writeFileSync(new URL("data/agent/stats.json", root), JSON.stringify({ generated: new Date().toISOString(), ...s, noisy: undefined }, null, 2) + "\n");
     console.log(`queued ${s.queued}, reviewed ${s.reviewed} (approved ${s.approved}, dismissed ${s.dismissed}), confirmed by platform/company ${s.confirmed}`);
     if (s.precision != null) console.log(`reviewer agreement with the agent: ${Math.round(s.precision * 100)}%`);
     for (const n of s.noisy) console.log(`  consider lowering: ${n.label} (dismissed ${n.dismissed}/${n.seen})`);

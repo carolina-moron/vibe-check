@@ -1,11 +1,11 @@
-# The Vibe Check agent
+# The VibeCheck agent
 
 An automated pipeline that checks job postings the way the site does, stores anonymised results, and drafts reports for platforms, impersonated companies and regulators. A person reviews every report before it goes out.
 
 ## Two rules
 
 1. **No scraping where it's forbidden.** LinkedIn and Handshake ban automated collection, so the agent never crawls them. Postings from those platforms reach it through people (a share button, a browser extension, a Teams message) or through a partnership feed such as Handshake's institutional API. The agent does pull from ATS boards that publish public APIs on purpose (Greenhouse, Lever, Ashby).
-2. **The agent drafts; a person sends.** Vibe Check reports warning signs, never verdicts. A wrong accusation against a real company is defamation, so nothing leaves the queue until a reviewer approves it, and every draft says the signs come from an automated check, not a finding.
+2. **The agent drafts; a person sends.** VibeCheck reports warning signs, never verdicts. A wrong accusation against a real company is defamation, so nothing leaves the queue until a reviewer approves it, and every draft says the signs come from an automated check, not a finding.
 
 ## The pipeline
 

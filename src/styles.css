@@ -1,4 +1,4 @@
-/* Vibe Check — navy and logo blue on beige paper.
+/* VibeCheck — navy and logo blue on beige paper.
    Visual direction from kateebonner/personal-site (katebonner.ai): one ink, 1px rules, square corners,
    uppercase tracked lettering, a label column divided from the body, no shadows or tints.
    Fills are 45° ink hatching; the only solid fill is an ink inversion. */
@@ -709,3 +709,19 @@ canvas.voice-photo { display: block; }
 .ms-cols ul { margin: 0; padding-left: 1.1em; font-size: var(--fs-1); line-height: 1.5; }
 .ms-cols li { margin-bottom: 8px; }
 @media (max-width: 860px) { .ms-cols { grid-template-columns: minmax(0, 1fr); } .bar nav { mask-image: linear-gradient(90deg, #000 85%, transparent); -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); } }
+.people { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.person img { width: 160px; height: 160px; object-fit: cover; object-position: top; border: var(--rule); display: block; margin-bottom: 10px; }
+.person h3 { margin: 0 0 2px; font-size: var(--fs-2); text-transform: none; letter-spacing: 0; }
+.person p { font-size: var(--fs-1); margin: 4px 0 0; }
+.teamphoto { margin: 24px 0 0; }
+.teamphoto img { width: 100%; max-width: 900px; border: var(--rule); display: block; }
+.partner-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.partner-cols h3 { margin-top: 4px; }
+.partner-cols p { font-size: var(--fs-1); margin: 0; }
+@media (max-width: 860px) { .people, .partner-cols { grid-template-columns: minmax(0, 1fr); } }
+.home-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.home-cta .help-btn { font-size: var(--fs-2); padding: 14px 22px; }
+.impact { margin: 24px 0; border: var(--rule); padding: 16px 24px 12px; }
+.impact h2 { margin-bottom: 8px; }
+.impact-stats > div { padding-right: 24px; margin-right: 24px; margin-bottom: 10px; }
+.impact-stats b { font-size: clamp(1.6rem, 1rem + 1.4vw, 2.2rem); }

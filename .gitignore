@@ -9,3 +9,7 @@ data/raw/
 data/agent/queue/
 data/agent/outbox/
 data/agent/outcomes.jsonl
+azure/node_modules/
+azure/src/
+azure/scripts/
+azure/data/

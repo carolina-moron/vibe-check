@@ -1,4 +1,4 @@
-# Vibe Check — Peer Review
+# VibeCheck — Peer Review
 **Date:** September 14, 2026 | **Reviewer:** Claude  
 **Project:** Static no-build safety-check app for trafficking/scam risk assessment
 
@@ -201,7 +201,7 @@
 
 ## Conclusion
 
-**Vibe Check is a thoughtfully designed, well-sourced safety-check tool.** The pessimistic scoring model (unverified by default), exact-name matching to avoid false positives, and transparent methodology set it apart from clickbait "scam checkers."
+**VibeCheck is a thoughtfully designed, well-sourced safety-check tool.** The pessimistic scoring model (unverified by default), exact-name matching to avoid false positives, and transparent methodology set it apart from clickbait "scam checkers."
 
 **Ready for:**
 - ✓ User testing with beta cohort
