@@ -1,15 +1,15 @@
 {
-  "generated": "2026-09-15T20:09:12.721Z",
+  "generated": "2026-09-15T20:46:29.217Z",
   "store": "files",
-  "checks_run": 1,
-  "site_checks": 0,
-  "postings_checked": 1,
-  "warning_signs_found": 8,
-  "serious": 1,
-  "queued": 1,
-  "reviewed": 0,
+  "checks_run": 6,
+  "site_checks": 4,
+  "postings_checked": 2,
+  "warning_signs_found": 29,
+  "serious": 6,
+  "queued": 2,
+  "reviewed": 1,
   "approved": 0,
-  "dismissed": 0,
+  "dismissed": 1,
   "reports_acted_on": 0,
-  "precision": null
+  "precision": 0
 }

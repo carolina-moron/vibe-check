@@ -1891,6 +1891,12 @@ function viewTeam() {
       <p>We believe people should be able to get a second opinion before trusting someone online or engaging with an offer. By combining public records, enforcement data, and indicators from real cases, we help identify patterns that matter.</p>
       <p>VibeCheck started as a hackathon project and has grown into a tool that serves job seekers, investors, dating app users, and anyone suspicious of an online interaction.</p>
     </article>
+    <section class="logos" aria-label="Partners and hosts">
+      <a class="logo-item" href="https://apneaap.org" target="_blank" rel="noopener"><img src="assets/partners/apne-aap.png" alt="Apne Aap Women Worldwide"><span>Nonprofit partner</span></a>
+      <a class="logo-item" href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener"><span class="wordmark">Ethical Tech CoLab</span><span>Data partner</span></a>
+      <a class="logo-item" href="https://innovationstudio.microsoft.com/hackathons" target="_blank" rel="noopener"><span class="ms-mark"><i style="background:#F25022"></i><i style="background:#7FBA00"></i><i style="background:#00A4EF"></i><i style="background:#FFB900"></i></span><span class="wordmark">Microsoft Global Hackathon</span><span>Hack for Good</span></a>
+      <a class="logo-item" href="https://www.microsoft.com/en-us/garage/" target="_blank" rel="noopener"><span class="wordmark garage">&gt; The Garage</span><span>New York City</span></a>
+    </section>
     <section class="impact" id="impact">
       <h2>Impact so far</h2>
       <div class="stats impact-stats">

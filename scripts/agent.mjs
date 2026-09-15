@@ -139,6 +139,7 @@ export async function run({ sources, submissions, fetchFn = fetch, dry = false, 
     const checked = await checkItem(item, { fetchFn, dry, now });
     out.checked++;
     const rec = toRecord(item, checked, now);
+    await (await getStore()).event({ type: "check", source: "agent", kind: "job", tier: rec.tier, flags: rec.flags.length, at: now.toISOString() });
     if (rec.score < minScore) continue;
     rec.drafts = draftReports(rec);
     await (await getStore()).put(rec);

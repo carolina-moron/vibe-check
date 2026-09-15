@@ -33,6 +33,7 @@ const routes = {
     const item = { from: body.source || "api", url: body.url, company: body.company, text: body.text, email: body.email, website: body.website, jurisdiction: body.jurisdiction };
     const rec = toRecord(item, await checkItem(item, { dry: !!body.dry }));
     rec.drafts = draftReports(rec);
+    await (await getStore()).event({ type: "check", source: "agent", kind: "job", tier: rec.tier, flags: rec.flags.length, at: new Date().toISOString() });
     if (body.queue !== false && rec.score >= 20) await putRec(rec);
     return { record: rec, card: reviewCard(rec) };
   },

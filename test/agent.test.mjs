@@ -1,4 +1,8 @@
 import { test } from "node:test";
+import { mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+process.env.VIBECHECK_AGENT_DIR = mkdtempSync(join(tmpdir(), "vibecheck-agent-"));
 import assert from "node:assert/strict";
 import { checkItem, toRecord, draftReports, intake } from "../scripts/agent.mjs";
 
@@ -34,7 +38,7 @@ test("skills API: check, review, refuses to send unapproved, stats", async () =>
   const r = await handle("POST", `/review/${record.id}`, { decision: "dismissed", reviewer: "test" });
   assert.equal(r.record.status, "dismissed");
   await handle("POST", "/event", { kind: "job", tier: "high", flags: 4 });
-  const pub = await handle("GET", "/public-stats"); assert.ok(pub.checks_run >= 2 && pub.warning_signs_found >= 4);
+  const pub = await handle("GET", "/public-stats"); assert.ok(pub.checks_run >= 2 && pub.postings_checked >= 1 && pub.warning_signs_found >= 4);
   const s = await handle("GET", "/stats");
   assert.ok(s.reviewed >= 1);
   assert.throws(() => handle("GET", "/nope"), /not found/);
