@@ -1573,24 +1573,38 @@ async function viewVoices() {
     <section class="hero small">
       <div class="eyebrow mono">Diverse perspectives</div>
       <h1>Many voices on the issue</h1>
-      <p class="lede">Trafficking and scams affect people across different contexts. Here are perspectives from researchers, practitioners, and teams at the Ethical Tech Collaborative on what warning signs matter, why they matter, and how to stay safe.</p>
+      <p class="lede">Click on any voice to hear their full story. Trafficking and scams affect people across different contexts. Here are perspectives from researchers, practitioners, and teams at the Ethical Tech Collaborative.</p>
     </section>
 
     <section class="voices-grid">
       ${voicesData.voices.map((v) => `
-        <article class="voice-card">
-          <div class="voice-header" style="--avatar-color: ${v.color}">
+        <button class="voice-card clickable" data-voice-id="${esc(v.id)}" style="--avatar-color: ${v.color}">
+          <div class="voice-image">
             <div class="voice-avatar">${v.avatar}</div>
-            <div class="voice-info">
-              <h3>${esc(v.name)}</h3>
-              <p class="voice-role">${esc(v.role)}</p>
-            </div>
           </div>
-          <blockquote class="voice-quote">${esc(v.quote)}</blockquote>
-          <p class="voice-source">— ${esc(v.source)}</p>
-        </article>
+          <div class="voice-info">
+            <h3>${esc(v.name)}</h3>
+            <p class="voice-role">${esc(v.role)}</p>
+            <p class="voice-action">Click to hear story</p>
+          </div>
+        </button>
       `).join("")}
     </section>
+
+    <div id="voice-modal" class="modal" hidden>
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <div class="modal-header" id="modal-voice-header"></div>
+        <div class="modal-body">
+          <blockquote class="modal-quote" id="modal-quote"></blockquote>
+          <div class="audio-player">
+            <button id="play-btn" class="play-button">▶ Listen to story</button>
+            <audio id="voice-audio" style="width: 100%; margin-top: 12px;"></audio>
+          </div>
+          <div id="modal-bio" class="modal-bio"></div>
+        </div>
+      </div>
+    </div>
 
     <article class="panel">
       <h2>Why multiple voices matter</h2>
@@ -1598,6 +1612,55 @@ async function viewVoices() {
       <p>The people working to prevent these harms come from different disciplines — law, data science, direct services, research. Each brings different insights. Vibe Check synthesizes those insights into a tool anyone can use, in any situation, to check their vibe and decide whether to trust.</p>
       <p><strong>Your story matters too.</strong> If you've encountered a scam or exploitation, <a href="#/report">report it</a>. Anonymous reports help us understand patterns and warn others.</p>
     </article>`;
+
+  // Setup voice cards
+  const modal = $("#voice-modal");
+  const audio = $("#voice-audio");
+  const playBtn = $("#play-btn");
+
+  document.querySelectorAll(".voice-card.clickable").forEach((card) => {
+    card.addEventListener("click", () => {
+      const voiceId = card.dataset.voiceId;
+      const voice = voicesData.voices.find((v) => v.id === voiceId);
+      if (!voice) return;
+
+      $("#modal-voice-header").innerHTML = `
+        <div style="--avatar-color: ${voice.color}">
+          <div class="voice-avatar">${voice.avatar}</div>
+          <div class="voice-info">
+            <h3>${esc(voice.name)}</h3>
+            <p class="voice-role">${esc(voice.role)}</p>
+          </div>
+        </div>`;
+
+      $("#modal-quote").textContent = voice.quote;
+      $("#modal-bio").innerHTML = `<p><strong>${esc(voice.name)}</strong> works on ${voice.role.toLowerCase()} at ${esc(voice.source)}. ${voice.bio || ""}</p>`;
+
+      // Set audio source (placeholder path - ready for real audio files)
+      audio.src = `audio/voices/${voiceId}.mp3`;
+      audio.style.display = "block";
+
+      modal.hidden = false;
+    });
+  });
+
+  // Modal controls
+  $(".modal-close").addEventListener("click", () => { modal.hidden = true; audio.pause(); });
+  modal.addEventListener("click", (e) => { if (e.target === modal) { modal.hidden = true; audio.pause(); } });
+
+  playBtn.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play().catch(() => {
+        playBtn.textContent = "📁 Audio story not yet recorded";
+        playBtn.disabled = true;
+      });
+    } else {
+      audio.pause();
+    }
+  });
+
+  audio.addEventListener("play", () => { playBtn.textContent = "⏸ Pause"; });
+  audio.addEventListener("pause", () => { playBtn.textContent = "▶ Listen to story"; });
 }
 
 function viewTeam() {
