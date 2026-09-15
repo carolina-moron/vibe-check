@@ -643,3 +643,6 @@ input[type=checkbox] { accent-color: var(--accent); }
 .story-body h2 { text-transform: none; letter-spacing: 0; font-size: var(--fs-display); }
 .story-body h3 { margin-top: 24px; }
 .story-body a { overflow-wrap: anywhere; }
+.notalone { margin: 32px 0; }
+.notalone > h2 { margin-bottom: 6px; }
+.notalone .voices-grid { margin-top: 16px; }

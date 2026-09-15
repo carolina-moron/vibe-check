@@ -1582,14 +1582,27 @@ function viewMethodology() {
 
 const STORIES_BASE = "https://ethical-tech-colab.github.io/Avatar-Impact-Stories/";
 
-async function viewVoices() {
+const ETC_LINK = `<a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a>`;
+
+// "You are NOT alone": first-person case stories first, then the Avatar Impact Stories videos.
+async function viewNotAlone(scrollTo) {
+  const here = location.hash;
   main.innerHTML = `
     <section class="hero small">
-      <div class="eyebrow mono">Many voices</div>
-      <h1>Stories from people who lived it</h1>
-      <p class="lede">Click a story to watch it. These are survivor accounts from <a href="${STORIES_BASE}" target="_blank" rel="noopener">Avatar Impact Stories</a> by the <a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a>. The presenters are AI avatars, so the people who told these stories stay protected.</p>
+      <div class="eyebrow mono">Stories and voices</div>
+      <h1>You are NOT alone</h1>
+      <p class="lede">What happened to you, or what's happening now, has happened to many other people. Read how real cases unfolded, and watch survivors share their stories.</p>
     </section>
-    <section class="voices-grid" id="stories-grid"><p class="fine">Loading stories…</p></section>
+    <section class="notalone" id="stories">
+      <h2>Stories</h2>
+      <p class="fine">Real cases from the news, retold in the first person so you can see the warning signs from the inside. The narrators are composites, not real victims. The facts, and how each case came to light, come from the public sources listed in each story.</p>
+      <div class="voices-grid" id="story-list"><p class="fine">Loading stories…</p></div>
+    </section>
+    <section class="notalone" id="voices">
+      <h2>Voices</h2>
+      <p class="fine">Click a video to watch it. These are survivor accounts from <a href="${STORIES_BASE}" target="_blank" rel="noopener">Avatar Impact Stories</a> by the ${ETC_LINK}. The presenters are AI avatars, so the people who told these stories stay protected.</p>
+      <div class="voices-grid" id="stories-grid"><p class="fine">Loading videos…</p></div>
+    </section>
     <div id="voice-modal" class="modal" hidden>
       <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <button class="modal-close" type="button" aria-label="Close">&times;</button>
@@ -1599,21 +1612,32 @@ async function viewVoices() {
     </div>
     <article class="panel">
       <h2>Why these stories matter</h2>
-      <p>Trafficking and exploitation take many forms: child labour, forced labour, sex trafficking, forced conscription, domestic abuse. The warning signs repeat across all of them: isolation, secrecy, debt, urgency and someone else controlling your documents or money.</p>
-      <p><strong>Your story matters too.</strong> If you've run into a scam or exploitation, <a href="#/report">report it</a>. Anonymous reports help us spot patterns and warn others.</p>
+      <p>Trafficking and exploitation take many forms: child labour, forced labour, sex trafficking, forced conscription, domestic abuse, scams. The warning signs repeat across all of them: isolation, secrecy, debt, urgency and someone else controlling your documents or money.</p>
+      <p><strong>Your story matters too.</strong> If you've run into a scam or exploitation, <a href="#/report">report it</a>. Anonymous reports help us spot patterns and warn others. If you need help now, <a href="#/help">here's where to get it</a>.</p>
     </article>`;
+  if (scrollTo) document.getElementById(scrollTo)?.scrollIntoView();
 
-  const grid = $("#stories-grid"), here = location.hash;
-  let stories;
+  fetch("stories/index.json").then((r) => r.json()).then(({ stories }) => {
+    if (location.hash !== here) return;
+    $("#story-list").innerHTML = stories.map((s) => `
+      <a class="panel story-link" href="#/stories/${encodeURIComponent(s.file)}">
+        <div class="eyebrow mono">${esc(s.type)}</div>
+        <h3>${esc(s.title)}</h3>
+        <p class="voice-action">Read story →</p>
+      </a>`).join("");
+  }).catch(() => { if (location.hash === here) $("#story-list").innerHTML = `<p>Stories could not load. Check your connection and try again.</p>`; });
+
+  const grid = $("#stories-grid");
+  let videos;
   try {
-    stories = (await fetch(STORIES_BASE + "stories.json").then((r) => r.json())).stories;
+    videos = (await fetch(STORIES_BASE + "stories.json").then((r) => r.json())).stories;
     if (location.hash !== here) return;
   } catch {
     if (location.hash !== here) return;
-    grid.innerHTML = `<p>Stories could not load. <a href="${STORIES_BASE}" target="_blank" rel="noopener">Watch them on Avatar Impact Stories ↗</a></p>`;
+    grid.innerHTML = `<p>Videos could not load. <a href="${STORIES_BASE}" target="_blank" rel="noopener">Watch them on Avatar Impact Stories ↗</a></p>`;
     return;
   }
-  grid.innerHTML = stories.map((s, i) => `
+  grid.innerHTML = videos.map((s, i) => `
     <button class="voice-card clickable" type="button" data-i="${i}">
       <div class="voice-image"><img class="voice-photo" src="${esc(STORIES_BASE + (s.posterWebp || s.poster))}" alt="" loading="lazy"></div>
       <div class="voice-info">
@@ -1626,7 +1650,7 @@ async function viewVoices() {
   let opener = null;
   const close = () => { video.pause(); video.removeAttribute("src"); video.load(); modal.hidden = true; opener?.focus(); };
   grid.querySelectorAll(".voice-card").forEach((card) => card.addEventListener("click", () => {
-    const s = stories[card.dataset.i];
+    const s = videos[card.dataset.i];
     $("#modal-title").textContent = s.title;
     video.poster = STORIES_BASE + (s.posterWebp || s.poster);
     video.src = STORIES_BASE + s.video;
@@ -1637,6 +1661,7 @@ async function viewVoices() {
   }));
   $(".modal-close").addEventListener("click", close);
   modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
+  if (scrollTo) document.getElementById(scrollTo)?.scrollIntoView();
 }
 
 // Minimal markdown for stories/: headings, paragraphs, lists, bold, italic, links.
@@ -1653,33 +1678,17 @@ function mdToHtml(md) {
   }).join("");
 }
 
-async function viewStories(file) {
+async function viewStory(file) {
   const here = location.hash;
-  let stories;
-  try { ({ stories } = await fetch("stories/index.json").then((r) => r.json())); }
-  catch { main.innerHTML = `<section class="hero small"><div class="eyebrow mono">Stories</div><h1>Stories could not load</h1><p class="lede">Check your connection and try again.</p></section>`; return; }
+  const back = `<p class="crumb"><a href="#/stories">← You are NOT alone</a></p>`;
+  let md = null;
+  try {
+    const { stories } = await fetch("stories/index.json").then((r) => r.json());
+    const story = stories.find((s) => s.file === file);
+    if (story) md = await fetch(`stories/${story.file}`).then((r) => (r.ok ? r.text() : null));
+  } catch { md = null; }
   if (location.hash !== here) return;
-  const story = stories.find((s) => s.file === file);
-  if (!story) {
-    main.innerHTML = `
-      <section class="hero small">
-        <div class="eyebrow mono">In their words, retold</div>
-        <h1>How it happened</h1>
-        <p class="lede">Real cases from the news, retold in the first person so you can see the warning signs from the inside. The narrators are composites, not real victims. The facts, and how each case came to light, come from the public sources listed in each story.</p>
-      </section>
-      <section class="voices-grid">${stories.map((s) => `
-        <a class="panel story-link" href="#/stories/${encodeURIComponent(s.file)}">
-          <div class="eyebrow mono">${esc(s.type)}</div>
-          <h3>${esc(s.title)}</h3>
-          <p class="voice-action">Read story →</p>
-        </a>`).join("")}
-      </section>`;
-    return;
-  }
-  const md = await fetch(`stories/${story.file}`).then((r) => (r.ok ? r.text() : Promise.reject()), () => null).catch(() => null);
-  if (location.hash !== here) return;
-  if (md === null) { main.innerHTML = `<p class="crumb"><a href="#/stories">← All stories</a></p><p>This story could not load.</p>`; return; }
-  main.innerHTML = `<p class="crumb"><a href="#/stories">← All stories</a></p><article class="panel story-body">${mdToHtml(md)}</article>`;
+  main.innerHTML = md === null ? `${back}<p>This story could not load.</p>` : `${back}<article class="panel story-body">${mdToHtml(md)}</article>`;
 }
 
 function viewTeam() {
@@ -1809,7 +1818,7 @@ function route() {
   resetMaps();
   figureCleanup(); figureCleanup = () => {};
   const [, view = "", arg] = (location.hash.match(/^#\/([^/]*)\/?(.*)$/) || []);
-  document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" ? "cases" : view === "" || view === "concern" ? "check" : view)));
+  document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" ? "cases" : view === "voices" ? "stories" : view === "" || view === "concern" ? "check" : view)));
   $("#helpstrip").hidden = view === "help";
   if (view === "case") viewCase(decodeURIComponent(arg));
   else if (view === "check" || view === "") viewCheck(decodeURIComponent(arg || ""));
@@ -1818,8 +1827,8 @@ function route() {
   else if (view === "concern") viewConcern(decodeURIComponent(arg || ""));
   else if (view === "help") viewHelp();
   else if (view === "report") viewReport();
-  else if (view === "voices") viewVoices();
-  else if (view === "stories") viewStories(decodeURIComponent(arg || ""));
+  else if (view === "voices") viewNotAlone("voices");
+  else if (view === "stories") arg ? viewStory(decodeURIComponent(arg)) : viewNotAlone();
   else if (view === "team") viewTeam();
   else if (view === "partnerships") viewPartnerships();
   else if (view === "methodology") viewMethodology();
