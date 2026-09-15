@@ -1802,6 +1802,7 @@ function viewTeam() {
       <h1>Built at Microsoft Hackathon NYC</h1>
       <p class="lede">Vibe Check was created by a team of researchers, designers, and technologists focused on helping people recognize warning signs in online interactions and stay safe from scams and exploitation.</p>
     </section>
+    <figure class="poster"><a href="assets/poster.png" target="_blank" rel="noopener"><img src="assets/poster.png" alt="Vibe Check one-page overview for the Hack for Good track of the Microsoft Global Hackathon"></a><figcaption class="fine">One-page overview for Hack for Good, Microsoft Global Hackathon. Click to open full size.</figcaption></figure>
     <article class="panel">
       <h2>Mission</h2>
       <p>We believe people should be able to get a second opinion before trusting someone online or engaging with an offer. By combining public records, enforcement data, and indicators from real cases, we help identify patterns that matter.</p>
