@@ -392,8 +392,46 @@ footer.site p { max-width: 90ch; }
 .story.hero-full h1.hero-text { max-width: none; font-size: clamp(2.4rem, 2rem + 4vw, 4.2rem); line-height: 1.1; letter-spacing: -0.02em; }
 .story.hero-full .sub { max-width: 70ch; margin-top: 0; }
 .check-blue { color: var(--accent); }
-.figure-meaning { margin: 20px 0 32px; padding: 16px 20px; border-left: 4px solid var(--accent); background: rgba(42, 102, 184, 0.06); max-width: 65ch; }
-.figure-meaning p { margin: 0; font-size: var(--fs-1); line-height: 1.6; }
+.figure-wrapper { position: relative; }
+.figure-balloon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 280px;
+  padding: 16px;
+  background: white;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  font-size: var(--fs-0);
+  line-height: 1.5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+.figure-balloon p { margin: 0; }
+.figure-balloon strong { color: var(--accent); }
+/* Balloon pointer */
+.figure-balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 30px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 0 solid transparent;
+  border-top: 10px solid white;
+}
+.figure-balloon::before {
+  content: "";
+  position: absolute;
+  bottom: -14px;
+  right: 28px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 0 solid transparent;
+  border-top: 12px solid var(--ink);
+}
 .home .kinds { margin-top: 20px; }
 .home .kind { min-height: 138px; }
 @media (max-width: 860px) {
