@@ -1490,7 +1490,7 @@ function viewMethodology() {
       <p><strong>Trafficking priors.</strong> The CTDC synthetic dataset (206,000 cases, redistributable), National Human Trafficking Hotline venue tables, the ILO's 11 indicators (2025 edition) and TIP Report tiers. Priors weight a signal's significance; they are never evidence about a particular company.</p>
 
       <h2 id="m-flsri">Structural risk: the ETC Forced Labor Structural Risk Index</h2>
-      <p>Country context comes from the Ethical Tech CoLab's ${flLink("Forced Labor Structural Risk Index")} (FLSRI), imported unchanged from its published build (${esc(flSrc.build_date)}, ${flSrc.n_scored} of ${flSrc.n_universe} countries scored).</p>
+      <p>Country context comes from the <a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a>'s ${flLink("Forced Labor Structural Risk Index")} (FLSRI), imported unchanged from its published build (${esc(flSrc.build_date)}, ${flSrc.n_scored} of ${flSrc.n_universe} countries scored).</p>
       <p><strong>What FLSRI scores.</strong> Each country gets a 0–1 score for the structural conditions under which forced labour becomes more likely. It is organised as phase, then domain, then indicator: Recruitment (${Object.values(flsri.domains).filter((d) => d.phase === "Recruitment").map((d) => esc(d.label)).join(", ")}) and Exploitation (${Object.values(flsri.domains).filter((d) => d.phase === "Exploitation").map((d) => esc(d.label)).join(", ")}). The composite is the geometric mean of the two phases.</p>
       <p><strong>How it's read.</strong> Scores are read in tiers, with cut points at ${flSrc.tier_cuts.join(" and ")}, each with a ${esc(flSrc.rank_band)}. Countries with too little data are left unscored, not guessed.</p>
       <p>How the tool uses it:</p>
@@ -1587,7 +1587,7 @@ async function viewVoices() {
     <section class="hero small">
       <div class="eyebrow mono">Many voices</div>
       <h1>Stories from people who lived it</h1>
-      <p class="lede">Click a story to watch it. These are survivor accounts from <a href="${STORIES_BASE}" target="_blank" rel="noopener">Avatar Impact Stories</a> by the Ethical Tech Collaborative. The presenters are AI avatars, so the people who told these stories stay protected.</p>
+      <p class="lede">Click a story to watch it. These are survivor accounts from <a href="${STORIES_BASE}" target="_blank" rel="noopener">Avatar Impact Stories</a> by the <a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a>. The presenters are AI avatars, so the people who told these stories stay protected.</p>
     </section>
     <section class="voices-grid" id="stories-grid"><p class="fine">Loading stories…</p></section>
     <div id="voice-modal" class="modal" hidden>
@@ -1699,7 +1699,7 @@ function viewTeam() {
       <p>The Vibe Check team includes:</p>
       <ul>
         <li><strong>Carolina Moron</strong> — Lead, product and research</li>
-        <li><strong>Ethical Tech Collaborative team</strong> — Context, compliance, case research</li>
+        <li><strong><a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a> team</strong> — Context, compliance, case research</li>
         <li><strong>Hackathon participants</strong> — Design, frontend, and testing</li>
       </ul>
       <p>We are grateful for support from the <a href="https://ethical-tech-colab.github.io/" target="_blank" rel="noopener">Ethical Technology Collaborative</a> and the broader community that reports cases and shares feedback.</p>
