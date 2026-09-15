@@ -1577,7 +1577,7 @@ async function viewVoices() {
     </section>
     <section class="voices-grid" id="stories-grid"><p class="fine">Loading stories…</p></section>
     <div id="voice-modal" class="modal" hidden>
-      <div class="modal-content">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <button class="modal-close" type="button" aria-label="Close">&times;</button>
         <div class="modal-header"><h3 id="modal-title"></h3><p class="voice-role">AI presenter. The story comes from a real account.</p></div>
         <div class="modal-body"><video id="story-video" controls playsinline preload="none"></video></div>
@@ -1589,11 +1589,13 @@ async function viewVoices() {
       <p><strong>Your story matters too.</strong> If you've run into a scam or exploitation, <a href="#/report">report it</a>. Anonymous reports help us spot patterns and warn others.</p>
     </article>`;
 
-  const grid = $("#stories-grid");
+  const grid = $("#stories-grid"), here = location.hash;
   let stories;
   try {
     stories = (await fetch(STORIES_BASE + "stories.json").then((r) => r.json())).stories;
+    if (location.hash !== here) return;
   } catch {
+    if (location.hash !== here) return;
     grid.innerHTML = `<p>Stories could not load. <a href="${STORIES_BASE}" target="_blank" rel="noopener">Watch them on Avatar Impact Stories ↗</a></p>`;
     return;
   }
@@ -1607,18 +1609,20 @@ async function viewVoices() {
     </button>`).join("");
 
   const modal = $("#voice-modal"), video = $("#story-video");
-  const close = () => { video.pause(); video.removeAttribute("src"); video.load(); modal.hidden = true; };
+  let opener = null;
+  const close = () => { video.pause(); video.removeAttribute("src"); video.load(); modal.hidden = true; opener?.focus(); };
   grid.querySelectorAll(".voice-card").forEach((card) => card.addEventListener("click", () => {
     const s = stories[card.dataset.i];
     $("#modal-title").textContent = s.title;
     video.poster = STORIES_BASE + (s.posterWebp || s.poster);
     video.src = STORIES_BASE + s.video;
+    opener = card;
     modal.hidden = false;
+    $("#voice-modal .modal-close").focus();
     video.play().catch(() => {});
   }));
   $(".modal-close").addEventListener("click", close);
   modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) close(); });
 }
 
 // Minimal markdown for stories/: headings, paragraphs, lists, bold, italic, links.
@@ -1636,7 +1640,11 @@ function mdToHtml(md) {
 }
 
 async function viewStories(file) {
-  const { stories } = await fetch("stories/index.json").then((r) => r.json());
+  const here = location.hash;
+  let stories;
+  try { ({ stories } = await fetch("stories/index.json").then((r) => r.json())); }
+  catch { main.innerHTML = `<section class="hero small"><div class="eyebrow mono">Stories</div><h1>Stories could not load</h1><p class="lede">Check your connection and try again.</p></section>`; return; }
+  if (location.hash !== here) return;
   const story = stories.find((s) => s.file === file);
   if (!story) {
     main.innerHTML = `
@@ -1654,7 +1662,9 @@ async function viewStories(file) {
       </section>`;
     return;
   }
-  const md = await fetch(`stories/${story.file}`).then((r) => r.text());
+  const md = await fetch(`stories/${story.file}`).then((r) => (r.ok ? r.text() : Promise.reject()), () => null).catch(() => null);
+  if (location.hash !== here) return;
+  if (md === null) { main.innerHTML = `<p class="crumb"><a href="#/stories">← All stories</a></p><p>This story could not load.</p>`; return; }
   main.innerHTML = `<p class="crumb"><a href="#/stories">← All stories</a></p><article class="panel story-body">${mdToHtml(md)}</article>`;
 }
 
@@ -1781,6 +1791,7 @@ function viewPartnerships() {
 // ---- router ----------------------------------------------------------------------------
 
 function route() {
+  main.querySelectorAll("video, audio").forEach((m) => m.pause());
   resetMaps();
   figureCleanup(); figureCleanup = () => {};
   const [, view = "", arg] = (location.hash.match(/^#\/([^/]*)\/?(.*)$/) || []);
@@ -1807,7 +1818,12 @@ $("#quick-exit").addEventListener("click", () => {
   document.body.innerHTML = "";
   location.replace("https://www.bbc.com/weather");
 });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape" && location.hash.startsWith("#/report")) $("#quick-exit").click(); });
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  const modal = $("#voice-modal");
+  if (modal && !modal.hidden) return $("#voice-modal .modal-close").click();
+  if (location.hash.startsWith("#/report")) $("#quick-exit").click();
+});
 
 window.addEventListener("hashchange", route);
 route();

@@ -8,7 +8,7 @@ The price was high. Between the recruiter and the lawyer, men like me paid $10,0
 
 In Mississippi I learned my visa was an H-2B. Temporary. There was no green card. The company put us in a camp: crowded rooms, guards at the gate, and $1,050 a month taken for the bed. The wages were below what we'd been promised. I couldn't go home, because the debt in India was still waiting for me.
 
-**How it came out.** Some of us stopped staying quiet. Workers organised and went to lawyers, and the Southern Poverty Law Center coordinated lawsuits. In February 2015 a federal jury in New Orleans found Signal, the lawyer Malvern Burnett's businesses and the recruiter Sachin Dewan liable for labour trafficking, fraud and racketeering. It awarded $14 million to five workers. Later that year Signal agreed to a $20 million settlement resolving the lawsuits, including $5 million to settle a discrimination suit brought by the EEOC.
+**How it came out.** Workers took Signal and the recruiters to court, in lawsuits coordinated by the Southern Poverty Law Center. In February 2015 a federal jury in New Orleans found Signal, the lawyer Malvern Burnett's businesses and the recruiter Sachin Dewan liable for labour trafficking, fraud and racketeering. It awarded $14 million to five workers. Later that year Signal agreed to a $20 million settlement resolving the lawsuits, including $5 million to settle a discrimination suit brought by the EEOC.
 
 ## Warning signs
 - A huge upfront fee to get a job.
