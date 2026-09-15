@@ -3,15 +3,15 @@
 // Run: AGENT_TOKEN=secret node scripts/agent-server.mjs   (port 8787)
 // Nothing here sends a report: send_report only works on items a person has approved.
 import { createServer } from "node:http";
-import { readFileSync, readdirSync } from "node:fs";
 import { checkItem, toRecord, draftReports, send, recordOutcome, stats } from "./agent.mjs";
-import { writeFileSync } from "node:fs";
+import { getStore } from "./store.mjs";
 
-const QUEUE = new URL("../data/agent/queue/", import.meta.url);
 const token = process.env.AGENT_TOKEN;
-const readQueue = () => readdirSync(QUEUE).filter((f) => f.endsWith(".json")).map((f) => JSON.parse(readFileSync(new URL(f, QUEUE), "utf8")));
-const getRec = (id) => JSON.parse(readFileSync(new URL(`${id}.json`, QUEUE), "utf8"));
-const putRec = (rec) => writeFileSync(new URL(`${rec.id}.json`, QUEUE), JSON.stringify(rec, null, 2) + "\n");
+const readQueue = async () => (await getStore()).list();
+const getRec = async (id) => (await getStore()).get(id);
+const putRec = async (rec) => (await getStore()).put(rec);
+// Routes a browser may call without the token: anonymous usage events and public counters.
+export const PUBLIC = new Set(["POST /event", "GET /public-stats"]);
 
 // Adaptive Card for a Teams review channel: the evidence, and Approve / Dismiss buttons.
 export const reviewCard = (rec) => ({
@@ -33,19 +33,27 @@ const routes = {
     const item = { from: body.source || "api", url: body.url, company: body.company, text: body.text, email: body.email, website: body.website, jurisdiction: body.jurisdiction };
     const rec = toRecord(item, await checkItem(item, { dry: !!body.dry }));
     rec.drafts = draftReports(rec);
-    if (body.queue !== false && rec.score >= 20) putRec(rec);
+    if (body.queue !== false && rec.score >= 20) await putRec(rec);
     return { record: rec, card: reviewCard(rec) };
   },
-  "GET /queue": async () => ({ items: readQueue().map(({ drafts, text_redacted, ...r }) => r) }),
-  "GET /queue/:id": async (_, id) => ({ record: getRec(id), card: reviewCard(getRec(id)) }),
+  "GET /queue": async () => ({ items: (await readQueue()).map(({ drafts, text_redacted, ...r }) => r) }),
+  "GET /queue/:id": async (_, id) => { const rec = await getRec(id); return { record: rec, card: reviewCard(rec) }; },
   "POST /review/:id": async (body, id) => {
     if (!["approved", "dismissed"].includes(body.decision)) throw Object.assign(new Error("decision must be approved or dismissed"), { status: 400 });
-    const rec = getRec(id); rec.status = body.decision; rec.reviewed_at = new Date().toISOString(); rec.reviewer = body.reviewer || null; putRec(rec);
+    const rec = await getRec(id); rec.status = body.decision; rec.reviewed_at = new Date().toISOString(); rec.reviewer = body.reviewer || null; await putRec(rec);
     return { record: rec };
   },
   "POST /send/:id": async (_, id) => ({ record: await send(id) }),
-  "POST /outcome/:id": async (body, id) => ({ record: recordOutcome(id, body.outcome) }),
-  "GET /stats": async () => stats(readQueue()),
+  "POST /outcome/:id": async (body, id) => ({ record: await recordOutcome(id, body.outcome) }),
+  "GET /stats": async () => { const st = await getStore(); return stats(await st.list(), await st.events()); },
+  // The site sends one event per check: kind, tier and how many warning signs. Nothing else is accepted.
+  "POST /event": async (body) => {
+    const tier = ["low", "unverified", "caution", "high"].includes(body.tier) ? body.tier : "unknown";
+    const kind = String(body.kind || "other").slice(0, 20).replace(/[^a-z_-]/g, "");
+    await (await getStore()).event({ type: "check", kind, tier, flags: Math.max(0, Math.min(60, Number(body.flags) || 0)), at: new Date().toISOString() });
+    return { ok: true };
+  },
+  "GET /public-stats": async () => { const st = await getStore(); const { noisy, precision, ...pub } = stats(await st.list(), await st.events()); return { generated: new Date().toISOString(), ...pub }; },
 };
 
 export function handle(method, path, body) {
@@ -61,7 +69,10 @@ export function handle(method, path, body) {
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop())) {
   createServer(async (req, res) => {
     const reply = (status, obj) => { res.writeHead(status, { "content-type": "application/json" }); res.end(JSON.stringify(obj)); };
-    if (token && req.headers.authorization !== `Bearer ${token}`) return reply(401, { error: "unauthorised" });
+    res.setHeader("access-control-allow-origin", "*"); res.setHeader("access-control-allow-headers", "content-type");
+    if (req.method === "OPTIONS") { res.writeHead(204); return res.end(); }
+    const path0 = req.url.split("?")[0];
+    if (token && !PUBLIC.has(`${req.method} ${path0}`) && req.headers.authorization !== `Bearer ${token}`) return reply(401, { error: "unauthorised" });
     let raw = ""; for await (const c of req) raw += c;
     try { reply(200, await handle(req.method, req.url.split("?")[0], raw ? JSON.parse(raw) : {})); }
     catch (e) { reply(e.status || 500, { error: e.message }); }

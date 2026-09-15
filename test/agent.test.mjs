@@ -33,6 +33,8 @@ test("skills API: check, review, refuses to send unapproved, stats", async () =>
   await assert.rejects(handle("POST", `/send/${record.id}`), /only approved/);
   const r = await handle("POST", `/review/${record.id}`, { decision: "dismissed", reviewer: "test" });
   assert.equal(r.record.status, "dismissed");
+  await handle("POST", "/event", { kind: "job", tier: "high", flags: 4 });
+  const pub = await handle("GET", "/public-stats"); assert.ok(pub.checks_run >= 2 && pub.warning_signs_found >= 4);
   const s = await handle("GET", "/stats");
   assert.ok(s.reviewed >= 1);
   assert.throws(() => handle("GET", "/nope"), /not found/);

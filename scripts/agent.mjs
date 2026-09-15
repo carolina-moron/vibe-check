@@ -13,18 +13,17 @@
 //
 // Sources: data/agent/sources.json (ATS boards with public APIs) and data/agent/submissions.jsonl
 // (postings people share with us, one JSON object per line: {url?, company?, text?, email?, website?}).
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, appendFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, appendFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { assess, parsePostingUrl, fetchPosting, redact } from "../src/engine.js";
+import { getStore, summarise } from "./store.mjs";
 
 const root = new URL("../", import.meta.url);
 const load = (p) => JSON.parse(readFileSync(new URL(p, root), "utf8"));
 const signals = load("data/signals.json");
 const registers = load("data/registers.json");
 const cases = load("data/cases/index.json").cases || load("data/cases/index.json");
-const QUEUE = new URL("data/agent/queue/", root);
 const LOG = new URL("data/agent/outcomes.jsonl", root);
-mkdirSync(QUEUE, { recursive: true });
 
 // ---- 1. intake: only channels the platforms allow ------------------------------------------
 
@@ -142,7 +141,7 @@ export async function run({ sources, submissions, fetchFn = fetch, dry = false, 
     const rec = toRecord(item, checked, now);
     if (rec.score < minScore) continue;
     rec.drafts = draftReports(rec);
-    writeFileSync(new URL(`${rec.id}.json`, QUEUE), JSON.stringify(rec, null, 2) + "\n");
+    await (await getStore()).put(rec);
     out.queued++;
   }
   return out;
@@ -152,8 +151,8 @@ export async function run({ sources, submissions, fetchFn = fetch, dry = false, 
 // With SMTP_URL and REPORT_TO set the drafts go by email; otherwise they land in data/agent/outbox/
 // so the reviewer can paste them into the platform's own abuse form.
 export async function send(id, { mailer = null } = {}) {
-  const file = new URL(`${id}.json`, QUEUE);
-  const rec = JSON.parse(readFileSync(file, "utf8"));
+  const store = await getStore();
+  const rec = await store.get(id);
   if (rec.status !== "approved") throw new Error(`${id} is ${rec.status}; only approved items can be sent`);
   const body = [rec.drafts.platform, rec.drafts.company, rec.drafts.ftc].filter(Boolean).join("\n\n---\n\n");
   if (mailer) await mailer({ subject: `VibeCheck report ${id}`, body });
@@ -162,46 +161,31 @@ export async function send(id, { mailer = null } = {}) {
     writeFileSync(new URL(`${id}.txt`, outbox), body + "\n");
   }
   rec.status = "sent"; rec.sent_at = new Date().toISOString();
-  writeFileSync(file, JSON.stringify(rec, null, 2) + "\n");
+  await store.put(rec);
   appendFileSync(LOG, JSON.stringify({ id, status: "sent", at: rec.sent_at }) + "\n");
   return rec;
 }
 
 // ---- 6. feedback: outcomes make the next run better ------------------------------------------
-export function recordOutcome(id, outcome) {
-  if (!["removed", "confirmed", "no-action"].includes(outcome)) throw new Error("outcome must be removed, confirmed or no-action");
-  const file = new URL(`${id}.json`, QUEUE);
-  const rec = JSON.parse(readFileSync(file, "utf8"));
+export async function recordOutcome(id, outcome) {
+  if (!["removed", "confirmed", "no-action"].includes(outcome)) throw Object.assign(new Error("outcome must be removed, confirmed or no-action"), { status: 400 });
+  const store = await getStore();
+  const rec = await store.get(id);
   rec.outcome = outcome; rec.outcome_at = new Date().toISOString();
-  writeFileSync(file, JSON.stringify(rec, null, 2) + "\n");
+  await store.put(rec);
   appendFileSync(LOG, JSON.stringify({ id, status: "outcome", outcome, at: rec.outcome_at, flags: rec.flags.map((f) => f.id) }) + "\n");
   return rec;
 }
 
-export function stats(records) {
-  const reviewed = records.filter((r) => ["approved", "dismissed", "sent"].includes(r.status));
-  const approved = reviewed.filter((r) => r.status !== "dismissed");
-  const confirmed = records.filter((r) => r.outcome === "removed" || r.outcome === "confirmed");
-  const byFlag = {};
-  for (const r of reviewed) for (const f of r.flags) {
-    byFlag[f.id] ||= { label: f.label, seen: 0, dismissed: 0 };
-    byFlag[f.id].seen++; if (r.status === "dismissed") byFlag[f.id].dismissed++;
-  }
-  const noisy = Object.entries(byFlag).filter(([, v]) => v.seen >= 3 && v.dismissed / v.seen > 0.5).map(([id, v]) => ({ id, ...v }));
-  return { queued: records.length, reviewed: reviewed.length, approved: approved.length, dismissed: reviewed.length - approved.length,
-    confirmed: confirmed.length, precision: reviewed.length ? approved.length / reviewed.length : null, noisy };
-}
+export const stats = (records, events = []) => summarise(events, records);
 
-function readQueue() {
-  return readdirSync(QUEUE).filter((f) => f.endsWith(".json")).map((f) => JSON.parse(readFileSync(new URL(f, QUEUE), "utf8")));
-}
+const readQueue = async () => (await getStore()).list();
 
-function setStatus(id, status) {
-  const file = new URL(`${id}.json`, QUEUE);
-  if (!existsSync(file)) throw new Error(`no queued item ${id}`);
-  const rec = JSON.parse(readFileSync(file, "utf8"));
+async function setStatus(id, status) {
+  const store = await getStore();
+  const rec = await store.get(id);
   rec.status = status; rec.reviewed_at = new Date().toISOString();
-  writeFileSync(file, JSON.stringify(rec, null, 2) + "\n");
+  await store.put(rec);
   appendFileSync(LOG, JSON.stringify({ id, status, at: rec.reviewed_at, score: rec.score, flags: rec.flags.map((f) => f.id) }) + "\n");
   return rec;
 }
@@ -217,22 +201,24 @@ if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop()
     console.log(`checked ${r.checked}, queued ${r.queued} for review${r.errors.length ? `, ${r.errors.length} source error(s)` : ""}`);
     for (const e of r.errors) console.log(`  ${e.from}: ${e.error}`);
   } else if (cmd === "review") {
-    for (const r of readQueue()) console.log(`${r.id}  ${String(r.score).padStart(3)}/100  ${r.status.padEnd(9)}  ${r.company || "(no name)"}  ${r.url || ""}`);
+    for (const r of await readQueue()) console.log(`${r.id}  ${String(r.score).padStart(3)}/100  ${r.status.padEnd(9)}  ${r.company || "(no name)"}  ${r.url || ""}`);
   } else if (cmd === "approve" || cmd === "dismiss") {
-    const r = setStatus(arg, cmd === "approve" ? "approved" : "dismissed");
+    const r = await setStatus(arg, cmd === "approve" ? "approved" : "dismissed");
     console.log(`${r.id} ${r.status}`);
     if (cmd === "approve") console.log("\nDrafts ready to send (copy into the platform form / email):\n\n" + [r.drafts.platform, r.drafts.company, r.drafts.ftc].filter(Boolean).join("\n\n---\n\n"));
   } else if (cmd === "send") {
     const r = await send(arg);
     console.log(`${r.id} sent (${process.env.SMTP_URL ? "email" : "written to data/agent/outbox/"})`);
   } else if (cmd === "outcome") {
-    const r = recordOutcome(arg, process.argv.slice(2).filter((a) => !a.startsWith("--"))[2]);
+    const r = await recordOutcome(arg, process.argv.slice(2).filter((a) => !a.startsWith("--"))[2]);
     console.log(`${r.id} outcome: ${r.outcome}`);
   } else if (cmd === "stats") {
-    const s = stats(readQueue());
-    // The site reads data/agent/stats.json for its impact counters.
-    writeFileSync(new URL("data/agent/stats.json", root), JSON.stringify({ generated: new Date().toISOString(), ...s, noisy: undefined }, null, 2) + "\n");
-    console.log(`queued ${s.queued}, reviewed ${s.reviewed} (approved ${s.approved}, dismissed ${s.dismissed}), confirmed by platform/company ${s.confirmed}`);
+    const store = await getStore();
+    const s = stats(await store.list(), await store.events());
+    // The site reads data/agent/stats.json for its impact counters when no live endpoint is configured.
+    writeFileSync(new URL("data/agent/stats.json", root), JSON.stringify({ generated: new Date().toISOString(), store: store.kind, ...s, noisy: undefined }, null, 2) + "\n");
+    console.log(`checks run ${s.checks_run} (site ${s.site_checks}, agent ${s.postings_checked}), warning signs ${s.warning_signs_found}, serious ${s.serious}`);
+    console.log(`reviewed ${s.reviewed} (approved ${s.approved}, dismissed ${s.dismissed}), reports acted on ${s.reports_acted_on}`);
     if (s.precision != null) console.log(`reviewer agreement with the agent: ${Math.round(s.precision * 100)}%`);
     for (const n of s.noisy) console.log(`  consider lowering: ${n.label} (dismissed ${n.dismissed}/${n.seen})`);
   } else {

@@ -1,0 +1,1 @@
+{ "note": "Set agentUrl to the deployed Azure Functions base (https://<app>.azurewebsites.net/api). The site then reports one anonymous event per check (kind, score tier, number of warning signs; no text, no identifiers) and reads live counters from /public-stats. Empty = no reporting; counters come from data/agent/stats.json.", "agentUrl": "" }

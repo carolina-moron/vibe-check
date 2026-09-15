@@ -3,6 +3,12 @@
   "private": true,
   "type": "module",
   "main": "functions.mjs",
-  "scripts": { "start": "func start" },
-  "dependencies": { "@azure/functions": "^4.5.0" }
+  "scripts": {
+    "start": "func start"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.5.0",
+    "@azure/cosmos": "^4.1.0",
+    "@azure/identity": "^4.4.0"
+  }
 }

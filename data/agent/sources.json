@@ -1,4 +1,25 @@
 {
-  "note": "Only sources whose owners publish a public API for their postings. LinkedIn and Handshake are not here on purpose: their terms forbid scraping. Postings from those platforms reach the agent through user submissions (data/agent/submissions.jsonl) or a partnership feed. Add entries like {\"ats\": \"greenhouse\", \"board\": \"<board slug>\"}.",
-  "sources": []
+  "note": "Only sources whose owners publish a public API for their postings. LinkedIn and Handshake are not here on purpose: their terms forbid scraping. Postings from those platforms reach the agent through user submissions (data/agent/submissions.jsonl) or a partnership feed. The boards below are legitimate employers with public Greenhouse/Lever/Ashby APIs; they double as a false-positive baseline.",
+  "sources": [
+    {
+      "ats": "greenhouse",
+      "board": "gitlab"
+    },
+    {
+      "ats": "greenhouse",
+      "board": "stripe"
+    },
+    {
+      "ats": "lever",
+      "board": "netflix"
+    },
+    {
+      "ats": "greenhouse",
+      "board": "datadog"
+    },
+    {
+      "ats": "greenhouse",
+      "board": "twilio"
+    }
+  ]
 }

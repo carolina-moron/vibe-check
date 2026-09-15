@@ -14,6 +14,15 @@ let helpData = null;
 const loadPartners = async () => fetch("data/partners.json").then((r) => (r.ok ? r.json() : null)).catch(() => null);
 const loadHelp = async () => (helpData ||= await fetch("data/help.json").then((r) => (r.ok ? r.json() : null)).catch(() => null));
 const loadNews = async () => (newsData ||= await fetch("data/news.json").then((r) => r.json()));
+let siteConfig = null;
+const loadConfig = async () => (siteConfig ||= await fetch("data/config.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
+// One anonymous event per check when a live agent endpoint is configured: kind, tier and a count. Never the text.
+async function reportCheck(kind, r) {
+  const { agentUrl } = await loadConfig();
+  if (!agentUrl) return;
+  fetch(`${agentUrl.replace(/\/$/, "")}/event`, { method: "POST", headers: { "content-type": "application/json" }, keepalive: true,
+    body: JSON.stringify({ kind: kind || "other", tier: r.tier?.id, flags: r.flags?.length || 0 }) }).catch(() => {});
+}
 
 // ---- helpers ---------------------------------------------------------------------------
 
@@ -1193,7 +1202,7 @@ function viewCheck(kind = "") {
     const btn = form.querySelector("[type=submit]");
     btn.disabled = true; btn.textContent = "Checking…";
     $("#out").innerHTML = `<p class="muted pad">Checking…</p>`;
-    try { renderCheck(await assess(input, { signals, registers, cases }), { ...input, photoHash }); }
+    try { const r = await assess(input, { signals, registers, cases }); renderCheck(r, { ...input, photoHash }); reportCheck(input.kind, r); }
     finally { btn.disabled = false; btn.textContent = "Check it"; }
   });
 }
@@ -1799,9 +1808,11 @@ async function viewStory(file) {
 }
 
 function viewTeam() {
-  fetch("data/agent/stats.json").then((r) => r.json()).then((st) => {
-    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v ?? 0; };
-    set("imp-checked", st.queued); set("imp-approved", st.approved); set("imp-confirmed", st.confirmed);
+  loadConfig().then(({ agentUrl }) => fetch(agentUrl ? `${agentUrl.replace(/\/$/, "")}/public-stats` : "data/agent/stats.json")).then((r) => r.json()).then((st) => {
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = (v ?? 0).toLocaleString("en-US"); };
+    set("imp-checks", st.checks_run); set("imp-signs", st.warning_signs_found); set("imp-acted", st.reports_acted_on);
+    set("imp-checked", st.postings_checked); set("imp-approved", st.approved);
+    const live = document.getElementById("imp-live"); if (live) live.textContent = agentUrl ? "Live from the agent on Azure." : "From the agent's last run.";
   }).catch(() => {});
   main.innerHTML = `
     <section class="hero small">
@@ -1819,14 +1830,15 @@ function viewTeam() {
     <section class="impact" id="impact">
       <h2>Impact so far</h2>
       <div class="stats impact-stats">
-        <div><b>${cases.length}</b><span>researched cases mapped</span></div>
-        <div><b>${signals.signals.length}</b><span>warning signs detected</span></div>
-        <div><b>${(newsData?.n_articles) ?? "161"}</b><span>news reports analysed</span></div>
+        <div><b id="imp-checks">–</b><span>checks run</span></div>
+        <div><b id="imp-signs">–</b><span>warning signs found</span></div>
+        <div><b id="imp-acted">–</b><span>reports acted on</span></div>
         <div><b id="imp-checked">–</b><span>postings checked by the agent</span></div>
         <div><b id="imp-approved">–</b><span>reports approved by a reviewer</span></div>
-        <div><b id="imp-confirmed">–</b><span>confirmed removed or acted on</span></div>
+        <div><b>${cases.length}</b><span>researched cases mapped</span></div>
+        <div><b>${signals.signals.length}</b><span>warning-sign rules</span></div>
       </div>
-      <p class="fine">Agent counters come from its review log and update on every run. They start at zero on purpose: we report outcomes, not promises.</p>
+      <p class="fine"><span id="imp-live">From the agent's last run.</span> Counters come from anonymous check events (kind, score tier and a count, never the text) and the agent's review log. They start low on purpose: we report outcomes, not promises.</p>
     </section>
     <article class="panel team">
       <h2>The team</h2>
