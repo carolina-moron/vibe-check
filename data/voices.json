@@ -1,0 +1,59 @@
+{
+  "note": "Diverse perspectives on trafficking, scams, and online safety from researchers, survivors, and practitioners",
+  "voices": [
+    {
+      "id": "carolina-moron",
+      "name": "Carolina Morón",
+      "role": "Researcher, Digital Safety",
+      "avatar": "CM",
+      "color": "#2A66B8",
+      "quote": "Most people don't realize that trafficking starts with an offer that sounds too good to be true—but also sounds just real enough. The vibe check is about trusting your intuition when something doesn't add up.",
+      "source": "Ethical Tech Collaborative"
+    },
+    {
+      "id": "etc-labor",
+      "name": "Labour Trafficking Researcher",
+      "role": "ETC Forced Labor Team",
+      "avatar": "LT",
+      "color": "#5A5A9A",
+      "quote": "H-2A visa trafficking happens because the system is designed to trap workers. Once you're in the country, you owe fees, your documents are taken, and you can't leave. The warning signs are there from day one—if you know what to look for.",
+      "source": "Ethical Tech Collaborative"
+    },
+    {
+      "id": "etc-sex",
+      "name": "Sex Trafficking Prevention",
+      "role": "ETC Safety Team",
+      "avatar": "ST",
+      "color": "#B3261E",
+      "quote": "Online grooming rarely starts with explicit harm. It starts with isolation: 'your family won't understand us,' 'keep this between us.' When someone asks you to hide the relationship, that's your signal to pause and check the vibe.",
+      "source": "Ethical Tech Collaborative"
+    },
+    {
+      "id": "etc-romance",
+      "name": "Romance Scam Analyst",
+      "role": "ETC Digital Fraud Team",
+      "avatar": "RS",
+      "color": "#7A5A00",
+      "quote": "Romance scammers move fast: 'my camera is broken' (no video verification), 'I love you already' (artificial urgency), 'my uncle has a crypto opportunity' (pivot to money). Each step is designed to lower your guard incrementally.",
+      "source": "Ethical Tech Collaborative"
+    },
+    {
+      "id": "etc-data",
+      "name": "Data Scientist",
+      "role": "ETC Research Lab",
+      "avatar": "DS",
+      "color": "#2B6A76",
+      "quote": "The CTDC dataset shows 206,000 cases with clear patterns: recruitment promises are rarely held. Job offers with visa sponsorship, 'free' housing, or rapid promotion are flagged in over 70% of documented trafficking cases. These aren't coincidences—they're intentional lures.",
+      "source": "Ethical Tech Collaborative"
+    },
+    {
+      "id": "etc-legal",
+      "name": "Anti-Trafficking Lawyer",
+      "role": "ETC Legal & Policy",
+      "avatar": "LP",
+      "color": "#2E6B30",
+      "quote": "Survivors often say, 'I didn't realize it was a trap until I was already in it.' By then, they've lost money, documents, or been isolated from their network. Vibe Check is about catching the trap *before* you step into it.",
+      "source": "Ethical Tech Collaborative"
+    }
+  ]
+}

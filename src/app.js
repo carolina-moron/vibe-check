@@ -1566,6 +1566,40 @@ function viewMethodology() {
   }));
 }
 
+async function viewVoices() {
+  const voicesData = await fetch("data/voices.json").then((r) => r.json());
+
+  main.innerHTML = `
+    <section class="hero small">
+      <div class="eyebrow mono">Diverse perspectives</div>
+      <h1>Many voices on the issue</h1>
+      <p class="lede">Trafficking and scams affect people across different contexts. Here are perspectives from researchers, practitioners, and teams at the Ethical Tech Collaborative on what warning signs matter, why they matter, and how to stay safe.</p>
+    </section>
+
+    <section class="voices-grid">
+      ${voicesData.voices.map((v) => `
+        <article class="voice-card">
+          <div class="voice-header" style="--avatar-color: ${v.color}">
+            <div class="voice-avatar">${v.avatar}</div>
+            <div class="voice-info">
+              <h3>${esc(v.name)}</h3>
+              <p class="voice-role">${esc(v.role)}</p>
+            </div>
+          </div>
+          <blockquote class="voice-quote">${esc(v.quote)}</blockquote>
+          <p class="voice-source">— ${esc(v.source)}</p>
+        </article>
+      `).join("")}
+    </section>
+
+    <article class="panel">
+      <h2>Why multiple voices matter</h2>
+      <p>Trafficking and exploitation take many forms: labour trafficking in agriculture, sex trafficking online, romance scams, housing fraud. Each form has its own patterns, but they all share common warning signs: isolation, secrecy, urgency, financial control.</p>
+      <p>The people working to prevent these harms come from different disciplines — law, data science, direct services, research. Each brings different insights. Vibe Check synthesizes those insights into a tool anyone can use, in any situation, to check their vibe and decide whether to trust.</p>
+      <p><strong>Your story matters too.</strong> If you've encountered a scam or exploitation, <a href="#/report">report it</a>. Anonymous reports help us understand patterns and warn others.</p>
+    </article>`;
+}
+
 function viewTeam() {
   main.innerHTML = `
     <section class="hero small">
@@ -1701,6 +1735,7 @@ function route() {
   else if (view === "concern") viewConcern(decodeURIComponent(arg || ""));
   else if (view === "help") viewHelp();
   else if (view === "report") viewReport();
+  else if (view === "voices") viewVoices();
   else if (view === "team") viewTeam();
   else if (view === "partnerships") viewPartnerships();
   else if (view === "methodology") viewMethodology();
