@@ -1,5 +1,7 @@
 # Backlog
 
+See `PEER_REVIEW.md`, section "Hackathon evaluation", for the ten things that matter most for the submission.
+
 Open work, gathered from this build so far. Ticked items are done; the rest is in rough priority order within each section. `PEER_REVIEW.md` has the longer-term roadmap.
 
 ## Agent and automation
@@ -45,6 +47,16 @@ Open work, gathered from this build so far. Ticked items are done; the rest is i
 - [ ] Add quotes to voice cards only from the videos verbatim or approved excerpts
 - [ ] Voice-only or animated versions of the sextortion and sex-trafficking scripts for younger audiences
 - [ ] More first-person stories: only 7 of 23 cases have one
+
+## Win the hackathon (from the peer review)
+- [ ] Real outcome numbers from real use: Apne Aap organisers and NYU students run checks this week; a reviewer approves real reports; record platform outcomes
+- [ ] Name the users on About: who reviews, where the first deployment is, how to send a posting
+- [ ] Landing: checks run / warning signs / reports acted on as the headline trio with "since launch" dates; third-party figures below
+- [ ] Quote from Ruchira Gupta on About and in the submission
+- [ ] 90-day roadmap on About (Hindi and Bengali, Handshake feed, pilot results)
+- [ ] Functions host: App Insights telemetry, health endpoint, rate limit on /event
+- [ ] Video: title card and closing counters; replace the Teams mock with a real recording once deployed
+- [ ] Simplest share path that is not the website (bookmarklet or mailto/Teams link)
 
 ## Site
 - [ ] Innovation Studio submission (owner: Carolina): open the project, then fit `docs/hackathon-submission.md` to the form fields

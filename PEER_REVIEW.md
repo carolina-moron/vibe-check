@@ -1,5 +1,5 @@
 # VibeCheck — Peer Review
-**Date:** September 14, 2026 | **Reviewer:** Claude  
+**Date:** September 14, 2026 (hackathon evaluation added September 15) | **Reviewer:** Claude  
 **Project:** Static no-build safety-check app for trafficking/scam risk assessment
 
 ---
@@ -178,6 +178,52 @@
 - [ ] Mobile app wrapper
 
 ---
+
+## Hackathon evaluation: VibeCheck vs. last year's Hack for Good winner
+
+**Date:** September 15, 2026. **Benchmark:** Team Transaction Intercept with Street Grace, first place, Hack for Good with a Nonprofit 2025 (and placings every year since 2022). Their platform lets law enforcement deploy SMS bots behind online ads to intercept buyers of child sex; their project page opens with a US map and three counters: 35,530 buyers, 1,013,648 texts, 47,791 disruptions.
+
+### Scorecard
+
+| What the judges rewarded last year | Transaction Intercept | VibeCheck today | Gap |
+|---|---|---|---|
+| Nonprofit that owns the problem | Street Grace, four years, staff who use it | Apne Aap Women Worldwide (agreed, logo approved), Ethical Tech CoLab for data | Partner exists; no Apne Aap staff have used the tool yet |
+| A named operational user and workflow | Officer creates an operation, deploys a number, bot engages | Anyone can run a check; agent queues postings for a reviewer | No named reviewer team or deployment site running it |
+| Outcome numbers, not features | Buyers, texts, disruptions | Checks run 103, warning signs 59, reports acted on 0; scale panel is third-party statistics | Our counters are days old and mostly from our own board run |
+| Azure-native, in production for years | Functions, Cosmos DB, Azure OpenAI/CLU, App Insights, secure network | Bicep, Functions host, Cosmos adapter written and tested locally; site on GitHub Pages | Nothing deployed to Azure yet |
+| Demo that shows the system working | Map with live counters, 10-second video | 62-second walkthrough, Teams card is a mock rendered from real agent output | Teams card is not a real Teams post |
+| Continuity | Multi-year volunteer team, backlog of projects | Open source, BACKLOG.md, one build week | No evidence yet of a second month |
+| Distinct angle | Demand side: intercept buyers | Supply side: stop recruitment; also online scams and deepfakes | Strength. Complementary to the winner, not a copy |
+| Safety and ethics | Law-enforcement controlled | Indicators not verdicts, human approval, on-device redaction, no person checks | Strength. Better documented than most entries |
+
+### What VibeCheck does better
+- Prevention before harm, for anyone with a phone, in any country; the winner is US law enforcement only.
+- Every fact sourced; no check returns "clear"; a wrong accusation is designed out (drafts, human approval).
+- Empathy layer: survivor videos, first-person retellings, the scale panel with sources.
+- Breadth: trafficking, labour exploitation, deepfakes, romance-investment, sextortion, in one explainable rules engine with 58 tested signals.
+- Zero-cost, no-build deployment any NGO can fork; agent designed for the Microsoft stack end to end.
+
+### What must improve to win (priority order)
+
+1. **Real outcomes before judging.** Judges believed 47,791 disruptions because they came from a running system. Ours must come from use, not from our own test run. Actions: deploy the agent (item 2); put the check in front of Apne Aap organisers and NYU students this week and count the checks; have a reviewer approve at least a handful of real reports and record what the platform did. Report the numbers honestly, even if small; label the source of each counter.
+2. **Deploy to Azure and say so.** Run `infra/deploy.sh`, switch `data/config.json` to the live URL, and change the About/Partnerships wording from "designed for" to "running on Azure Functions and Cosmos DB". Add Application Insights to the story (the winner's team talked about telemetry and Cosmos throttling; judges are engineers).
+3. **A real Copilot Studio agent in a real Teams channel.** Import `docs/agent-openapi.yaml`, post one real review card, approve it, and record that 20-second clip. Replace the mock in the demo with the recording.
+4. **Name the users.** One paragraph on the About page: who reviews (names or roles), where the first deployment is (Apne Aap community centre, NYU career services), and how a student or organiser sends a posting today (the share flow). Build the simplest share path: a mailto/Teams link or a bookmarklet, so there is a way in that is not the website.
+5. **Impact metrics that mirror the winner's three.** Keep checks run, warning signs found, reports acted on as the headline trio on the landing page, big, above the fold of the Why it matters block, with "since launch" dates. Move the third-party scale figures below them so our numbers lead.
+6. **A quote from the nonprofit.** One sentence from Ruchira Gupta on the About page and in the submission. Street Grace's endorsement is the spine of the winner's story.
+7. **Evidence of continuity.** A dated roadmap on the About page (next 90 days: Hindi and Bengali, Handshake feed, first pilot results) and an open-issues link. Judges reward projects that will still exist in March.
+8. **Tighten the pitch to the executive challenge.** The submission should answer, in order: who is harmed, what the nonprofit needs, what we built, what it did (numbers), what Microsoft technology made it possible, what happens next. `docs/hackathon-submission.md` covers these; cut it to one screen and lead with the numbers.
+9. **Production hygiene the winner's team talks about.** Add App Insights telemetry to the Functions host, a health endpoint, a rate limit on `/event`, and a note on Cosmos partitioning. Small, but they signal a system rather than a prototype.
+10. **Video.** Sixty seconds is right; add a two-line title card (problem, partner) and end on the three counters, matching the visual grammar judges saw last year.
+
+### Risks to manage
+- **Overclaiming.** Nothing on the site should say "live on Azure" or "in use by Apne Aap" until it is. Judges check.
+- **Defamation.** Keep the drafts-plus-approval rule; never auto-send.
+- **Scraping.** Keep LinkedIn and Handshake out of the agent's sources; say so in the pitch, it is a strength.
+- **Time.** Items 1 to 3 need the tenant. Everything else can be done from this repo.
+
+### Bottom line
+On idea, ethics, breadth and craft, VibeCheck is ahead of a typical entry and complementary to last year's winner. On the three things that won, a running system, real outcome numbers and a nonprofit visibly using it, we are behind. The week's remaining time should go to deployment, first real users and their numbers, in that order.
 
 ## Recommendations (Priority Order)
 
