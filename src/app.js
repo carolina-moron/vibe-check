@@ -1908,7 +1908,7 @@ function mountScale() {
 const logosSection = () => `
     <section class="logos" aria-label="Partners and hosts">
       <a class="logo-item" href="https://apneaap.org" target="_blank" rel="noopener"><img src="assets/partners/apne-aap.png" alt="Apne Aap Women Worldwide"><span>Nonprofit partner</span></a>
-      <a class="logo-item" href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener"><span class="wordmark">Ethical Tech CoLab</span><span>Data partner</span></a>
+      <a class="logo-item" href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener"><img src="assets/partners/etc.jpg" alt="Ethical Tech CoLab"><span>Data partner</span></a>
       <a class="logo-item" href="https://innovationstudio.microsoft.com/hackathons" target="_blank" rel="noopener"><img src="assets/partners/microsoft.png" alt="Microsoft"><span>Global Hackathon · Hack for Good</span></a>
       <a class="logo-item" href="https://www.microsoft.com/en-us/garage/" target="_blank" rel="noopener"><img src="assets/partners/the-garage.png" alt="The Garage"><span>New York City</span></a>
     </section>

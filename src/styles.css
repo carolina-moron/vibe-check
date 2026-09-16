@@ -777,3 +777,4 @@ canvas.voice-photo { display: block; }
 .scale-group li b { color: #FFD166; }
 .scale-group li a { opacity: .7; margin-left: 4px; }
 @media (max-width: 860px) { .scale-grid, .scale-groups { grid-template-columns: minmax(0, 1fr); } }
+.logo-item img[src$="etc.jpg"] { max-height: 72px; }
