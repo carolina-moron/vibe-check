@@ -232,7 +232,7 @@ function ctdcCorridorHtml(c, src) {
 const ctdcCredit = (src) => `<p class="fine credit">${esc(src.credit)} Derived summaries; corridors with fewer than ${src.min_count} records are withheld. ${ext(src.terms, "CTDC terms of use")}.</p>`;
 
 const globeSection = () => `
-    <section class="globecard">
+    <div class="globecard">
       <div class="maphead"><div><h2>Where the signals are</h2><p class="fine">A rotating view of every country in the researched cases (blue and red pulses: recruitment and exploitation) and in recent news reports (grey pulses). Drag to turn, scroll to zoom.</p></div>
         <label class="check toggle"><input type="checkbox" id="globe-spin" checked> Rotate</label></div>
       <div class="globe-wrap">
@@ -251,7 +251,7 @@ const globeSection = () => `
           <p class="fine">Hover a dot for its case or country. No country is ruled out: this shows what was documented or reported, not where the problem is.</p>
         </aside>
       </div>
-    </section>
+    </div>
 `;
 
 // ---- 3D globe: pulse rings on case and news countries (globe.gl, loaded on demand) ----------
@@ -1156,7 +1156,7 @@ function viewCheck(kind = "") {
       <p class="fine" id="example-title" aria-live="polite"></p>
       <p class="fine">We check organisations, websites and email domains, never a private person's criminal record (see <a href="#/methodology">Methodology</a>). If you feel unsafe, <a href="#/help">get help now</a>.</p>
     </form>
-    <div id="out" aria-live="polite"></div>` : ""}${impactSections()}${logosSection()}${globeSection()}`;
+    <div id="out" aria-live="polite"></div>` : ""}${impactSections()}`;
   mountImpact();
   mountGlobe($("#globe"));
   if (!k) { figureCleanup = mountFigure($("#figure")); renderSeeing(); return; }
@@ -1905,35 +1905,39 @@ function mountScale() {
 }
 
 // Partners strip, "The scale, right now" and "Impact so far": shown under the checker.
+// "Why it matters": the scale of the problem, what VibeCheck has done, partners and the globe, as one block.
 const logosSection = () => `
-    <section class="logos" aria-label="Partners and hosts">
+    <div class="logos" aria-label="Partners and hosts">
       <a class="logo-item" href="https://apneaap.org" target="_blank" rel="noopener"><img src="assets/partners/apne-aap.png" alt="Apne Aap Women Worldwide"><span>Nonprofit partner</span></a>
       <a class="logo-item" href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener"><img src="assets/partners/etc.jpg" alt="Ethical Tech CoLab"><span>Data partner</span></a>
       <a class="logo-item" href="https://innovationstudio.microsoft.com/hackathons" target="_blank" rel="noopener"><img src="assets/partners/microsoft.png" alt="Microsoft"><span>Global Hackathon · Hack for Good</span></a>
       <a class="logo-item" href="https://www.microsoft.com/en-us/garage/" target="_blank" rel="noopener"><img src="assets/partners/the-garage.png" alt="The Garage"><span>New York City</span></a>
-    </section>
-`;
+    </div>`;
 function impactSections() {
   return `
-    <section class="scale" id="scale" hidden>
-      <div class="scale-head"><h2>The scale, right now</h2><p class="fine">Reported figures turned into rates. Counters tick from the moment you opened this page. Every number links to its source, and reported figures are a floor: most scams and most trafficking are never reported.</p></div>
-      <div class="scale-grid" id="scale-grid"><p class="fine">Loading figures…</p></div>
-      <div class="scale-groups" id="scale-groups"></div>
-    </section>
-    <section class="impact" id="impact">
-      <h2>Impact so far</h2>
-      <div class="stats impact-stats">
-        <div><b id="imp-checks">–</b><span>checks run</span></div>
-        <div><b id="imp-signs">–</b><span>warning signs found</span></div>
-        <div><b id="imp-acted">–</b><span>reports acted on</span></div>
-        <div><b id="imp-checked">–</b><span>postings checked by the agent</span></div>
-        <div><b id="imp-approved">–</b><span>reports approved by a reviewer</span></div>
-        <div><b>${cases.length}</b><span>researched cases mapped</span></div>
-        <div><b>${signals.signals.length}</b><span>warning-sign rules</span></div>
+    <section class="why" id="why">
+      <div class="why-head"><div class="eyebrow mono">Why it matters</div><h2>The scale, right now</h2>
+        <p class="fine">Reported figures turned into rates. Counters tick from the moment you opened this page. Every number links to its source, and reported figures are a floor: most scams and most trafficking are never reported.</p></div>
+      <div class="scale" id="scale" hidden>
+        <div class="scale-grid" id="scale-grid"></div>
+        <div class="scale-groups" id="scale-groups"></div>
       </div>
-      <p class="fine"><span id="imp-live">From the agent's last run.</span> Counters come from anonymous check events (kind, score tier and a count, never the text) and the agent's review log. They start low on purpose: we report outcomes, not promises.</p>
-    </section>
-`;
+      <div class="impact" id="impact">
+        <h3>What VibeCheck has done</h3>
+        <div class="stats impact-stats">
+          <div><b id="imp-checks">–</b><span>checks run</span></div>
+          <div><b id="imp-signs">–</b><span>warning signs found</span></div>
+          <div><b id="imp-acted">–</b><span>reports acted on</span></div>
+          <div><b id="imp-checked">–</b><span>postings checked by the agent</span></div>
+          <div><b id="imp-approved">–</b><span>reports approved by a reviewer</span></div>
+          <div><b>${cases.length}</b><span>researched cases mapped</span></div>
+          <div><b>${signals.signals.length}</b><span>warning-sign rules</span></div>
+        </div>
+        <p class="fine">Counters come from anonymous check events (kind, score tier and a count, never the text) and the agent's review log. They start low on purpose: we report outcomes, not promises.</p>
+      </div>
+      ${logosSection()}
+      ${globeSection()}
+    </section>`;
 }
 function mountImpact() {
   mountScale();
@@ -1947,12 +1951,15 @@ function mountImpact() {
 function viewTeam() {
   main.innerHTML = `
     <section class="hero small">
-      <div class="eyebrow mono">The team</div>
-      <h1>Something feels off? Check the vibe.</h1>
+      <div class="eyebrow mono">About</div>
+      <h1>Who made VibeCheck, and why</h1>
       <p class="lede">VibeCheck was built at The Garage in New York City for the Hack for Good track of the Microsoft Global Hackathon, with the nonprofit <a href="https://apneaap.org" target="_blank" rel="noopener">Apne Aap Women Worldwide</a> and the <a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a>. It helps people recognise warning signs of scams and exploitation before they act.</p>
-      <p class="stats home-cta"><a class="help-btn" href="#/check">Run a check →</a> <a class="ghostlink" href="#/cases">Cases &amp; map</a> <a class="ghostlink" href="#/stories">You are NOT alone</a></p>
+      <p class="stats home-cta"><a class="help-btn" href="#/">Run a check →</a> <a class="ghostlink" href="#/methodology">Methodology</a> <a class="ghostlink" href="#/partnerships">Integrate VibeCheck</a></p>
     </section>
-    <figure class="poster"><a href="assets/poster.html" target="_blank" rel="noopener"><img src="assets/poster.png" alt="VibeCheck one-page overview for the Hack for Good track of the Microsoft Global Hackathon"></a><figcaption class="fine">One-page overview for Hack for Good, Microsoft Global Hackathon. Click to open it full size and zoomable; <a href="assets/poster.png" download>download the PNG</a>.</figcaption></figure>
+    <div class="poster-row">
+      <figure class="poster preview"><a href="assets/poster.html" target="_blank" rel="noopener"><img src="assets/poster.png" alt="VibeCheck one-page overview for the Hack for Good track of the Microsoft Global Hackathon"></a></figure>
+      <div><h2>The one-pager</h2><p>Problem, solution, what it does and why it stands out in Hack for Good, on one page.</p><p class="btns"><a class="ghostlink" href="assets/poster.html" target="_blank" rel="noopener">Open full size ↗</a> <a class="ghostlink" href="assets/poster.png" download>Download PNG</a></p></div>
+    </div>
     <article class="panel">
       <h2>Mission</h2>
       <p>We believe people should be able to get a second opinion before trusting someone online or engaging with an offer. By combining public records, enforcement data, and indicators from real cases, we help identify patterns that matter.</p>
@@ -1967,7 +1974,7 @@ function viewTeam() {
       </div>
       <figure class="teamphoto"><img src="assets/team/hackathon-nyc.jpg" alt="The team at the Microsoft Global Hackathon in New York City"><figcaption class="fine">Microsoft Global Hackathon, The Garage, New York City.</figcaption></figure>
     </article>
-    <article class="panel partners">
+    <article class="panel partner-panel">
       <h2>Partners</h2>
       <div class="partner-cols">
         <div><h3>Nonprofit partner</h3><p><strong><a href="https://apneaap.org" target="_blank" rel="noopener">Apne Aap Women Worldwide</a></strong> founded by Ruchira Gupta, works to end sex trafficking by organising women and girls in India's most vulnerable communities. Apne Aap brings the frontline: who is being recruited, how, and what a warning looks like from inside a community. VibeCheck brings the tool that turns those warnings into checks anyone can run.</p></div>
@@ -2119,11 +2126,11 @@ function route() {
   resetMaps();
   figureCleanup(); figureCleanup = () => {};
   const [, view = "", arg] = (location.hash.match(/^#\/([^/]*)\/?(.*)$/) || []);
-  document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" ? "cases" : view === "voices" ? "stories" : view === "concern" ? "check" : view === "" ? "team" : view)));
+  document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" ? "cases" : view === "voices" ? "stories" : view === "concern" || view === "" ? "check" : ["team", "partnerships", "methodology"].includes(view) ? "about" : view)));
   $("#helpstrip").hidden = view === "help";
   if (view === "case") viewCase(decodeURIComponent(arg));
-  else if (view === "check") viewCheck(decodeURIComponent(arg || ""));
-  else if (view === "") viewTeam();
+  else if (view === "check" || view === "") viewCheck(decodeURIComponent(arg || ""));
+  else if (view === "about" || view === "team") viewTeam();
   else if (view === "cases") viewCases();
   else if (view === "news") viewNews(decodeURIComponent(arg || ""));
   else if (view === "concern") viewConcern(decodeURIComponent(arg || ""));

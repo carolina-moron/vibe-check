@@ -45,7 +45,7 @@ Open work, gathered from this build so far. Ticked items are done; the rest is i
 - [ ] More first-person stories: only 7 of 23 cases have one
 
 ## Site
-- [ ] Test on a phone: layout changes were checked at desktop width only
+- [x] Phone audit: no page scrolls sideways; nav strip has a scroll hint
 - [ ] Update poster metrics and re-render `assets/poster.html` before the demo; confirm event city/year
 - [ ] Report backend still undecided (see agent database above)
 - [ ] Multi-language: Spanish first, given the H-2A and Latin America cases
@@ -60,3 +60,9 @@ Open work, gathered from this build so far. Ticked items are done; the rest is i
 - [x] News reports layer on the Cases map with a Methodology limits note
 - [x] Hack for Good poster; ETC credited only as a data source
 - [x] Agent pipeline, skills API, OpenAPI spec, docs, Methodology and Partnerships sections
+
+## Design pass, remaining
+- [ ] Section heading case: uppercase for section labels, sentence case for titles, everywhere
+- [ ] Case cards: align score and Public records badges as one row on narrow cards
+- [ ] News page: lure indicators column much taller than its neighbour
+- [ ] About page: shorten the Mission text (it repeats the hero)
