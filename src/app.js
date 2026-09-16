@@ -1152,7 +1152,8 @@ function viewCheck(kind = "") {
       <p class="fine" id="example-title" aria-live="polite"></p>
       <p class="fine">We check organisations, websites and email domains, never a private person's criminal record (see <a href="#/methodology">Methodology</a>). If you feel unsafe, <a href="#/help">get help now</a>.</p>
     </form>
-    <div id="out" aria-live="polite"></div>` : ""}`;
+    <div id="out" aria-live="polite"></div>` : ""}${impactSections()}`;
+  mountImpact();
   if (!k) { figureCleanup = mountFigure($("#figure")); renderSeeing(); return; }
 
   const form = $("#check");
@@ -1898,27 +1899,9 @@ function mountScale() {
   }).catch(() => {});
 }
 
-function viewTeam() {
-  mountScale();
-  loadConfig().then(({ agentUrl }) => fetch(agentUrl ? `${agentUrl.replace(/\/$/, "")}/public-stats` : "data/agent/stats.json")).then((r) => r.json()).then((st) => {
-    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = (v ?? 0).toLocaleString("en-US"); };
-    set("imp-checks", st.checks_run); set("imp-signs", st.warning_signs_found); set("imp-acted", st.reports_acted_on);
-    set("imp-checked", st.postings_checked); set("imp-approved", st.approved);
-    const live = document.getElementById("imp-live"); if (live) live.textContent = agentUrl ? "Live from the agent on Azure." : "From the agent's last run.";
-  }).catch(() => {});
-  main.innerHTML = `
-    <section class="hero small">
-      <div class="eyebrow mono">The team</div>
-      <h1>Something feels off? Check the vibe.</h1>
-      <p class="lede">VibeCheck was built at The Garage in New York City for the Hack for Good track of the Microsoft Global Hackathon, with the nonprofit <a href="https://apneaap.org" target="_blank" rel="noopener">Apne Aap Women Worldwide</a> and the <a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a>. It helps people recognise warning signs of scams and exploitation before they act.</p>
-      <p class="stats home-cta"><a class="help-btn" href="#/check">Run a check →</a> <a class="ghostlink" href="#/cases">Cases &amp; map</a> <a class="ghostlink" href="#/stories">You are NOT alone</a></p>
-    </section>
-    <figure class="poster"><a href="assets/poster.html" target="_blank" rel="noopener"><img src="assets/poster.png" alt="VibeCheck one-page overview for the Hack for Good track of the Microsoft Global Hackathon"></a><figcaption class="fine">One-page overview for Hack for Good, Microsoft Global Hackathon. Click to open it full size and zoomable; <a href="assets/poster.png" download>download the PNG</a>.</figcaption></figure>
-    <article class="panel">
-      <h2>Mission</h2>
-      <p>We believe people should be able to get a second opinion before trusting someone online or engaging with an offer. By combining public records, enforcement data, and indicators from real cases, we help identify patterns that matter.</p>
-      <p>VibeCheck started as a hackathon project and has grown into a tool that serves job seekers, investors, dating app users, and anyone suspicious of an online interaction.</p>
-    </article>
+// Partners strip, "The scale, right now" and "Impact so far": shown under the checker.
+function impactSections() {
+  return `
     <section class="logos" aria-label="Partners and hosts">
       <a class="logo-item" href="https://apneaap.org" target="_blank" rel="noopener"><img src="assets/partners/apne-aap.png" alt="Apne Aap Women Worldwide"><span>Nonprofit partner</span></a>
       <a class="logo-item" href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener"><span class="wordmark">Ethical Tech CoLab</span><span>Data partner</span></a>
@@ -1943,6 +1926,31 @@ function viewTeam() {
       </div>
       <p class="fine"><span id="imp-live">From the agent's last run.</span> Counters come from anonymous check events (kind, score tier and a count, never the text) and the agent's review log. They start low on purpose: we report outcomes, not promises.</p>
     </section>
+`;
+}
+function mountImpact() {
+  mountScale();
+  loadConfig().then(({ agentUrl }) => fetch(agentUrl ? `${agentUrl.replace(/\/$/, "")}/public-stats` : "data/agent/stats.json")).then((r) => r.json()).then((st) => {
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = (v ?? 0).toLocaleString("en-US"); };
+    set("imp-checks", st.checks_run); set("imp-signs", st.warning_signs_found); set("imp-acted", st.reports_acted_on);
+    set("imp-checked", st.postings_checked); set("imp-approved", st.approved);
+  }).catch(() => {});
+}
+
+function viewTeam() {
+  main.innerHTML = `
+    <section class="hero small">
+      <div class="eyebrow mono">The team</div>
+      <h1>Something feels off? Check the vibe.</h1>
+      <p class="lede">VibeCheck was built at The Garage in New York City for the Hack for Good track of the Microsoft Global Hackathon, with the nonprofit <a href="https://apneaap.org" target="_blank" rel="noopener">Apne Aap Women Worldwide</a> and the <a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a>. It helps people recognise warning signs of scams and exploitation before they act.</p>
+      <p class="stats home-cta"><a class="help-btn" href="#/check">Run a check →</a> <a class="ghostlink" href="#/cases">Cases &amp; map</a> <a class="ghostlink" href="#/stories">You are NOT alone</a></p>
+    </section>
+    <figure class="poster"><a href="assets/poster.html" target="_blank" rel="noopener"><img src="assets/poster.png" alt="VibeCheck one-page overview for the Hack for Good track of the Microsoft Global Hackathon"></a><figcaption class="fine">One-page overview for Hack for Good, Microsoft Global Hackathon. Click to open it full size and zoomable; <a href="assets/poster.png" download>download the PNG</a>.</figcaption></figure>
+    <article class="panel">
+      <h2>Mission</h2>
+      <p>We believe people should be able to get a second opinion before trusting someone online or engaging with an offer. By combining public records, enforcement data, and indicators from real cases, we help identify patterns that matter.</p>
+      <p>VibeCheck started as a hackathon project and has grown into a tool that serves job seekers, investors, dating app users, and anyone suspicious of an online interaction.</p>
+    </article>
     <article class="panel team">
       <h2>The team</h2>
       <div class="people">
