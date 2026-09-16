@@ -1975,7 +1975,7 @@ function impactSections() {
         <div class="scale-groups" id="scale-groups"></div>
       </div>
       <div class="impact" id="impact">
-        <h3>What VibeCheck has done</h3>
+        <h3>What VibeCheck has done <span class="fine">since 15 September 2026</span></h3>
         <div class="stats impact-stats">
           <div><b id="imp-checks">–</b><span>checks run</span></div>
           <div><b id="imp-signs">–</b><span>warning signs found</span></div>
