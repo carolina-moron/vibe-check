@@ -280,3 +280,14 @@ test("sextortion, wrong-number openers and withdrawal fees", () => {
   assert.ok(t("To withdraw your profits you must first pay a 20% tax to unlock the account.").includes("withdrawal_fees"));
   assert.ok(!t("You can withdraw funds any time; our fee is deducted from the balance.").includes("withdrawal_fees") || true);
 });
+
+test("OFAC index: sanctioned entity matches by name or alias, individuals never included", async () => {
+  const { checkOfac } = await import("../src/engine.js");
+  const ofac = JSON.parse(readFileSync(new URL("../data/ofac.json", import.meta.url)));
+  assert.ok(ofac.entries.length > 500);
+  const hit = checkOfac("Prince Holding Group", ofac);
+  assert.equal(hit.verdict, "hit");
+  assert.ok(hit.hits.some((h) => h.id === "sanctioned_entity"));
+  assert.equal(checkOfac("Quiet Bakery Ltd", ofac).verdict, "no-evidence-found");
+  assert.equal(checkOfac("Quiet Bakery Ltd", null).verdict, "not-searched");
+});

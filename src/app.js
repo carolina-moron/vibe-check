@@ -7,6 +7,9 @@ import { REPORT_ENDPOINT } from "./config.js?v=";
 const [signals, registers, { cases }, flsri] = await Promise.all(
   ["data/signals.json", "data/registers.json", "data/cases/index.json", "data/flsri.json"].map((p) => fetch(p).then((r) => r.json())),
 );
+// Sanctions index loads in the background; a check that starts before it arrives just reports "not searched".
+let ofac = null;
+fetch("data/ofac.json").then((r) => (r.ok ? r.json() : null)).then((d) => { ofac = d; }).catch(() => {});
 let newsData = null;
 let ctdcData;
 const loadCtdc = async () => (ctdcData !== undefined ? ctdcData : (ctdcData = await fetch("data/ctdc.json").then((r) => (r.ok ? r.json() : null)).catch(() => null)));
@@ -1292,7 +1295,7 @@ function viewCheck(kind = "") {
     const btn = form.querySelector("[type=submit]");
     btn.disabled = true; btn.textContent = "Checking…";
     $("#out").innerHTML = `<p class="muted pad">Checking…</p>`;
-    try { const r = await assess(input, { signals, registers, cases }); renderCheck(r, { ...input, photoHash }); reportCheck(input.kind, r); }
+    try { const r = await assess(input, { signals, registers, cases, ofac }); renderCheck(r, { ...input, photoHash }); reportCheck(input.kind, r); }
     finally { btn.disabled = false; btn.textContent = "Check it"; }
   });
 }

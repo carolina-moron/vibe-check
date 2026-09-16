@@ -23,6 +23,7 @@ const load = (p) => JSON.parse(readFileSync(new URL(p, root), "utf8"));
 const signals = load("data/signals.json");
 const registers = load("data/registers.json");
 const cases = load("data/cases/index.json").cases || load("data/cases/index.json");
+const ofac = existsSync(new URL("data/ofac.json", root)) ? load("data/ofac.json") : null;
 const LOG = new URL("data/agent/outcomes.jsonl", root);
 
 // ---- 1. intake: only channels the platforms allow ------------------------------------------
@@ -72,7 +73,7 @@ export async function checkItem(item, { fetchFn = fetch, dry = false, now = new 
   };
   // --dry answers every register with "not searched" so the text rules still run offline.
   const quiet = async () => ({ ok: false, status: 503, json: async () => ({}), text: async () => "" });
-  const r = await assess(input, { signals, registers, cases, fetchFn: dry ? quiet : fetchFn, now });
+  const r = await assess(input, { signals, registers, cases, ofac, fetchFn: dry ? quiet : fetchFn, now });
   return { input, posting, result: r };
 }
 

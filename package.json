@@ -10,7 +10,8 @@
     "serve": "npx --yes serve .",
     "import:flsri": "node scripts/import-flsri.mjs",
     "news": "node scripts/fetch-news.mjs",
-    "import:ctdc": "node scripts/import-ctdc.mjs"
+    "import:ctdc": "node scripts/import-ctdc.mjs",
+    "import:ofac": "node scripts/import-ofac.mjs"
   },
   "devDependencies": {
     "i18n-iso-countries": "^7.14.0",

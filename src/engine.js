@@ -388,6 +388,33 @@ export function checkCatalog(name, cases) {
   return result("catalog", "hit", `${matches.length} match(es) in documented cases.`, hits, matches);
 }
 
+// OFAC sanctions: local index of sanctioned entities (see scripts/import-ofac.mjs). Entities only.
+export function checkOfac(name, ofac) {
+  if (!ofac?.entries) return result("ofac", "not-searched", "Sanctions index not loaded.");
+  const q = normalizeName(name);
+  if (q.length < 4) return result("ofac", "not-searched", "No company name given.");
+  const matches = ofac.entries.filter((e) => [e.name, ...(e.akas || [])].some((n) => {
+    const nn = normalizeName(n);
+    return nn && (nn === q || (q.length >= 8 && nn.length >= 8 && (nn.includes(q) || q.includes(nn))));
+  })).slice(0, 5);
+  if (!matches.length) return result("ofac", "no-evidence-found", `No sanctioned entity matches this name (OFAC SDN, ${ofac.source?.published || ""}).`);
+  const detail = matches.map((m) => `${m.name} (${m.programs.join(", ")}${m.countries?.length ? `; ${m.countries.join(", ")}` : ""})`).join("; ");
+  return result("ofac", "hit", `${matches.length} sanctioned entit${matches.length > 1 ? "ies" : "y"} match this name.`, [{ id: "sanctioned_entity", evidence: detail }],
+    matches.map((m) => ({ ...m, url: (ofac.source?.lookup || "").replace("{uid}", m.uid) })));
+}
+
+// urlscan.io public search: has this domain been scanned and flagged malicious?
+export async function checkUrlscan(domain, { fetchFn = fetch } = {}) {
+  try {
+    const j = await getJson(fetchFn, `https://urlscan.io/api/v1/search/?q=domain:${encodeURIComponent(domain)}&size=50`);
+    const scans = j.results || [];
+    const bad = scans.filter((r) => r.verdicts?.overall?.malicious || r.verdicts?.malicious || r.malicious);
+    if (!scans.length) return result("urlscan", "no-evidence-found", "No public scans of this domain.");
+    if (!bad.length) return result("urlscan", "no-evidence-found", `${scans.length} public scan(s), none flagged malicious.`);
+    return result("urlscan", "hit", `${bad.length} of ${scans.length} public scans flagged this domain as malicious.`, [{ id: "domain_flagged_malicious", evidence: `${bad.length} malicious verdict(s) on urlscan.io` }], bad.slice(0, 5).map((r) => ({ url: r.result, date: r.task?.time })));
+  } catch (e) { return result("urlscan", "error", `urlscan.io not reachable (${e.message}).`); }
+}
+
 // ---- Scoring and coverage --------------------------------------------------------------
 
 // Group scored flags into the "things to consider" a person can act on.
@@ -466,7 +493,7 @@ export function verification(input, checks, flags, posting = null) {
 
 // ---- Live check ------------------------------------------------------------------------
 
-export async function assess(input, { signals, registers, cases, fetchFn = fetch, now = new Date() }) {
+export async function assess(input, { signals, registers, cases, ofac = null, fetchFn = fetch, now = new Date() }) {
   const name = String(input.company || "").trim();
   const posting = input.postingUrl ? parsePostingUrl(input.postingUrl) : null;
   const domain = normalizeDomain(input.website) || (posting && !posting.ats ? normalizeDomain(posting.host) : "");
@@ -478,6 +505,8 @@ export async function assess(input, { signals, registers, cases, fetchFn = fetch
 
   const checks = await Promise.all([
     name ? Promise.resolve(checkCatalog(name, cases)) : skip("catalog", "No company name given."),
+    name ? Promise.resolve(checkOfac(name, ofac)) : skip("ofac", "No company name given."),
+    domain ? checkUrlscan(domain, opts) : skip("urlscan", "No website given."),
     name.length >= 3 ? checkGleif(name, opts) : skip("gleif", "No company name given."),
     name.length >= 3 && (usState || !jurisdiction) ? checkNewYork(name, opts) : skip("ny-dos", "Not a US employer."),
     name.length >= 3 && (usState || !jurisdiction) ? checkColorado(name, opts) : skip("co-sos", "Not a US employer."),

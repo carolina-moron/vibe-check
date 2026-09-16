@@ -472,6 +472,22 @@
       "dimension": "money",
       "label": "You can't withdraw your money without paying a fee, tax or deposit first",
       "why": "The end stage of investment scams. Real platforms deduct fees from your balance; they don't ask you to send more to release it."
+    },
+    {
+      "id": "sanctioned_entity",
+      "category": "reputation",
+      "weight": 40,
+      "dimension": "record",
+      "label": "Name matches an entity on the US sanctions list (OFAC) under human-rights, organised-crime or cyber programs",
+      "why": "The US Treasury has designated this entity for serious abuses such as running scam compounds, trafficking or organised crime. Check the linked SDN entry to confirm it is the same organisation."
+    },
+    {
+      "id": "domain_flagged_malicious",
+      "category": "digital",
+      "weight": 30,
+      "dimension": "identity",
+      "label": "The website has been flagged as malicious in public security scans",
+      "why": "Security scanners (urlscan.io) have seen this domain used for phishing or fraud. Don't enter details or pay on it."
     }
   ],
   "tiers": [

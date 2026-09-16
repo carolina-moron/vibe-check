@@ -403,6 +403,32 @@
       "holds": "Forum threads, news and warnings",
       "caveat": "Check every result is about the same company.",
       "url": "https://duckduckgo.com/?q=%22{q}%22+scam+OR+complaint+OR+fraud"
+    },
+    {
+      "id": "ofac",
+      "layer": "enforcement",
+      "name": "US Treasury OFAC sanctions list (SDN): human-rights, organised-crime and cyber programs",
+      "access": "queried",
+      "covers": [
+        "*"
+      ],
+      "holds": "Sourced cases, entities, former names and aliases",
+      "caveat": "Hand-researched; a small set of documented cases, not a register.",
+      "url": "https://sanctionssearch.ofac.treas.gov/",
+      "note": "Local index of sanctioned entities (GLOMAG, TCO, CYBER2, narcotics), rebuilt with npm run import:ofac. Entities only; no individuals."
+    },
+    {
+      "id": "urlscan",
+      "layer": "domain",
+      "name": "urlscan.io public scans",
+      "access": "queried",
+      "covers": [
+        "*"
+      ],
+      "holds": "Sourced cases, entities, former names and aliases",
+      "caveat": "Hand-researched; a small set of documented cases, not a register.",
+      "url": "https://urlscan.io/search/#domain:{d}",
+      "note": "Public search of past scans for the website's domain; counts scans with a malicious verdict."
     }
   ]
 }
