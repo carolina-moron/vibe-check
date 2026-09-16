@@ -838,3 +838,9 @@ footer.site .fine { font-size: var(--fs-1); }
 .home .kinds-head { margin-top: 28px; }
 .hero-wm { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1; }
 .hero-wm .wm-1 { color: var(--ink); } .hero-wm .wm-2 { color: var(--accent); }
+.figure-home { margin: 8px 0 24px; }
+.figure-home .figure-band { min-height: 34vh; margin-inline: -24px; }
+.home .kinds-head { margin-top: 12px; }
+.figure-home .figure-wrapper { position: relative; }
+.story.hero-full { min-height: 0; padding-bottom: 8px; }
+.home > .logos { margin-top: 8px; }

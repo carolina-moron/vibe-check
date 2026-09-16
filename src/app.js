@@ -231,6 +231,19 @@ function ctdcCorridorHtml(c, src) {
 }
 const ctdcCredit = (src) => `<p class="fine credit">${esc(src.credit)} Derived summaries; corridors with fewer than ${src.min_count} records are withheld. ${ext(src.terms, "CTDC terms of use")}.</p>`;
 
+const figureSection = () => `
+    <div class="figure-home">
+      <div class="figure-wrapper">
+        <figure class="figure-band" aria-label="Animation: a blue line that starts loose, tightens into a knot, then continues taut. A visual metaphor for how offers seem safe at first, then trap you, then become impossible to escape.">
+          <canvas id="figure" aria-hidden="true"></canvas>
+          <figcaption class="figure-caption">Fig. 1 — an offer, a loop, a knot</figcaption>
+        </figure>
+        <div class="figure-balloon">
+          <p><strong>The animation and symbology:</strong> This is how trafficking and scams work. A single blue line drawn by hand. It starts loose (the offer looks easy), loops and tightens (but then you realize you're trapped), then continues taut to the edge (the only way out).</p>
+        </div>
+      </div>
+    </div>`;
+
 const globeSection = () => `
     <div class="globecard">
       <div class="maphead"><div><h2>Where the signals are</h2><p class="fine">A rotating view of every country in the researched cases (blue and red pulses: recruitment and exploitation) and in recent news reports (grey pulses). Drag to turn, scroll to zoom.</p></div>
@@ -913,6 +926,8 @@ async function viewNews(arg = "") {
     </section>
     <div class="callout">This is <strong>media attention, not case counts</strong>. Coverage follows English-language outlets, government press releases and whatever is in the news cycle. Country roles and corridors are extracted automatically from headlines and snippets and can be wrong; each corridor lists the words it came from. Nothing here feeds a score.</div>
 
+    ${figureSection()}
+
     ${scamTypesSection(a)}
 
     <section class="mapcard">
@@ -991,6 +1006,7 @@ async function viewNews(arg = "") {
     e.target.dataset.open = open ? "1" : "";
     e.target.textContent = open ? "Show fewer corridors" : "Show more corridors";
   });
+  figureCleanup = mountFigure($("#figure"));
   // map
   const map = baseMap($("#newsmap"), { center: [20, 40], zoom: 2, minZoom: 2 });
   if (map) {
@@ -1124,15 +1140,6 @@ function viewCheck(kind = "") {
           <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. <strong>Nothing you enter is stored unless you choose to submit it, and if you do, it will be anonymous.</strong></p>
         </div>
       </section>
-      <div class="figure-wrapper">
-        <figure class="figure-band" aria-label="Animation: a blue line that starts loose, tightens into a knot, then continues taut. A visual metaphor for how offers seem safe at first, then trap you, then become impossible to escape.">
-          <canvas id="figure" aria-hidden="true"></canvas>
-          <figcaption class="figure-caption">Fig. 1 — an offer, a loop, a knot</figcaption>
-        </figure>
-        <div class="figure-balloon">
-          <p><strong>The animation and symbology:</strong> This is how trafficking and scams work. A single blue line drawn by hand. It starts loose (the offer looks easy), loops and tightens (but then you realize you're trapped), then continues taut to the edge (the only way out).</p>
-        </div>
-      </div>
       ${logosSection()}
       ${globeSection()}
       <div class="kinds-head">
@@ -1164,7 +1171,7 @@ function viewCheck(kind = "") {
     <div id="out" aria-live="polite"></div>` : ""}${impactSections()}`;
   mountImpact();
   mountGlobe($("#globe"));
-  if (!k) { figureCleanup = mountFigure($("#figure")); renderSeeing(); return; }
+  if (!k) { renderSeeing(); return; }
 
   const form = $("#check");
   let photoHash = null;
