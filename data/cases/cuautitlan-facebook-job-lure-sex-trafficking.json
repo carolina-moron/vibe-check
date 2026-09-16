@@ -1,0 +1,110 @@
+{
+  "id": "cuautitlan-facebook-job-lure-sex-trafficking",
+  "title": "Cuautitlán, Mexico: an 18-year-old recruited with a fake Facebook job offer",
+  "typology": "sex-trafficking",
+  "period": "2019–2021",
+  "summary": "In July 2019 an 18-year-old woman in the State of Mexico was contacted through a fake Facebook profile and offered a job with a supposedly good hourly wage. Over 4 and 5 July 2019 she was driven by two people to hotels in Cuautitlán, Cuautitlán Izcalli and Tultitlán, where she was forced into prostitution under threats of harm and made to hand over the money. She filed a complaint; the pair were arrested and charged in late 2019. On 21 December 2021 the State of Mexico prosecutor's specialised trafficking unit announced that a judge had sentenced both to 38 years and nine months in prison and fines of 3,210,620 pesos each.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Juan Rendón Raya",
+      "kind": "person",
+      "jurisdiction": "MX",
+      "names": [],
+      "actions": [
+        {
+          "body": "State of Mexico court (FGJEM trafficking prosecutor)",
+          "action": "Convicted of trafficking in persons; sentenced to 38 years and nine months and a fine of 3,210,620 pesos",
+          "date": "2021-12-21",
+          "url": "https://www.milenio.com/policia/38-anos-carcel-pareja-cuautitlan-personas"
+        }
+      ]
+    },
+    {
+      "name": "Sheila Alexandra Salazar Martínez",
+      "kind": "person",
+      "jurisdiction": "MX",
+      "names": [],
+      "actions": [
+        {
+          "body": "State of Mexico court (FGJEM trafficking prosecutor)",
+          "action": "Convicted of trafficking in persons; sentenced to 38 years and nine months and a fine of 3,210,620 pesos",
+          "date": "2021-12-21",
+          "url": "https://www.unotv.com/estados/estado-de-mexico/edomex-le-ofrecieron-trabajo-por-facebook-pero-era-trata/"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "Facebook (Cuautitlán area, State of Mexico)",
+      "country": "MX",
+      "lat": 19.67,
+      "lon": -99.18,
+      "note": "A fake Facebook profile offered the victim a well-paid hourly job in July 2019.",
+      "source": "https://www.unotv.com/estados/estado-de-mexico/edomex-le-ofrecieron-trabajo-por-facebook-pero-era-trata/"
+    },
+    {
+      "stage": "exploited",
+      "place": "Hotels in Cuautitlán, Cuautitlán Izcalli and Tultitlán",
+      "country": "MX",
+      "lat": 19.65,
+      "lon": -99.21,
+      "note": "Driven to hotels on 4 and 5 July 2019 and forced into prostitution under threats; the earnings were taken.",
+      "source": "https://www.milenio.com/policia/38-anos-carcel-pareja-cuautitlan-personas"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Cuautitlán",
+      "country": "MX",
+      "lat": 19.67,
+      "lon": -99.18,
+      "note": "Both sentenced to 38 years and nine months, announced 21 December 2021.",
+      "source": "https://www.milenio.com/policia/38-anos-carcel-pareja-cuautitlan-personas"
+    }
+  ],
+  "victim_origins": [
+    "MX"
+  ],
+  "lures": [
+    {
+      "signal": "chat_only_contact",
+      "quote_or_description": "Contact came only through a fake Facebook profile.",
+      "source": "https://www.unotv.com/estados/estado-de-mexico/edomex-le-ofrecieron-trabajo-por-facebook-pero-era-trata/"
+    },
+    {
+      "signal": "pay_too_high",
+      "quote_or_description": "A job with a good hourly wage; reported at the time of arrest as 400 pesos an hour.",
+      "source": "https://www.eluniversal.com.mx/metropoli/cae-pareja-que-enganchaba-jovenes-por-face-para-prostituirlas-en-cuautitlan-izcalli/"
+    },
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "Forced to provide sexual services under threats of harm.",
+      "source": "https://www.unotv.com/estados/estado-de-mexico/edomex-le-ofrecieron-trabajo-por-facebook-pero-era-trata/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dan 38 años de cárcel a una pareja de Cuautitlán por trata de personas",
+      "publisher": "Milenio",
+      "date": "2021-12-21",
+      "url": "https://www.milenio.com/policia/38-anos-carcel-pareja-cuautitlan-personas",
+      "tier": "press"
+    },
+    {
+      "title": "Así le ofrecieron trabajo por Facebook, pero era trata en Edomex",
+      "publisher": "UnoTV",
+      "date": "2021-12-22",
+      "url": "https://www.unotv.com/estados/estado-de-mexico/edomex-le-ofrecieron-trabajo-por-facebook-pero-era-trata/",
+      "tier": "press"
+    },
+    {
+      "title": "Cae pareja que enganchaba jóvenes por Face para prostituirlas en Cuautitlán Izcalli",
+      "publisher": "El Universal",
+      "date": "2019-11-10",
+      "url": "https://www.eluniversal.com.mx/metropoli/cae-pareja-que-enganchaba-jovenes-por-face-para-prostituirlas-en-cuautitlan-izcalli/",
+      "tier": "press"
+    }
+  ]
+}

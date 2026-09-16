@@ -1,0 +1,136 @@
+{
+  "id": "kalu-filipino-nurses-colorado-h1b",
+  "title": "Kizzy Kalu: Filipino nurses lured with H-1B “nurse instructor” jobs, forced to work in Colorado nursing homes",
+  "typology": "labor-trafficking",
+  "period": "2008–2015",
+  "summary": "Through his company Foreign Healthcare Professionals Group, Kizzy Kalu of Highlands Ranch, Colorado, recruited nurses, mainly from the Philippines, charging fees of typically $6,500 for H-1B visas on 41 petitions that claimed they would work as nurse instructors at Adam University for $72,000 a year; the university was defunct. On arrival the nurses were placed as ordinary nurses in Colorado long-term-care facilities at about $20 an hour, Kalu kept roughly 40% of their earnings, demanded $800 to $1,200 a month, and threatened visa cancellation, deportation and a $25,000 contract penalty. A federal jury in Denver convicted him in July 2013 on 89 counts including forced labour, trafficking, visa fraud and money laundering; in February 2014 he was sentenced to 130 months in prison and ordered to pay $3,790,338.55 in restitution to about 26 nurses. A co-defendant received probation. The Tenth Circuit affirmed in June 2015.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Kizzy Kalu",
+      "kind": "person",
+      "jurisdiction": "US",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, D. Colorado (jury)",
+          "action": "Convicted on 89 counts: mail fraud, visa fraud, encouraging aliens, forced labour, trafficking in forced labour, money laundering",
+          "date": "2013-07-01",
+          "url": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking"
+        },
+        {
+          "body": "US District Court, D. Colorado",
+          "action": "Sentenced to 130 months; $3,790,338.55 restitution; $475,592.94 forfeiture",
+          "date": "2014-02-11",
+          "url": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking"
+        },
+        {
+          "body": "US Court of Appeals, Tenth Circuit",
+          "action": "Convictions and restitution affirmed",
+          "date": "2015-06-29",
+          "url": "https://caselaw.findlaw.com/court/us-10th-circuit/1706035.html"
+        }
+      ]
+    },
+    {
+      "name": "Foreign Healthcare Professionals Group (FHPG)",
+      "kind": "company",
+      "jurisdiction": "US",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, D. Colorado",
+          "action": "Named as the vehicle of the scheme in the conviction and the appellate opinion",
+          "date": "2014-02-11",
+          "url": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "Philippines (country-level point)",
+      "country": "PH",
+      "lat": 14.6,
+      "lon": 120.98,
+      "note": "Advertisements promised nurse-supervisor jobs at $72,000 a year at a university, for a $6,500 visa fee.",
+      "source": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+    },
+    {
+      "stage": "transit",
+      "place": "H-1B visa entry (Highlands Ranch, Colorado)",
+      "country": "US",
+      "lat": 39.55,
+      "lon": -104.97,
+      "note": "Forty-one H-1B petitions misrepresented specialty-occupation jobs at a defunct university.",
+      "source": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+    },
+    {
+      "stage": "exploited",
+      "place": "Long-term-care facilities, Denver area",
+      "country": "US",
+      "lat": 39.74,
+      "lon": -104.99,
+      "note": "Paid about $20 an hour with about 40% retained; $800 to $1,200 monthly demands; deportation and $25,000 penalty threats.",
+      "source": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Denver",
+      "country": "US",
+      "lat": 39.75,
+      "lon": -104.99,
+      "note": "Convicted July 2013; sentenced February 2014; affirmed on appeal June 2015.",
+      "source": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+    }
+  ],
+  "victim_origins": [
+    "PH"
+  ],
+  "lures": [
+    {
+      "signal": "upfront_fee",
+      "quote_or_description": "Nurses were charged fees, typically $6,500, for H-1B processing.",
+      "source": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+    },
+    {
+      "signal": "visa_fraud",
+      "quote_or_description": "H-1B petitions falsely described nurse-instructor jobs at a defunct university.",
+      "source": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+    },
+    {
+      "signal": "pay_too_high",
+      "quote_or_description": "A $72,000 supervisory role was advertised; the work was floor nursing at about $20 an hour.",
+      "source": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking"
+    },
+    {
+      "signal": "debt_bondage",
+      "quote_or_description": "About 40% of wages retained and $800 to $1,200 a month demanded under threat of deportation and a $25,000 penalty.",
+      "source": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Denver-area man sentenced to nearly 11 years in federal prison for forced labor and trafficking in forced labor",
+      "publisher": "US Immigration and Customs Enforcement",
+      "date": "2014-02-11",
+      "url": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking",
+      "tier": "official"
+    },
+    {
+      "title": "Colorado Man Sentenced to More Than 10 Years in Prison for Human Trafficking and Other Crimes",
+      "publisher": "US Citizenship and Immigration Services",
+      "date": "2014-05-08",
+      "url": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes",
+      "tier": "official"
+    },
+    {
+      "title": "United States v. Kalu, No. 14-1068 (10th Cir. 2015)",
+      "publisher": "FindLaw (court opinion)",
+      "date": "2015-06-29",
+      "url": "https://caselaw.findlaw.com/court/us-10th-circuit/1706035.html",
+      "tier": "court"
+    }
+  ]
+}

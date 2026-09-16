@@ -3,7 +3,7 @@
   "title": "Arup Hong Kong (deepfake CFO video call)",
   "typology": "deepfake-fraud",
   "period": "2024",
-  "summary": "A staff member in engineering firm Arup's Hong Kong office received a message said to be from the company's UK-based chief financial officer about a confidential transaction, then joined a video conference with the false CFO and other AI-generated employees. The employee made transfers totalling about US$25 million to five Hong Kong bank accounts before discovering the fraud. Arup notified Hong Kong police in January 2024 and confirmed to the Financial Times that false voices and images were used. No one has been publicly charged.",
+  "summary": "A staff member in engineering firm Arup's Hong Kong office received a message said to be from the company's UK-based chief financial officer about a confidential transaction, then joined a video conference with the false CFO and other AI-generated employees. The employee made transfers totalling about US$25 million to five Hong Kong bank accounts before discovering the fraud. Arup notified Hong Kong police in January 2024 and confirmed to the Financial Times that false voices and images were used. No one has been publicly charged. In a June 2024 reply to the Legislative Council, the Hong Kong government confirmed a case in which a company lost about HK$200 million after transfers to five local bank accounts following a video conference built from publicly available clips, and said the deepfake cases remained under investigation with no arrests stated; the reply does not name the company.",
   "status": "reported",
   "entities": [],
   "journey": [
@@ -52,6 +52,13 @@
       "publisher": "FBI Internet Crime Complaint Center",
       "date": "2024-12-03",
       "url": "https://www.ic3.gov/PSA/2024/PSA241203",
+      "tier": "official"
+    },
+    {
+      "title": "LCQ9: Combating frauds involving deepfake",
+      "publisher": "Hong Kong SAR Government (Legislative Council reply)",
+      "date": "2024-06-26",
+      "url": "https://www.info.gov.hk/gia/general/202406/26/P2024062600192.htm",
       "tier": "official"
     }
   ]

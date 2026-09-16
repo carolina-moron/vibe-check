@@ -24,3 +24,10 @@ Sourced from press and official pages that loaded; every link checked. Please sk
 ## Other decisions
 - "Who it's for" guides are live in the nav. Reading levels: young = simple, older = large text.
 - Poster and submission now say 37 cases, 60 warning signs.
+
+## Round 2 (4 more cases, 41 total; two upgraded to official sources)
+- **Added:** Cuautitlán, Mexico (Facebook job lure, convicted); New Hampshire grandparent bail-scam courier (convicted; AI voice use is what victims and local reporting say, not an official finding, and the record says so); Kizzy Kalu, Filipino nurses in Colorado (ICE, USCIS, 10th Circuit); Satnam Singh, Latina, Italy (homicide conviction at first instance; the labour-exploitation charges are still at trial and are labelled allegations).
+- **Upgraded:** the AI Biden robocall case now cites the FCC forfeiture order and the Lingo Telecom consent decree directly; the Arup case now cites the Hong Kong government's Legislative Council reply (HK$200 million, five accounts) as official context.
+- **Doubt:** Satnam Singh is a workplace death; the trafficking link is the article 603-bis exploitation charge, still unproven. Keep or drop as you see fit.
+- **Doubt:** the New Hampshire case sits under "Deepfakes and voice clones" on the strength of victim testimony. If that feels too thin, move it to job-scam or drop it.
+- **Not found:** a Qatar or UAE construction-worker prosecution with a loadable official source, and an official police release for the Hong Kong deepfake romance ring.

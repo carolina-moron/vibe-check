@@ -315,7 +315,7 @@
    "title": "Arup Hong Kong (deepfake CFO video call)",
    "typology": "deepfake-fraud",
    "period": "2024",
-   "summary": "A staff member in engineering firm Arup's Hong Kong office received a message said to be from the company's UK-based chief financial officer about a confidential transaction, then joined a video conference with the false CFO and other AI-generated employees. The employee made transfers totalling about US$25 million to five Hong Kong bank accounts before discovering the fraud. Arup notified Hong Kong police in January 2024 and confirmed to the Financial Times that false voices and images were used. No one has been publicly charged.",
+   "summary": "A staff member in engineering firm Arup's Hong Kong office received a message said to be from the company's UK-based chief financial officer about a confidential transaction, then joined a video conference with the false CFO and other AI-generated employees. The employee made transfers totalling about US$25 million to five Hong Kong bank accounts before discovering the fraud. Arup notified Hong Kong police in January 2024 and confirmed to the Financial Times that false voices and images were used. No one has been publicly charged. In a June 2024 reply to the Legislative Council, the Hong Kong government confirmed a case in which a company lost about HK$200 million after transfers to five local bank accounts following a video conference built from publicly available clips, and said the deepfake cases remained under investigation with no arrests stated; the reply does not name the company.",
    "status": "reported",
    "entities": [],
    "journey": [
@@ -364,6 +364,13 @@
      "publisher": "FBI Internet Crime Complaint Center",
      "date": "2024-12-03",
      "url": "https://www.ic3.gov/PSA/2024/PSA241203",
+     "tier": "official"
+    },
+    {
+     "title": "LCQ9: Combating frauds involving deepfake",
+     "publisher": "Hong Kong SAR Government (Legislative Council reply)",
+     "date": "2024-06-26",
+     "url": "https://www.info.gov.hk/gia/general/202406/26/P2024062600192.htm",
      "tier": "official"
     }
    ]
@@ -935,6 +942,116 @@
      "date": "2019-01-09",
      "url": "https://www.unodc.org/unodc/en/frontpage/2019/January/first-conviction-in-colombia-for-trafficking-in-persons-for-domestic-servitude.html",
      "tier": "multilateral"
+    }
+   ]
+  },
+  {
+   "id": "cuautitlan-facebook-job-lure-sex-trafficking",
+   "title": "Cuautitlán, Mexico: an 18-year-old recruited with a fake Facebook job offer",
+   "typology": "sex-trafficking",
+   "period": "2019–2021",
+   "summary": "In July 2019 an 18-year-old woman in the State of Mexico was contacted through a fake Facebook profile and offered a job with a supposedly good hourly wage. Over 4 and 5 July 2019 she was driven by two people to hotels in Cuautitlán, Cuautitlán Izcalli and Tultitlán, where she was forced into prostitution under threats of harm and made to hand over the money. She filed a complaint; the pair were arrested and charged in late 2019. On 21 December 2021 the State of Mexico prosecutor's specialised trafficking unit announced that a judge had sentenced both to 38 years and nine months in prison and fines of 3,210,620 pesos each.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Juan Rendón Raya",
+     "kind": "person",
+     "jurisdiction": "MX",
+     "names": [],
+     "actions": [
+      {
+       "body": "State of Mexico court (FGJEM trafficking prosecutor)",
+       "action": "Convicted of trafficking in persons; sentenced to 38 years and nine months and a fine of 3,210,620 pesos",
+       "date": "2021-12-21",
+       "url": "https://www.milenio.com/policia/38-anos-carcel-pareja-cuautitlan-personas"
+      }
+     ]
+    },
+    {
+     "name": "Sheila Alexandra Salazar Martínez",
+     "kind": "person",
+     "jurisdiction": "MX",
+     "names": [],
+     "actions": [
+      {
+       "body": "State of Mexico court (FGJEM trafficking prosecutor)",
+       "action": "Convicted of trafficking in persons; sentenced to 38 years and nine months and a fine of 3,210,620 pesos",
+       "date": "2021-12-21",
+       "url": "https://www.unotv.com/estados/estado-de-mexico/edomex-le-ofrecieron-trabajo-por-facebook-pero-era-trata/"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Facebook (Cuautitlán area, State of Mexico)",
+     "country": "MX",
+     "lat": 19.67,
+     "lon": -99.18,
+     "note": "A fake Facebook profile offered the victim a well-paid hourly job in July 2019.",
+     "source": "https://www.unotv.com/estados/estado-de-mexico/edomex-le-ofrecieron-trabajo-por-facebook-pero-era-trata/"
+    },
+    {
+     "stage": "exploited",
+     "place": "Hotels in Cuautitlán, Cuautitlán Izcalli and Tultitlán",
+     "country": "MX",
+     "lat": 19.65,
+     "lon": -99.21,
+     "note": "Driven to hotels on 4 and 5 July 2019 and forced into prostitution under threats; the earnings were taken.",
+     "source": "https://www.milenio.com/policia/38-anos-carcel-pareja-cuautitlan-personas"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Cuautitlán",
+     "country": "MX",
+     "lat": 19.67,
+     "lon": -99.18,
+     "note": "Both sentenced to 38 years and nine months, announced 21 December 2021.",
+     "source": "https://www.milenio.com/policia/38-anos-carcel-pareja-cuautitlan-personas"
+    }
+   ],
+   "victim_origins": [
+    "MX"
+   ],
+   "lures": [
+    {
+     "signal": "chat_only_contact",
+     "quote_or_description": "Contact came only through a fake Facebook profile.",
+     "source": "https://www.unotv.com/estados/estado-de-mexico/edomex-le-ofrecieron-trabajo-por-facebook-pero-era-trata/"
+    },
+    {
+     "signal": "pay_too_high",
+     "quote_or_description": "A job with a good hourly wage; reported at the time of arrest as 400 pesos an hour.",
+     "source": "https://www.eluniversal.com.mx/metropoli/cae-pareja-que-enganchaba-jovenes-por-face-para-prostituirlas-en-cuautitlan-izcalli/"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "Forced to provide sexual services under threats of harm.",
+     "source": "https://www.unotv.com/estados/estado-de-mexico/edomex-le-ofrecieron-trabajo-por-facebook-pero-era-trata/"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Dan 38 años de cárcel a una pareja de Cuautitlán por trata de personas",
+     "publisher": "Milenio",
+     "date": "2021-12-21",
+     "url": "https://www.milenio.com/policia/38-anos-carcel-pareja-cuautitlan-personas",
+     "tier": "press"
+    },
+    {
+     "title": "Así le ofrecieron trabajo por Facebook, pero era trata en Edomex",
+     "publisher": "UnoTV",
+     "date": "2021-12-22",
+     "url": "https://www.unotv.com/estados/estado-de-mexico/edomex-le-ofrecieron-trabajo-por-facebook-pero-era-trata/",
+     "tier": "press"
+    },
+    {
+     "title": "Cae pareja que enganchaba jóvenes por Face para prostituirlas en Cuautitlán Izcalli",
+     "publisher": "El Universal",
+     "date": "2019-11-10",
+     "url": "https://www.eluniversal.com.mx/metropoli/cae-pareja-que-enganchaba-jovenes-por-face-para-prostituirlas-en-cuautitlan-izcalli/",
+     "tier": "press"
     }
    ]
   },
@@ -1825,6 +1942,142 @@
      "date": "2018-09-20",
      "url": "https://www.gov.uk/government/news/first-ever-convicted-cross-border-sex-trafficker-has-sentence-increased",
      "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "kalu-filipino-nurses-colorado-h1b",
+   "title": "Kizzy Kalu: Filipino nurses lured with H-1B “nurse instructor” jobs, forced to work in Colorado nursing homes",
+   "typology": "labor-trafficking",
+   "period": "2008–2015",
+   "summary": "Through his company Foreign Healthcare Professionals Group, Kizzy Kalu of Highlands Ranch, Colorado, recruited nurses, mainly from the Philippines, charging fees of typically $6,500 for H-1B visas on 41 petitions that claimed they would work as nurse instructors at Adam University for $72,000 a year; the university was defunct. On arrival the nurses were placed as ordinary nurses in Colorado long-term-care facilities at about $20 an hour, Kalu kept roughly 40% of their earnings, demanded $800 to $1,200 a month, and threatened visa cancellation, deportation and a $25,000 contract penalty. A federal jury in Denver convicted him in July 2013 on 89 counts including forced labour, trafficking, visa fraud and money laundering; in February 2014 he was sentenced to 130 months in prison and ordered to pay $3,790,338.55 in restitution to about 26 nurses. A co-defendant received probation. The Tenth Circuit affirmed in June 2015.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Kizzy Kalu",
+     "kind": "person",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, D. Colorado (jury)",
+       "action": "Convicted on 89 counts: mail fraud, visa fraud, encouraging aliens, forced labour, trafficking in forced labour, money laundering",
+       "date": "2013-07-01",
+       "url": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking"
+      },
+      {
+       "body": "US District Court, D. Colorado",
+       "action": "Sentenced to 130 months; $3,790,338.55 restitution; $475,592.94 forfeiture",
+       "date": "2014-02-11",
+       "url": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking"
+      },
+      {
+       "body": "US Court of Appeals, Tenth Circuit",
+       "action": "Convictions and restitution affirmed",
+       "date": "2015-06-29",
+       "url": "https://caselaw.findlaw.com/court/us-10th-circuit/1706035.html"
+      }
+     ]
+    },
+    {
+     "name": "Foreign Healthcare Professionals Group (FHPG)",
+     "kind": "company",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, D. Colorado",
+       "action": "Named as the vehicle of the scheme in the conviction and the appellate opinion",
+       "date": "2014-02-11",
+       "url": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Philippines (country-level point)",
+     "country": "PH",
+     "lat": 14.6,
+     "lon": 120.98,
+     "note": "Advertisements promised nurse-supervisor jobs at $72,000 a year at a university, for a $6,500 visa fee.",
+     "source": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+    },
+    {
+     "stage": "transit",
+     "place": "H-1B visa entry (Highlands Ranch, Colorado)",
+     "country": "US",
+     "lat": 39.55,
+     "lon": -104.97,
+     "note": "Forty-one H-1B petitions misrepresented specialty-occupation jobs at a defunct university.",
+     "source": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+    },
+    {
+     "stage": "exploited",
+     "place": "Long-term-care facilities, Denver area",
+     "country": "US",
+     "lat": 39.74,
+     "lon": -104.99,
+     "note": "Paid about $20 an hour with about 40% retained; $800 to $1,200 monthly demands; deportation and $25,000 penalty threats.",
+     "source": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Denver",
+     "country": "US",
+     "lat": 39.75,
+     "lon": -104.99,
+     "note": "Convicted July 2013; sentenced February 2014; affirmed on appeal June 2015.",
+     "source": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+    }
+   ],
+   "victim_origins": [
+    "PH"
+   ],
+   "lures": [
+    {
+     "signal": "upfront_fee",
+     "quote_or_description": "Nurses were charged fees, typically $6,500, for H-1B processing.",
+     "source": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+    },
+    {
+     "signal": "visa_fraud",
+     "quote_or_description": "H-1B petitions falsely described nurse-instructor jobs at a defunct university.",
+     "source": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes"
+    },
+    {
+     "signal": "pay_too_high",
+     "quote_or_description": "A $72,000 supervisory role was advertised; the work was floor nursing at about $20 an hour.",
+     "source": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking"
+    },
+    {
+     "signal": "debt_bondage",
+     "quote_or_description": "About 40% of wages retained and $800 to $1,200 a month demanded under threat of deportation and a $25,000 penalty.",
+     "source": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Denver-area man sentenced to nearly 11 years in federal prison for forced labor and trafficking in forced labor",
+     "publisher": "US Immigration and Customs Enforcement",
+     "date": "2014-02-11",
+     "url": "https://www.ice.gov/news/releases/denver-area-man-sentenced-nearly-11-years-federal-prison-forced-labor-and-trafficking",
+     "tier": "official"
+    },
+    {
+     "title": "Colorado Man Sentenced to More Than 10 Years in Prison for Human Trafficking and Other Crimes",
+     "publisher": "US Citizenship and Immigration Services",
+     "date": "2014-05-08",
+     "url": "https://www.uscis.gov/archive/colorado-man-sentenced-to-more-than-10-years-in-prison-for-human-trafficking-and-other-crimes",
+     "tier": "official"
+    },
+    {
+     "title": "United States v. Kalu, No. 14-1068 (10th Cir. 2015)",
+     "publisher": "FindLaw (court opinion)",
+     "date": "2015-06-29",
+     "url": "https://caselaw.findlaw.com/court/us-10th-circuit/1706035.html",
+     "tier": "court"
     }
    ]
   },
@@ -2918,7 +3171,7 @@
    "title": "AI voice-clone Biden robocalls (New Hampshire primary)",
    "typology": "deepfake-fraud",
    "period": "2024–2025",
-   "summary": "Two days before the January 2024 New Hampshire primary, voters received robocalls with an AI-generated voice imitating President Biden, spoofed to look as if they came from a prominent local Democrat. Political consultant Steve Kramer admitted creating the calls. Lingo Telecom, which carried them, agreed in August 2024 to a $1 million FCC fine and stronger caller-verification (STIR/SHAKEN) procedures, and in September 2024 the FCC fined Kramer $6 million. In June 2025 a New Hampshire jury found Kramer not guilty of state voter-suppression and candidate-impersonation charges. The case is included because it shows how convincing a cloned voice on a phone call can be.",
+   "summary": "Two days before the January 2024 New Hampshire primary, 9,581 robocalls carried a generative-AI voice imitating President Biden urging voters not to vote, with the caller ID spoofed to a local political figure's household. The FCC found that consultant Steve Kramer supplied the script and that the audio was generated with commercial voice-cloning software for $150. The FCC proposed a $6 million forfeiture against Kramer in May 2024 and imposed it in September 2024 under the Truth in Caller ID Act; Lingo Telecom, the originating carrier that applied incorrect caller-authentication attestations, settled for a $1 million civil penalty and a compliance plan in August 2024. In June 2025 a New Hampshire jury acquitted Kramer of state voter-suppression and candidate-impersonation charges. The case is included because it shows how convincing a cloned voice on a phone call can be.",
    "status": "sanctioned",
    "entities": [
     {
@@ -2928,10 +3181,10 @@
      "names": [],
      "actions": [
       {
-       "body": "US Federal Communications Commission",
-       "action": "Settlement: $1 million fine and STIR/SHAKEN compliance plan",
+       "body": "US Federal Communications Commission, Enforcement Bureau (DA 24-790)",
+       "action": "Consent decree: $1 million civil penalty and compliance plan",
        "date": "2024-08-21",
-       "url": "https://cyberscoop.com/telecom-behind-ai-powered-biden-robocall-agrees-to-1-million-fcc-fine/"
+       "url": "https://docs.fcc.gov/public/attachments/DA-24-790A1.pdf"
       }
      ]
     },
@@ -2942,14 +3195,20 @@
      "names": [],
      "actions": [
       {
-       "body": "US Federal Communications Commission",
-       "action": "$6 million fine",
-       "date": "2024-09",
-       "url": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+       "body": "US Federal Communications Commission (FCC 24-59)",
+       "action": "Notice of apparent liability proposing a $6 million forfeiture",
+       "date": "2024-05-24",
+       "url": "https://docs.fcc.gov/public/attachments/FCC-24-59A1.pdf"
       },
       {
-       "body": "New Hampshire state court (jury)",
-       "action": "Found not guilty of voter-suppression and candidate-impersonation charges",
+       "body": "US Federal Communications Commission (FCC 24-104)",
+       "action": "$6 million forfeiture imposed",
+       "date": "2024-09-30",
+       "url": "https://docs.fcc.gov/public/attachments/FCC-24-104A1.pdf"
+      },
+      {
+       "body": "Belknap County Superior Court, New Hampshire (jury)",
+       "action": "Found not guilty of state voter-suppression and candidate-impersonation charges",
        "date": "2025-06-13",
        "url": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
       }
@@ -2963,8 +3222,8 @@
      "country": "US",
      "lat": 43.2,
      "lon": -71.5,
-     "note": "Voters received robocalls with a cloned Biden voice before the primary.",
-     "source": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+     "note": "9,581 robocalls with a cloned Biden voice reached potential voters on 21 January 2024, caller ID spoofed.",
+     "source": "https://docs.fcc.gov/public/attachments/FCC-24-104A1.pdf"
     },
     {
      "stage": "prosecuted",
@@ -2983,10 +3242,24 @@
     {
      "signal": "voice_clone_emergency",
      "quote_or_description": "An AI-generated replica of the President's voice was used on robocalls, spoofed to appear to come from a known local figure.",
-     "source": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+     "source": "https://docs.fcc.gov/public/attachments/FCC-24-104A1.pdf"
     }
    ],
    "sources": [
+    {
+     "title": "Steve Kramer, Forfeiture Order (FCC 24-104)",
+     "publisher": "US Federal Communications Commission",
+     "date": "2024-09-30",
+     "url": "https://docs.fcc.gov/public/attachments/FCC-24-104A1.pdf",
+     "tier": "official"
+    },
+    {
+     "title": "Lingo Telecom, LLC, Order and Consent Decree (DA 24-790)",
+     "publisher": "US Federal Communications Commission",
+     "date": "2024-08-21",
+     "url": "https://docs.fcc.gov/public/attachments/DA-24-790A1.pdf",
+     "tier": "official"
+    },
     {
      "title": "Political operative who admitted to creating fake Biden robocalls found not guilty",
      "publisher": "New Hampshire Public Radio",
@@ -2995,18 +3268,112 @@
      "tier": "press"
     },
     {
-     "title": "Telecom behind AI-powered Biden robocall agrees to $1 million FCC fine",
-     "publisher": "CyberScoop",
-     "date": "2024-08-21",
-     "url": "https://cyberscoop.com/telecom-behind-ai-powered-biden-robocall-agrees-to-1-million-fcc-fine/",
-     "tier": "press"
-    },
-    {
      "title": "Scammers use AI to enhance their family emergency schemes",
      "publisher": "Federal Trade Commission",
      "date": "2023-03-20",
      "url": "https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes",
      "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "new-hampshire-grandparent-bail-scam-courier",
+   "title": "New Hampshire: “grandparent” bail scam courier; victims say the voices were AI copies",
+   "typology": "deepfake-fraud",
+   "period": "2024–2025",
+   "summary": "In April 2024 elderly residents of New Boston, Bedford and Lyndeborough, New Hampshire, received calls from people posing as attorneys or bail agents saying a son or grandson had been arrested after a car crash and needed bail. A courier from the Bronx collected $24,000, $24,000 and $20,000 in cash from three victims; police linked the wider operation to more than $200,000 taken from victims in New Hampshire, Maine, Massachusetts and Nevada. He was arrested in California on 27 April 2024 on a New Boston police warrant, pleaded guilty in Hillsborough County Superior Court, and on 18 June 2025 was sentenced to four to eight years in state prison with restitution. Victims told the court they believed they had heard a loved one's voice, and local reporting says authorities suspected voice-cloning; no official document confirms AI was used. The callers who impersonated the relatives were not identified in the reporting.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Oumar Diallo",
+     "kind": "person",
+     "jurisdiction": "US",
+     "names": [],
+     "actions": [
+      {
+       "body": "Hillsborough County Superior Court, New Hampshire",
+       "action": "Pleaded guilty; sentenced to four to eight years in state prison with restitution",
+       "date": "2025-06-18",
+       "url": "https://www.unionleader.com/news/courts/bronx-man-gets-4-to-8-years-for-role-in-grandparent-scam/article_58a05fcd-5edd-4d76-8dae-8ccd3937dcac.html"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "exploited",
+     "place": "New Boston, Bedford and Lyndeborough, New Hampshire",
+     "country": "US",
+     "lat": 42.98,
+     "lon": -71.69,
+     "note": "Elderly victims were called by fake attorneys about a relative's arrest and handed cash to a courier, 15 and 16 April 2024.",
+     "source": "https://www.laconiadailysun.com/news/local/alleged-bail-bond-scammer-facing-charges-in-meredith-across-granite-state/article_8d1b668e-c93e-11ef-b164-bf5dffae6718.html"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Redondo Beach, California (arrest)",
+     "country": "US",
+     "lat": 33.85,
+     "lon": -118.39,
+     "note": "Arrested 27 April 2024 on a New Boston police warrant.",
+     "source": "https://mykeenenow.com/news/219912-guilty-plea-in-cross-country-scam-that-targeted-monadnock-region-residents/"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Manchester, New Hampshire",
+     "country": "US",
+     "lat": 42.99,
+     "lon": -71.46,
+     "note": "Guilty plea; four to eight years imposed on 18 June 2025.",
+     "source": "https://www.unionleader.com/news/courts/bronx-man-gets-4-to-8-years-for-role-in-grandparent-scam/article_58a05fcd-5edd-4d76-8dae-8ccd3937dcac.html"
+    }
+   ],
+   "victim_origins": [
+    "US"
+   ],
+   "lures": [
+    {
+     "signal": "voice_clone_emergency",
+     "quote_or_description": "A victim believed she heard her son say he had been in a very bad accident and needed a lawyer; victims say AI mimicked the voices.",
+     "source": "https://www.unionleader.com/news/courts/bronx-man-gets-4-to-8-years-for-role-in-grandparent-scam/article_58a05fcd-5edd-4d76-8dae-8ccd3937dcac.html"
+    },
+    {
+     "signal": "urgency",
+     "quote_or_description": "A relative was said to have been arrested after a fatal crash and to need bail immediately.",
+     "source": "https://mykeenenow.com/news/219912-guilty-plea-in-cross-country-scam-that-targeted-monadnock-region-residents/"
+    },
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Callers posed as attorneys and bail-bond agents.",
+     "source": "https://www.laconiadailysun.com/news/local/alleged-bail-bond-scammer-facing-charges-in-meredith-across-granite-state/article_8d1b668e-c93e-11ef-b164-bf5dffae6718.html"
+    },
+    {
+     "signal": "gift_card_crypto",
+     "quote_or_description": "Bail was demanded by wire transfer, gift cards or an in-person cash pickup.",
+     "source": "https://mykeenenow.com/news/219912-guilty-plea-in-cross-country-scam-that-targeted-monadnock-region-residents/"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Bronx man gets 4 to 8 years for role in 'grandparent scam'",
+     "publisher": "New Hampshire Union Leader",
+     "date": "2025-06-18",
+     "url": "https://www.unionleader.com/news/courts/bronx-man-gets-4-to-8-years-for-role-in-grandparent-scam/article_58a05fcd-5edd-4d76-8dae-8ccd3937dcac.html",
+     "tier": "press"
+    },
+    {
+     "title": "Guilty plea in cross-country scam that targeted Monadnock Region residents",
+     "publisher": "My Keene Now",
+     "date": "2025-05-30",
+     "url": "https://mykeenenow.com/news/219912-guilty-plea-in-cross-country-scam-that-targeted-monadnock-region-residents/",
+     "tier": "press"
+    },
+    {
+     "title": "Alleged bail bond scammer facing charges in Meredith, across Granite State",
+     "publisher": "Laconia Daily Sun",
+     "date": "2025-01-02",
+     "url": "https://www.laconiadailysun.com/news/local/alleged-bail-bond-scammer-facing-charges-in-meredith-across-granite-state/article_8d1b668e-c93e-11ef-b164-bf5dffae6718.html",
+     "tier": "press"
     }
    ]
   },
@@ -3682,6 +4049,128 @@
      "date": "2026-03-26",
      "url": "https://www.gov.uk/government/news/uk-crackdown-on-vile-scam-centres-steps-up-with-sanctions-on-illicit-crypto-network",
      "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "satnam-singh-latina-agrilovato",
+   "title": "Satnam Singh: undocumented Indian farm worker's death and labour-exploitation case (Latina, Italy)",
+   "typology": "labor-trafficking",
+   "period": "2021–2026",
+   "summary": "Satnam Singh, a 31-year-old Indian farm labourer working without a contract or residence permit for a family farm at Borgo Santa Maria in Latina province, had his arm severed on 17 June 2024 by a machine without safety guards. The owner drove him home and left him without calling emergency services; he died two days later in Rome. The owner was arrested in July 2024 for homicide, and in January 2025 he and his father were placed in custody on charges of aggravated labour exploitation (article 603-bis) concerning seven undocumented Indian labourers reportedly paid €5.50 an hour for eight to nine hours a day, seven days a week; a judicial administrator was appointed over the company. On 8 July 2026 the Corte d'Assise di Latina convicted the owner of voluntary homicide and sentenced him to 16 years, at first instance. The labour-exploitation trial continues; those charges are allegations.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Antonello Lovato",
+     "kind": "person",
+     "jurisdiction": "IT",
+     "names": [],
+     "actions": [
+      {
+       "body": "Carabinieri, Latina",
+       "action": "Arrested for intentional homicide",
+       "date": "2024-07-02",
+       "url": "https://www.ansa.it/sito/notizie/cronaca/2024/07/02/la-morte-di-satnam-arrestato-il-suo-datore-di-lavoro-lo-abbandono-dopo-lincidente_6d001686-330b-4ecd-8eb9-26bc5341cdb4.html"
+      },
+      {
+       "body": "Corte d'Assise di Latina",
+       "action": "Convicted of voluntary homicide (dolo eventuale); sentenced to 16 years, first instance",
+       "date": "2026-07-08",
+       "url": "https://www.ansa.it/sito/notizie/topnews/2026/07/08/morte-di-satnam-singh-datore-di-lavoro-condannato-a-16-anni_d14e163c-1ae4-40b2-b9ce-4199dcaa431f.html"
+      },
+      {
+       "body": "Judge for preliminary investigations, Latina",
+       "action": "Custody order on charges of aggravated labour exploitation (art. 603-bis); trial ongoing",
+       "date": "2025-01-23",
+       "url": "https://www.avvenire.it/attualita/pagine/satnam-singh-due-nuovi-arresti"
+      }
+     ]
+    },
+    {
+     "name": "Renzo Lovato",
+     "kind": "person",
+     "jurisdiction": "IT",
+     "names": [],
+     "actions": [
+      {
+       "body": "Judge for preliminary investigations, Latina",
+       "action": "Custody order on charges of aggravated labour exploitation (art. 603-bis); allegations, trial ongoing",
+       "date": "2025-01-23",
+       "url": "https://www.avvenire.it/attualita/pagine/satnam-singh-due-nuovi-arresti"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "India (country-level point; region not reported)",
+     "country": "IN",
+     "lat": 22,
+     "lon": 79,
+     "note": "Singh arrived in Italy in 2021 and worked off the books for two years; the recruitment route is not described.",
+     "source": "https://www.ilpost.it/2026/07/08/processo-morte-satnam-singh-latina-caporalato/"
+    },
+    {
+     "stage": "exploited",
+     "place": "Borgo Santa Maria, Latina",
+     "country": "IT",
+     "lat": 41.49,
+     "lon": 12.83,
+     "note": "No contract, €5.50 an hour, eight to nine hours a day, seven days a week, no safety equipment; arm severed by an unguarded machine on 17 June 2024.",
+     "source": "https://www.ilpost.it/2026/07/08/processo-morte-satnam-singh-latina-caporalato/"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Latina",
+     "country": "IT",
+     "lat": 41.47,
+     "lon": 12.9,
+     "note": "Arrest July 2024; exploitation custody orders January 2025; 16-year homicide conviction 8 July 2026.",
+     "source": "https://www.ansa.it/sito/notizie/topnews/2026/07/08/morte-di-satnam-singh-datore-di-lavoro-condannato-a-16-anni_d14e163c-1ae4-40b2-b9ce-4199dcaa431f.html"
+    }
+   ],
+   "victim_origins": [
+    "IN"
+   ],
+   "lures": [
+    {
+     "signal": "isolation",
+     "quote_or_description": "Undocumented status was used against the worker: the owner reportedly said he did not call emergency services because the worker was not registered.",
+     "source": "https://www.ilpost.it/2026/07/08/processo-morte-satnam-singh-latina-caporalato/"
+    },
+    {
+     "signal": "high_risk_region",
+     "quote_or_description": "Agro Pontino agriculture in Latina province, with few labour inspectors for thousands of farms.",
+     "source": "https://www.ilpost.it/2026/07/08/processo-morte-satnam-singh-latina-caporalato/"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "Wages far below the collective agreement, no rest days and dangerous, makeshift equipment, charged as aggravated exploitation.",
+     "source": "https://www.avvenire.it/attualita/pagine/satnam-singh-due-nuovi-arresti"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Morte di Satnam Singh, datore di lavoro condannato a 16 anni",
+     "publisher": "ANSA",
+     "date": "2026-07-08",
+     "url": "https://www.ansa.it/sito/notizie/topnews/2026/07/08/morte-di-satnam-singh-datore-di-lavoro-condannato-a-16-anni_d14e163c-1ae4-40b2-b9ce-4199dcaa431f.html",
+     "tier": "press"
+    },
+    {
+     "title": "Altri due arresti per la morte di Satnam Singh. Uno è Renzo Lovato",
+     "publisher": "Avvenire",
+     "date": "2025-01-22",
+     "url": "https://www.avvenire.it/attualita/pagine/satnam-singh-due-nuovi-arresti",
+     "tier": "press"
+    },
+    {
+     "title": "Il titolare dell'azienda di Satnam Singh è stato condannato a 16 anni",
+     "publisher": "Il Post",
+     "date": "2026-07-08",
+     "url": "https://www.ilpost.it/2026/07/08/processo-morte-satnam-singh-latina-caporalato/",
+     "tier": "press"
     }
    ]
   },

@@ -1,0 +1,101 @@
+{
+  "id": "new-hampshire-grandparent-bail-scam-courier",
+  "title": "New Hampshire: “grandparent” bail scam courier; victims say the voices were AI copies",
+  "typology": "deepfake-fraud",
+  "period": "2024–2025",
+  "summary": "In April 2024 elderly residents of New Boston, Bedford and Lyndeborough, New Hampshire, received calls from people posing as attorneys or bail agents saying a son or grandson had been arrested after a car crash and needed bail. A courier from the Bronx collected $24,000, $24,000 and $20,000 in cash from three victims; police linked the wider operation to more than $200,000 taken from victims in New Hampshire, Maine, Massachusetts and Nevada. He was arrested in California on 27 April 2024 on a New Boston police warrant, pleaded guilty in Hillsborough County Superior Court, and on 18 June 2025 was sentenced to four to eight years in state prison with restitution. Victims told the court they believed they had heard a loved one's voice, and local reporting says authorities suspected voice-cloning; no official document confirms AI was used. The callers who impersonated the relatives were not identified in the reporting.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Oumar Diallo",
+      "kind": "person",
+      "jurisdiction": "US",
+      "names": [],
+      "actions": [
+        {
+          "body": "Hillsborough County Superior Court, New Hampshire",
+          "action": "Pleaded guilty; sentenced to four to eight years in state prison with restitution",
+          "date": "2025-06-18",
+          "url": "https://www.unionleader.com/news/courts/bronx-man-gets-4-to-8-years-for-role-in-grandparent-scam/article_58a05fcd-5edd-4d76-8dae-8ccd3937dcac.html"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "exploited",
+      "place": "New Boston, Bedford and Lyndeborough, New Hampshire",
+      "country": "US",
+      "lat": 42.98,
+      "lon": -71.69,
+      "note": "Elderly victims were called by fake attorneys about a relative's arrest and handed cash to a courier, 15 and 16 April 2024.",
+      "source": "https://www.laconiadailysun.com/news/local/alleged-bail-bond-scammer-facing-charges-in-meredith-across-granite-state/article_8d1b668e-c93e-11ef-b164-bf5dffae6718.html"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Redondo Beach, California (arrest)",
+      "country": "US",
+      "lat": 33.85,
+      "lon": -118.39,
+      "note": "Arrested 27 April 2024 on a New Boston police warrant.",
+      "source": "https://mykeenenow.com/news/219912-guilty-plea-in-cross-country-scam-that-targeted-monadnock-region-residents/"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Manchester, New Hampshire",
+      "country": "US",
+      "lat": 42.99,
+      "lon": -71.46,
+      "note": "Guilty plea; four to eight years imposed on 18 June 2025.",
+      "source": "https://www.unionleader.com/news/courts/bronx-man-gets-4-to-8-years-for-role-in-grandparent-scam/article_58a05fcd-5edd-4d76-8dae-8ccd3937dcac.html"
+    }
+  ],
+  "victim_origins": [
+    "US"
+  ],
+  "lures": [
+    {
+      "signal": "voice_clone_emergency",
+      "quote_or_description": "A victim believed she heard her son say he had been in a very bad accident and needed a lawyer; victims say AI mimicked the voices.",
+      "source": "https://www.unionleader.com/news/courts/bronx-man-gets-4-to-8-years-for-role-in-grandparent-scam/article_58a05fcd-5edd-4d76-8dae-8ccd3937dcac.html"
+    },
+    {
+      "signal": "urgency",
+      "quote_or_description": "A relative was said to have been arrested after a fatal crash and to need bail immediately.",
+      "source": "https://mykeenenow.com/news/219912-guilty-plea-in-cross-country-scam-that-targeted-monadnock-region-residents/"
+    },
+    {
+      "signal": "lure_role",
+      "quote_or_description": "Callers posed as attorneys and bail-bond agents.",
+      "source": "https://www.laconiadailysun.com/news/local/alleged-bail-bond-scammer-facing-charges-in-meredith-across-granite-state/article_8d1b668e-c93e-11ef-b164-bf5dffae6718.html"
+    },
+    {
+      "signal": "gift_card_crypto",
+      "quote_or_description": "Bail was demanded by wire transfer, gift cards or an in-person cash pickup.",
+      "source": "https://mykeenenow.com/news/219912-guilty-plea-in-cross-country-scam-that-targeted-monadnock-region-residents/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Bronx man gets 4 to 8 years for role in 'grandparent scam'",
+      "publisher": "New Hampshire Union Leader",
+      "date": "2025-06-18",
+      "url": "https://www.unionleader.com/news/courts/bronx-man-gets-4-to-8-years-for-role-in-grandparent-scam/article_58a05fcd-5edd-4d76-8dae-8ccd3937dcac.html",
+      "tier": "press"
+    },
+    {
+      "title": "Guilty plea in cross-country scam that targeted Monadnock Region residents",
+      "publisher": "My Keene Now",
+      "date": "2025-05-30",
+      "url": "https://mykeenenow.com/news/219912-guilty-plea-in-cross-country-scam-that-targeted-monadnock-region-residents/",
+      "tier": "press"
+    },
+    {
+      "title": "Alleged bail bond scammer facing charges in Meredith, across Granite State",
+      "publisher": "Laconia Daily Sun",
+      "date": "2025-01-02",
+      "url": "https://www.laconiadailysun.com/news/local/alleged-bail-bond-scammer-facing-charges-in-meredith-across-granite-state/article_8d1b668e-c93e-11ef-b164-bf5dffae6718.html",
+      "tier": "press"
+    }
+  ]
+}

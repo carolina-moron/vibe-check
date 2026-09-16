@@ -1,0 +1,122 @@
+{
+  "id": "satnam-singh-latina-agrilovato",
+  "title": "Satnam Singh: undocumented Indian farm worker's death and labour-exploitation case (Latina, Italy)",
+  "typology": "labor-trafficking",
+  "period": "2021–2026",
+  "summary": "Satnam Singh, a 31-year-old Indian farm labourer working without a contract or residence permit for a family farm at Borgo Santa Maria in Latina province, had his arm severed on 17 June 2024 by a machine without safety guards. The owner drove him home and left him without calling emergency services; he died two days later in Rome. The owner was arrested in July 2024 for homicide, and in January 2025 he and his father were placed in custody on charges of aggravated labour exploitation (article 603-bis) concerning seven undocumented Indian labourers reportedly paid €5.50 an hour for eight to nine hours a day, seven days a week; a judicial administrator was appointed over the company. On 8 July 2026 the Corte d'Assise di Latina convicted the owner of voluntary homicide and sentenced him to 16 years, at first instance. The labour-exploitation trial continues; those charges are allegations.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Antonello Lovato",
+      "kind": "person",
+      "jurisdiction": "IT",
+      "names": [],
+      "actions": [
+        {
+          "body": "Carabinieri, Latina",
+          "action": "Arrested for intentional homicide",
+          "date": "2024-07-02",
+          "url": "https://www.ansa.it/sito/notizie/cronaca/2024/07/02/la-morte-di-satnam-arrestato-il-suo-datore-di-lavoro-lo-abbandono-dopo-lincidente_6d001686-330b-4ecd-8eb9-26bc5341cdb4.html"
+        },
+        {
+          "body": "Corte d'Assise di Latina",
+          "action": "Convicted of voluntary homicide (dolo eventuale); sentenced to 16 years, first instance",
+          "date": "2026-07-08",
+          "url": "https://www.ansa.it/sito/notizie/topnews/2026/07/08/morte-di-satnam-singh-datore-di-lavoro-condannato-a-16-anni_d14e163c-1ae4-40b2-b9ce-4199dcaa431f.html"
+        },
+        {
+          "body": "Judge for preliminary investigations, Latina",
+          "action": "Custody order on charges of aggravated labour exploitation (art. 603-bis); trial ongoing",
+          "date": "2025-01-23",
+          "url": "https://www.avvenire.it/attualita/pagine/satnam-singh-due-nuovi-arresti"
+        }
+      ]
+    },
+    {
+      "name": "Renzo Lovato",
+      "kind": "person",
+      "jurisdiction": "IT",
+      "names": [],
+      "actions": [
+        {
+          "body": "Judge for preliminary investigations, Latina",
+          "action": "Custody order on charges of aggravated labour exploitation (art. 603-bis); allegations, trial ongoing",
+          "date": "2025-01-23",
+          "url": "https://www.avvenire.it/attualita/pagine/satnam-singh-due-nuovi-arresti"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "India (country-level point; region not reported)",
+      "country": "IN",
+      "lat": 22.0,
+      "lon": 79.0,
+      "note": "Singh arrived in Italy in 2021 and worked off the books for two years; the recruitment route is not described.",
+      "source": "https://www.ilpost.it/2026/07/08/processo-morte-satnam-singh-latina-caporalato/"
+    },
+    {
+      "stage": "exploited",
+      "place": "Borgo Santa Maria, Latina",
+      "country": "IT",
+      "lat": 41.49,
+      "lon": 12.83,
+      "note": "No contract, €5.50 an hour, eight to nine hours a day, seven days a week, no safety equipment; arm severed by an unguarded machine on 17 June 2024.",
+      "source": "https://www.ilpost.it/2026/07/08/processo-morte-satnam-singh-latina-caporalato/"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Latina",
+      "country": "IT",
+      "lat": 41.47,
+      "lon": 12.9,
+      "note": "Arrest July 2024; exploitation custody orders January 2025; 16-year homicide conviction 8 July 2026.",
+      "source": "https://www.ansa.it/sito/notizie/topnews/2026/07/08/morte-di-satnam-singh-datore-di-lavoro-condannato-a-16-anni_d14e163c-1ae4-40b2-b9ce-4199dcaa431f.html"
+    }
+  ],
+  "victim_origins": [
+    "IN"
+  ],
+  "lures": [
+    {
+      "signal": "isolation",
+      "quote_or_description": "Undocumented status was used against the worker: the owner reportedly said he did not call emergency services because the worker was not registered.",
+      "source": "https://www.ilpost.it/2026/07/08/processo-morte-satnam-singh-latina-caporalato/"
+    },
+    {
+      "signal": "high_risk_region",
+      "quote_or_description": "Agro Pontino agriculture in Latina province, with few labour inspectors for thousands of farms.",
+      "source": "https://www.ilpost.it/2026/07/08/processo-morte-satnam-singh-latina-caporalato/"
+    },
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "Wages far below the collective agreement, no rest days and dangerous, makeshift equipment, charged as aggravated exploitation.",
+      "source": "https://www.avvenire.it/attualita/pagine/satnam-singh-due-nuovi-arresti"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Morte di Satnam Singh, datore di lavoro condannato a 16 anni",
+      "publisher": "ANSA",
+      "date": "2026-07-08",
+      "url": "https://www.ansa.it/sito/notizie/topnews/2026/07/08/morte-di-satnam-singh-datore-di-lavoro-condannato-a-16-anni_d14e163c-1ae4-40b2-b9ce-4199dcaa431f.html",
+      "tier": "press"
+    },
+    {
+      "title": "Altri due arresti per la morte di Satnam Singh. Uno è Renzo Lovato",
+      "publisher": "Avvenire",
+      "date": "2025-01-22",
+      "url": "https://www.avvenire.it/attualita/pagine/satnam-singh-due-nuovi-arresti",
+      "tier": "press"
+    },
+    {
+      "title": "Il titolare dell'azienda di Satnam Singh è stato condannato a 16 anni",
+      "publisher": "Il Post",
+      "date": "2026-07-08",
+      "url": "https://www.ilpost.it/2026/07/08/processo-morte-satnam-singh-latina-caporalato/",
+      "tier": "press"
+    }
+  ]
+}

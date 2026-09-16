@@ -3,7 +3,7 @@
   "title": "AI voice-clone Biden robocalls (New Hampshire primary)",
   "typology": "deepfake-fraud",
   "period": "2024–2025",
-  "summary": "Two days before the January 2024 New Hampshire primary, voters received robocalls with an AI-generated voice imitating President Biden, spoofed to look as if they came from a prominent local Democrat. Political consultant Steve Kramer admitted creating the calls. Lingo Telecom, which carried them, agreed in August 2024 to a $1 million FCC fine and stronger caller-verification (STIR/SHAKEN) procedures, and in September 2024 the FCC fined Kramer $6 million. In June 2025 a New Hampshire jury found Kramer not guilty of state voter-suppression and candidate-impersonation charges. The case is included because it shows how convincing a cloned voice on a phone call can be.",
+  "summary": "Two days before the January 2024 New Hampshire primary, 9,581 robocalls carried a generative-AI voice imitating President Biden urging voters not to vote, with the caller ID spoofed to a local political figure's household. The FCC found that consultant Steve Kramer supplied the script and that the audio was generated with commercial voice-cloning software for $150. The FCC proposed a $6 million forfeiture against Kramer in May 2024 and imposed it in September 2024 under the Truth in Caller ID Act; Lingo Telecom, the originating carrier that applied incorrect caller-authentication attestations, settled for a $1 million civil penalty and a compliance plan in August 2024. In June 2025 a New Hampshire jury acquitted Kramer of state voter-suppression and candidate-impersonation charges. The case is included because it shows how convincing a cloned voice on a phone call can be.",
   "status": "sanctioned",
   "entities": [
     {
@@ -13,10 +13,10 @@
       "names": [],
       "actions": [
         {
-          "body": "US Federal Communications Commission",
-          "action": "Settlement: $1 million fine and STIR/SHAKEN compliance plan",
+          "body": "US Federal Communications Commission, Enforcement Bureau (DA 24-790)",
+          "action": "Consent decree: $1 million civil penalty and compliance plan",
           "date": "2024-08-21",
-          "url": "https://cyberscoop.com/telecom-behind-ai-powered-biden-robocall-agrees-to-1-million-fcc-fine/"
+          "url": "https://docs.fcc.gov/public/attachments/DA-24-790A1.pdf"
         }
       ]
     },
@@ -27,14 +27,20 @@
       "names": [],
       "actions": [
         {
-          "body": "US Federal Communications Commission",
-          "action": "$6 million fine",
-          "date": "2024-09",
-          "url": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+          "body": "US Federal Communications Commission (FCC 24-59)",
+          "action": "Notice of apparent liability proposing a $6 million forfeiture",
+          "date": "2024-05-24",
+          "url": "https://docs.fcc.gov/public/attachments/FCC-24-59A1.pdf"
         },
         {
-          "body": "New Hampshire state court (jury)",
-          "action": "Found not guilty of voter-suppression and candidate-impersonation charges",
+          "body": "US Federal Communications Commission (FCC 24-104)",
+          "action": "$6 million forfeiture imposed",
+          "date": "2024-09-30",
+          "url": "https://docs.fcc.gov/public/attachments/FCC-24-104A1.pdf"
+        },
+        {
+          "body": "Belknap County Superior Court, New Hampshire (jury)",
+          "action": "Found not guilty of state voter-suppression and candidate-impersonation charges",
           "date": "2025-06-13",
           "url": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
         }
@@ -48,8 +54,8 @@
       "country": "US",
       "lat": 43.2,
       "lon": -71.5,
-      "note": "Voters received robocalls with a cloned Biden voice before the primary.",
-      "source": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+      "note": "9,581 robocalls with a cloned Biden voice reached potential voters on 21 January 2024, caller ID spoofed.",
+      "source": "https://docs.fcc.gov/public/attachments/FCC-24-104A1.pdf"
     },
     {
       "stage": "prosecuted",
@@ -68,22 +74,29 @@
     {
       "signal": "voice_clone_emergency",
       "quote_or_description": "An AI-generated replica of the President's voice was used on robocalls, spoofed to appear to come from a known local figure.",
-      "source": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty"
+      "source": "https://docs.fcc.gov/public/attachments/FCC-24-104A1.pdf"
     }
   ],
   "sources": [
+    {
+      "title": "Steve Kramer, Forfeiture Order (FCC 24-104)",
+      "publisher": "US Federal Communications Commission",
+      "date": "2024-09-30",
+      "url": "https://docs.fcc.gov/public/attachments/FCC-24-104A1.pdf",
+      "tier": "official"
+    },
+    {
+      "title": "Lingo Telecom, LLC, Order and Consent Decree (DA 24-790)",
+      "publisher": "US Federal Communications Commission",
+      "date": "2024-08-21",
+      "url": "https://docs.fcc.gov/public/attachments/DA-24-790A1.pdf",
+      "tier": "official"
+    },
     {
       "title": "Political operative who admitted to creating fake Biden robocalls found not guilty",
       "publisher": "New Hampshire Public Radio",
       "date": "2025-06-13",
       "url": "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty",
-      "tier": "press"
-    },
-    {
-      "title": "Telecom behind AI-powered Biden robocall agrees to $1 million FCC fine",
-      "publisher": "CyberScoop",
-      "date": "2024-08-21",
-      "url": "https://cyberscoop.com/telecom-behind-ai-powered-biden-robocall-agrees-to-1-million-fcc-fine/",
       "tier": "press"
     },
     {
