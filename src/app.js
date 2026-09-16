@@ -821,10 +821,13 @@ const entityIndex = cases.flatMap((c) => c.entities.filter((e) => !/^unnamed\b/i
   .map((n) => ({ caseId: c.id, title: c.title, re: new RegExp(`(?<![\\p{L}])${n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}])`, "iu") }))));
 const relatedCases = (a) => [...new Map(entityIndex.filter((x) => x.re.test(`${a.title} ${a.snippet}`)).map((x) => [x.caseId, x])).values()];
 
-const hbars = (obj, labels, max = null) => {
+const hbars = (obj, labels, max = null, limit = null) => {
   const rows = Object.entries(obj).sort((a, b) => b[1] - a[1]);
   const top = max ?? Math.max(1, ...rows.map(([, n]) => n));
-  return rows.length ? `<ul class="hbars">${rows.map(([k, n]) => `<li><span>${esc(labels[k] || k)}</span><span class="hb"><i style="width:${Math.round((n / top) * 100)}%"></i></span><span class="mono">${n}</span></li>`).join("")}</ul>` : `<p class="muted">None detected.</p>`;
+  const row = ([k, n]) => `<li><span>${esc(labels[k] || k)}</span><span class="hb"><i style="width:${Math.round((n / top) * 100)}%"></i></span><span class="mono">${n}</span></li>`;
+  if (!rows.length) return `<p class="muted">None detected.</p>`;
+  if (limit && rows.length > limit) return `<ul class="hbars">${rows.slice(0, limit).map(row).join("")}</ul><details class="more-rows"><summary>Show ${rows.length - limit} more</summary><ul class="hbars">${rows.slice(limit).map(row).join("")}</ul></details>`;
+  return `<ul class="hbars">${rows.map(row).join("")}</ul>`;
 };
 
 const SCAM_TYPES = [
@@ -955,7 +958,7 @@ async function viewNews(arg = "") {
       <section class="panel">
         <h2>Lure indicators in coverage</h2>
         <p class="fine">The same offer-text rules as the live check, run on headlines and snippets. Snippets are short, so these undercount.</p>
-        ${hbars(a.signals, Object.fromEntries(signals.signals.map((s) => [s.id, s.label])))}
+        ${hbars(a.signals, Object.fromEntries(signals.signals.map((s) => [s.id, s.label])), null, 8)}
       </section>
       <section class="panel">
         <h2>What happened</h2>${hbars(a.events, NEWS_EVENT)}
@@ -1114,8 +1117,8 @@ function viewCheck(kind = "") {
       <section class="story hero-full">
         <div>
           <div class="hero-logo">
-            <img src="assets/logo-mark.svg" alt="VibeCheck" width="48" height="48">
-            <div class="eyebrow mono">VibeCheck</div>
+            <img src="assets/logo-mark.svg" alt="" width="48" height="48">
+            <span class="wm hero-wm"><span class="wm-1">Vibe</span><span class="wm-2">Check</span></span>
           </div>
           <h1 class="hero-text">Something feels off? <span class="check-blue">Check</span> the vibe.</h1>
           <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. <strong>Nothing you enter is stored unless you choose to submit it, and if you do, it will be anonymous.</strong></p>
@@ -1130,6 +1133,8 @@ function viewCheck(kind = "") {
           <p><strong>The animation and symbology:</strong> This is how trafficking and scams work. A single blue line drawn by hand. It starts loose (the offer looks easy), loops and tightens (but then you realize you're trapped), then continues taut to the edge (the only way out).</p>
         </div>
       </div>
+      ${logosSection()}
+      ${globeSection()}
       <div class="kinds-head">
         <h1>VibeChecker</h1>
         <a class="ghostlink" href="#/report">Report wrong vibes</a>
@@ -1935,8 +1940,6 @@ function impactSections() {
         </div>
         <p class="fine">Counters come from anonymous check events (kind, score tier and a count, never the text) and the agent's review log. They start low on purpose: we report outcomes, not promises.</p>
       </div>
-      ${logosSection()}
-      ${globeSection()}
     </section>`;
 }
 function mountImpact() {
@@ -1962,8 +1965,7 @@ function viewTeam() {
     </div>
     <article class="panel">
       <h2>Mission</h2>
-      <p>We believe people should be able to get a second opinion before trusting someone online or engaging with an offer. By combining public records, enforcement data, and indicators from real cases, we help identify patterns that matter.</p>
-      <p>VibeCheck started as a hackathon project and has grown into a tool that serves job seekers, investors, dating app users, and anyone suspicious of an online interaction.</p>
+      <p>Everyone should be able to get a second opinion before trusting someone online. VibeCheck combines public records, enforcement data and the patterns in real cases into a check anyone can run, and always ends with where to get confidential help.</p>
     </article>
     <article class="panel team">
       <h2>The team</h2>
