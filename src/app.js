@@ -1330,8 +1330,10 @@ function considerPanel(r) {
     <p class="nextstep"><strong>Recommended next step:</strong> ${esc(signals.dimensions.identity.step)} Don't share documents, send money or travel until you have.</p>
     <p class="helpline">If you feel unsafe or pressured, <a href="#/help">here's where you can get confidential help</a>.</p></section>`;
   const top = groups[0];
+  const plain = { high: "Stop. This looks like the way scams and trafficking start. Don't pay, don't send documents, don't travel.", caution: "Slow down. Some things here are warning signs. Check with someone you trust before you do anything.", unverified: "We could not confirm this is safe. Treat it as unknown until you have checked it yourself.", low: "We found few warning signs and could confirm the organisation. Stay alert anyway." };
   return `<section class="consider t-${esc(r.tier.id)}">
     <h2>${esc(HEADLINE[r.tier.id])}</h2>
+    <p class="plain"><strong>In plain words:</strong> ${esc(plain[r.tier.id] || plain.unverified)} The biggest concern is <strong>${esc(top.label.toLowerCase())}</strong>.</p>
     <p class="count">${groups.length} thing${groups.length > 1 ? "s" : ""} to consider before proceeding</p>
     <ol class="considerations">${groups.map((g) => `
       <li><strong>${esc(g.label)}:</strong> ${esc(g.consider)} <span class="fine">(${g.flags.map((f) => esc(f.label.toLowerCase())).slice(0, 3).join("; ")}${g.flags.length > 3 ? "; …" : ""})</span></li>`).join("")}
@@ -1969,6 +1971,44 @@ function mountImpact() {
   }).catch(() => {});
 }
 
+// "Who it's for": plain-language guides per audience, with reading modes and read-aloud.
+async function viewAudiences(which = "") {
+  const { audiences } = await fetch("data/audiences.json").then((r) => r.json());
+  const chosen = audiences.find((a) => a.id === which) || null;
+  main.innerHTML = `
+    <section class="hero small">
+      <div class="eyebrow mono">Who it's for</div>
+      <h1>${chosen ? esc(chosen.title) : "Made for everyone who gets messages"}</h1>
+      <p class="lede">${chosen ? esc(chosen.who) : "Scams and trafficking look different at 16, at 70, as a parent or as a worker abroad. Pick the guide that fits, in plain words, with what to look for, what to do and who to call. The check itself works the same for everyone."}</p>
+    </section>
+    <nav class="kinds compact audience-nav" aria-label="Guides">${audiences.map((a) => `<a class="kind${a.id === which ? " on" : ""}" href="#/for/${a.id}"><strong>${esc(a.title)}</strong><span class="fine">${esc(a.who)}</span></a>`).join("")}</nav>
+    ${chosen ? `
+    <article class="panel guide reading-${esc(chosen.reading)}" id="guide">
+      <div class="guide-tools"><button type="button" class="ghost" id="read-aloud">🔊 Read this aloud</button><button type="button" class="ghost" id="bigger">A+ Bigger text</button></div>
+      <h2>What to look for</h2>
+      <ul class="guide-list">${chosen.signs.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      <h2>What to do</h2>
+      <ul class="guide-list">${chosen.do.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      <p class="btns"><a class="help-btn" href="#/check/${esc(chosen.check)}">Check a message or offer →</a> <a class="ghostlink" href="#/help">Get help</a></p>
+      <h2>Who to call</h2>
+      <ul class="guide-list">${chosen.help.map((h) => `<li><a href="${esc(h.url)}" target="_blank" rel="noopener">${esc(h.label)}</a></li>`).join("")}</ul>
+      <p class="fine">Written from FTC, FBI, ILO and UNODC guidance. If you work with this group and something here is wrong or missing, <a href="https://github.com/carolina-moron/vibe-check/issues" target="_blank" rel="noopener">tell us</a>.</p>
+    </article>` : `
+    <article class="panel">
+      <h2>Also on this site</h2>
+      <p><a href="#/stories">You are NOT alone</a>: survivor videos and first-person stories. <a href="#/help">Get help</a>: hotlines by country and what to do if you or someone else is being held.</p>
+    </article>`}`;
+  if (!chosen) return;
+  $("#bigger").addEventListener("click", () => { const g = $("#guide"); g.classList.toggle("xl"); $("#bigger").textContent = g.classList.contains("xl") ? "A− Normal text" : "A+ Bigger text"; });
+  $("#read-aloud").addEventListener("click", () => {
+    if (!("speechSynthesis" in window)) { $("#read-aloud").textContent = "Read-aloud not available in this browser"; return; }
+    if (speechSynthesis.speaking) { speechSynthesis.cancel(); $("#read-aloud").textContent = "🔊 Read this aloud"; return; }
+    const text = [chosen.title, "What to look for.", ...chosen.signs, "What to do.", ...chosen.do].join(" ");
+    const u = new SpeechSynthesisUtterance(text); u.rate = 0.95; u.onend = () => { $("#read-aloud").textContent = "🔊 Read this aloud"; };
+    speechSynthesis.speak(u); $("#read-aloud").textContent = "⏹ Stop reading";
+  });
+}
+
 function viewTeam() {
   main.innerHTML = `
     <section class="hero small">
@@ -2151,6 +2191,7 @@ function route() {
   if (view === "case") viewCase(decodeURIComponent(arg));
   else if (view === "check" || view === "") viewCheck(decodeURIComponent(arg || ""));
   else if (view === "about" || view === "team") viewTeam();
+  else if (view === "for") viewAudiences(decodeURIComponent(arg || ""));
   else if (view === "cases") viewCases();
   else if (view === "news") viewNews(decodeURIComponent(arg || ""));
   else if (view === "concern") viewConcern(decodeURIComponent(arg || ""));

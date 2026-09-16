@@ -844,3 +844,15 @@ footer.site .fine { font-size: var(--fs-1); }
 .figure-home .figure-wrapper { position: relative; }
 .story.hero-full { min-height: 0; padding-bottom: 8px; }
 .home > .logos { margin-top: 8px; }
+/* Audience guides */
+.audience-nav { margin: 20px 0; }
+.guide { margin-top: 20px; }
+.guide-tools { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.guide h2 { margin-top: 18px; }
+.guide-list { padding-left: 1.2em; }
+.guide-list li { margin-bottom: 12px; line-height: 1.6; }
+.guide.reading-simple { font-size: 1.15rem; }
+.guide.reading-large { font-size: 1.3rem; line-height: 1.7; }
+.guide.reading-large .guide-list li { margin-bottom: 16px; }
+.guide.xl { font-size: 1.55rem; line-height: 1.75; }
+.consider .plain { font-size: var(--fs-3); line-height: 1.45; margin: 4px 0 14px; max-width: none; }

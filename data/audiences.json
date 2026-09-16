@@ -1,0 +1,99 @@
+{
+  "note": "Plain-language guides for different readers. Written from the FTC, FBI, ILO and UNODC guidance the checker uses; not yet reviewed by a practitioner.",
+  "audiences": [
+    {
+      "id": "young",
+      "title": "For young people",
+      "who": "Students, teenagers and anyone who meets people through games, apps and DMs.",
+      "reading": "simple",
+      "signs": [
+        "Someone you just met online asks for a photo, then threatens to send it to your friends or family unless you pay. That is sextortion. It is a crime against you, not something you did wrong.",
+        "A job that pays a lot for almost no work, especially if you must pay first or move to Telegram or WhatsApp to talk about it.",
+        "An older “friend” or partner who says your family won't understand, asks you to keep things secret, or wants to pick you up somewhere private.",
+        "A famous person in a video telling you to invest in crypto, or a giveaway where you only pay shipping. The video can be fake."
+      ],
+      "do": [
+        "Don't pay, and don't send more pictures. Stop replying. Keep the messages.",
+        "Tell an adult you trust. You will not be in trouble. If images are already out, NCMEC's Take It Down can help remove them.",
+        "Check the offer here before you answer, or ask someone to check it with you."
+      ],
+      "check": "conversation",
+      "help": [
+        { "label": "Take It Down (remove images, under 18)", "url": "https://takeitdown.ncmec.org/" },
+        { "label": "Report to NCMEC CyberTipline", "url": "https://report.cybertip.org/" },
+        { "label": "FBI: report sextortion", "url": "https://www.fbi.gov/how-we-can-help-you/scams-and-safety/common-scams-and-crimes/sextortion" }
+      ]
+    },
+    {
+      "id": "older",
+      "title": "For older adults",
+      "who": "People over 60, who lose more money to scams than any other age group.",
+      "reading": "large",
+      "signs": [
+        "A phone call in the voice of a grandchild or child saying they are in trouble and need money now, and asking you not to tell anyone. The voice can be copied by a computer.",
+        "Someone from “the bank”, “the government” or “tech support” asking you to move money to keep it safe, buy gift cards, or read out a code from your phone.",
+        "A new friend online who never meets in person, then needs money for a ticket, a hospital or an investment.",
+        "Any request that must happen today, in secret."
+      ],
+      "do": [
+        "Hang up. Call the person or the bank back on a number you already have, not one they gave you.",
+        "Never pay with gift cards, crypto or a wire to someone you have not met. Banks and governments do not ask for those.",
+        "Agree a family code word for emergencies. Talk it over with someone before sending anything."
+      ],
+      "check": "money",
+      "help": [
+        { "label": "FTC: report fraud", "url": "https://reportfraud.ftc.gov/" },
+        { "label": "FBI IC3: report internet crime", "url": "https://www.ic3.gov/" },
+        { "label": "AARP Fraud Watch helpline (US) 877-908-3360", "url": "https://www.aarp.org/money/scams-fraud/helpline/" }
+      ]
+    },
+    {
+      "id": "families",
+      "title": "For families and carers",
+      "who": "Parents, partners, friends and community workers worried about someone else.",
+      "reading": "normal",
+      "signs": [
+        "They have a new job, partner or “opportunity” they can't or won't describe, and they are suddenly secretive about their phone.",
+        "They are being asked to travel somewhere for work, with tickets and housing arranged by someone else, and no address they can share.",
+        "They have started sending money, buying gift cards or crypto, or asking to borrow money for fees.",
+        "They are pulling away from friends and family, or repeating lines like “you wouldn't understand”."
+      ],
+      "do": [
+        "Stay in contact and stay calm. Shame keeps people quiet; blame makes it worse.",
+        "Run the check together on the message or offer, so the warning signs come from a neutral source, not from you.",
+        "Keep copies of names, numbers, addresses and travel details. If they go, that information is what helps find them.",
+        "If someone is being held or is in danger, call the hotline. You don't need proof."
+      ],
+      "check": "other",
+      "help": [
+        { "label": "US National Human Trafficking Hotline 1-888-373-7888 (text 233733)", "url": "https://humantraffickinghotline.org/" },
+        { "label": "UK Modern Slavery Helpline 08000 121 700", "url": "https://www.modernslaveryhelpline.org/" },
+        { "label": "IOM country offices (help abroad)", "url": "https://www.iom.int/where-we-work" }
+      ]
+    },
+    {
+      "id": "workers",
+      "title": "For job seekers and migrant workers",
+      "who": "Anyone offered work in another city or country, through an agent, an ad or a message.",
+      "reading": "normal",
+      "signs": [
+        "You are asked to pay recruitment fees, training fees or a deposit before you start. Real employers pay recruiters; workers should not.",
+        "The visa, the pay or the job described do not match what is on paper, or there is no contract at all.",
+        "Someone wants to hold your passport “for safekeeping”, or housing comes only with the job and its cost is taken from your wages.",
+        "The exact workplace address is only given on arrival, or the job is near known scam-compound areas."
+      ],
+      "do": [
+        "Check the employer and the recruiter through official channels you find yourself: the company's own website, the labour ministry's licensed-agent list, the embassy.",
+        "Keep your passport. Keep copies of the contract, the ad and every message.",
+        "Tell someone at home the employer's name, the address, the flight and the agent's number before you travel.",
+        "If you are already there and cannot leave, contact your embassy or an IOM office. The hotline number works from abroad."
+      ],
+      "check": "job",
+      "help": [
+        { "label": "ILO: indicators of forced labour", "url": "https://www.ilo.org/topics/forced-labour-modern-slavery-and-human-trafficking" },
+        { "label": "IOM country offices", "url": "https://www.iom.int/where-we-work" },
+        { "label": "US Department of Labor Wage and Hour Division 1-866-487-9243", "url": "https://www.dol.gov/agencies/whd/contact/complaints" }
+      ]
+    }
+  ]
+}
