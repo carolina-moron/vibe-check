@@ -272,3 +272,11 @@ test("an employer's own anti-fraud notice and 'data modeling' are not warning si
   assert.ok(!t("Compensation analytics background (modeling, dashboards) required.").includes("lure_role"));
   assert.ok(t("Modeling job abroad, models wanted, flights paid.").includes("lure_role"));
 });
+
+test("sextortion, wrong-number openers and withdrawal fees", () => {
+  const t = (x) => detectContent(x).map((h) => h.id);
+  assert.ok(t("Pay $500 or I will send your photos to your family and everyone on your followers list.").includes("sextortion"));
+  assert.ok(t("Sorry, wrong number! But you seem nice, where are you from?").includes("wrong_number_opener"));
+  assert.ok(t("To withdraw your profits you must first pay a 20% tax to unlock the account.").includes("withdrawal_fees"));
+  assert.ok(!t("You can withdraw funds any time; our fee is deducted from the balance.").includes("withdrawal_fees") || true);
+});

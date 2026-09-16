@@ -448,6 +448,30 @@
       "dimension": "pressure",
       "label": "A call in a loved one's voice says they're in trouble and need money fast",
       "why": "A few seconds of audio from social media is enough to clone a voice. The FTC advises: don't trust the voice, call the person back on a number you know."
+    },
+    {
+      "id": "sextortion",
+      "category": "social",
+      "weight": 25,
+      "dimension": "pressure",
+      "label": "Threatens to share your photos or videos unless you pay or send more",
+      "why": "Sextortion. The FBI's advice: don't pay, stop replying, keep the messages and report it. Paying rarely ends it. Teens can use NCMEC's Take It Down to have images removed."
+    },
+    {
+      "id": "wrong_number_opener",
+      "category": "social",
+      "weight": 12,
+      "dimension": "identity",
+      "label": "Started with a “wrong number” or random friendly message from a stranger",
+      "why": "The usual opening of pig-butchering scams: a mistaken text, a friendship, then weeks later an investment platform."
+    },
+    {
+      "id": "withdrawal_fees",
+      "category": "social",
+      "weight": 25,
+      "dimension": "money",
+      "label": "You can't withdraw your money without paying a fee, tax or deposit first",
+      "why": "The end stage of investment scams. Real platforms deduct fees from your balance; they don't ask you to send more to release it."
     }
   ],
   "tiers": [

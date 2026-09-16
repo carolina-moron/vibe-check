@@ -35,8 +35,8 @@ Open work, gathered from this build so far. Ticked items are done; the rest is i
 - [ ] Lure indicators column is much taller than the column beside it
 
 ## Scam types and warning signs
-- [ ] Pig butchering as its own scam type and story
-- [ ] Sextortion warning signs in the check (story script exists; no detection rules yet)
+- [x] Pig butchering scam type with wrong-number and withdrawal-fee warning signs (story script exists)
+- [x] Sextortion warning sign, rule and scam-type card
 - [ ] Everyday scams: fake tech support, bank/government impersonation, delivery texts
 - [ ] Expert validation of the warning-sign categories (Methodology already flags this)
 
