@@ -3,11 +3,13 @@
 Open work, gathered from this build so far. Ticked items are done; the rest is in rough priority order within each section. `PEER_REVIEW.md` has the longer-term roadmap.
 
 ## Agent and automation
+- [ ] Azure deploy (owner: Carolina, needs tenant access): `infra/deploy.sh vibecheck-rg eastus` on a machine with `az login` and Functions Core Tools, then paste the printed URL into `data/config.json` as `agentUrl`
+- [ ] Copilot Studio setup (owner: Carolina): create the agent, add the action from `docs/agent-openapi.yaml` with the printed token, paste the agent instructions from `docs/agent.md`, choose the Teams review channel. The site already describes the agent as built (Partnerships and About pages); update those to "live" once deployed
 - [ ] Host `scripts/agent-server.mjs` as an Azure Function and import `docs/agent-openapi.yaml` into Copilot Studio (needs the Microsoft tenant)
 - [ ] Point the review Adaptive Card at a Teams channel; wire `{{baseUrl}}`
 - [ ] `find_impersonated_company` skill: match a claimed employer to the real company and its security/abuse contact
 - [ ] `share_posting`: browser extension and Teams message extension so people can send LinkedIn/Handshake postings to the agent
-- [ ] Handshake institutional (EDU API) partnership feed via a university career office
+- [ ] Handshake institutional (EDU API) partnership feed: NYU career services contact in progress (Carolina)
 - [ ] Real database for agent records instead of `data/agent/queue/` (Azure Table or Cosmos DB); same choice should serve the report backend
 - [ ] SMTP or Graph mail for `send`; today it writes to an outbox unless `SMTP_URL` is set
 - [ ] Add real ATS boards to `data/agent/sources.json` (it ships empty)
@@ -45,12 +47,14 @@ Open work, gathered from this build so far. Ticked items are done; the rest is i
 - [ ] More first-person stories: only 7 of 23 cases have one
 
 ## Site
+- [ ] Innovation Studio submission (owner: Carolina): open the project, then fit `docs/hackathon-submission.md` to the form fields
 - [x] Phone audit: no page scrolls sideways; nav strip has a scroll hint
-- [ ] Update poster metrics and re-render `assets/poster.html` before the demo; confirm event city/year
+- [ ] Update poster metrics and re-render `assets/poster.html` right before submission
 - [ ] Report backend still undecided (see agent database above)
 - [ ] Multi-language: Spanish first, given the H-2A and Latin America cases
 
 ## Done in this build
+- [x] Team photos confirmed; titles Founder and CTO, CMO, COO; Apne Aap logo approved
 - [x] Voices page: real Avatar Impact Stories videos, still photos, pop-up that closes
 - [x] "You are NOT alone" tab merging Stories and Voices; first-person case stories with sources
 - [x] Deepfake and voice-clone cases, warning signs, rules, tests, scam-type card
