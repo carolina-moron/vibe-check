@@ -1,0 +1,88 @@
+{
+  "id": "brazilians-kk-park-thailand-job-offer",
+  "title": "Two Brazilians lured by Thailand job offers into the KK Park scam compound",
+  "typology": "scam-compound",
+  "period": "2024–2025",
+  "summary": "Two men from São Paulo, aged 31 and 26, accepted supposed job offers in Thailand in late 2024, one for R$8,000 a month. One was collected from a hostel in Thailand and driven across the border to the KK Park compound in Myawaddy, Myanmar, described as an online scam factory. Both were forced to work more than 15 hours a day running internet fraud and were beaten when quotas were missed. They escaped on 8 February 2025 with other migrants, were held by a local militia, and were transferred to Thailand with pressure from the NGO The Exodus Road and consular help from Brazil's embassy in Bangkok. They landed in São Paulo on 19 February 2025 and gave statements to the Federal Police. No arrests or charges are reported.",
+  "status": "reported",
+  "entities": [],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "São Paulo (online offer of work in Thailand)",
+      "country": "BR",
+      "lat": -23.55,
+      "lon": -46.63,
+      "note": "Job offers in Thailand accepted in late 2024; R$8,000 a month promised.",
+      "source": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar"
+    },
+    {
+      "stage": "transit",
+      "place": "Thailand (hostel to the Myanmar border)",
+      "country": "TH",
+      "lat": 13.75,
+      "lon": 100.5,
+      "note": "Picked up at a hostel and driven by car across the border to Myawaddy.",
+      "source": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar"
+    },
+    {
+      "stage": "exploited",
+      "place": "KK Park, Myawaddy",
+      "country": "MM",
+      "lat": 16.69,
+      "lon": 98.51,
+      "note": "More than 15-hour days running online scams; beatings for missed quotas.",
+      "source": "https://www.correiobraziliense.com.br/mundo/2025/02/7065554-brasileiros-escravizados-em-mianmar-voltam-ao-brasil.html"
+    },
+    {
+      "stage": "escaped",
+      "place": "Myawaddy to Thailand, then São Paulo",
+      "country": "BR",
+      "lat": -23.43,
+      "lon": -46.47,
+      "note": "Escaped 8 February 2025; arrived in São Paulo on 19 February and gave Federal Police statements.",
+      "source": "https://www.correiobraziliense.com.br/mundo/2025/02/7065554-brasileiros-escravizados-em-mianmar-voltam-ao-brasil.html"
+    }
+  ],
+  "victim_origins": [
+    "BR"
+  ],
+  "lures": [
+    {
+      "signal": "pay_too_high",
+      "quote_or_description": "A job offer of R$8,000 a month in Thailand.",
+      "source": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar"
+    },
+    {
+      "signal": "high_risk_region",
+      "quote_or_description": "Recruited for Thailand, moved to the Myanmar border scam zone.",
+      "source": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar"
+    },
+    {
+      "signal": "vague_location",
+      "quote_or_description": "The actual workplace was KK Park in Myanmar, not the promised Thai job.",
+      "source": "https://www.correiobraziliense.com.br/mundo/2025/02/7065554-brasileiros-escravizados-em-mianmar-voltam-ao-brasil.html"
+    },
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "Torture and beatings when scam quotas were not met.",
+      "source": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dois brasileiros conseguem fugir de trabalho escravo em Mianmar",
+      "publisher": "Agência Brasil",
+      "date": "2025-02-12",
+      "url": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar",
+      "tier": "press"
+    },
+    {
+      "title": "Brasileiros resgatados de trabalho escravo em Mianmar voltam ao Brasil",
+      "publisher": "Correio Braziliense",
+      "date": "2025-02-19",
+      "url": "https://www.correiobraziliense.com.br/mundo/2025/02/7065554-brasileiros-escravizados-em-mianmar-voltam-ao-brasil.html",
+      "tier": "press"
+    }
+  ]
+}

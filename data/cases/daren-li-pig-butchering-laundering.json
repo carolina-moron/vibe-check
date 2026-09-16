@@ -1,0 +1,109 @@
+{
+  "id": "daren-li-pig-butchering-laundering",
+  "title": "Daren Li: $73.6 million pig-butchering laundering network (California)",
+  "typology": "laundering",
+  "period": "2021–2026",
+  "summary": "US prosecutors said Daren Li, a dual national of China and St Kitts and Nevis, directed a laundering network of about 74 US shell companies and bank accounts that received the proceeds of cryptocurrency investment (\"pig-butchering\") scams run from scam centres in Cambodia and elsewhere in Southeast Asia, moving funds to bank accounts in the Bahamas and converting them to USDT. Li was arrested at Atlanta airport in April 2024 and pleaded guilty in November 2024 to conspiracy to launder money, admitting at least $73.6 million in victim deposits. After absconding while on release, he was sentenced in absentia in February 2026 to the 20-year statutory maximum. DOJ says eight co-conspirators have pleaded guilty; a co-defendant who pleaded not guilty faces allegations only.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Daren Li",
+      "kind": "person",
+      "jurisdiction": "CN",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, C.D. California",
+          "action": "Pleaded guilty to conspiracy to commit money laundering",
+          "date": "2024-11-12",
+          "url": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+        },
+        {
+          "body": "US District Court, C.D. California",
+          "action": "Sentenced in absentia to 20 years",
+          "date": "2026-02-09",
+          "url": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "Scam centres in Cambodia (country-level point)",
+      "country": "KH",
+      "lat": 11.56,
+      "lon": 104.92,
+      "note": "Victims were approached unsolicited through social media, calls and dating apps and steered to spoofed crypto platforms.",
+      "source": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+    },
+    {
+      "stage": "exploited",
+      "place": "United States (victims)",
+      "country": "US",
+      "lat": 34.05,
+      "lon": -118.24,
+      "note": "One victim lost $1.5 million over two months on a spoofed trading platform after a WhatsApp approach.",
+      "source": "https://therecord.media/arrests-alleged-money-launderers-pig-butchering-scheme"
+    },
+    {
+      "stage": "laundered",
+      "place": "Nassau, Bahamas",
+      "country": "BS",
+      "lat": 25.05,
+      "lon": -77.34,
+      "note": "Funds moved from about 74 US shell accounts to Bahamian bank accounts and converted to USDT.",
+      "source": "https://therecord.media/arrests-alleged-money-launderers-pig-butchering-scheme"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Los Angeles",
+      "country": "US",
+      "lat": 34.05,
+      "lon": -118.24,
+      "note": "Li sentenced in absentia to 20 years in February 2026.",
+      "source": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+    }
+  ],
+  "victim_origins": [
+    "US"
+  ],
+  "lures": [
+    {
+      "signal": "investment_pitch",
+      "quote_or_description": "Scammers posed as investment advisers and pushed fictitious crypto investments on spoofed platforms.",
+      "source": "https://therecord.media/arrests-alleged-money-launderers-pig-butchering-scheme"
+    },
+    {
+      "signal": "romance_money",
+      "quote_or_description": "Victims were offered romantic connections or fictitious investment opportunities.",
+      "source": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+    },
+    {
+      "signal": "chat_only_contact",
+      "quote_or_description": "First contact came through WhatsApp or unsolicited social-media and dating messages.",
+      "source": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+    },
+    {
+      "signal": "gift_card_crypto",
+      "quote_or_description": "Victims' money was converted to the stablecoin USDT after passing through shell accounts.",
+      "source": "https://therecord.media/arrests-alleged-money-launderers-pig-butchering-scheme"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Man Sentenced to 20 Years in Prison for Role in $73 Million Global Cryptocurrency Investment Scam",
+      "publisher": "US Department of Justice",
+      "date": "2026-02-09",
+      "url": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam",
+      "tier": "official"
+    },
+    {
+      "title": "Feds nab alleged money launderers for pig butchering scheme",
+      "publisher": "The Record",
+      "date": "2024-05-17",
+      "url": "https://therecord.media/arrests-alleged-money-launderers-pig-butchering-scheme",
+      "tier": "press"
+    }
+  ]
+}

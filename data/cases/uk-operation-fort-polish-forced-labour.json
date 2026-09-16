@@ -1,0 +1,138 @@
+{
+  "id": "uk-operation-fort-polish-forced-labour",
+  "title": "Operation Fort: Polish forced-labour ring in the West Midlands (UK)",
+  "typology": "labor-trafficking",
+  "period": "2012–2019",
+  "summary": "Operation Fort, led by West Midlands Police with National Crime Agency support, is described by the UK government as the largest case prosecuted under UK modern slavery legislation. Vulnerable Polish nationals, including homeless people, former prisoners and people with alcohol dependency, were lured to England with offers of work, free or subsidised accommodation, food and travel, then put to work on farms, in recycling centres, poultry factories and parcel warehouses while wages were paid into gang-controlled bank accounts; some received as little as £10 a week. Police estimated up to 400 people were exploited and the gang earned more than £2 million. Bank cards and identity documents were confiscated and threats and violence used to stop people leaving. On 5 July 2019 Birmingham Crown Court sentenced Ignacy Brzezinski to 11 years, Wojciech Nowakowski to six and a half years and Jan Sadowski to three years, following convictions of five others in an earlier trial.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Ignacy Brzezinski",
+      "kind": "person",
+      "jurisdiction": "GB",
+      "names": [],
+      "actions": [
+        {
+          "body": "Birmingham Crown Court",
+          "action": "Convicted of trafficking, forced labour and money laundering; sentenced to 11 years",
+          "date": "2019-07-05",
+          "url": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+        }
+      ]
+    },
+    {
+      "name": "Wojciech Nowakowski",
+      "kind": "person",
+      "jurisdiction": "GB",
+      "names": [],
+      "actions": [
+        {
+          "body": "Birmingham Crown Court",
+          "action": "Convicted; sentenced to six and a half years",
+          "date": "2019-07-05",
+          "url": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+        }
+      ]
+    },
+    {
+      "name": "Jan Sadowski",
+      "kind": "person",
+      "jurisdiction": "GB",
+      "names": [],
+      "actions": [
+        {
+          "body": "Birmingham Crown Court",
+          "action": "Convicted; sentenced to three years",
+          "date": "2019-07-05",
+          "url": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Poland (country-level point)",
+      "country": "PL",
+      "lat": 52.23,
+      "lon": 21.01,
+      "note": "Vulnerable Poles were offered work, accommodation, food and travel to the UK.",
+      "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    },
+    {
+      "stage": "exploited",
+      "place": "West Bromwich and the West Midlands",
+      "country": "GB",
+      "lat": 52.52,
+      "lon": -1.99,
+      "note": "Farm, recycling, poultry and warehouse work for as little as £10 a week while wages went to gang-controlled accounts.",
+      "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    },
+    {
+      "stage": "escaped",
+      "place": "West Bromwich",
+      "country": "GB",
+      "lat": 52.52,
+      "lon": -1.99,
+      "note": "Victims first disclosed to a Polish-speaking church volunteer at a soup kitchen in 2015.",
+      "source": "https://hopeforjustice.org/news/operation-fort-uncovering-the-largest-modern-slavery-ring-in-uk-history/"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Birmingham Crown Court",
+      "country": "GB",
+      "lat": 52.48,
+      "lon": -1.89,
+      "note": "Sentences handed down on 5 July 2019 after two trials.",
+      "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    }
+  ],
+  "victim_origins": [
+    "PL"
+  ],
+  "lures": [
+    {
+      "signal": "employer_housing_travel",
+      "quote_or_description": "Offers of work, free or subsidised accommodation, food and travel.",
+      "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    },
+    {
+      "signal": "document_retention",
+      "quote_or_description": "Bank cards and identity documents were confiscated.",
+      "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    },
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "Threats and violence were used to prevent victims leaving.",
+      "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    },
+    {
+      "signal": "lure_role",
+      "quote_or_description": "Newly released prisoners, homeless and alcohol-dependent people were targeted with false employment promises.",
+      "source": "https://www.euronews.com/2019/07/05/police-break-400-person-modern-day-slavery-ring-uk-n1026871"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Solicitor General welcomes modern slavery conviction",
+      "publisher": "UK Attorney General's Office",
+      "date": "2019-07-05",
+      "url": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction",
+      "tier": "official"
+    },
+    {
+      "title": "Police break 400-person modern-day slavery ring in UK",
+      "publisher": "Euronews (NBC News)",
+      "date": "2019-07-05",
+      "url": "https://www.euronews.com/2019/07/05/police-break-400-person-modern-day-slavery-ring-uk-n1026871",
+      "tier": "press"
+    },
+    {
+      "title": "Operation Fort: uncovering the largest modern slavery ring in UK history",
+      "publisher": "Hope for Justice",
+      "date": "2024-01",
+      "url": "https://hopeforjustice.org/news/operation-fort-uncovering-the-largest-modern-slavery-ring-in-uk-history/",
+      "tier": "ngo"
+    }
+  ]
+}

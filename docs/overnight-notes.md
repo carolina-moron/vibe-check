@@ -11,3 +11,16 @@ Decisions I took on my own and doubts for Carolina to review in the morning. New
 ## Doubts to review
 - Keys: several strong sources need free API keys registered under a person or organisation (Google Safe Browsing, URLhaus, PhishTank, OpenSanctions, UK Companies House, Chainabuse, World Bank debarment, EmailRep). I did not create accounts. Which should be registered, and under whose name (you, Apne Aap, ETC)?
 - Audience guides (young people, older adults, families, migrant workers): I wrote them from the same FTC, FBI, ILO and UNODC guidance the checker uses, without an expert review. Please read before we point Apne Aap at them.
+
+## Cases added overnight (14 new, 37 total)
+Sourced from press and official pages that loaded; every link checked. Please skim before judging:
+- **Gulf/India:** Dubai Al Hamriya (convicted, no names published), Bengaluru "TikTok Ridoy" (convicted; two named), Hyderabad NIA (convicted; three named), Saudi Kenyan domestic workers (Amnesty investigation, status "reported"), CBI Hisar Instagram recruiter (arrest only; the arrested man is not named in our record).
+- **West Africa/online:** Ogoshi brothers sextortion (convicted; new "sextortion" case type), Daren Li pig-butchering laundering (DOJ, convicted), Josephine Iyamu (NCA, convicted), Abidjan fake Canada jobs (INTERPOL, arrests), Accra 57 Nigerians (arrests; suspect names left out because they came only from a search snippet).
+- **Europe/LatAm:** Operation Fort (UK, convicted), Operación Balarama (Spain, arrests), Medellín to Greece (convicted; plea deals), two Brazilians in KK Park (reported; no prosecution).
+- **Skipped:** the Kuwait Demafelis case (a murder conviction, not a trafficking charge) and a duplicate of Los Villatoros.
+- Doubt: the Bengaluru case is also a rape case with a viral video. I kept the wording clinical and excluded the victim's details, but you may prefer to drop it.
+- Doubt: naming convicted individuals. The catalog already does (Mattox, Raniere, Smith), so I followed that rule; arrested-only people are never named.
+
+## Other decisions
+- "Who it's for" guides are live in the nav. Reading levels: young = simple, older = large text.
+- Poster and submission now say 37 cases, 60 warning signs.

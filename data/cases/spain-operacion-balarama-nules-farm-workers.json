@@ -1,0 +1,74 @@
+{
+  "id": "spain-operacion-balarama-nules-farm-workers",
+  "title": "Spain: 80 migrant farm workers freed in Nules, Castellón (Operación Balarama)",
+  "typology": "labor-trafficking",
+  "period": "2025–2026",
+  "summary": "On 11 April 2026 Spain's Guardia Civil announced Operación Balarama, which freed 80 victims aged 20 to 35, mainly Nepali, Pakistani and Senegalese nationals, exploited in agricultural harvesting in the provinces of Castellón and Valencia. Seven people were arrested for alleged trafficking for labour exploitation, offences against workers' rights and facilitating irregular immigration; two were remanded in custody. Recruitment took place abroad through false job offers spread on social media, messaging apps and personal contacts, promising decent wages, housing and meals. On arrival the workers carried a debt used as a means of control, worked 12 to 13 hours a day for no pay or a symbolic amount after deductions for housing and transport, and lived crowded into four properties in Nules, some without water or electricity. These are allegations; no one has been convicted and the report names no defendants.",
+  "status": "enforcement_action",
+  "entities": [],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "Nepal, Pakistan and Senegal (region-level point)",
+      "country": "NP",
+      "lat": 27.71,
+      "lon": 85.32,
+      "note": "False job offers spread through social media, messaging apps and personal contacts, promising wages, housing and meals.",
+      "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    },
+    {
+      "stage": "exploited",
+      "place": "Nules, Castellón",
+      "country": "ES",
+      "lat": 39.85,
+      "lon": -0.16,
+      "note": "Twelve- to thirteen-hour harvest days for no or symbolic pay; four overcrowded houses.",
+      "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Castellón",
+      "country": "ES",
+      "lat": 39.99,
+      "lon": -0.04,
+      "note": "Seven arrested, two jailed pending trial; the provincial prosecutor's office is involved.",
+      "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    }
+  ],
+  "victim_origins": [
+    "NP",
+    "PK",
+    "SN"
+  ],
+  "lures": [
+    {
+      "signal": "chat_only_contact",
+      "quote_or_description": "False job offers were spread through social media, messaging apps and personal contacts.",
+      "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    },
+    {
+      "signal": "employer_housing_travel",
+      "quote_or_description": "The offers promised decent wages, housing and meals.",
+      "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    },
+    {
+      "signal": "debt_bondage",
+      "quote_or_description": "A debt on arrival was later used as a mechanism of control and coercion.",
+      "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    },
+    {
+      "signal": "isolation",
+      "quote_or_description": "Workers were crowded into properties, some without water or electricity.",
+      "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "La Guardia Civil libera a 80 víctimas migrantes explotadas laboralmente en condiciones de semi esclavitud en Nules (Castellón)",
+      "publisher": "Guardia Civil (Spain)",
+      "date": "2026-04-11",
+      "url": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/",
+      "tier": "official"
+    }
+  ]
+}

@@ -47,6 +47,7 @@ const TYPOLOGY = {
   "job-scam": { label: "Job scam", color: "#9A6A00" },
   "sex-trafficking": { label: "Sex trafficking", color: "#B3261E" },
   "deepfake-fraud": { label: "Deepfakes and voice clones", color: "#8A4F9E" },
+  "sextortion": { label: "Sextortion", color: "#C2185B" },
 };
 const STATUS = {
   enforcement_action: "Enforcement action", sanctioned: "Sanctioned", convicted: "Convicted",
@@ -358,20 +359,30 @@ function viewCases() {
       <div id="ctdc-body"></div>
     </section>
     <section>
-      <div class="gridhead"><h2>Cases</h2><input id="filter" type="search" placeholder="Filter by name, alias, country…" aria-label="Filter cases"></div>
+      <div class="gridhead"><h2>Cases</h2>
+        <div class="filters">
+          <select id="f-typ" aria-label="Type of case"><option value="">All types</option>${Object.entries(TYPOLOGY).filter(([t]) => cases.some((c) => c.typology === t)).map(([t, x]) => `<option value="${esc(t)}">${esc(x.label)}</option>`).join("")}</select>
+          <select id="f-status" aria-label="Outcome"><option value="">All outcomes</option>${Object.entries(STATUS).filter(([k]) => cases.some((c) => c.status === k)).map(([k, l]) => `<option value="${esc(k)}">${esc(l)}</option>`).join("")}</select>
+          <select id="f-country" aria-label="Country"><option value="">All countries</option>${[...new Set(cases.flatMap((c) => [...c.journey.map((j) => j.country), ...(c.victim_origins || [])]))].map((k) => [k, country(k)]).sort((a, b) => a[1].localeCompare(b[1])).map(([k, n]) => `<option value="${esc(k)}">${esc(n)}</option>`).join("")}</select>
+          <input id="filter" type="search" placeholder="Name, alias, place…" aria-label="Filter cases">
+        </div>
+      </div>
+      <p class="fine" id="f-count"></p>
       ${scoreGuide}
       <div class="cards" id="cards"></div>
     </section>`;
 
   mountGlobe($("#globe"));
   const map = baseMap($("#worldmap"), { center: [22, 40], zoom: 2, minZoom: 2 });
-  const groups = {};
+  const groups = {}, journeyById = {};
   if (map) {
     cases.forEach((c) => {
       const g = drawJourney(map, c, { numbered: false, weight: 2.5, link: true });
       (groups[c.typology] ||= []).push(g);
+      journeyById[c.id] = g;
     });
   }
+  const legendOn = (id) => { const c = cases.find((x) => x.id === id); const b = document.querySelector(`#legend [data-typ="${c.typology}"]`); return !b || b.getAttribute("aria-pressed") !== "false"; };
   // News reports layer: countries named in recent articles, kept visually apart from the checked cases.
   let newsLayer = null;
   const showNews = async (on) => {
@@ -441,23 +452,30 @@ function viewCases() {
     groups[b.dataset.typ].forEach((g) => (on ? g.addTo(map) : g.remove()));
   });
 
-  const render = (q = "") => {
-    const needle = q.trim().toLowerCase();
-    const list = cases.filter((c) => !needle || JSON.stringify([c.title, c.summary, c.entities.map((e) => allNames(e).map((n) => n.name)), c.journey.map((j) => [j.place, country(j.country)])]).toLowerCase().includes(needle));
+  const render = () => {
+    const needle = $("#filter").value.trim().toLowerCase();
+    const ft = $("#f-typ").value, fs = $("#f-status").value, fc = $("#f-country").value;
+    const list = cases.filter((c) => (!ft || c.typology === ft) && (!fs || c.status === fs) && (!fc || c.journey.some((j) => j.country === fc) || (c.victim_origins || []).includes(fc))).filter((c) => !needle || JSON.stringify([c.title, c.summary, c.entities.map((e) => allNames(e).map((n) => n.name)), c.journey.map((j) => [j.place, country(j.country)])]).toLowerCase().includes(needle));
     $("#cards").innerHTML = list.map((c) => {
       const s = caseEvidence(c, signals);
       const cov = coverage(caseJurisdictions(c), registers);
       const route = [...new Set(c.journey.filter((j) => j.stage !== "prosecuted").map((j) => country(j.country)))].join(" → ");
-      return `<a class="card" href="#/case/${esc(c.id)}">
+      return `<a class="card" href="#/case/${esc(c.id)}" data-id="${esc(c.id)}">
         <div class="cardtop"><span class="typ" style="--c:${TYPOLOGY[c.typology]?.color}">${esc(TYPOLOGY[c.typology]?.label)}</span><span class="mono muted">${esc(c.period)}</span></div>
         <h3>${esc(c.title)}</h3>
         <p class="route">${esc(route)}</p>
         <div class="cardfoot"><span class="status">${esc(STATUS[c.status])}</span><span class="mini t-${esc(s.tier.id)}" title="${esc(caseTierLabel(s))}: ${s.points} out of 100">${s.points}<small>/100</small><span class="sr"> warning-sign score, ${esc(caseTierLabel(s))}</span></span><span class="cov c-${esc(cov.class)}" title="${esc(cov.explain)}">${esc(cov.label)}</span></div>
       </a>`;
     }).join("") || `<p class="muted">No cases match.</p>`;
+    $("#f-count").textContent = `${list.length} of ${cases.length} cases`;
+    // Map follows the filters: only journeys of listed cases stay visible.
+    if (map) { const keep = new Set(list.map((c) => c.id)); Object.entries(journeyById).forEach(([id, g]) => (keep.has(id) && legendOn(id) ? g.addTo(map) : g.remove())); }
   };
   render();
-  $("#filter").addEventListener("input", (e) => render(e.target.value));
+  $("#cards").addEventListener("mouseover", (e) => { const a = e.target.closest("[data-id]"); if (!a || !map) return; const g = journeyById[a.dataset.id]; g?.bringToFront(); g?.setStyle?.({ weight: 5, opacity: 1 }); });
+  $("#cards").addEventListener("mouseout", (e) => { const a = e.target.closest("[data-id]"); if (!a || !map) return; journeyById[a.dataset.id]?.setStyle?.({ weight: 2.5, opacity: 0.85 }); });
+  $("#filter").addEventListener("input", render);
+  ["#f-typ", "#f-status", "#f-country"].forEach((id) => $(id).addEventListener("change", render));
 }
 
 // ---- views: one case -------------------------------------------------------------------

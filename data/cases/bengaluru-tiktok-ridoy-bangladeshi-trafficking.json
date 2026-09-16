@@ -1,0 +1,108 @@
+{
+  "id": "bengaluru-tiktok-ridoy-bangladeshi-trafficking",
+  "title": "Bengaluru: Bangladeshi women lured with jobs via TikTok and Facebook (\"TikTok Ridoy\")",
+  "typology": "sex-trafficking",
+  "period": "2021–2022",
+  "summary": "In May 2021 a video of the gang rape of a 22-year-old Bangladeshi woman in Bengaluru went viral. Police arrested 12 people, 11 of them Bangladeshi nationals who had entered India illegally, and said the ring lured young Bangladeshi women with the pretext of employment, in some cases telling them the destination was Dubai, then forced them into prostitution; the victim was assaulted for refusing sex work. The ringleader, Rifadul Islam alias \"TikTok Ridoy\", used a TikTok following and Facebook groups to recruit. On 20 and 21 May 2022 a special court in Bengaluru convicted eleven: seven men were sentenced to life imprisonment, one woman to 20 years, one man to five years and two women to nine months under the Foreigners Act.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Rifadul Islam alias Ridoy Babo (\"TikTok Ridoy\")",
+      "kind": "person",
+      "jurisdiction": "BD",
+      "names": [],
+      "actions": [
+        {
+          "body": "Special Court 54, Bengaluru",
+          "action": "Convicted; sentenced to life imprisonment",
+          "date": "2022-05-21",
+          "url": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+        }
+      ]
+    },
+    {
+      "name": "Taniya Khan",
+      "kind": "person",
+      "jurisdiction": "BD",
+      "names": [],
+      "actions": [
+        {
+          "body": "Special Court 54, Bengaluru",
+          "action": "Convicted; sentenced to 20 years",
+          "date": "2022-05-21",
+          "url": "https://www.tbsnews.net/world/south-asia/bangladesh-immigrants-found-guilty-bengaluru-gang-rape-case-423862"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "Moghbazar, Dhaka",
+      "country": "BD",
+      "lat": 23.75,
+      "lon": 90.4,
+      "note": "Recruitment through a TikTok persona and Facebook groups, with offers of work.",
+      "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    },
+    {
+      "stage": "exploited",
+      "place": "Bengaluru",
+      "country": "IN",
+      "lat": 12.97,
+      "lon": 77.59,
+      "note": "Women forced into prostitution; the victim was assaulted for refusing, and the video went viral in May 2021.",
+      "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Special Court 54, Bengaluru",
+      "country": "IN",
+      "lat": 12.97,
+      "lon": 77.59,
+      "note": "Eleven convicted on 20 May 2022 and sentenced the next day.",
+      "source": "https://www.tbsnews.net/world/south-asia/bangladesh-immigrants-found-guilty-bengaluru-gang-rape-case-423862"
+    }
+  ],
+  "victim_origins": [
+    "BD"
+  ],
+  "lures": [
+    {
+      "signal": "lure_role",
+      "quote_or_description": "Young Bangladeshi women were lured on the pretext of employment and later forced into prostitution.",
+      "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    },
+    {
+      "signal": "chat_only_contact",
+      "quote_or_description": "Recruitment ran through a TikTok persona and Facebook groups.",
+      "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    },
+    {
+      "signal": "vague_location",
+      "quote_or_description": "Some victims were told the destination was Dubai and were taken to Bengaluru instead.",
+      "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    },
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "The victim was assaulted for refusing sex work.",
+      "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    }
+  ],
+  "sources": [
+    {
+      "title": "India jails TikTok Ridoy for life in rape case",
+      "publisher": "The Financial Express (Bangladesh)",
+      "date": "2022-05-21",
+      "url": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236",
+      "tier": "press"
+    },
+    {
+      "title": "Bangladesh immigrants found guilty in Bengaluru gang rape case",
+      "publisher": "The Business Standard (Bangladesh)",
+      "date": "2022-05-21",
+      "url": "https://www.tbsnews.net/world/south-asia/bangladesh-immigrants-found-guilty-bengaluru-gang-rape-case-423862",
+      "tier": "press"
+    }
+  ]
+}

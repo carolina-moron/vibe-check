@@ -1,0 +1,108 @@
+{
+  "id": "ogoshi-brothers-sextortion-lagos",
+  "title": "Ogoshi brothers (Lagos): sextortion ring that led to the death of Jordan DeMay",
+  "typology": "sextortion",
+  "period": "2022–2024",
+  "summary": "Samuel and Samson Ogoshi, brothers from Lagos, Nigeria, used hacked social-media accounts to pose as young women, persuaded teenage boys and young men to send explicit images, then threatened to circulate them unless paid. Jordan DeMay, 17, of Marquette, Michigan, died by suicide in March 2022 after being asked for $1,000; prosecutors said the scheme targeted more than 100 victims. The brothers were extradited from Nigeria in August 2023, pleaded guilty in April 2024 to conspiracy to sexually exploit a minor, and in September 2024 a federal judge in Michigan sentenced each to 210 months in prison. A third man charged in the case was awaiting extradition; charges against him are allegations.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Samuel Ogoshi",
+      "kind": "person",
+      "jurisdiction": "NG",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, W.D. Michigan",
+          "action": "Pleaded guilty to conspiracy to sexually exploit a minor; sentenced to 210 months",
+          "date": "2024-09-05",
+          "url": "https://www.uppermichiganssource.com/2024/09/05/2-nigerian-men-sentenced-sextortion-case-17-12-years-prison/"
+        }
+      ]
+    },
+    {
+      "name": "Samson Ogoshi",
+      "kind": "person",
+      "jurisdiction": "NG",
+      "names": [],
+      "actions": [
+        {
+          "body": "US District Court, W.D. Michigan",
+          "action": "Pleaded guilty to conspiracy to sexually exploit a minor; sentenced to 210 months",
+          "date": "2024-09-05",
+          "url": "https://www.uppermichiganssource.com/2024/09/05/2-nigerian-men-sentenced-sextortion-case-17-12-years-prison/"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "Lagos",
+      "country": "NG",
+      "lat": 6.52,
+      "lon": 3.38,
+      "note": "The brothers approached US teenagers from Lagos through purchased, hacked social-media accounts posing as young women.",
+      "source": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795"
+    },
+    {
+      "stage": "exploited",
+      "place": "Marquette, Michigan",
+      "country": "US",
+      "lat": 46.54,
+      "lon": -87.4,
+      "note": "Jordan DeMay was pressed for $1,000, sent $300, and died in March 2022.",
+      "source": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Marquette, Michigan (federal court)",
+      "country": "US",
+      "lat": 46.54,
+      "lon": -87.4,
+      "note": "Extradited August 2023; 210-month sentences in September 2024.",
+      "source": "https://www.uppermichiganssource.com/2024/09/05/2-nigerian-men-sentenced-sextortion-case-17-12-years-prison/"
+    }
+  ],
+  "victim_origins": [
+    "US"
+  ],
+  "lures": [
+    {
+      "signal": "sextortion",
+      "quote_or_description": "Posed as young women on social media, persuaded teenage boys and young men to send explicit photos, then blackmailed them.",
+      "source": "https://www.uppermichiganssource.com/2024/09/05/2-nigerian-men-sentenced-sextortion-case-17-12-years-prison/"
+    },
+    {
+      "signal": "chat_only_contact",
+      "quote_or_description": "Contact came only through Instagram messages from a fake female persona.",
+      "source": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795"
+    },
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "Threatened to send the images to family and friends unless paid.",
+      "source": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795"
+    },
+    {
+      "signal": "urgency",
+      "quote_or_description": "Demanded $1,000 immediately and kept up the pressure after a partial payment.",
+      "source": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795"
+    }
+  ],
+  "sources": [
+    {
+      "title": "US extradites two Nigerians in sextortion case linked to suicide of Michigan teen",
+      "publisher": "NBC News",
+      "date": "2023-08-14",
+      "url": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795",
+      "tier": "press"
+    },
+    {
+      "title": "2 Nigerian men sentenced in sextortion case to 17 1/2 years in prison",
+      "publisher": "WLUC (Upper Michigan's Source)",
+      "date": "2024-09-05",
+      "url": "https://www.uppermichiganssource.com/2024/09/05/2-nigerian-men-sentenced-sextortion-case-17-12-years-prison/",
+      "tier": "press"
+    }
+  ]
+}

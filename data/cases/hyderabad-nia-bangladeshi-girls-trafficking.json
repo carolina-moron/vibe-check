@@ -1,0 +1,105 @@
+{
+  "id": "hyderabad-nia-bangladeshi-girls-trafficking",
+  "title": "Hyderabad: Bangladeshi girls trafficked with promises of lucrative jobs (NIA case)",
+  "typology": "sex-trafficking",
+  "period": "2019–2024",
+  "summary": "In August 2019 Telangana police rescued five Bangladeshi girls from a house in Uppuguda, Hyderabad. India's National Investigation Agency took over the case in September 2019 and found that the accused lured Bangladeshi girls with promises of lucrative jobs and decent pay, trafficked them into India and forced them into prostitution. On 6 November 2024 the Special NIA Court in Hyderabad convicted all six accused under the Indian Penal Code and the Immoral Traffic (Prevention) Act and sentenced each to life imprisonment and a fine of Rs 24,000.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Mohd Yousuf Khan",
+      "kind": "person",
+      "jurisdiction": "IN",
+      "names": [],
+      "actions": [
+        {
+          "body": "Special NIA Court, Hyderabad",
+          "action": "Convicted; life imprisonment and Rs 24,000 fine",
+          "date": "2024-11-06",
+          "url": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+        }
+      ]
+    },
+    {
+      "name": "Bithi Begum",
+      "kind": "person",
+      "jurisdiction": "IN",
+      "names": [],
+      "actions": [
+        {
+          "body": "Special NIA Court, Hyderabad",
+          "action": "Convicted; life imprisonment and Rs 24,000 fine",
+          "date": "2024-11-06",
+          "url": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+        }
+      ]
+    },
+    {
+      "name": "Ruhul Amin Dhali",
+      "kind": "person",
+      "jurisdiction": "IN",
+      "names": [],
+      "actions": [
+        {
+          "body": "Special NIA Court, Hyderabad",
+          "action": "Convicted; life imprisonment and Rs 24,000 fine",
+          "date": "2024-11-06",
+          "url": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Bangladesh (country-level point)",
+      "country": "BD",
+      "lat": 23.68,
+      "lon": 90.36,
+      "note": "Girls were lured with the promise of lucrative jobs and decent pay.",
+      "source": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+    },
+    {
+      "stage": "exploited",
+      "place": "Uppuguda, Hyderabad",
+      "country": "IN",
+      "lat": 17.34,
+      "lon": 78.48,
+      "note": "Forced into prostitution; five girls rescued in August 2019.",
+      "source": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Special NIA Court, Hyderabad",
+      "country": "IN",
+      "lat": 17.39,
+      "lon": 78.49,
+      "note": "Six sentenced to life imprisonment on 6 November 2024.",
+      "source": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+    }
+  ],
+  "victim_origins": [
+    "BD"
+  ],
+  "lures": [
+    {
+      "signal": "pay_too_high",
+      "quote_or_description": "The accused lured Bangladeshi girls with the promise of lucrative jobs and decent pay.",
+      "source": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+    },
+    {
+      "signal": "lure_role",
+      "quote_or_description": "A job offer was the cover for trafficking into prostitution.",
+      "source": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+    }
+  ],
+  "sources": [
+    {
+      "title": "NIA court sentences 6 to life imprisonment for trafficking of Bangladeshi girls",
+      "publisher": "The Tribune (PTI)",
+      "date": "2024-11-07",
+      "url": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp",
+      "tier": "press"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "accra-romance-scam-house-57-nigerians",
+  "title": "Accra: 57 Nigerians lured with jobs and forced to run romance scams",
+  "typology": "scam-compound",
+  "period": "2025",
+  "summary": "On 22 October 2025 Ghana Police Service's Criminal Investigations Department raided a building in a suburb of Accra and rescued 57 Nigerian nationals aged 18 to 26 who, police said, had been lured to Ghana with promises of lucrative jobs and then coerced into running online romance scams. Five suspects were arrested and police seized 77 laptops, 38 mobile phones, two vehicles and other internet-connected devices. Charges are allegations; no conviction is reported.",
+  "status": "enforcement_action",
+  "entities": [],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Nigeria (country-level point)",
+      "country": "NG",
+      "lat": 9.08,
+      "lon": 8.68,
+      "note": "Promised lucrative jobs and other opportunities in Ghana.",
+      "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    },
+    {
+      "stage": "exploited",
+      "place": "Accra suburb",
+      "country": "GH",
+      "lat": 5.6,
+      "lon": -0.19,
+      "note": "Coerced into running online romance scams from one building.",
+      "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    },
+    {
+      "stage": "escaped",
+      "place": "Accra",
+      "country": "GH",
+      "lat": 5.6,
+      "lon": -0.19,
+      "note": "22 October 2025 raid: 57 rescued, five arrested, 77 laptops seized.",
+      "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    }
+  ],
+  "victim_origins": [
+    "NG"
+  ],
+  "lures": [
+    {
+      "signal": "lure_role",
+      "quote_or_description": "Lured with promises of lucrative jobs in Ghana.",
+      "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    },
+    {
+      "signal": "employer_housing_travel",
+      "quote_or_description": "Victims were housed together in the operators' building.",
+      "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    },
+    {
+      "signal": "romance_money",
+      "quote_or_description": "Forced to run online romance scams.",
+      "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    },
+    {
+      "signal": "isolation",
+      "quote_or_description": "Dozens confined in one building under the operators' control.",
+      "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Ghana Police bust cybercrime ring: 57 Nigerians rescued",
+      "publisher": "Africanews (with AP)",
+      "date": "2025-10-24",
+      "url": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/",
+      "tier": "press"
+    }
+  ]
+}

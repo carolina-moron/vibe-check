@@ -1,0 +1,79 @@
+{
+  "id": "cbi-hisar-instagram-scam-compound-recruitment",
+  "title": "India: Instagram job ads recruiting for Myanmar and Cambodia scam compounds (CBI case)",
+  "typology": "scam-compound",
+  "period": "2025–2026",
+  "summary": "India's Central Bureau of Investigation registered a case in December 2025 against a network of agents accused of trafficking Indians to Southeast Asian scam compounds for \"cyber slavery\". After searches at eight locations in four states and three arrests in mid-2026, the CBI in August 2026 arrested an agent from Hisar, Haryana, alleged to have sent at least four people to compounds in Myanmar and Cambodia in 2025. The CBI says overseas-job advertisements were published on Instagram and prospective recruits were handled over Telegram, and it is examining cryptocurrency transactions it suspects were commissions paid by compound operators to recruiters. Victims reportedly paid large sums, or recruited a replacement, to be allowed to leave. These are allegations; no one has been convicted.",
+  "status": "enforcement_action",
+  "entities": [],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "Instagram and Telegram (Hisar, Haryana)",
+      "country": "IN",
+      "lat": 29.15,
+      "lon": 75.72,
+      "note": "Overseas-job ads on Instagram; contact moved to Telegram.",
+      "source": "https://www.tribuneindia.com/news/haryana/cbi-arrests-hisar-man-for-trafficking-indians-to-southeast-asian-scam-compounds-under-cyber-slavery-racket/"
+    },
+    {
+      "stage": "exploited",
+      "place": "Scam compounds in Myanmar and Cambodia (region-level point)",
+      "country": "MM",
+      "lat": 16.69,
+      "lon": 98.51,
+      "note": "Recruits forced to run online scams; exit reportedly required large payments or a replacement recruit.",
+      "source": "https://www.moneylife.in/article/cbi-arrests-hisar-agent-in-cyber-slavery-network-trafficking-indians-to-myanmar-cambodia-scam-compounds/81410.html"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "CBI (case registered December 2025)",
+      "country": "IN",
+      "lat": 28.61,
+      "lon": 77.21,
+      "note": "Searches in four states; arrests in 2026, including the Hisar agent in August 2026.",
+      "source": "https://www.tribuneindia.com/news/haryana/cbi-arrests-hisar-man-for-trafficking-indians-to-southeast-asian-scam-compounds-under-cyber-slavery-racket/"
+    }
+  ],
+  "victim_origins": [
+    "IN"
+  ],
+  "lures": [
+    {
+      "signal": "lure_role",
+      "quote_or_description": "Overseas-job advertisements on Instagram fronted recruitment for scam compounds.",
+      "source": "https://www.tribuneindia.com/news/haryana/cbi-arrests-hisar-man-for-trafficking-indians-to-southeast-asian-scam-compounds-under-cyber-slavery-racket/"
+    },
+    {
+      "signal": "chat_only_contact",
+      "quote_or_description": "Prospective victims were handled over Telegram.",
+      "source": "https://www.tribuneindia.com/news/haryana/cbi-arrests-hisar-man-for-trafficking-indians-to-southeast-asian-scam-compounds-under-cyber-slavery-racket/"
+    },
+    {
+      "signal": "withdrawal_fees",
+      "quote_or_description": "Victims reportedly paid large sums, or found a substitute, to be released.",
+      "source": "https://www.moneylife.in/article/cbi-arrests-hisar-agent-in-cyber-slavery-network-trafficking-indians-to-myanmar-cambodia-scam-compounds/81410.html"
+    },
+    {
+      "signal": "gift_card_crypto",
+      "quote_or_description": "The CBI is examining cryptocurrency transactions suspected to be recruiter commissions.",
+      "source": "https://www.moneylife.in/article/cbi-arrests-hisar-agent-in-cyber-slavery-network-trafficking-indians-to-myanmar-cambodia-scam-compounds/81410.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "CBI arrests Hisar man for trafficking Indians to Southeast Asian scam compounds under cyber slavery racket",
+      "publisher": "The Tribune",
+      "date": "2026-08-19",
+      "url": "https://www.tribuneindia.com/news/haryana/cbi-arrests-hisar-man-for-trafficking-indians-to-southeast-asian-scam-compounds-under-cyber-slavery-racket/",
+      "tier": "press"
+    },
+    {
+      "title": "CBI arrests Hisar agent in cyber slavery network trafficking Indians to Myanmar, Cambodia scam compounds",
+      "publisher": "Moneylife",
+      "date": "2026-08-19",
+      "url": "https://www.moneylife.in/article/cbi-arrests-hisar-agent-in-cyber-slavery-network-trafficking-indians-to-myanmar-cambodia-scam-compounds/81410.html",
+      "tier": "press"
+    }
+  ]
+}

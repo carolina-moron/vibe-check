@@ -2,6 +2,153 @@
  "generated": "by scripts/build-cases.mjs; do not edit",
  "cases": [
   {
+   "id": "abidjan-fake-canada-jobs-fraud-ring",
+   "title": "Abidjan: fake Canada job ads feeding a trafficking-run pyramid scam (INTERPOL)",
+   "typology": "scam-compound",
+   "period": "2025",
+   "summary": "In February 2025 Côte d'Ivoire's national police, acting on an investigation that began in Ghana and was coordinated by INTERPOL, raided premises in Abidjan, arrested two suspects and rescued 33 victims from Benin, Burkina Faso, Ghana and Togo. The victims had answered online job advertisements promising work in Canada, contacted through numbers that appeared Canadian, and had paid nearly US$9,000 each for supposed travel arrangements. On arrival their documents were confiscated and, under threats and abuse, they were forced to recruit further victims through multi-level-marketing platforms, posing in luxury shops and hotels to keep up the illusion of success abroad. The suspects are not named and no conviction is reported.",
+   "status": "enforcement_action",
+   "entities": [],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Online job ads (victims in Ghana, Benin, Burkina Faso, Togo)",
+     "country": "GH",
+     "lat": 5.6,
+     "lon": -0.19,
+     "note": "Fake online job ads promised work in Canada, using Canadian-looking phone numbers.",
+     "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    },
+    {
+     "stage": "exploited",
+     "place": "Abidjan",
+     "country": "CI",
+     "lat": 5.36,
+     "lon": -4.01,
+     "note": "Documents confiscated; victims forced under threats to enrol new victims through MLM platforms.",
+     "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    },
+    {
+     "stage": "escaped",
+     "place": "Abidjan",
+     "country": "CI",
+     "lat": 5.36,
+     "lon": -4.01,
+     "note": "February 2025 raid: two arrests, 33 people rescued and referred to a local NGO.",
+     "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    }
+   ],
+   "victim_origins": [
+    "BJ",
+    "BF",
+    "GH",
+    "TG"
+   ],
+   "lures": [
+    {
+     "signal": "upfront_fee",
+     "quote_or_description": "Victims paid nearly US$9,000 for fraudulent travel arrangements.",
+     "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    },
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Advertised Canadian jobs that did not exist.",
+     "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    },
+    {
+     "signal": "document_retention",
+     "quote_or_description": "Victims' documents were confiscated on arrival.",
+     "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "Under physical and psychological coercion, including threats and abuse, they were forced to perpetuate the scam.",
+     "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Human trafficking-fueled fraud ring dismantled in joint Côte d'Ivoire-Ghana operation",
+     "publisher": "INTERPOL",
+     "date": "2025-04-22",
+     "url": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation",
+     "tier": "multilateral"
+    }
+   ]
+  },
+  {
+   "id": "accra-romance-scam-house-57-nigerians",
+   "title": "Accra: 57 Nigerians lured with jobs and forced to run romance scams",
+   "typology": "scam-compound",
+   "period": "2025",
+   "summary": "On 22 October 2025 Ghana Police Service's Criminal Investigations Department raided a building in a suburb of Accra and rescued 57 Nigerian nationals aged 18 to 26 who, police said, had been lured to Ghana with promises of lucrative jobs and then coerced into running online romance scams. Five suspects were arrested and police seized 77 laptops, 38 mobile phones, two vehicles and other internet-connected devices. Charges are allegations; no conviction is reported.",
+   "status": "enforcement_action",
+   "entities": [],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Nigeria (country-level point)",
+     "country": "NG",
+     "lat": 9.08,
+     "lon": 8.68,
+     "note": "Promised lucrative jobs and other opportunities in Ghana.",
+     "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    },
+    {
+     "stage": "exploited",
+     "place": "Accra suburb",
+     "country": "GH",
+     "lat": 5.6,
+     "lon": -0.19,
+     "note": "Coerced into running online romance scams from one building.",
+     "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    },
+    {
+     "stage": "escaped",
+     "place": "Accra",
+     "country": "GH",
+     "lat": 5.6,
+     "lon": -0.19,
+     "note": "22 October 2025 raid: 57 rescued, five arrested, 77 laptops seized.",
+     "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    }
+   ],
+   "victim_origins": [
+    "NG"
+   ],
+   "lures": [
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Lured with promises of lucrative jobs in Ghana.",
+     "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "Victims were housed together in the operators' building.",
+     "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    },
+    {
+     "signal": "romance_money",
+     "quote_or_description": "Forced to run online romance scams.",
+     "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    },
+    {
+     "signal": "isolation",
+     "quote_or_description": "Dozens confined in one building under the operators' control.",
+     "source": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Ghana Police bust cybercrime ring: 57 Nigerians rescued",
+     "publisher": "Africanews (with AP)",
+     "date": "2025-10-24",
+     "url": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/",
+     "tier": "press"
+    }
+   ]
+  },
+  {
    "id": "alabuga-start",
    "title": "Alabuga Start (Tatarstan drone factory recruitment)",
    "typology": "forced-labor-industrial",
@@ -222,6 +369,114 @@
    ]
   },
   {
+   "id": "bengaluru-tiktok-ridoy-bangladeshi-trafficking",
+   "title": "Bengaluru: Bangladeshi women lured with jobs via TikTok and Facebook (\"TikTok Ridoy\")",
+   "typology": "sex-trafficking",
+   "period": "2021–2022",
+   "summary": "In May 2021 a video of the gang rape of a 22-year-old Bangladeshi woman in Bengaluru went viral. Police arrested 12 people, 11 of them Bangladeshi nationals who had entered India illegally, and said the ring lured young Bangladeshi women with the pretext of employment, in some cases telling them the destination was Dubai, then forced them into prostitution; the victim was assaulted for refusing sex work. The ringleader, Rifadul Islam alias \"TikTok Ridoy\", used a TikTok following and Facebook groups to recruit. On 20 and 21 May 2022 a special court in Bengaluru convicted eleven: seven men were sentenced to life imprisonment, one woman to 20 years, one man to five years and two women to nine months under the Foreigners Act.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Rifadul Islam alias Ridoy Babo (\"TikTok Ridoy\")",
+     "kind": "person",
+     "jurisdiction": "BD",
+     "names": [],
+     "actions": [
+      {
+       "body": "Special Court 54, Bengaluru",
+       "action": "Convicted; sentenced to life imprisonment",
+       "date": "2022-05-21",
+       "url": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+      }
+     ]
+    },
+    {
+     "name": "Taniya Khan",
+     "kind": "person",
+     "jurisdiction": "BD",
+     "names": [],
+     "actions": [
+      {
+       "body": "Special Court 54, Bengaluru",
+       "action": "Convicted; sentenced to 20 years",
+       "date": "2022-05-21",
+       "url": "https://www.tbsnews.net/world/south-asia/bangladesh-immigrants-found-guilty-bengaluru-gang-rape-case-423862"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Moghbazar, Dhaka",
+     "country": "BD",
+     "lat": 23.75,
+     "lon": 90.4,
+     "note": "Recruitment through a TikTok persona and Facebook groups, with offers of work.",
+     "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    },
+    {
+     "stage": "exploited",
+     "place": "Bengaluru",
+     "country": "IN",
+     "lat": 12.97,
+     "lon": 77.59,
+     "note": "Women forced into prostitution; the victim was assaulted for refusing, and the video went viral in May 2021.",
+     "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Special Court 54, Bengaluru",
+     "country": "IN",
+     "lat": 12.97,
+     "lon": 77.59,
+     "note": "Eleven convicted on 20 May 2022 and sentenced the next day.",
+     "source": "https://www.tbsnews.net/world/south-asia/bangladesh-immigrants-found-guilty-bengaluru-gang-rape-case-423862"
+    }
+   ],
+   "victim_origins": [
+    "BD"
+   ],
+   "lures": [
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Young Bangladeshi women were lured on the pretext of employment and later forced into prostitution.",
+     "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    },
+    {
+     "signal": "chat_only_contact",
+     "quote_or_description": "Recruitment ran through a TikTok persona and Facebook groups.",
+     "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    },
+    {
+     "signal": "vague_location",
+     "quote_or_description": "Some victims were told the destination was Dubai and were taken to Bengaluru instead.",
+     "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "The victim was assaulted for refusing sex work.",
+     "source": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236"
+    }
+   ],
+   "sources": [
+    {
+     "title": "India jails TikTok Ridoy for life in rape case",
+     "publisher": "The Financial Express (Bangladesh)",
+     "date": "2022-05-21",
+     "url": "https://thefinancialexpress.com.bd/print/india-jails-tiktok-ridoy-for-life-in-rape-case-1653151236",
+     "tier": "press"
+    },
+    {
+     "title": "Bangladesh immigrants found guilty in Bengaluru gang rape case",
+     "publisher": "The Business Standard (Bangladesh)",
+     "date": "2022-05-21",
+     "url": "https://www.tbsnews.net/world/south-asia/bangladesh-immigrants-found-guilty-bengaluru-gang-rape-case-423862",
+     "tier": "press"
+    }
+   ]
+  },
+  {
    "id": "bolarinwa-moorestown-domestic-servitude",
    "title": "Bolaji Bolarinwa (domestic servitude, New Jersey)",
    "typology": "labor-trafficking",
@@ -430,6 +685,173 @@
    ]
   },
   {
+   "id": "brazilians-kk-park-thailand-job-offer",
+   "title": "Two Brazilians lured by Thailand job offers into the KK Park scam compound",
+   "typology": "scam-compound",
+   "period": "2024–2025",
+   "summary": "Two men from São Paulo, aged 31 and 26, accepted supposed job offers in Thailand in late 2024, one for R$8,000 a month. One was collected from a hostel in Thailand and driven across the border to the KK Park compound in Myawaddy, Myanmar, described as an online scam factory. Both were forced to work more than 15 hours a day running internet fraud and were beaten when quotas were missed. They escaped on 8 February 2025 with other migrants, were held by a local militia, and were transferred to Thailand with pressure from the NGO The Exodus Road and consular help from Brazil's embassy in Bangkok. They landed in São Paulo on 19 February 2025 and gave statements to the Federal Police. No arrests or charges are reported.",
+   "status": "reported",
+   "entities": [],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "São Paulo (online offer of work in Thailand)",
+     "country": "BR",
+     "lat": -23.55,
+     "lon": -46.63,
+     "note": "Job offers in Thailand accepted in late 2024; R$8,000 a month promised.",
+     "source": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar"
+    },
+    {
+     "stage": "transit",
+     "place": "Thailand (hostel to the Myanmar border)",
+     "country": "TH",
+     "lat": 13.75,
+     "lon": 100.5,
+     "note": "Picked up at a hostel and driven by car across the border to Myawaddy.",
+     "source": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar"
+    },
+    {
+     "stage": "exploited",
+     "place": "KK Park, Myawaddy",
+     "country": "MM",
+     "lat": 16.69,
+     "lon": 98.51,
+     "note": "More than 15-hour days running online scams; beatings for missed quotas.",
+     "source": "https://www.correiobraziliense.com.br/mundo/2025/02/7065554-brasileiros-escravizados-em-mianmar-voltam-ao-brasil.html"
+    },
+    {
+     "stage": "escaped",
+     "place": "Myawaddy to Thailand, then São Paulo",
+     "country": "BR",
+     "lat": -23.43,
+     "lon": -46.47,
+     "note": "Escaped 8 February 2025; arrived in São Paulo on 19 February and gave Federal Police statements.",
+     "source": "https://www.correiobraziliense.com.br/mundo/2025/02/7065554-brasileiros-escravizados-em-mianmar-voltam-ao-brasil.html"
+    }
+   ],
+   "victim_origins": [
+    "BR"
+   ],
+   "lures": [
+    {
+     "signal": "pay_too_high",
+     "quote_or_description": "A job offer of R$8,000 a month in Thailand.",
+     "source": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar"
+    },
+    {
+     "signal": "high_risk_region",
+     "quote_or_description": "Recruited for Thailand, moved to the Myanmar border scam zone.",
+     "source": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar"
+    },
+    {
+     "signal": "vague_location",
+     "quote_or_description": "The actual workplace was KK Park in Myanmar, not the promised Thai job.",
+     "source": "https://www.correiobraziliense.com.br/mundo/2025/02/7065554-brasileiros-escravizados-em-mianmar-voltam-ao-brasil.html"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "Torture and beatings when scam quotas were not met.",
+     "source": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Dois brasileiros conseguem fugir de trabalho escravo em Mianmar",
+     "publisher": "Agência Brasil",
+     "date": "2025-02-12",
+     "url": "https://agenciabrasil.ebc.com.br/internacional/noticia/2025-02/dois-brasileiros-conseguem-fugir-de-trabalho-escravo-em-mianmar",
+     "tier": "press"
+    },
+    {
+     "title": "Brasileiros resgatados de trabalho escravo em Mianmar voltam ao Brasil",
+     "publisher": "Correio Braziliense",
+     "date": "2025-02-19",
+     "url": "https://www.correiobraziliense.com.br/mundo/2025/02/7065554-brasileiros-escravizados-em-mianmar-voltam-ao-brasil.html",
+     "tier": "press"
+    }
+   ]
+  },
+  {
+   "id": "cbi-hisar-instagram-scam-compound-recruitment",
+   "title": "India: Instagram job ads recruiting for Myanmar and Cambodia scam compounds (CBI case)",
+   "typology": "scam-compound",
+   "period": "2025–2026",
+   "summary": "India's Central Bureau of Investigation registered a case in December 2025 against a network of agents accused of trafficking Indians to Southeast Asian scam compounds for \"cyber slavery\". After searches at eight locations in four states and three arrests in mid-2026, the CBI in August 2026 arrested an agent from Hisar, Haryana, alleged to have sent at least four people to compounds in Myanmar and Cambodia in 2025. The CBI says overseas-job advertisements were published on Instagram and prospective recruits were handled over Telegram, and it is examining cryptocurrency transactions it suspects were commissions paid by compound operators to recruiters. Victims reportedly paid large sums, or recruited a replacement, to be allowed to leave. These are allegations; no one has been convicted.",
+   "status": "enforcement_action",
+   "entities": [],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Instagram and Telegram (Hisar, Haryana)",
+     "country": "IN",
+     "lat": 29.15,
+     "lon": 75.72,
+     "note": "Overseas-job ads on Instagram; contact moved to Telegram.",
+     "source": "https://www.tribuneindia.com/news/haryana/cbi-arrests-hisar-man-for-trafficking-indians-to-southeast-asian-scam-compounds-under-cyber-slavery-racket/"
+    },
+    {
+     "stage": "exploited",
+     "place": "Scam compounds in Myanmar and Cambodia (region-level point)",
+     "country": "MM",
+     "lat": 16.69,
+     "lon": 98.51,
+     "note": "Recruits forced to run online scams; exit reportedly required large payments or a replacement recruit.",
+     "source": "https://www.moneylife.in/article/cbi-arrests-hisar-agent-in-cyber-slavery-network-trafficking-indians-to-myanmar-cambodia-scam-compounds/81410.html"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "CBI (case registered December 2025)",
+     "country": "IN",
+     "lat": 28.61,
+     "lon": 77.21,
+     "note": "Searches in four states; arrests in 2026, including the Hisar agent in August 2026.",
+     "source": "https://www.tribuneindia.com/news/haryana/cbi-arrests-hisar-man-for-trafficking-indians-to-southeast-asian-scam-compounds-under-cyber-slavery-racket/"
+    }
+   ],
+   "victim_origins": [
+    "IN"
+   ],
+   "lures": [
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Overseas-job advertisements on Instagram fronted recruitment for scam compounds.",
+     "source": "https://www.tribuneindia.com/news/haryana/cbi-arrests-hisar-man-for-trafficking-indians-to-southeast-asian-scam-compounds-under-cyber-slavery-racket/"
+    },
+    {
+     "signal": "chat_only_contact",
+     "quote_or_description": "Prospective victims were handled over Telegram.",
+     "source": "https://www.tribuneindia.com/news/haryana/cbi-arrests-hisar-man-for-trafficking-indians-to-southeast-asian-scam-compounds-under-cyber-slavery-racket/"
+    },
+    {
+     "signal": "withdrawal_fees",
+     "quote_or_description": "Victims reportedly paid large sums, or found a substitute, to be released.",
+     "source": "https://www.moneylife.in/article/cbi-arrests-hisar-agent-in-cyber-slavery-network-trafficking-indians-to-myanmar-cambodia-scam-compounds/81410.html"
+    },
+    {
+     "signal": "gift_card_crypto",
+     "quote_or_description": "The CBI is examining cryptocurrency transactions suspected to be recruiter commissions.",
+     "source": "https://www.moneylife.in/article/cbi-arrests-hisar-agent-in-cyber-slavery-network-trafficking-indians-to-myanmar-cambodia-scam-compounds/81410.html"
+    }
+   ],
+   "sources": [
+    {
+     "title": "CBI arrests Hisar man for trafficking Indians to Southeast Asian scam compounds under cyber slavery racket",
+     "publisher": "The Tribune",
+     "date": "2026-08-19",
+     "url": "https://www.tribuneindia.com/news/haryana/cbi-arrests-hisar-man-for-trafficking-indians-to-southeast-asian-scam-compounds-under-cyber-slavery-racket/",
+     "tier": "press"
+    },
+    {
+     "title": "CBI arrests Hisar agent in cyber slavery network trafficking Indians to Myanmar, Cambodia scam compounds",
+     "publisher": "Moneylife",
+     "date": "2026-08-19",
+     "url": "https://www.moneylife.in/article/cbi-arrests-hisar-agent-in-cyber-slavery-network-trafficking-indians-to-myanmar-cambodia-scam-compounds/81410.html",
+     "tier": "press"
+    }
+   ]
+  },
+  {
    "id": "colombia-vaupes-domestic-servitude",
    "title": "Colombia's first domestic-servitude trafficking conviction (Vaupés to Bogotá)",
    "typology": "labor-trafficking",
@@ -517,6 +939,115 @@
    ]
   },
   {
+   "id": "daren-li-pig-butchering-laundering",
+   "title": "Daren Li: $73.6 million pig-butchering laundering network (California)",
+   "typology": "laundering",
+   "period": "2021–2026",
+   "summary": "US prosecutors said Daren Li, a dual national of China and St Kitts and Nevis, directed a laundering network of about 74 US shell companies and bank accounts that received the proceeds of cryptocurrency investment (\"pig-butchering\") scams run from scam centres in Cambodia and elsewhere in Southeast Asia, moving funds to bank accounts in the Bahamas and converting them to USDT. Li was arrested at Atlanta airport in April 2024 and pleaded guilty in November 2024 to conspiracy to launder money, admitting at least $73.6 million in victim deposits. After absconding while on release, he was sentenced in absentia in February 2026 to the 20-year statutory maximum. DOJ says eight co-conspirators have pleaded guilty; a co-defendant who pleaded not guilty faces allegations only.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Daren Li",
+     "kind": "person",
+     "jurisdiction": "CN",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, C.D. California",
+       "action": "Pleaded guilty to conspiracy to commit money laundering",
+       "date": "2024-11-12",
+       "url": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+      },
+      {
+       "body": "US District Court, C.D. California",
+       "action": "Sentenced in absentia to 20 years",
+       "date": "2026-02-09",
+       "url": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Scam centres in Cambodia (country-level point)",
+     "country": "KH",
+     "lat": 11.56,
+     "lon": 104.92,
+     "note": "Victims were approached unsolicited through social media, calls and dating apps and steered to spoofed crypto platforms.",
+     "source": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+    },
+    {
+     "stage": "exploited",
+     "place": "United States (victims)",
+     "country": "US",
+     "lat": 34.05,
+     "lon": -118.24,
+     "note": "One victim lost $1.5 million over two months on a spoofed trading platform after a WhatsApp approach.",
+     "source": "https://therecord.media/arrests-alleged-money-launderers-pig-butchering-scheme"
+    },
+    {
+     "stage": "laundered",
+     "place": "Nassau, Bahamas",
+     "country": "BS",
+     "lat": 25.05,
+     "lon": -77.34,
+     "note": "Funds moved from about 74 US shell accounts to Bahamian bank accounts and converted to USDT.",
+     "source": "https://therecord.media/arrests-alleged-money-launderers-pig-butchering-scheme"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Los Angeles",
+     "country": "US",
+     "lat": 34.05,
+     "lon": -118.24,
+     "note": "Li sentenced in absentia to 20 years in February 2026.",
+     "source": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+    }
+   ],
+   "victim_origins": [
+    "US"
+   ],
+   "lures": [
+    {
+     "signal": "investment_pitch",
+     "quote_or_description": "Scammers posed as investment advisers and pushed fictitious crypto investments on spoofed platforms.",
+     "source": "https://therecord.media/arrests-alleged-money-launderers-pig-butchering-scheme"
+    },
+    {
+     "signal": "romance_money",
+     "quote_or_description": "Victims were offered romantic connections or fictitious investment opportunities.",
+     "source": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+    },
+    {
+     "signal": "chat_only_contact",
+     "quote_or_description": "First contact came through WhatsApp or unsolicited social-media and dating messages.",
+     "source": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam"
+    },
+    {
+     "signal": "gift_card_crypto",
+     "quote_or_description": "Victims' money was converted to the stablecoin USDT after passing through shell accounts.",
+     "source": "https://therecord.media/arrests-alleged-money-launderers-pig-butchering-scheme"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Man Sentenced to 20 Years in Prison for Role in $73 Million Global Cryptocurrency Investment Scam",
+     "publisher": "US Department of Justice",
+     "date": "2026-02-09",
+     "url": "https://www.justice.gov/opa/pr/man-sentenced-20-years-prison-role-73-million-global-cryptocurrency-investment-scam",
+     "tier": "official"
+    },
+    {
+     "title": "Feds nab alleged money launderers for pig butchering scheme",
+     "publisher": "The Record",
+     "date": "2024-05-17",
+     "url": "https://therecord.media/arrests-alleged-money-launderers-pig-butchering-scheme",
+     "tier": "press"
+    }
+   ]
+  },
+  {
    "id": "delon-smith-daytona-sex-trafficking",
    "title": "Delon Richard Smith (sex trafficking, Daytona Beach)",
    "typology": "sex-trafficking",
@@ -591,6 +1122,82 @@
      "date": "2026-02-02",
      "url": "https://www.justice.gov/opa/pr/florida-man-sentenced-327-months-prison-sex-trafficking-two-women",
      "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "dubai-al-hamriya-forced-prostitution-2020",
+   "title": "Dubai: job promises used to force women into prostitution (Al Hamriya)",
+   "typology": "sex-trafficking",
+   "period": "2020",
+   "summary": "On 20 August 2020 the Dubai Criminal Court convicted seven people, four Bangladeshi citizens, a Pakistani man and two Indonesian women, of human trafficking, unlawful confinement and forcing women into prostitution in a flat in Dubai's Al Hamriya district. Six were sentenced to seven years in prison and one Indonesian woman to one year for aiding and abetting, all to be deported afterwards. Victims were deceived with promises of better-paid work in Dubai; one, an Indonesian domestic worker already in the UAE, was encouraged to leave her employer for a supposedly better job. The case broke when a victim used an open Wi-Fi network on a phone without a SIM card to reach her sister on Facebook, and police raided the flat. The convicted are not named in the report.",
+   "status": "convicted",
+   "entities": [],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Dubai (victim already working as a domestic worker)",
+     "country": "AE",
+     "lat": 25.2,
+     "lon": 55.27,
+     "note": "An Indonesian domestic worker was encouraged to abscond from her employer for a better-paid job.",
+     "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    },
+    {
+     "stage": "exploited",
+     "place": "Al Hamriya, Dubai",
+     "country": "AE",
+     "lat": 25.27,
+     "lon": 55.31,
+     "note": "Confined in a flat and forced into prostitution.",
+     "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    },
+    {
+     "stage": "escaped",
+     "place": "Al Hamriya, Dubai",
+     "country": "AE",
+     "lat": 25.27,
+     "lon": 55.31,
+     "note": "A victim reached her sister on Facebook over open Wi-Fi; police raided the flat.",
+     "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Dubai Criminal Court",
+     "country": "AE",
+     "lat": 25.2,
+     "lon": 55.27,
+     "note": "Seven convicted on 20 August 2020; six got seven years, one got one year; all to be deported.",
+     "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    }
+   ],
+   "victim_origins": [
+    "ID"
+   ],
+   "lures": [
+    {
+     "signal": "pay_too_high",
+     "quote_or_description": "Victims were promised better-paying employment in Dubai.",
+     "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    },
+    {
+     "signal": "isolation",
+     "quote_or_description": "A victim had no SIM card and had to use open Wi-Fi to reach her family.",
+     "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "The gang was convicted of unlawful confinement alongside trafficking.",
+     "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Gang sentenced to seven years in prison for running prostitution ring",
+     "publisher": "The National (UAE)",
+     "date": "2020-08-20",
+     "url": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395",
+     "tier": "press"
     }
    ]
   },
@@ -997,6 +1604,227 @@
      "date": "2025-01-13",
      "url": "https://www.elliptic.co/blog/huione-largest-ever-illicit-online-marketplace-stablecoin",
      "tier": "ngo"
+    }
+   ]
+  },
+  {
+   "id": "hyderabad-nia-bangladeshi-girls-trafficking",
+   "title": "Hyderabad: Bangladeshi girls trafficked with promises of lucrative jobs (NIA case)",
+   "typology": "sex-trafficking",
+   "period": "2019–2024",
+   "summary": "In August 2019 Telangana police rescued five Bangladeshi girls from a house in Uppuguda, Hyderabad. India's National Investigation Agency took over the case in September 2019 and found that the accused lured Bangladeshi girls with promises of lucrative jobs and decent pay, trafficked them into India and forced them into prostitution. On 6 November 2024 the Special NIA Court in Hyderabad convicted all six accused under the Indian Penal Code and the Immoral Traffic (Prevention) Act and sentenced each to life imprisonment and a fine of Rs 24,000.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Mohd Yousuf Khan",
+     "kind": "person",
+     "jurisdiction": "IN",
+     "names": [],
+     "actions": [
+      {
+       "body": "Special NIA Court, Hyderabad",
+       "action": "Convicted; life imprisonment and Rs 24,000 fine",
+       "date": "2024-11-06",
+       "url": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+      }
+     ]
+    },
+    {
+     "name": "Bithi Begum",
+     "kind": "person",
+     "jurisdiction": "IN",
+     "names": [],
+     "actions": [
+      {
+       "body": "Special NIA Court, Hyderabad",
+       "action": "Convicted; life imprisonment and Rs 24,000 fine",
+       "date": "2024-11-06",
+       "url": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+      }
+     ]
+    },
+    {
+     "name": "Ruhul Amin Dhali",
+     "kind": "person",
+     "jurisdiction": "IN",
+     "names": [],
+     "actions": [
+      {
+       "body": "Special NIA Court, Hyderabad",
+       "action": "Convicted; life imprisonment and Rs 24,000 fine",
+       "date": "2024-11-06",
+       "url": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Bangladesh (country-level point)",
+     "country": "BD",
+     "lat": 23.68,
+     "lon": 90.36,
+     "note": "Girls were lured with the promise of lucrative jobs and decent pay.",
+     "source": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+    },
+    {
+     "stage": "exploited",
+     "place": "Uppuguda, Hyderabad",
+     "country": "IN",
+     "lat": 17.34,
+     "lon": 78.48,
+     "note": "Forced into prostitution; five girls rescued in August 2019.",
+     "source": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Special NIA Court, Hyderabad",
+     "country": "IN",
+     "lat": 17.39,
+     "lon": 78.49,
+     "note": "Six sentenced to life imprisonment on 6 November 2024.",
+     "source": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+    }
+   ],
+   "victim_origins": [
+    "BD"
+   ],
+   "lures": [
+    {
+     "signal": "pay_too_high",
+     "quote_or_description": "The accused lured Bangladeshi girls with the promise of lucrative jobs and decent pay.",
+     "source": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+    },
+    {
+     "signal": "lure_role",
+     "quote_or_description": "A job offer was the cover for trafficking into prostitution.",
+     "source": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp"
+    }
+   ],
+   "sources": [
+    {
+     "title": "NIA court sentences 6 to life imprisonment for trafficking of Bangladeshi girls",
+     "publisher": "The Tribune (PTI)",
+     "date": "2024-11-07",
+     "url": "https://www.tribuneindia.com/news/india/nia-court-sentences-6-to-life-imprisonment-for-trafficking-of-bangladeshi-girls/amp",
+     "tier": "press"
+    }
+   ]
+  },
+  {
+   "id": "iyamu-madam-sandra-nigeria-germany",
+   "title": "Josephine Iyamu (\"Madam Sandra\"): Nigerian women trafficked to German brothels via Libya",
+   "typology": "sex-trafficking",
+   "period": "2017–2018",
+   "summary": "Josephine Iyamu, a London-based nurse known to victims as Madam Sandra, recruited five women from rural Nigeria, bound them with a juju oath ceremony, and had them taken overland across Africa, through Libya, by boat to Italy and on to Germany on false documents, demanding €30,000 to €38,000 each to be repaid through prostitution in brothels. The UK National Crime Agency arrested her at Heathrow in August 2017. A Birmingham Crown Court jury convicted her in June 2018 of Modern Slavery Act offences and perverting the course of justice; she was sentenced to 14 years in July 2018, increased to 18 years by the Court of Appeal in September 2018. It was the first UK conviction under the Modern Slavery Act for trafficking carried out entirely abroad.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Josephine Iyamu",
+     "kind": "person",
+     "jurisdiction": "GB",
+     "names": [],
+     "actions": [
+      {
+       "body": "Birmingham Crown Court (NCA/CPS)",
+       "action": "Convicted of Modern Slavery Act offences and perverting the course of justice; sentenced to 14 years",
+       "date": "2018-07-04",
+       "url": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+      },
+      {
+       "body": "Court of Appeal (England and Wales)",
+       "action": "Sentence increased to 18 years",
+       "date": "2018-09-20",
+       "url": "https://www.gov.uk/government/news/first-ever-convicted-cross-border-sex-trafficker-has-sentence-increased"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Benin City, Edo State",
+     "country": "NG",
+     "lat": 6.34,
+     "lon": 5.63,
+     "note": "Women recruited with the promise of a better life in Europe and bound by a juju oath.",
+     "source": "https://wired-gov.net/wg/news.nsf/articles/Nurse+ran+Nigerian+sex+trafficking+business+from+London+28062018160500"
+    },
+    {
+     "stage": "transit",
+     "place": "Libya and the Mediterranean to Italy",
+     "country": "LY",
+     "lat": 32.9,
+     "lon": 13.2,
+     "note": "Overland across Africa, by boat to Italy, then to Germany on false documents.",
+     "source": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+    },
+    {
+     "stage": "exploited",
+     "place": "Germany (brothels; city not stated)",
+     "country": "DE",
+     "lat": 51.17,
+     "lon": 10.45,
+     "note": "Forced to work in brothels to repay €30,000 to €38,000.",
+     "source": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Birmingham",
+     "country": "GB",
+     "lat": 52.48,
+     "lon": -1.9,
+     "note": "Convicted June 2018; 18 years after appeal.",
+     "source": "https://www.gov.uk/government/news/first-ever-convicted-cross-border-sex-trafficker-has-sentence-increased"
+    }
+   ],
+   "victim_origins": [
+    "NG"
+   ],
+   "lures": [
+    {
+     "signal": "debt_bondage",
+     "quote_or_description": "Each woman was charged between €30,000 and €38,000, to be repaid from prostitution.",
+     "source": "https://wired-gov.net/wg/news.nsf/articles/Nurse+ran+Nigerian+sex+trafficking+business+from+London+28062018160500"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "Victims believed serious harm would come to them or their families if they broke the juju oath.",
+     "source": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+    },
+    {
+     "signal": "visa_fraud",
+     "quote_or_description": "Flown on to Germany using false documents.",
+     "source": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+    },
+    {
+     "signal": "high_risk_region",
+     "quote_or_description": "Sent by dangerous routes through Libya and across the Mediterranean.",
+     "source": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Nurse ran Nigerian sex trafficking business from London",
+     "publisher": "UK National Crime Agency",
+     "date": "2018-06-28",
+     "url": "https://wired-gov.net/wg/news.nsf/articles/Nurse+ran+Nigerian+sex+trafficking+business+from+London+28062018160500",
+     "tier": "official"
+    },
+    {
+     "title": "London nurse jailed for 14 years in landmark slavery case",
+     "publisher": "UK National Crime Agency",
+     "date": "2018-07-05",
+     "url": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500",
+     "tier": "official"
+    },
+    {
+     "title": "First ever convicted cross-border sex-trafficker has sentence increased",
+     "publisher": "UK Attorney General's Office",
+     "date": "2018-09-20",
+     "url": "https://www.gov.uk/government/news/first-ever-convicted-cross-border-sex-trafficker-has-sentence-increased",
+     "tier": "official"
     }
    ]
   },
@@ -1854,6 +2682,142 @@
    ]
   },
   {
+   "id": "medellin-greece-waitress-lure-sex-trafficking",
+   "title": "Medellín to Greece: women lured with waitress jobs in Athens",
+   "typology": "sex-trafficking",
+   "period": "2024–2025",
+   "summary": "A network approached young women in Medellín, notably around Parque Lleras, with false job offers as waitresses in Athens for €100 a day plus housing and food. On arrival in Greece the women's passports and belongings were taken and they were given fictitious debts of €1,300 to €3,200 to be paid off through sexual exploitation in Athens and Thessaloniki, under physical and psychological violence and cut off from their families. Three people arrested in December 2024 were convicted in Medellín in December 2025 under plea agreements with Colombia's Fiscalía General: two received six years and seven months and one received three years and two months.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Juan David Ceballos Madrid",
+     "kind": "person",
+     "jurisdiction": "CO",
+     "names": [],
+     "actions": [
+      {
+       "body": "Medellín court (Fiscalía plea agreement)",
+       "action": "Convicted of trafficking, drug trafficking and illegal firearms; sentenced to six years and seven months",
+       "date": "2025-12",
+       "url": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+      }
+     ]
+    },
+    {
+     "name": "Paola Andrea Acevedo García",
+     "kind": "person",
+     "jurisdiction": "CO",
+     "names": [],
+     "actions": [
+      {
+       "body": "Medellín court (Fiscalía plea agreement)",
+       "action": "Convicted of trafficking; sentenced to six years and seven months",
+       "date": "2025-12",
+       "url": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+      }
+     ]
+    },
+    {
+     "name": "Evelin Andrea Gómez Ramírez",
+     "kind": "person",
+     "jurisdiction": "CO",
+     "names": [],
+     "actions": [
+      {
+       "body": "Medellín court (Fiscalía plea agreement)",
+       "action": "Convicted of trafficking; sentenced to three years and two months",
+       "date": "2025-12",
+       "url": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Parque Lleras, El Poblado, Medellín",
+     "country": "CO",
+     "lat": 6.21,
+     "lon": -75.57,
+     "note": "Young women approached in person with offers of waitress jobs in Athens at €100 a day with housing and food.",
+     "source": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+    },
+    {
+     "stage": "exploited",
+     "place": "Athens",
+     "country": "GR",
+     "lat": 37.98,
+     "lon": 23.73,
+     "note": "Passports taken, debts of €1,300 to €3,200 imposed, forced prostitution under violence.",
+     "source": "https://www.infobae.com/colombia/2025/12/07/fiscalia-condeno-a-responsables-de-red-de-trata-de-personas-llevaban-mujeres-de-medellin-a-grecia-para-explotarlas-sexualmente/"
+    },
+    {
+     "stage": "exploited",
+     "place": "Thessaloniki",
+     "country": "GR",
+     "lat": 40.64,
+     "lon": 22.94,
+     "note": "Second city where women were exploited.",
+     "source": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Medellín",
+     "country": "CO",
+     "lat": 6.24,
+     "lon": -75.58,
+     "note": "Three convicted under plea agreements in December 2025.",
+     "source": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+    }
+   ],
+   "victim_origins": [
+    "CO"
+   ],
+   "lures": [
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Offered work as waitresses in bars in Athens.",
+     "source": "https://www.infobae.com/colombia/2025/12/07/fiscalia-condeno-a-responsables-de-red-de-trata-de-personas-llevaban-mujeres-de-medellin-a-grecia-para-explotarlas-sexualmente/"
+    },
+    {
+     "signal": "pay_too_high",
+     "quote_or_description": "€100 a day plus housing and meals.",
+     "source": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "Accommodation and food were promised as part of the offer.",
+     "source": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+    },
+    {
+     "signal": "debt_bondage",
+     "quote_or_description": "Fictitious debts of €1,300 to €3,200 to be repaid through sexual exploitation.",
+     "source": "https://www.infobae.com/colombia/2025/12/07/fiscalia-condeno-a-responsables-de-red-de-trata-de-personas-llevaban-mujeres-de-medellin-a-grecia-para-explotarlas-sexualmente/"
+    },
+    {
+     "signal": "document_retention",
+     "quote_or_description": "Passports and belongings were taken on arrival.",
+     "source": "https://www.infobae.com/colombia/2025/12/07/fiscalia-condeno-a-responsables-de-red-de-trata-de-personas-llevaban-mujeres-de-medellin-a-grecia-para-explotarlas-sexualmente/"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Fiscalía condenó a responsables de red de trata de personas: llevaban mujeres de Medellín a Grecia para explotarlas sexualmente",
+     "publisher": "Infobae",
+     "date": "2025-12-07",
+     "url": "https://www.infobae.com/colombia/2025/12/07/fiscalia-condeno-a-responsables-de-red-de-trata-de-personas-llevaban-mujeres-de-medellin-a-grecia-para-explotarlas-sexualmente/",
+     "tier": "press"
+    },
+    {
+     "title": "Condenaron a más de seis años a tres integrantes de red que explotaba mujeres en Grecia",
+     "publisher": "El Colombiano",
+     "date": "2025-12-08",
+     "url": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061",
+     "tier": "press"
+    }
+   ]
+  },
+  {
    "id": "nepal-malawi-us-route-agent",
    "title": "Nepali migrants diverted to Malawi (Blantyre rescue)",
    "typology": "labor-trafficking",
@@ -2280,6 +3244,114 @@
    ]
   },
   {
+   "id": "ogoshi-brothers-sextortion-lagos",
+   "title": "Ogoshi brothers (Lagos): sextortion ring that led to the death of Jordan DeMay",
+   "typology": "sextortion",
+   "period": "2022–2024",
+   "summary": "Samuel and Samson Ogoshi, brothers from Lagos, Nigeria, used hacked social-media accounts to pose as young women, persuaded teenage boys and young men to send explicit images, then threatened to circulate them unless paid. Jordan DeMay, 17, of Marquette, Michigan, died by suicide in March 2022 after being asked for $1,000; prosecutors said the scheme targeted more than 100 victims. The brothers were extradited from Nigeria in August 2023, pleaded guilty in April 2024 to conspiracy to sexually exploit a minor, and in September 2024 a federal judge in Michigan sentenced each to 210 months in prison. A third man charged in the case was awaiting extradition; charges against him are allegations.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Samuel Ogoshi",
+     "kind": "person",
+     "jurisdiction": "NG",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, W.D. Michigan",
+       "action": "Pleaded guilty to conspiracy to sexually exploit a minor; sentenced to 210 months",
+       "date": "2024-09-05",
+       "url": "https://www.uppermichiganssource.com/2024/09/05/2-nigerian-men-sentenced-sextortion-case-17-12-years-prison/"
+      }
+     ]
+    },
+    {
+     "name": "Samson Ogoshi",
+     "kind": "person",
+     "jurisdiction": "NG",
+     "names": [],
+     "actions": [
+      {
+       "body": "US District Court, W.D. Michigan",
+       "action": "Pleaded guilty to conspiracy to sexually exploit a minor; sentenced to 210 months",
+       "date": "2024-09-05",
+       "url": "https://www.uppermichiganssource.com/2024/09/05/2-nigerian-men-sentenced-sextortion-case-17-12-years-prison/"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Lagos",
+     "country": "NG",
+     "lat": 6.52,
+     "lon": 3.38,
+     "note": "The brothers approached US teenagers from Lagos through purchased, hacked social-media accounts posing as young women.",
+     "source": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795"
+    },
+    {
+     "stage": "exploited",
+     "place": "Marquette, Michigan",
+     "country": "US",
+     "lat": 46.54,
+     "lon": -87.4,
+     "note": "Jordan DeMay was pressed for $1,000, sent $300, and died in March 2022.",
+     "source": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Marquette, Michigan (federal court)",
+     "country": "US",
+     "lat": 46.54,
+     "lon": -87.4,
+     "note": "Extradited August 2023; 210-month sentences in September 2024.",
+     "source": "https://www.uppermichiganssource.com/2024/09/05/2-nigerian-men-sentenced-sextortion-case-17-12-years-prison/"
+    }
+   ],
+   "victim_origins": [
+    "US"
+   ],
+   "lures": [
+    {
+     "signal": "sextortion",
+     "quote_or_description": "Posed as young women on social media, persuaded teenage boys and young men to send explicit photos, then blackmailed them.",
+     "source": "https://www.uppermichiganssource.com/2024/09/05/2-nigerian-men-sentenced-sextortion-case-17-12-years-prison/"
+    },
+    {
+     "signal": "chat_only_contact",
+     "quote_or_description": "Contact came only through Instagram messages from a fake female persona.",
+     "source": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "Threatened to send the images to family and friends unless paid.",
+     "source": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795"
+    },
+    {
+     "signal": "urgency",
+     "quote_or_description": "Demanded $1,000 immediately and kept up the pressure after a partial payment.",
+     "source": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795"
+    }
+   ],
+   "sources": [
+    {
+     "title": "US extradites two Nigerians in sextortion case linked to suicide of Michigan teen",
+     "publisher": "NBC News",
+     "date": "2023-08-14",
+     "url": "https://www.nbcnews.com/politics/justice-department/us-extradites-nigerians-sextortion-linked-suicide-michigan-teen-rcna99795",
+     "tier": "press"
+    },
+    {
+     "title": "2 Nigerian men sentenced in sextortion case to 17 1/2 years in prison",
+     "publisher": "WLUC (Upper Michigan's Source)",
+     "date": "2024-09-05",
+     "url": "https://www.uppermichiganssource.com/2024/09/05/2-nigerian-men-sentenced-sextortion-case-17-12-years-prison/",
+     "tier": "press"
+    }
+   ]
+  },
+  {
    "id": "operation-blooming-onion",
    "title": "Operation Blooming Onion (USA v. Patricio et al.)",
    "typology": "labor-trafficking",
@@ -2614,6 +3686,92 @@
    ]
   },
   {
+   "id": "saudi-arabia-kenyan-domestic-workers-amnesty",
+   "title": "Saudi Arabia: Kenyan domestic workers in forced-labour conditions (Amnesty investigation)",
+   "typology": "labor-trafficking",
+   "period": "2023–2025",
+   "summary": "Amnesty International's May 2025 report \"Locked in, left out\" is based on interviews with more than 70 Kenyan women who worked in Saudi homes and describes conditions that often amount to forced labour: about SAR 900 (US$240) a month for days of 16 hours or more, no days off for up to two years, passports and phones confiscated, and wages delayed or withheld. Women said recruitment agents in Kenya misrepresented the job; one was promised eight-hour days, a weekly day off and overtime, and worked from 6am to midnight with no day off in two years. Amnesty estimates about 150,000 Kenyans among roughly four million domestic workers in Saudi Arabia. This is an NGO investigation: no charges, sanctions or fines are recorded.",
+   "status": "reported",
+   "entities": [],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Kenya (country-level point)",
+     "country": "KE",
+     "lat": -1.29,
+     "lon": 36.82,
+     "note": "Agents promised no fees, fair hours and rest days, and rushed contract signing.",
+     "source": "https://www.amnesty.org/en/latest/news/2025/05/i-never-had-a-day-off-and-barely-left-the-house-in-two-years/"
+    },
+    {
+     "stage": "exploited",
+     "place": "Saudi Arabia (country-level point)",
+     "country": "SA",
+     "lat": 24.71,
+     "lon": 46.68,
+     "note": "Days of 16 hours or more, no rest days, passports and phones confiscated, wages withheld.",
+     "source": "https://www.amnesty.org/en/latest/news/2025/05/saudi-arabia-migrant-domestic-workers-face-severe-exploitation-racism-and-exclusion-from-labour-protections/"
+    },
+    {
+     "stage": "escaped",
+     "place": "Kenya",
+     "country": "KE",
+     "lat": -4.04,
+     "lon": 39.67,
+     "note": "Returnees interviewed by Amnesty after leaving Saudi Arabia.",
+     "source": "https://www.amnesty.org/en/latest/news/2025/05/saudi-arabia-migrant-domestic-workers-face-severe-exploitation-racism-and-exclusion-from-labour-protections/"
+    }
+   ],
+   "victim_origins": [
+    "KE"
+   ],
+   "lures": [
+    {
+     "signal": "urgency",
+     "quote_or_description": "An agent was rushing workers to sign, leaving no time to check the job.",
+     "source": "https://www.amnesty.org/en/latest/news/2025/05/i-never-had-a-day-off-and-barely-left-the-house-in-two-years/"
+    },
+    {
+     "signal": "document_retention",
+     "quote_or_description": "Employers confiscating passports and phones was described as standard practice.",
+     "source": "https://www.amnesty.org/en/latest/news/2025/05/saudi-arabia-migrant-domestic-workers-face-severe-exploitation-racism-and-exclusion-from-labour-protections/"
+    },
+    {
+     "signal": "isolation",
+     "quote_or_description": "\"I never had a day off and barely left the house in two years.\"",
+     "source": "https://www.amnesty.org/en/latest/news/2025/05/i-never-had-a-day-off-and-barely-left-the-house-in-two-years/"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "Live-in work arranged by agents, with the employer controlling housing and movement.",
+     "source": "https://www.amnesty.org/en/latest/news/2025/05/saudi-arabia-migrant-domestic-workers-face-severe-exploitation-racism-and-exclusion-from-labour-protections/"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Saudi Arabia: Migrant domestic workers face severe exploitation, racism and exclusion from labour protections",
+     "publisher": "Amnesty International",
+     "date": "2025-05-13",
+     "url": "https://www.amnesty.org/en/latest/news/2025/05/saudi-arabia-migrant-domestic-workers-face-severe-exploitation-racism-and-exclusion-from-labour-protections/",
+     "tier": "ngo"
+    },
+    {
+     "title": "I never had a day off and barely left the house in two years",
+     "publisher": "Amnesty International",
+     "date": "2025-05-16",
+     "url": "https://www.amnesty.org/en/latest/news/2025/05/i-never-had-a-day-off-and-barely-left-the-house-in-two-years/",
+     "tier": "ngo"
+    },
+    {
+     "title": "Locked in, left out: The hidden lives of Kenyan domestic workers in Saudi Arabia (MDE 23/9222/2025)",
+     "publisher": "Amnesty International",
+     "date": "2025-05-12",
+     "url": "https://www.amnesty.org/en/documents/mde23/9222/2025/en/",
+     "tier": "ngo"
+    }
+   ]
+  },
+  {
    "id": "signal-international",
    "title": "Signal International (Indian H-2B workers)",
    "typology": "labor-trafficking",
@@ -2840,6 +3998,218 @@
      "date": "2021-05-10",
      "url": "https://eurojust.europa.eu/convictions-uk-slovak-gang-behind-modern-slavery-case",
      "tier": "multilateral"
+    }
+   ]
+  },
+  {
+   "id": "spain-operacion-balarama-nules-farm-workers",
+   "title": "Spain: 80 migrant farm workers freed in Nules, Castellón (Operación Balarama)",
+   "typology": "labor-trafficking",
+   "period": "2025–2026",
+   "summary": "On 11 April 2026 Spain's Guardia Civil announced Operación Balarama, which freed 80 victims aged 20 to 35, mainly Nepali, Pakistani and Senegalese nationals, exploited in agricultural harvesting in the provinces of Castellón and Valencia. Seven people were arrested for alleged trafficking for labour exploitation, offences against workers' rights and facilitating irregular immigration; two were remanded in custody. Recruitment took place abroad through false job offers spread on social media, messaging apps and personal contacts, promising decent wages, housing and meals. On arrival the workers carried a debt used as a means of control, worked 12 to 13 hours a day for no pay or a symbolic amount after deductions for housing and transport, and lived crowded into four properties in Nules, some without water or electricity. These are allegations; no one has been convicted and the report names no defendants.",
+   "status": "enforcement_action",
+   "entities": [],
+   "journey": [
+    {
+     "stage": "advertised",
+     "place": "Nepal, Pakistan and Senegal (region-level point)",
+     "country": "NP",
+     "lat": 27.71,
+     "lon": 85.32,
+     "note": "False job offers spread through social media, messaging apps and personal contacts, promising wages, housing and meals.",
+     "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    },
+    {
+     "stage": "exploited",
+     "place": "Nules, Castellón",
+     "country": "ES",
+     "lat": 39.85,
+     "lon": -0.16,
+     "note": "Twelve- to thirteen-hour harvest days for no or symbolic pay; four overcrowded houses.",
+     "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Castellón",
+     "country": "ES",
+     "lat": 39.99,
+     "lon": -0.04,
+     "note": "Seven arrested, two jailed pending trial; the provincial prosecutor's office is involved.",
+     "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    }
+   ],
+   "victim_origins": [
+    "NP",
+    "PK",
+    "SN"
+   ],
+   "lures": [
+    {
+     "signal": "chat_only_contact",
+     "quote_or_description": "False job offers were spread through social media, messaging apps and personal contacts.",
+     "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    },
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "The offers promised decent wages, housing and meals.",
+     "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    },
+    {
+     "signal": "debt_bondage",
+     "quote_or_description": "A debt on arrival was later used as a mechanism of control and coercion.",
+     "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    },
+    {
+     "signal": "isolation",
+     "quote_or_description": "Workers were crowded into properties, some without water or electricity.",
+     "source": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/"
+    }
+   ],
+   "sources": [
+    {
+     "title": "La Guardia Civil libera a 80 víctimas migrantes explotadas laboralmente en condiciones de semi esclavitud en Nules (Castellón)",
+     "publisher": "Guardia Civil (Spain)",
+     "date": "2026-04-11",
+     "url": "https://web.guardiacivil.es/en/destacados/noticias/La-Guardia-Civil-libera-a-80-victimas-migrantes-explotadas-laboralmente-en-condiciones-de-semi-esclavitud-en-Nules-Castellon/",
+     "tier": "official"
+    }
+   ]
+  },
+  {
+   "id": "uk-operation-fort-polish-forced-labour",
+   "title": "Operation Fort: Polish forced-labour ring in the West Midlands (UK)",
+   "typology": "labor-trafficking",
+   "period": "2012–2019",
+   "summary": "Operation Fort, led by West Midlands Police with National Crime Agency support, is described by the UK government as the largest case prosecuted under UK modern slavery legislation. Vulnerable Polish nationals, including homeless people, former prisoners and people with alcohol dependency, were lured to England with offers of work, free or subsidised accommodation, food and travel, then put to work on farms, in recycling centres, poultry factories and parcel warehouses while wages were paid into gang-controlled bank accounts; some received as little as £10 a week. Police estimated up to 400 people were exploited and the gang earned more than £2 million. Bank cards and identity documents were confiscated and threats and violence used to stop people leaving. On 5 July 2019 Birmingham Crown Court sentenced Ignacy Brzezinski to 11 years, Wojciech Nowakowski to six and a half years and Jan Sadowski to three years, following convictions of five others in an earlier trial.",
+   "status": "convicted",
+   "entities": [
+    {
+     "name": "Ignacy Brzezinski",
+     "kind": "person",
+     "jurisdiction": "GB",
+     "names": [],
+     "actions": [
+      {
+       "body": "Birmingham Crown Court",
+       "action": "Convicted of trafficking, forced labour and money laundering; sentenced to 11 years",
+       "date": "2019-07-05",
+       "url": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+      }
+     ]
+    },
+    {
+     "name": "Wojciech Nowakowski",
+     "kind": "person",
+     "jurisdiction": "GB",
+     "names": [],
+     "actions": [
+      {
+       "body": "Birmingham Crown Court",
+       "action": "Convicted; sentenced to six and a half years",
+       "date": "2019-07-05",
+       "url": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+      }
+     ]
+    },
+    {
+     "name": "Jan Sadowski",
+     "kind": "person",
+     "jurisdiction": "GB",
+     "names": [],
+     "actions": [
+      {
+       "body": "Birmingham Crown Court",
+       "action": "Convicted; sentenced to three years",
+       "date": "2019-07-05",
+       "url": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+      }
+     ]
+    }
+   ],
+   "journey": [
+    {
+     "stage": "recruited",
+     "place": "Poland (country-level point)",
+     "country": "PL",
+     "lat": 52.23,
+     "lon": 21.01,
+     "note": "Vulnerable Poles were offered work, accommodation, food and travel to the UK.",
+     "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    },
+    {
+     "stage": "exploited",
+     "place": "West Bromwich and the West Midlands",
+     "country": "GB",
+     "lat": 52.52,
+     "lon": -1.99,
+     "note": "Farm, recycling, poultry and warehouse work for as little as £10 a week while wages went to gang-controlled accounts.",
+     "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    },
+    {
+     "stage": "escaped",
+     "place": "West Bromwich",
+     "country": "GB",
+     "lat": 52.52,
+     "lon": -1.99,
+     "note": "Victims first disclosed to a Polish-speaking church volunteer at a soup kitchen in 2015.",
+     "source": "https://hopeforjustice.org/news/operation-fort-uncovering-the-largest-modern-slavery-ring-in-uk-history/"
+    },
+    {
+     "stage": "prosecuted",
+     "place": "Birmingham Crown Court",
+     "country": "GB",
+     "lat": 52.48,
+     "lon": -1.89,
+     "note": "Sentences handed down on 5 July 2019 after two trials.",
+     "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    }
+   ],
+   "victim_origins": [
+    "PL"
+   ],
+   "lures": [
+    {
+     "signal": "employer_housing_travel",
+     "quote_or_description": "Offers of work, free or subsidised accommodation, food and travel.",
+     "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    },
+    {
+     "signal": "document_retention",
+     "quote_or_description": "Bank cards and identity documents were confiscated.",
+     "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    },
+    {
+     "signal": "threats_coercion",
+     "quote_or_description": "Threats and violence were used to prevent victims leaving.",
+     "source": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction"
+    },
+    {
+     "signal": "lure_role",
+     "quote_or_description": "Newly released prisoners, homeless and alcohol-dependent people were targeted with false employment promises.",
+     "source": "https://www.euronews.com/2019/07/05/police-break-400-person-modern-day-slavery-ring-uk-n1026871"
+    }
+   ],
+   "sources": [
+    {
+     "title": "Solicitor General welcomes modern slavery conviction",
+     "publisher": "UK Attorney General's Office",
+     "date": "2019-07-05",
+     "url": "https://www.gov.uk/government/news/solicitor-general-welcomes-modern-slavery-conviction",
+     "tier": "official"
+    },
+    {
+     "title": "Police break 400-person modern-day slavery ring in UK",
+     "publisher": "Euronews (NBC News)",
+     "date": "2019-07-05",
+     "url": "https://www.euronews.com/2019/07/05/police-break-400-person-modern-day-slavery-ring-uk-n1026871",
+     "tier": "press"
+    },
+    {
+     "title": "Operation Fort: uncovering the largest modern slavery ring in UK history",
+     "publisher": "Hope for Justice",
+     "date": "2024-01",
+     "url": "https://hopeforjustice.org/news/operation-fort-uncovering-the-largest-modern-slavery-ring-in-uk-history/",
+     "tier": "ngo"
     }
    ]
   },

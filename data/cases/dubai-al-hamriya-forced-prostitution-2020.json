@@ -1,0 +1,76 @@
+{
+  "id": "dubai-al-hamriya-forced-prostitution-2020",
+  "title": "Dubai: job promises used to force women into prostitution (Al Hamriya)",
+  "typology": "sex-trafficking",
+  "period": "2020",
+  "summary": "On 20 August 2020 the Dubai Criminal Court convicted seven people, four Bangladeshi citizens, a Pakistani man and two Indonesian women, of human trafficking, unlawful confinement and forcing women into prostitution in a flat in Dubai's Al Hamriya district. Six were sentenced to seven years in prison and one Indonesian woman to one year for aiding and abetting, all to be deported afterwards. Victims were deceived with promises of better-paid work in Dubai; one, an Indonesian domestic worker already in the UAE, was encouraged to leave her employer for a supposedly better job. The case broke when a victim used an open Wi-Fi network on a phone without a SIM card to reach her sister on Facebook, and police raided the flat. The convicted are not named in the report.",
+  "status": "convicted",
+  "entities": [],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Dubai (victim already working as a domestic worker)",
+      "country": "AE",
+      "lat": 25.2,
+      "lon": 55.27,
+      "note": "An Indonesian domestic worker was encouraged to abscond from her employer for a better-paid job.",
+      "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    },
+    {
+      "stage": "exploited",
+      "place": "Al Hamriya, Dubai",
+      "country": "AE",
+      "lat": 25.27,
+      "lon": 55.31,
+      "note": "Confined in a flat and forced into prostitution.",
+      "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    },
+    {
+      "stage": "escaped",
+      "place": "Al Hamriya, Dubai",
+      "country": "AE",
+      "lat": 25.27,
+      "lon": 55.31,
+      "note": "A victim reached her sister on Facebook over open Wi-Fi; police raided the flat.",
+      "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Dubai Criminal Court",
+      "country": "AE",
+      "lat": 25.2,
+      "lon": 55.27,
+      "note": "Seven convicted on 20 August 2020; six got seven years, one got one year; all to be deported.",
+      "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    }
+  ],
+  "victim_origins": [
+    "ID"
+  ],
+  "lures": [
+    {
+      "signal": "pay_too_high",
+      "quote_or_description": "Victims were promised better-paying employment in Dubai.",
+      "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    },
+    {
+      "signal": "isolation",
+      "quote_or_description": "A victim had no SIM card and had to use open Wi-Fi to reach her family.",
+      "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    },
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "The gang was convicted of unlawful confinement alongside trafficking.",
+      "source": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Gang sentenced to seven years in prison for running prostitution ring",
+      "publisher": "The National (UAE)",
+      "date": "2020-08-20",
+      "url": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395",
+      "tier": "press"
+    }
+  ]
+}

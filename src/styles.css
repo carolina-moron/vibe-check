@@ -861,3 +861,6 @@ footer.site .fine { font-size: var(--fs-1); }
 .api-cols ul { margin: 0; padding-left: 1.1em; font-size: var(--fs-1); line-height: 1.5; }
 .api-cols li { margin-bottom: 8px; }
 @media (max-width: 860px) { .api-cols { grid-template-columns: minmax(0, 1fr); } }
+.gridhead .filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.gridhead .filters select { font: inherit; padding: 8px 10px; border: var(--rule); background: var(--paper); color: var(--ink); }
+#f-count { margin: 6px 0 10px; }

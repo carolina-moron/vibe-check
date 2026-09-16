@@ -1,0 +1,116 @@
+{
+  "id": "iyamu-madam-sandra-nigeria-germany",
+  "title": "Josephine Iyamu (\"Madam Sandra\"): Nigerian women trafficked to German brothels via Libya",
+  "typology": "sex-trafficking",
+  "period": "2017–2018",
+  "summary": "Josephine Iyamu, a London-based nurse known to victims as Madam Sandra, recruited five women from rural Nigeria, bound them with a juju oath ceremony, and had them taken overland across Africa, through Libya, by boat to Italy and on to Germany on false documents, demanding €30,000 to €38,000 each to be repaid through prostitution in brothels. The UK National Crime Agency arrested her at Heathrow in August 2017. A Birmingham Crown Court jury convicted her in June 2018 of Modern Slavery Act offences and perverting the course of justice; she was sentenced to 14 years in July 2018, increased to 18 years by the Court of Appeal in September 2018. It was the first UK conviction under the Modern Slavery Act for trafficking carried out entirely abroad.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Josephine Iyamu",
+      "kind": "person",
+      "jurisdiction": "GB",
+      "names": [],
+      "actions": [
+        {
+          "body": "Birmingham Crown Court (NCA/CPS)",
+          "action": "Convicted of Modern Slavery Act offences and perverting the course of justice; sentenced to 14 years",
+          "date": "2018-07-04",
+          "url": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+        },
+        {
+          "body": "Court of Appeal (England and Wales)",
+          "action": "Sentence increased to 18 years",
+          "date": "2018-09-20",
+          "url": "https://www.gov.uk/government/news/first-ever-convicted-cross-border-sex-trafficker-has-sentence-increased"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Benin City, Edo State",
+      "country": "NG",
+      "lat": 6.34,
+      "lon": 5.63,
+      "note": "Women recruited with the promise of a better life in Europe and bound by a juju oath.",
+      "source": "https://wired-gov.net/wg/news.nsf/articles/Nurse+ran+Nigerian+sex+trafficking+business+from+London+28062018160500"
+    },
+    {
+      "stage": "transit",
+      "place": "Libya and the Mediterranean to Italy",
+      "country": "LY",
+      "lat": 32.9,
+      "lon": 13.2,
+      "note": "Overland across Africa, by boat to Italy, then to Germany on false documents.",
+      "source": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+    },
+    {
+      "stage": "exploited",
+      "place": "Germany (brothels; city not stated)",
+      "country": "DE",
+      "lat": 51.17,
+      "lon": 10.45,
+      "note": "Forced to work in brothels to repay €30,000 to €38,000.",
+      "source": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Birmingham",
+      "country": "GB",
+      "lat": 52.48,
+      "lon": -1.9,
+      "note": "Convicted June 2018; 18 years after appeal.",
+      "source": "https://www.gov.uk/government/news/first-ever-convicted-cross-border-sex-trafficker-has-sentence-increased"
+    }
+  ],
+  "victim_origins": [
+    "NG"
+  ],
+  "lures": [
+    {
+      "signal": "debt_bondage",
+      "quote_or_description": "Each woman was charged between €30,000 and €38,000, to be repaid from prostitution.",
+      "source": "https://wired-gov.net/wg/news.nsf/articles/Nurse+ran+Nigerian+sex+trafficking+business+from+London+28062018160500"
+    },
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "Victims believed serious harm would come to them or their families if they broke the juju oath.",
+      "source": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+    },
+    {
+      "signal": "visa_fraud",
+      "quote_or_description": "Flown on to Germany using false documents.",
+      "source": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+    },
+    {
+      "signal": "high_risk_region",
+      "quote_or_description": "Sent by dangerous routes through Libya and across the Mediterranean.",
+      "source": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Nurse ran Nigerian sex trafficking business from London",
+      "publisher": "UK National Crime Agency",
+      "date": "2018-06-28",
+      "url": "https://wired-gov.net/wg/news.nsf/articles/Nurse+ran+Nigerian+sex+trafficking+business+from+London+28062018160500",
+      "tier": "official"
+    },
+    {
+      "title": "London nurse jailed for 14 years in landmark slavery case",
+      "publisher": "UK National Crime Agency",
+      "date": "2018-07-05",
+      "url": "https://www.wired-gov.net/wg/news.nsf/articles/London+nurse+jailed+for+14+years+in+landmark+slavery+case+05072018141500",
+      "tier": "official"
+    },
+    {
+      "title": "First ever convicted cross-border sex-trafficker has sentence increased",
+      "publisher": "UK Attorney General's Office",
+      "date": "2018-09-20",
+      "url": "https://www.gov.uk/government/news/first-ever-convicted-cross-border-sex-trafficker-has-sentence-increased",
+      "tier": "official"
+    }
+  ]
+}

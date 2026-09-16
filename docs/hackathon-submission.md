@@ -22,11 +22,11 @@ Trafficking and scams start the same way: an offer that looks easy, a friendly m
 
 ## What it does
 
-1. **Warning-sign check** on text, links, profiles and screenshots: 55+ signs drawn from ILO forced-labour indicators, FTC and FBI guidance, in eight kinds of situation.
-2. **Verification** against official registers, enforcement records, domain age and email checks. No check ever returns "clear".
+1. **Warning-sign check** on text, links, profiles and screenshots: 60 signs drawn from ILO forced-labour indicators, FTC and FBI guidance, in eight kinds of situation.
+2. **Verification** against official registers, the US Treasury sanctions list (1,600+ entities under human-rights, organised-crime and cyber programs), public security scans of the website, enforcement records, domain age and email checks. No check ever returns "clear".
 3. **A score, explained:** 0–100, red / yellow / green, every point traceable to evidence and every fact linked to its source.
-4. **Cases and map:** 23 researched cases with sourced journeys from first contact to exploitation, plus 161 recent news reports read for countries, routes and lures.
-5. **You are NOT alone:** survivor videos and first-person retellings of real cases, ending in confidential help.
+4. **Cases and map:** 37 researched cases on five continents with sourced journeys from first contact to exploitation, plus 161 recent news reports read for countries, routes and lures.
+5. **You are NOT alone** and **Who it's for:** survivor videos, first-person retellings, and plain-language guides for young people, older adults, families and migrant workers, with read-aloud and large-text modes.
 6. **The agent:** checks postings from allowed feeds and user submissions, queues them for human review in Teams, drafts reports to the platform, the impersonated company and the FTC/IC3. A person approves every report.
 
 ## Built on Microsoft
@@ -37,7 +37,7 @@ GitHub and GitHub Pages (live today) · Copilot Studio agent with seven skills (
 
 - **Prevention, not only interception.** Complementary to Transaction Intercept: we stop the supply side.
 - **Explainable and non-accusatory.** Indicators, never verdicts; a wrong accusation is defamation, so the agent drafts and a person sends.
-- **Global from day one.** Country risk context for 190+ countries, cases on four continents, a nonprofit partner in India.
+- **Global from day one.** Country risk context for 190+ countries, 37 cases on five continents, a nonprofit partner in India.
 - **Empathy built in.** Survivor voices and first-person stories, not only scores.
 - **Open source, no build step, nothing stored without consent.** Any NGO can fork it.
 

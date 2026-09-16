@@ -1,0 +1,86 @@
+{
+  "id": "saudi-arabia-kenyan-domestic-workers-amnesty",
+  "title": "Saudi Arabia: Kenyan domestic workers in forced-labour conditions (Amnesty investigation)",
+  "typology": "labor-trafficking",
+  "period": "2023–2025",
+  "summary": "Amnesty International's May 2025 report \"Locked in, left out\" is based on interviews with more than 70 Kenyan women who worked in Saudi homes and describes conditions that often amount to forced labour: about SAR 900 (US$240) a month for days of 16 hours or more, no days off for up to two years, passports and phones confiscated, and wages delayed or withheld. Women said recruitment agents in Kenya misrepresented the job; one was promised eight-hour days, a weekly day off and overtime, and worked from 6am to midnight with no day off in two years. Amnesty estimates about 150,000 Kenyans among roughly four million domestic workers in Saudi Arabia. This is an NGO investigation: no charges, sanctions or fines are recorded.",
+  "status": "reported",
+  "entities": [],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Kenya (country-level point)",
+      "country": "KE",
+      "lat": -1.29,
+      "lon": 36.82,
+      "note": "Agents promised no fees, fair hours and rest days, and rushed contract signing.",
+      "source": "https://www.amnesty.org/en/latest/news/2025/05/i-never-had-a-day-off-and-barely-left-the-house-in-two-years/"
+    },
+    {
+      "stage": "exploited",
+      "place": "Saudi Arabia (country-level point)",
+      "country": "SA",
+      "lat": 24.71,
+      "lon": 46.68,
+      "note": "Days of 16 hours or more, no rest days, passports and phones confiscated, wages withheld.",
+      "source": "https://www.amnesty.org/en/latest/news/2025/05/saudi-arabia-migrant-domestic-workers-face-severe-exploitation-racism-and-exclusion-from-labour-protections/"
+    },
+    {
+      "stage": "escaped",
+      "place": "Kenya",
+      "country": "KE",
+      "lat": -4.04,
+      "lon": 39.67,
+      "note": "Returnees interviewed by Amnesty after leaving Saudi Arabia.",
+      "source": "https://www.amnesty.org/en/latest/news/2025/05/saudi-arabia-migrant-domestic-workers-face-severe-exploitation-racism-and-exclusion-from-labour-protections/"
+    }
+  ],
+  "victim_origins": [
+    "KE"
+  ],
+  "lures": [
+    {
+      "signal": "urgency",
+      "quote_or_description": "An agent was rushing workers to sign, leaving no time to check the job.",
+      "source": "https://www.amnesty.org/en/latest/news/2025/05/i-never-had-a-day-off-and-barely-left-the-house-in-two-years/"
+    },
+    {
+      "signal": "document_retention",
+      "quote_or_description": "Employers confiscating passports and phones was described as standard practice.",
+      "source": "https://www.amnesty.org/en/latest/news/2025/05/saudi-arabia-migrant-domestic-workers-face-severe-exploitation-racism-and-exclusion-from-labour-protections/"
+    },
+    {
+      "signal": "isolation",
+      "quote_or_description": "\"I never had a day off and barely left the house in two years.\"",
+      "source": "https://www.amnesty.org/en/latest/news/2025/05/i-never-had-a-day-off-and-barely-left-the-house-in-two-years/"
+    },
+    {
+      "signal": "employer_housing_travel",
+      "quote_or_description": "Live-in work arranged by agents, with the employer controlling housing and movement.",
+      "source": "https://www.amnesty.org/en/latest/news/2025/05/saudi-arabia-migrant-domestic-workers-face-severe-exploitation-racism-and-exclusion-from-labour-protections/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Saudi Arabia: Migrant domestic workers face severe exploitation, racism and exclusion from labour protections",
+      "publisher": "Amnesty International",
+      "date": "2025-05-13",
+      "url": "https://www.amnesty.org/en/latest/news/2025/05/saudi-arabia-migrant-domestic-workers-face-severe-exploitation-racism-and-exclusion-from-labour-protections/",
+      "tier": "ngo"
+    },
+    {
+      "title": "I never had a day off and barely left the house in two years",
+      "publisher": "Amnesty International",
+      "date": "2025-05-16",
+      "url": "https://www.amnesty.org/en/latest/news/2025/05/i-never-had-a-day-off-and-barely-left-the-house-in-two-years/",
+      "tier": "ngo"
+    },
+    {
+      "title": "Locked in, left out: The hidden lives of Kenyan domestic workers in Saudi Arabia (MDE 23/9222/2025)",
+      "publisher": "Amnesty International",
+      "date": "2025-05-12",
+      "url": "https://www.amnesty.org/en/documents/mde23/9222/2025/en/",
+      "tier": "ngo"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "abidjan-fake-canada-jobs-fraud-ring",
+  "title": "Abidjan: fake Canada job ads feeding a trafficking-run pyramid scam (INTERPOL)",
+  "typology": "scam-compound",
+  "period": "2025",
+  "summary": "In February 2025 Côte d'Ivoire's national police, acting on an investigation that began in Ghana and was coordinated by INTERPOL, raided premises in Abidjan, arrested two suspects and rescued 33 victims from Benin, Burkina Faso, Ghana and Togo. The victims had answered online job advertisements promising work in Canada, contacted through numbers that appeared Canadian, and had paid nearly US$9,000 each for supposed travel arrangements. On arrival their documents were confiscated and, under threats and abuse, they were forced to recruit further victims through multi-level-marketing platforms, posing in luxury shops and hotels to keep up the illusion of success abroad. The suspects are not named and no conviction is reported.",
+  "status": "enforcement_action",
+  "entities": [],
+  "journey": [
+    {
+      "stage": "advertised",
+      "place": "Online job ads (victims in Ghana, Benin, Burkina Faso, Togo)",
+      "country": "GH",
+      "lat": 5.6,
+      "lon": -0.19,
+      "note": "Fake online job ads promised work in Canada, using Canadian-looking phone numbers.",
+      "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    },
+    {
+      "stage": "exploited",
+      "place": "Abidjan",
+      "country": "CI",
+      "lat": 5.36,
+      "lon": -4.01,
+      "note": "Documents confiscated; victims forced under threats to enrol new victims through MLM platforms.",
+      "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    },
+    {
+      "stage": "escaped",
+      "place": "Abidjan",
+      "country": "CI",
+      "lat": 5.36,
+      "lon": -4.01,
+      "note": "February 2025 raid: two arrests, 33 people rescued and referred to a local NGO.",
+      "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    }
+  ],
+  "victim_origins": [
+    "BJ",
+    "BF",
+    "GH",
+    "TG"
+  ],
+  "lures": [
+    {
+      "signal": "upfront_fee",
+      "quote_or_description": "Victims paid nearly US$9,000 for fraudulent travel arrangements.",
+      "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    },
+    {
+      "signal": "lure_role",
+      "quote_or_description": "Advertised Canadian jobs that did not exist.",
+      "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    },
+    {
+      "signal": "document_retention",
+      "quote_or_description": "Victims' documents were confiscated on arrival.",
+      "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    },
+    {
+      "signal": "threats_coercion",
+      "quote_or_description": "Under physical and psychological coercion, including threats and abuse, they were forced to perpetuate the scam.",
+      "source": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Human trafficking-fueled fraud ring dismantled in joint Côte d'Ivoire-Ghana operation",
+      "publisher": "INTERPOL",
+      "date": "2025-04-22",
+      "url": "https://www.interpol.int/en/News-and-Events/News/2025/Human-trafficking-fueled-fraud-ring-dismantled-in-joint-Cote-d-Ivoire-Ghana-operation",
+      "tier": "multilateral"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "id": "medellin-greece-waitress-lure-sex-trafficking",
+  "title": "Medellín to Greece: women lured with waitress jobs in Athens",
+  "typology": "sex-trafficking",
+  "period": "2024–2025",
+  "summary": "A network approached young women in Medellín, notably around Parque Lleras, with false job offers as waitresses in Athens for €100 a day plus housing and food. On arrival in Greece the women's passports and belongings were taken and they were given fictitious debts of €1,300 to €3,200 to be paid off through sexual exploitation in Athens and Thessaloniki, under physical and psychological violence and cut off from their families. Three people arrested in December 2024 were convicted in Medellín in December 2025 under plea agreements with Colombia's Fiscalía General: two received six years and seven months and one received three years and two months.",
+  "status": "convicted",
+  "entities": [
+    {
+      "name": "Juan David Ceballos Madrid",
+      "kind": "person",
+      "jurisdiction": "CO",
+      "names": [],
+      "actions": [
+        {
+          "body": "Medellín court (Fiscalía plea agreement)",
+          "action": "Convicted of trafficking, drug trafficking and illegal firearms; sentenced to six years and seven months",
+          "date": "2025-12",
+          "url": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+        }
+      ]
+    },
+    {
+      "name": "Paola Andrea Acevedo García",
+      "kind": "person",
+      "jurisdiction": "CO",
+      "names": [],
+      "actions": [
+        {
+          "body": "Medellín court (Fiscalía plea agreement)",
+          "action": "Convicted of trafficking; sentenced to six years and seven months",
+          "date": "2025-12",
+          "url": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+        }
+      ]
+    },
+    {
+      "name": "Evelin Andrea Gómez Ramírez",
+      "kind": "person",
+      "jurisdiction": "CO",
+      "names": [],
+      "actions": [
+        {
+          "body": "Medellín court (Fiscalía plea agreement)",
+          "action": "Convicted of trafficking; sentenced to three years and two months",
+          "date": "2025-12",
+          "url": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "stage": "recruited",
+      "place": "Parque Lleras, El Poblado, Medellín",
+      "country": "CO",
+      "lat": 6.21,
+      "lon": -75.57,
+      "note": "Young women approached in person with offers of waitress jobs in Athens at €100 a day with housing and food.",
+      "source": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+    },
+    {
+      "stage": "exploited",
+      "place": "Athens",
+      "country": "GR",
+      "lat": 37.98,
+      "lon": 23.73,
+      "note": "Passports taken, debts of €1,300 to €3,200 imposed, forced prostitution under violence.",
+      "source": "https://www.infobae.com/colombia/2025/12/07/fiscalia-condeno-a-responsables-de-red-de-trata-de-personas-llevaban-mujeres-de-medellin-a-grecia-para-explotarlas-sexualmente/"
+    },
+    {
+      "stage": "exploited",
+      "place": "Thessaloniki",
+      "country": "GR",
+      "lat": 40.64,
+      "lon": 22.94,
+      "note": "Second city where women were exploited.",
+      "source": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+    },
+    {
+      "stage": "prosecuted",
+      "place": "Medellín",
+      "country": "CO",
+      "lat": 6.24,
+      "lon": -75.58,
+      "note": "Three convicted under plea agreements in December 2025.",
+      "source": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+    }
+  ],
+  "victim_origins": [
+    "CO"
+  ],
+  "lures": [
+    {
+      "signal": "lure_role",
+      "quote_or_description": "Offered work as waitresses in bars in Athens.",
+      "source": "https://www.infobae.com/colombia/2025/12/07/fiscalia-condeno-a-responsables-de-red-de-trata-de-personas-llevaban-mujeres-de-medellin-a-grecia-para-explotarlas-sexualmente/"
+    },
+    {
+      "signal": "pay_too_high",
+      "quote_or_description": "€100 a day plus housing and meals.",
+      "source": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+    },
+    {
+      "signal": "employer_housing_travel",
+      "quote_or_description": "Accommodation and food were promised as part of the offer.",
+      "source": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061"
+    },
+    {
+      "signal": "debt_bondage",
+      "quote_or_description": "Fictitious debts of €1,300 to €3,200 to be repaid through sexual exploitation.",
+      "source": "https://www.infobae.com/colombia/2025/12/07/fiscalia-condeno-a-responsables-de-red-de-trata-de-personas-llevaban-mujeres-de-medellin-a-grecia-para-explotarlas-sexualmente/"
+    },
+    {
+      "signal": "document_retention",
+      "quote_or_description": "Passports and belongings were taken on arrival.",
+      "source": "https://www.infobae.com/colombia/2025/12/07/fiscalia-condeno-a-responsables-de-red-de-trata-de-personas-llevaban-mujeres-de-medellin-a-grecia-para-explotarlas-sexualmente/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fiscalía condenó a responsables de red de trata de personas: llevaban mujeres de Medellín a Grecia para explotarlas sexualmente",
+      "publisher": "Infobae",
+      "date": "2025-12-07",
+      "url": "https://www.infobae.com/colombia/2025/12/07/fiscalia-condeno-a-responsables-de-red-de-trata-de-personas-llevaban-mujeres-de-medellin-a-grecia-para-explotarlas-sexualmente/",
+      "tier": "press"
+    },
+    {
+      "title": "Condenaron a más de seis años a tres integrantes de red que explotaba mujeres en Grecia",
+      "publisher": "El Colombiano",
+      "date": "2025-12-08",
+      "url": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061",
+      "tier": "press"
+    }
+  ]
+}
