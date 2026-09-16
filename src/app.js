@@ -1156,7 +1156,7 @@ function viewCheck(kind = "") {
       <p class="fine" id="example-title" aria-live="polite"></p>
       <p class="fine">We check organisations, websites and email domains, never a private person's criminal record (see <a href="#/methodology">Methodology</a>). If you feel unsafe, <a href="#/help">get help now</a>.</p>
     </form>
-    <div id="out" aria-live="polite"></div>` : ""}${impactSections()}${globeSection()}`;
+    <div id="out" aria-live="polite"></div>` : ""}${impactSections()}${logosSection()}${globeSection()}`;
   mountImpact();
   mountGlobe($("#globe"));
   if (!k) { figureCleanup = mountFigure($("#figure")); renderSeeing(); return; }
@@ -1905,14 +1905,16 @@ function mountScale() {
 }
 
 // Partners strip, "The scale, right now" and "Impact so far": shown under the checker.
-function impactSections() {
-  return `
+const logosSection = () => `
     <section class="logos" aria-label="Partners and hosts">
       <a class="logo-item" href="https://apneaap.org" target="_blank" rel="noopener"><img src="assets/partners/apne-aap.png" alt="Apne Aap Women Worldwide"><span>Nonprofit partner</span></a>
       <a class="logo-item" href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener"><span class="wordmark">Ethical Tech CoLab</span><span>Data partner</span></a>
       <a class="logo-item" href="https://innovationstudio.microsoft.com/hackathons" target="_blank" rel="noopener"><img src="assets/partners/microsoft.png" alt="Microsoft"><span>Global Hackathon · Hack for Good</span></a>
       <a class="logo-item" href="https://www.microsoft.com/en-us/garage/" target="_blank" rel="noopener"><img src="assets/partners/the-garage.png" alt="The Garage"><span>New York City</span></a>
     </section>
+`;
+function impactSections() {
+  return `
     <section class="scale" id="scale" hidden>
       <div class="scale-head"><h2>The scale, right now</h2><p class="fine">Reported figures turned into rates. Counters tick from the moment you opened this page. Every number links to its source, and reported figures are a floor: most scams and most trafficking are never reported.</p></div>
       <div class="scale-grid" id="scale-grid"><p class="fine">Loading figures…</p></div>
