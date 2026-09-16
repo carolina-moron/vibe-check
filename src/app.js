@@ -1946,9 +1946,9 @@ function viewTeam() {
     <article class="panel team">
       <h2>The team</h2>
       <div class="people">
-        <div class="person"><img src="assets/team/carolina-moron.jpg" alt="Carolina Pernambuco Moron"><h3>Carolina Pernambuco Moron</h3><p class="voice-role">Lead: product, research, case catalog</p><p>Master of Science in Global Security, Conflict and Cybercrime at New York University.</p></div>
-        <div class="person"><img src="assets/team/obianuju-okafor.jpg" alt="Dr. Obianuju Okafor"><h3>Dr. Obianuju Okafor</h3><p class="voice-role">Engineering: frontend and intelligent systems</p><p>R&amp;D Software Engineer at Microsoft, leading frontend development. Formerly a Lecturer at the University of Texas at Austin, and at IBM and Salesforce. Ph.D. in computer science; works where software engineering, human–computer interaction and AI meet. Mentors and speaks to widen participation in tech.</p></div>
-        <div class="person"><img src="assets/team/elena-kennedy.jpg" alt="Elena Kennedy"><h3>Elena Kennedy</h3><p class="voice-role">Partnerships: platforms, models and hardware</p><p>Sr. Partner Development Manager at Microsoft, focused on models and hardware partnerships.</p></div>
+        <div class="person"><img src="assets/team/carolina-moron.jpg" alt="Carolina Pernambuco Moron"><h3>Carolina Pernambuco Moron</h3><p class="voice-role">Founder and CTO</p><p>Master of Science in Global Security, Conflict and Cybercrime at New York University.</p></div>
+        <div class="person"><img src="assets/team/obianuju-okafor.jpg" alt="Dr. Obianuju Okafor"><h3>Dr. Obianuju Okafor</h3><p class="voice-role">CMO</p><p>R&amp;D Software Engineer at Microsoft, leading frontend development. Formerly a Lecturer at the University of Texas at Austin, and at IBM and Salesforce. Ph.D. in computer science; works where software engineering, human–computer interaction and AI meet. Mentors and speaks to widen participation in tech.</p></div>
+        <div class="person"><img src="assets/team/elena-kennedy.jpg" alt="Elena Kennedy"><h3>Elena Kennedy</h3><p class="voice-role">COO</p><p>Sr. Partner Development Manager at Microsoft, focused on models and hardware partnerships.</p></div>
       </div>
       <figure class="teamphoto"><img src="assets/team/hackathon-nyc.jpg" alt="The team at the Microsoft Global Hackathon in New York City"><figcaption class="fine">Microsoft Global Hackathon, The Garage, New York City.</figcaption></figure>
     </article>

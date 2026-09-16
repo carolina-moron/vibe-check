@@ -47,9 +47,9 @@ Researched cases mapped · warning signs detected · news reports analysed · po
 
 ## Team
 
-- **Carolina Pernambuco Moron**, Master of Science in Global Security, Conflict and Cybercrime, New York University. Lead: product, research, case catalog.
-- **Dr. Obianuju Okafor**, R&D Software Engineer at Microsoft, leads frontend development; formerly Lecturer at UT Austin, IBM, Salesforce; Ph.D. in computer science. Engineering.
-- **Elena Kennedy**, Sr. Partner Development Manager at Microsoft, models and hardware partnerships. Partnerships.
+- **Carolina Pernambuco Moron**, Master of Science in Global Security, Conflict and Cybercrime, New York University. Founder and CTO.
+- **Dr. Obianuju Okafor**, R&D Software Engineer at Microsoft, leads frontend development; formerly Lecturer at UT Austin, IBM, Salesforce; Ph.D. in computer science. CMO.
+- **Elena Kennedy**, Sr. Partner Development Manager at Microsoft, models and hardware partnerships. COO.
 
 ## Next
 
