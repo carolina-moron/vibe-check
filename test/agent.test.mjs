@@ -43,3 +43,15 @@ test("skills API: check, review, refuses to send unapproved, stats", async () =>
   assert.ok(s.reviewed >= 1);
   assert.throws(() => handle("GET", "/nope"), /not found/);
 });
+
+test("catch-a-scam skills: text signs, sanctions match, explain for an audience", async () => {
+  const { handle } = await import("../scripts/agent-server.mjs");
+  const t = await handle("POST", "/text-signs", { text: "Pay $500 or I will send your photos to your family. Gift cards only." });
+  assert.ok(t.signs.some((x) => x.id === "sextortion") && t.signs.some((x) => x.id === "gift_card_crypto"));
+  const sm = await handle("POST", "/sanctions-match", { name: "Prince Holding Group" });
+  assert.equal(sm.verdict, "hit");
+  const { record } = await handle("POST", "/check", { text: "Urgent hiring! $4,500 per week, flights and accommodation provided by the employer. Send passport copy.", company: "Test Co", dry: true, queue: false });
+  const ex = await handle("POST", "/explain", { record, audience: "older" });
+  assert.match(ex.text, /Stop|Slow down/); assert.equal(ex.audience, "older");
+  assert.equal((await handle("GET", "/audiences")).audiences.length, 4);
+});

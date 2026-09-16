@@ -5,6 +5,23 @@
 import { createServer } from "node:http";
 import { checkItem, toRecord, draftReports, send, recordOutcome, stats } from "./agent.mjs";
 import { getStore } from "./store.mjs";
+import { readFileSync, existsSync } from "node:fs";
+import { checkOfac, checkUrlscan, normalizeDomain, detectContent } from "../src/engine.js";
+
+const ROOT = new URL("../", import.meta.url);
+const ofac = existsSync(new URL("data/ofac.json", ROOT)) ? JSON.parse(readFileSync(new URL("data/ofac.json", ROOT), "utf8")) : null;
+const audiences = JSON.parse(readFileSync(new URL("data/audiences.json", ROOT), "utf8")).audiences;
+const signalsDoc = JSON.parse(readFileSync(new URL("data/signals.json", ROOT), "utf8"));
+const label = Object.fromEntries(signalsDoc.signals.map((x) => [x.id, x]));
+
+// Plain-language explanation of a check for a given audience: short sentences, the top three signs, one action, who to call.
+export function explainFor(rec, audienceId = "families") {
+  const a = audiences.find((x) => x.id === audienceId) || audiences[2];
+  const top = (rec.flags || []).slice(0, 3).map((f) => label[f.id]?.label || f.label || f.id);
+  const verdict = rec.tier === "high" ? "Stop. This looks like the way scams and trafficking start." : rec.tier === "caution" ? "Slow down. There are warning signs here." : rec.tier === "low" ? "We found few warning signs." : "We could not confirm this is safe.";
+  const lines = [verdict, top.length ? `What we noticed: ${top.join("; ")}.` : "", `What to do: ${a.do[0]}`, `Who to call: ${a.help[0].label}.`].filter(Boolean);
+  return { audience: a.id, title: a.title, text: lines.join(" "), reading: a.reading };
+}
 
 const token = process.env.AGENT_TOKEN;
 const readQueue = async () => (await getStore()).list();
@@ -47,6 +64,28 @@ const routes = {
   "POST /send/:id": async (_, id) => ({ record: await send(id) }),
   "POST /outcome/:id": async (body, id) => ({ record: await recordOutcome(id, body.outcome) }),
   "GET /stats": async () => { const st = await getStore(); return stats(await st.list(), await st.events()); },
+  // Catch-a-scam skills: quick single-purpose checks a Copilot agent can call mid-conversation.
+  "POST /scan-url": async (body) => {
+    const domain = normalizeDomain(body.url || body.domain || "");
+    if (!domain) throw Object.assign(new Error("url or domain required"), { status: 400 });
+    const r = await checkUrlscan(domain);
+    return { domain, verdict: r.verdict, detail: r.detail, flagged: r.verdict === "hit", scans: r.records };
+  },
+  "POST /sanctions-match": async (body) => {
+    if (!body.name) throw Object.assign(new Error("name required"), { status: 400 });
+    const r = checkOfac(body.name, ofac);
+    return { name: body.name, verdict: r.verdict, detail: r.detail, matches: r.records || [], source: ofac?.source };
+  },
+  "POST /text-signs": async (body) => {
+    const hits = detectContent(String(body.text || ""));
+    return { count: hits.length, signs: hits.map((h) => ({ id: h.id, label: label[h.id]?.label || h.id, weight: label[h.id]?.weight || 0, evidence: h.evidence })) };
+  },
+  "POST /explain": async (body) => {
+    const rec = body.record || (body.id ? await getRec(body.id) : null);
+    if (!rec) throw Object.assign(new Error("record or id required"), { status: 400 });
+    return explainFor(rec, body.audience);
+  },
+  "GET /audiences": async () => ({ audiences: audiences.map(({ id, title, who }) => ({ id, title, who })) }),
   // The site sends one event per check: kind, tier and how many warning signs. Nothing else is accepted.
   "POST /event": async (body) => {
     const tier = ["low", "unverified", "caution", "high"].includes(body.tier) ? body.tier : "unknown";

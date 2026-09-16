@@ -83,3 +83,54 @@ paths:
       operationId: agent_stats
       summary: Reviewer agreement, confirmed reports, and warning signs that get dismissed too often
       responses: { "200": { description: Stats } }
+  /scan-url:
+    post:
+      operationId: scan_url
+      summary: Has this website been flagged as malicious in public security scans (urlscan.io)?
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, properties: { url: { type: string } }, required: [url] }
+      responses: { "200": { description: Verdict, detail, flagged boolean, matching scans } }
+  /sanctions-match:
+    post:
+      operationId: sanctions_match
+      summary: Does this organisation name match a US-sanctioned entity (OFAC human-rights, organised-crime, cyber programs)? Entities only.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, properties: { name: { type: string } }, required: [name] }
+      responses: { "200": { description: Verdict and matching SDN entries with lookup links } }
+  /text-signs:
+    post:
+      operationId: text_warning_signs
+      summary: Which warning signs appear in this text (message, ad, profile)? No lookups, instant.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, properties: { text: { type: string } }, required: [text] }
+      responses: { "200": { description: Count and list of signs with labels, weights and evidence } }
+  /explain:
+    post:
+      operationId: explain_for_audience
+      summary: Explain a check result in plain words for an audience (young, older, families, workers)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id: { type: string, description: A queued record id }
+                record: { type: object, description: Or the record itself, as returned by vibe_check }
+                audience: { type: string, enum: [young, older, families, workers] }
+      responses: { "200": { description: Short plain-language text and suggested reading mode } }
+  /audiences:
+    get:
+      operationId: list_audiences
+      summary: The audiences explain_for_audience supports
+      responses: { "200": { description: id, title, who } }
+

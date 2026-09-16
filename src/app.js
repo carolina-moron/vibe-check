@@ -2107,8 +2107,37 @@ function viewPartnerships() {
         <li><b>6 · Learn</b>What the platform or company did is logged, so warning signs reviewers keep dismissing are tuned down.</li>
       </ol>
       <h3>Built as Copilot Studio skills, hosted on Azure Functions, reviewed in Teams</h3>
-      <div class="skills">${[["vibe_check", "Check a posting: score, warning signs, drafted reports, review card"], ["list_review_queue", "What's waiting for a reviewer"], ["get_queued_item", "The evidence for one item"], ["queue_for_review_decision", "Approve or dismiss"], ["send_report", "Release drafts for an approved item only"], ["record_outcome", "What the platform or company did"], ["agent_stats", "Reviewer agreement and noisy warning signs"], ["find_impersonated_company", "Planned: match a claimed employer to the real company's abuse contact"], ["share_posting", "Planned: browser extension and Teams message extension for LinkedIn and Handshake"]].map(([n, d]) => `<div><code>${n}</code><span>${d}</span></div>`).join("")}</div>
+      <div class="skills">${[["vibe_check", "Check a posting: score, warning signs, drafted reports, review card"], ["list_review_queue", "What's waiting for a reviewer"], ["get_queued_item", "The evidence for one item"], ["queue_for_review_decision", "Approve or dismiss"], ["send_report", "Release drafts for an approved item only"], ["record_outcome", "What the platform or company did"], ["agent_stats", "Reviewer agreement and noisy warning signs"], ["scan_url", "Has this website been flagged malicious in public scans (urlscan.io)?"], ["sanctions_match", "Does this organisation match a US-sanctioned entity (OFAC)? Entities only"], ["text_warning_signs", "Which warning signs are in this message, instantly, no lookups"], ["explain_for_audience", "Say the result in plain words for a teenager, an older adult, a parent or a worker"], ["find_impersonated_company", "Planned: match a claimed employer to the real company's abuse contact"], ["share_posting", "Planned: browser extension and Teams message extension for LinkedIn and Handshake"]].map(([n, d]) => `<div><code>${n}</code><span>${d}</span></div>`).join("")}</div>
       <p class="fine">Design and rules in <a href="https://github.com/carolina-moron/vibe-check/blob/main/docs/agent.md" target="_blank" rel="noopener">docs/agent.md</a>; the same steps run from the command line with <code>scripts/agent.mjs</code>.</p>
+    </article>
+
+    <article class="panel">
+      <h2>Data partners and APIs</h2>
+      <p>Every check runs against open sources first. Some strong sources need an API key issued to an organisation; those are the partnerships we are asking for.</p>
+      <div class="api-cols">
+        <div><h3>Integrated, no key needed</h3><ul>
+          <li><strong>US Treasury OFAC sanctions list</strong>: sanctioned entities under human-rights, organised-crime and cyber programs, rebuilt from the public SDN file.</li>
+          <li><strong>urlscan.io</strong> public scans: has the website been flagged as malicious.</li>
+          <li><strong>GLEIF</strong>, <strong>New York</strong> and <strong>Colorado</strong> company registers, <strong>CourtListener</strong> federal dockets, <strong>RDAP</strong>, certificate transparency, the <strong>Wayback Machine</strong>, <strong>Tranco</strong>, mail DNS.</li>
+          <li><strong>ETC Forced Labor Structural Risk Index</strong> for country context; <strong>ILO</strong> forced-labour indicators; <strong>Avatar Impact Stories</strong>.</li>
+          <li><strong>Tavily</strong> news search for the News page (key held by the project, never shipped to the browser).</li>
+        </ul></div>
+        <div><h3>Ready to connect, key required</h3><ul>
+          <li><strong>Google Safe Browsing</strong> and <strong>URLhaus</strong> (abuse.ch): malware and phishing URLs.</li>
+          <li><strong>PhishTank</strong> and <strong>OpenPhish</strong>: reported phishing pages.</li>
+          <li><strong>OpenSanctions</strong>: UN, EU, UK and 250+ sanctions and watchlists in one match API.</li>
+          <li><strong>UK Companies House</strong>: previous names, officers, disqualified directors.</li>
+          <li><strong>Chainabuse</strong> (TRM Labs): crypto addresses reported in scams.</li>
+          <li><strong>World Bank debarred firms</strong> and <strong>SAM.gov exclusions</strong>.</li>
+          <li><strong>EmailRep</strong>: reputation of a recruiter's email address.</li>
+        </ul><p class="fine">Each needs a free or nonprofit key registered to an organisation. A partner that sponsors keys unlocks all of them at once.</p></div>
+        <div><h3>Partnership asks</h3><ul>
+          <li><strong>Hiring platforms</strong> (Handshake, LinkedIn, Indeed): a feed of reported postings and a place to show a warning before someone applies. Handshake's institutional API through a university career office is the first step.</li>
+          <li><strong>NGOs</strong> (Apne Aap, Polaris, Unseen, IOM country offices): warning signs from the frontline, pilot users, and the outcome of each report.</li>
+          <li><strong>International bodies</strong> (UNODC, ILO, IOM, CTDC): corridor and typology data; we already link to their datasets and would rather read them by API.</li>
+          <li><strong>Security vendors</strong>: sponsored keys for the sources above, in exchange for anonymised patterns of what people are being sent.</li>
+        </ul></div>
+      </div>
     </article>
 
     <article class="panel">

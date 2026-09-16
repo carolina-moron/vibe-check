@@ -856,3 +856,8 @@ footer.site .fine { font-size: var(--fs-1); }
 .guide.reading-large .guide-list li { margin-bottom: 16px; }
 .guide.xl { font-size: 1.55rem; line-height: 1.75; }
 .consider .plain { font-size: var(--fs-3); line-height: 1.45; margin: 4px 0 14px; max-width: none; }
+.api-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.api-cols h3 { margin-top: 4px; }
+.api-cols ul { margin: 0; padding-left: 1.1em; font-size: var(--fs-1); line-height: 1.5; }
+.api-cols li { margin-bottom: 8px; }
+@media (max-width: 860px) { .api-cols { grid-template-columns: minmax(0, 1fr); } }

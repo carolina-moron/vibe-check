@@ -49,6 +49,11 @@ The skills are described in `docs/agent-openapi.yaml`. Host `scripts/agent-serve
 | `send_report` | Release drafts for an approved item |
 | `record_outcome` | What the platform or company did |
 | `agent_stats` | Precision and feedback for tuning the rules |
+| `scan_url` | Has a website been flagged malicious in public scans (urlscan.io) |
+| `sanctions_match` | Does an organisation match a US-sanctioned entity (OFAC; entities only) |
+| `text_warning_signs` | Warning signs in a piece of text, instantly |
+| `explain_for_audience` | The result in plain words for a teenager, an older adult, a parent or a worker |
+| `list_audiences` | The audiences the explainer supports |
 
 Planned skills, not yet built: `find_impersonated_company` (match the claimed employer to the real company's abuse contact) and a browser extension / Teams message extension for sharing postings from LinkedIn and Handshake.
 
