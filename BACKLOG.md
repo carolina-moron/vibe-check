@@ -18,9 +18,9 @@ Open work, gathered from this build so far. Ticked items are done; the rest is i
 - [ ] Nightly agent run (GitHub Action) once sources exist
 
 ## Cases and map
-- [ ] Turn news reports into researched cases in batches of ~10, starting with arrests, charges and convictions (the second half of "show more cases")
-- [ ] Balance regions: Gulf domestic work, EU/UK rings, Latin America, West Africa; 10 of 23 cases are US
-- [ ] Filters on the Cases page by type, outcome and country
+- [x] First batch of 14 researched cases from five regions (37 total); next batch: Mexico, Italy, more official sources
+- [x] Regions balanced: Gulf, India, UK, Spain, Colombia, Brazil, Nigeria, Ghana, Côte d'Ivoire added
+- [x] Filters on the Cases page by type, outcome and country; map follows; hover highlights a route
 - [ ] Cluster crowded pins (US east coast) and highlight a case's route when hovering its card
 - [ ] Case timeline view
 - [ ] Deepfake cases rely on press sources only; add official Hong Kong Police / FCC / Brazilian police sources when reachable
@@ -37,26 +37,28 @@ Open work, gathered from this build so far. Ticked items are done; the rest is i
 - [ ] Lure indicators column is much taller than the column beside it
 
 ## Scam types and warning signs
+- [ ] API keys to register (decide owner): Google Safe Browsing, URLhaus, PhishTank, OpenSanctions, UK Companies House, Chainabuse, World Bank debarment, EmailRep
+- [x] OFAC sanctions index (entities only) and urlscan.io in the checker
 - [x] Pig butchering scam type with wrong-number and withdrawal-fee warning signs (story script exists)
 - [x] Sextortion warning sign, rule and scam-type card
 - [ ] Everyday scams: fake tech support, bank/government impersonation, delivery texts
-- [ ] Expert validation of the warning-sign categories (Methodology already flags this)
+- [ ] Expert validation of the warning-sign categories and the audience guides (Apne Aap review)
 
 ## Stories and voices
 - [ ] Produce the AI avatar videos from `stories/voices-scripts.md`; confirm the FBI sextortion link by hand first
 - [ ] Add quotes to voice cards only from the videos verbatim or approved excerpts
 - [ ] Voice-only or animated versions of the sextortion and sex-trafficking scripts for younger audiences
-- [ ] More first-person stories: only 7 of 23 cases have one
+- [ ] More first-person stories: 9 of 37 cases have one
 
 ## Win the hackathon (from the peer review)
 - [ ] Real outcome numbers from real use: Apne Aap organisers and NYU students run checks this week; a reviewer approves real reports; record platform outcomes
 - [ ] Name the users on About: who reviews, where the first deployment is, how to send a posting
 - [ ] Landing: checks run / warning signs / reports acted on as the headline trio with "since launch" dates; third-party figures below
 - [ ] Quote from Ruchira Gupta on About and in the submission
-- [ ] 90-day roadmap on About (Hindi and Bengali, Handshake feed, pilot results)
-- [ ] Functions host: App Insights telemetry, health endpoint, rate limit on /event
+- [x] 90-day roadmap on About
+- [x] Functions host: health endpoint and /event rate limit (App Insights wiring still to do at deploy time)
 - [ ] Video: title card and closing counters; replace the Teams mock with a real recording once deployed
-- [ ] Simplest share path that is not the website (bookmarklet or mailto/Teams link)
+- [x] Share to VibeCheck bookmarklet (Who it's for page) with URL and text prefill
 
 ## Site
 - [ ] Innovation Studio submission (owner: Carolina): open the project, then fit `docs/hackathon-submission.md` to the form fields
