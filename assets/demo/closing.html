@@ -1,0 +1,12 @@
+<!doctype html><meta charset="utf-8"><title>VibeCheck</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap">
+<style>body{margin:0;height:100vh;display:grid;place-items:center;background:#14264A;color:#fff;font-family:"Be Vietnam Pro",Arial,sans-serif;text-align:center}
+.w{max-width:1200px;padding:0 40px}h1{font-size:22px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin:0 0 30px;opacity:.85}
+.g{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-bottom:44px}.g b{display:block;font-size:96px;font-weight:600;line-height:1;color:#FFD166}.g span{display:block;margin-top:10px;font-size:18px;letter-spacing:.12em;text-transform:uppercase}
+p{font-size:22px;margin:6px 0;opacity:.9}.u{font-size:26px;font-weight:600;margin-top:20px}</style>
+<div class="w"><h1>What VibeCheck has done so far</h1>
+<div class="g"><div><b id="a">0</b><span>checks run</span></div><div><b id="b">0</b><span>warning signs found</span></div><div><b id="c">37</b><span>researched cases mapped</span></div></div>
+<p>60 warning-sign rules · 161 news reports read · 23 survivor voices · sanctions list of 1,600+ entities</p>
+<p>An agent checks postings and drafts reports. A person approves every one.</p>
+<p class="u">carolina-moron.github.io/vibe-check</p></div>
+<script>fetch("../../data/agent/stats.json").then(r=>r.json()).then(s=>{a.textContent=s.checks_run.toLocaleString();b.textContent=s.warning_signs_found.toLocaleString();}).catch(()=>{a.textContent="103";b.textContent="59";});</script>
