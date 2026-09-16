@@ -55,3 +55,11 @@ test("catch-a-scam skills: text signs, sanctions match, explain for an audience"
   assert.match(ex.text, /Stop|Slow down/); assert.equal(ex.audience, "older");
   assert.equal((await handle("GET", "/audiences")).audiences.length, 4);
 });
+
+test("health endpoint and event rate limit", async () => {
+  const { handle, allowEvent } = await import("../scripts/agent-server.mjs");
+  const h = await handle("GET", "/health"); assert.equal(h.ok, true); assert.ok(h.ofac > 500);
+  for (let i = 0; i < 60; i++) assert.ok(allowEvent("k1", 1000));
+  assert.equal(allowEvent("k1", 1000), false);
+  assert.ok(allowEvent("k1", 70000));
+});

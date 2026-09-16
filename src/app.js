@@ -1146,7 +1146,10 @@ async function readScreenshot(file, onProgress) {
   return data.text;
 }
 
-function viewCheck(kind = "") {
+function viewCheck(kindArg = "") {
+  // #/check/job?u=<url>&t=<text> prefills the form (used by the Share to VibeCheck bookmarklet).
+  const [kind, qs = ""] = String(kindArg).split("?");
+  const prefill = Object.fromEntries(new URLSearchParams(qs));
   const k = KINDS[kind];
   const kindsNav = `<nav class="kinds" aria-label="What do you want to check?">${KIND_ORDER.map((id) => [id, KINDS[id]]).map(([id, x]) => `
       <a class="kind${id === kind || KINDS[kind] === x ? " on" : ""}" href="#/check/${id}"${id === kind ? ' aria-current="true"' : ""}><span class="ki" aria-hidden="true">${KIND_ICON[id]}</span><strong>${esc(x.label)}</strong><span class="fine">${esc(x.hint)}</span></a>`).join("")}
@@ -1201,6 +1204,12 @@ function viewCheck(kind = "") {
   mountImpact();
   mountGlobe($("#globe"));
   if (!k) { renderSeeing(); return; }
+  if (prefill.u || prefill.t) {
+    const url = $("#check [name=postingUrl]"), ta = $("#check [name=posting]");
+    if (url && prefill.u) url.value = prefill.u;
+    if (ta && prefill.t) ta.value = prefill.t;
+    if (!ta?.value && url?.value && !parsePostingUrl(url.value)?.ats) { const w = $("#check [name=website]"); if (w) w.value = url.value; }
+  }
 
   const form = $("#check");
   let photoHash = null;
@@ -2013,6 +2022,11 @@ async function viewAudiences(which = "") {
       <p class="fine">Written from FTC, FBI, ILO and UNODC guidance. If you work with this group and something here is wrong or missing, <a href="https://github.com/carolina-moron/vibe-check/issues" target="_blank" rel="noopener">tell us</a>.</p>
     </article>` : `
     <article class="panel">
+      <h2>Check from any page</h2>
+      <p>Drag this button to your bookmarks bar. On a job posting, a profile or a message, select the text, click it, and VibeCheck opens with the page and the text filled in. Works on LinkedIn, Handshake, Indeed and anywhere else, without any scraping: you choose what to send.</p>
+      <p class="btns"><a class="help-btn bookmarklet" href="javascript:(function(){var t=String(window.getSelection&&getSelection()||'').slice(0,4000);location.href='https://carolina-moron.github.io/vibe-check/#/check/job?u='+encodeURIComponent(location.href)+'&t='+encodeURIComponent(t);})();" onclick="return false" title="Drag me to your bookmarks bar">Share to VibeCheck</a></p>
+    </article>
+    <article class="panel">
       <h2>Also on this site</h2>
       <p><a href="#/stories">You are NOT alone</a>: survivor videos and first-person stories. <a href="#/help">Get help</a>: hotlines by country and what to do if you or someone else is being held.</p>
     </article>`}`;
@@ -2081,6 +2095,15 @@ function viewTeam() {
           <li><strong>GitHub Actions</strong> for the nightly agent run and the weekly news refresh.</li>
         </ul></div>
       </div>
+    </article>
+    <article class="panel">
+      <h2>Next 90 days</h2>
+      <ol class="roadmap">
+        <li><strong>By mid-October 2026:</strong> agent live on Azure Functions and Cosmos DB; Copilot Studio agent reviewing postings in Teams; first counters from real use.</li>
+        <li><strong>By November:</strong> pilot with Apne Aap Women Worldwide organisers, with Hindi and Bengali versions of the check and the guides (Azure AI Translator, reviewed by Apne Aap); pilot results published on this page.</li>
+        <li><strong>By December:</strong> Handshake institutional feed through a university career office; researched cases past 50; sponsored API keys for phishing and sanctions sources.</li>
+      </ol>
+      <p class="fine">Progress is tracked in the open in <a href="https://github.com/carolina-moron/vibe-check/blob/main/BACKLOG.md" target="_blank" rel="noopener">BACKLOG.md</a>.</p>
     </article>
     <article class="panel">
       <h2>Get involved</h2>

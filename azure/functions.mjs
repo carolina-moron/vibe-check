@@ -10,7 +10,7 @@ const wrap = async (req) => {
   if (req.method === "OPTIONS") return { status: 204, headers: cors };
   if (token && !PUBLIC.has(`${req.method} ${path}`) && req.headers.get("authorization") !== `Bearer ${token}`) return { status: 401, headers: cors, jsonBody: { error: "unauthorised" } };
   const body = req.method === "POST" ? await req.json().catch(() => ({})) : {};
-  try { return { status: 200, headers: cors, jsonBody: await handle(req.method, path, body) }; }
+  try { return { status: 200, headers: cors, jsonBody: await handle(req.method, path, body, { ip: req.headers.get("x-forwarded-for") || "anon" }) }; }
   catch (e) { return { status: e.status || 500, headers: cors, jsonBody: { error: e.message } }; }
 };
 

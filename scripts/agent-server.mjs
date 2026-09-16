@@ -28,7 +28,15 @@ const readQueue = async () => (await getStore()).list();
 const getRec = async (id) => (await getStore()).get(id);
 const putRec = async (rec) => (await getStore()).put(rec);
 // Routes a browser may call without the token: anonymous usage events and public counters.
-export const PUBLIC = new Set(["POST /event", "GET /public-stats"]);
+export const PUBLIC = new Set(["POST /event", "GET /public-stats", "GET /health"]);
+// Rate limit for the anonymous event endpoint: per caller key (IP from the host), 60 events a minute.
+const buckets = new Map();
+export function allowEvent(key, now = Date.now()) {
+  const b = buckets.get(key) || { n: 0, t: now };
+  if (now - b.t > 60000) { b.n = 0; b.t = now; }
+  b.n++; buckets.set(key, b);
+  return b.n <= 60;
+}
 
 // Adaptive Card for a Teams review channel: the evidence, and Approve / Dismiss buttons.
 export const reviewCard = (rec) => ({
@@ -87,21 +95,23 @@ const routes = {
   },
   "GET /audiences": async () => ({ audiences: audiences.map(({ id, title, who }) => ({ id, title, who })) }),
   // The site sends one event per check: kind, tier and how many warning signs. Nothing else is accepted.
-  "POST /event": async (body) => {
+  "POST /event": async (body, _id, ctx = {}) => {
+    if (!allowEvent(ctx.ip || "anon")) throw Object.assign(new Error("too many events"), { status: 429 });
     const tier = ["low", "unverified", "caution", "high"].includes(body.tier) ? body.tier : "unknown";
     const kind = String(body.kind || "other").slice(0, 20).replace(/[^a-z_-]/g, "");
     await (await getStore()).event({ type: "check", kind, tier, flags: Math.max(0, Math.min(60, Number(body.flags) || 0)), at: new Date().toISOString() });
     return { ok: true };
   },
+  "GET /health": async () => ({ ok: true, store: (await getStore()).kind, ofac: ofac?.count || 0, signals: signalsDoc.signals.length, time: new Date().toISOString() }),
   "GET /public-stats": async () => { const st = await getStore(); const { noisy, precision, ...pub } = stats(await st.list(), await st.events()); return { generated: new Date().toISOString(), ...pub }; },
 };
 
-export function handle(method, path, body) {
+export function handle(method, path, body, ctx = {}) {
   for (const [key, fn] of Object.entries(routes)) {
     const [m, pattern] = key.split(" ");
     const re = new RegExp("^" + pattern.replace(":id", "([a-f0-9]{12})") + "$");
     const mt = method === m && path.match(re);
-    if (mt) return fn(body || {}, mt[1]);
+    if (mt) return fn(body || {}, mt[1], ctx);
   }
   throw Object.assign(new Error("not found"), { status: 404 });
 }
@@ -114,7 +124,7 @@ if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop()
     const path0 = req.url.split("?")[0];
     if (token && !PUBLIC.has(`${req.method} ${path0}`) && req.headers.authorization !== `Bearer ${token}`) return reply(401, { error: "unauthorised" });
     let raw = ""; for await (const c of req) raw += c;
-    try { reply(200, await handle(req.method, req.url.split("?")[0], raw ? JSON.parse(raw) : {})); }
+    try { reply(200, await handle(req.method, path0, raw ? JSON.parse(raw) : {}, { ip: req.headers["x-forwarded-for"] || req.socket.remoteAddress })); }
     catch (e) { reply(e.status || 500, { error: e.message }); }
   }).listen(Number(process.env.PORT) || 8787, () => console.log("agent skills on :" + (process.env.PORT || 8787)));
 }

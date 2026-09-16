@@ -133,4 +133,10 @@ paths:
       operationId: list_audiences
       summary: The audiences explain_for_audience supports
       responses: { "200": { description: id, title, who } }
+  /health:
+    get:
+      operationId: health
+      summary: Liveness check with store kind, sanctions index size and rule count
+      security: []
+      responses: { "200": { description: ok } }
 

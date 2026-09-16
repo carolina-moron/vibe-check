@@ -13,6 +13,8 @@ Each story here retells a real case from `data/cases/` in the first person. They
 | [Six days a week in the fields](los-villatoros-h2a.md) | Los Villatoros Harvesting | Labour trafficking |
 | [A student visa and a house to clean](bolarinwa-domestic-servitude.md) | Bolaji Bolarinwa | Domestic servitude |
 | [The CFO on the video call](arup-deepfake-video-call.md) | Arup, Hong Kong | Deepfake fraud |
+| [The soup kitchen in West Bromwich](operation-fort.md) | Operation Fort, UK | Labour trafficking |
+| [A hundred euros a day in Athens](medellin-greece.md) | Medellín to Greece | Sex trafficking |
 
 To add a story, pick a case from `data/cases/`, use only facts from its sources, keep the narrator unnamed or clearly invented, and end with the warning signs and sources.
 
