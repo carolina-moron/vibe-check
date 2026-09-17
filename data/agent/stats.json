@@ -1,16 +1,49 @@
 {
-  "generated": "2026-09-17T20:06:39.330Z",
+  "generated": "2026-09-17T20:19:37.423Z",
   "store": "files",
   "tiers": {
-    "high": 2,
-    "unverified": 100
+    "unverified": 100,
+    "high": 1
   },
-  "top_signs": [],
-  "checks_run": 102,
+  "top_signs": [
+    {
+      "id": "urgency",
+      "n": 6
+    },
+    {
+      "id": "chat_only_contact",
+      "n": 2
+    },
+    {
+      "id": "id_before_interview",
+      "n": 1
+    },
+    {
+      "id": "free_email",
+      "n": 1
+    },
+    {
+      "id": "employer_housing_travel",
+      "n": 1
+    },
+    {
+      "id": "housing_tied_to_job",
+      "n": 1
+    },
+    {
+      "id": "pay_too_high",
+      "n": 1
+    },
+    {
+      "id": "no_experience_high_pay",
+      "n": 1
+    }
+  ],
+  "checks_run": 101,
   "site_checks": 0,
-  "postings_checked": 102,
-  "warning_signs_found": 54,
-  "serious": 2,
+  "postings_checked": 101,
+  "warning_signs_found": 14,
+  "serious": 1,
   "queued": 1,
   "reviewed": 0,
   "approved": 0,
