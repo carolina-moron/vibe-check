@@ -865,3 +865,16 @@ footer.site .fine { font-size: var(--fs-1); }
 .gridhead .filters select { font: inherit; padding: 8px 10px; border: var(--rule); background: var(--paper); color: var(--ink); }
 #f-count { margin: 6px 0 10px; }
 .roadmap li { margin-bottom: 8px; }
+/* Impact charts */
+.viz-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin: 14px 0 6px; }
+.viz h3 { margin: 0 0 8px; }
+.tierbar { display: flex; height: 22px; border: 1px solid rgba(255,255,255,.4); overflow: hidden; }
+.tierbar span { display: block; height: 100%; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 6px 0 2px; vertical-align: middle; }
+.hbars.light li { color: var(--on-ink); }
+.hbars.light .hb { background: rgba(255,255,255,.15); }
+.hbars.light .hb i { background: #FFD166; }
+.hbars.light .mono { color: var(--on-ink); }
+.why .scale-head { margin-top: 26px; border-top: 1px solid rgba(255,255,255,.35); padding-top: 22px; }
+.why .impact { border-top: 0; padding-top: 0; margin-top: 0; }
+@media (max-width: 860px) { .viz-row { grid-template-columns: minmax(0, 1fr); } }

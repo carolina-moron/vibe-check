@@ -3,8 +3,9 @@ import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 process.env.VIBECHECK_AGENT_DIR = mkdtempSync(join(tmpdir(), "vibecheck-agent-"));
+// Imported after the env is set (static imports are hoisted and would load the real store).
+const { checkItem, toRecord, draftReports, intake } = await import("../scripts/agent.mjs");
 import assert from "node:assert/strict";
-import { checkItem, toRecord, draftReports, intake } from "../scripts/agent.mjs";
 
 const quiet = async () => ({ ok: false, status: 503, json: async () => ({}), text: async () => "" });
 

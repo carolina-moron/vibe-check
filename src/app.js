@@ -24,7 +24,7 @@ async function reportCheck(kind, r) {
   const { agentUrl } = await loadConfig();
   if (!agentUrl) return;
   fetch(`${agentUrl.replace(/\/$/, "")}/event`, { method: "POST", headers: { "content-type": "application/json" }, keepalive: true,
-    body: JSON.stringify({ kind: kind || "other", tier: r.tier?.id, flags: r.flags?.length || 0 }) }).catch(() => {});
+    body: JSON.stringify({ kind: kind || "other", tier: r.tier?.id, flags: r.flags?.length || 0, signs: (r.flags || []).map((f) => f.id) }) }).catch(() => {});
 }
 
 // ---- helpers ---------------------------------------------------------------------------
@@ -335,7 +335,6 @@ function viewCases() {
         <div><b>${origins.size}</b><span>victim origin countries</span></div>
       </div>
     </section>
-    ${globeSection()}
     <section class="mapcard">
       <div class="maphead">
         <div><h2>Global map of case journeys</h2>
@@ -372,7 +371,6 @@ function viewCases() {
       <div class="cards" id="cards"></div>
     </section>`;
 
-  mountGlobe($("#globe"));
   const map = baseMap($("#worldmap"), { center: [22, 40], zoom: 2, minZoom: 2 });
   const groups = {}, journeyById = {};
   if (map) {
@@ -1172,6 +1170,7 @@ function viewCheck(kindArg = "") {
           <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. <strong>Nothing you enter is stored unless you choose to submit it, and if you do, it will be anonymous.</strong></p>
         </div>
       </section>
+      ${impactSections()}
       ${logosSection()}
       ${globeSection()}
       <div class="kinds-head">
@@ -1200,9 +1199,8 @@ function viewCheck(kindArg = "") {
       <p class="fine" id="example-title" aria-live="polite"></p>
       <p class="fine">We check organisations, websites and email domains, never a private person's criminal record (see <a href="#/methodology">Methodology</a>). If you feel unsafe, <a href="#/help">get help now</a>.</p>
     </form>
-    <div id="out" aria-live="polite"></div>` : ""}${impactSections()}`;
-  mountImpact();
-  mountGlobe($("#globe"));
+    <div id="out" aria-live="polite"></div>` : ""}`;
+  if (!k) { mountImpact(); mountGlobe($("#globe")); }
   if (!k) { renderSeeing(); return; }
   if (prefill.u || prefill.t) {
     const url = $("#check [name=postingUrl]"), ta = $("#check [name=posting]");
@@ -1946,6 +1944,8 @@ function mountScale() {
         <p class="fine">${esc(r.note)} Source: <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.source)}</a>.</p>
       </div>`;
     }).join("");
+    const barsInto = (id, rows) => { const el = document.getElementById(id); if (!el || !rows?.length) return; const mx = Math.max(...rows.map((r) => r.value)); el.innerHTML = rows.map((r) => `<li><span>${esc(r.label)}</span><span class="hb"><i style="width:${Math.max(1, Math.round((r.value / mx) * 100))}%"></i></span><span class="mono">${r.display || r.value.toLocaleString("en-US")}</span></li>`).join(""); };
+    barsInto("viz-daily", d.daily); barsInto("viz-held", d.held);
     groups.innerHTML = d.groups.map((g) => `<div class="scale-group"><h3>${esc(g.title)}</h3><ul>${g.items.map((it) => `<li><b>${esc(it.figure)}</b> ${esc(it.text)} <a class="fine" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.source)}</a></li>`).join("")}</ul></div>`).join("");
     const tick = () => {
       const secs = (Date.now() - opened) / 1000;
@@ -1968,14 +1968,8 @@ const logosSection = () => `
 function impactSections() {
   return `
     <section class="why" id="why">
-      <div class="why-head"><div class="eyebrow mono">Why it matters</div><h2>The scale, right now</h2>
-        <p class="fine">Reported figures turned into rates. Counters tick from the moment you opened this page. Every number links to its source, and reported figures are a floor: most scams and most trafficking are never reported.</p></div>
-      <div class="scale" id="scale" hidden>
-        <div class="scale-grid" id="scale-grid"></div>
-        <div class="scale-groups" id="scale-groups"></div>
-      </div>
+      <div class="why-head"><div class="eyebrow mono">Impact</div><h2>What VibeCheck has done <span class="fine">since 15 September 2026</span></h2></div>
       <div class="impact" id="impact">
-        <h3>What VibeCheck has done <span class="fine">since 15 September 2026</span></h3>
         <div class="stats impact-stats">
           <div><b id="imp-checks">–</b><span>checks run</span></div>
           <div><b id="imp-signs">–</b><span>warning signs found</span></div>
@@ -1985,7 +1979,21 @@ function impactSections() {
           <div><b>${cases.length}</b><span>researched cases mapped</span></div>
           <div><b>${signals.signals.length}</b><span>warning-sign rules</span></div>
         </div>
-        <p class="fine">Counters come from anonymous check events (kind, score tier and a count, never the text) and the agent's review log. They start low on purpose: we report outcomes, not promises.</p>
+        <div class="viz-row">
+          <div class="viz"><h3>How checks came out</h3><div class="tierbar" id="viz-tiers"></div><p class="fine" id="viz-tiers-note"></p></div>
+          <div class="viz"><h3>Warning signs found most</h3><ul class="hbars light" id="viz-signs"></ul></div>
+        </div>
+        <p class="fine">Counters come from anonymous check events (kind, score tier and which warning signs, never the text) and the agent's review log. They start low on purpose: we report outcomes, not promises.</p>
+      </div>
+      <div class="why-head scale-head"><div class="eyebrow mono">Why it matters</div><h2>The scale, right now</h2>
+        <p class="fine">Reported figures turned into rates. Counters tick from the moment you opened this page. Every number links to its source, and reported figures are a floor: most scams and most trafficking are never reported.</p></div>
+      <div class="scale" id="scale" hidden>
+        <div class="scale-grid" id="scale-grid"></div>
+        <div class="viz-row">
+          <div class="viz"><h3>Every day</h3><ul class="hbars light" id="viz-daily"></ul><p class="fine">Reported cases per day, from the annual figures.</p></div>
+          <div class="viz"><h3>People held, on any given day</h3><ul class="hbars light" id="viz-held"></ul><p class="fine">Estimates of people in these situations at a point in time.</p></div>
+        </div>
+        <div class="scale-groups" id="scale-groups"></div>
       </div>
     </section>`;
 }
@@ -1995,6 +2003,14 @@ function mountImpact() {
     const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = (v ?? 0).toLocaleString("en-US"); };
     set("imp-checks", st.checks_run); set("imp-signs", st.warning_signs_found); set("imp-acted", st.reports_acted_on);
     set("imp-checked", st.postings_checked); set("imp-approved", st.approved);
+    const t = st.tiers || {}; const total = Object.values(t).reduce((a, b) => a + b, 0) || 1;
+    const TIER_META = { high: ["Serious warning signs", "var(--c-high)"], caution: ["Some warning signs", "var(--c-med-bar)"], unverified: ["Unverified", "#8C97A6"], low: ["Lower concern", "var(--c-low)"] };
+    const bar = document.getElementById("viz-tiers");
+    if (bar) bar.innerHTML = Object.entries(TIER_META).filter(([k]) => t[k]).map(([k, [label, color]]) => `<span style="width:${(t[k] / total) * 100}%;background:${color}" title="${label}: ${t[k]}"></span>`).join("");
+    const note = document.getElementById("viz-tiers-note");
+    if (note) note.innerHTML = Object.entries(TIER_META).filter(([k]) => t[k]).map(([k, [label, color]]) => `<i class="dot" style="background:${color}"></i>${label} ${Math.round((t[k] / total) * 100)}%`).join(" · ") || "No checks recorded yet.";
+    const signsEl = document.getElementById("viz-signs");
+    if (signsEl) { const top = (st.top_signs || []).slice(0, 6); const mx = top[0]?.n || 1; signsEl.innerHTML = top.map((x) => `<li><span>${esc(signalById[x.id]?.label || x.id)}</span><span class="hb"><i style="width:${Math.round((x.n / mx) * 100)}%"></i></span><span class="mono">${x.n}</span></li>`).join("") || `<li class="muted">No warning signs recorded yet.</li>`; }
   }).catch(() => {});
 }
 
@@ -2108,11 +2124,6 @@ function viewTeam() {
     <article class="panel">
       <h2>Get involved</h2>
       <p>Found a scam or trafficking case? <a href="#/report">Report wrong vibes</a>. Run a platform, a career office or an NGO? See <a href="#/partnerships">how to integrate VibeCheck</a> and the agent that checks postings and drafts reports for your review. Want to help improve VibeCheck? Contribute on <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">GitHub</a>.</p>
-    </article>
-
-    <article class="panel">
-      <h2><a href="#/partnerships">Partnerships & Integration</a></h2>
-      <p>Platforms, institutions, and services can integrate VibeCheck to alert users to exploitation risks. Learn about integration opportunities, resource links, and what exploitation phases mean in our <a href="#/partnerships">partnerships section</a>.</p>
     </article>`;
 }
 

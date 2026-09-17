@@ -58,7 +58,7 @@ const routes = {
     const item = { from: body.source || "api", url: body.url, company: body.company, text: body.text, email: body.email, website: body.website, jurisdiction: body.jurisdiction };
     const rec = toRecord(item, await checkItem(item, { dry: !!body.dry }));
     rec.drafts = draftReports(rec);
-    await (await getStore()).event({ type: "check", source: "agent", kind: "job", tier: rec.tier, flags: rec.flags.length, at: new Date().toISOString() });
+    await (await getStore()).event({ type: "check", source: "agent", kind: "job", tier: rec.tier, flags: rec.flags.length, signs: rec.flags.map((f) => f.id), at: new Date().toISOString() });
     if (body.queue !== false && rec.score >= 20) await putRec(rec);
     return { record: rec, card: reviewCard(rec) };
   },
@@ -99,7 +99,8 @@ const routes = {
     if (!allowEvent(ctx.ip || "anon")) throw Object.assign(new Error("too many events"), { status: 429 });
     const tier = ["low", "unverified", "caution", "high"].includes(body.tier) ? body.tier : "unknown";
     const kind = String(body.kind || "other").slice(0, 20).replace(/[^a-z_-]/g, "");
-    await (await getStore()).event({ type: "check", kind, tier, flags: Math.max(0, Math.min(60, Number(body.flags) || 0)), at: new Date().toISOString() });
+    const signs = Array.isArray(body.signs) ? body.signs.filter((x) => typeof x === "string" && /^[a-z_]{3,40}$/.test(x)).slice(0, 30) : [];
+    await (await getStore()).event({ type: "check", kind, tier, flags: Math.max(0, Math.min(60, Number(body.flags) || 0)), signs, at: new Date().toISOString() });
     return { ok: true };
   },
   "GET /health": async () => ({ ok: true, store: (await getStore()).kind, ofac: ofac?.count || 0, signals: signalsDoc.signals.length, time: new Date().toISOString() }),

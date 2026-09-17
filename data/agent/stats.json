@@ -1,11 +1,16 @@
 {
-  "generated": "2026-09-15T21:07:37.620Z",
+  "generated": "2026-09-17T20:06:39.330Z",
   "store": "files",
-  "checks_run": 103,
+  "tiers": {
+    "high": 2,
+    "unverified": 100
+  },
+  "top_signs": [],
+  "checks_run": 102,
   "site_checks": 0,
-  "postings_checked": 103,
-  "warning_signs_found": 59,
-  "serious": 3,
+  "postings_checked": 102,
+  "warning_signs_found": 54,
+  "serious": 2,
   "queued": 1,
   "reviewed": 0,
   "approved": 0,

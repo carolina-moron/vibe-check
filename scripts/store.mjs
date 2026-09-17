@@ -54,7 +54,11 @@ export function summarise(events, records) {
   const acted = records.filter((r) => r.outcome === "removed" || r.outcome === "confirmed");
   const byFlag = {};
   for (const r of reviewed) for (const f of r.flags || []) { byFlag[f.id] ||= { label: f.label, seen: 0, dismissed: 0 }; byFlag[f.id].seen++; if (r.status === "dismissed") byFlag[f.id].dismissed++; }
+  const tiers = {}; for (const e of checks) tiers[e.tier] = (tiers[e.tier] || 0) + 1;
+  const signCount = {}; for (const e of checks) for (const id of e.signs || []) signCount[id] = (signCount[id] || 0) + 1;
+  const top_signs = Object.entries(signCount).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([id, n]) => ({ id, n }));
   return {
+    tiers, top_signs,
     checks_run: checks.length,
     site_checks: checks.length - agentChecks.length,
     postings_checked: agentChecks.length,
