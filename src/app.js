@@ -462,7 +462,7 @@ function viewCases() {
         <div class="cardtop"><span class="typ" style="--c:${TYPOLOGY[c.typology]?.color}">${esc(TYPOLOGY[c.typology]?.label)}</span><span class="mono muted">${esc(c.period)}</span></div>
         <h3>${esc(c.title)}</h3>
         <p class="route">${esc(route)}</p>
-        <div class="cardfoot"><span class="status">${esc(STATUS[c.status])}</span><span class="mini t-${esc(s.tier.id)}" title="${esc(caseTierLabel(s))}: ${s.points} out of 100">${s.points}<small>/100</small><span class="sr"> warning-sign score, ${esc(caseTierLabel(s))}</span></span><span class="cov c-${esc(cov.class)}" title="${esc(cov.explain)}">${esc(cov.label)}</span></div>
+        <div class="cardfoot"><span class="status">${esc(STATUS[c.status])}</span><span class="mini t-${esc(s.tier.id)}" title="${esc(caseTierLabel(s))}: ${s.points} out of 100">${s.points}<small>/100</small><span class="sr"> warning-sign score, ${esc(caseTierLabel(s))}</span></span><span class="cov c-${esc(cov.class)}" title="${esc(cov.explain)}">${esc(cov.label)}</span><span class="cov src-${c.sources.some((x) => x.tier === "official" || x.tier === "court") ? "official" : c.sources.some((x) => x.tier === "multilateral") ? "multilateral" : "press"}" title="Best source tier: ${esc(c.sources.map((x) => x.tier).join(", "))}">${c.sources.some((x) => x.tier === "official" || x.tier === "court") ? "Official source" : c.sources.some((x) => x.tier === "multilateral") ? "UN or INTERPOL source" : "Press only"}</span></div>
       </a>`;
     }).join("") || `<p class="muted">No cases match.</p>`;
     $("#f-count").textContent = `${list.length} of ${cases.length} cases`;

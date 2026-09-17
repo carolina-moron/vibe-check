@@ -31,3 +31,8 @@ Sourced from press and official pages that loaded; every link checked. Please sk
 - **Doubt:** Satnam Singh is a workplace death; the trafficking link is the article 603-bis exploitation charge, still unproven. Keep or drop as you see fit.
 - **Doubt:** the New Hampshire case sits under "Deepfakes and voice clones" on the strength of victim testimony. If that feels too thin, move it to job-scam or drop it.
 - **Not found:** a Qatar or UAE construction-worker prosecution with a loadable official source, and an official police release for the Hong Kong deepfake romance ring.
+
+## Audit (17 September)
+- **Sourcing:** 12 of 41 cases rest on press only (Accra, Bengaluru, Gisele Bündchen ads, Brazilians in KK Park, CBI Hisar, Cuautitlán, Dubai Al Hamriya, Hyderabad NIA, Medellín to Greece, New Hampshire courier, Ogoshi brothers, Satnam Singh). Case cards now show "Official source", "UN or INTERPOL source" or "Press only". An agent is hunting official documents for the twelve.
+- **Rules:** 22 text rules never fire on case summaries or news snippets. Expected: they are written for first-person messages (secrecy, refuses video, sextortion, wrong-number opener) and each has a unit test. No rule fired on a legitimate posting in the corrected board run.
+- **Duplication removed:** globe and statistics only on the landing page; About lost a repeated partnerships panel. The footer hotlines repeat the Help page on purpose.

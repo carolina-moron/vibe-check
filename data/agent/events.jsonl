@@ -100,3 +100,22 @@
 {"type": "check", "source": "agent", "kind": "job", "tier": "unverified", "flags": 0, "at": "2026-09-15T20:46:56.735Z"}
 {"type": "check", "source": "agent", "kind": "job", "tier": "unverified", "flags": 0, "at": "2026-09-15T20:46:56.735Z"}
 {"type": "check", "source": "agent", "kind": "job", "tier": "high", "flags": 8, "at": "2026-09-15T20:46:56.735Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":1,"signs":["urgency"],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":1,"signs":["urgency"],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":1,"signs":["urgency"],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}
+{"type":"check","source":"agent","kind":"job","tier":"unverified","flags":0,"signs":[],"at":"2026-09-17T20:06:41.073Z"}

@@ -878,3 +878,6 @@ footer.site .fine { font-size: var(--fs-1); }
 .why .scale-head { margin-top: 26px; border-top: 1px solid rgba(255,255,255,.35); padding-top: 22px; }
 .why .impact { border-top: 0; padding-top: 0; margin-top: 0; }
 @media (max-width: 860px) { .viz-row { grid-template-columns: minmax(0, 1fr); } }
+.cov.src-press { border-style: dashed; color: var(--ink-soft); }
+.cov.src-official { border-color: var(--c-low); color: var(--c-low); }
+.cov.src-multilateral { border-color: var(--accent); color: var(--accent); }
