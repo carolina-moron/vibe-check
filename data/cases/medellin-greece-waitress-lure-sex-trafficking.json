@@ -3,7 +3,7 @@
   "title": "Medellín to Greece: women lured with waitress jobs in Athens",
   "typology": "sex-trafficking",
   "period": "2024–2025",
-  "summary": "A network approached young women in Medellín, notably around Parque Lleras, with false job offers as waitresses in Athens for €100 a day plus housing and food. On arrival in Greece the women's passports and belongings were taken and they were given fictitious debts of €1,300 to €3,200 to be paid off through sexual exploitation in Athens and Thessaloniki, under physical and psychological violence and cut off from their families. Three people arrested in December 2024 were convicted in Medellín in December 2025 under plea agreements with Colombia's Fiscalía General: two received six years and seven months and one received three years and two months.",
+  "summary": "A network approached young women in Medellín, notably around Parque Lleras, with false job offers as waitresses in Athens for €100 a day plus housing and food. On arrival in Greece the women's passports and belongings were taken and they were given fictitious debts of €1,300 to €3,200 to be paid off through sexual exploitation in Athens and Thessaloniki, under physical and psychological violence and cut off from their families. Three people arrested in December 2024 were convicted in Medellín under plea agreements with Colombia's Fiscalía General: two in July 2025 (six years and seven months each) and a third in December 2025 (three years and two months). The Fiscalía's own release exists but could not be read by our automated check.",
   "status": "convicted",
   "entities": [
     {
@@ -130,6 +130,13 @@
       "publisher": "El Colombiano",
       "date": "2025-12-08",
       "url": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061",
+      "tier": "press"
+    },
+    {
+      "title": "Condenan a reclutadores de mujeres en Medellín que las explotaban sexualmente en Grecia",
+      "publisher": "El Espectador",
+      "date": "2025-07-07",
+      "url": "https://www.elespectador.com/judicial/condenan-a-reclutadores-de-mujeres-en-medellin-que-las-explotaban-sexualmente-en-grecia/",
       "tier": "press"
     }
   ]

@@ -81,7 +81,7 @@
    "title": "Accra: 57 Nigerians lured with jobs and forced to run romance scams",
    "typology": "scam-compound",
    "period": "2025",
-   "summary": "On 22 October 2025 Ghana Police Service's Criminal Investigations Department raided a building in a suburb of Accra and rescued 57 Nigerian nationals aged 18 to 26 who, police said, had been lured to Ghana with promises of lucrative jobs and then coerced into running online romance scams. Five suspects were arrested and police seized 77 laptops, 38 mobile phones, two vehicles and other internet-connected devices. Charges are allegations; no conviction is reported.",
+   "summary": "On 22 October 2025 Ghana Police Service's Criminal Investigations Department raided a building at Adom Estates, Community 25, near Tema in the Greater Accra Region and rescued 57 Nigerian nationals aged 18 to 26 who, police said, had been lured to Ghana with promises of lucrative jobs and then coerced into running online romance scams. Five suspects were arrested and police seized 77 laptops, 38 mobile phones, two vehicles and other internet-connected devices. Charges are allegations; no conviction is reported.",
    "status": "enforcement_action",
    "entities": [],
    "journey": [
@@ -144,6 +144,20 @@
      "publisher": "Africanews (with AP)",
      "date": "2025-10-24",
      "url": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/",
+     "tier": "press"
+    },
+    {
+     "title": "Police arrest five, rescue 57 Nigerians from human trafficking and cybercrime syndicate",
+     "publisher": "Graphic Online (state-owned)",
+     "date": "2025-10-22",
+     "url": "https://www.graphic.com.gh/news/general-news/police-arrest-five-rescue-57-nigerians-from-human-trafficking-and-cybercrime-syndicate.html",
+     "tier": "press"
+    },
+    {
+     "title": "Five arrested, 57 Nigerians rescued in human trafficking raid at Community 25",
+     "publisher": "GBC Ghana (state broadcaster)",
+     "date": "2025-10-23",
+     "url": "https://www.gbcghanaonline.com/general/five-arrested-57-nigerians-rescued-in-human-trafficking-raid-at-community-25/2025/",
      "tier": "press"
     }
    ]
@@ -480,6 +494,20 @@
      "date": "2022-05-21",
      "url": "https://www.tbsnews.net/world/south-asia/bangladesh-immigrants-found-guilty-bengaluru-gang-rape-case-423862",
      "tier": "press"
+    },
+    {
+     "title": "9 Bangladeshis convicted of gang rape in India's Bengaluru",
+     "publisher": "The Daily Star (Bangladesh)",
+     "date": "2022-05-21",
+     "url": "https://www.thedailystar.net/news/bangladesh/crime-justice/news/9-bangladeshis-convicted-gang-rape-indias-bengaluru-3028371",
+     "tier": "press"
+    },
+    {
+     "title": "India jails trafficking suspect Ridoy Babo, 6 other Bangladeshis for life in rape case",
+     "publisher": "bdnews24",
+     "date": "2022-05-21",
+     "url": "https://bdnews24.com/world/india-jails-trafficking-suspect-ridoy-babo-6-other-bangladeshis-for-life-in-rape-case",
+     "tier": "press"
     }
    ]
   },
@@ -643,7 +671,7 @@
    "title": "Brazil: Gisele Bündchen deepfake Instagram ads",
    "typology": "deepfake-fraud",
    "period": "2024–2025",
-   "summary": "Police in Rio Grande do Sul, Brazil, working with the financial intelligence unit COAF, arrested four suspects in October 2025 in an investigation that began in August 2024, after a victim reported an Instagram ad with an altered video of supermodel Gisele Bündchen promoting a skincare product. Another ad used her likeness to promise a giveaway of suitcases, with buyers paying shipping fees for items that never arrived. Investigators found more than 20 million reais (about US$3.9 million) in suspicious funds and froze assets across five states. Most victims lost under 100 reais and did not report it. These are arrests and allegations; no conviction was reported.",
+   "summary": "Police in Rio Grande do Sul, Brazil, working with the financial intelligence unit COAF, arrested four suspects on 1 October 2025 in Operação Modo Selva in an investigation that began in August 2024, after a victim reported an Instagram ad with an altered video of supermodel Gisele Bündchen promoting a skincare product. Another ad used her likeness to promise a giveaway of suitcases, with buyers paying shipping fees for items that never arrived. Investigators found more than 20 million reais (about US$3.9 million) in suspicious funds and froze assets across five states. Most victims lost under 100 reais and did not report it. These are arrests and allegations; no conviction was reported.",
    "status": "enforcement_action",
    "entities": [],
    "journey": [
@@ -687,6 +715,20 @@
      "publisher": "Reuters (via Yahoo News)",
      "date": "2025-10-03",
      "url": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html",
+     "tier": "press"
+    },
+    {
+     "title": "Golpe usava deepfake de Gisele Bündchen para aplicar golpes milionários (Operação Modo Selva)",
+     "publisher": "CNN Brasil",
+     "date": "2025-10-01",
+     "url": "https://www.cnnbrasil.com.br/nacional/sul/rs/golpe-usava-deepfake-de-gisele-bundchen-para-aplicar-golpes-milionarios/",
+     "tier": "press"
+    },
+    {
+     "title": "De Gisele a Juliette: bando usa deepfake em golpe de R$ 20 milhões",
+     "publisher": "Metrópoles",
+     "date": "2025-10-01",
+     "url": "https://www.metropoles.com/colunas/mirelle-pinheiro/de-gisele-a-juliette-bando-usa-deepfake-em-golpe-de-r-20-milhoes",
      "tier": "press"
     }
    ]
@@ -776,6 +818,13 @@
      "date": "2025-02-19",
      "url": "https://www.correiobraziliense.com.br/mundo/2025/02/7065554-brasileiros-escravizados-em-mianmar-voltam-ao-brasil.html",
      "tier": "press"
+    },
+    {
+     "title": "Brasileiros escravizados em Myanmar chegam a São Paulo",
+     "publisher": "Agência Brasil",
+     "date": "2025-02-19",
+     "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2025-02/brasileiros-escravizados-em-myanmar-chegam-sao-paulo",
+     "tier": "press"
     }
    ]
   },
@@ -854,6 +903,13 @@
      "publisher": "Moneylife",
      "date": "2026-08-19",
      "url": "https://www.moneylife.in/article/cbi-arrests-hisar-agent-in-cyber-slavery-network-trafficking-indians-to-myanmar-cambodia-scam-compounds/81410.html",
+     "tier": "press"
+    },
+    {
+     "title": "CBI arrests Hisar-based accused in cyber slavery human trafficking network linked to Southeast Asian scam compounds",
+     "publisher": "Free Press Journal",
+     "date": "2026-08-19",
+     "url": "https://www.freepressjournal.in/india/cbi-arrests-hisar-based-accused-in-cyber-slavery-human-trafficking-network-linked-to-southeast-asian-scam-compounds",
      "tier": "press"
     }
    ]
@@ -1314,6 +1370,13 @@
      "publisher": "The National (UAE)",
      "date": "2020-08-20",
      "url": "https://www.thenationalnews.com/uae/courts/gang-sentenced-to-seven-years-in-prison-for-running-prostitution-ring-1.1066395",
+     "tier": "press"
+    },
+    {
+     "title": "Dubai maid forced into prostitution outsmarts captors, gets them arrested",
+     "publisher": "Gulf News",
+     "date": "2020-08-21",
+     "url": "https://gulfnews.com/uae/crime/dubai-maid-forced-into-prostitution-outsmarts-captors-gets-them-arrested-1.73308163",
      "tier": "press"
     }
    ]
@@ -2939,7 +3002,7 @@
    "title": "Medellín to Greece: women lured with waitress jobs in Athens",
    "typology": "sex-trafficking",
    "period": "2024–2025",
-   "summary": "A network approached young women in Medellín, notably around Parque Lleras, with false job offers as waitresses in Athens for €100 a day plus housing and food. On arrival in Greece the women's passports and belongings were taken and they were given fictitious debts of €1,300 to €3,200 to be paid off through sexual exploitation in Athens and Thessaloniki, under physical and psychological violence and cut off from their families. Three people arrested in December 2024 were convicted in Medellín in December 2025 under plea agreements with Colombia's Fiscalía General: two received six years and seven months and one received three years and two months.",
+   "summary": "A network approached young women in Medellín, notably around Parque Lleras, with false job offers as waitresses in Athens for €100 a day plus housing and food. On arrival in Greece the women's passports and belongings were taken and they were given fictitious debts of €1,300 to €3,200 to be paid off through sexual exploitation in Athens and Thessaloniki, under physical and psychological violence and cut off from their families. Three people arrested in December 2024 were convicted in Medellín under plea agreements with Colombia's Fiscalía General: two in July 2025 (six years and seven months each) and a third in December 2025 (three years and two months). The Fiscalía's own release exists but could not be read by our automated check.",
    "status": "convicted",
    "entities": [
     {
@@ -3066,6 +3129,13 @@
      "publisher": "El Colombiano",
      "date": "2025-12-08",
      "url": "https://www.elcolombiano.com/antioquia/condena-integrantes-red-de-trata-de-personas-medellin-grecia-BO31596061",
+     "tier": "press"
+    },
+    {
+     "title": "Condenan a reclutadores de mujeres en Medellín que las explotaban sexualmente en Grecia",
+     "publisher": "El Espectador",
+     "date": "2025-07-07",
+     "url": "https://www.elespectador.com/judicial/condenan-a-reclutadores-de-mujeres-en-medellin-que-las-explotaban-sexualmente-en-grecia/",
      "tier": "press"
     }
    ]
@@ -3715,6 +3785,13 @@
      "date": "2024-09-05",
      "url": "https://www.uppermichiganssource.com/2024/09/05/2-nigerian-men-sentenced-sextortion-case-17-12-years-prison/",
      "tier": "press"
+    },
+    {
+     "title": "Nigerian brothers sentenced to 17 years for sextortion scheme linked to Michigan teen's suicide",
+     "publisher": "UPI",
+     "date": "2024-09-06",
+     "url": "https://www.upi.com/Top_News/US/2024/09/06/DOJ-Nigerian-sextortion-sentence-Michigan-teen-suicide/4891725637203/",
+     "tier": "press"
     }
    ]
   },
@@ -4170,6 +4247,20 @@
      "publisher": "Il Post",
      "date": "2026-07-08",
      "url": "https://www.ilpost.it/2026/07/08/processo-morte-satnam-singh-latina-caporalato/",
+     "tier": "press"
+    },
+    {
+     "title": "Satnam Singh boss gets 16 years in jail",
+     "publisher": "ANSA English",
+     "date": "2026-07-08",
+     "url": "https://www.ansa.it/english/news/general_news/2026/07/08/satnam-singh-boss-gets-16-years-in-jail_ac2a3d91-529b-4c4b-8a09-d83c7f4b9514.html",
+     "tier": "press"
+    },
+    {
+     "title": "Morte Satnam Singh, arrestato chi lo abbandonò senza un braccio (custodia cautelare per sfruttamento)",
+     "publisher": "ANSA Lazio",
+     "date": "2025-01-23",
+     "url": "https://www.ansa.it/lazio/notizie/2025/01/23/morte-satnam-singh-arrestato-chi-lo-abbandono-senza-un-braccio_84fa6643-3ade-4456-b95e-190ba701f198.html",
      "tier": "press"
     }
    ]

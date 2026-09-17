@@ -3,7 +3,7 @@
   "title": "Brazil: Gisele Bündchen deepfake Instagram ads",
   "typology": "deepfake-fraud",
   "period": "2024–2025",
-  "summary": "Police in Rio Grande do Sul, Brazil, working with the financial intelligence unit COAF, arrested four suspects in October 2025 in an investigation that began in August 2024, after a victim reported an Instagram ad with an altered video of supermodel Gisele Bündchen promoting a skincare product. Another ad used her likeness to promise a giveaway of suitcases, with buyers paying shipping fees for items that never arrived. Investigators found more than 20 million reais (about US$3.9 million) in suspicious funds and froze assets across five states. Most victims lost under 100 reais and did not report it. These are arrests and allegations; no conviction was reported.",
+  "summary": "Police in Rio Grande do Sul, Brazil, working with the financial intelligence unit COAF, arrested four suspects on 1 October 2025 in Operação Modo Selva in an investigation that began in August 2024, after a victim reported an Instagram ad with an altered video of supermodel Gisele Bündchen promoting a skincare product. Another ad used her likeness to promise a giveaway of suitcases, with buyers paying shipping fees for items that never arrived. Investigators found more than 20 million reais (about US$3.9 million) in suspicious funds and froze assets across five states. Most victims lost under 100 reais and did not report it. These are arrests and allegations; no conviction was reported.",
   "status": "enforcement_action",
   "entities": [],
   "journey": [
@@ -47,6 +47,20 @@
       "publisher": "Reuters (via Yahoo News)",
       "date": "2025-10-03",
       "url": "https://www.yahoo.com/news/articles/brazilian-scammers-raking-millions-used-204932574.html",
+      "tier": "press"
+    },
+    {
+      "title": "Golpe usava deepfake de Gisele Bündchen para aplicar golpes milionários (Operação Modo Selva)",
+      "publisher": "CNN Brasil",
+      "date": "2025-10-01",
+      "url": "https://www.cnnbrasil.com.br/nacional/sul/rs/golpe-usava-deepfake-de-gisele-bundchen-para-aplicar-golpes-milionarios/",
+      "tier": "press"
+    },
+    {
+      "title": "De Gisele a Juliette: bando usa deepfake em golpe de R$ 20 milhões",
+      "publisher": "Metrópoles",
+      "date": "2025-10-01",
+      "url": "https://www.metropoles.com/colunas/mirelle-pinheiro/de-gisele-a-juliette-bando-usa-deepfake-em-golpe-de-r-20-milhoes",
       "tier": "press"
     }
   ]

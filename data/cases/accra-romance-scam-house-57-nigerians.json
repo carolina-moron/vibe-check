@@ -3,7 +3,7 @@
   "title": "Accra: 57 Nigerians lured with jobs and forced to run romance scams",
   "typology": "scam-compound",
   "period": "2025",
-  "summary": "On 22 October 2025 Ghana Police Service's Criminal Investigations Department raided a building in a suburb of Accra and rescued 57 Nigerian nationals aged 18 to 26 who, police said, had been lured to Ghana with promises of lucrative jobs and then coerced into running online romance scams. Five suspects were arrested and police seized 77 laptops, 38 mobile phones, two vehicles and other internet-connected devices. Charges are allegations; no conviction is reported.",
+  "summary": "On 22 October 2025 Ghana Police Service's Criminal Investigations Department raided a building at Adom Estates, Community 25, near Tema in the Greater Accra Region and rescued 57 Nigerian nationals aged 18 to 26 who, police said, had been lured to Ghana with promises of lucrative jobs and then coerced into running online romance scams. Five suspects were arrested and police seized 77 laptops, 38 mobile phones, two vehicles and other internet-connected devices. Charges are allegations; no conviction is reported.",
   "status": "enforcement_action",
   "entities": [],
   "journey": [
@@ -66,6 +66,20 @@
       "publisher": "Africanews (with AP)",
       "date": "2025-10-24",
       "url": "https://www.africanews.com/2025/10/24/ghana-police-bust-cybercrime-ring-57-nigerians-rescued/",
+      "tier": "press"
+    },
+    {
+      "title": "Police arrest five, rescue 57 Nigerians from human trafficking and cybercrime syndicate",
+      "publisher": "Graphic Online (state-owned)",
+      "date": "2025-10-22",
+      "url": "https://www.graphic.com.gh/news/general-news/police-arrest-five-rescue-57-nigerians-from-human-trafficking-and-cybercrime-syndicate.html",
+      "tier": "press"
+    },
+    {
+      "title": "Five arrested, 57 Nigerians rescued in human trafficking raid at Community 25",
+      "publisher": "GBC Ghana (state broadcaster)",
+      "date": "2025-10-23",
+      "url": "https://www.gbcghanaonline.com/general/five-arrested-57-nigerians-rescued-in-human-trafficking-raid-at-community-25/2025/",
       "tier": "press"
     }
   ]
