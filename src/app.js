@@ -1982,9 +1982,7 @@ function impactDetail() {
         <div class="stats impact-stats">
           <div><b id="imp-checks">–</b><span>checks run</span></div>
           <div><b id="imp-signs">–</b><span>warning signs found</span></div>
-          <div><b id="imp-acted">–</b><span>reports acted on</span></div>
           <div><b id="imp-checked">–</b><span>postings checked by the agent</span></div>
-          <div><b id="imp-approved">–</b><span>reports approved by a reviewer</span></div>
           <div><b>${cases.length}</b><span>researched cases</span></div>
           <div><b>${signals.signals.length}</b><span>warning-sign rules</span></div>
         </div>
@@ -2005,8 +2003,8 @@ function impactStrip() {
         <div class="stats impact-stats">
           <div><b id="imp-checks">–</b><span>checks run</span></div>
           <div><b id="imp-signs">–</b><span>warning signs found</span></div>
-          <div><b id="imp-acted">–</b><span>reports acted on</span></div>
           <div><b>${cases.length}</b><span>researched cases</span></div>
+          <div><b>${signals.signals.length}</b><span>warning-sign rules</span></div>
         </div>
         <div class="viz-row one"><div class="viz"><div class="tierbar" id="viz-tiers"></div><p class="fine" id="viz-tiers-note"></p></div></div>
         <p class="fine">Live counters from anonymous checks and the agent's review log. <a href="#/news">The scale of the problem, and what the news shows →</a></p>
@@ -2033,8 +2031,7 @@ function mountImpact() {
   mountScale();
   loadConfig().then(({ agentUrl }) => fetch(agentUrl ? `${agentUrl.replace(/\/$/, "")}/public-stats` : "data/agent/stats.json")).then((r) => r.json()).then((st) => {
     const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = (v ?? 0).toLocaleString("en-US"); };
-    set("imp-checks", st.checks_run); set("imp-signs", st.warning_signs_found); set("imp-acted", st.reports_acted_on);
-    set("imp-checked", st.postings_checked); set("imp-approved", st.approved);
+    set("imp-checks", st.checks_run); set("imp-signs", st.warning_signs_found); set("imp-checked", st.postings_checked);
     const t = st.tiers || {}; const total = Object.values(t).reduce((a, b) => a + b, 0) || 1;
     const TIER_META = { high: ["Serious warning signs", "var(--c-high)"], caution: ["Some warning signs", "var(--c-med-bar)"], unverified: ["Unverified", "#8C97A6"], low: ["Lower concern", "var(--c-low)"] };
     const bar = document.getElementById("viz-tiers");
