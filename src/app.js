@@ -915,8 +915,8 @@ const LAUNDERING_TELLS = {
 function scamTypesSection(a) {
   return `<section class="scamtypes">
     <div class="scamtypes-head"><h2>Common types of scams</h2><p class="fine">How they work and the tells to look for, from consumer-protection and law-enforcement guidance. Where the news in this window covers a type, you can jump to those articles.</p></div>
-    <div class="scamgrid">${SCAM_TYPES.map((t) => `
-      <article class="scamcard">
+    <div class="scamgrid" id="scamgrid">${SCAM_TYPES.map((t, i) => `
+      <article class="scamcard${i >= 4 ? " extra" : ""}"${i >= 4 ? " hidden" : ""}>
         <h3>${esc(t.name)}</h3>
         <p>${esc(t.how)}</p>
         <ul class="tells">${t.tells.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
@@ -926,7 +926,7 @@ function scamTypesSection(a) {
         </div>
         <p class="fine">Source: ${ext(t.source[1], t.source[0])}</p>
       </article>`).join("")}
-      <article class="scamcard">
+      <article class="scamcard extra" hidden>
         <h3>Money laundering and money mules</h3>
         <p>${esc(LAUNDERING_TELLS.intro)}</p>
         <ul class="tells">${LAUNDERING_TELLS.tells.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
@@ -934,6 +934,7 @@ function scamTypesSection(a) {
         <p class="fine">Source: ${ext(LAUNDERING_TELLS.source[1], LAUNDERING_TELLS.source[0])}. If you've already moved money for someone, stop, keep records, and contact your bank.</p>
       </article>
     </div>
+    <div class="btns"><button type="button" class="ghost" id="scam-more">Show all ${SCAM_TYPES.length + 1} types</button></div>
   </section>`;
 }
 
@@ -942,19 +943,20 @@ async function viewNews(arg = "") {
   const n = await loadNews();
   const a = n.aggregates;
   const [fk, fv] = String(arg).split("/");
-  const state = { country: fk === "country" ? fv : null, typology: fk === "typ" ? fv : null, limit: 20 };
+  const state = { country: fk === "country" ? fv : null, typology: fk === "typ" ? fv : null, limit: 10 };
   const gen = new Date(n.generated);
 
   main.innerHTML = `
     <section class="hero small">
-      <div class="eyebrow mono">News patterns · last ${n.window_days} days · updated ${esc(gen.toISOString().slice(0, 10))}</div>
-      <h1>What the news is reporting</h1>
+      <div class="eyebrow mono">Why it matters · news from the last ${n.window_days} days · updated ${esc(gen.toISOString().slice(0, 10))}</div>
+      <h1>How big this is, and what the news shows</h1>
       <p class="lede">${n.n_articles} recent news reports on trafficking, forced labour, fake-job recruitment, online scams and deepfakes, gathered with ${esc(n.provider)} and read by rules for countries, direction of movement, typology and lure indicators. The map shows where reporting points, not where most cases are.</p>
     </section>
     <div class="callout">This is <strong>media attention, not case counts</strong>. Coverage follows English-language outlets, government press releases and whatever is in the news cycle. Country roles and corridors are extracted automatically from headlines and snippets and can be wrong; each corridor lists the words it came from. Nothing here feeds a score.</div>
 
+    ${scaleBlock()}
+    <section class="seeing" id="seeing" aria-live="polite"></section>
     ${figureSection()}
-
     ${scamTypesSection(a)}
 
     <section class="mapcard">
@@ -972,7 +974,9 @@ async function viewNews(arg = "") {
       </div>
     </section>
 
-    <div class="dash">
+    <details class="news-details">
+      <summary>Details: corridors, most-named countries, typologies, lure indicators</summary>
+      <div class="dash">
       <section class="panel">
         <h2>Corridors</h2>
         <p class="fine">Origin to destination, as extracted from the text.</p>
@@ -1008,6 +1012,9 @@ async function viewNews(arg = "") {
         <div class="weeks">${a.weeks.map((w) => `<div title="${esc(w.week)}: ${w.n}"><i style="height:${Math.round((w.n / Math.max(...a.weeks.map((x) => x.n))) * 100)}%"></i><span class="mono">${esc(w.week.slice(-3))}</span></div>`).join("")}</div>
         <p class="fine">The latest week is partial.</p>
       </section>
+      </div>
+    </details>
+    <div class="dash">
       <section class="panel span2">
         <div class="gridhead"><h2>Articles</h2>
           <div class="filters">
@@ -1018,15 +1025,13 @@ async function viewNews(arg = "") {
         <ul class="articles" id="articles"></ul>
         <div class="btns"><button type="button" class="ghost" id="more" hidden>Show more</button></div>
       </section>
-      <section class="panel span2">
-        <h2>How this page is built</h2>
-        <div class="twocol">
-          <p class="fine">News is gathered through Tavily's news search: ${n.queries.length} queries returned ${n.n_results} results, and ${n.n_articles} were kept after relevance filtering and de-duplication. Countries are matched from names, nationality words and known compound hubs. A nationality counts as an origin only in a sentence about victims; capital cities count as plain mentions because they are usually datelines. See <a href="#/methodology">Methodology</a>.</p>
-          <div><h3>Search queries</h3><ul class="querylist">${n.queries.map((q) => `<li>${esc(q)}</li>`).join("")}</ul></div>
-        </div>
-      </section>
     </div>`;
 
+  $("#scam-more")?.addEventListener("click", (e) => {
+    const open = e.target.dataset.open !== "1";
+    document.querySelectorAll("#scamgrid .extra").forEach((c) => (c.hidden = !open));
+    e.target.dataset.open = open ? "1" : ""; e.target.textContent = open ? "Show fewer types" : `Show all ${SCAM_TYPES.length + 1} types`;
+  });
   $("#corr-more")?.addEventListener("click", (e) => {
     const open = e.target.dataset.open !== "1";
     document.querySelectorAll(".corrlist .extra").forEach((li) => (li.hidden = !open));
@@ -1034,6 +1039,7 @@ async function viewNews(arg = "") {
     e.target.textContent = open ? "Show fewer corridors" : "Show more corridors";
   });
   figureCleanup = mountFigure($("#figure"));
+  mountImpact(); renderSeeing();
   // map
   const map = baseMap($("#newsmap"), { center: [20, 40], zoom: 2, minZoom: 2 });
   if (map) {
@@ -1094,10 +1100,10 @@ async function viewNews(arg = "") {
         </div></li>`;
     }).join("") || `<li class="muted">No articles match.</li>`;
   };
-  $("#more").addEventListener("click", () => { state.limit += 20; renderArticles(); });
+  $("#more").addEventListener("click", () => { state.limit += 10; renderArticles(); });
   if (state.typology) $("#nf-typ").value = state.typology;
-  const setCountry = (k) => { state.country = k; state.limit = 20; renderArticles(); if (k) $("#articles").scrollIntoView({ behavior: "smooth", block: "start" }); };
-  $("#nf-typ").addEventListener("change", (e) => { state.typology = e.target.value || null; state.limit = 20; renderArticles(); });
+  const setCountry = (k) => { state.country = k; state.limit = 10; renderArticles(); if (k) $("#articles").scrollIntoView({ behavior: "smooth", block: "start" }); };
+  $("#nf-typ").addEventListener("change", (e) => { state.typology = e.target.value || null; state.limit = 10; renderArticles(); });
   main.querySelectorAll("[data-country]").forEach((b) => b.addEventListener("click", () => setCountry(b.dataset.country)));
   renderArticles();
   if (state.country || state.typology) $("#articles").closest("section").scrollIntoView();
@@ -1170,15 +1176,14 @@ function viewCheck(kindArg = "") {
           <p class="sub"><strong>Before you trust someone online, check the situation.</strong> A second opinion for conversations, profiles, invitations and offers. It looks for warning signs of scams, grooming, coercion and exploitation, then suggests what to consider and where to get confidential help. <strong>Nothing you enter is stored unless you choose to submit it, and if you do, it will be anonymous.</strong></p>
         </div>
       </section>
-      ${impactSections()}
-      ${logosSection()}
-      ${globeSection()}
       <div class="kinds-head">
-        <h1>VibeChecker</h1>
+        <h2 class="kinds-title">What do you want to check?</h2>
         <a class="ghostlink" href="#/report">Report wrong vibes</a>
       </div>
       ${kindsNav}
-      <section class="seeing" id="seeing" aria-live="polite"></section>
+      ${impactStrip()}
+      ${globeSection()}
+      ${logosSection()}
     </div>`) + `
     ${k ? `
     <form id="check" class="panel">
@@ -1201,7 +1206,7 @@ function viewCheck(kindArg = "") {
     </form>
     <div id="out" aria-live="polite"></div>` : ""}`;
   if (!k) { mountImpact(); mountGlobe($("#globe")); }
-  if (!k) { renderSeeing(); return; }
+  if (!k) return;
   if (prefill.u || prefill.t) {
     const url = $("#check [name=postingUrl]"), ta = $("#check [name=posting]");
     if (url && prefill.u) url.value = prefill.u;
@@ -1772,6 +1777,9 @@ function viewMethodology() {
       <h2 id="m-data">Training data</h2>
       <p>The only public labeled corpus of job postings (EMSCAD) is from 2014; you will need to build your own from FTC/BBB narratives, r/Scams, and Adzuna negatives. EMSCAD predates task scams and contains almost no URLs or emails, so it can't train the domain layer. The anonymised report ledger is designed to become that labeled set, with Adzuna and ATS-listed postings as negatives.</p>
 
+      <h2 id="m-newsbuild">How the news page is built</h2>
+      <p>News is gathered through Tavily's news search with a fixed set of queries (listed in <code>scripts/fetch-news.mjs</code>), filtered for relevance and de-duplicated. Countries are matched from names, nationality words and known compound hubs. A nationality counts as an origin only in a sentence about victims; capital cities count as plain mentions because they are usually datelines. Every corridor on the page lists the words it came from.</p>
+
       <h2 id="m-agent">Automation: the agent</h2>
       <p>An agent (<code>scripts/agent.mjs</code>, skills in <code>docs/agent-openapi.yaml</code>) runs the same check as this site on job postings, stores anonymised results, and drafts reports for the platform, the company whose name is being used, and the FTC or FBI IC3. It follows two rules. It never scrapes platforms that forbid it: LinkedIn and Handshake postings reach it only when a person shares them or through a partnership feed, while ATS boards with public APIs (Greenhouse, Lever, Ashby) are read directly. And it never sends anything itself: every report waits in a review queue, a person approves it, and each draft says the warning signs come from an automated check, not a finding. Outcomes are logged so warning signs that reviewers keep dismissing can be tuned down. Built to run as Copilot Studio skills on Azure Functions, with review cards in Teams. Details in <a href="https://github.com/carolina-moron/vibe-check/blob/main/docs/agent.md" target="_blank" rel="noopener">docs/agent.md</a>.</p>
 
@@ -1965,18 +1973,19 @@ const logosSection = () => `
       <a class="logo-item" href="https://innovationstudio.microsoft.com/hackathons" target="_blank" rel="noopener"><img src="assets/partners/microsoft.png" alt="Microsoft"><span>Global Hackathon · Hack for Good</span></a>
       <a class="logo-item" href="https://www.microsoft.com/en-us/garage/" target="_blank" rel="noopener"><img src="assets/partners/the-garage.png" alt="The Garage"><span>New York City</span></a>
     </div>`;
-function impactSections() {
+// Detailed counters and charts for the About page.
+function impactDetail() {
   return `
-    <section class="why" id="why">
-      <div class="why-head"><div class="eyebrow mono">Impact</div><h2>What VibeCheck has done <span class="fine">since 15 September 2026</span></h2></div>
-      <div class="impact" id="impact">
+    <section class="why" id="impact-detail">
+      <div class="why-head scale-head"><h2>What VibeCheck has done <span class="fine">since 15 September 2026</span></h2></div>
+      <div class="impact">
         <div class="stats impact-stats">
           <div><b id="imp-checks">–</b><span>checks run</span></div>
           <div><b id="imp-signs">–</b><span>warning signs found</span></div>
           <div><b id="imp-acted">–</b><span>reports acted on</span></div>
           <div><b id="imp-checked">–</b><span>postings checked by the agent</span></div>
           <div><b id="imp-approved">–</b><span>reports approved by a reviewer</span></div>
-          <div><b>${cases.length}</b><span>researched cases mapped</span></div>
+          <div><b>${cases.length}</b><span>researched cases</span></div>
           <div><b>${signals.signals.length}</b><span>warning-sign rules</span></div>
         </div>
         <div class="viz-row">
@@ -1985,7 +1994,30 @@ function impactSections() {
         </div>
         <p class="fine">Counters come from anonymous check events (kind, score tier and which warning signs, never the text) and the agent's review log. They start low on purpose: we report outcomes, not promises.</p>
       </div>
-      <div class="why-head scale-head"><div class="eyebrow mono">Why it matters</div><h2>The scale, right now</h2>
+    </section>`;
+}
+// Compact impact strip for the landing page: three numbers and the outcome bar.
+function impactStrip() {
+  return `
+    <section class="why compact" id="why">
+      <div class="why-head"><div class="eyebrow mono">Impact since 15 September 2026</div></div>
+      <div class="impact" id="impact">
+        <div class="stats impact-stats">
+          <div><b id="imp-checks">–</b><span>checks run</span></div>
+          <div><b id="imp-signs">–</b><span>warning signs found</span></div>
+          <div><b id="imp-acted">–</b><span>reports acted on</span></div>
+          <div><b>${cases.length}</b><span>researched cases</span></div>
+        </div>
+        <div class="viz-row one"><div class="viz"><div class="tierbar" id="viz-tiers"></div><p class="fine" id="viz-tiers-note"></p></div></div>
+        <p class="fine">Live counters from anonymous checks and the agent's review log. <a href="#/news">The scale of the problem, and what the news shows →</a></p>
+      </div>
+    </section>`;
+}
+// Full statistics block: the scale tickers, charts and sourced groups, plus the agent's detail. Lives on Why it matters.
+function scaleBlock() {
+  return `
+    <section class="why" id="scale-why">
+      <div class="why-head"><div class="eyebrow mono">Why it matters</div><h2>The scale, right now</h2>
         <p class="fine">Reported figures turned into rates. Counters tick from the moment you opened this page. Every number links to its source, and reported figures are a floor: most scams and most trafficking are never reported.</p></div>
       <div class="scale" id="scale" hidden>
         <div class="scale-grid" id="scale-grid"></div>
@@ -2058,21 +2090,19 @@ async function viewAudiences(which = "") {
 }
 
 function viewTeam() {
+  setTimeout(mountImpact, 0);
   main.innerHTML = `
     <section class="hero small">
       <div class="eyebrow mono">About</div>
       <h1>Who made VibeCheck, and why</h1>
-      <p class="lede">VibeCheck was built at The Garage in New York City for the Hack for Good track of the Microsoft Global Hackathon, with the nonprofit <a href="https://apneaap.org" target="_blank" rel="noopener">Apne Aap Women Worldwide</a> and the <a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a>. It helps people recognise warning signs of scams and exploitation before they act.</p>
+      <p class="lede">VibeCheck was built at The Garage in New York City for the Hack for Good track of the Microsoft Global Hackathon, with the nonprofit <a href="https://apneaap.org" target="_blank" rel="noopener">Apne Aap Women Worldwide</a> and the <a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a>. Everyone should be able to get a second opinion before trusting someone online: VibeCheck turns public records, enforcement data and the patterns in real cases into a check anyone can run, and always ends with where to get confidential help.</p>
       <p class="stats home-cta"><a class="help-btn" href="#/">Run a check →</a> <a class="ghostlink" href="#/methodology">Methodology</a> <a class="ghostlink" href="#/partnerships">Integrate VibeCheck</a></p>
     </section>
+    ${impactDetail()}
     <div class="poster-row">
       <figure class="poster preview"><a href="assets/poster.html" target="_blank" rel="noopener"><img src="assets/poster.png" alt="VibeCheck one-page overview for the Hack for Good track of the Microsoft Global Hackathon"></a></figure>
       <div><h2>The one-pager</h2><p>Problem, solution, what it does and why it stands out in Hack for Good, on one page.</p><p class="btns"><a class="ghostlink" href="assets/poster.html" target="_blank" rel="noopener">Open full size ↗</a> <a class="ghostlink" href="assets/poster.png" download>Download PNG</a></p></div>
     </div>
-    <article class="panel">
-      <h2>Mission</h2>
-      <p>Everyone should be able to get a second opinion before trusting someone online. VibeCheck combines public records, enforcement data and the patterns in real cases into a check anyone can run, and always ends with where to get confidential help.</p>
-    </article>
     <article class="panel team">
       <h2>The team</h2>
       <div class="people">
@@ -2113,16 +2143,8 @@ function viewTeam() {
       </div>
     </article>
     <article class="panel">
-      <h2>Next 90 days</h2>
-      <ol class="roadmap">
-        <li><strong>By mid-October 2026:</strong> agent live on Azure Functions and Cosmos DB; Copilot Studio agent reviewing postings in Teams; first counters from real use.</li>
-        <li><strong>By November:</strong> pilot with Apne Aap Women Worldwide organisers, with Hindi and Bengali versions of the check and the guides (Azure AI Translator, reviewed by Apne Aap); pilot results published on this page.</li>
-        <li><strong>By December:</strong> Handshake institutional feed through a university career office; researched cases past 50; sponsored API keys for phishing and sanctions sources.</li>
-      </ol>
-      <p class="fine">Progress is tracked in the open in <a href="https://github.com/carolina-moron/vibe-check/blob/main/BACKLOG.md" target="_blank" rel="noopener">BACKLOG.md</a>.</p>
-    </article>
-    <article class="panel">
-      <h2>Get involved</h2>
+      <h2>Next steps and how to help</h2>
+      <p><strong>Next 90 days:</strong> agent live on Azure with Copilot Studio review in Teams; pilot with Apne Aap organisers, with Hindi and Bengali versions; Handshake feed through a university career office. Tracked in the open in <a href="https://github.com/carolina-moron/vibe-check/blob/main/BACKLOG.md" target="_blank" rel="noopener">BACKLOG.md</a>.</p>
       <p>Found a scam or trafficking case? <a href="#/report">Report wrong vibes</a>. Run a platform, a career office or an NGO? See <a href="#/partnerships">how to integrate VibeCheck</a> and the agent that checks postings and drafts reports for your review. Want to help improve VibeCheck? Contribute on <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">GitHub</a>.</p>
     </article>`;
 }
