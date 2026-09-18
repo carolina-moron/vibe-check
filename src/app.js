@@ -1117,7 +1117,7 @@ const KINDS = {
   travel: { label: "Invitation to travel or meet", hint: "Someone offering to bring you somewhere, or to meet in person", fields: ["destination", "profileUrl"], text: "The invitation or messages about the trip or meeting", questions: ["sponsor_travel_stranger", "meet_private", "carry_package", "vague_location", "document_retention", "secrecy", "visa_fraud"] },
   job: { label: "Job opportunity", hint: "A job ad, offer, or a recruiter who reached out", fields: ["postingUrl", "company", "website", "email", "jurisdiction", "workCountry"], text: "The job ad, offer or recruiter's message", questions: ["upfront_fee", "id_before_interview", "chat_only_contact", "employer_housing_travel", "vague_location", "document_retention", "debt_bondage", "payment_handling", "fast_promotion", "images_ai", "followers_fake", "website_mismatch", "public_complaints"] },
   housing: { label: "Housing offer", hint: "A room, flat or accommodation offered to you", fields: ["website", "email", "destination"], text: "The listing or messages from the landlord or host", questions: ["housing_unseen_deposit", "owner_unavailable", "housing_tied_to_job", "gift_card_crypto", "urgency", "images_ai", "public_complaints"] },
-  money: { label: "Request for money", hint: "Someone asking you to pay, lend, invest or send codes", fields: ["profileUrl", "website"], text: "What they asked for and why", questions: ["romance_money", "new_number_impersonation", "voice_clone_emergency", "deepfake_video_call", "celebrity_endorsement", "investment_pitch", "withdrawal_fees", "sextortion", "gift_card_crypto", "verification_code", "urgency", "threats_coercion", "secrecy", "public_complaints"] },
+  money: { label: "Request for money", hint: "Someone asking you to pay, lend, invest or send codes", fields: ["profileUrl", "website"], text: "What they asked for and why", questions: ["romance_money", "family_emergency_money", "new_number_impersonation", "voice_clone_emergency", "deepfake_video_call", "celebrity_endorsement", "investment_pitch", "withdrawal_fees", "sextortion", "gift_card_crypto", "verification_code", "urgency", "threats_coercion", "secrecy", "public_complaints"] },
   link: { label: "Link", hint: "A website or link someone sent you", fields: ["website", "email"], text: "The message the link came with", questions: ["link_shortener", "urgency", "verification_code", "upfront_fee", "website_mismatch", "images_ai", "public_complaints"] },
   other: { label: "Describe what's happening", hint: "Anything else that doesn't feel right", fields: ["profileUrl", "website", "email"], text: "Tell us what's happening, in your own words", questions: ["secrecy", "isolation", "threats_coercion", "meet_private", "gift_card_crypto", "urgency", "public_complaints"] },
 };
@@ -1205,13 +1205,26 @@ function viewCheck(kindArg = "") {
       <p class="fine">We check organisations, websites and email domains, never a private person's criminal record (see <a href="#/methodology">Methodology</a>). If you feel unsafe, <a href="#/help">get help now</a>.</p>
     </form>
     <div id="out" aria-live="polite"></div>` : ""}`;
-  if (!k) { mountImpact(); mountGlobe($("#globe")); }
+  if (!k) {
+    mountWorks(); mountGlobe($("#globe"));
+    // "See it catch one": a real scam message from the benchmark set, run through the check.
+    $("#try-scam")?.addEventListener("click", async (e) => {
+      e.preventDefault();
+      try {
+        const { messages } = await fetch("data/benchmark/scam-messages.json").then((r) => r.json());
+        const m = messages[Math.floor(Math.random() * messages.length)];
+        const kind = ["job", "conversation", "money", "profile"].includes(m.kind) ? m.kind : "conversation";
+        location.hash = `#/check/${kind}?t=${encodeURIComponent(m.text)}&auto=1`;
+      } catch { location.hash = "#/check/conversation"; }
+    });
+  }
   if (!k) return;
   if (prefill.u || prefill.t) {
     const url = $("#check [name=postingUrl]"), ta = $("#check [name=posting]");
     if (url && prefill.u) url.value = prefill.u;
     if (ta && prefill.t) ta.value = prefill.t;
     if (!ta?.value && url?.value && !parsePostingUrl(url.value)?.ats) { const w = $("#check [name=website]"); if (w) w.value = url.value; }
+    if (prefill.auto) setTimeout(() => $("#check")?.requestSubmit(), 50);
   }
 
   const form = $("#check");
@@ -1627,7 +1640,7 @@ function viewMethodology() {
       <nav class="toc" aria-label="On this page">
         <a href="#m-principles">Principles</a><a href="#m-check">What you can check</a><a href="#m-people">People are out of scope</a><a href="#m-score">Score and coverage</a>
         <a href="#m-signals">Risk signals</a><a href="#m-registers">Registers</a><a href="#m-cases">Case catalog</a>
-        <a href="#m-flsri">Structural risk index</a><a href="#m-news">News patterns</a><a href="#m-partners">Help contacts and CTDC</a><a href="#m-landscape">Related tools</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-agent">Automation</a><a href="#m-limits">Limits</a>
+        <a href="#m-flsri">Structural risk index</a><a href="#m-news">News patterns</a><a href="#m-partners">Help contacts and CTDC</a><a href="#m-landscape">Related tools</a><a href="#m-reports">Anonymous reports</a><a href="#m-social">Social and image signals</a><a href="#m-data">Training data</a><a href="#m-benchmark">Does it work</a><a href="#m-agent">Automation</a><a href="#m-limits">Limits</a>
       </nav>
 
       <h2 id="m-principles">Principles</h2>
@@ -1776,6 +1789,15 @@ function viewMethodology() {
 
       <h2 id="m-data">Training data</h2>
       <p>The only public labeled corpus of job postings (EMSCAD) is from 2014; you will need to build your own from FTC/BBB narratives, r/Scams, and Adzuna negatives. EMSCAD predates task scams and contains almost no URLs or emails, so it can't train the domain layer. The anonymised report ledger is designed to become that labeled set, with Adzuna and ATS-listed postings as negatives.</p>
+
+      <h2 id="m-benchmark">How we test whether it works</h2>
+      <p>Three sets, re-run with <code>npm run benchmark</code> and published in <code>data/benchmark/results.json</code>:</p>
+      <ul>
+        <li><strong>Real scam messages.</strong> Messages quoted on official pages (FTC consumer alerts, the US Department of Labor, IOM, Australia's Scamwatch, Hong Kong Police, UK Take Five), listed with their sources in <code>data/benchmark/scam-messages.json</code>. A message counts as caught when the text rules alone put it at Caution or above (score 20+), with no register lookups. "Wrong number" openers such as "hi, how are you?" are excluded: a greeting on its own is not something any check should flag.</li>
+        <li><strong>Legitimate postings.</strong> Public job postings from established employers' Greenhouse, Lever and Ashby boards, checked by the agent. Any of them landing at Caution or above counts as a false alarm.</li>
+        <li><strong>Documented cases.</strong> The 41 researched cases are not used as a detection test: their summaries are third-person prose, and the rules are written for the first-person messages people receive. They are the evidence base for the warning signs, not a test of them.</li>
+      </ul>
+      <p>The first run of this benchmark caught 2 of 20 real messages. The rules were rewritten against those messages, then re-checked against the legitimate postings so the fix did not add false alarms. The test suite fails if fewer than 19 of the 20 are caught.</p>
 
       <h2 id="m-newsbuild">How the news page is built</h2>
       <p>News is gathered through Tavily's news search with a fixed set of queries (listed in <code>scripts/fetch-news.mjs</code>), filtered for relevance and de-duplicated. Countries are matched from names, nationality words and known compound hubs. A nationality counts as an origin only in a sentence about victims; capital cities count as plain mentions because they are usually datelines. Every corridor on the page lists the words it came from.</p>
@@ -1994,22 +2016,26 @@ function impactDetail() {
       </div>
     </section>`;
 }
-// Compact impact strip for the landing page: three numbers and the outcome bar.
+// "Does it work?": benchmark results for the landing page, from data/benchmark/results.json.
 function impactStrip() {
   return `
     <section class="why compact" id="why">
-      <div class="why-head"><div class="eyebrow mono">Impact since 15 September 2026</div></div>
-      <div class="impact" id="impact">
-        <div class="stats impact-stats">
-          <div><b id="imp-checks">–</b><span>checks run</span></div>
-          <div><b id="imp-signs">–</b><span>warning signs found</span></div>
-          <div><b>${cases.length}</b><span>researched cases</span></div>
-          <div><b>${signals.signals.length}</b><span>warning-sign rules</span></div>
-        </div>
-        <div class="viz-row one"><div class="viz"><div class="tierbar" id="viz-tiers"></div><p class="fine" id="viz-tiers-note"></p></div></div>
-        <p class="fine">Live counters from anonymous checks and the agent's review log. <a href="#/news">The scale of the problem, and what the news shows →</a></p>
-      </div>
+      <div class="why-head"><div class="eyebrow mono">Does it work?</div><h2 class="works-title">Tested on real scams and real jobs</h2></div>
+      <div class="works" id="works"><p class="fine">Loading results…</p></div>
+      <p class="fine">Anyone can re-run this: <code>npm run benchmark</code>. Details in <a href="#/methodology">Methodology</a>. <a class="linklike" id="try-scam" href="#/check/conversation">See it catch one →</a></p>
     </section>`;
+}
+function mountWorks() {
+  fetch("data/benchmark/results.json").then((r) => r.json()).then((b) => {
+    const el = document.getElementById("works"); if (!el) return;
+    const row = (label, num, den, good, note) => `<div class="work-row"><div class="work-label">${label}<span class="fine">${note}</span></div><div class="work-bar"><i style="width:${den ? Math.round((num / den) * 100) : 0}%;background:${good ? "var(--c-low)" : "var(--c-high)"}"></i></div><div class="work-num">${num} <span>of ${den}</span></div></div>`;
+    el.innerHTML = [
+      b.scams.total ? row("Real scam messages caught", b.scams.flagged, b.scams.total, true, "Messages quoted by the FTC, IOM, Scamwatch and other authorities") : "",
+      row("Legitimate job postings left alone", b.legitimate.total - b.legitimate.wrongly_flagged, b.legitimate.total, true, "Public postings from established employers, checked by the agent"),
+      row("Documented cases mapped with sources", cases.length, cases.length, true, "Trafficking and scam cases on five continents"),
+    ].join("");
+    if (b.scams.total) window.__benchScams = b.detail.scams;
+  }).catch(() => { const el = document.getElementById("works"); if (el) el.innerHTML = `<p class="fine">Benchmark not run yet.</p>`; });
 }
 // Full statistics block: the scale tickers, charts and sourced groups, plus the agent's detail. Lives on Why it matters.
 function scaleBlock() {

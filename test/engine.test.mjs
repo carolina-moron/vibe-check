@@ -291,3 +291,17 @@ test("OFAC index: sanctioned entity matches by name or alias, individuals never 
   assert.equal(checkOfac("Quiet Bakery Ltd", ofac).verdict, "no-evidence-found");
   assert.equal(checkOfac("Quiet Bakery Ltd", null).verdict, "not-searched");
 });
+
+test("benchmark: real scam messages quoted by authorities are flagged at Caution or above", async () => {
+  const { score } = await import("../src/engine.js");
+  const { messages } = JSON.parse(readFileSync(new URL("../data/benchmark/scam-messages.json", import.meta.url)));
+  const caution = signals.tiers.find((t) => t.id === "caution").min;
+  const caught = messages.filter((m) => score(detectContent(m.text), signals).points >= caution).length;
+  assert.ok(caught >= messages.length - 1, `caught ${caught} of ${messages.length}`);
+});
+
+test("ordinary job-ad wording about completing tasks is not a task scam", () => {
+  const t = (x) => detectContent(x).map((h) => h.id);
+  assert.ok(!t("You're able to complete tasks in core areas within SLAs and support the company's goals.").includes("task_scam"));
+  assert.ok(t("Complete simple tasks and earn a commission for every task.").includes("task_scam"));
+});

@@ -76,7 +76,7 @@
     {
       "id": "no_experience_high_pay",
       "category": "offer",
-      "weight": 8,
+      "weight": 15,
       "label": "\"No experience needed\" combined with urgency or high pay",
       "why": "Broad-funnel lure.",
       "dimension": "money"
@@ -116,7 +116,7 @@
     {
       "id": "lure_role",
       "category": "offer",
-      "weight": 6,
+      "weight": 10,
       "label": "Role type frequently used as a lure (modeling, hostess, \"customer service\" abroad, crypto/data entry)",
       "why": "Low-verification roles are easy to fabricate.",
       "dimension": "money"
@@ -488,6 +488,22 @@
       "dimension": "identity",
       "label": "The website has been flagged as malicious in public security scans",
       "why": "Security scanners (urlscan.io) have seen this domain used for phishing or fraud. Don't enter details or pay on it."
+    },
+    {
+      "id": "family_emergency_money",
+      "category": "social",
+      "weight": 30,
+      "dimension": "pressure",
+      "label": "A message or call from a relative in trouble (hospital, jail, stranded) asking for money right away",
+      "why": "The family-emergency scam. The FTC's advice: hang up, and call the person back on a number you already have. Real emergencies survive a five-minute check."
+    },
+    {
+      "id": "task_scam",
+      "category": "offer",
+      "weight": 25,
+      "dimension": "money",
+      "label": "Easy online tasks, product boosting or app testing paid by commission, often with account top-ups",
+      "why": "Task scams pay small amounts first, then require you to deposit money to unlock more tasks. The FTC and Scamwatch both flag them as among the fastest-growing job scams."
     }
   ],
   "tiers": [

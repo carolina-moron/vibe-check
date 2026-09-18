@@ -891,3 +891,13 @@ footer.site .fine { font-size: var(--fs-1); }
 .news-details { border: var(--rule); margin: 20px 0 0; }
 .news-details > summary { cursor: pointer; padding: 12px 16px; font-size: var(--fs-1); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
 .news-details .dash { margin: 0; border-top: var(--rule); border-left: 0; }
+.works-title { margin: 4px 0 12px; text-transform: none; letter-spacing: 0; font-size: var(--fs-3); }
+.work-row { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr) auto; gap: 16px; align-items: center; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.25); }
+.work-row:first-child { border-top: 0; }
+.work-label { font-weight: 600; }
+.work-label .fine { display: block; font-weight: 400; }
+.work-bar { height: 14px; background: rgba(255,255,255,.15); }
+.work-bar i { display: block; height: 100%; }
+.work-num { font-size: 1.6rem; font-weight: 600; font-variant-numeric: tabular-nums; color: #8CB8F5; white-space: nowrap; }
+.work-num span { font-size: var(--fs-1); color: rgba(255,255,255,.8); font-weight: 400; }
+@media (max-width: 860px) { .work-row { grid-template-columns: minmax(0, 1fr); gap: 6px; } }

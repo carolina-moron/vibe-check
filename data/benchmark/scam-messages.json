@@ -1,0 +1,225 @@
+{
+  "note": "Real scam messages quoted on official pages (FTC, DOL, IOM, Scamwatch, Hong Kong Police ADCC, UK Take Five). Where a page quoted fragments of an ad or script, the fragments are joined into one message and the item says so in 'note'. 'Wrong number' openers such as 'hi, how are you?' are excluded: a greeting alone is not something any check should flag.",
+  "messages": [
+    {
+      "id": "ftc-grandma-hospital",
+      "kind": "money",
+      "text": "Grandma: I'm in the hospital, sick, please wire money right away.",
+      "type": "Grandparent scam",
+      "publisher": "FTC",
+      "title": "Grandparent scams in the age of Coronavirus",
+      "date": "2020-04-03",
+      "url": "https://consumer.ftc.gov/consumer-alerts/2020/04/grandparent-scams-age-coronavirus",
+      "note": "Quoted as a message on the page"
+    },
+    {
+      "id": "ftc-grandpa-overseas",
+      "kind": "money",
+      "text": "Grandpa: I'm stuck overseas, please send money.",
+      "type": "Grandparent scam",
+      "publisher": "FTC",
+      "title": "Grandparent scams in the age of Coronavirus",
+      "date": "2020-04-03",
+      "url": "https://consumer.ftc.gov/consumer-alerts/2020/04/grandparent-scams-age-coronavirus",
+      "note": "Quoted as a message on the page"
+    },
+    {
+      "id": "ftc-lost-wallet",
+      "kind": "money",
+      "text": "I lost my wallet and ID. I'm stranded — please wire money.",
+      "type": "Family emergency scam",
+      "publisher": "FTC",
+      "title": "Scammers create fake emergencies to get your money",
+      "date": "2018-07-03",
+      "url": "https://consumer.ftc.gov/consumer-alerts/2018/07/scammers-create-fake-emergencies-get-your-money",
+      "note": "Quoted as a message on the page"
+    },
+    {
+      "id": "ftc-grandson-jail",
+      "kind": "money",
+      "text": "Your grandson is being held in jail. He needs bail money right away.",
+      "type": "Family emergency scam (fake lawyer or police)",
+      "publisher": "FTC",
+      "title": "Scammers create fake emergencies to get your money",
+      "date": "2018-07-03",
+      "url": "https://consumer.ftc.gov/consumer-alerts/2018/07/scammers-create-fake-emergencies-get-your-money",
+      "note": "Quoted as a message on the page"
+    },
+    {
+      "id": "ftc-grandma-bail",
+      "kind": "money",
+      "text": "Grandma, I need money for bail.",
+      "type": "Grandparent scam",
+      "publisher": "FTC",
+      "title": "Grandkid and Family Scams (Pass It On)",
+      "date": "",
+      "url": "https://consumer.ftc.gov/features/pass-it-on/impersonator-scams/grandkid-scams",
+      "note": "Quoted as a message on the page"
+    },
+    {
+      "id": "takefive-hi-dad",
+      "kind": "conversation",
+      "text": "Hi Dad, I've lost my phone and can't get on to my mobile banking I urgently need to pay a bill, is there any chance you can help?",
+      "type": "Hi Mum/Dad impersonation",
+      "publisher": "UK Take Five to Stop Fraud",
+      "title": "Impersonation scams",
+      "date": "",
+      "url": "https://www.takefive-stopfraud.org.uk/protect-yourself/impersonation-fraud/",
+      "note": "Quoted as a message on the page"
+    },
+    {
+      "id": "scamwatch-amelia-task",
+      "kind": "job",
+      "text": "Sorry to bother you! I'm Amelia from <redacted>. We recommend a full time/part-time employee job for you, with an hourly salary of 50-200 Australian dollars! Conduct internal testing for some companies' online apps. The work is easy, and you can work 1 to 2 hours each time, and you can obtain a work permit at least 5 times a week. Please note that you must be over 22 years old for this job. If you are over 22 years old and would like to apply for this job, please reply \"Yes\" or \"Interested\".",
+      "type": "Job / task scam",
+      "publisher": "Scamwatch (Australia)",
+      "title": "Scam alert: job scams on the rise",
+      "date": "2023-10-20",
+      "url": "https://www.scamwatch.gov.au/about-us/news-and-alerts/scam-alert-job-scams-on-the-rise",
+      "note": "Quoted as a message on the page"
+    },
+    {
+      "id": "scamwatch-amazon-parttime",
+      "kind": "job",
+      "text": "Hello. Are you looking for a part-time job now? We provide sales growth services for Amazon, and you can get a stable income of $10-200 in just one hour a day.",
+      "type": "Task / side-hustle scam",
+      "publisher": "Scamwatch (Australia)",
+      "title": "Scam alert: Jobs and 'side hustle' scams",
+      "date": "2024-01-22",
+      "url": "https://www.scamwatch.gov.au/about-us/news-and-alerts/scam-alert-jobs-and-side-hustle-scams",
+      "note": "Quoted as a message on the page"
+    },
+    {
+      "id": "scamwatch-candy-boxes",
+      "kind": "job",
+      "text": "We are looking for staff to assemble candy boxes from home. No experience needed. Free training.",
+      "type": "Work-from-home / pay-to-work scam",
+      "publisher": "Scamwatch (Australia)",
+      "title": "Scam alert: Jobs and 'side hustle' scams",
+      "date": "2024-01-22",
+      "url": "https://www.scamwatch.gov.au/about-us/news-and-alerts/scam-alert-jobs-and-side-hustle-scams",
+      "note": "Quoted fragments joined into one message"
+    },
+    {
+      "id": "adcc-click-farm-platform",
+      "kind": "money",
+      "text": "Please enter [1] for topping up points. Please wait patiently for the order to be matched.",
+      "type": "Task (click farming) scam platform",
+      "publisher": "Hong Kong Police ADCC",
+      "title": "Click Farming is Way to Bankruptcy",
+      "date": "2025-02-20",
+      "url": "https://www.adcc.gov.hk/en-hk/alerts-detail/alerts-1892474029897879554.html",
+      "note": "Quoted fragments joined into one message"
+    },
+    {
+      "id": "adcc-click-farm-ad",
+      "kind": "job",
+      "text": "Hefty commission. Qualification or experience not needed. Work from home. Recruiting click farmers, operators and likers.",
+      "type": "Employment fraud (click farm) ad",
+      "publisher": "Hong Kong Police ADCC",
+      "title": "Employment Fraud: 'Click Farm'",
+      "date": "2022-03-30",
+      "url": "https://www.adcc.gov.hk/en-hk/alerts-detail/alerts-1509000900093759490.html",
+      "note": "Quoted fragments joined into one message"
+    },
+    {
+      "id": "ftc-photo-fake-check",
+      "kind": "money",
+      "text": "I like your photo and want to pay you thousands of dollars to use it. Deposit it, take some money out to send to the artist for supplies, and keep the rest.",
+      "type": "Fake check / fake job scam",
+      "publisher": "FTC",
+      "title": "Scammers target young adults on social media with fake check scam",
+      "date": "2024-07-24",
+      "url": "https://consumer.ftc.gov/consumer-alerts/2024/07/scammers-target-young-adults-social-media-fake-check-scam",
+      "note": "Quoted as a message on the page"
+    },
+    {
+      "id": "dol-owcp-fees",
+      "kind": "money",
+      "text": "Your claim will not be processed or your benefits will not be received unless you pay certain required fees.",
+      "type": "Fee demand (government impersonation)",
+      "publisher": "US Department of Labor",
+      "title": "Recognizing Common Scams",
+      "date": "",
+      "url": "https://www.dol.gov/agencies/owcp/preventscams",
+      "note": "Quoted as a message on the page"
+    },
+    {
+      "id": "iom-china-type",
+      "kind": "job",
+      "text": "As long as you can type, you're qualified. High-paying overseas job, apply now.",
+      "type": "Fraudulent overseas job ad",
+      "publisher": "IOM China",
+      "title": "Be Cautious of Fraudulent High-paying Overseas Job Offers",
+      "date": "2025-05-15",
+      "url": "https://china.iom.int/en/news/be-cautious-fraudulent-high-paying-overseas-job-offers",
+      "note": "Quoted fragments joined into one message"
+    },
+    {
+      "id": "iom-ethiopia-thailand",
+      "kind": "job",
+      "text": "International job: if you can speak English and have computer skills, you can get a good job in Thailand, earning around USD 1,000.",
+      "type": "Trafficking recruitment ad (survivor's account)",
+      "publisher": "IOM Ethiopia",
+      "title": "The Job Offer that Became a Trap",
+      "date": "2026-08-05",
+      "url": "https://ethiopia.iom.int/stories/job-offer-became-trap-samuels-long-road-back-home-myanmar-ethiopia",
+      "note": "Quoted fragments joined into one message"
+    },
+    {
+      "id": "scamwatch-celebrity-250",
+      "kind": "money",
+      "text": "Deposit $250 into your account and get a guaranteed withdrawal of $30,000 every month.",
+      "type": "Fake celebrity / deepfake investment ad",
+      "publisher": "Scamwatch (Australia)",
+      "title": "Scam alert: Fake celebrity online investment scams",
+      "date": "2024-03-01",
+      "url": "https://www.scamwatch.gov.au/about-us/news-and-alerts/scam-alert-fake-celebrity-online-investment-scams",
+      "note": "Quoted as a message on the page"
+    },
+    {
+      "id": "ftc-gag-order",
+      "kind": "money",
+      "text": "I'm in trouble, I need bail. Don't tell anyone, I'm under a gag order.",
+      "type": "Grandparent scam script",
+      "publisher": "FTC",
+      "title": "Don't open your door to grandparent scams",
+      "date": "2021-04-13",
+      "url": "https://consumer.ftc.gov/consumer-alerts/2021/04/dont-open-your-door-grandparent-scams",
+      "note": "Quoted fragments joined into one message"
+    },
+    {
+      "id": "scamwatch-topup-frozen",
+      "kind": "money",
+      "text": "Your account has been frozen. You need to top it up before you can withdraw.",
+      "type": "Romance-investment withdrawal fee",
+      "publisher": "Scamwatch (Australia)",
+      "title": "Scam alert: Online dating and investment scams",
+      "date": "2024-02-12",
+      "url": "https://www.scamwatch.gov.au/about-us/news-and-alerts/scam-alert-online-dating-and-investment-scams",
+      "note": "Quoted fragments joined into one message"
+    },
+    {
+      "id": "ftc-task-scam",
+      "kind": "job",
+      "text": "Make good money doing product boosting and optimization tasks. You earn a commission for every task.",
+      "type": "Task scam",
+      "publisher": "FTC",
+      "title": "Task scams create the illusion of making money",
+      "date": "2024-12-12",
+      "url": "https://consumer.ftc.gov/consumer-alerts/2024/11/task-scams-create-illusion-making-money",
+      "note": "Quoted fragments joined into one message"
+    },
+    {
+      "id": "scamwatch-positions-topup",
+      "kind": "job",
+      "text": "There are only 20 or 25 positions available. To unlock the next task you need to top up your account.",
+      "type": "Job recruitment / task scam",
+      "publisher": "Scamwatch (Australia)",
+      "title": "Scam alert: Job recruitment scams",
+      "date": "2026-05-20",
+      "url": "https://www.scamwatch.gov.au/about-us/news-and-alerts/scam-alert-job-recruitment-scams",
+      "note": "Quoted fragments joined into one message"
+    }
+  ]
+}

@@ -1,11 +1,15 @@
 {
-  "generated": "2026-09-17T20:19:37.423Z",
+  "generated": "2026-09-18T15:54:45.905Z",
   "store": "files",
   "tiers": {
     "unverified": 100,
     "high": 1
   },
   "top_signs": [
+    {
+      "id": "no_archive",
+      "n": 25
+    },
     {
       "id": "urgency",
       "n": 6
@@ -23,6 +27,10 @@
       "n": 1
     },
     {
+      "id": "no_experience_high_pay",
+      "n": 1
+    },
+    {
       "id": "employer_housing_travel",
       "n": 1
     },
@@ -33,16 +41,12 @@
     {
       "id": "pay_too_high",
       "n": 1
-    },
-    {
-      "id": "no_experience_high_pay",
-      "n": 1
     }
   ],
   "checks_run": 101,
   "site_checks": 0,
   "postings_checked": 101,
-  "warning_signs_found": 14,
+  "warning_signs_found": 39,
   "serious": 1,
   "queued": 1,
   "reviewed": 0,

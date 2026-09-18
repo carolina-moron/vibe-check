@@ -1,0 +1,462 @@
+{
+  "generated": "2026-09-18T15:54:45.953Z",
+  "caution_threshold": 20,
+  "scams": {
+    "total": 20,
+    "flagged": 20,
+    "missed": []
+  },
+  "cases": {
+    "total": 41,
+    "recognised": 14,
+    "missed": [
+      "abidjan-fake-canada-jobs-fraud-ring",
+      "accra-romance-scam-house-57-nigerians",
+      "arup-hong-kong-deepfake-video-call",
+      "bengaluru-tiktok-ridoy-bangladeshi-trafficking",
+      "bolarinwa-moorestown-domestic-servitude",
+      "brandon-sartor-multistate-sex-trafficking",
+      "brazil-gisele-bundchen-deepfake-ads",
+      "colombia-vaupes-domestic-servitude",
+      "cuautitlan-facebook-job-lure-sex-trafficking",
+      "delon-smith-daytona-sex-trafficking",
+      "dubai-al-hamriya-forced-prostitution-2020",
+      "dzaleka-refugee-camp-network",
+      "hong-kong-hung-hom-deepfake-romance-ring",
+      "hyderabad-nia-bangladeshi-girls-trafficking",
+      "iyamu-madam-sandra-nigeria-germany",
+      "kalu-filipino-nurses-colorado-h1b",
+      "medellin-greece-waitress-lure-sex-trafficking",
+      "nepal-malawi-us-route-agent",
+      "new-hampshire-ai-biden-robocall",
+      "nxivm-raniere-sex-trafficking",
+      "ogoshi-brothers-sextortion-lagos",
+      "operation-blooming-onion",
+      "prince-group-chen-zhi",
+      "satnam-singh-latina-agrilovato",
+      "slovak-ocg-uk-modern-slavery",
+      "spain-operacion-balarama-nules-farm-workers",
+      "worldwide-executive-job-search-solutions"
+    ]
+  },
+  "legitimate": {
+    "total": 100,
+    "wrongly_flagged": 0,
+    "sources": "Public Greenhouse, Lever and Ashby boards of established employers, checked by the agent"
+  },
+  "detail": {
+    "scams": [
+      {
+        "id": "ftc-grandma-hospital",
+        "type": "Grandparent scam",
+        "flagged": true,
+        "signs": [
+          "family_emergency_money"
+        ]
+      },
+      {
+        "id": "ftc-grandpa-overseas",
+        "type": "Grandparent scam",
+        "flagged": true,
+        "signs": [
+          "family_emergency_money"
+        ]
+      },
+      {
+        "id": "ftc-lost-wallet",
+        "type": "Family emergency scam",
+        "flagged": true,
+        "signs": [
+          "family_emergency_money"
+        ]
+      },
+      {
+        "id": "ftc-grandson-jail",
+        "type": "Family emergency scam (fake lawyer or police)",
+        "flagged": true,
+        "signs": [
+          "family_emergency_money"
+        ]
+      },
+      {
+        "id": "ftc-grandma-bail",
+        "type": "Grandparent scam",
+        "flagged": true,
+        "signs": [
+          "romance_money",
+          "family_emergency_money"
+        ]
+      },
+      {
+        "id": "takefive-hi-dad",
+        "type": "Hi Mum/Dad impersonation",
+        "flagged": true,
+        "signs": [
+          "urgency",
+          "new_number_impersonation"
+        ]
+      },
+      {
+        "id": "scamwatch-amelia-task",
+        "type": "Job / task scam",
+        "flagged": true,
+        "signs": [
+          "task_scam"
+        ]
+      },
+      {
+        "id": "scamwatch-amazon-parttime",
+        "type": "Task / side-hustle scam",
+        "flagged": true,
+        "signs": [
+          "task_scam",
+          "pay_too_high"
+        ]
+      },
+      {
+        "id": "scamwatch-candy-boxes",
+        "type": "Work-from-home / pay-to-work scam",
+        "flagged": true,
+        "signs": [
+          "lure_role",
+          "no_experience_high_pay"
+        ]
+      },
+      {
+        "id": "adcc-click-farm-platform",
+        "type": "Task (click farming) scam platform",
+        "flagged": true,
+        "signs": [
+          "task_scam"
+        ]
+      },
+      {
+        "id": "adcc-click-farm-ad",
+        "type": "Employment fraud (click farm) ad",
+        "flagged": true,
+        "signs": [
+          "lure_role",
+          "no_experience_high_pay"
+        ]
+      },
+      {
+        "id": "ftc-photo-fake-check",
+        "type": "Fake check / fake job scam",
+        "flagged": true,
+        "signs": [
+          "payment_handling"
+        ]
+      },
+      {
+        "id": "dol-owcp-fees",
+        "type": "Fee demand (government impersonation)",
+        "flagged": true,
+        "signs": [
+          "upfront_fee"
+        ]
+      },
+      {
+        "id": "iom-china-type",
+        "type": "Fraudulent overseas job ad",
+        "flagged": true,
+        "signs": [
+          "lure_role",
+          "no_experience_high_pay"
+        ]
+      },
+      {
+        "id": "iom-ethiopia-thailand",
+        "type": "Trafficking recruitment ad (survivor's account)",
+        "flagged": true,
+        "signs": [
+          "lure_role",
+          "pay_too_high"
+        ]
+      },
+      {
+        "id": "scamwatch-celebrity-250",
+        "type": "Fake celebrity / deepfake investment ad",
+        "flagged": true,
+        "signs": [
+          "investment_pitch"
+        ]
+      },
+      {
+        "id": "ftc-gag-order",
+        "type": "Grandparent scam script",
+        "flagged": true,
+        "signs": [
+          "secrecy",
+          "family_emergency_money"
+        ]
+      },
+      {
+        "id": "scamwatch-topup-frozen",
+        "type": "Romance-investment withdrawal fee",
+        "flagged": true,
+        "signs": [
+          "withdrawal_fees"
+        ]
+      },
+      {
+        "id": "ftc-task-scam",
+        "type": "Task scam",
+        "flagged": true,
+        "signs": [
+          "task_scam"
+        ]
+      },
+      {
+        "id": "scamwatch-positions-topup",
+        "type": "Job recruitment / task scam",
+        "flagged": true,
+        "signs": [
+          "withdrawal_fees",
+          "task_scam"
+        ]
+      }
+    ],
+    "cases": [
+      {
+        "id": "abidjan-fake-canada-jobs-fraud-ring",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "accra-romance-scam-house-57-nigerians",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "alabuga-start",
+        "recognised": true,
+        "signs": [
+          "debt_bondage",
+          "employer_housing_travel",
+          "housing_tied_to_job"
+        ]
+      },
+      {
+        "id": "arup-hong-kong-deepfake-video-call",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "bengaluru-tiktok-ridoy-bangladeshi-trafficking",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "bolarinwa-moorestown-domestic-servitude",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "brandon-sartor-multistate-sex-trafficking",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "brazil-gisele-bundchen-deepfake-ads",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "brazilians-kk-park-thailand-job-offer",
+        "recognised": true,
+        "signs": [
+          "high_risk_region"
+        ]
+      },
+      {
+        "id": "cbi-hisar-instagram-scam-compound-recruitment",
+        "recognised": true,
+        "signs": [
+          "chat_only_contact"
+        ]
+      },
+      {
+        "id": "colombia-vaupes-domestic-servitude",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "cuautitlan-facebook-job-lure-sex-trafficking",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "daren-li-pig-butchering-laundering",
+        "recognised": true,
+        "signs": [
+          "chat_only_contact",
+          "investment_pitch",
+          "gift_card_crypto"
+        ]
+      },
+      {
+        "id": "delon-smith-daytona-sex-trafficking",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "dubai-al-hamriya-forced-prostitution-2020",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "dzaleka-refugee-camp-network",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "global-horizons-manpower",
+        "recognised": true,
+        "signs": [
+          "upfront_fee",
+          "employer_housing_travel"
+        ]
+      },
+      {
+        "id": "hong-kong-hung-hom-deepfake-romance-ring",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "huione-group",
+        "recognised": true,
+        "signs": [
+          "chat_only_contact"
+        ]
+      },
+      {
+        "id": "hyderabad-nia-bangladeshi-girls-trafficking",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "iyamu-madam-sandra-nigeria-germany",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "kalu-filipino-nurses-colorado-h1b",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "kings-romans-zhao-wei-gtsez",
+        "recognised": true,
+        "signs": [
+          "high_risk_region"
+        ]
+      },
+      {
+        "id": "kk-park-shwe-kokko-myawaddy",
+        "recognised": true,
+        "signs": [
+          "high_risk_region"
+        ]
+      },
+      {
+        "id": "los-villatoros-harvesting-h2a-forced-labor",
+        "recognised": true,
+        "signs": [
+          "upfront_fee"
+        ]
+      },
+      {
+        "id": "mattox-hudson-work-from-home-booklet-scheme",
+        "recognised": true,
+        "signs": [
+          "pay_too_high"
+        ]
+      },
+      {
+        "id": "medellin-greece-waitress-lure-sex-trafficking",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "nepal-malawi-us-route-agent",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "new-hampshire-ai-biden-robocall",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "new-hampshire-grandparent-bail-scam-courier",
+        "recognised": true,
+        "signs": [
+          "payment_handling",
+          "gift_card_crypto",
+          "family_emergency_money"
+        ]
+      },
+      {
+        "id": "nxivm-raniere-sex-trafficking",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "ogoshi-brothers-sextortion-lagos",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "operation-blooming-onion",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "prince-group-chen-zhi",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "satnam-singh-latina-agrilovato",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "saudi-arabia-kenyan-domestic-workers-amnesty",
+        "recognised": true,
+        "signs": [
+          "employer_housing_travel"
+        ]
+      },
+      {
+        "id": "signal-international",
+        "recognised": true,
+        "signs": [
+          "upfront_fee"
+        ]
+      },
+      {
+        "id": "slovak-ocg-uk-modern-slavery",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "spain-operacion-balarama-nules-farm-workers",
+        "recognised": false,
+        "signs": []
+      },
+      {
+        "id": "uk-operation-fort-polish-forced-labour",
+        "recognised": true,
+        "signs": [
+          "employer_housing_travel"
+        ]
+      },
+      {
+        "id": "worldwide-executive-job-search-solutions",
+        "recognised": false,
+        "signs": []
+      }
+    ]
+  }
+}

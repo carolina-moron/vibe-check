@@ -46,7 +46,7 @@ export async function getStore() {
 // Anonymous usage: the site reports {kind, tier, flags} per check. No text, no identifiers, no IP.
 export function summarise(events, records) {
   const checks = events.filter((e) => e.type === "check");
-  const agentChecks = checks.filter((e) => e.source === "agent");
+  const agentChecks = checks.filter((e) => e.source === "agent" || e.source === "submission");
   // Flagged postings are stored as records and also logged as events, so signs are counted once.
   const signs = checks.reduce((n, e) => n + (e.flags || 0), 0);
   const reviewed = records.filter((r) => ["approved", "dismissed", "sent"].includes(r.status));

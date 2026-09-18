@@ -11,7 +11,8 @@
     "import:flsri": "node scripts/import-flsri.mjs",
     "news": "node scripts/fetch-news.mjs",
     "import:ctdc": "node scripts/import-ctdc.mjs",
-    "import:ofac": "node scripts/import-ofac.mjs"
+    "import:ofac": "node scripts/import-ofac.mjs",
+    "benchmark": "node scripts/benchmark.mjs"
   },
   "devDependencies": {
     "i18n-iso-countries": "^7.14.0",
