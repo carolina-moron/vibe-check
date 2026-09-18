@@ -764,7 +764,7 @@ canvas.voice-photo { display: block; }
 .scale-head { margin-bottom: 14px; }
 .scale-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .scale-item { border: 1px solid rgba(255,255,255,.35); padding: 14px 16px; }
-.scale-big b { display: block; font-size: clamp(2rem, 1.4rem + 2.2vw, 3.4rem); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; color: #FFD166; }
+.scale-big b { display: block; font-size: clamp(2rem, 1.4rem + 2.2vw, 3.4rem); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; color: #8CB8F5; }
 .scale-big span { display: block; font-size: var(--fs-0); letter-spacing: .12em; text-transform: uppercase; opacity: .8; margin: 4px 0 10px; }
 .scale-rates { display: flex; gap: 14px; flex-wrap: wrap; font-size: var(--fs-1); margin-bottom: 8px; }
 .scale-rates b { font-variant-numeric: tabular-nums; }
@@ -774,7 +774,7 @@ canvas.voice-photo { display: block; }
 .scale-group h3 { margin: 0 0 6px; }
 .scale-group ul { margin: 0; padding: 0; list-style: none; }
 .scale-group li { font-size: var(--fs-1); margin-bottom: 8px; line-height: 1.45; }
-.scale-group li b { color: #FFD166; }
+.scale-group li b { color: #8CB8F5; }
 .scale-group li a { opacity: .7; margin-left: 4px; }
 @media (max-width: 860px) { .scale-grid, .scale-groups { grid-template-columns: minmax(0, 1fr); } }
 .logo-item img[src$="etc.jpg"] { max-height: 72px; }
@@ -790,7 +790,7 @@ canvas.voice-photo { display: block; }
 .why .impact { border: 0; border-top: 1px solid rgba(255,255,255,.35); padding: 18px 0 6px; margin-top: 8px; background: transparent; }
 .why .impact h3 { margin: 0 0 10px; }
 .why .impact-stats > div { border-right-color: rgba(255,255,255,.35); }
-.why .impact-stats b { color: #FFD166; }
+.why .impact-stats b { color: #8CB8F5; }
 .why .impact-stats span { color: rgba(255,255,255,.8); }
 .why .logos { margin: 18px auto 18px; }
 .why .globecard { border: 1px solid rgba(255,255,255,.35); margin-top: 0; }
@@ -873,7 +873,7 @@ footer.site .fine { font-size: var(--fs-1); }
 .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 6px 0 2px; vertical-align: middle; }
 .hbars.light li { color: var(--on-ink); }
 .hbars.light .hb { background: rgba(255,255,255,.15); }
-.hbars.light .hb i { background: #FFD166; }
+.hbars.light .hb i { background: #8CB8F5; }
 .hbars.light .mono { color: var(--on-ink); }
 .why .scale-head { margin-top: 26px; border-top: 1px solid rgba(255,255,255,.35); padding-top: 22px; }
 .why .impact { border-top: 0; padding-top: 0; margin-top: 0; }
