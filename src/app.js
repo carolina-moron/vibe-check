@@ -108,6 +108,15 @@ const flSrc = flsri.source;
 const flLink = (label = "FLSRI") => ext(flSrc.site, label);
 const bar = (v, color = "var(--ink)") => v == null ? `<span class="muted">—</span>` : `<span class="meter"><i style="width:${Math.round(v * 100)}%;background:${color}"></i></span><span class="mono">${v.toFixed(2)}</span>`;
 const tierChip = (t) => `<span class="fltier" style="--c:${FL_TIER[t].color}">${FL_TIER[t].label}</span>`;
+const flsriReadingGuide = () => `
+  <details class="context-guide">
+    <summary>How to read the phases, score and rank</summary>
+    <div class="context-guide-body">
+      <p><strong>Recruitment phase</strong> describes country conditions that can make it easier to recruit people into forced labour, such as deception, unequal access to work or recruitment debt. <strong>Exploitation phase</strong> describes conditions that can make control or forced labour easier after someone starts work or arrives, such as weak protection, isolation or tied immigration status.</p>
+      <p><strong>Composite</strong> combines both phases on a 0–1 scale: a higher number means more structural risk in the index, not more cases and not a finding about this employer or person.</p>
+      <p><strong>Rank</strong> compares the country with the ${flSrc.n_scored} countries scored by FLSRI: rank 1 is the highest structural risk. The range in parentheses is the 90% rank band, showing uncertainty in the estimate. For example, <span class="mono">12 (8–19)</span> means the likely rank is somewhere from 8 to 19.</p>
+    </div>
+  </details>`;
 
 let worldGeo = null;
 async function loadWorld() {
@@ -571,8 +580,9 @@ function flsriPanel(c) {
     <section class="panel span2">
       <h2>Structural conditions along the route</h2>
       <p class="fine">From the ETC ${flLink("Forced Labor Structural Risk Index")}. For countries where people were recruited, the Recruitment phase is the one to read; where they were exploited, the Exploitation phase. These are country conditions that make forced labour more likely. They are not evidence about anyone in this case and are not part of its score.</p>
+      ${flsriReadingGuide()}
       <div class="tblwrap"><table class="fltable">
-        <thead><tr><th>Country</th><th>Role on route</th><th>Recruitment phase</th><th>Exploitation phase</th><th>Composite</th><th>Rank (90% band)</th></tr></thead>
+        <thead><tr><th>Country</th><th>Role on route</th><th title="Country conditions connected with entering forced labour">Recruitment phase</th><th title="Country conditions connected with control or forced labour after arrival">Exploitation phase</th><th title="Combined structural-risk score from 0 to 1">Composite</th><th title="Rank among countries scored by FLSRI; lower number means higher risk">Rank (90% band)</th></tr></thead>
         <tbody>${rows.map((r) => r.available ? `
           <tr><td><strong>${esc(country(r.iso2))}</strong>${r.lowConfidence ? ` <span class="acc a-plan" title="Score rests on a reduced evidence base">lower confidence</span>` : ""}</td>
             <td>${esc(r.roles.join(", "))}</td>
@@ -957,8 +967,6 @@ async function viewNews(arg = "") {
     ${scaleBlock()}
     <section class="seeing" id="seeing" aria-live="polite"></section>
     ${figureSection()}
-    ${scamTypesSection(a)}
-
     <section class="mapcard">
       <div class="maphead">
         <div><h2>Countries and corridors in the news</h2>
@@ -1352,6 +1360,7 @@ function contextPanel(input) {
   if (!rows.length) return "";
   return `<section class="panel span2"><h2>Country context</h2>
     <p class="fine">Structural forced-labour conditions from the ETC ${flLink("Forced Labor Structural Risk Index")}. This is context for weighing the indicators above. It says nothing about this employer and does not change the score.</p>
+    ${flsriReadingGuide()}
     <ul class="context">${rows.map((r) => `<li><span class="muted">${esc(r.role)}</span> <strong>${esc(country(r.iso2))}</strong>
       ${r.available ? `${tierChip(r.tier)} <span class="mono">composite ${r.composite.toFixed(2)}, rank ${r.rank} (${r.band[0]}–${r.band[1]})</span>
         <div class="fine">${r.phase === "R" ? "Recruitment" : "Exploitation"} phase ${bar(r.phase === "R" ? r.R : r.E)}${r.lowConfidence ? " · lower confidence" : ""}${r.phase === "E" && r.tier !== "higher" ? " · FLSRI under-reads destination and sponsorship systems, so a lower score here is not reassurance." : ""}</div>` : `<div class="fine">${esc(r.reason)}</div>`}</li>`).join("")}</ul></section>`;
@@ -1992,6 +2001,7 @@ const logosSection = () => `
     <div class="logos" aria-label="Partners and hosts">
       <a class="logo-item" href="https://apneaap.org" target="_blank" rel="noopener"><img src="assets/partners/apne-aap.png" alt="Apne Aap Women Worldwide"><span>Nonprofit partner</span></a>
       <a class="logo-item" href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener"><img src="assets/partners/etc.jpg" alt="Ethical Tech CoLab"><span>Data partner</span></a>
+      <a class="logo-item" href="https://womenincloud.com/" target="_blank" rel="noopener"><img src="assets/partners/women-in-cloud.png" alt="Women in Cloud"><span>Learning and community partner</span></a>
       <a class="logo-item" href="https://innovationstudio.microsoft.com/hackathons" target="_blank" rel="noopener"><img src="assets/partners/microsoft.png" alt="Microsoft"><span>Global Hackathon · Hack for Good</span></a>
       <a class="logo-item" href="https://www.microsoft.com/en-us/garage/" target="_blank" rel="noopener"><img src="assets/partners/the-garage.png" alt="The Garage"><span>New York City</span></a>
     </div>`;
@@ -2073,13 +2083,24 @@ function mountImpact() {
 async function viewAudiences(which = "") {
   const { audiences } = await fetch("data/audiences.json").then((r) => r.json());
   const chosen = audiences.find((a) => a.id === which) || null;
+  const news = chosen ? null : await loadNews().catch(() => null);
+  const audienceIllustration = (id, title) => {
+    const motifs = {
+      young: '<path d="M52 95c5-18 18-27 28-27s23 9 28 27" /><circle cx="80" cy="43" r="16" /><path d="M40 31l15-10m65 10-15-10M80 11v12" /><circle cx="42" cy="31" r="4" /><circle cx="118" cy="31" r="4" />',
+      older: '<path d="M51 98c4-19 17-29 29-29s25 10 29 29" /><circle cx="80" cy="42" r="16" /><path d="M62 39c5-8 10-8 18-4 8-4 13-4 18 4M65 45h10m10 0h10M80 58v8" /><path d="M112 75h23v18h-23z" />',
+      families: '<path d="M28 99c3-17 14-26 25-26s22 9 25 26m6 0c3-21 17-32 31-32s28 11 31 32" /><circle cx="53" cy="48" r="14" /><circle cx="95" cy="38" r="17" /><path d="M95 55v12M48 64v9M31 29h23v18H31zM112 18l14 8v17h-28V26z" />',
+      workers: '<path d="M47 99c4-22 17-33 33-33s29 11 33 33" /><circle cx="80" cy="40" r="17" /><path d="M65 36c5-13 25-17 32-2M72 57h16M30 82h24V99H30zM106 25h31v23h-31zM114 25v-8h15v8" />',
+    };
+    return `<svg class="audience-illustration" viewBox="0 0 160 112" role="img" aria-label="${esc(title)} illustration" focusable="false"><g>${motifs[id] || motifs.families}</g></svg>`;
+  };
   main.innerHTML = `
     <section class="hero small">
       <div class="eyebrow mono">Who it's for</div>
       <h1>${chosen ? esc(chosen.title) : "Made for everyone who gets messages"}</h1>
       <p class="lede">${chosen ? esc(chosen.who) : "Scams and trafficking look different at 16, at 70, as a parent or as a worker abroad. Pick the guide that fits, in plain words, with what to look for, what to do and who to call. The check itself works the same for everyone."}</p>
     </section>
-    <nav class="kinds compact audience-nav" aria-label="Guides">${audiences.map((a) => `<a class="kind${a.id === which ? " on" : ""}" href="#/for/${a.id}"><strong>${esc(a.title)}</strong><span class="fine">${esc(a.who)}</span></a>`).join("")}</nav>
+    ${!chosen ? `<div class="audience-intro"><span class="eyebrow mono">Choose your starting point</span><p>Different people face different pressures. Start with the guide that feels closest to your situation — you can read any of them, and every guide leads to practical steps and help.</p></div>` : ""}
+    <nav class="kinds compact audience-nav" aria-label="Guides">${audiences.map((a) => `<a class="kind audience-${esc(a.id)}${a.id === which ? " on" : ""}" href="#/for/${a.id}">${audienceIllustration(a.id, a.title)}<span class="audience-number">${String(audiences.indexOf(a) + 1).padStart(2, "0")}</span><strong>${esc(a.title)}</strong><span class="fine">${esc(a.who)}</span><span class="audience-arrow" aria-hidden="true">Open guide <b>→</b></span></a>`).join("")}</nav>
     ${chosen ? `
     <article class="panel guide reading-${esc(chosen.reading)}" id="guide">
       <div class="guide-tools"><button type="button" class="ghost" id="read-aloud">🔊 Read this aloud</button><button type="button" class="ghost" id="bigger">A+ Bigger text</button></div>
@@ -2097,10 +2118,36 @@ async function viewAudiences(which = "") {
       <p>Drag this button to your bookmarks bar. On a job posting, a profile or a message, select the text, click it, and VibeCheck opens with the page and the text filled in. Works on LinkedIn, Handshake, Indeed and anywhere else, without any scraping: you choose what to send.</p>
       <p class="btns"><a class="help-btn bookmarklet" href="javascript:(function(){var t=String(window.getSelection&&getSelection()||'').slice(0,4000);location.href='https://carolina-moron.github.io/vibe-check/#/check/job?u='+encodeURIComponent(location.href)+'&t='+encodeURIComponent(t);})();" onclick="return false" title="Drag me to your bookmarks bar">Share to VibeCheck</a></p>
     </article>
+    <article class="panel prevention-note">
+      <h2>Prevention through digital education</h2>
+      <p>We are working with Women in Cloud to offer cybersecurity courses and practical digital education for women. The goal is to build confidence, recognise warning signs early, and help prevent cybercrime before it causes harm.</p>
+      <div class="prevention-resources">
+        <h3>Start with these resources</h3>
+        <div class="resource-grid">
+          <a class="resource-card" href="https://womenincloud.com/" target="_blank" rel="noopener"><strong>Women in Cloud</strong><span>Community, AI and digital education for women.</span><b>Learn and connect →</b></a>
+          <a class="resource-card" href="https://www.cisa.gov/topics/cyber-threats-and-advisories" target="_blank" rel="noopener"><strong>CISA</strong><span>Practical guidance for safer accounts, devices and online activity.</span><b>Build cyber awareness →</b></a>
+          <a class="resource-card" href="https://staysafeonline.org/resources/" target="_blank" rel="noopener"><strong>Digital safety education</strong><span>Plain-language lessons and practical resources for safer online habits.</span><b>Study the basics →</b></a>
+          <a class="resource-card" href="https://consumer.ftc.gov/articles/how-avoid-scam" target="_blank" rel="noopener"><strong>FTC scam guidance</strong><span>How to recognise common scams and report what happened.</span><b>Learn the warning signs →</b></a>
+          <a class="resource-card" href="https://www.ilo.org/topics/forced-labour-modern-slavery-and-human-trafficking" target="_blank" rel="noopener"><strong>ILO forced-labour indicators</strong><span>Understand the signs of coercion, deception and exploitation at work.</span><b>Understand the indicators →</b></a>
+          <a class="resource-card" href="https://www.befrienders.org/" target="_blank" rel="noopener"><strong>Emotional support</strong><span>Find confidential listening and crisis-support services in many countries through Befrienders Worldwide.</span><b>Find support →</b></a>
+          <a class="resource-card" href="https://www.aclu.org/know-your-rights" target="_blank" rel="noopener"><strong>Know your rights</strong><span>Learn about basic rights during contact with law enforcement, immigration authorities and the courts.</span><b>Understand your options →</b></a>
+        </div>
+      </div>
+      <p class="fine">These resources support prevention, awareness, wellbeing and rights education. They are general information, not legal advice. For case-specific guidance, contact a qualified legal-aid organisation or attorney. If you are in immediate danger, or thinking about hurting yourself, call local emergency services or <a href="https://988lifeline.org/" target="_blank" rel="noopener">988 in the US and Canada</a>. Elsewhere, <a href="https://www.befrienders.org/" target="_blank" rel="noopener">find a local crisis line</a> or <a href="#/help">get trafficking-related help</a>.</p>
+    </article>
     <article class="panel">
       <h2>Also on this site</h2>
       <p><a href="#/stories">You are NOT alone</a>: survivor videos and first-person stories. <a href="#/help">Get help</a>: hotlines by country and what to do if you or someone else is being held.</p>
     </article>`}`;
+  if (!chosen) {
+    main.insertAdjacentHTML("beforeend", news?.aggregates ? scamTypesSection(news.aggregates) : `<section class="panel"><h2>Common types of scams</h2><p>Scam guidance is temporarily unavailable.</p></section>`);
+    $("#scam-more")?.addEventListener("click", (e) => {
+      const open = e.target.dataset.open !== "1";
+      document.querySelectorAll("#scamgrid .extra").forEach((c) => (c.hidden = !open));
+      e.target.dataset.open = open ? "1" : "";
+      e.target.textContent = open ? "Show fewer types" : `Show all ${SCAM_TYPES.length + 1} types`;
+    });
+  }
   if (!chosen) return;
   $("#bigger").addEventListener("click", () => { const g = $("#guide"); g.classList.toggle("xl"); $("#bigger").textContent = g.classList.contains("xl") ? "A− Normal text" : "A+ Bigger text"; });
   $("#read-aloud").addEventListener("click", () => {
@@ -2140,9 +2187,11 @@ function viewTeam() {
       <div class="partner-cols">
         <div><h3>Nonprofit partner</h3><p><strong><a href="https://apneaap.org" target="_blank" rel="noopener">Apne Aap Women Worldwide</a></strong> founded by Ruchira Gupta, works to end sex trafficking by organising women and girls in India's most vulnerable communities. Apne Aap brings the frontline: who is being recruited, how, and what a warning looks like from inside a community. VibeCheck brings the tool that turns those warnings into checks anyone can run.</p></div>
         <div><h3>Data and research</h3><p><strong><a href="https://ethical-tech-colab.github.io/website/" target="_blank" rel="noopener">Ethical Tech CoLab</a></strong> publishes the Forced Labor Structural Risk Index that gives every check its country context, and the Avatar Impact Stories on the You are NOT alone page.</p></div>
+        <div><h3>Learning and community</h3><p><strong><a href="https://womenincloud.com/" target="_blank" rel="noopener">Women in Cloud</a></strong> will provide community and digital education for women, including cybersecurity courses that build awareness, confidence and practical skills to help prevent cybercrime.</p></div>
         <div><h3>In conversation</h3><p>Hiring platforms (<strong>Handshake</strong>, <strong>LinkedIn</strong>, <strong>Indeed</strong>) as the place warnings reach people before they apply, and international bodies (<strong>IOM</strong>, <strong>UN</strong> agencies) whose data and country offices the site already links to. See <a href="#/partnerships">how to integrate VibeCheck</a>.</p></div>
       </div>
     </article>
+    ${logosSection()}
     <article class="panel msstack">
       <h2>Built with Microsoft tools</h2>
       <div class="ms-cols">
@@ -2168,6 +2217,12 @@ function viewTeam() {
     <article class="panel">
       <h2>Next steps and how to help</h2>
       <p><strong>Next 90 days:</strong> agent live on Azure with Copilot Studio review in Teams; pilot with Apne Aap organisers, with Hindi and Bengali versions; Handshake feed through a university career office. Tracked in the open in <a href="https://github.com/carolina-moron/vibe-check/blob/main/BACKLOG.md" target="_blank" rel="noopener">BACKLOG.md</a>.</p>
+      <div class="roadmap" aria-label="VibeCheck prevention and integration roadmap">
+        <div class="roadmap-step"><span class="roadmap-number">01</span><h3>Connect prevention tools</h3><p>Add cybersecurity, URL-safety, domain, sanctions and company-register APIs so people can check an offer before they pay, travel or share documents.</p></div>
+        <div class="roadmap-step"><span class="roadmap-number">02</span><h3>Expand resources and partners</h3><p>Work with Women in Cloud, hotlines, NGOs, schools, career offices and job platforms to offer digital education, practical safety resources and trusted routes to help.</p></div>
+        <div class="roadmap-step"><span class="roadmap-number">03</span><h3>Show the real patterns</h3><p>Publish more sourced case journeys and anonymised examples so people can recognise repeated lures, pressure tactics, recruitment routes and exploitation phases.</p></div>
+        <div class="roadmap-step"><span class="roadmap-number">04</span><h3>Build a responsible evidence base</h3><p>Create a privacy-preserving database of reported crime patterns and outcomes for researchers and practitioners — never a public list of unverified people, victims or accusations.</p></div>
+      </div>
       <p>Found a scam or trafficking case? <a href="#/report">Report wrong vibes</a>. Run a platform, a career office or an NGO? See <a href="#/partnerships">how to integrate VibeCheck</a> and the agent that checks postings and drafts reports for your review. Want to help improve VibeCheck? Contribute on <a href="https://github.com/carolina-moron/vibe-check" target="_blank" rel="noopener">GitHub</a>.</p>
     </article>`;
 }
