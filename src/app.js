@@ -2113,15 +2113,16 @@ async function viewAudiences(which = "") {
   const news = chosen ? null : await loadNews().catch(() => null);
   const audienceIllustration = (id, title) => {
     const motifs = {
-      young: '<path d="M52 95c5-18 18-27 28-27s23 9 28 27" /><circle cx="80" cy="43" r="16" /><path d="M40 31l15-10m65 10-15-10M80 11v12" /><circle cx="42" cy="31" r="4" /><circle cx="118" cy="31" r="4" />',
-      older: '<path d="M51 98c4-19 17-29 29-29s25 10 29 29" /><circle cx="80" cy="42" r="16" /><path d="M62 39c5-8 10-8 18-4 8-4 13-4 18 4M65 45h10m10 0h10M80 58v8" /><path d="M112 75h23v18h-23z" />',
-      families: '<path d="M28 99c3-17 14-26 25-26s22 9 25 26m6 0c3-21 17-32 31-32s28 11 31 32" /><circle cx="53" cy="48" r="14" /><circle cx="95" cy="38" r="17" /><path d="M95 55v12M48 64v9M31 29h23v18H31zM112 18l14 8v17h-28V26z" />',
-      workers: '<path d="M47 99c4-22 17-33 33-33s29 11 33 33" /><circle cx="80" cy="40" r="17" /><path d="M65 36c5-13 25-17 32-2M72 57h16M30 82h24V99H30zM106 25h31v23h-31zM114 25v-8h15v8" />',
+      young: '<rect x="45" y="42" width="70" height="52" rx="4" /><path d="M53 51h54M53 60h28M53 70h42M53 80h20" /><circle cx="80" cy="24" r="12" /><path d="M69 39c2-9 20-9 22 0M80 12V5m-9 10-5-5m23 5 5-5" /><path class="illustration-accent" d="M96 73l7 7 13-16" />',
+      older: '<circle cx="69" cy="38" r="18" /><path d="M39 96c4-22 17-33 30-33s26 11 30 33M55 37h9m10 0h9M67 48c4 3 8 3 12 0" /><rect x="91" y="62" width="39" height="28" rx="3" /><path d="M98 69h25M98 77h15" /><circle cx="124" cy="69" r="2" class="illustration-accent-fill" />',
+      families: '<circle cx="58" cy="37" r="13" /><circle cx="102" cy="31" r="17" /><path d="M34 96c3-18 13-27 24-27s21 9 24 27m-3 0c3-23 14-35 23-35s21 12 24 35M80 72v24" /><path d="M43 18h29v20H43zM108 9l18 10v20H90V19z" /><path class="illustration-accent" d="M75 54h10v10H75z" />',
+      workers: '<rect x="32" y="57" width="42" height="39" rx="2" /><path d="M40 57v-9h26v9M42 70h22M42 80h15" /><circle cx="108" cy="38" r="18" /><path d="M79 96c4-22 16-33 29-33s25 11 29 33M93 37h9m10 0h9M101 49c5 4 10 4 15 0" /><path class="illustration-accent" d="M101 76h14v14h-14z" />',
     };
     return `<svg class="audience-illustration" viewBox="0 0 160 112" role="img" aria-label="${esc(title)} illustration" focusable="false"><g>${motifs[id] || motifs.families}</g></svg>`;
   };
   main.innerHTML = `
     <section class="hero small">
+      ${chosen ? `<p class="crumb"><a href="#/for">← Back to all audiences</a></p>` : ""}
       <div class="eyebrow mono">Who it's for</div>
       <h1>${chosen ? esc(chosen.title) : "Made for everyone who gets messages"}</h1>
       <p class="lede">${chosen ? esc(chosen.who) : "Scams and trafficking look different at 16, at 70, as a parent or as a worker abroad. Pick the guide that fits, in plain words, with what to look for, what to do and who to call. The check itself works the same for everyone."}</p>

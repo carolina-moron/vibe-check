@@ -303,7 +303,9 @@ tr:last-child td { border-bottom: 0; }
 .context-guide-body p { margin: 8px 0; }
 .audience-nav .kind { align-items: stretch; }
 .audience-illustration { display: block; width: 100%; height: 112px; margin-bottom: 12px; color: var(--accent); }
-.audience-illustration g { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.audience-illustration g { fill: rgba(255,255,255,.28); stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.audience-illustration .illustration-accent { stroke: var(--audience-color); stroke-width: 3.4; }
+.audience-illustration .illustration-accent-fill { fill: var(--audience-color); stroke: var(--audience-color); }
 .audience-nav .kind:hover .audience-illustration, .audience-nav .kind.on .audience-illustration { color: var(--ink); }
 
 /* ---------- help ---------- */
