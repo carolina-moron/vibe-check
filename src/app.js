@@ -1859,6 +1859,33 @@ async function viewNotAlone(scrollTo) {
       <p class="fine">Click a video to watch it. These are survivor accounts from <a href="${STORIES_BASE}" target="_blank" rel="noopener">Avatar Impact Stories</a> by the ${ETC_LINK}. The presenters are AI avatars, so the people who told these stories stay protected.</p>
       <div class="voices-grid" id="stories-grid"><p class="fine">Loading videos…</p></div>
     </section>
+    <section class="notalone featured-videos" id="case-examples">
+      <div class="featured-video-intro"><div class="eyebrow mono">Case examples</div><h2>Stories that show the warning signs</h2><p class="fine">These short videos turn familiar offers into examples you can recognise. Watch for pressure, promises that do not match the paperwork, and work or travel controlled by someone else.</p></div>
+      <div class="featured-video-grid">
+        <article class="featured-video" id="folding-booklets">
+          <div class="featured-video-head">
+            <div><div class="eyebrow mono">Example 01</div><h3>The “$5,000 a week” folding-booklet offer</h3></div>
+            <span class="tag">Work-from-home scam</span>
+          </div>
+          <p class="fine">A work-from-home offer promises unusually high weekly earnings for folding booklets. Easy-money offers can hide upfront fees, fake checks, or requests to send money back.</p>
+          <div class="video-frame">
+            <iframe src="https://microsoft-my.sharepoint.com/personal/kennedyelena_microsoft_com/_layouts/15/embed.aspx?UniqueId=d2644c43-6a0f-4e66-89bb-eae30c7dc94a&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" title="$5,000 a week folding booklets" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <p class="fine">Recognise the pattern, then <a href="#/check/job">check an offer</a> before paying, sharing documents or accepting a job.</p>
+        </article>
+        <article class="featured-video" id="student-visa-house-clean">
+          <div class="featured-video-head">
+            <div><div class="eyebrow mono">Example 02</div><h3>A student visa and a house to clean</h3></div>
+            <span class="tag">Visa and work offer</span>
+          </div>
+          <p class="fine">A student-visa arrangement is paired with domestic cleaning work. When immigration status, housing, travel or work are controlled by another person, ask for independent advice before agreeing.</p>
+          <div class="video-frame">
+            <iframe src="https://microsoft-my.sharepoint.com/personal/kennedyelena_microsoft_com/_layouts/15/embed.aspx?UniqueId=aba6f7e8-2917-4716-8e8f-1b48f0f0e1ee&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" title="A student visa and a house to clean" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <p class="fine">Keep your documents, check the visa conditions, and <a href="#/help">get help</a> if you feel pressured or cannot leave.</p>
+        </article>
+      </div>
+    </section>
     <div id="voice-modal" class="modal" hidden>
       <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <button class="modal-close" type="button" aria-label="Close">&times;</button>
@@ -2101,6 +2128,19 @@ async function viewAudiences(which = "") {
     </section>
     ${!chosen ? `<div class="audience-intro"><span class="eyebrow mono">Choose your starting point</span><p>Different people face different pressures. Start with the guide that feels closest to your situation — you can read any of them, and every guide leads to practical steps and help.</p></div>` : ""}
     <nav class="kinds compact audience-nav" aria-label="Guides">${audiences.map((a) => `<a class="kind audience-${esc(a.id)}${a.id === which ? " on" : ""}" href="#/for/${a.id}">${audienceIllustration(a.id, a.title)}<span class="audience-number">${String(audiences.indexOf(a) + 1).padStart(2, "0")}</span><strong>${esc(a.title)}</strong><span class="fine">${esc(a.who)}</span><span class="audience-arrow" aria-hidden="true">Open guide <b>→</b></span></a>`).join("")}</nav>
+    ${!chosen ? `<section class="audience-path" aria-labelledby="audience-path-title">
+      <div class="audience-path-head"><span class="eyebrow mono">One safety path</span><h2 id="audience-path-title">Different starting points. The same support.</h2><p>Whether you are receiving a message, supporting someone else or preparing to travel, you do not have to work it out alone.</p></div>
+      <div class="audience-flow">
+        ${audiences.map((a, i) => `<div class="audience-flow-row audience-${esc(a.id)}"><a href="#/for/${a.id}"><span class="audience-flow-dot">${String(i + 1).padStart(2, "0")}</span><strong>${esc(a.title.replace(/^For /, ""))}</strong></a><span class="audience-flow-line" aria-hidden="true"></span><span class="audience-flow-situation">${esc(a.signs[0].split(".")[0])}</span></div>`).join("")}
+      </div>
+      <div class="audience-steps" aria-label="Three steps to safety">
+        <div><span>01</span><strong>Recognise</strong><small>Learn the warning signs</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>02</span><strong>Check</strong><small>Bring a message or offer</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>03</span><strong>Get support</strong><small>Find resources and help</small></div>
+      </div>
+    </section>` : ""}
     ${chosen ? `
     <article class="panel guide reading-${esc(chosen.reading)}" id="guide">
       <div class="guide-tools"><button type="button" class="ghost" id="read-aloud">🔊 Read this aloud</button><button type="button" class="ghost" id="bigger">A+ Bigger text</button></div>
