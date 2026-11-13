@@ -1766,6 +1766,8 @@ function viewMethodology() {
       </ul>
       <p><strong>CTDC.</strong> The Counter-Trafficking Data Collaborative (CTDC), run by IOM, publishes victim-level trafficking data and a country map. Its terms allow non-commercial use and derived material with credit, but prohibit automated access and re-hosting its raw datasets without IOM's written consent. So this site links to the CTDC map rather than embedding or copying it. Source: Counter-Trafficking Data Collaborative (CTDC), September 2026.</p>
 
+      <p><strong>FBI IC3.</strong> The <a href="#/ic3">FBI internet crime data</a> page holds the tables of the FBI's 2025 Internet Crime Report (<code>data/ic3-2025.json</code>) and IC3's state pages on complainants 17 or younger (<code>data/ic3-2025-under17-states.json</code>). Both are US government works. They count complaints people chose to file, so they are a floor, and they are shown for context only: nothing in them feeds a check result. Where the report's own tables disagree, both figures are kept and the difference is listed on the page.</p>
+
       <h2 id="m-landscape">Related tools</h2>
       <p>Consumer tools already let people submit a message, link or screenshot and ask whether it's a scam, and anti-trafficking organisations publish education on grooming and online recruitment. We didn't find a consumer tool that checks a whole situation (identity, pressure, isolation, money and travel together) for exploitation risk. VibeCheck aims to answer "is this situation safe?" rather than only "is this a scam?", and to lead to prevention and confidential help.</p>
       <div id="landscape"><p class="fine">Loading…</p></div>
@@ -2079,7 +2081,7 @@ function scaleBlock() {
   return `
     <section class="why" id="scale-why">
       <div class="why-head"><div class="eyebrow mono">Why it matters</div><h2>The scale, right now</h2>
-        <p class="fine">Reported figures turned into rates. Counters tick from the moment you opened this page. Every number links to its source, and reported figures are a floor: most scams and most trafficking are never reported.</p></div>
+        <p class="fine">Reported figures turned into rates. Counters tick from the moment you opened this page. Every number links to its source, and reported figures are a floor: most scams and most trafficking are never reported. <a href="#/ic3">Explore the FBI's 2025 internet crime data →</a></p></div>
       <div class="scale" id="scale" hidden>
         <div class="scale-grid" id="scale-grid"></div>
         <div class="viz-row">
@@ -2400,6 +2402,129 @@ function viewPartnerships() {
     </article>`;
 }
 
+// ---- FBI IC3 2025 report ---------------------------------------------------------------
+// data/ic3-2025.json holds the tables of the FBI's 2025 Internet Crime Report; data/ic3-2025-under17-states.json
+// holds IC3's per-state pages on complainants 17 or younger. Both are reported complaints: a floor, never a score.
+let ic3Data;
+const loadIC3 = async () => (ic3Data ||= await Promise.all(["data/ic3-2025.json", "data/ic3-2025-under17-states.json"].map((u) => fetch(u).then((r) => r.json()))));
+const usd = (n) => (n == null ? "not reported" : n >= 1e9 ? `$${(n / 1e9).toFixed(2)} billion` : n >= 1e6 ? `$${(n / 1e6).toFixed(1)} million` : `$${Math.round(n).toLocaleString("en-US")}`);
+const num = (n) => (n == null ? "not reported" : n.toLocaleString("en-US"));
+const IC3_AGE = { under_20: "Under 20", "20_29": "20 to 29", "30_39": "30 to 39", "40_49": "40 to 49", "50_59": "50 to 59", "60_plus": "60 and over" };
+
+async function viewIC3() {
+  main.innerHTML = `<section class="hero small"><div class="eyebrow mono">FBI IC3 · 2025</div><h1>What a million complaints show</h1><p class="muted">Loading…</p></section>`;
+  let d, u17;
+  try { [d, u17] = await loadIC3(); } catch { main.innerHTML = `<section><h1>Data not available</h1><p><a href="#/news">Back to Why it matters</a></p></section>`; return; }
+  const type = Object.fromEntries(d.crime_types.map((c) => [c.id, c]));
+  const tag = Object.fromEntries(d.descriptors.map((c) => [c.id, c]));
+  const pct = (a, b) => Math.round((a / b) * 100);
+  const change = (now, then) => (then ? `${now >= then ? "up" : "down"} ${Math.abs(Math.round(((now - then) / then) * 100))}%` : "not comparable");
+  const bars = (rows, fmt) => { const mx = Math.max(...rows.map((r) => r.value)); return `<ul class="hbars wide">${rows.map((r) => `<li><span>${esc(r.label)}</span><span class="hb"><i style="width:${Math.max(1, Math.round((r.value / mx) * 100))}%"></i></span><span class="mono">${fmt(r.value)}</span></li>`).join("")}</ul>`; };
+  const top = (key, n) => [...d.crime_types].sort((a, b) => b[key]["2025"] - a[key]["2025"]).slice(0, n).map((c) => ({ label: c.label, value: c[key]["2025"] }));
+  const emp = type.employment, inv = d.cryptocurrency.investment_fraud, kids = d.age_17_or_younger, old = d.sixty_plus, ext17 = type.extortion.age_17_or_younger;
+  const young = d.sextortion.by_age.under_20.count + d.sextortion.by_age["20_29"].count;
+  const sextTotal = Object.values(d.sextortion.by_age).reduce((t, a) => t + a.count, 0);
+  const cards = [
+    { h: "Fake jobs", big: num(emp.complaints["2025"]), text: `employment scam complaints and ${usd(emp.loss["2025"])} lost. Losses were ${usd(emp.loss["2023"])} two years earlier. ${pct(emp.cryptocurrency.complaints, emp.complaints["2025"])}% of these complaints involved cryptocurrency.`, page: "pp.25-26, 54", link: ["#/check/job", "Check a job offer"] },
+    { h: "Investment scams run from scam compounds", big: inv.loss_display, text: `lost to cryptocurrency investment fraud in ${num(inv.complaints)} complaints, the largest source of losses in the report. The FBI says these scams are largely run from Southeast Asia "using victims of human trafficking as forced labor".`, page: "pp.11, 53", link: ["#/cases", "See the documented compounds"] },
+    { h: "Sextortion", big: "75,000+", text: `sextortion submissions. Of those that gave an age, ${pct(young, sextTotal)}% came from people under 30. Among complainants 17 or younger, extortion is the most reported crime: ${num(ext17.complaints)} of ${num(kids.complaints)} complaints.`, page: "pp.11, 34-35", link: ["#/check", "Run a check"] },
+    { h: "AI in scams", big: num(d.ai.complaints), text: `complaints mentioned AI, with ${usd(d.ai.loss)} lost, most of it in investment scams (${d.ai.by_scam_loss_display.investment}). The report says many victims do not realise AI was involved.`, page: "pp.39-40", link: ["#/check", "Run a check"] },
+    { h: "People 60 and over", big: usd(old.loss), text: `lost in ${num(old.complaints)} complaints, more than any other age group and up ${old.loss_change_from_2024_pct}% in a year. ${num(old.complainants_lost_over_100k)} people lost more than $100,000.`, page: "p.44", link: ["#/for", "Guides by audience"] },
+    { h: "Money that was stopped", big: usd(d.recovery_asset_team.frozen), text: `frozen by the FBI's recovery team out of ${usd(d.recovery_asset_team.attempted_theft)} in attempted theft, a ${d.recovery_asset_team.success_rate_pct}% success rate. Speed decides it: tell your bank at once, then file at ic3.gov.`, page: "p.17", link: ["#/help", "What to do now"] },
+  ];
+  const typeOpts = d.crime_types.map((c) => `<option value="${esc(c.id)}"${c.id === "employment" ? " selected" : ""}>${esc(c.label)}</option>`).join("");
+  const stateOpts = [...d.states].sort((a, b) => a.name.localeCompare(b.name)).map((x) => `<option${x.name === "New York" ? " selected" : ""}>${esc(x.name)}</option>`).join("");
+
+  main.innerHTML = `
+    <section class="hero small">
+      <div class="eyebrow mono">Why it matters · FBI Internet Crime Report 2025</div>
+      <h1>What a million complaints show</h1>
+      <p class="lede">In 2025 the FBI's Internet Crime Complaint Center (IC3) received more than a million complaints. This page holds the report's tables as open data: every crime type, age group and state, with the page each figure came from.</p>
+      <div class="stats">
+        <div><b>${num(d.headline.complaints)}</b><span>complaints</span></div>
+        <div><b>${esc(d.headline.loss_display)}</b><span>reported lost, up ${d.headline.loss_change_from_2024_pct}%</span></div>
+        <div><b>${usd(d.headline.average_loss)}</b><span>average loss</span></div>
+      </div>
+    </section>
+    <div class="callout">These are <strong>complaints people chose to file</strong> with one US agency, so every number is a floor. Most scams are never reported, and trafficking is barely visible here at all. Nothing on this page feeds a check result.</div>
+    <p class="crumb"><a href="#/news">← Why it matters</a></p>
+
+    <section>
+      <h2>What it says about the situations VibeCheck checks</h2>
+      <div class="ic3-cards">${cards.map((c) => `<div class="panel"><h3>${esc(c.h)}</h3><b class="ic3-big">${esc(c.big)}</b><p>${esc(c.text)}</p><p class="fine">Report ${esc(c.page)} · <a href="${c.link[0]}">${esc(c.link[1])} →</a></p></div>`).join("")}</div>
+    </section>
+
+    <section class="viz-row ic3-viz">
+      <div class="viz"><h3>Where the money went</h3>${bars(top("loss", 10), usd)}<p class="fine">Ten largest crime types by reported loss, 2025 (report p.8).</p></div>
+      <div class="viz"><h3>What people reported most</h3>${bars(top("complaints", 10), num)}<p class="fine">Ten largest crime types by number of complaints, 2025 (report p.7).</p></div>
+    </section>
+    <section class="viz-row ic3-viz">
+      <div class="viz"><h3>Losses by age</h3>${bars(Object.entries(d.age_groups.rows).map(([k, v]) => ({ label: IC3_AGE[k], value: v.loss })), usd)}<p class="fine">Complaints that gave an age (report p.6).</p></div>
+      <div class="viz"><h3>Where wired money was sent</h3>${bars(d.international.top_wire_destinations.map((x) => ({ label: x.country, value: x.transactions })), num)}<p class="fine">Reported fraudulent international wire transactions by destination (report p.24).</p></div>
+    </section>
+
+    <section class="panel">
+      <h2>Look up a crime type</h2>
+      <label>Crime type <select id="ic3-type">${typeOpts}</select></label>
+      <div id="ic3-type-out"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Look up a state or territory</h2>
+      <label>State <select id="ic3-state">${stateOpts}</select></label>
+      <div id="ic3-state-out"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Sources and limits</h2>
+      <ul class="sources">
+        <li>${ext(d.source.url, d.source.title)} (PDF, ${d.source.pages} pages). <a href="${esc(d.source.copy)}" target="_blank" rel="noopener">Copy kept with this site</a>.</li>
+        <li>${ext(u17.source.url, u17.source.title)}, retrieved ${esc(u17.source.retrieved)}.</li>
+        <li>The data behind this page: <a href="data/ic3-2025.json" target="_blank" rel="noopener">ic3-2025.json</a> and <a href="data/ic3-2025-under17-states.json" target="_blank" rel="noopener">ic3-2025-under17-states.json</a>. ${esc(d.source.license)}</li>
+      </ul>
+      <p class="fine">${esc(d.how_extracted)}</p>
+      <details><summary>Limits of the data</summary><ul>${d.caveats.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></details>
+      <details><summary>Where the report disagrees with itself</summary><ul>${d.discrepancies.map((x) => `<li><strong>${esc(x.what)}.</strong> ${esc(x.detail)}</li>`).join("")}</ul></details>
+    </section>
+    <p class="helpline">If one of these is happening to you, <a href="#/help">here's where you can get confidential help</a>.</p>`;
+
+  const showType = () => {
+    const c = type[$("#ic3-type").value]; if (!c) return;
+    $("#ic3-type-out").innerHTML = `
+      <div class="tblwrap"><table><thead><tr><th></th><th>2025</th><th>2024</th><th>2023</th></tr></thead><tbody>
+        <tr><td>Complaints</td>${["2025", "2024", "2023"].map((y) => `<td class="mono">${num(c.complaints[y])}</td>`).join("")}</tr>
+        <tr><td>Reported loss</td>${["2025", "2024", "2023"].map((y) => `<td class="mono">${usd(c.loss[y])}</td>`).join("")}</tr>
+      </tbody></table></div>
+      <p class="fine">Against 2024: complaints ${change(c.complaints["2025"], c.complaints["2024"])}, losses ${change(c.loss["2025"], c.loss["2024"])}. "Not reported" means IC3 did not track the category that year.</p>
+      <div class="tblwrap"><table><thead><tr><th>Age</th><th>Complaints</th><th>Reported loss</th></tr></thead><tbody>
+        ${Object.entries(c.by_age).map(([k, v]) => `<tr><td>${IC3_AGE[k]}</td><td class="mono">${num(v.complaints)}</td><td class="mono">${usd(v.loss)}</td></tr>`).join("")}
+      </tbody></table></div>
+      <p class="fine">Of the 2025 complaints: ${num(c.cryptocurrency.complaints)} involved cryptocurrency (${usd(c.cryptocurrency.loss)}), ${num(c.ai_related.complaints)} mentioned AI (${usd(c.ai_related.loss)}), and ${num(c.age_17_or_younger.complaints)} came from someone 17 or younger (${usd(c.age_17_or_younger.loss)}).</p>`;
+  };
+  const showState = () => {
+    const name = $("#ic3-state").value, x = d.states.find((r) => r.name === name); if (!x) return;
+    const y = u17.states.find((r) => r.name === name);
+    const row = (label, o, extra = "") => `<tr><td>${label}</td><td class="mono">${num(o.complaints)}</td><td class="mono">${usd(o.loss)}</td><td class="mono">${extra}</td></tr>`;
+    const yv = y ? Object.entries(y.victims).sort((a, b) => b[1].count - a[1].count) : [];
+    const label = (id) => type[id]?.label || tag[id]?.label || id.replace(/_/g, " ").replace(/^./, (m) => m.toUpperCase());
+    $("#ic3-state-out").innerHTML = `
+      <div class="tblwrap"><table><thead><tr><th></th><th>Complaints</th><th>Reported loss</th><th>Per 100,000 people</th></tr></thead><tbody>
+        ${row("All complaints", x, x.complaints_per_100k == null ? "not published" : `${x.complaints_per_100k} complaints · ${usd(x.loss_per_100k)}`)}
+        ${row("From people 60 and over", x.sixty_plus)}
+        ${row("Involving cryptocurrency", x.cryptocurrency)}
+        ${row("From people 17 or younger", x.age_17_or_younger)}
+      </tbody></table></div>
+      <p class="fine">Annual report pp.28-31, 37-38, 49-50 and 56-57. Complaints that gave a state, not people.</p>
+      ${y ? `<h3>Children: IC3's state page for ${esc(name)}</h3>
+      <div class="tblwrap"><table><thead><tr><th>Crime type or tag</th><th>Victims</th><th>Reported loss</th></tr></thead><tbody>
+        ${yv.length ? yv.map(([k, v]) => `<tr><td>${esc(label(k))}</td><td class="mono">${num(v.count)}</td><td class="mono">${usd(v.loss)}</td></tr>`).join("") : `<tr><td colspan="3">No victims recorded on the state page.</td></tr>`}
+      </tbody></table></div>
+      <p class="fine">${ext(u17.source.state_url.replace("{source_id}", y.source_id), `IC3 state page for ${name}`)}. Tags such as Crimes Against Children overlap with the crime types, so rows do not add up. This page counts differently from the annual report's row above, and IC3 does not explain why, so the two are shown side by side and never combined.</p>` : ""}`;
+  };
+  $("#ic3-type").addEventListener("change", showType); $("#ic3-state").addEventListener("change", showState);
+  showType(); showState();
+}
+
 // ---- router ----------------------------------------------------------------------------
 
 function route() {
@@ -2408,7 +2533,7 @@ function route() {
   resetMaps();
   figureCleanup(); figureCleanup = () => {};
   const [, view = "", arg] = (location.hash.match(/^#\/([^/]*)\/?(.*)$/) || []);
-  document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" ? "cases" : view === "voices" ? "stories" : view === "concern" || view === "" ? "check" : ["team", "partnerships", "methodology"].includes(view) ? "about" : view)));
+  document.querySelectorAll("[data-nav]").forEach((a) => a.classList.toggle("active", a.dataset.nav === (view === "case" ? "cases" : view === "voices" ? "stories" : view === "concern" || view === "" ? "check" : view === "ic3" ? "news" : ["team", "partnerships", "methodology"].includes(view) ? "about" : view)));
   $("#helpstrip").hidden = view === "help";
   if (view === "case") viewCase(decodeURIComponent(arg));
   else if (view === "check" || view === "") viewCheck(decodeURIComponent(arg || ""));
@@ -2416,6 +2541,7 @@ function route() {
   else if (view === "for") viewAudiences(decodeURIComponent(arg || ""));
   else if (view === "cases") viewCases();
   else if (view === "news") viewNews(decodeURIComponent(arg || ""));
+  else if (view === "ic3") viewIC3();
   else if (view === "concern") viewConcern(decodeURIComponent(arg || ""));
   else if (view === "help") viewHelp();
   else if (view === "report") viewReport();

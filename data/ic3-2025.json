@@ -1,0 +1,3576 @@
+{
+ "source": {
+  "title": "Federal Bureau of Investigation Internet Crime Report 2025",
+  "publisher": "FBI Internet Crime Complaint Center (IC3)",
+  "covers": "Complaints filed at ic3.gov in calendar year 2025",
+  "url": "https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf",
+  "copy": "docs/sources/2025_IC3Report.pdf",
+  "pages": 66,
+  "extracted": "2026-11-12",
+  "license": "Work of the United States Government; not subject to copyright in the United States."
+ },
+ "how_extracted": "Table cells were read from the PDF text layer by position, then checked against the page images. Ten cells that the PDF wraps or overprints (p.33, p.37, p.50) were read from the page by hand. Charts without a data table (pp.4, 9, 10, 13, 16, 18, 24, 34, 52) were transcribed from their printed labels. Every section carries the page it came from.",
+ "caveats": [
+  "These are complaints people chose to file with the FBI, so they are a floor. Most scams are never reported.",
+  "Each complaint has one crime type. Descriptors (Cryptocurrency, AI Related, Crimes Against Children) are tags added on top of a crime type, so they overlap with the crime types and with each other.",
+  "The 26 crime types add up to 768,452 complaints and $20.30 billion, less than the 1,008,597 complaints and $20.877 billion in the headline. The report does not explain the difference.",
+  "Complainants are not required to give an age. Complaints without one are left out of every age table.",
+  "State figures count complaints that gave a state, not people. One person can file more than once.",
+  "Loss figures are what complainants reported, adjusted by IC3 analysts. They can change after publication.",
+  "Ransomware losses leave out lost business, time, wages, files, equipment and outside remediation, and organisations often report no loss at all.",
+  "Rates per 100,000 use the 2025 Census population estimates and cover the 50 states, the District of Columbia and Puerto Rico."
+ ],
+ "discrepancies": [
+  {
+   "what": "60+ Tech/Customer Support",
+   "detail": "21,333 complaints and $1,040,730,043 on pp.45-46; 21,334 and $1,040,879,243 in the three-year table on pp.47-48. Both are kept: by_age.60_plus uses pp.45-46, sixty_plus_by_year uses pp.47-48."
+  },
+  {
+   "what": "60+ Threats of Violence",
+   "detail": "349 complaints and $394,040 on pp.45-46; 348 and $244,840 on pp.47-48. Both are kept, as above."
+  },
+  {
+   "what": "60+ with a cryptocurrency nexus",
+   "detail": "42,271 complaints and $4,347,081,557 in the Elder Fraud section (pp.45-46); 44,555 and $4,432,224,488 in the Cryptocurrency section (p.52)."
+  },
+  {
+   "what": "Under 20, sextortion and extortion",
+   "detail": "The age tables use 'Under 20'; the minors section uses '17 years old or younger'. They are different groups and are stored separately."
+  },
+  {
+   "what": "Elder fraud loss in the accessibility text",
+   "detail": "Footnote 17 on p.44 prints '$7,748 billion'; the figure is $7.748 billion ($7,748,911,371 on p.6)."
+  }
+ ],
+ "headline": {
+  "page": 6,
+  "complaints": 1008597,
+  "loss": 20877000000,
+  "loss_display": "$20.877 billion",
+  "loss_change_from_2024_pct": 26,
+  "average_loss": 20699,
+  "complaints_per_day_note": "The report says IC3 now averages almost 3,000 complaints a day (p.3); 1,008,597 / 365 = 2,763.",
+  "total_complaints_since_2000": "over 10 million (p.58)"
+ },
+ "history": {
+  "page": 4,
+  "note": "Only the points labelled on the two charts. The year for two labelled points (303,809 and 288,012 complaints) cannot be read off the chart with certainty and they are left out.",
+  "complaints": {
+   "2001": 49711,
+   "2020": 791790,
+   "2025": 1008597
+  },
+  "loss": {
+   "2001": 17800000,
+   "2005": 183000000,
+   "2010": 1100000000,
+   "2015": 1000000000,
+   "2020": 4200000000,
+   "2021": 6900000000,
+   "2022": 10300000000,
+   "2023": 12500000000,
+   "2024": 16600000000,
+   "2025": 20877000000
+  }
+ },
+ "age_groups": {
+  "page": 6,
+  "rows": {
+   "under_20": {
+    "complaints": 31254,
+    "loss": 67102440
+   },
+   "20_29": {
+    "complaints": 112069,
+    "loss": 563103982
+   },
+   "30_39": {
+    "complaints": 153293,
+    "loss": 1742438917
+   },
+   "40_49": {
+    "complaints": 167066,
+    "loss": 2957773418
+   },
+   "50_59": {
+    "complaints": 124820,
+    "loss": 3676138586
+   },
+   "60_plus": {
+    "complaints": 201266,
+    "loss": 7748911371
+   }
+  }
+ },
+ "crime_types_pages": {
+  "complaints_and_loss": "7-8",
+  "three_year": "25-26",
+  "by_age": "32-33",
+  "age_17_or_younger": "35-36",
+  "ai_related": "41-42",
+  "sixty_plus": "45-48",
+  "cryptocurrency": "54-55"
+ },
+ "crime_types": [
+  {
+   "id": "advanced_fee",
+   "label": "Advanced Fee",
+   "complaints": {
+    "2025": 7762,
+    "2024": 7097,
+    "2023": 8045
+   },
+   "loss": {
+    "2025": 155910852,
+    "2024": 102074512,
+    "2023": 134516577
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 288,
+     "loss": 327823
+    },
+    "20_29": {
+     "complaints": 991,
+     "loss": 7081874
+    },
+    "30_39": {
+     "complaints": 1170,
+     "loss": 13311458
+    },
+    "40_49": {
+     "complaints": 1120,
+     "loss": 18801337
+    },
+    "50_59": {
+     "complaints": 1169,
+     "loss": 25811979
+    },
+    "60_plus": {
+     "complaints": 2020,
+     "loss": 65877660
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 2020,
+     "2024": 1897,
+     "2023": 1951
+    },
+    "loss": {
+     "2025": 65877660,
+     "2024": 41622868,
+     "2023": 67923263
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 102,
+    "loss": 23765
+   },
+   "ai_related": {
+    "complaints": 105,
+    "loss": 1642712
+   },
+   "cryptocurrency": {
+    "complaints": 2319,
+    "loss": 67554554
+   }
+  },
+  {
+   "id": "bec",
+   "label": "Business Email Compromise",
+   "complaints": {
+    "2025": 24768,
+    "2024": 21442,
+    "2023": 21489
+   },
+   "loss": {
+    "2025": 3046598558,
+    "2024": 2770151146,
+    "2023": 2946830270
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 73,
+     "loss": 15137364
+    },
+    "20_29": {
+     "complaints": 1250,
+     "loss": 45754756
+    },
+    "30_39": {
+     "complaints": 3619,
+     "loss": 356707180
+    },
+    "40_49": {
+     "complaints": 5090,
+     "loss": 624292591
+    },
+    "50_59": {
+     "complaints": 4910,
+     "loss": 618105890
+    },
+    "60_plus": {
+     "complaints": 4566,
+     "loss": 568048472
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 4566,
+     "2024": 3300,
+     "2023": 3080
+    },
+    "loss": {
+     "2025": 568048472,
+     "2024": 385001099,
+     "2023": 382372731
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 4,
+    "loss": 10750
+   },
+   "ai_related": {
+    "complaints": 135,
+    "loss": 30256592
+   },
+   "cryptocurrency": {
+    "complaints": 1526,
+    "loss": 83771329
+   }
+  },
+  {
+   "id": "botnet",
+   "label": "Botnet",
+   "complaints": {
+    "2025": 715,
+    "2024": 587,
+    "2023": 540
+   },
+   "loss": {
+    "2025": 13859049,
+    "2024": 8860202,
+    "2023": 22422708
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 106,
+     "loss": 20532
+    },
+    "20_29": {
+     "complaints": 155,
+     "loss": 53205
+    },
+    "30_39": {
+     "complaints": 137,
+     "loss": 383680
+    },
+    "40_49": {
+     "complaints": 129,
+     "loss": 5923019
+    },
+    "50_59": {
+     "complaints": 56,
+     "loss": 191046
+    },
+    "60_plus": {
+     "complaints": 36,
+     "loss": 945812
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 36,
+     "2024": 23,
+     "2023": 17
+    },
+    "loss": {
+     "2025": 945812,
+     "2024": 14852,
+     "2023": 23142
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 65,
+    "loss": 82
+   },
+   "ai_related": {
+    "complaints": 12,
+    "loss": 697226
+   },
+   "cryptocurrency": {
+    "complaints": 53,
+    "loss": 60916
+   }
+  },
+  {
+   "id": "charity",
+   "label": "Charity",
+   "complaints": {
+    "2025": 662,
+    "2024": null,
+    "2023": null
+   },
+   "loss": {
+    "2025": 7907609,
+    "2024": null,
+    "2023": null
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 34,
+     "loss": 41917
+    },
+    "20_29": {
+     "complaints": 87,
+     "loss": 914968
+    },
+    "30_39": {
+     "complaints": 114,
+     "loss": 282824
+    },
+    "40_49": {
+     "complaints": 148,
+     "loss": 323872
+    },
+    "50_59": {
+     "complaints": 101,
+     "loss": 224605
+    },
+    "60_plus": {
+     "complaints": 126,
+     "loss": 3474668
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 126,
+     "2024": null,
+     "2023": null
+    },
+    "loss": {
+     "2025": 3474668,
+     "2024": null,
+     "2023": null
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 16,
+    "loss": 4552
+   },
+   "ai_related": {
+    "complaints": 19,
+    "loss": 531455
+   },
+   "cryptocurrency": {
+    "complaints": 65,
+    "loss": 3221048
+   }
+  },
+  {
+   "id": "confidence_romance",
+   "label": "Confidence/Romance",
+   "complaints": {
+    "2025": 23159,
+    "2024": 17910,
+    "2023": 17823
+   },
+   "loss": {
+    "2025": 929287469,
+    "2024": 672009052,
+    "2023": 652544805
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 393,
+     "loss": 3057718
+    },
+    "20_29": {
+     "complaints": 1886,
+     "loss": 25097693
+    },
+    "30_39": {
+     "complaints": 2501,
+     "loss": 42460967
+    },
+    "40_49": {
+     "complaints": 3010,
+     "loss": 74644395
+    },
+    "50_59": {
+     "complaints": 3745,
+     "loss": 131385454
+    },
+    "60_plus": {
+     "complaints": 10188,
+     "loss": 584032745
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 10188,
+     "2024": 7626,
+     "2023": 6740
+    },
+    "loss": {
+     "2025": 584032745,
+     "2024": 389312356,
+     "2023": 356888968
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 57,
+    "loss": 75440
+   },
+   "ai_related": {
+    "complaints": 626,
+    "loss": 19041653
+   },
+   "cryptocurrency": {
+    "complaints": 5925,
+    "loss": 394787515
+   }
+  },
+  {
+   "id": "credit_card_check",
+   "label": "Credit Card/Check Fraud",
+   "complaints": {
+    "2025": 18774,
+    "2024": 12876,
+    "2023": 13718
+   },
+   "loss": {
+    "2025": 282670235,
+    "2024": 199889841,
+    "2023": 173627614
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 451,
+     "loss": 606192
+    },
+    "20_29": {
+     "complaints": 1760,
+     "loss": 6076760
+    },
+    "30_39": {
+     "complaints": 2767,
+     "loss": 32039262
+    },
+    "40_49": {
+     "complaints": 2958,
+     "loss": 49971180
+    },
+    "50_59": {
+     "complaints": 2810,
+     "loss": 43817766
+    },
+    "60_plus": {
+     "complaints": 5200,
+     "loss": 71880416
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 5200,
+     "2024": 3226,
+     "2023": 3182
+    },
+    "loss": {
+     "2025": 71880416,
+     "2024": 33813267,
+     "2023": 37862023
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 125,
+    "loss": 121506
+   },
+   "ai_related": {
+    "complaints": 139,
+    "loss": 1836105
+   },
+   "cryptocurrency": {
+    "complaints": 901,
+    "loss": 13423130
+   }
+  },
+  {
+   "id": "data_breach",
+   "label": "Data Breach",
+   "complaints": {
+    "2025": 3963,
+    "2024": 3204,
+    "2023": 3727
+   },
+   "loss": {
+    "2025": 435240992,
+    "2024": 364855818,
+    "2023": 534397222
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 21,
+     "loss": 1741450
+    },
+    "20_29": {
+     "complaints": 135,
+     "loss": 4158310
+    },
+    "30_39": {
+     "complaints": 443,
+     "loss": 72145136
+    },
+    "40_49": {
+     "complaints": 625,
+     "loss": 64973932
+    },
+    "50_59": {
+     "complaints": 522,
+     "loss": 77385567
+    },
+    "60_plus": {
+     "complaints": 350,
+     "loss": 48555751
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 350,
+     "2024": 300,
+     "2023": 336
+    },
+    "loss": {
+     "2025": 48555751,
+     "2024": 28546213,
+     "2023": 23913130
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 9,
+    "loss": 1693400
+   },
+   "ai_related": {
+    "complaints": 60,
+    "loss": 4319380
+   },
+   "cryptocurrency": {
+    "complaints": 866,
+    "loss": 95861120
+   }
+  },
+  {
+   "id": "employment",
+   "label": "Employment",
+   "complaints": {
+    "2025": 24688,
+    "2024": 20044,
+    "2023": 15443
+   },
+   "loss": {
+    "2025": 362934762,
+    "2024": 264223271,
+    "2023": 70234079
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 835,
+     "loss": 1489854
+    },
+    "20_29": {
+     "complaints": 4555,
+     "loss": 33049422
+    },
+    "30_39": {
+     "complaints": 5025,
+     "loss": 42865213
+    },
+    "40_49": {
+     "complaints": 4524,
+     "loss": 57604303
+    },
+    "50_59": {
+     "complaints": 3671,
+     "loss": 100853442
+    },
+    "60_plus": {
+     "complaints": 2853,
+     "loss": 78712899
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 2853,
+     "2024": 1928,
+     "2023": 1079
+    },
+    "loss": {
+     "2025": 78712899,
+     "2024": 37882347,
+     "2023": 6835684
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 246,
+    "loss": 106727
+   },
+   "ai_related": {
+    "complaints": 691,
+    "loss": 12550185
+   },
+   "cryptocurrency": {
+    "complaints": 10338,
+    "loss": 288199807
+   }
+  },
+  {
+   "id": "extortion",
+   "label": "Extortion",
+   "complaints": {
+    "2025": 89129,
+    "2024": 86415,
+    "2023": 48223
+   },
+   "loss": {
+    "2025": 122499133,
+    "2024": 143185736,
+    "2023": 74821835
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 13110,
+     "loss": 1715733
+    },
+    "20_29": {
+     "complaints": 26963,
+     "loss": 12179028
+    },
+    "30_39": {
+     "complaints": 15866,
+     "loss": 14964819
+    },
+    "40_49": {
+     "complaints": 11279,
+     "loss": 13427693
+    },
+    "50_59": {
+     "complaints": 7841,
+     "loss": 15710381
+    },
+    "60_plus": {
+     "complaints": 9111,
+     "loss": 54309050
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 9111,
+     "2024": 12618,
+     "2023": 5396
+    },
+    "loss": {
+     "2025": 54309050,
+     "2024": 24901693,
+     "2023": 23093451
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 5151,
+    "loss": 468831
+   },
+   "ai_related": {
+    "complaints": 1764,
+    "loss": 2940642
+   },
+   "cryptocurrency": {
+    "complaints": 23797,
+    "loss": 63195612
+   }
+  },
+  {
+   "id": "government_impersonation",
+   "label": "Government Impersonation",
+   "complaints": {
+    "2025": 32424,
+    "2024": 17367,
+    "2023": 14190
+   },
+   "loss": {
+    "2025": 797943193,
+    "2024": 405624084,
+    "2023": 394050518
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 420,
+     "loss": 8583219
+    },
+    "20_29": {
+     "complaints": 3401,
+     "loss": 50358843
+    },
+    "30_39": {
+     "complaints": 5446,
+     "loss": 82005707
+    },
+    "40_49": {
+     "complaints": 6136,
+     "loss": 55019630
+    },
+    "50_59": {
+     "complaints": 5636,
+     "loss": 84516785
+    },
+    "60_plus": {
+     "complaints": 8628,
+     "loss": 413206251
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 8628,
+     "2024": 4521,
+     "2023": 3517
+    },
+    "loss": {
+     "2025": 413206251,
+     "2024": 208096366,
+     "2023": 179646103
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 99,
+    "loss": 1412003
+   },
+   "ai_related": {
+    "complaints": 260,
+    "loss": 7061628
+   },
+   "cryptocurrency": {
+    "complaints": 5955,
+    "loss": 281146737
+   }
+  },
+  {
+   "id": "harassment_stalking",
+   "label": "Harassment/Stalking",
+   "complaints": {
+    "2025": 21557,
+    "2024": 11672,
+    "2023": 9587
+   },
+   "loss": {
+    "2025": 27707167,
+    "2024": 10611223,
+    "2023": 9677332
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 1827,
+     "loss": 218229
+    },
+    "20_29": {
+     "complaints": 4711,
+     "loss": 591102
+    },
+    "30_39": {
+     "complaints": 5473,
+     "loss": 5343712
+    },
+    "40_49": {
+     "complaints": 4076,
+     "loss": 6098635
+    },
+    "50_59": {
+     "complaints": 2249,
+     "loss": 4721979
+    },
+    "60_plus": {
+     "complaints": 1160,
+     "loss": 3134436
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 1160,
+     "2024": 696,
+     "2023": 568
+    },
+    "loss": {
+     "2025": 3134436,
+     "2024": 713693,
+     "2023": 1930347
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 1053,
+    "loss": 203807
+   },
+   "ai_related": {
+    "complaints": 763,
+    "loss": 1445378
+   },
+   "cryptocurrency": {
+    "complaints": 711,
+    "loss": 4682411
+   }
+  },
+  {
+   "id": "identity_theft",
+   "label": "Identity Theft",
+   "complaints": {
+    "2025": 31675,
+    "2024": 21403,
+    "2023": 19778
+   },
+   "loss": {
+    "2025": 185832657,
+    "2024": 174354745,
+    "2023": 126203809
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 487,
+     "loss": 1547663
+    },
+    "20_29": {
+     "complaints": 3526,
+     "loss": 10815080
+    },
+    "30_39": {
+     "complaints": 6498,
+     "loss": 19440941
+    },
+    "40_49": {
+     "complaints": 6433,
+     "loss": 27807082
+    },
+    "50_59": {
+     "complaints": 5528,
+     "loss": 35573535
+    },
+    "60_plus": {
+     "complaints": 5359,
+     "loss": 48546133
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 5359,
+     "2024": 4064,
+     "2023": 3010
+    },
+    "loss": {
+     "2025": 48546133,
+     "2024": 28463106,
+     "2023": 34551900
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 181,
+    "loss": 510553
+   },
+   "ai_related": {
+    "complaints": 460,
+    "loss": 1643308
+   },
+   "cryptocurrency": {
+    "complaints": 1656,
+    "loss": 16995129
+   }
+  },
+  {
+   "id": "investment",
+   "label": "Investment",
+   "complaints": {
+    "2025": 72984,
+    "2024": 47919,
+    "2023": 39570
+   },
+   "loss": {
+    "2025": 8648617756,
+    "2024": 6570639864,
+    "2023": 4570275683
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 901,
+     "loss": 17022804
+    },
+    "20_29": {
+     "complaints": 6102,
+     "loss": 163145270
+    },
+    "30_39": {
+     "complaints": 10996,
+     "loss": 564898178
+    },
+    "40_49": {
+     "complaints": 13737,
+     "loss": 1152243858
+    },
+    "50_59": {
+     "complaints": 12773,
+     "loss": 1748651287
+    },
+    "60_plus": {
+     "complaints": 16926,
+     "loss": 3519296354
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 16926,
+     "2024": 9448,
+     "2023": 6443
+    },
+    "loss": {
+     "2025": 3519296354,
+     "2024": 1834242515,
+     "2023": 1243010600
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 237,
+    "loss": 4743664
+   },
+   "ai_related": {
+    "complaints": 4356,
+    "loss": 632041188
+   },
+   "cryptocurrency": {
+    "complaints": 61559,
+    "loss": 7277868919
+   }
+  },
+  {
+   "id": "ipr_counterfeit",
+   "label": "IPR/Copyright and Counterfeit",
+   "complaints": {
+    "2025": 2386,
+    "2024": 1583,
+    "2023": 1498
+   },
+   "loss": {
+    "2025": 26667006,
+    "2024": 8715512,
+    "2023": 7555329
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 70,
+     "loss": 72650
+    },
+    "20_29": {
+     "complaints": 261,
+     "loss": 377545
+    },
+    "30_39": {
+     "complaints": 504,
+     "loss": 2108962
+    },
+    "40_49": {
+     "complaints": 502,
+     "loss": 14161896
+    },
+    "50_59": {
+     "complaints": 359,
+     "loss": 3270925
+    },
+    "60_plus": {
+     "complaints": 316,
+     "loss": 4493512
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 316,
+     "2024": 163,
+     "2023": 152
+    },
+    "loss": {
+     "2025": 4493512,
+     "2024": 1076710,
+     "2023": 183169
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 42,
+    "loss": 72188
+   },
+   "ai_related": {
+    "complaints": 63,
+    "loss": 10103789
+   },
+   "cryptocurrency": {
+    "complaints": 182,
+    "loss": 4020461
+   }
+  },
+  {
+   "id": "lottery_inheritance",
+   "label": "Lottery/Sweepstakes/Inheritance",
+   "complaints": {
+    "2025": 5623,
+    "2024": 3690,
+    "2023": 4168
+   },
+   "loss": {
+    "2025": 194147851,
+    "2024": 102212250,
+    "2023": 94502836
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 75,
+     "loss": 89050
+    },
+    "20_29": {
+     "complaints": 315,
+     "loss": 2273833
+    },
+    "30_39": {
+     "complaints": 528,
+     "loss": 5047453
+    },
+    "40_49": {
+     "complaints": 679,
+     "loss": 12877295
+    },
+    "50_59": {
+     "complaints": 773,
+     "loss": 19385699
+    },
+    "60_plus": {
+     "complaints": 2785,
+     "loss": 136328519
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 2785,
+     "2024": 1711,
+     "2023": 1771
+    },
+    "loss": {
+     "2025": 136328519,
+     "2024": 75897926,
+     "2023": 67396206
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 13,
+    "loss": 488
+   },
+   "ai_related": {
+    "complaints": 54,
+    "loss": 4486965
+   },
+   "cryptocurrency": {
+    "complaints": 826,
+    "loss": 29765165
+   }
+  },
+  {
+   "id": "malware",
+   "label": "Malware",
+   "complaints": {
+    "2025": 893,
+    "2024": 441,
+    "2023": 659
+   },
+   "loss": {
+    "2025": 19370572,
+    "2024": 1365945,
+    "2023": 1213317
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 57,
+     "loss": 3766
+    },
+    "20_29": {
+     "complaints": 159,
+     "loss": 504839
+    },
+    "30_39": {
+     "complaints": 193,
+     "loss": 1714483
+    },
+    "40_49": {
+     "complaints": 147,
+     "loss": 1998406
+    },
+    "50_59": {
+     "complaints": 93,
+     "loss": 10661574
+    },
+    "60_plus": {
+     "complaints": 138,
+     "loss": 3433325
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 138,
+     "2024": 45,
+     "2023": 67
+    },
+    "loss": {
+     "2025": 3433325,
+     "2024": 187911,
+     "2023": 261144
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 29,
+    "loss": 35
+   },
+   "ai_related": {
+    "complaints": 42,
+    "loss": 1248199
+   },
+   "cryptocurrency": {
+    "complaints": 196,
+    "loss": 15693486
+   }
+  },
+  {
+   "id": "non_payment_delivery",
+   "label": "Non-Payment/Non-Delivery",
+   "complaints": {
+    "2025": 56478,
+    "2024": 49572,
+    "2023": 50523
+   },
+   "loss": {
+    "2025": 503373587,
+    "2024": 785436888,
+    "2023": 309648416
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 2351,
+     "loss": 2391036
+    },
+    "20_29": {
+     "complaints": 8331,
+     "loss": 37006257
+    },
+    "30_39": {
+     "complaints": 9947,
+     "loss": 69016236
+    },
+    "40_49": {
+     "complaints": 9981,
+     "loss": 97620771
+    },
+    "50_59": {
+     "complaints": 8158,
+     "loss": 73863630
+    },
+    "60_plus": {
+     "complaints": 9743,
+     "loss": 127041813
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 9743,
+     "2024": 7646,
+     "2023": 6693
+    },
+    "loss": {
+     "2025": 127041813,
+     "2024": 76794753,
+     "2023": 59018965
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 825,
+    "loss": 648538
+   },
+   "ai_related": {
+    "complaints": 609,
+    "loss": 3726777
+   },
+   "cryptocurrency": {
+    "complaints": 4761,
+    "loss": 76196341
+   }
+  },
+  {
+   "id": "other",
+   "label": "Other",
+   "complaints": {
+    "2025": 20031,
+    "2024": 12318,
+    "2023": 8808
+   },
+   "loss": {
+    "2025": 512146819,
+    "2024": 280278325,
+    "2023": 240053059
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 2159,
+     "loss": 2616321
+    },
+    "20_29": {
+     "complaints": 2864,
+     "loss": 12967479
+    },
+    "30_39": {
+     "complaints": 3938,
+     "loss": 58543283
+    },
+    "40_49": {
+     "complaints": 3659,
+     "loss": 96902505
+    },
+    "50_59": {
+     "complaints": 2620,
+     "loss": 85195234
+    },
+    "60_plus": {
+     "complaints": 3001,
+     "loss": 153412996
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 3001,
+     "2024": 2017,
+     "2023": 1447
+    },
+    "loss": {
+     "2025": 153412996,
+     "2024": 111300637,
+     "2023": 72707042
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 1460,
+    "loss": 1810134
+   },
+   "ai_related": {
+    "complaints": 504,
+    "loss": 11750591
+   },
+   "cryptocurrency": {
+    "complaints": 2332,
+    "loss": 147700762
+   }
+  },
+  {
+   "id": "overpayment",
+   "label": "Overpayment",
+   "complaints": {
+    "2025": 2194,
+    "2024": 2705,
+    "2023": 4144
+   },
+   "loss": {
+    "2025": 22898075,
+    "2024": 21452521,
+    "2023": 27955195
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 304,
+     "loss": 181495
+    },
+    "20_29": {
+     "complaints": 350,
+     "loss": 783264
+    },
+    "30_39": {
+     "complaints": 294,
+     "loss": 3937790
+    },
+    "40_49": {
+     "complaints": 295,
+     "loss": 2601879
+    },
+    "50_59": {
+     "complaints": 310,
+     "loss": 2301154
+    },
+    "60_plus": {
+     "complaints": 477,
+     "loss": 8045862
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 477,
+     "2024": 527,
+     "2023": 698
+    },
+    "loss": {
+     "2025": 8045862,
+     "2024": 5900921,
+     "2023": 7496049
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 164,
+    "loss": 61918
+   },
+   "ai_related": {
+    "complaints": 13,
+    "loss": 4719
+   },
+   "cryptocurrency": {
+    "complaints": 304,
+    "loss": 6356416
+   }
+  },
+  {
+   "id": "personal_data_breach",
+   "label": "Personal Data Breach",
+   "complaints": {
+    "2025": 67456,
+    "2024": 64882,
+    "2023": 55851
+   },
+   "loss": {
+    "2025": 1314923988,
+    "2024": 1453296303,
+    "2023": 744219879
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 2601,
+     "loss": 7314429
+    },
+    "20_29": {
+     "complaints": 7877,
+     "loss": 86102381
+    },
+    "30_39": {
+     "complaints": 13238,
+     "loss": 173434730
+    },
+    "40_49": {
+     "complaints": 13403,
+     "loss": 241244329
+    },
+    "50_59": {
+     "complaints": 9703,
+     "loss": 225239544
+    },
+    "60_plus": {
+     "complaints": 11705,
+     "loss": 324470413
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 11705,
+     "2024": 9827,
+     "2023": 7333
+    },
+    "loss": {
+     "2025": 324470413,
+     "2024": 254187196,
+     "2023": 109724027
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 1510,
+    "loss": 500264
+   },
+   "ai_related": {
+    "complaints": 1204,
+    "loss": 18767964
+   },
+   "cryptocurrency": {
+    "complaints": 13486,
+    "loss": 939398686
+   }
+  },
+  {
+   "id": "phishing_spoofing",
+   "label": "Phishing/Spoofing",
+   "complaints": {
+    "2025": 191561,
+    "2024": 193407,
+    "2023": 298878
+   },
+   "loss": {
+    "2025": 215843126,
+    "2024": 70013036,
+    "2023": 18728550
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 2380,
+     "loss": 360429
+    },
+    "20_29": {
+     "complaints": 19765,
+     "loss": 7954797
+    },
+    "30_39": {
+     "complaints": 27433,
+     "loss": 32669619
+    },
+    "40_49": {
+     "complaints": 27800,
+     "loss": 33063856
+    },
+    "50_59": {
+     "complaints": 26782,
+     "loss": 30918367
+    },
+    "60_plus": {
+     "complaints": 48064,
+     "loss": 77020936
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 48064,
+     "2024": 23252,
+     "2023": 2856
+    },
+    "loss": {
+     "2025": 77020936,
+     "2024": 20202521,
+     "2023": 3355436
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 878,
+    "loss": 77852
+   },
+   "ai_related": {
+    "complaints": 803,
+    "loss": 10283732
+   },
+   "cryptocurrency": {
+    "complaints": 7164,
+    "loss": 111025191
+   }
+  },
+  {
+   "id": "ransomware",
+   "label": "Ransomware",
+   "complaints": {
+    "2025": 3611,
+    "2024": 3156,
+    "2023": 2825
+   },
+   "loss": {
+    "2025": 32320105,
+    "2024": 12473156,
+    "2023": 59641384
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 15,
+     "loss": 0
+    },
+    "20_29": {
+     "complaints": 67,
+     "loss": 2956745
+    },
+    "30_39": {
+     "complaints": 204,
+     "loss": 821075
+    },
+    "40_49": {
+     "complaints": 427,
+     "loss": 6918385
+    },
+    "50_59": {
+     "complaints": 457,
+     "loss": 5394639
+    },
+    "60_plus": {
+     "complaints": 358,
+     "loss": 5644789
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 358,
+     "2024": 208,
+     "2023": 175
+    },
+    "loss": {
+     "2025": 5644789,
+     "2024": 43199,
+     "2023": 635548
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 5,
+    "loss": 0
+   },
+   "ai_related": {
+    "complaints": 16,
+    "loss": 0
+   },
+   "cryptocurrency": {
+    "complaints": 902,
+    "loss": 17068810
+   }
+  },
+  {
+   "id": "real_estate",
+   "label": "Real Estate",
+   "complaints": {
+    "2025": 12368,
+    "2024": 9359,
+    "2023": 9521
+   },
+   "loss": {
+    "2025": 275110419,
+    "2024": 173586820,
+    "2023": 145243348
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 158,
+     "loss": 189875
+    },
+    "20_29": {
+     "complaints": 1986,
+     "loss": 7294459
+    },
+    "30_39": {
+     "complaints": 2189,
+     "loss": 23316890
+    },
+    "40_49": {
+     "complaints": 2037,
+     "loss": 33724892
+    },
+    "50_59": {
+     "complaints": 2036,
+     "loss": 46373027
+    },
+    "60_plus": {
+     "complaints": 2473,
+     "loss": 123671936
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 2473,
+     "2024": 1765,
+     "2023": 1498
+    },
+    "loss": {
+     "2025": 123671936,
+     "2024": 76324236,
+     "2023": 65634851
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 23,
+    "loss": 43861
+   },
+   "ai_related": {
+    "complaints": 115,
+    "loss": 2699085
+   },
+   "cryptocurrency": {
+    "complaints": 715,
+    "loss": 25169423
+   }
+  },
+  {
+   "id": "sim_swap",
+   "label": "SIM Swap",
+   "complaints": {
+    "2025": 971,
+    "2024": 982,
+    "2023": 1075
+   },
+   "loss": {
+    "2025": 17366758,
+    "2024": 25983946,
+    "2023": 48798103
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 6,
+     "loss": 6303
+    },
+    "20_29": {
+     "complaints": 61,
+     "loss": 153247
+    },
+    "30_39": {
+     "complaints": 162,
+     "loss": 796329
+    },
+    "40_49": {
+     "complaints": 210,
+     "loss": 3399856
+    },
+    "50_59": {
+     "complaints": 194,
+     "loss": 2698369
+    },
+    "60_plus": {
+     "complaints": 222,
+     "loss": 6741791
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 222,
+     "2024": 205,
+     "2023": 174
+    },
+    "loss": {
+     "2025": 6741791,
+     "2024": 6342329,
+     "2023": 15148072
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 1,
+    "loss": 0
+   },
+   "ai_related": {
+    "complaints": 14,
+    "loss": 13082
+   },
+   "cryptocurrency": {
+    "complaints": 121,
+    "loss": 4405259
+   }
+  },
+  {
+   "id": "tech_support",
+   "label": "Tech/Customer Support",
+   "complaints": {
+    "2025": 47794,
+    "2024": 36002,
+    "2023": 37560
+   },
+   "loss": {
+    "2025": 2134675818,
+    "2024": 1464755976,
+    "2023": 924512658
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 405,
+     "loss": 2328729
+    },
+    "20_29": {
+     "complaints": 3045,
+     "loss": 45718725
+    },
+    "30_39": {
+     "complaints": 4864,
+     "loss": 119274031
+    },
+    "40_49": {
+     "complaints": 5182,
+     "loss": 261313644
+    },
+    "50_59": {
+     "complaints": 5512,
+     "loss": 283494484
+    },
+    "60_plus": {
+     "complaints": 21333,
+     "loss": 1040730043
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 21334,
+     "2024": 16777,
+     "2023": 17696
+    },
+    "loss": {
+     "2025": 1040879243,
+     "2024": 982440006,
+     "2023": 589759770
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 85,
+    "loss": 396487
+   },
+   "ai_related": {
+    "complaints": 574,
+    "loss": 19457078
+   },
+   "cryptocurrency": {
+    "complaints": 17355,
+    "loss": 1226298080
+   }
+  },
+  {
+   "id": "threats_of_violence",
+   "label": "Threats of Violence",
+   "complaints": {
+    "2025": 4826,
+    "2024": 1360,
+    "2023": 1697
+   },
+   "loss": {
+    "2025": 9509532,
+    "2024": 1842186,
+    "2023": 13531178
+   },
+   "by_age": {
+    "under_20": {
+     "complaints": 508,
+     "loss": 40982
+    },
+    "20_29": {
+     "complaints": 1045,
+     "loss": 159365
+    },
+    "30_39": {
+     "complaints": 1084,
+     "loss": 7335885
+    },
+    "40_49": {
+     "complaints": 829,
+     "loss": 454130
+    },
+    "50_59": {
+     "complaints": 531,
+     "loss": 239803
+    },
+    "60_plus": {
+     "complaints": 349,
+     "loss": 394040
+    }
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 348,
+     "2024": 111,
+     "2023": 115
+    },
+    "loss": {
+     "2025": 244840,
+     "2024": 300488,
+     "2023": 5128768
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 251,
+    "loss": 1547
+   },
+   "ai_related": {
+    "complaints": 95,
+    "loss": 9576
+   },
+   "cryptocurrency": {
+    "complaints": 210,
+    "loss": 7375785
+   }
+  }
+ ],
+ "descriptors": [
+  {
+   "id": "cryptocurrency",
+   "label": "Cryptocurrency",
+   "complaints": {
+    "2025": 181565,
+    "2024": null,
+    "2023": null
+   },
+   "loss": {
+    "2025": 11366669732,
+    "2024": null,
+    "2023": null
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 42271,
+     "2024": 33369,
+     "2023": 16968
+    },
+    "loss": {
+     "2025": 4347081557,
+     "2024": 2839333197,
+     "2023": 1653484444
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 950,
+    "loss": 5620716
+   },
+   "ai_related": {
+    "complaints": 7623,
+    "loss": 658714247
+   }
+  },
+  {
+   "id": "ai_related",
+   "label": "AI Related",
+   "complaints": {
+    "2025": 22364,
+    "2024": null,
+    "2023": null
+   },
+   "loss": {
+    "2025": 893346472,
+    "2024": null,
+    "2023": null
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 3143,
+     "2024": null,
+     "2023": null
+    },
+    "loss": {
+     "2025": 352496231,
+     "2024": null,
+     "2023": null
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 355,
+    "loss": 126391
+   },
+   "cryptocurrency": {
+    "complaints": 8712,
+    "loss": 741639787
+   }
+  },
+  {
+   "id": "crimes_against_children",
+   "label": "Crimes Against Children",
+   "complaints": {
+    "2025": 7239,
+    "2024": 4472,
+    "2023": 2361
+   },
+   "loss": {
+    "2025": 6694350,
+    "2024": 519424,
+    "2023": 2031485
+   },
+   "sixty_plus_by_year": {
+    "complaints": {
+     "2025": 94,
+     "2024": 25,
+     "2023": 26
+    },
+    "loss": {
+     "2025": 5806300,
+     "2024": 231600,
+     "2023": 1159939
+    }
+   },
+   "age_17_or_younger": {
+    "complaints": 5200,
+    "loss": 298240
+   },
+   "ai_related": {
+    "complaints": 214,
+    "loss": 9866
+   },
+   "cryptocurrency": {
+    "complaints": 276,
+    "loss": 596843
+   }
+  }
+ ],
+ "cyber_enabled_fraud": {
+  "page": "9-10",
+  "complaints": 452868,
+  "loss": 17697074980,
+  "share_of_complaints_pct": 45,
+  "share_of_loss_pct": 85,
+  "age_share_pct": {
+   "under_20": 4.3,
+   "20_29": 13.2,
+   "30_39": 14.3,
+   "40_49": 14.5,
+   "50_59": 13.1,
+   "60_plus": 24.2,
+   "no_age": 16.4
+  },
+  "payment_methods_note": "Top reported ways victims paid, as a share of each crime type's reported transactions (p.10 pie charts). Only the slices printed with a label are listed, so rows do not add to 100.",
+  "payment_methods_pct": {
+   "investment": {
+    "cryptocurrency": 72,
+    "wire_ach": 19,
+    "peer_to_peer": 4,
+    "card": 3,
+    "cash": 2
+   },
+   "bec": {
+    "wire_ach": 86,
+    "prepaid_gift_card": 7,
+    "peer_to_peer": 3,
+    "check": 2,
+    "card": 2
+   },
+   "confidence_romance": {
+    "prepaid_gift_card": 31,
+    "cryptocurrency": 25,
+    "wire_ach": 21,
+    "peer_to_peer": 15,
+    "card": 8
+   },
+   "extortion": {
+    "prepaid_gift_card": 28,
+    "cryptocurrency": 28,
+    "peer_to_peer": 27,
+    "card": 11,
+    "wire_ach": 6
+   },
+   "tech_support": {
+    "cryptocurrency": 43,
+    "wire_ach": 20,
+    "card": 14,
+    "prepaid_gift_card": 12,
+    "cash": 11
+   },
+   "government_impersonation": {
+    "cryptocurrency": 40,
+    "wire_ach": 21,
+    "prepaid_gift_card": 15,
+    "cash": 14,
+    "card": 10
+   }
+  }
+ },
+ "sextortion": {
+  "page": 11,
+  "submissions": "more than 75,000",
+  "referred_to_ncmec_involving_minors": "more than 5,700",
+  "by_age": {
+   "under_20": {
+    "count": 11316,
+    "loss": 1297653
+   },
+   "20_29": {
+    "count": 22061,
+    "loss": 7282686
+   },
+   "30_39": {
+    "count": 11855,
+    "loss": 8063178
+   },
+   "40_49": {
+    "count": 7791,
+    "loss": 6507936
+   },
+   "50_59": {
+    "count": 5139,
+    "loss": 6186794
+   },
+   "60_plus": {
+    "count": 6121,
+    "loss": 14894547
+   }
+  }
+ },
+ "fraud_trends": {
+  "page": 12,
+  "rows": [
+   {
+    "id": "account_takeover",
+    "label": "Account takeover",
+    "complaints_approx": 4700,
+    "loss": 359700000
+   },
+   {
+    "id": "gold_courier",
+    "label": "Gold courier scams",
+    "complaints_approx": 725,
+    "loss": 311800000
+   },
+   {
+    "id": "investment_club",
+    "label": "Investment club scams",
+    "complaints_approx": 1600,
+    "loss": 160000000
+   },
+   {
+    "id": "government_impersonation",
+    "label": "Government impersonation",
+    "complaints_approx": 32000,
+    "loss": 798000000
+   },
+   {
+    "id": "call_center",
+    "label": "Call center fraud (tech support and government impersonation)",
+    "complaints_approx": 80000,
+    "loss": 2900000000,
+    "page": 21
+   }
+  ]
+ },
+ "cryptocurrency": {
+  "page": "52-53",
+  "complaints": 181565,
+  "loss": 11366669732,
+  "complaints_change_from_2024_pct": 21,
+  "loss_change_from_2024_pct": 22,
+  "average_loss": 62604,
+  "complainants_lost_over_100k": 18589,
+  "by_age": {
+   "under_20": {
+    "complaints": 3508,
+    "loss": 26955462
+   },
+   "20_29": {
+    "complaints": 18107,
+    "loss": 288875060
+   },
+   "30_39": {
+    "complaints": 27598,
+    "loss": 861551625
+   },
+   "40_49": {
+    "complaints": 29749,
+    "loss": 1552700119
+   },
+   "50_59": {
+    "complaints": 25453,
+    "loss": 2139033232
+   },
+   "60_plus": {
+    "complaints": 44555,
+    "loss": 4432224488
+   }
+  },
+  "investment_fraud": {
+   "complaints": 61559,
+   "loss_display": "$7.228 billion",
+   "loss": 7228000000,
+   "complaints_change_from_2024_pct": 48,
+   "loss_change_from_2024_pct": 25,
+   "by_age": {
+    "under_20": {
+     "count": 629,
+     "loss": 12582997
+    },
+    "20_29": {
+     "count": 4627,
+     "loss": 117353587
+    },
+    "30_39": {
+     "count": 8576,
+     "loss": 412626617
+    },
+    "40_49": {
+     "count": 10750,
+     "loss": 924623370
+    },
+    "50_59": {
+     "count": 9856,
+     "loss": 1383263248
+    },
+    "60_plus": {
+     "count": 13685,
+     "loss": 2763921910
+    }
+   },
+   "forced_labour_link": "These scams are largely perpetrated by organized criminal enterprises based in Southeast Asia using victims of human trafficking as forced labor to run the scam operations. (p.11)"
+  },
+  "atm_kiosk": {
+   "complaints": 13460,
+   "loss_display": "$389 million",
+   "loss": 389000000,
+   "complaints_change_from_2024_pct": 23,
+   "loss_change_from_2024_pct": 58,
+   "by_age": {
+    "under_20": {
+     "count": 58,
+     "loss": 124013
+    },
+    "20_29": {
+     "count": 825,
+     "loss": 6474240
+    },
+    "30_39": {
+     "count": 1275,
+     "loss": 10936943
+    },
+    "40_49": {
+     "count": 1472,
+     "loss": 20826227
+    },
+    "50_59": {
+     "count": 1524,
+     "loss": 44584724
+    },
+    "60_plus": {
+     "count": 6188,
+     "loss": 257466130
+    }
+   }
+  },
+  "recovery_scams": {
+   "complaints": 10516,
+   "loss_display": "$1.4 billion",
+   "loss": 1400000000,
+   "note": "Losses may include what was lost to the earlier scam that led the person to the 'recovery' firm.",
+   "by_age": {
+    "under_20": {
+     "count": 106,
+     "loss": 3825212
+    },
+    "20_29": {
+     "count": 841,
+     "loss": 22498411
+    },
+    "30_39": {
+     "count": 1511,
+     "loss": 76183433
+    },
+    "40_49": {
+     "count": 1977,
+     "loss": 194670794
+    },
+    "50_59": {
+     "count": 1706,
+     "loss": 298233813
+    },
+    "60_plus": {
+     "count": 2529,
+     "loss": 540505980
+    }
+   }
+  }
+ },
+ "ai": {
+  "page": "39-40",
+  "complaints": 22364,
+  "loss": 893346472,
+  "by_scam_loss_display": {
+   "investment": "over $632 million",
+   "bec": "over $30 million",
+   "confidence_romance": "over $19 million",
+   "employment": "almost $13 million",
+   "distress_grandparent": "over $5 million"
+  },
+  "note": "Counted only when the complaint mentions AI. The report says many victims do not realise AI was involved."
+ },
+ "age_17_or_younger": {
+  "page": 34,
+  "complaints": 13168,
+  "loss": 12988892,
+  "average_loss": 986,
+  "referred_to_ncmec": "more than 5,700",
+  "payment_methods_pct": {
+   "prepaid_gift_card": 31,
+   "peer_to_peer": 20,
+   "card": 15,
+   "cryptocurrency_or_crypto_atm": 10,
+   "wire": 6,
+   "check": 4,
+   "cash": 3,
+   "money_order": 1,
+   "other": 10
+  },
+  "state_reports": {
+   "url": "https://www.ic3.gov/annualreport/Reports/2025Under17State/",
+   "data": "data/ic3-2025-under17-states.json"
+  }
+ },
+ "sixty_plus": {
+  "page": 44,
+  "complaints": 201266,
+  "loss": 7748911371,
+  "complaints_change_from_2024_pct": 37,
+  "loss_change_from_2024_pct": 59,
+  "average_loss": 38500,
+  "complainants_lost_over_100k": 12444
+ },
+ "cyber_threats": {
+  "page": "13-16",
+  "share_of_cyber_threat_complaints_pct": {
+   "data_breach": 39,
+   "ransomware": 36,
+   "sim_swap": 10,
+   "malware": 9,
+   "botnet": 7
+  },
+  "ransomware": {
+   "complaints": "more than 3,600",
+   "loss_display": "over $32 million",
+   "new_variants": 63,
+   "top_variants": [
+    "Akira",
+    "Qilin",
+    "INC./Lynx/Sinobi",
+    "BianLian",
+    "Play",
+    "Ransomhub",
+    "Lockbit",
+    "Dragonforce",
+    "SAFEPAY",
+    "Medusa"
+   ],
+   "top_variants_share_of_incidents_pct": 56.8,
+   "top_variants_share_of_loss_pct": 49.8,
+   "non_critical_sector_complaints": "more than 1,400",
+   "non_critical_sector_share_pct": {
+    "Legal services": 18,
+    "Contracting services": 17,
+    "Engineering, architectural services": 10,
+    "Consulting services": 7,
+    "Non-critical manufacturing": 5
+   }
+  },
+  "critical_infrastructure": [
+   {
+    "sector": "Dams",
+    "data_breach": 1,
+    "ransomware": null
+   },
+   {
+    "sector": "Nuclear",
+    "data_breach": 1,
+    "ransomware": null
+   },
+   {
+    "sector": "Emergency Services",
+    "data_breach": 17,
+    "ransomware": 24
+   },
+   {
+    "sector": "Water/Wastewater",
+    "data_breach": 11,
+    "ransomware": 25
+   },
+   {
+    "sector": "Defense Industrial Base",
+    "data_breach": 9,
+    "ransomware": 34
+   },
+   {
+    "sector": "Communications",
+    "data_breach": 28,
+    "ransomware": 51
+   },
+   {
+    "sector": "Energy",
+    "data_breach": 31,
+    "ransomware": 54
+   },
+   {
+    "sector": "Chemical",
+    "data_breach": 8,
+    "ransomware": 59
+   },
+   {
+    "sector": "Transportation",
+    "data_breach": 82,
+    "ransomware": 80
+   },
+   {
+    "sector": "Food and Agriculture",
+    "data_breach": 51,
+    "ransomware": 89
+   },
+   {
+    "sector": "Commercial Facilities",
+    "data_breach": 84,
+    "ransomware": 164
+   },
+   {
+    "sector": "Information Technology",
+    "data_breach": 199,
+    "ransomware": 232
+   },
+   {
+    "sector": "Government Facilities",
+    "data_breach": 174,
+    "ransomware": 233
+   },
+   {
+    "sector": "Financial Services",
+    "data_breach": 189,
+    "ransomware": 258
+   },
+   {
+    "sector": "Critical Manufacturing",
+    "data_breach": 52,
+    "ransomware": 355
+   },
+   {
+    "sector": "Healthcare and Public Health",
+    "data_breach": 182,
+    "ransomware": 460
+   }
+  ]
+ },
+ "recovery_asset_team": {
+  "page": "17-18",
+  "note": "IC3's Recovery Asset Team asks banks to freeze fraudulent transfers (the Financial Fraud Kill Chain). Speed matters: tell your bank at once, then file at ic3.gov with the full transaction details.",
+  "incidents": 3900,
+  "attempted_theft": 1163919846,
+  "frozen": 679013183,
+  "success_rate_pct": 58,
+  "domestic": {
+   "incidents": 3574,
+   "frozen": 507042623
+  },
+  "international": {
+   "incidents": 326,
+   "frozen": 171970560
+  },
+  "sixty_plus": {
+   "incidents": 642,
+   "reported_loss": 65367648,
+   "frozen": 32865655
+  },
+  "critical_infrastructure": {
+   "incidents": 655,
+   "reported_loss": 261451001,
+   "frozen": 146561094,
+   "success_rate_pct": 56
+  }
+ },
+ "operation_level_up": {
+  "page": 20,
+  "note": "FBI operation, launched January 2024, that finds people in the middle of a cryptocurrency investment scam and tells them.",
+  "since_launch": {
+   "victims_notified": "more than 8,000",
+   "savings": "more than $500 million"
+  },
+  "in_2025": {
+   "victims_notified": 3780,
+   "unaware_they_were_being_scammed_pct": 78,
+   "estimated_savings": 225871319,
+   "referred_for_suicide_intervention": 38
+  }
+ },
+ "international": {
+  "page": 24,
+  "countries_filing": "more than 200",
+  "loss_display": "almost $1.6 billion",
+  "top_foreign_countries_by_complaints": [
+   {
+    "country": "Canada",
+    "complaints": 7479
+   },
+   {
+    "country": "India",
+    "complaints": 5879
+   },
+   {
+    "country": "Japan",
+    "complaints": 5764
+   },
+   {
+    "country": "United Kingdom",
+    "complaints": 4106
+   },
+   {
+    "country": "Germany",
+    "complaints": 3056
+   },
+   {
+    "country": "Philippines",
+    "complaints": 2725
+   },
+   {
+    "country": "Brazil",
+    "complaints": 2686
+   },
+   {
+    "country": "France",
+    "complaints": 2326
+   },
+   {
+    "country": "Colombia",
+    "complaints": 2222
+   },
+   {
+    "country": "Australia",
+    "complaints": 2069
+   },
+   {
+    "country": "Mexico",
+    "complaints": 1654
+   },
+   {
+    "country": "South Africa",
+    "complaints": 1532
+   },
+   {
+    "country": "Pakistan",
+    "complaints": 1514
+   },
+   {
+    "country": "Nigeria",
+    "complaints": 1219
+   },
+   {
+    "country": "Greece",
+    "complaints": 1205
+   },
+   {
+    "country": "Iran",
+    "complaints": 1101
+   },
+   {
+    "country": "China",
+    "complaints": 1030
+   },
+   {
+    "country": "Spain",
+    "complaints": 993
+   },
+   {
+    "country": "Turkey",
+    "complaints": 944
+   },
+   {
+    "country": "Italy",
+    "complaints": 918
+   }
+  ],
+  "top_wire_destinations": [
+   {
+    "country": "Hong Kong",
+    "transactions": 1858
+   },
+   {
+    "country": "Mexico",
+    "transactions": 1782
+   },
+   {
+    "country": "Indonesia",
+    "transactions": 1685
+   },
+   {
+    "country": "Vietnam",
+    "transactions": 1583
+   },
+   {
+    "country": "Philippines",
+    "transactions": 1538
+   },
+   {
+    "country": "China",
+    "transactions": 1301
+   },
+   {
+    "country": "India",
+    "transactions": 918
+   },
+   {
+    "country": "Costa Rica",
+    "transactions": 831
+   },
+   {
+    "country": "United Kingdom",
+    "transactions": 767
+   },
+   {
+    "country": "UAE",
+    "transactions": 550
+   }
+  ]
+ },
+ "states_pages": {
+  "complaints": 28,
+  "loss": 29,
+  "per_100k": "30-31",
+  "age_17_or_younger": "37-38",
+  "sixty_plus": "49-50",
+  "cryptocurrency": "56-57"
+ },
+ "states": [
+  {
+   "name": "California",
+   "complaints": 116414,
+   "loss": 3674716305,
+   "complaints_per_100k": 295.8,
+   "loss_per_100k": 9337282,
+   "age_17_or_younger": {
+    "complaints": 1492,
+    "loss": 719483
+   },
+   "sixty_plus": {
+    "complaints": 22157,
+    "loss": 1403975911
+   },
+   "cryptocurrency": {
+    "complaints": 20878,
+    "loss": 2099014715
+   }
+  },
+  {
+   "name": "Texas",
+   "complaints": 97912,
+   "loss": 1825636181,
+   "complaints_per_100k": 308.8,
+   "loss_per_100k": 5757321,
+   "age_17_or_younger": {
+    "complaints": 1082,
+    "loss": 1676326
+   },
+   "sixty_plus": {
+    "complaints": 14410,
+    "loss": 678564081
+   },
+   "cryptocurrency": {
+    "complaints": 13965,
+    "loss": 1016062841
+   }
+  },
+  {
+   "name": "Florida",
+   "complaints": 71843,
+   "loss": 1596138595,
+   "complaints_per_100k": 306.2,
+   "loss_per_100k": 6802930,
+   "age_17_or_younger": {
+    "complaints": 702,
+    "loss": 211888
+   },
+   "sixty_plus": {
+    "complaints": 17147,
+    "loss": 709823172
+   },
+   "cryptocurrency": {
+    "complaints": 13381,
+    "loss": 914525497
+   }
+  },
+  {
+   "name": "New York",
+   "complaints": 45255,
+   "loss": 1226307877,
+   "complaints_per_100k": 226.2,
+   "loss_per_100k": 6130795,
+   "age_17_or_younger": {
+    "complaints": 539,
+    "loss": 578293
+   },
+   "sixty_plus": {
+    "complaints": 8537,
+    "loss": 408741632
+   },
+   "cryptocurrency": {
+    "complaints": 8088,
+    "loss": 593370013
+   }
+  },
+  {
+   "name": "Illinois",
+   "complaints": 32977,
+   "loss": 535255201,
+   "complaints_per_100k": 259.3,
+   "loss_per_100k": 4208265,
+   "age_17_or_younger": {
+    "complaints": 371,
+    "loss": 269389
+   },
+   "sixty_plus": {
+    "complaints": 7701,
+    "loss": 189491209
+   },
+   "cryptocurrency": {
+    "complaints": 4910,
+    "loss": 257919562
+   }
+  },
+  {
+   "name": "Pennsylvania",
+   "complaints": 31154,
+   "loss": 537787231,
+   "complaints_per_100k": 238.6,
+   "loss_per_100k": 4117999,
+   "age_17_or_younger": {
+    "complaints": 366,
+    "loss": 46527
+   },
+   "sixty_plus": {
+    "complaints": 7088,
+    "loss": 215887466
+   },
+   "cryptocurrency": {
+    "complaints": 5118,
+    "loss": 292893338
+   }
+  },
+  {
+   "name": "Arizona",
+   "complaints": 28868,
+   "loss": 630700609,
+   "complaints_per_100k": 378.7,
+   "loss_per_100k": 8272766,
+   "age_17_or_younger": {
+    "complaints": 341,
+    "loss": 491722
+   },
+   "sixty_plus": {
+    "complaints": 9834,
+    "loss": 343984935
+   },
+   "cryptocurrency": {
+    "complaints": 4936,
+    "loss": 346269314
+   }
+  },
+  {
+   "name": "Ohio",
+   "complaints": 27626,
+   "loss": 421289526,
+   "complaints_per_100k": 232.1,
+   "loss_per_100k": 3540096,
+   "age_17_or_younger": {
+    "complaints": 337,
+    "loss": 53439
+   },
+   "sixty_plus": {
+    "complaints": 6948,
+    "loss": 163748647
+   },
+   "cryptocurrency": {
+    "complaints": 4925,
+    "loss": 208874675
+   }
+  },
+  {
+   "name": "North Carolina",
+   "complaints": 25940,
+   "loss": 431561716,
+   "complaints_per_100k": 231.6,
+   "loss_per_100k": 3853929,
+   "age_17_or_younger": {
+    "complaints": 365,
+    "loss": 27457
+   },
+   "sixty_plus": {
+    "complaints": 5942,
+    "loss": 164214173
+   },
+   "cryptocurrency": {
+    "complaints": 4340,
+    "loss": 229649863
+   }
+  },
+  {
+   "name": "Georgia",
+   "complaints": 25936,
+   "loss": 534581965,
+   "complaints_per_100k": 229.5,
+   "loss_per_100k": 4729664,
+   "age_17_or_younger": {
+    "complaints": 317,
+    "loss": 3087376
+   },
+   "sixty_plus": {
+    "complaints": 4865,
+    "loss": 218218618
+   },
+   "cryptocurrency": {
+    "complaints": 4492,
+    "loss": 264502467
+   }
+  },
+  {
+   "name": "Washington",
+   "complaints": 25619,
+   "loss": 458165375,
+   "complaints_per_100k": 320.2,
+   "loss_per_100k": 5726337,
+   "age_17_or_younger": {
+    "complaints": 312,
+    "loss": 758830
+   },
+   "sixty_plus": {
+    "complaints": 5392,
+    "loss": 179706909
+   },
+   "cryptocurrency": {
+    "complaints": 4589,
+    "loss": 263067281
+   }
+  },
+  {
+   "name": "Virginia",
+   "complaints": 25314,
+   "loss": 476120025,
+   "complaints_per_100k": 285.1,
+   "loss_per_100k": 5361647,
+   "age_17_or_younger": {
+    "complaints": 292,
+    "loss": 150736
+   },
+   "sixty_plus": {
+    "complaints": 5509,
+    "loss": 220941233
+   },
+   "cryptocurrency": {
+    "complaints": 4246,
+    "loss": 261243361
+   }
+  },
+  {
+   "name": "Massachusetts",
+   "complaints": 22936,
+   "loss": 410924066,
+   "complaints_per_100k": 320.6,
+   "loss_per_100k": 5743909,
+   "age_17_or_younger": {
+    "complaints": 195,
+    "loss": 101315
+   },
+   "sixty_plus": {
+    "complaints": 5463,
+    "loss": 113880471
+   },
+   "cryptocurrency": {
+    "complaints": 2983,
+    "loss": 180158815
+   }
+  },
+  {
+   "name": "Michigan",
+   "complaints": 22191,
+   "loss": 381068131,
+   "complaints_per_100k": 219.1,
+   "loss_per_100k": 3762564,
+   "age_17_or_younger": {
+    "complaints": 292,
+    "loss": 148264
+   },
+   "sixty_plus": {
+    "complaints": 5731,
+    "loss": 169931948
+   },
+   "cryptocurrency": {
+    "complaints": 3648,
+    "loss": 210230468
+   }
+  },
+  {
+   "name": "Indiana",
+   "complaints": 20777,
+   "loss": 233016771,
+   "complaints_per_100k": 297.9,
+   "loss_per_100k": 3341541,
+   "age_17_or_younger": {
+    "complaints": 226,
+    "loss": 10691
+   },
+   "sixty_plus": {
+    "complaints": 4199,
+    "loss": 81517309
+   },
+   "cryptocurrency": {
+    "complaints": 2211,
+    "loss": 99629036
+   }
+  },
+  {
+   "name": "New Jersey",
+   "complaints": 20648,
+   "loss": 660411901,
+   "complaints_per_100k": 216.2,
+   "loss_per_100k": 6916601,
+   "age_17_or_younger": {
+    "complaints": 240,
+    "loss": 85885
+   },
+   "sixty_plus": {
+    "complaints": 4111,
+    "loss": 249808786
+   },
+   "cryptocurrency": {
+    "complaints": 4459,
+    "loss": 383662185
+   }
+  },
+  {
+   "name": "Maryland",
+   "complaints": 19430,
+   "loss": 390242821,
+   "complaints_per_100k": 310.1,
+   "loss_per_100k": 6228591,
+   "age_17_or_younger": {
+    "complaints": 224,
+    "loss": 14395
+   },
+   "sixty_plus": {
+    "complaints": 4573,
+    "loss": 176380737
+   },
+   "cryptocurrency": {
+    "complaints": 3226,
+    "loss": 246476431
+   }
+  },
+  {
+   "name": "Colorado",
+   "complaints": 18847,
+   "loss": 355049719,
+   "complaints_per_100k": 313.5,
+   "loss_per_100k": 5905133,
+   "age_17_or_younger": {
+    "complaints": 240,
+    "loss": 55032
+   },
+   "sixty_plus": {
+    "complaints": 4061,
+    "loss": 144529956
+   },
+   "cryptocurrency": {
+    "complaints": 4066,
+    "loss": 202127121
+   }
+  },
+  {
+   "name": "Wisconsin",
+   "complaints": 16680,
+   "loss": 194227722,
+   "complaints_per_100k": 279.3,
+   "loss_per_100k": 3251878,
+   "age_17_or_younger": {
+    "complaints": 154,
+    "loss": 14612
+   },
+   "sixty_plus": {
+    "complaints": 3014,
+    "loss": 92041492
+   },
+   "cryptocurrency": {
+    "complaints": 3092,
+    "loss": 87426944
+   }
+  },
+  {
+   "name": "Tennessee",
+   "complaints": 16261,
+   "loss": 269214519,
+   "complaints_per_100k": 222.3,
+   "loss_per_100k": 3680270,
+   "age_17_or_younger": {
+    "complaints": 197,
+    "loss": 27917
+   },
+   "sixty_plus": {
+    "complaints": 3525,
+    "loss": 108305976
+   },
+   "cryptocurrency": {
+    "complaints": 2854,
+    "loss": 142006339
+   }
+  },
+  {
+   "name": "South Carolina",
+   "complaints": 14699,
+   "loss": 264083026,
+   "complaints_per_100k": 263.9,
+   "loss_per_100k": 4740934,
+   "age_17_or_younger": {
+    "complaints": 165,
+    "loss": 758428
+   },
+   "sixty_plus": {
+    "complaints": 3136,
+    "loss": 97344480
+   },
+   "cryptocurrency": {
+    "complaints": 2176,
+    "loss": 118509954
+   }
+  },
+  {
+   "name": "Missouri",
+   "complaints": 14087,
+   "loss": 233933401,
+   "complaints_per_100k": 224.7,
+   "loss_per_100k": 3730673,
+   "age_17_or_younger": {
+    "complaints": 205,
+    "loss": 24678
+   },
+   "sixty_plus": {
+    "complaints": 3247,
+    "loss": 91563419
+   },
+   "cryptocurrency": {
+    "complaints": 2500,
+    "loss": 108769750
+   }
+  },
+  {
+   "name": "Minnesota",
+   "complaints": 13595,
+   "loss": 248892986,
+   "complaints_per_100k": 233.2,
+   "loss_per_100k": 4268880,
+   "age_17_or_younger": {
+    "complaints": 180,
+    "loss": 76832
+   },
+   "sixty_plus": {
+    "complaints": 2550,
+    "loss": 111387313
+   },
+   "cryptocurrency": {
+    "complaints": 2253,
+    "loss": 151658166
+   }
+  },
+  {
+   "name": "Nevada",
+   "complaints": 13366,
+   "loss": 302235247,
+   "complaints_per_100k": 407.2,
+   "loss_per_100k": 9208347,
+   "age_17_or_younger": {
+    "complaints": 202,
+    "loss": 40475
+   },
+   "sixty_plus": {
+    "complaints": 3008,
+    "loss": 115267384
+   },
+   "cryptocurrency": {
+    "complaints": 2518,
+    "loss": 205388286
+   }
+  },
+  {
+   "name": "Oregon",
+   "complaints": 12477,
+   "loss": 193196479,
+   "complaints_per_100k": 292.0,
+   "loss_per_100k": 4520711,
+   "age_17_or_younger": {
+    "complaints": 146,
+    "loss": 59874
+   },
+   "sixty_plus": {
+    "complaints": 2910,
+    "loss": 77481475
+   },
+   "cryptocurrency": {
+    "complaints": 2175,
+    "loss": 545938510
+   }
+  },
+  {
+   "name": "Oklahoma",
+   "complaints": 11964,
+   "loss": 131921776,
+   "complaints_per_100k": 290.2,
+   "loss_per_100k": 3199432,
+   "age_17_or_younger": {
+    "complaints": 160,
+    "loss": 39442
+   },
+   "sixty_plus": {
+    "complaints": 2449,
+    "loss": 53333350
+   },
+   "cryptocurrency": {
+    "complaints": 1581,
+    "loss": 62394493
+   }
+  },
+  {
+   "name": "Alabama",
+   "complaints": 9936,
+   "loss": 167212658,
+   "complaints_per_100k": 191.3,
+   "loss_per_100k": 3219908,
+   "age_17_or_younger": {
+    "complaints": 175,
+    "loss": 52541
+   },
+   "sixty_plus": {
+    "complaints": 2057,
+    "loss": 58838411
+   },
+   "cryptocurrency": {
+    "complaints": 1687,
+    "loss": 93813940
+   }
+  },
+  {
+   "name": "Utah",
+   "complaints": 9903,
+   "loss": 195417205,
+   "complaints_per_100k": 279.8,
+   "loss_per_100k": 5521970,
+   "age_17_or_younger": {
+    "complaints": 168,
+    "loss": 1017481
+   },
+   "sixty_plus": {
+    "complaints": 2341,
+    "loss": 65946070
+   },
+   "cryptocurrency": {
+    "complaints": 1833,
+    "loss": 107495105
+   }
+  },
+  {
+   "name": "Connecticut",
+   "complaints": 9714,
+   "loss": 219500212,
+   "complaints_per_100k": 263.4,
+   "loss_per_100k": 5950941,
+   "age_17_or_younger": {
+    "complaints": 129,
+    "loss": 43520
+   },
+   "sixty_plus": {
+    "complaints": 2360,
+    "loss": 73178714
+   },
+   "cryptocurrency": {
+    "complaints": 1480,
+    "loss": 91039266
+   }
+  },
+  {
+   "name": "Kentucky",
+   "complaints": 9414,
+   "loss": 119685861,
+   "complaints_per_100k": 204.3,
+   "loss_per_100k": 2597990,
+   "age_17_or_younger": {
+    "complaints": 143,
+    "loss": 37653
+   },
+   "sixty_plus": {
+    "complaints": 2127,
+    "loss": 64441069
+   },
+   "cryptocurrency": {
+    "complaints": 1453,
+    "loss": 60156299
+   }
+  },
+  {
+   "name": "Louisiana",
+   "complaints": 8623,
+   "loss": 105440238,
+   "complaints_per_100k": 186.7,
+   "loss_per_100k": 2283151,
+   "age_17_or_younger": {
+    "complaints": 111,
+    "loss": 14661
+   },
+   "sixty_plus": {
+    "complaints": 1906,
+    "loss": 35856847
+   },
+   "cryptocurrency": {
+    "complaints": 1366,
+    "loss": 53679269
+   }
+  },
+  {
+   "name": "Kansas",
+   "complaints": 7927,
+   "loss": 147337101,
+   "complaints_per_100k": 266.3,
+   "loss_per_100k": 4948815,
+   "age_17_or_younger": {
+    "complaints": 94,
+    "loss": 47016
+   },
+   "sixty_plus": {
+    "complaints": 2013,
+    "loss": 55730977
+   },
+   "cryptocurrency": {
+    "complaints": 1057,
+    "loss": 78062429
+   }
+  },
+  {
+   "name": "Arkansas",
+   "complaints": 6161,
+   "loss": 102541947,
+   "complaints_per_100k": 197.8,
+   "loss_per_100k": 3292097,
+   "age_17_or_younger": {
+    "complaints": 89,
+    "loss": 3479
+   },
+   "sixty_plus": {
+    "complaints": 1658,
+    "loss": 36958369
+   },
+   "cryptocurrency": {
+    "complaints": 1084,
+    "loss": 44064469
+   }
+  },
+  {
+   "name": "New Mexico",
+   "complaints": 5688,
+   "loss": 85571285,
+   "complaints_per_100k": 267.6,
+   "loss_per_100k": 4025941,
+   "age_17_or_younger": {
+    "complaints": 62,
+    "loss": 170580
+   },
+   "sixty_plus": {
+    "complaints": 1449,
+    "loss": 55820259
+   },
+   "cryptocurrency": {
+    "complaints": 914,
+    "loss": 45229204
+   }
+  },
+  {
+   "name": "Iowa",
+   "complaints": 5436,
+   "loss": 95520131,
+   "complaints_per_100k": 167.9,
+   "loss_per_100k": 2949621,
+   "age_17_or_younger": {
+    "complaints": 82,
+    "loss": 14576
+   },
+   "sixty_plus": {
+    "complaints": 1202,
+    "loss": 44136901
+   },
+   "cryptocurrency": {
+    "complaints": 887,
+    "loss": 43685423
+   }
+  },
+  {
+   "name": "Mississippi",
+   "complaints": 5084,
+   "loss": 77360761,
+   "complaints_per_100k": 172.1,
+   "loss_per_100k": 2618706,
+   "age_17_or_younger": {
+    "complaints": 91,
+    "loss": 3041
+   },
+   "sixty_plus": {
+    "complaints": 959,
+    "loss": 33087218
+   },
+   "cryptocurrency": {
+    "complaints": 815,
+    "loss": 38286775
+   }
+  },
+  {
+   "name": "Idaho",
+   "complaints": 4479,
+   "loss": 88725284,
+   "complaints_per_100k": 220.7,
+   "loss_per_100k": 4371279,
+   "age_17_or_younger": {
+    "complaints": 91,
+    "loss": 7171
+   },
+   "sixty_plus": {
+    "complaints": 1136,
+    "loss": 37394229
+   },
+   "cryptocurrency": {
+    "complaints": 1023,
+    "loss": 48296733
+   }
+  },
+  {
+   "name": "New Hampshire",
+   "complaints": 4374,
+   "loss": 59283023,
+   "complaints_per_100k": 309.0,
+   "loss_per_100k": 4188601,
+   "age_17_or_younger": {
+    "complaints": 38,
+    "loss": 1862
+   },
+   "sixty_plus": {
+    "complaints": 1063,
+    "loss": 25068671
+   },
+   "cryptocurrency": {
+    "complaints": 767,
+    "loss": 36481772
+   }
+  },
+  {
+   "name": "West Virginia",
+   "complaints": 4209,
+   "loss": 92648544,
+   "complaints_per_100k": 238.3,
+   "loss_per_100k": 5245800,
+   "age_17_or_younger": {
+    "complaints": 55,
+    "loss": 153035
+   },
+   "sixty_plus": {
+    "complaints": 931,
+    "loss": 18953441
+   },
+   "cryptocurrency": {
+    "complaints": 556,
+    "loss": 23208701
+   }
+  },
+  {
+   "name": "Puerto Rico",
+   "complaints": 4108,
+   "loss": 44266380,
+   "complaints_per_100k": 129.0,
+   "loss_per_100k": 1389911,
+   "age_17_or_younger": {
+    "complaints": 30,
+    "loss": 16566
+   },
+   "sixty_plus": {
+    "complaints": 351,
+    "loss": 8167452
+   },
+   "cryptocurrency": {
+    "complaints": 903,
+    "loss": 24234782
+   }
+  },
+  {
+   "name": "Nebraska",
+   "complaints": 3724,
+   "loss": 71844724,
+   "complaints_per_100k": 184.5,
+   "loss_per_100k": 3560184,
+   "age_17_or_younger": {
+    "complaints": 71,
+    "loss": 6404
+   },
+   "sixty_plus": {
+    "complaints": 781,
+    "loss": 28430567
+   },
+   "cryptocurrency": {
+    "complaints": 730,
+    "loss": 34861429
+   }
+  },
+  {
+   "name": "Hawaii",
+   "complaints": 3328,
+   "loss": 106447375,
+   "complaints_per_100k": 232.3,
+   "loss_per_100k": 7429222,
+   "age_17_or_younger": {
+    "complaints": 37,
+    "loss": 6231
+   },
+   "sixty_plus": {
+    "complaints": 917,
+    "loss": 55385929
+   },
+   "cryptocurrency": {
+    "complaints": 826,
+    "loss": 79759336
+   }
+  },
+  {
+   "name": "Alaska",
+   "complaints": 3202,
+   "loss": 39972438,
+   "complaints_per_100k": 434.3,
+   "loss_per_100k": 5421682,
+   "age_17_or_younger": {
+    "complaints": 63,
+    "loss": 4880
+   },
+   "sixty_plus": {
+    "complaints": 666,
+    "loss": 16252410
+   },
+   "cryptocurrency": {
+    "complaints": 482,
+    "loss": 18610389
+   }
+  },
+  {
+   "name": "District of Columbia",
+   "complaints": 3113,
+   "loss": 97368097,
+   "complaints_per_100k": 448.8,
+   "loss_per_100k": 14037165,
+   "age_17_or_younger": {
+    "complaints": 23,
+    "loss": 34840
+   },
+   "sixty_plus": {
+    "complaints": 382,
+    "loss": 10077243
+   },
+   "cryptocurrency": {
+    "complaints": 448,
+    "loss": 37013584
+   }
+  },
+  {
+   "name": "Delaware",
+   "complaints": 3089,
+   "loss": 62012494,
+   "complaints_per_100k": 291.4,
+   "loss_per_100k": 5850500,
+   "age_17_or_younger": {
+    "complaints": 34,
+    "loss": 475
+   },
+   "sixty_plus": {
+    "complaints": 796,
+    "loss": 16189240
+   },
+   "cryptocurrency": {
+    "complaints": 436,
+    "loss": 26893098
+   }
+  },
+  {
+   "name": "Maine",
+   "complaints": 2888,
+   "loss": 56536020,
+   "complaints_per_100k": 204.1,
+   "loss_per_100k": 3995834,
+   "age_17_or_younger": {
+    "complaints": 44,
+    "loss": 9345
+   },
+   "sixty_plus": {
+    "complaints": 721,
+    "loss": 23317413
+   },
+   "cryptocurrency": {
+    "complaints": 524,
+    "loss": 35795026
+   }
+  },
+  {
+   "name": "Rhode Island",
+   "complaints": 2700,
+   "loss": 71960439,
+   "complaints_per_100k": 242.3,
+   "loss_per_100k": 6456625,
+   "age_17_or_younger": {
+    "complaints": 35,
+    "loss": 1021
+   },
+   "sixty_plus": {
+    "complaints": 581,
+    "loss": 21561918
+   },
+   "cryptocurrency": {
+    "complaints": 414,
+    "loss": 14125096
+   }
+  },
+  {
+   "name": "Montana",
+   "complaints": 2618,
+   "loss": 53192859,
+   "complaints_per_100k": 228.7,
+   "loss_per_100k": 4646906,
+   "age_17_or_younger": {
+    "complaints": 33,
+    "loss": 2261
+   },
+   "sixty_plus": {
+    "complaints": 814,
+    "loss": 31773898
+   },
+   "cryptocurrency": {
+    "complaints": 590,
+    "loss": 35136688
+   }
+  },
+  {
+   "name": "South Dakota",
+   "complaints": 2514,
+   "loss": 51452806,
+   "complaints_per_100k": 268.8,
+   "loss_per_100k": 5502421,
+   "age_17_or_younger": {
+    "complaints": 22,
+    "loss": 4080
+   },
+   "sixty_plus": {
+    "complaints": 398,
+    "loss": 14708875
+   },
+   "cryptocurrency": {
+    "complaints": 603,
+    "loss": 23169159
+   }
+  },
+  {
+   "name": "Vermont",
+   "complaints": 1580,
+   "loss": 26567033,
+   "complaints_per_100k": 245.1,
+   "loss_per_100k": 4121073,
+   "age_17_or_younger": {
+    "complaints": 16,
+    "loss": 744
+   },
+   "sixty_plus": {
+    "complaints": 436,
+    "loss": 8548782
+   },
+   "cryptocurrency": {
+    "complaints": 212,
+    "loss": 7532107
+   }
+  },
+  {
+   "name": "Wyoming",
+   "complaints": 1552,
+   "loss": 25826205,
+   "complaints_per_100k": 263.6,
+   "loss_per_100k": 4386594,
+   "age_17_or_younger": {
+    "complaints": 21,
+    "loss": 13749
+   },
+   "sixty_plus": {
+    "complaints": 397,
+    "loss": 5923260
+   },
+   "cryptocurrency": {
+    "complaints": 273,
+    "loss": 13695308
+   }
+  },
+  {
+   "name": "North Dakota",
+   "complaints": 1418,
+   "loss": 37865442,
+   "complaints_per_100k": 177.4,
+   "loss_per_100k": 4736982,
+   "age_17_or_younger": {
+    "complaints": 23,
+    "loss": 2365
+   },
+   "sixty_plus": {
+    "complaints": 251,
+    "loss": 5895155
+   },
+   "cryptocurrency": {
+    "complaints": 300,
+    "loss": 20083064
+   }
+  },
+  {
+   "name": "United States Minor Outlying Islands",
+   "complaints": 211,
+   "loss": 3486871,
+   "complaints_per_100k": null,
+   "loss_per_100k": null,
+   "age_17_or_younger": {
+    "complaints": 8,
+    "loss": 0
+   },
+   "sixty_plus": {
+    "complaints": 33,
+    "loss": 2886025
+   },
+   "cryptocurrency": {
+    "complaints": 26,
+    "loss": 1045183
+   }
+  },
+  {
+   "name": "American Samoa",
+   "complaints": 188,
+   "loss": 172395,
+   "complaints_per_100k": null,
+   "loss_per_100k": null,
+   "age_17_or_younger": {
+    "complaints": null,
+    "loss": null
+   },
+   "sixty_plus": {
+    "complaints": 4,
+    "loss": 46362
+   },
+   "cryptocurrency": {
+    "complaints": 8,
+    "loss": 105197
+   }
+  },
+  {
+   "name": "Guam",
+   "complaints": 171,
+   "loss": 1416690,
+   "complaints_per_100k": null,
+   "loss_per_100k": null,
+   "age_17_or_younger": {
+    "complaints": 2,
+    "loss": 0
+   },
+   "sixty_plus": {
+    "complaints": 18,
+    "loss": 380178
+   },
+   "cryptocurrency": {
+    "complaints": 26,
+    "loss": 696853
+   }
+  },
+  {
+   "name": "U.S. Virgin Islands",
+   "complaints": 125,
+   "loss": 2448598,
+   "complaints_per_100k": null,
+   "loss_per_100k": null,
+   "age_17_or_younger": {
+    "complaints": null,
+    "loss": null
+   },
+   "sixty_plus": {
+    "complaints": 24,
+    "loss": 1088540
+   },
+   "cryptocurrency": {
+    "complaints": 22,
+    "loss": 1056161
+   }
+  },
+  {
+   "name": "Northern Mariana Islands",
+   "complaints": 30,
+   "loss": 290585,
+   "complaints_per_100k": null,
+   "loss_per_100k": null,
+   "age_17_or_younger": {
+    "complaints": null,
+    "loss": null
+   },
+   "sixty_plus": {
+    "complaints": 3,
+    "loss": 15500
+   },
+   "cryptocurrency": {
+    "complaints": 2,
+    "loss": 1000
+   }
+  }
+ ]
+}

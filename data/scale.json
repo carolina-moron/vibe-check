@@ -4,10 +4,10 @@
     {
       "label": "Internet crime complaints to the FBI (United States only)",
       "unit": "complaints",
-      "per_year": 859532,
-      "note": "859,532 complaints and $16.6 billion in reported losses in 2024, a record.",
-      "source": "FBI IC3, 2024 Internet Crime Report",
-      "url": "https://www.ic3.gov/AnnualReport/Reports/2024_IC3Report.pdf"
+      "per_year": 1008597,
+      "note": "1,008,597 complaints and $20.877 billion in reported losses in 2025, both records.",
+      "source": "FBI IC3, 2025 Internet Crime Report",
+      "url": "https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf"
     },
     {
       "label": "Money stolen by scammers worldwide (US dollars)",
@@ -54,16 +54,16 @@
       "title": "Older adults",
       "items": [
         {
-          "figure": "147,127",
-          "text": "internet crime complaints from people over 60 in the United States in 2024, about 403 a day, up 46% in a year.",
-          "source": "FBI IC3, 2024 Internet Crime Report",
-          "url": "https://www.ic3.gov/AnnualReport/Reports/2024_IC3Report.pdf"
+          "figure": "201,266",
+          "text": "internet crime complaints from people 60 and over in the United States in 2025, about 551 a day, up 37% in a year.",
+          "source": "FBI IC3, 2025 Internet Crime Report",
+          "url": "https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf"
         },
         {
-          "figure": "$4.885 billion",
-          "text": "lost by people over 60 in 2024, the most of any age group, up 43% in a year.",
-          "source": "FBI IC3, 2024 Internet Crime Report",
-          "url": "https://www.ic3.gov/AnnualReport/Reports/2024_IC3Report.pdf"
+          "figure": "$7.748 billion",
+          "text": "lost by people 60 and over in 2025, the most of any age group, up 59% in a year.",
+          "source": "FBI IC3, 2025 Internet Crime Report",
+          "url": "https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf"
         },
         {
           "figure": "2.6 million",
@@ -105,13 +105,13 @@
     },
     {
       "label": "Internet crime complaints to the FBI (US)",
-      "value": 2355,
-      "display": "2,355"
+      "value": 2763,
+      "display": "2,763"
     },
     {
-      "label": "FBI complaints from people over 60 (US)",
-      "value": 403,
-      "display": "403"
+      "label": "FBI complaints from people 60 and over (US)",
+      "value": 551,
+      "display": "551"
     },
     {
       "label": "Financial sextortion reports to NCMEC",

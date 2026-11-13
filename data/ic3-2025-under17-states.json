@@ -1,0 +1,3935 @@
+{
+ "source": {
+  "title": "2025 IC3 Complainants 17 Years Old or Younger Annual Report, by state",
+  "publisher": "FBI Internet Crime Complaint Center (IC3)",
+  "url": "https://www.ic3.gov/annualreport/Reports/2025Under17State/",
+  "state_url": "https://www.ic3.gov/annualreport/Reports/2025Under17State/?s={source_id}",
+  "retrieved": "2026-11-12",
+  "license": "Work of the United States Government; not subject to copyright in the United States."
+ },
+ "note": "One row per state page, as published. 'victims' are counted by the state of the victim and 'subjects' by the state of the person complained about; only crime types and descriptors with a non-zero count or loss are kept. Descriptors (crimes_against_children, ai_related, cryptocurrency, cryptocurrency_wallet) are tags on top of a crime type, so they overlap with the crime types.",
+ "caveats": [
+  "These pages do not match the state table in the annual report PDF (pp.37-38), which counts every complaint filed by someone 17 or younger: for example Alabama has 175 complaints in the PDF and 122 victims here. The pages appear to cover complaints tagged Crimes Against Children, which an adult can file on a child's behalf, which is why the age table includes adults. IC3 does not explain the difference, so the two sources are stored separately and never added together.",
+  "Almost all victims are filed under Extortion or Other. For children, extortion in IC3 data is mostly sextortion.",
+  "Reported complaints only: a floor, not a measure of how many children were targeted."
+ ],
+ "states": [
+  {
+   "name": "Alabama",
+   "source_id": 1,
+   "victims": {
+    "other": {
+     "count": 54,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 68,
+     "loss": 12884
+    },
+    "ai_related": {
+     "count": 4,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 122,
+     "loss": 12884
+    },
+    "cryptocurrency_wallet": {
+     "count": 5,
+     "loss": 450
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 6,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 20,
+     "loss": 12212
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 1000
+    },
+    "crimes_against_children": {
+     "count": 26,
+     "loss": 12212
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 75,
+     "loss": 2434
+    },
+    "20_29": {
+     "count": 7,
+     "loss": 450
+    },
+    "30_39": {
+     "count": 6,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 3,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 3,
+     "loss": 10000
+    }
+   }
+  },
+  {
+   "name": "Alaska",
+   "source_id": 2,
+   "victims": {
+    "other": {
+     "count": 15,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 31,
+     "loss": 1625
+    },
+    "crimes_against_children": {
+     "count": 46,
+     "loss": 1625
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 4,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 3,
+     "loss": 130
+    },
+    "crimes_against_children": {
+     "count": 7,
+     "loss": 130
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 31,
+     "loss": 1625
+    },
+    "20_29": {
+     "count": 4,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 8,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 1,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "American Samoa",
+   "source_id": 3,
+   "victims": {},
+   "subjects": {},
+   "victims_by_age": {
+    "under_20": {
+     "count": 0,
+     "loss": 0
+    },
+    "20_29": {
+     "count": 0,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Arizona",
+   "source_id": 4,
+   "victims": {
+    "other": {
+     "count": 35,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 163,
+     "loss": 46016
+    },
+    "ai_related": {
+     "count": 6,
+     "loss": 1905
+    },
+    "cryptocurrency": {
+     "count": 6,
+     "loss": 800
+    },
+    "crimes_against_children": {
+     "count": 198,
+     "loss": 46016
+    },
+    "cryptocurrency_wallet": {
+     "count": 2,
+     "loss": 2056
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 4,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 43,
+     "loss": 3795
+    },
+    "ai_related": {
+     "count": 3,
+     "loss": 1940
+    },
+    "cryptocurrency": {
+     "count": 14,
+     "loss": 840
+    },
+    "crimes_against_children": {
+     "count": 47,
+     "loss": 3795
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 164,
+     "loss": 15516
+    },
+    "20_29": {
+     "count": 12,
+     "loss": 500
+    },
+    "30_39": {
+     "count": 10,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 3,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 2,
+     "loss": 30000
+    }
+   }
+  },
+  {
+   "name": "Arkansas",
+   "source_id": 5,
+   "victims": {
+    "other": {
+     "count": 12,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 41,
+     "loss": 1693
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 2,
+     "loss": 100
+    },
+    "crimes_against_children": {
+     "count": 53,
+     "loss": 1693
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 5,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 6,
+     "loss": 82
+    },
+    "crimes_against_children": {
+     "count": 11,
+     "loss": 82
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 45,
+     "loss": 1693
+    },
+    "20_29": {
+     "count": 4,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 2,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 1,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "California",
+   "source_id": 6,
+   "victims": {
+    "other": {
+     "count": 166,
+     "loss": 495
+    },
+    "personal_data_breach": {
+     "count": 1,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 574,
+     "loss": 5193590
+    },
+    "harassment_stalking": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 37,
+     "loss": 3816
+    },
+    "cryptocurrency": {
+     "count": 17,
+     "loss": 144157
+    },
+    "crimes_against_children": {
+     "count": 742,
+     "loss": 5194085
+    },
+    "cryptocurrency_wallet": {
+     "count": 8,
+     "loss": 2052
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 54,
+     "loss": 700
+    },
+    "extortion": {
+     "count": 167,
+     "loss": 149427
+    },
+    "ai_related": {
+     "count": 18,
+     "loss": 12083
+    },
+    "cryptocurrency": {
+     "count": 8,
+     "loss": 102672
+    },
+    "crimes_against_children": {
+     "count": 221,
+     "loss": 150127
+    },
+    "cryptocurrency_wallet": {
+     "count": 5,
+     "loss": 1870
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 558,
+     "loss": 33820
+    },
+    "20_29": {
+     "count": 76,
+     "loss": 3770
+    },
+    "30_39": {
+     "count": 25,
+     "loss": 11100
+    },
+    "40_49": {
+     "count": 23,
+     "loss": 102400
+    },
+    "50_59": {
+     "count": 9,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 8,
+     "loss": 5042800
+    }
+   }
+  },
+  {
+   "name": "Colorado",
+   "source_id": 7,
+   "victims": {
+    "malware": {
+     "count": 1,
+     "loss": 0
+    },
+    "other": {
+     "count": 27,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 100,
+     "loss": 6287
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 3,
+     "loss": 1385
+    },
+    "crimes_against_children": {
+     "count": 128,
+     "loss": 6287
+    },
+    "cryptocurrency_wallet": {
+     "count": 2,
+     "loss": 500
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 7,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 14,
+     "loss": 1865
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 900
+    },
+    "crimes_against_children": {
+     "count": 21,
+     "loss": 1865
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 102,
+     "loss": 6194
+    },
+    "20_29": {
+     "count": 13,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 5,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 4,
+     "loss": 93
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 1,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Connecticut",
+   "source_id": 8,
+   "victims": {
+    "other": {
+     "count": 14,
+     "loss": 1085
+    },
+    "extortion": {
+     "count": 58,
+     "loss": 292357
+    },
+    "ai_related": {
+     "count": 6,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 2000
+    },
+    "crimes_against_children": {
+     "count": 72,
+     "loss": 293442
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 288548
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 4,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 11,
+     "loss": 350
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 15,
+     "loss": 350
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 54,
+     "loss": 2894
+    },
+    "20_29": {
+     "count": 6,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 5,
+     "loss": 290548
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 1,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Delaware",
+   "source_id": 9,
+   "victims": {
+    "other": {
+     "count": 7,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 14,
+     "loss": 475
+    },
+    "crimes_against_children": {
+     "count": 21,
+     "loss": 475
+    }
+   },
+   "subjects": {
+    "extortion": {
+     "count": 5,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 5,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 17,
+     "loss": 475
+    },
+    "20_29": {
+     "count": 2,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "District of Columbia",
+   "source_id": 10,
+   "victims": {
+    "other": {
+     "count": 9,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 4,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 13,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 1,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 3,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 7,
+     "loss": 0
+    },
+    "20_29": {
+     "count": 0,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 1,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Florida",
+   "source_id": 11,
+   "victims": {
+    "other": {
+     "count": 109,
+     "loss": 1202
+    },
+    "extortion": {
+     "count": 289,
+     "loss": 11705
+    },
+    "ai_related": {
+     "count": 14,
+     "loss": 75
+    },
+    "cryptocurrency": {
+     "count": 9,
+     "loss": 685
+    },
+    "crimes_against_children": {
+     "count": 398,
+     "loss": 12906
+    },
+    "cryptocurrency_wallet": {
+     "count": 8,
+     "loss": 107
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 34,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 85,
+     "loss": 5256
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 119,
+     "loss": 5256
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 294,
+     "loss": 11386
+    },
+    "20_29": {
+     "count": 35,
+     "loss": 700
+    },
+    "30_39": {
+     "count": 39,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 8,
+     "loss": 20
+    },
+    "50_59": {
+     "count": 7,
+     "loss": 800
+    },
+    "60_plus": {
+     "count": 3,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Georgia",
+   "source_id": 12,
+   "victims": {
+    "other": {
+     "count": 27,
+     "loss": 13
+    },
+    "extortion": {
+     "count": 124,
+     "loss": 16980
+    },
+    "ai_related": {
+     "count": 4,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 2,
+     "loss": 170
+    },
+    "crimes_against_children": {
+     "count": 151,
+     "loss": 16993
+    },
+    "cryptocurrency_wallet": {
+     "count": 3,
+     "loss": 12243
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 6,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 20,
+     "loss": 265
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 170
+    },
+    "crimes_against_children": {
+     "count": 26,
+     "loss": 265
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 124,
+     "loss": 16858
+    },
+    "20_29": {
+     "count": 11,
+     "loss": 135
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 5,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 3,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Guam",
+   "source_id": 13,
+   "victims": {
+    "other": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 2,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 1,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 2,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 1,
+     "loss": 0
+    },
+    "20_29": {
+     "count": 0,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Hawaii",
+   "source_id": 14,
+   "victims": {
+    "other": {
+     "count": 10,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 23,
+     "loss": 5941
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 120
+    },
+    "crimes_against_children": {
+     "count": 33,
+     "loss": 5941
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 4,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 5,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 24,
+     "loss": 5941
+    },
+    "20_29": {
+     "count": 4,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Idaho",
+   "source_id": 15,
+   "victims": {
+    "other": {
+     "count": 10,
+     "loss": 590
+    },
+    "extortion": {
+     "count": 44,
+     "loss": 3483
+    },
+    "ai_related": {
+     "count": 5,
+     "loss": 900
+    },
+    "crimes_against_children": {
+     "count": 54,
+     "loss": 4073
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 2,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 9,
+     "loss": 280
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 11,
+     "loss": 280
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 44,
+     "loss": 3973
+    },
+    "20_29": {
+     "count": 3,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 2,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 1,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Illinois",
+   "source_id": 16,
+   "victims": {
+    "other": {
+     "count": 49,
+     "loss": 590
+    },
+    "personal_data_breach": {
+     "count": 1,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 152,
+     "loss": 8269
+    },
+    "threats_of_violence": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 10,
+     "loss": 30
+    },
+    "cryptocurrency": {
+     "count": 6,
+     "loss": 600
+    },
+    "crimes_against_children": {
+     "count": 203,
+     "loss": 8859
+    },
+    "cryptocurrency_wallet": {
+     "count": 5,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 18,
+     "loss": 20
+    },
+    "extortion": {
+     "count": 43,
+     "loss": 2060
+    },
+    "ai_related": {
+     "count": 3,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 61,
+     "loss": 2080
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 162,
+     "loss": 8659
+    },
+    "20_29": {
+     "count": 6,
+     "loss": 200
+    },
+    "30_39": {
+     "count": 8,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 11,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 1,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 2,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Indiana",
+   "source_id": 17,
+   "victims": {
+    "other": {
+     "count": 33,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 105,
+     "loss": 5443
+    },
+    "ai_related": {
+     "count": 3,
+     "loss": 400
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 138,
+     "loss": 5443
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 7,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 30,
+     "loss": 3037
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 37,
+     "loss": 3037
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 108,
+     "loss": 5443
+    },
+    "20_29": {
+     "count": 10,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 7,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 2,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 3,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 1,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Iowa",
+   "source_id": 18,
+   "victims": {
+    "other": {
+     "count": 5,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 28,
+     "loss": 2957
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 377
+    },
+    "crimes_against_children": {
+     "count": 33,
+     "loss": 2957
+    }
+   },
+   "subjects": {
+    "extortion": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 33,
+     "loss": 2957
+    },
+    "20_29": {
+     "count": 0,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Kansas",
+   "source_id": 19,
+   "victims": {
+    "other": {
+     "count": 8,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 39,
+     "loss": 2245
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 47,
+     "loss": 2245
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 3,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 6,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 9,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 41,
+     "loss": 2245
+    },
+    "20_29": {
+     "count": 1,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 2,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Kentucky",
+   "source_id": 20,
+   "victims": {
+    "other": {
+     "count": 15,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 75,
+     "loss": 2985
+    },
+    "ai_related": {
+     "count": 4,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 50
+    },
+    "crimes_against_children": {
+     "count": 90,
+     "loss": 2985
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 6,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 11,
+     "loss": 260
+    },
+    "crimes_against_children": {
+     "count": 17,
+     "loss": 260
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 70,
+     "loss": 2935
+    },
+    "20_29": {
+     "count": 10,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 3,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 2,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 1,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Louisiana",
+   "source_id": 21,
+   "victims": {
+    "other": {
+     "count": 16,
+     "loss": 3000
+    },
+    "extortion": {
+     "count": 49,
+     "loss": 4131
+    },
+    "ai_related": {
+     "count": 4,
+     "loss": 25
+    },
+    "crimes_against_children": {
+     "count": 65,
+     "loss": 7131
+    },
+    "cryptocurrency_wallet": {
+     "count": 4,
+     "loss": 490
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 8,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 6,
+     "loss": 1300
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 14,
+     "loss": 1300
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 54,
+     "loss": 4131
+    },
+    "20_29": {
+     "count": 4,
+     "loss": 3000
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 3,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Maine",
+   "source_id": 22,
+   "victims": {
+    "other": {
+     "count": 8,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 26,
+     "loss": 1695
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 34,
+     "loss": 1695
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 2,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 4,
+     "loss": 118
+    },
+    "crimes_against_children": {
+     "count": 6,
+     "loss": 118
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 26,
+     "loss": 1695
+    },
+    "20_29": {
+     "count": 1,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 2,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 3,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Maryland",
+   "source_id": 23,
+   "victims": {
+    "other": {
+     "count": 23,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 74,
+     "loss": 12545
+    },
+    "threats_of_violence": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 200
+    },
+    "cryptocurrency": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 98,
+     "loss": 12545
+    },
+    "cryptocurrency_wallet": {
+     "count": 4,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 3,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 23,
+     "loss": 125
+    },
+    "crimes_against_children": {
+     "count": 26,
+     "loss": 125
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 82,
+     "loss": 2545
+    },
+    "20_29": {
+     "count": 6,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 4,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 2,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 1,
+     "loss": 10000
+    }
+   }
+  },
+  {
+   "name": "Massachusetts",
+   "source_id": 24,
+   "victims": {
+    "other": {
+     "count": 20,
+     "loss": 0
+    },
+    "personal_data_breach": {
+     "count": 1,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 76,
+     "loss": 6977
+    },
+    "ai_related": {
+     "count": 6,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 4,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 97,
+     "loss": 6977
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 3,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 18,
+     "loss": 1635
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 21,
+     "loss": 1635
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 78,
+     "loss": 6977
+    },
+    "20_29": {
+     "count": 9,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Michigan",
+   "source_id": 25,
+   "victims": {
+    "other": {
+     "count": 41,
+     "loss": 50
+    },
+    "extortion": {
+     "count": 136,
+     "loss": 6135
+    },
+    "ai_related": {
+     "count": 3,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 177,
+     "loss": 6185
+    },
+    "cryptocurrency_wallet": {
+     "count": 6,
+     "loss": 2400
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 8,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 48,
+     "loss": 1245
+    },
+    "cryptocurrency": {
+     "count": 6,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 56,
+     "loss": 1245
+    },
+    "cryptocurrency_wallet": {
+     "count": 3,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 124,
+     "loss": 6185
+    },
+    "20_29": {
+     "count": 24,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 16,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 2,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 3,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Minnesota",
+   "source_id": 26,
+   "victims": {
+    "other": {
+     "count": 20,
+     "loss": 150
+    },
+    "extortion": {
+     "count": 83,
+     "loss": 2692
+    },
+    "ai_related": {
+     "count": 4,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 103,
+     "loss": 2842
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 1,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 10,
+     "loss": 66
+    },
+    "crimes_against_children": {
+     "count": 11,
+     "loss": 66
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 92,
+     "loss": 2842
+    },
+    "20_29": {
+     "count": 3,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 3,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 3,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Mississippi",
+   "source_id": 27,
+   "victims": {
+    "other": {
+     "count": 7,
+     "loss": 8
+    },
+    "extortion": {
+     "count": 30,
+     "loss": 410
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 14
+    },
+    "crimes_against_children": {
+     "count": 37,
+     "loss": 418
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 2,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 10,
+     "loss": 228
+    },
+    "crimes_against_children": {
+     "count": 12,
+     "loss": 228
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 32,
+     "loss": 418
+    },
+    "20_29": {
+     "count": 3,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Missouri",
+   "source_id": 28,
+   "victims": {
+    "other": {
+     "count": 34,
+     "loss": 3000
+    },
+    "extortion": {
+     "count": 85,
+     "loss": 11895
+    },
+    "ai_related": {
+     "count": 5,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 3,
+     "loss": 10
+    },
+    "crimes_against_children": {
+     "count": 119,
+     "loss": 14895
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 12,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 21,
+     "loss": 316
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 33,
+     "loss": 316
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 84,
+     "loss": 7215
+    },
+    "20_29": {
+     "count": 18,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 4,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 5,
+     "loss": 2000
+    },
+    "60_plus": {
+     "count": 2,
+     "loss": 5500
+    }
+   }
+  },
+  {
+   "name": "Montana",
+   "source_id": 29,
+   "victims": {
+    "other": {
+     "count": 3,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 21,
+     "loss": 115
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 24,
+     "loss": 115
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 1,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 3,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 4,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 20,
+     "loss": 115
+    },
+    "20_29": {
+     "count": 2,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Nebraska",
+   "source_id": 30,
+   "victims": {
+    "other": {
+     "count": 13,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 26,
+     "loss": 1330
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 39,
+     "loss": 1330
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 1,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 3,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 4,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 31,
+     "loss": 1330
+    },
+    "20_29": {
+     "count": 3,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 2,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Nevada",
+   "source_id": 31,
+   "victims": {
+    "other": {
+     "count": 19,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 65,
+     "loss": 2328
+    },
+    "ai_related": {
+     "count": 5,
+     "loss": 349
+    },
+    "crimes_against_children": {
+     "count": 84,
+     "loss": 2328
+    },
+    "cryptocurrency_wallet": {
+     "count": 2,
+     "loss": 700
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 7,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 12,
+     "loss": 526
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 76
+    },
+    "crimes_against_children": {
+     "count": 19,
+     "loss": 526
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 200
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 72,
+     "loss": 1805
+    },
+    "20_29": {
+     "count": 3,
+     "loss": 323
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 3,
+     "loss": 200
+    },
+    "50_59": {
+     "count": 2,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "New Hampshire",
+   "source_id": 32,
+   "victims": {
+    "other": {
+     "count": 5,
+     "loss": 500
+    },
+    "extortion": {
+     "count": 11,
+     "loss": 215
+    },
+    "crimes_against_children": {
+     "count": 16,
+     "loss": 715
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 2,
+     "loss": 500
+    },
+    "extortion": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 4,
+     "loss": 500
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 12,
+     "loss": 715
+    },
+    "20_29": {
+     "count": 2,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 1,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "New Jersey",
+   "source_id": 33,
+   "victims": {
+    "other": {
+     "count": 26,
+     "loss": 100
+    },
+    "personal_data_breach": {
+     "count": 3,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 117,
+     "loss": 13004
+    },
+    "ai_related": {
+     "count": 3,
+     "loss": 100
+    },
+    "cryptocurrency": {
+     "count": 5,
+     "loss": 2600
+    },
+    "crimes_against_children": {
+     "count": 146,
+     "loss": 13104
+    },
+    "cryptocurrency_wallet": {
+     "count": 2,
+     "loss": 145
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 12,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 34,
+     "loss": 551805
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 30
+    },
+    "cryptocurrency": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 46,
+     "loss": 551805
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 45
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 110,
+     "loss": 13104
+    },
+    "20_29": {
+     "count": 17,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 11,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 2,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "New Mexico",
+   "source_id": 34,
+   "victims": {
+    "other": {
+     "count": 6,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 32,
+     "loss": 965
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 38,
+     "loss": 965
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 3,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 8,
+     "loss": 235
+    },
+    "ai_related": {
+     "count": 3,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 11,
+     "loss": 235
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 32,
+     "loss": 965
+    },
+    "20_29": {
+     "count": 2,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 3,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "New York",
+   "source_id": 35,
+   "victims": {
+    "other": {
+     "count": 66,
+     "loss": 756
+    },
+    "personal_data_breach": {
+     "count": 1,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 205,
+     "loss": 24099
+    },
+    "threats_of_violence": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 5,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 8,
+     "loss": 5100
+    },
+    "crimes_against_children": {
+     "count": 273,
+     "loss": 24855
+    },
+    "cryptocurrency_wallet": {
+     "count": 9,
+     "loss": 2388
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 19,
+     "loss": 3000
+    },
+    "extortion": {
+     "count": 76,
+     "loss": 5225
+    },
+    "threats_of_violence": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 350
+    },
+    "cryptocurrency": {
+     "count": 5,
+     "loss": 2000
+    },
+    "crimes_against_children": {
+     "count": 96,
+     "loss": 8225
+    },
+    "cryptocurrency_wallet": {
+     "count": 3,
+     "loss": 880
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 193,
+     "loss": 22448
+    },
+    "20_29": {
+     "count": 36,
+     "loss": 436
+    },
+    "30_39": {
+     "count": 11,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 10,
+     "loss": 1148
+    },
+    "50_59": {
+     "count": 4,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 3,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "North Carolina",
+   "source_id": 36,
+   "victims": {
+    "other": {
+     "count": 40,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 148,
+     "loss": 5765
+    },
+    "threats_of_violence": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 6,
+     "loss": 125
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 189,
+     "loss": 5765
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 12,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 27,
+     "loss": 1035
+    },
+    "threats_of_violence": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 40,
+     "loss": 1035
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 161,
+     "loss": 5765
+    },
+    "20_29": {
+     "count": 15,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 2,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 3,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "North Dakota",
+   "source_id": 37,
+   "victims": {
+    "other": {
+     "count": 4,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 10,
+     "loss": 710
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 10
+    },
+    "crimes_against_children": {
+     "count": 14,
+     "loss": 710
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 2,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 2,
+     "loss": 10
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 10
+    },
+    "crimes_against_children": {
+     "count": 4,
+     "loss": 10
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 10,
+     "loss": 710
+    },
+    "20_29": {
+     "count": 2,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 2,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Northern Mariana Islands",
+   "source_id": 38,
+   "victims": {},
+   "subjects": {},
+   "victims_by_age": {
+    "under_20": {
+     "count": 0,
+     "loss": 0
+    },
+    "20_29": {
+     "count": 0,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Ohio",
+   "source_id": 39,
+   "victims": {
+    "other": {
+     "count": 34,
+     "loss": 10403
+    },
+    "extortion": {
+     "count": 131,
+     "loss": 57435
+    },
+    "cryptocurrency": {
+     "count": 2,
+     "loss": 900
+    },
+    "crimes_against_children": {
+     "count": 165,
+     "loss": 67838
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 14,
+     "loss": 10000
+    },
+    "extortion": {
+     "count": 39,
+     "loss": 129046
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 53,
+     "loss": 139046
+    },
+    "cryptocurrency_wallet": {
+     "count": 4,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 123,
+     "loss": 4838
+    },
+    "20_29": {
+     "count": 22,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 5,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 5,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 4,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 4,
+     "loss": 63000
+    }
+   }
+  },
+  {
+   "name": "Oklahoma",
+   "source_id": 40,
+   "victims": {
+    "other": {
+     "count": 19,
+     "loss": 50
+    },
+    "extortion": {
+     "count": 75,
+     "loss": 24186
+    },
+    "ai_related": {
+     "count": 3,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 94,
+     "loss": 24236
+    },
+    "cryptocurrency_wallet": {
+     "count": 3,
+     "loss": 22200
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 2,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 17,
+     "loss": 4743
+    },
+    "crimes_against_children": {
+     "count": 19,
+     "loss": 4743
+    },
+    "cryptocurrency_wallet": {
+     "count": 2,
+     "loss": 4300
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 77,
+     "loss": 2036
+    },
+    "20_29": {
+     "count": 3,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 4,
+     "loss": 4300
+    },
+    "40_49": {
+     "count": 6,
+     "loss": 17900
+    },
+    "50_59": {
+     "count": 1,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Oregon",
+   "source_id": 41,
+   "victims": {
+    "other": {
+     "count": 21,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 122,
+     "loss": 1597
+    },
+    "harassment_stalking": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 144,
+     "loss": 1597
+    },
+    "cryptocurrency_wallet": {
+     "count": 6,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 8,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 13,
+     "loss": 35
+    },
+    "crimes_against_children": {
+     "count": 21,
+     "loss": 35
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 74,
+     "loss": 1597
+    },
+    "20_29": {
+     "count": 7,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 3,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 3,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 2,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 50,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Pennsylvania",
+   "source_id": 42,
+   "victims": {
+    "other": {
+     "count": 47,
+     "loss": 12754
+    },
+    "extortion": {
+     "count": 161,
+     "loss": 13421
+    },
+    "ai_related": {
+     "count": 8,
+     "loss": 430
+    },
+    "cryptocurrency": {
+     "count": 8,
+     "loss": 11170
+    },
+    "crimes_against_children": {
+     "count": 208,
+     "loss": 26175
+    },
+    "cryptocurrency_wallet": {
+     "count": 11,
+     "loss": 197
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 10,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 46,
+     "loss": 3128
+    },
+    "cryptocurrency": {
+     "count": 3,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 56,
+     "loss": 3128
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 158,
+     "loss": 12791
+    },
+    "20_29": {
+     "count": 18,
+     "loss": 30
+    },
+    "30_39": {
+     "count": 7,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 11,
+     "loss": 600
+    },
+    "50_59": {
+     "count": 4,
+     "loss": 2754
+    },
+    "60_plus": {
+     "count": 3,
+     "loss": 10000
+    }
+   }
+  },
+  {
+   "name": "Puerto Rico",
+   "source_id": 43,
+   "victims": {
+    "other": {
+     "count": 6,
+     "loss": 500
+    },
+    "extortion": {
+     "count": 14,
+     "loss": 191
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 20,
+     "loss": 691
+    }
+   },
+   "subjects": {
+    "extortion": {
+     "count": 4,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 4,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 16,
+     "loss": 691
+    },
+    "20_29": {
+     "count": 1,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 1,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Rhode Island",
+   "source_id": 44,
+   "victims": {
+    "other": {
+     "count": 4,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 16,
+     "loss": 746
+    },
+    "crimes_against_children": {
+     "count": 20,
+     "loss": 746
+    }
+   },
+   "subjects": {
+    "extortion": {
+     "count": 5,
+     "loss": 400
+    },
+    "crimes_against_children": {
+     "count": 5,
+     "loss": 400
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 16,
+     "loss": 746
+    },
+    "20_29": {
+     "count": 3,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "South Carolina",
+   "source_id": 45,
+   "victims": {
+    "other": {
+     "count": 11,
+     "loss": 35
+    },
+    "extortion": {
+     "count": 74,
+     "loss": 2396
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 300
+    },
+    "crimes_against_children": {
+     "count": 85,
+     "loss": 2431
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 5,
+     "loss": 35
+    },
+    "extortion": {
+     "count": 13,
+     "loss": 300
+    },
+    "crimes_against_children": {
+     "count": 18,
+     "loss": 335
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 71,
+     "loss": 2431
+    },
+    "20_29": {
+     "count": 7,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 3,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 1,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "South Dakota",
+   "source_id": 46,
+   "victims": {
+    "other": {
+     "count": 5,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 13,
+     "loss": 2890
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 18,
+     "loss": 2890
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 2,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 5,
+     "loss": 1900
+    },
+    "crimes_against_children": {
+     "count": 7,
+     "loss": 1900
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 13,
+     "loss": 2890
+    },
+    "20_29": {
+     "count": 3,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Tennessee",
+   "source_id": 47,
+   "victims": {
+    "other": {
+     "count": 19,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 93,
+     "loss": 4896
+    },
+    "harassment_stalking": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 6,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 113,
+     "loss": 4896
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 200
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 7,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 25,
+     "loss": 75610
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 32,
+     "loss": 75610
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 91,
+     "loss": 4896
+    },
+    "20_29": {
+     "count": 9,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 3,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 3,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 2,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 1,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Texas",
+   "source_id": 48,
+   "victims": {
+    "other": {
+     "count": 130,
+     "loss": 4340
+    },
+    "extortion": {
+     "count": 508,
+     "loss": 579045
+    },
+    "harassment_stalking": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 25,
+     "loss": 440
+    },
+    "cryptocurrency": {
+     "count": 17,
+     "loss": 1563
+    },
+    "crimes_against_children": {
+     "count": 639,
+     "loss": 583385
+    },
+    "cryptocurrency_wallet": {
+     "count": 10,
+     "loss": 1545
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 48,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 138,
+     "loss": 17578
+    },
+    "harassment_stalking": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 7,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 7,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 187,
+     "loss": 17578
+    },
+    "cryptocurrency_wallet": {
+     "count": 4,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 520,
+     "loss": 28460
+    },
+    "20_29": {
+     "count": 46,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 31,
+     "loss": 4000
+    },
+    "40_49": {
+     "count": 18,
+     "loss": 925
+    },
+    "50_59": {
+     "count": 7,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 1,
+     "loss": 550000
+    }
+   }
+  },
+  {
+   "name": "United States Minor Outlying Islands",
+   "source_id": 49,
+   "victims": {
+    "other": {
+     "count": 2,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 3,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 5,
+     "loss": 0
+    }
+   },
+   "subjects": {},
+   "victims_by_age": {
+    "under_20": {
+     "count": 4,
+     "loss": 0
+    },
+    "20_29": {
+     "count": 0,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 1,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Utah",
+   "source_id": 50,
+   "victims": {
+    "other": {
+     "count": 21,
+     "loss": 400
+    },
+    "extortion": {
+     "count": 69,
+     "loss": 7151
+    },
+    "ai_related": {
+     "count": 2,
+     "loss": 100
+    },
+    "crimes_against_children": {
+     "count": 90,
+     "loss": 7551
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 7,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 17,
+     "loss": 1195
+    },
+    "crimes_against_children": {
+     "count": 24,
+     "loss": 1195
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 73,
+     "loss": 6251
+    },
+    "20_29": {
+     "count": 7,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 4,
+     "loss": 1000
+    },
+    "40_49": {
+     "count": 4,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Vermont",
+   "source_id": 51,
+   "victims": {
+    "other": {
+     "count": 2,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 19,
+     "loss": 269
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 21,
+     "loss": 269
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 79
+    }
+   },
+   "subjects": {
+    "extortion": {
+     "count": 8,
+     "loss": 79
+    },
+    "cryptocurrency": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 8,
+     "loss": 79
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 79
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 14,
+     "loss": 269
+    },
+    "20_29": {
+     "count": 7,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "U.S. Virgin Islands",
+   "source_id": 52,
+   "victims": {
+    "other": {
+     "count": 2,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 2,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 1,
+     "loss": 0
+    },
+    "20_29": {
+     "count": 0,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Virginia",
+   "source_id": 53,
+   "victims": {
+    "other": {
+     "count": 30,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 125,
+     "loss": 8269
+    },
+    "ai_related": {
+     "count": 6,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 3,
+     "loss": 200
+    },
+    "crimes_against_children": {
+     "count": 155,
+     "loss": 8269
+    },
+    "cryptocurrency_wallet": {
+     "count": 2,
+     "loss": 1325
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 4,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 27,
+     "loss": 1295
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 31,
+     "loss": 1295
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 124,
+     "loss": 7609
+    },
+    "20_29": {
+     "count": 9,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 7,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 9,
+     "loss": 660
+    },
+    "50_59": {
+     "count": 2,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "Washington",
+   "source_id": 54,
+   "victims": {
+    "other": {
+     "count": 40,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 127,
+     "loss": 15040
+    },
+    "harassment_stalking": {
+     "count": 1,
+     "loss": 0
+    },
+    "ai_related": {
+     "count": 6,
+     "loss": 500
+    },
+    "cryptocurrency": {
+     "count": 3,
+     "loss": 1365
+    },
+    "crimes_against_children": {
+     "count": 168,
+     "loss": 15040
+    },
+    "cryptocurrency_wallet": {
+     "count": 3,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 12,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 37,
+     "loss": 486
+    },
+    "ai_related": {
+     "count": 3,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 49,
+     "loss": 486
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 127,
+     "loss": 3785
+    },
+    "20_29": {
+     "count": 17,
+     "loss": 11255
+    },
+    "30_39": {
+     "count": 12,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 4,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 2,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 1,
+     "loss": 0
+    }
+   }
+  },
+  {
+   "name": "West Virginia",
+   "source_id": 55,
+   "victims": {
+    "other": {
+     "count": 21,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 22,
+     "loss": 75450
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 43,
+     "loss": 75450
+    },
+    "cryptocurrency_wallet": {
+     "count": 3,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 4,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 6,
+     "loss": 400
+    },
+    "crimes_against_children": {
+     "count": 10,
+     "loss": 400
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 30,
+     "loss": 400
+    },
+    "20_29": {
+     "count": 4,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 1,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 2,
+     "loss": 50
+    },
+    "50_59": {
+     "count": 1,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 3,
+     "loss": 75000
+    }
+   }
+  },
+  {
+   "name": "Wisconsin",
+   "source_id": 56,
+   "victims": {
+    "other": {
+     "count": 16,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 77,
+     "loss": 38142
+    },
+    "ai_related": {
+     "count": 3,
+     "loss": 350
+    },
+    "crimes_against_children": {
+     "count": 93,
+     "loss": 38142
+    },
+    "cryptocurrency_wallet": {
+     "count": 1,
+     "loss": 0
+    }
+   },
+   "subjects": {
+    "other": {
+     "count": 4,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 15,
+     "loss": 13513
+    },
+    "ai_related": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 19,
+     "loss": 13513
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 79,
+     "loss": 4339
+    },
+    "20_29": {
+     "count": 1,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 3,
+     "loss": 350
+    },
+    "40_49": {
+     "count": 4,
+     "loss": 13453
+    },
+    "50_59": {
+     "count": 1,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 1,
+     "loss": 20000
+    }
+   }
+  },
+  {
+   "name": "Wyoming",
+   "source_id": 57,
+   "victims": {
+    "other": {
+     "count": 1,
+     "loss": 0
+    },
+    "extortion": {
+     "count": 11,
+     "loss": 440
+    },
+    "crimes_against_children": {
+     "count": 12,
+     "loss": 440
+    }
+   },
+   "subjects": {
+    "extortion": {
+     "count": 4,
+     "loss": 160
+    },
+    "cryptocurrency": {
+     "count": 1,
+     "loss": 0
+    },
+    "crimes_against_children": {
+     "count": 4,
+     "loss": 160
+    }
+   },
+   "victims_by_age": {
+    "under_20": {
+     "count": 11,
+     "loss": 440
+    },
+    "20_29": {
+     "count": 0,
+     "loss": 0
+    },
+    "30_39": {
+     "count": 0,
+     "loss": 0
+    },
+    "40_49": {
+     "count": 0,
+     "loss": 0
+    },
+    "50_59": {
+     "count": 0,
+     "loss": 0
+    },
+    "60_plus": {
+     "count": 0,
+     "loss": 0
+    }
+   }
+  }
+ ]
+}
